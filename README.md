@@ -2,48 +2,78 @@
 
 **Support the journey.** BuyMeATee (`buymeatee.com`) is a golf-focused creator-support platform: golf fans help creators, aspiring professionals, amateur competitors, coaches and course reviewers chase meaningful goals.
 
-**Current status: pre-code.** This repository currently contains the product's long-term memory — workflow, context, architecture documentation and design references. The marketing website is built through the Marketing Wave milestones (see [Issues](https://github.com/simplesimondoes/buymeatee/issues)).
+**Current status: pre-launch marketing website implemented.** The public marketing site (homepage, audience pages, blog, early-access form, legal drafts) lives in this repository and is ready for review. Payments, accounts and dashboards do **not** exist yet — see [.ai/context/current-phase.md](.ai/context/current-phase.md).
 
-## Start here
+## Setup
 
-1. **[CLAUDE.md](CLAUDE.md)** — the entry point for every AI development session: product, phase, rules, vocabulary, map.
-2. **[arc42/developer-context.md](arc42/developer-context.md)** — compact orientation.
-3. The relevant issue(s) for the work at hand.
+```bash
+npm install
+```
 
-## The workflow
+Requires Node 20+ (developed on Node 22).
 
-Development follows a repository-based AI workflow: project knowledge lives here, not in chat history, so sessions can start with short prompts like *"Start Marketing Wave 1. Read the linked issues and repository context. Build, verify and pause for release."*
+## Development
+
+```bash
+npm run dev        # dev server at http://localhost:3000
+```
+
+Stack: Next.js (App Router, server components by default), TypeScript (strict), Tailwind CSS 4 (design tokens in `app/globals.css`), Lucide icons, Vitest + React Testing Library.
 
 | Where | What |
 | --- | --- |
-| [.ai/workflows/](.ai/workflows/) | Processes — [wave.md](.ai/workflows/wave.md) is the default (read → scope → inspect → build → review → verify → gates → report → **pause**) |
-| [.ai/agents/](.ai/agents/) | Roles to wear: product manager, frontend dev, SEO editor, content designer, designer, architect, backend dev, security, test engineer, reviewer, documentation |
-| [.ai/skills/](.ai/skills/) | How this project works: stack, design system, SEO, content, forms, testing, operations, architecture, GitHub conventions |
-| [.ai/quality-gates/](.ai/quality-gates/) | Checklists that gate completion (review, SEO, accessibility, security & privacy, content, testing, release) |
-| [.ai/context/](.ai/context/) | Product, phase, brand and links |
+| `app/` | Routes (one folder per route), sitemap, robots, manifest, OG image, icons |
+| `components/` | Reusable UI (header, footer, cards, form, accordion…) — `components/home/` holds homepage sections |
+| `lib/site.ts` | Brand config, navigation, footer links |
+| `lib/seo/` | Metadata + structured-data builders |
+| `lib/content/` | Typed content: images, goals, FAQs, support options, blog articles |
+| `lib/early-access/` | Form schema + isolated submission service |
+| `public/images/` | Imagery (currently low-res placeholders — see [.ai/context/image-requirements.md](.ai/context/image-requirements.md)) |
+
+## Environment variables
+
+Copy `.env.example` to `.env.local`:
+
+- `NEXT_PUBLIC_SITE_URL` — canonical origin (defaults to `https://buymeatee.com`).
+- `EARLY_ACCESS_API_URL` — server-side endpoint that receives early-access form submissions as a JSON POST. Leave empty and the form reports honestly that sign-up isn't connected (it never fakes success). To connect a provider (Formspree, Loops, ConvertKit, a Supabase function…), point this at its endpoint — the integration is isolated in `lib/early-access/service.ts`, so swapping providers touches one file. Never commit secrets.
+
+## Testing
+
+```bash
+npm run lint       # ESLint
+npm run test       # Vitest (unit + component tests)
+npm run build      # production build (also type-checks)
+```
+
+Visual work is additionally checked at 375 / 768 / 1024 / 1440 px (see [.ai/workflows/wave.md](.ai/workflows/wave.md)).
+
+## Build & deployment
+
+`npm run build` produces a fully static site (only `/api/early-access` is server-rendered). Deployment target: Vercel with the GitHub integration, production domain `buymeatee.com`. Set the environment variables above in Vercel project settings.
+
+## Content editing
+
+- **Marketing copy** lives in the page/section components; shared honest-content rules in [.ai/skills/content.md](.ai/skills/content.md).
+- **Blog articles** are typed structured content in `lib/content/articles/` — add a file, register it in `lib/content/blog.ts`, and the listing, sitemap and structured data update automatically.
+- **FAQs, goals, support options, navigation** are typed data in `lib/content/` and `lib/site.ts`.
+- **Images** are centralised in `lib/content/images.ts`; requirements and replacement guidance in [.ai/context/image-requirements.md](.ai/context/image-requirements.md).
+
+## Workflow usage
+
+Project knowledge lives in the repository, not chat history. Start every AI session with **[CLAUDE.md](CLAUDE.md)**; the default process is [.ai/workflows/wave.md](.ai/workflows/wave.md) (read → scope → inspect → build → review → verify → gates → report → **pause**).
+
+| Where | What |
+| --- | --- |
+| [.ai/workflows/](.ai/workflows/) | Processes — wave is the default |
+| [.ai/agents/](.ai/agents/) | Roles to wear per kind of work |
+| [.ai/skills/](.ai/skills/) | How this project works: stack, design system, SEO, content, forms, testing… |
+| [.ai/quality-gates/](.ai/quality-gates/) | Checklists that gate completion |
+| [.ai/context/](.ai/context/) | Product, phase, brand, links, image requirements |
 | [arc42/](arc42/) | Architecture documentation; decisions in [09-adrs.md](arc42/09-adrs.md) |
 
 ### Release control
 
 **Nothing is committed, merged, pushed or deployed until the user explicitly says `Release`.** Work pauses at the report step. See [.ai/workflows/release.md](.ai/workflows/release.md).
-
-## Setup / development / testing / build
-
-Not applicable yet — no application code exists. Once the project is scaffolded (Wave 1 issue: *Establish project foundation and design tokens*) this section will document:
-
-```bash
-npm install
-npm run dev
-npm run lint
-npm run test
-npm run build
-```
-
-Environment variables will be documented in `.env.example` (agreed so far: `NEXT_PUBLIC_SITE_URL`, `EARLY_ACCESS_API_URL`). Deployment: Vercel → `buymeatee.com` (see [.ai/skills/operations.md](.ai/skills/operations.md)).
-
-## Content editing
-
-Blog and marketing content conventions live in [.ai/skills/content.md](.ai/skills/content.md). Content architecture is created in Marketing Wave 3.
 
 ## GitHub project setup
 
@@ -53,10 +83,10 @@ Labels, milestones and the initial backlog are created reproducibly by:
 ./scripts/setup-github-project.sh
 ```
 
-Requires an authenticated GitHub CLI (`gh auth login`) with `repo` scope. Safe to rerun — existing labels are updated, existing milestones and issues (by title) are skipped. Conventions: [.ai/skills/github-issues.md](.ai/skills/github-issues.md).
+Requires an authenticated GitHub CLI (`gh auth login`) with `repo` scope. Safe to rerun. Conventions: [.ai/skills/github-issues.md](.ai/skills/github-issues.md).
 
 ## Design references
 
 - `screenshots/image.png` — approved marketing-page concept
 - `screenshots/appui.png` — mobile-app UI concepts
-- `files/` — original founder briefs
+- `files/` — original founder briefs (including the contact sheet the current placeholder images were extracted from)

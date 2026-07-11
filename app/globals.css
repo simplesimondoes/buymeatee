@@ -1,0 +1,55 @@
+@import "tailwindcss";
+
+@theme {
+  /* Brand colour tokens — single source of truth (see .ai/skills/design-system.md) */
+  --color-forest: #073e2e;
+  --color-forest-dark: #052d23;
+  --color-cream: #f6f1e7;
+  --color-offwhite: #fcfaf6;
+  --color-stone: #ded5c5;
+  /* Lightened from the brief's #b69755 so small gold text on forest meets AA */
+  --color-gold: #bd9c5d;
+  /* Darkened gold for accessible small text on cream/offwhite (AA) */
+  --color-gold-deep: #776027;
+  --color-ink: #15201b;
+
+  --font-sans: var(--font-inter), ui-sans-serif, system-ui, sans-serif;
+  --font-serif: var(--font-fraunces), ui-serif, Georgia, serif;
+}
+
+@media (prefers-reduced-motion: no-preference) {
+  html {
+    scroll-behavior: smooth;
+  }
+}
+
+body {
+  background-color: var(--color-offwhite);
+  color: var(--color-ink);
+  font-family: var(--font-sans);
+  -webkit-font-smoothing: antialiased;
+}
+
+::selection {
+  background-color: var(--color-forest);
+  color: var(--color-cream);
+}
+
+:focus-visible {
+  outline: 2px solid var(--color-gold-deep);
+  outline-offset: 2px;
+}
+
+.on-dark :focus-visible {
+  outline-color: var(--color-gold);
+}
+
+@media (prefers-reduced-motion: reduce) {
+  *,
+  *::before,
+  *::after {
+    animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.01ms !important;
+  }
+}

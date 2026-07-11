@@ -1,14 +1,15 @@
 # Skill: Design System
 
-> **Status: planned.** Tokens below are the approved starting direction from the brand brief; the implemented tokens in code become the source of truth once Wave 1 lands. Update this file with real token locations and component inventory then.
+> **Status: implemented.** Tokens live in `app/globals.css` under `@theme` (Tailwind 4 CSS variables) — that file is the source of truth. No raw hex values in components.
 
-## Brand colours (starting tokens)
+## Brand colours (implemented tokens)
 
 - `forest` `#073E2E` (primary deep green), `forest-dark` `#052D23`
 - `cream` `#F6F1E7`, `offwhite` `#FCFAF6`, `stone` `#DED5C5`
-- `gold` `#B69755` (accents, progress), `ink` `#15201B`, white `#FFFFFF`
-
-Define as Tailwind theme tokens / CSS variables in one place. No raw hex values in components. Adjust values where contrast requires — record adjustments here.
+- `gold` `#BD9C5D` (accents, progress fills, eyebrows on dark) — **lightened from the brief's `#B69755`** so small gold text on `forest` meets WCAG AA (4.64:1)
+- `gold-deep` `#776027` — **added for contrast**: accessible gold-toned small text/links on cream/offwhite (plain `gold` on light backgrounds is decorative-only)
+- `ink` `#15201B`, white `#FFFFFF`
+- Muted body/meta text on light backgrounds uses `text-ink/70` as the floor — `/50–/60` opacities fail AA for small text; don't reintroduce them.
 
 ## Typography
 
@@ -21,9 +22,11 @@ Define as Tailwind theme tokens / CSS variables in one place. No raw hex values 
 - Soft, generous radii on cards and buttons (the concept uses rounded cards and pill-ish buttons).
 - Subtle shadows only; depth comes from colour blocking (deep green panels on cream) more than shadow.
 
-## Core components (planned)
+## Core components (implemented — reuse before creating new ones)
 
-Buttons (primary deep-green, secondary outline/cream, on-dark variants), cards (creator preview, goal card, support option), progress bars (gold fill on neutral track, with accessible text values), section headings (eyebrow + serif heading + intro), FAQ accordion, audience panels.
+In `components/`: `ButtonLink` (primary / secondary / onDark / onDarkOutline, pill), `Logo`/`LogoMark` (SVG tee mark + serif wordmark), `SectionHeading` (eyebrow + serif heading + intro, light/dark tone), `ExampleBadge` (Example/Preview/Concept labels), `ProgressBar` (gold fill, accessible), `GoalCard`, `CreatorPreviewCard`, `FaqAccordion` (native details/summary), `CallToAction`, `Breadcrumbs` (+ JSON-LD), `PageHeader`, `BlogCard`, `ArticleBody`, `EarlyAccessForm`, `Header`/`MobileNav`/`Footer`, `StructuredData`. Homepage sections in `components/home/`.
+
+Dark panels set the `on-dark` class so focus outlines switch to gold (see `globals.css`).
 
 ## Responsive rules
 

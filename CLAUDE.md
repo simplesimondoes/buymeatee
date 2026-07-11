@@ -16,7 +16,7 @@ The product must feel like participation in a golfer's journey, not a generic do
 
 > Marketing website and product validation.
 
-**No code has been written yet.** The repository currently contains the workflow, architecture documentation and design references. The marketing website is built in Marketing Wave 1 onwards (see the GitHub milestones and backlog).
+**The marketing website is implemented (July 2026) and awaiting release.** All Marketing Wave scopes (foundation, audiences, SEO/blog, early access, legal drafts) exist in the repository; see the GitHub milestones and backlog for remaining polish and follow-up work.
 
 Do not build the full application, payments, creator dashboard, supporter dashboard or authentication unless a future issue explicitly introduces them. See [.ai/context/current-phase.md](.ai/context/current-phase.md).
 
@@ -30,19 +30,22 @@ If the user explicitly instructs a commit, push or deploy as part of a particula
 
 ## Current technology
 
-**Planned stack — not yet implemented.** When the marketing site is built it will use:
+**Implemented (July 2026):**
 
-- Next.js App Router
-- TypeScript
-- Tailwind CSS
+- Next.js 16 App Router (Turbopack), server components by default — all public pages statically generated
+- TypeScript (strict), `@/` import alias
+- Tailwind CSS 4 — design tokens as CSS variables in `app/globals.css` (no raw hex in components)
+- Fonts via `next/font`: Fraunces (serif headings), Inter (sans body)
+- Lucide icons; no other UI framework
+- Typed local content (no CMS, no MDX): `lib/content/` — blog articles, FAQs, goals, support options, images
+- Early-access form behind an isolated service boundary (`lib/early-access/`, `EARLY_ACCESS_API_URL`)
+- Vitest + React Testing Library (`*.test.ts(x)` co-located with source)
 - Vercel (production domain: `https://buymeatee.com`)
-- Server-rendered or statically generated public pages
-- Local structured content or MDX for the blog
 - No production database (not until explicitly introduced via ADR)
 - No payment provider selected yet
 - No authentication provider selected yet
 
-**Update this section as soon as the implementation exists or changes.** Stack conventions: [.ai/skills/nextjs-typescript.md](.ai/skills/nextjs-typescript.md).
+**Update this section whenever the implementation changes.** Stack conventions: [.ai/skills/nextjs-typescript.md](.ai/skills/nextjs-typescript.md).
 
 ## Product vocabulary
 
@@ -70,18 +73,14 @@ Full glossary: [arc42/12-glossary.md](arc42/12-glossary.md). Brand voice: [.ai/c
 
 ## Verification commands
 
-**None exist yet — there is no package.json.** Do not claim to have run lint, tests or a build until the project scaffold exists.
-
-Once the Next.js project is created (Marketing Wave 1), the expected commands are:
-
 ```bash
 npm install
-npm run lint
-npm run test
-npm run build
+npm run lint    # ESLint — must pass clean
+npm run test    # Vitest unit + component tests
+npm run build   # production build (includes type check)
 ```
 
-Update this section (and [.ai/skills/testing.md](.ai/skills/testing.md)) with the real commands when they exist.
+`npm run dev` serves http://localhost:3000 (launch config in `.claude/launch.json`).
 
 Visual changes must also be verified at **375px, 768px, 1024px and 1440px**.
 
@@ -89,19 +88,24 @@ Visual changes must also be verified at **375px, 768px, 1024px and 1440px**.
 
 | Path | Purpose |
 | --- | --- |
+| `app/` | Next.js routes (one folder per route), sitemap/robots/manifest, OG image, icons, API route |
+| `components/` | Reusable UI; `components/home/` holds homepage sections |
+| `lib/site.ts` | Brand config, navigation and footer links |
+| `lib/seo/` | Metadata and structured-data builders |
+| `lib/content/` | Typed content: images, example goals, FAQs, support options, blog articles (`articles/`) |
+| `lib/early-access/` | Form schema + isolated submission service (ADR-004) |
+| `public/images/` | Imagery — low-res placeholders, see [.ai/context/image-requirements.md](.ai/context/image-requirements.md) |
 | `.ai/agents/` | Role definitions to "wear" for specific kinds of work |
 | `.ai/skills/` | How this project actually works (stack, SEO, content, forms…) |
 | `.ai/workflows/` | Repeatable processes; [wave.md](.ai/workflows/wave.md) is the default |
 | `.ai/quality-gates/` | Checklists that gate completion |
-| `.ai/context/` | Product, phase, brand and link knowledge |
+| `.ai/context/` | Product, phase, brand, links and image requirements |
 | `.ai/artifacts/` | Temporary working documents (current/ and archive/) |
 | `arc42/` | Architecture documentation and ADRs |
 | `.github/` | Issue and PR templates |
 | `scripts/` | GitHub project setup automation |
 | `files/` | Original founder briefs (marketing site + workflow prompts) |
 | `screenshots/` | Approved design concepts (marketing page + app UI) |
-
-Not yet created (will exist after Wave 1+): blog content, shared marketing components, form integration, SEO utilities. When they exist, record their locations here and in the relevant skills.
 
 ## Keep documentation alive
 

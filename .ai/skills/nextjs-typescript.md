@@ -1,10 +1,10 @@
 # Skill: Next.js + TypeScript
 
-> **Status: planned conventions.** No code exists yet. These are the conventions to establish when the project is scaffolded (Marketing Wave 1). Once real code exists, update this file to describe the *actual* structure and remove this notice.
+> **Status: implemented (July 2026).** The conventions below describe the actual codebase.
 
 ## Stack
 
-Next.js App Router, TypeScript (strict), Tailwind CSS, deployed on Vercel. Current stable, mutually compatible versions.
+Next.js 16 App Router (Turbopack), React 19, TypeScript (strict), Tailwind CSS 4, deployed on Vercel. Fonts via `next/font` (Fraunces + Inter). Testing: Vitest + React Testing Library (`vitest.config.ts`; the `server-only` package is stubbed for tests via an alias).
 
 ## App Router conventions
 
@@ -15,8 +15,9 @@ Next.js App Router, TypeScript (strict), Tailwind CSS, deployed on Vercel. Curre
 
 ## Metadata
 
-- Centralise metadata construction in a shared utility (see [seo.md](seo.md)); every route exports unique `metadata` / `generateMetadata`.
+- Metadata construction is centralised in `lib/seo/metadata.ts` (`pageMetadata`, `rootMetadata`); every route exports unique `metadata` / `generateMetadata`.
 - Canonical origin comes from `NEXT_PUBLIC_SITE_URL`, defaulting to `https://buymeatee.com`.
+- **Gotcha:** a page-level `openGraph` object *replaces* the root layout's, dropping the file-convention OG image — `pageMetadata` therefore references `/opengraph-image` explicitly. Keep using the helper.
 
 ## TypeScript expectations
 

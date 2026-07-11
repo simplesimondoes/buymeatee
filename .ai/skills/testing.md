@@ -1,12 +1,14 @@
 # Skill: Testing
 
-> **Status: no test infrastructure exists yet.** There is no package.json. Setting up the runner is part of the project-foundation issue. Update this file with the real runner, locations and commands when configured — do not claim tests ran before then.
+> **Status: implemented.**
 
-## Planned setup
+## Setup
 
-- Runner: to be chosen at scaffold time (Vitest + React Testing Library is the expected fit for Next.js App Router; confirm and record here).
-- Location: co-located `*.test.ts(x)` next to source, or `__tests__/` — decide once, record here.
-- Commands once configured: `npm run lint`, `npm run test`, `npm run build`.
+- Runner: **Vitest** + React Testing Library + jsdom (`vitest.config.ts`, setup in `vitest.setup.ts`). `test.globals` is enabled — required for RTL's automatic DOM cleanup between tests.
+- The `server-only` package is aliased to `test/server-only-stub.ts` so server modules (e.g. the early-access service/route) can be tested directly.
+- Location: co-located `*.test.ts(x)` next to source.
+- Commands: `npm run lint`, `npm run test` (watch: `npm run test:watch`), `npm run build`.
+- Current coverage: form validation schema, API route (including honeypot and honest 503), early-access form states, mobile nav accessibility, FAQ accordion, metadata helpers, blog content invariants, inline-link parser, sitemap completeness.
 
 ## What deserves testing
 

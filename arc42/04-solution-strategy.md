@@ -1,6 +1,6 @@
 # 4. Solution Strategy
 
-> Decided but **not yet implemented** — the repository has no application code as of the workflow setup. Wave 1 realises this strategy.
+> **Implemented (July 2026).** The marketing site realises this strategy; blog content is typed structured TS (the "typed structured content" branch of ADR-003), not MDX.
 
 1. **Server-rendered Next.js marketing site.** App Router, TypeScript, Tailwind; public pages server rendered or statically generated for SEO and performance ([ADR-001](09-adrs.md), [ADR-002](09-adrs.md)).
 2. **Typed content and reusable components.** Navigation, FAQ entries, sample goals, support options and metadata live as typed data; UI is built from a token-based design system ([ADR-006](09-adrs.md)).

@@ -1,6 +1,6 @@
 # Skill: SEO
 
-> **Status: planned.** Update with real utility locations once implemented.
+> **Status: implemented.** Utilities: `lib/seo/metadata.ts` (canonical + metadata builders), `lib/seo/structured-data.ts` (WebSite, Breadcrumb, FAQ, Article JSON-LD), `components/structured-data.tsx`, `app/sitemap.ts`, `app/robots.ts`, `app/manifest.ts`, `app/opengraph-image.tsx` (generated social image). FAQ JSON-LD is emitted only on `/faq` where all questions are visible.
 
 ## Identity
 
@@ -11,7 +11,7 @@
 
 ## Metadata
 
-- Unique title, description and canonical per route, built through a central metadata utility (planned location: `lib/seo/` or similar — record the real path when created).
+- Unique title, description and canonical per route, built through `pageMetadata()` in `lib/seo/metadata.ts` — always use the helper (it also carries the default OG image, which page-level `openGraph` objects would otherwise drop).
 - Open Graph and Twitter/X card metadata on every route; a default social-sharing image.
 - No accidental `noindex`; robots and sitemap must agree with intent.
 

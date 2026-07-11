@@ -4,7 +4,7 @@ The architecture documentation lives in [arc42/](../../arc42/). This skill is th
 
 ## Current system shape
 
-There is **no implemented system yet**. The decided shape (see [arc42/04-solution-strategy.md](../../arc42/04-solution-strategy.md)) is a server-rendered Next.js marketing site on Vercel with typed local content, a shared design system, and an isolated early-access form service boundary. No database, no auth, no payments.
+The marketing site is **implemented** (July 2026) exactly along the decided shape (see [arc42/04-solution-strategy.md](../../arc42/04-solution-strategy.md)): a statically generated Next.js site with typed local content (`lib/content/`), a token-based design system (`app/globals.css` + `components/`), and an isolated early-access form service boundary (`lib/early-access/`). No database, no auth, no payments.
 
 ## Where to look
 

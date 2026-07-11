@@ -1,6 +1,6 @@
 # Skill: Forms (Early Access)
 
-> **Status: planned.** The early-access form does not exist yet. This documents the agreed architecture; update with real file paths and the chosen provider when built.
+> **Status: implemented** (provider not yet chosen). Files: `components/early-access-form.tsx` (client UI + states), `lib/early-access/schema.ts` (shared typed validation), `lib/early-access/service.ts` (server-only submission boundary), `app/api/early-access/route.ts` (handler with honeypot). Rendered on the homepage at `#early-access`.
 
 ## Structure
 
@@ -35,7 +35,7 @@ Consent text describing actual use, with a link to `/privacy`. The privacy draft
 
 ## Spam resistance
 
-Document considerations when implementing: honeypot field, minimal rate limiting at the handler, no open redirect of user content. Avoid CAPTCHA unless spam is demonstrated.
+Implemented: hidden `website` honeypot field — bot submissions receive a generic success and are dropped without forwarding. Not yet implemented (add when a provider is connected and spam appears): rate limiting at the handler. Avoid CAPTCHA unless spam is demonstrated.
 
 ## No sensitive logging
 

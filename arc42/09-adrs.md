@@ -7,7 +7,7 @@ Decisions recorded here were made in the founder briefs (July 2026) and govern t
 ## ADR-001: Use Next.js App Router for the public website
 
 ### Status
-Accepted (implementation pending — Wave 1)
+Accepted (implemented July 2026)
 
 ### Context
 The first deliverable is a marketing site where SEO, performance and maintainability by a small team matter most. The founder brief specifies Next.js App Router, TypeScript and Tailwind on Vercel.
@@ -26,7 +26,7 @@ One framework carries the site from marketing phase into the future application.
 ## ADR-002: Server-render public content by default
 
 ### Status
-Accepted (implementation pending)
+Accepted (implemented July 2026)
 
 ### Context
 SEO is a first-class requirement; important marketing copy must be crawlable and fast.
@@ -45,13 +45,15 @@ Content and metadata are produced server-side; interactive islands (menu, accord
 ## ADR-003: Use local structured content or MDX before adding a CMS
 
 ### Status
-Accepted (implementation pending)
+Accepted (implemented July 2026)
 
 ### Context
 The blog needs an SEO-ready architecture now, but content volume is small and the team is one founder.
 
 ### Decision
 Blog articles live in the repository as MDX or typed structured content. No CMS.
+
+*Implementation note (July 2026):* typed structured TypeScript content was chosen over MDX — articles are typed block arrays in `lib/content/articles/`, avoiding an MDX toolchain dependency while remaining easy to migrate to a CMS later.
 
 ### Alternatives considered
 Headless CMS (Contentful, Sanity…) — operational and cost overhead unjustified at current volume; hosted blog platforms — splits SEO authority away from buymeatee.com.
@@ -64,7 +66,7 @@ Publishing requires a repo change (acceptable now). Content structures must be t
 ## ADR-004: Isolate early-access submission behind a service boundary
 
 ### Status
-Accepted (implementation pending)
+Accepted (implemented July 2026)
 
 ### Context
 Early-access interest capture is the site's key conversion, but no submission provider has been selected.
@@ -102,7 +104,7 @@ The site stays cheap, fast and low-risk. Copy must stay honest that payments do 
 ## ADR-006: Use design tokens and reusable components as the shared UI foundation
 
 ### Status
-Accepted (implementation pending)
+Accepted (implemented July 2026)
 
 ### Context
 The brand (premium editorial golf aesthetic) must stay consistent across many pages, maintained by AI sessions over time.

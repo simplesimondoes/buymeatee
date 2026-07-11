@@ -19,7 +19,7 @@ Every fictional creator, goal, progress figure or UI preview is labelled `Exampl
 
 ## Blog conventions
 
-> **Status: planned** — update with the real content location and format once the blog architecture exists (expected: local MDX or typed structured content under the repo, no CMS).
+> **Status: implemented** — typed structured content (no CMS, no MDX). Articles live in `lib/content/articles/*.ts` as typed blocks (`p`, `h2`, `h3`, `ul`, `quote`); paragraphs support markdown-style inline links parsed by `lib/content/inline.ts`. Register new articles in `lib/content/blog.ts` — listing, sitemap and Article JSON-LD update automatically. Reading time is computed from word count.
 
 - Author label: `BuyMeATee Editorial` (honest, no invented bylines).
 - Each article: title, slug, description, author, publication date, updated date, reading time, hero image, body, internal links, Article structured data.
