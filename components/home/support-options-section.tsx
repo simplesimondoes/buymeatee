@@ -38,23 +38,23 @@ export function SupportOptionsSection() {
           {supportOptions.map((option) => (
             <li
               key={option.name}
-              className="rounded-2xl border border-cream/15 bg-forest p-5"
+              className="rounded-2xl border border-white/15 bg-forest p-5"
             >
               <div className="flex items-center gap-3">
-                <span className="flex h-10 w-10 items-center justify-center rounded-full bg-cream/10 text-gold">
+                <span className="flex h-10 w-10 items-center justify-center rounded-full bg-white/10 text-gold">
                   {icons[option.icon]}
                 </span>
-                <h3 className="font-serif text-lg font-semibold text-cream">
+                <h3 className="font-serif text-lg font-semibold text-white">
                   {option.name}
                 </h3>
               </div>
-              <p className="mt-3 text-sm leading-relaxed text-cream/75">
+              <p className="mt-3 text-sm leading-relaxed text-white/75">
                 {option.description}
               </p>
             </li>
           ))}
         </ul>
-        <p className="mt-8 text-center text-sm text-cream/60">
+        <p className="mt-8 text-center text-sm text-white/60">
           {supportOptionsNote}
         </p>
       </div>

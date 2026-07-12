@@ -22,7 +22,7 @@ export default function BlogPage() {
         heading="Notes from the journey"
         intro="Practical guides on supporting golf creators, funding golf content and backing the amateur game — written honestly, without the filler."
       />
-      <section className="bg-offwhite">
+      <section className="bg-white">
         <div className="mx-auto max-w-6xl px-4 py-16 sm:px-6 lg:px-8 lg:py-24">
           <div className="grid gap-6 sm:grid-cols-2 lg:grid-cols-3">
             {articles.map((article) => (

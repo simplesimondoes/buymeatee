@@ -13,10 +13,10 @@ export function CallToAction({
   return (
     <section className="on-dark bg-forest">
       <div className="mx-auto max-w-4xl px-4 py-16 text-center sm:px-6 lg:px-8 lg:py-20">
-        <h2 className="font-serif text-3xl font-semibold tracking-tight text-cream text-balance sm:text-4xl">
+        <h2 className="font-serif text-3xl font-semibold tracking-tight text-white text-balance sm:text-4xl">
           {heading}
         </h2>
-        <p className="mx-auto mt-4 max-w-xl text-base text-cream/80">{body}</p>
+        <p className="mx-auto mt-4 max-w-xl text-base text-white/80">{body}</p>
         <div className="mt-8 flex flex-col items-center justify-center gap-3 sm:flex-row">
           <ButtonLink href="/#early-access" variant="onDark" size="lg">
             Start your page

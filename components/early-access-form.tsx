@@ -140,7 +140,7 @@ export function EarlyAccessForm() {
               key={option.value}
               className={`cursor-pointer rounded-2xl border p-4 transition-colors ${
                 role === option.value
-                  ? "border-forest bg-forest text-cream"
+                  ? "border-forest bg-forest text-white"
                   : "border-stone bg-white text-ink hover:border-forest/40"
               }`}
             >
@@ -158,7 +158,7 @@ export function EarlyAccessForm() {
               <span className="block font-medium">{option.label}</span>
               <span
                 className={`mt-0.5 block text-sm ${
-                  role === option.value ? "text-cream/75" : "text-ink/70"
+                  role === option.value ? "text-white/75" : "text-ink/70"
                 }`}
               >
                 {option.hint}
@@ -312,7 +312,7 @@ export function EarlyAccessForm() {
       <button
         type="submit"
         disabled={status === "submitting"}
-        className="inline-flex min-h-12 w-full items-center justify-center gap-2 rounded-full bg-forest px-7 text-base font-medium text-cream transition-colors hover:bg-forest-dark disabled:opacity-70 sm:w-auto"
+        className="inline-flex min-h-12 w-full items-center justify-center gap-2 rounded-full bg-forest px-7 text-base font-medium text-white transition-colors hover:bg-forest-dark disabled:opacity-70 sm:w-auto"
       >
         {status === "submitting" ? (
           <>

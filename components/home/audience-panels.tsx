@@ -1,10 +1,11 @@
 import { CircleCheck } from "lucide-react";
+import Image from "next/image";
 
 import { ButtonLink } from "@/components/button-link";
 import { CreatorPreviewCard } from "@/components/creator-preview-card";
 import { ExampleBadge } from "@/components/example-badge";
-import { ProgressBar } from "@/components/progress-bar";
 import { SectionHeading } from "@/components/section-heading";
+import { images } from "@/lib/content/images";
 
 const creatorPoints = [
   "Share your story and goals",
@@ -29,7 +30,7 @@ function PointList({
   points: string[];
   tone: "light" | "dark";
 }) {
-  const text = tone === "dark" ? "text-cream/85" : "text-ink/75";
+  const text = tone === "dark" ? "text-white/85" : "text-ink/75";
   const icon = tone === "dark" ? "text-gold" : "text-gold-deep";
   return (
     <ul className="mt-6 space-y-3">
@@ -46,42 +47,29 @@ function PointList({
   );
 }
 
-/** Fictional supporter journey preview (labelled Preview — ADR-007). */
-function SupporterJourneyPreview() {
+/** Concept app screen from the approved UI mockups (labelled Concept — ADR-007). */
+function SupporterCollectionConcept() {
+  const screen = images.appConceptSupporterCollection;
   return (
-    <article className="rounded-3xl bg-white p-5 shadow-lg">
-      <div className="flex items-center justify-between">
-        <h4 className="font-serif text-lg font-semibold text-forest">
-          My journey
-        </h4>
-        <ExampleBadge label="Preview" />
+    <figure className="relative mx-auto w-full max-w-[280px]">
+      <div className="absolute right-3 top-3 z-10">
+        <ExampleBadge label="Concept" />
       </div>
-      <ul className="mt-4 space-y-3">
-        {[
-          { goal: "Scotland Links Trip", note: "You bought 3 tees", pct: 54 },
-          { goal: "Road to Scratch", note: "You supported 9 holes", pct: 53 },
-          { goal: "New wedges", note: "You bought 1 tee", pct: 80 },
-        ].map((item) => (
-          <li key={item.goal} className="rounded-2xl bg-cream p-4">
-            <div className="flex items-baseline justify-between gap-3">
-              <p className="text-sm font-medium text-forest">{item.goal}</p>
-              <p className="text-xs text-ink/70">{item.note}</p>
-            </div>
-            <ProgressBar
-              value={item.pct}
-              label={`Progress towards ${item.goal} (preview)`}
-              className="mt-2.5"
-            />
-          </li>
-        ))}
-      </ul>
-    </article>
+      <Image
+        src={screen.src}
+        alt={screen.alt}
+        width={screen.width}
+        height={screen.height}
+        sizes="280px"
+        className="h-auto w-full rounded-[1.9rem] shadow-xl ring-1 ring-ink/10"
+      />
+    </figure>
   );
 }
 
 export function AudiencePanels() {
   return (
-    <section className="bg-cream">
+    <section className="bg-mist">
       <div className="mx-auto max-w-6xl px-4 py-16 sm:px-6 lg:px-8 lg:py-24">
         <SectionHeading
           eyebrow="Who it's for"
@@ -94,7 +82,7 @@ export function AudiencePanels() {
             <p className="text-xs font-semibold uppercase tracking-[0.2em] text-gold">
               For golf creators
             </p>
-            <h3 className="mt-3 font-serif text-2xl font-semibold text-cream sm:text-3xl">
+            <h3 className="mt-3 font-serif text-2xl font-semibold text-white sm:text-3xl">
               Turn followers into part of the journey.
             </h3>
             <PointList points={creatorPoints} tone="dark" />
@@ -108,7 +96,7 @@ export function AudiencePanels() {
             </div>
           </div>
           {/* Supporter panel */}
-          <div className="flex flex-col rounded-3xl border border-stone bg-offwhite p-6 sm:p-8 lg:p-10">
+          <div className="flex flex-col rounded-3xl border border-stone bg-white p-6 sm:p-8 lg:p-10">
             <p className="text-xs font-semibold uppercase tracking-[0.2em] text-gold-deep">
               For golf fans
             </p>
@@ -119,8 +107,8 @@ export function AudiencePanels() {
             <div className="mt-8">
               <ButtonLink href="/#early-access">Join as a supporter</ButtonLink>
             </div>
-            <div className="mt-8 max-w-sm">
-              <SupporterJourneyPreview />
+            <div className="mt-8">
+              <SupporterCollectionConcept />
             </div>
           </div>
         </div>

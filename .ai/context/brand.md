@@ -18,20 +18,21 @@ Supporting line: *Follow the journey. Support a goal. Buy them a tee.*
 
 Warm, aspirational, golf-literate, premium but approachable, community-oriented, honest, **British English**. Never charity-like, never desperate, never overly corporate.
 
-## Palette (suggested starting tokens)
+## Palette
+
+> **Jul 2026 (founder decision):** the original warm cream/stone palette from the brief was replaced with a **modern white** scheme to match the approved app mockups — white base, very light neutral (`mist`) alternate sections, deep green and gold unchanged.
 
 | Token | Value |
 | --- | --- |
 | Deep forest green | `#073E2E` |
 | Dark forest | `#052D23` |
-| Warm cream | `#F6F1E7` |
-| Soft off-white | `#FCFAF6` |
-| Warm stone | `#DED5C5` |
-| Muted gold | `#B69755` |
+| White (base) | `#FFFFFF` |
+| Mist (alternate sections) | `#F6F6F3` |
+| Stone (light neutral borders) | `#E7E6E1` |
+| Muted gold | `#B69755` (implemented as `#BD9C5D`/`#776027` for contrast) |
 | Ink | `#15201B` |
-| White | `#FFFFFF` |
 
-Adjust where needed for contrast and cohesion. Once implemented, the design tokens in code are the source of truth — see [.ai/skills/design-system.md](../skills/design-system.md).
+Adjust where needed for contrast and cohesion. The design tokens in code are the source of truth — see [.ai/skills/design-system.md](../skills/design-system.md).
 
 ## Typography direction
 
@@ -57,11 +58,11 @@ Adjust where needed for contrast and cohesion. Once implemented, the design toke
 
 ## Logo guidance
 
-Create a usable brand mark inspired by the approved concept: elegant BuyMeATee wordmark with a subtle golf flag or tee detail; deep-green primary version; white/cream reversed version; compact favicon mark; SVG or programmatic implementation; accessible text treatment. Do not rely only on a raster image and do not imitate a protected golf logo.
+**Jul 2026 (founder decision):** the site logo is the **text-only serif-italic wordmark** (`components/logo.tsx`) matching the app mockups — no tee glyph next to the text. The compact tee-and-ball mark survives only as the favicon/app icon (`app/icon.svg`, `app/apple-icon.tsx`). Deep-green primary version; white reversed version; programmatic implementation; accessible text treatment. Do not imitate a protected golf logo.
 
 ## Reference concepts
 
-- `screenshots/image.png` — approved marketing-page concept (primary visual reference).
-- `screenshots/appui.png` — mobile-app concepts (supporting product inspiration: creator page, support options, goals, activity, supporters, collections/badges, creator dashboard).
+- `screenshots/Mockup.png` — approved marketing-page concept (primary visual reference; replaced the earlier `image.png` in Jul 2026).
+- `screenshots/appui.png` — mobile-app concepts (supporting product inspiration: creator page, support options, goals, activity, supporters, collections/badges, creator dashboard). Phone screens cropped from this sheet are used on the homepage as `Concept`-labelled imagery.
 - `files/homepage_images.png` — contact sheet of 25 named homepage imagery slots (`01_hero_sunset_links_golfer` … `25_aerial_golf_hole`): golden-hour links golf, diverse golfers, course/clubhouse scenery, creator vlogging, junior golfer. Caution: a few frames show visible equipment logos (PING, Titleist) — avoid or verify licensing before using frames with third-party marks.
 - `files/buymeatee-marketing-site-prompt.md` — the full founder brief for the marketing site.

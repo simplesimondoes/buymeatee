@@ -25,7 +25,7 @@ export default function FaqPage() {
         intro="BuyMeATee is in early development, and we'd rather be honest than impressive. Here's everything we can answer today."
       />
 
-      <section className="bg-offwhite">
+      <section className="bg-white">
         <div className="mx-auto max-w-3xl space-y-12 px-4 py-16 sm:px-6 lg:px-8 lg:py-24">
           {faqGroups.map((group) => (
             <div key={group.heading}>

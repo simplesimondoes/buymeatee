@@ -90,7 +90,7 @@ export default function ForCreatorsPage() {
       />
 
       {/* Who it's for */}
-      <section className="bg-offwhite">
+      <section className="bg-white">
         <div className="mx-auto max-w-6xl px-4 py-16 sm:px-6 lg:px-8 lg:py-24">
           <div className="grid items-center gap-10 lg:grid-cols-2 lg:gap-14">
             <div>
@@ -150,7 +150,7 @@ export default function ForCreatorsPage() {
       </section>
 
       {/* Benefits */}
-      <section className="bg-cream">
+      <section className="bg-mist">
         <div className="mx-auto max-w-6xl px-4 py-16 sm:px-6 lg:px-8 lg:py-24">
           <SectionHeading
             eyebrow="Why creators join"
@@ -174,7 +174,7 @@ export default function ForCreatorsPage() {
       </section>
 
       {/* Planned workflow */}
-      <section className="bg-offwhite">
+      <section className="bg-white">
         <div className="mx-auto max-w-6xl px-4 py-16 sm:px-6 lg:px-8 lg:py-24">
           <SectionHeading
             eyebrow="Planned creator workflow"

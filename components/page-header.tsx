@@ -18,7 +18,7 @@ export function PageHeader({
   intro,
 }: PageHeaderProps) {
   return (
-    <div className="bg-cream">
+    <div className="bg-mist">
       <div className="mx-auto max-w-6xl px-4 pb-14 pt-6 sm:px-6 lg:px-8 lg:pb-20 lg:pt-8">
         <Breadcrumbs items={breadcrumbs} />
         <div className="mt-8 max-w-3xl lg:mt-12">

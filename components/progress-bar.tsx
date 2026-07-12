@@ -15,7 +15,7 @@ export function ProgressBar({
   className,
 }: ProgressBarProps) {
   const clamped = Math.max(0, Math.min(100, Math.round(value)));
-  const track = tone === "dark" ? "bg-cream/20" : "bg-stone/60";
+  const track = tone === "dark" ? "bg-white/20" : "bg-stone/60";
   return (
     <div
       role="progressbar"

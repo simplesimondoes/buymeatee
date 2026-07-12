@@ -4,12 +4,12 @@
   /* Brand colour tokens — single source of truth (see .ai/skills/design-system.md) */
   --color-forest: #073e2e;
   --color-forest-dark: #052d23;
-  --color-cream: #f6f1e7;
-  --color-offwhite: #fcfaf6;
-  --color-stone: #ded5c5;
+  /* Modern-white scheme (Jul 2026 redesign): white base, mist for alternate sections */
+  --color-mist: #f6f6f3;
+  --color-stone: #e7e6e1;
   /* Lightened from the brief's #b69755 so small gold text on forest meets AA */
   --color-gold: #bd9c5d;
-  /* Darkened gold for accessible small text on cream/offwhite (AA) */
+  /* Darkened gold for accessible small text on white/mist (AA) */
   --color-gold-deep: #776027;
   --color-ink: #15201b;
 
@@ -24,7 +24,7 @@
 }
 
 body {
-  background-color: var(--color-offwhite);
+  background-color: var(--color-white);
   color: var(--color-ink);
   font-family: var(--font-sans);
   -webkit-font-smoothing: antialiased;
@@ -32,7 +32,7 @@ body {
 
 ::selection {
   background-color: var(--color-forest);
-  color: var(--color-cream);
+  color: var(--color-white);
 }
 
 :focus-visible {

@@ -24,7 +24,7 @@ export default function AboutPage() {
         heading="Why BuyMeATee exists"
       />
 
-      <section className="bg-offwhite">
+      <section className="bg-white">
         <div className="mx-auto max-w-3xl px-4 py-16 sm:px-6 lg:px-8 lg:py-24">
           <blockquote className="border-l-4 border-gold pl-6 font-serif text-2xl font-medium leading-snug text-forest sm:text-3xl">
             BuyMeATee was created from the belief that golf audiences want a

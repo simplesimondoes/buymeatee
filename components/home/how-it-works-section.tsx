@@ -24,7 +24,7 @@ const steps: { icon: ReactNode; title: string; body: string }[] = [
 
 export function HowItWorksSection() {
   return (
-    <section className="bg-offwhite">
+    <section className="bg-white">
       <div className="mx-auto max-w-6xl px-4 py-16 sm:px-6 lg:px-8 lg:py-24">
         <SectionHeading
           eyebrow="How it works"
@@ -33,7 +33,7 @@ export function HowItWorksSection() {
         <ol className="mt-12 grid gap-8 sm:grid-cols-3 sm:gap-6 lg:gap-10">
           {steps.map((step, index) => (
             <li key={step.title} className="text-center">
-              <div className="mx-auto flex h-14 w-14 items-center justify-center rounded-full bg-cream text-forest">
+              <div className="mx-auto flex h-14 w-14 items-center justify-center rounded-full bg-mist text-forest">
                 {step.icon}
               </div>
               <p className="mt-4 text-xs font-semibold uppercase tracking-[0.2em] text-gold-deep">

@@ -22,31 +22,22 @@ export default function OpenGraphImage() {
           padding: 80,
         }}
       >
-        <div style={{ display: "flex", alignItems: "center", gap: 20 }}>
-          <svg width="56" height="56" viewBox="0 0 64 64">
-            <g fill="#b69755">
-              <circle cx="32" cy="17" r="8" />
-              <path d="M18.5 29.5h27c1.3 0 2.1 1.45 1.4 2.55l-5.2 8.05a2.6 2.6 0 0 1-2.2 1.2H24.5a2.6 2.6 0 0 1-2.2-1.2l-5.2-8.05c-.7-1.1.1-2.55 1.4-2.55Z" />
-              <path d="M28.4 45h7.2l-2.5 15.6a1.1 1.1 0 0 1-2.2 0L28.4 45Z" />
-            </g>
-          </svg>
-          <div
-            style={{
-              fontSize: 44,
-              fontStyle: "italic",
-              fontWeight: 700,
-              color: "#f6f1e7",
-            }}
-          >
-            BuyMeATee
-          </div>
+        <div
+          style={{
+            fontSize: 44,
+            fontStyle: "italic",
+            fontWeight: 700,
+            color: "#ffffff",
+          }}
+        >
+          BuyMeATee
         </div>
         <div style={{ display: "flex", flexDirection: "column" }}>
           <div
             style={{
               fontSize: 96,
               fontWeight: 700,
-              color: "#f6f1e7",
+              color: "#ffffff",
               lineHeight: 1.05,
             }}
           >
@@ -56,7 +47,7 @@ export default function OpenGraphImage() {
             style={{
               marginTop: 28,
               fontSize: 34,
-              color: "rgba(246, 241, 231, 0.75)",
+              color: "rgba(255, 255, 255, 0.78)",
               lineHeight: 1.4,
             }}
           >

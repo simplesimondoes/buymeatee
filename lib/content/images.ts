@@ -19,6 +19,26 @@ export type SiteImage = {
 };
 
 export const images = {
+  /** Full-bleed homepage hero — supplied at full resolution (not a placeholder). */
+  heroJourney: {
+    src: "/images/hero-journey.png",
+    width: 1881,
+    height: 836,
+    alt: "Three golfers carrying their bags along a coastal course at sunset",
+  },
+  /** App concept screens cropped from the approved UI mockups (screenshots/appui.png). Always label Concept. */
+  appConceptCreatorProfile: {
+    src: "/images/app-concept-creator-profile.png",
+    width: 282,
+    height: 538,
+    alt: "Concept app screen of a fictional creator profile with a current goal and progress bar",
+  },
+  appConceptSupporterCollection: {
+    src: "/images/app-concept-supporter-collection.png",
+    width: 316,
+    height: 448,
+    alt: "Concept app screen of a fictional supporter profile with collected courses and badges",
+  },
   heroLinksGolfer: {
     src: "/images/01_hero_sunset_links_golfer.png",
     width: 330,

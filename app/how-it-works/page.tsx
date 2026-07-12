@@ -77,9 +77,9 @@ function JourneyList({
   tone: "light" | "dark";
 }) {
   const numberColour = tone === "dark" ? "text-gold" : "text-gold-deep";
-  const titleColour = tone === "dark" ? "text-cream" : "text-forest";
-  const bodyColour = tone === "dark" ? "text-cream/75" : "text-ink/70";
-  const divide = tone === "dark" ? "divide-cream/15" : "divide-stone";
+  const titleColour = tone === "dark" ? "text-white" : "text-forest";
+  const bodyColour = tone === "dark" ? "text-white/75" : "text-ink/70";
+  const divide = tone === "dark" ? "divide-white/15" : "divide-stone";
   return (
     <ol className={`mt-8 divide-y ${divide}`}>
       {steps.map((step, index) => (
@@ -115,7 +115,7 @@ export default function HowItWorksPage() {
         intro="Two journeys, one platform: creators share real golfing goals, supporters help make them happen. Here's how each side will work."
       />
 
-      <section className="bg-offwhite">
+      <section className="bg-white">
         <div className="mx-auto max-w-6xl px-4 py-16 sm:px-6 lg:px-8 lg:py-24">
           <p className="mx-auto max-w-2xl text-center text-sm text-ink/70">
             <ExampleBadge label="Preview" className="mr-2 align-middle" />
@@ -146,7 +146,7 @@ export default function HowItWorksPage() {
         </div>
       </section>
 
-      <section className="bg-cream">
+      <section className="bg-mist">
         <div className="mx-auto grid max-w-6xl items-center gap-10 px-4 py-16 sm:px-6 lg:grid-cols-2 lg:gap-14 lg:px-8 lg:py-24">
           <div className="overflow-hidden rounded-3xl">
             <Image

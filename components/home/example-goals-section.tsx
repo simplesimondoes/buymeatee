@@ -4,7 +4,7 @@ import { exampleGoals } from "@/lib/content/example-goals";
 
 export function ExampleGoalsSection() {
   return (
-    <section className="bg-offwhite">
+    <section className="bg-white">
       <div className="mx-auto max-w-6xl px-4 py-16 sm:px-6 lg:px-8 lg:py-24">
         <SectionHeading
           eyebrow="Example goals"

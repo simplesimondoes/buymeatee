@@ -1,7 +1,10 @@
 import { Flag, HeartHandshake, ShieldCheck, Target } from "lucide-react";
+import Image from "next/image";
 import type { ReactNode } from "react";
 
+import { ExampleBadge } from "@/components/example-badge";
 import { SectionHeading } from "@/components/section-heading";
+import { images } from "@/lib/content/images";
 
 const features: { icon: ReactNode; title: string; body: string }[] = [
   {
@@ -27,28 +30,50 @@ const features: { icon: ReactNode; title: string; body: string }[] = [
 ];
 
 export function TipJarSection() {
+  const screen = images.appConceptCreatorProfile;
   return (
-    <section className="bg-cream">
+    <section className="bg-mist">
       <div className="mx-auto max-w-6xl px-4 py-16 sm:px-6 lg:px-8 lg:py-24">
-        <SectionHeading
-          heading="More than just a tip jar."
-          intro="BuyMeATee is designed around real golfing goals, visible progress and an ongoing connection between creators and the people supporting them."
-        />
-        <ul className="mt-12 grid gap-8 sm:grid-cols-2 lg:grid-cols-4">
-          {features.map((feature) => (
-            <li key={feature.title} className="text-center">
-              <div className="mx-auto flex h-14 w-14 items-center justify-center rounded-full bg-forest text-gold">
-                {feature.icon}
-              </div>
-              <h3 className="mt-4 font-serif text-lg font-semibold text-forest">
-                {feature.title}
-              </h3>
-              <p className="mt-2 text-sm leading-relaxed text-ink/70">
-                {feature.body}
-              </p>
-            </li>
-          ))}
-        </ul>
+        <div className="grid items-center gap-12 lg:grid-cols-[1.2fr_0.8fr] lg:gap-16">
+          <div>
+            <SectionHeading
+              align="left"
+              heading="More than just a tip jar."
+              intro="BuyMeATee is designed around real golfing goals, visible progress and an ongoing connection between creators and the people supporting them."
+            />
+            <ul className="mt-10 grid gap-8 sm:grid-cols-2">
+              {features.map((feature) => (
+                <li key={feature.title} className="flex items-start gap-4">
+                  <div className="flex h-12 w-12 shrink-0 items-center justify-center rounded-full bg-forest text-gold">
+                    {feature.icon}
+                  </div>
+                  <div>
+                    <h3 className="font-serif text-lg font-semibold text-forest">
+                      {feature.title}
+                    </h3>
+                    <p className="mt-1.5 text-sm leading-relaxed text-ink/70">
+                      {feature.body}
+                    </p>
+                  </div>
+                </li>
+              ))}
+            </ul>
+          </div>
+          {/* Concept app screen from the approved UI mockups (ADR-007) */}
+          <figure className="relative mx-auto w-full max-w-[300px]">
+            <div className="absolute right-3 top-3 z-10">
+              <ExampleBadge label="Concept" />
+            </div>
+            <Image
+              src={screen.src}
+              alt={screen.alt}
+              width={screen.width}
+              height={screen.height}
+              sizes="300px"
+              className="h-auto w-full rounded-[2rem] shadow-xl ring-1 ring-ink/10"
+            />
+          </figure>
+        </div>
       </div>
     </section>
   );

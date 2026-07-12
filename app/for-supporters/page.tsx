@@ -64,7 +64,7 @@ export default function ForSupportersPage() {
         intro="A coffee is quickly forgotten. A tee, a round or a tournament entry becomes part of a story — one you helped write."
       />
 
-      <section className="bg-offwhite">
+      <section className="bg-white">
         <div className="mx-auto max-w-6xl px-4 py-16 sm:px-6 lg:px-8 lg:py-24">
           <div className="grid items-center gap-10 lg:grid-cols-2 lg:gap-14">
             <div className="overflow-hidden rounded-3xl">
@@ -95,7 +95,7 @@ export default function ForSupportersPage() {
       </section>
 
       {/* Supporter steps */}
-      <section className="bg-cream">
+      <section className="bg-mist">
         <div className="mx-auto max-w-6xl px-4 py-16 sm:px-6 lg:px-8 lg:py-24">
           <SectionHeading
             eyebrow="How supporting works"
@@ -107,7 +107,7 @@ export default function ForSupportersPage() {
                 key={step.title}
                 className="rounded-2xl bg-white p-6"
               >
-                <div className="flex h-12 w-12 items-center justify-center rounded-full bg-cream text-forest">
+                <div className="flex h-12 w-12 items-center justify-center rounded-full bg-mist text-forest">
                   {step.icon}
                 </div>
                 <h3 className="mt-4 font-serif text-lg font-semibold text-forest">
@@ -123,7 +123,7 @@ export default function ForSupportersPage() {
       </section>
 
       {/* Honest boundary */}
-      <section className="bg-offwhite">
+      <section className="bg-white">
         <div className="mx-auto max-w-3xl px-4 py-16 sm:px-6 lg:px-8 lg:py-24">
           <div className="rounded-3xl border border-stone bg-white p-6 sm:p-8">
             <div className="flex items-start gap-4">

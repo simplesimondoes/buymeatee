@@ -27,11 +27,11 @@ export default function TermsPage() {
         heading="Terms of Use"
         intro="The ground rules for using this pre-launch website."
       />
-      <section className="bg-offwhite">
+      <section className="bg-white">
         <div className="mx-auto max-w-3xl px-4 py-12 sm:px-6 lg:px-8 lg:py-16">
           <div
             role="note"
-            className="flex items-start gap-3 rounded-2xl border border-gold/40 bg-cream p-5 text-sm leading-relaxed text-ink/80"
+            className="flex items-start gap-3 rounded-2xl border border-gold/40 bg-mist p-5 text-sm leading-relaxed text-ink/80"
           >
             <ScrollText
               aria-hidden="true"

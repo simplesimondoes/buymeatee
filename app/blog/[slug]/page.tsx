@@ -47,7 +47,7 @@ export default async function ArticlePage({ params }: ArticlePageProps) {
 
   return (
     <>
-      <div className="bg-cream">
+      <div className="bg-mist">
         <div className="mx-auto max-w-3xl px-4 pb-12 pt-6 sm:px-6 lg:px-8 lg:pb-16 lg:pt-8">
           <Breadcrumbs
             items={[
@@ -80,7 +80,7 @@ export default async function ArticlePage({ params }: ArticlePageProps) {
         </div>
       </div>
 
-      <article className="bg-offwhite">
+      <article className="bg-white">
         <div className="mx-auto max-w-3xl px-4 py-12 sm:px-6 lg:px-8 lg:py-16">
           <div className="overflow-hidden rounded-3xl">
             <Image

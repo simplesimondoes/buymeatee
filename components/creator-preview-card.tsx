@@ -11,7 +11,7 @@ import { images } from "@/lib/content/images";
 export function CreatorPreviewCard() {
   const photo = images.golferDriverSwing;
   return (
-    <article className="overflow-hidden rounded-3xl bg-offwhite text-ink shadow-lg">
+    <article className="overflow-hidden rounded-3xl bg-white text-ink shadow-lg">
       <div className="relative">
         <Image
           src={photo.src}
@@ -28,7 +28,7 @@ export function CreatorPreviewCard() {
           Alex Morgan
         </h4>
         <p className="text-sm text-ink/70">7.8 handicap</p>
-        <div className="mt-4 rounded-2xl bg-cream p-4">
+        <div className="mt-4 rounded-2xl bg-mist p-4">
           <p className="text-xs font-semibold uppercase tracking-[0.14em] text-gold-deep">
             Current goal
           </p>

@@ -23,8 +23,8 @@ export function SectionHeading({
 }: SectionHeadingProps) {
   const alignment = align === "center" ? "text-center mx-auto" : "text-left";
   const eyebrowColour = tone === "dark" ? "text-gold" : "text-gold-deep";
-  const headingColour = tone === "dark" ? "text-cream" : "text-forest";
-  const introColour = tone === "dark" ? "text-cream/80" : "text-ink/70";
+  const headingColour = tone === "dark" ? "text-white" : "text-forest";
+  const introColour = tone === "dark" ? "text-white/80" : "text-ink/70";
 
   return (
     <div className={`max-w-2xl ${alignment} ${className ?? ""}`}>

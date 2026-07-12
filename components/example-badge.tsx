@@ -13,7 +13,7 @@ export function ExampleBadge({
 }: ExampleBadgeProps) {
   const colours =
     tone === "dark"
-      ? "bg-cream/15 text-cream"
+      ? "bg-white/15 text-white"
       : "bg-stone/60 text-ink/80";
   return (
     <span

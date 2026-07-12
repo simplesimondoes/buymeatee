@@ -4,14 +4,22 @@ Central reference for every image slot on the marketing site. Image metadata
 (paths, dimensions, alt text) lives in code at [`lib/content/images.ts`](../../lib/content/images.ts) —
 that file is the source of truth; keep the two in sync.
 
-## ⚠️ Current status: low-resolution placeholders
+## ⚠️ Current status: mostly low-resolution placeholders
 
-Every file in `public/images/` was extracted from the founder's concept
+Most files in `public/images/` were extracted from the founder's concept
 contact sheet (`files/homepage_images.png`) at roughly **300 × 170 px**. They
 establish the art direction but are **below production quality** — each slot
 must be replaced with a high-resolution original (same subject or equivalent)
 before launch. Replacement is drop-in: keep the filename, update the
 `width`/`height` in `lib/content/images.ts`.
+
+Exceptions (production quality, supplied Jul 2026):
+
+- `hero-journey.png` (1881 × 836) — the homepage full-bleed hero.
+- `app-concept-creator-profile.png` / `app-concept-supporter-collection.png`
+  — phone screens cropped from the approved app mockups
+  (`screenshots/appui.png`), used as `Concept`-labelled imagery. Higher-res
+  exports of the same screens would still be an upgrade (~2× display size).
 
 ## Licensing
 
@@ -25,7 +33,9 @@ same problem.
 
 | Slot | File | Display size (max) | Recommended source | Aspect | Subject / alt direction |
 | --- | --- | --- | --- | --- | --- |
-| Homepage hero | `01_hero_sunset_links_golfer` | ~660 px wide (2× ~1320) | ≥ 2000 px wide | ~3:2 | Golfer finishing a drive, links course, golden hour — aspirational, warm |
+| Homepage hero (full-bleed) | `hero-journey` | 100vw (up to ~1920 px) | ≥ 1900 px wide ✅ supplied | ~2.25:1 | Golfers walking a coastal course at golden hour — subjects right of centre so left copy stays clear |
+| Tip-jar section phone | `app-concept-creator-profile` | ~300 px wide | 2× export of mockup screen | ~9:17 | Concept creator profile screen — always labelled `Concept` |
+| Supporter panel phone | `app-concept-supporter-collection` | ~280 px wide | 2× export of mockup screen | ~7:10 | Concept supporter collection screen — always labelled `Concept` |
 | Creator example card (Alex Morgan) | `05_golfer_driver_swing` | ~384 px wide | ≥ 800 px wide | ~3:2 | Relatable golfer mid-swing |
 | Creator audience panel (`/for-creators`) | `23_creator_vlogging_golf` | ~640 px wide | ≥ 1300 px wide | ~2:1 | Creator filming on-course — authentic, not staged-corporate |
 | Supporter panel (`/for-supporters`) | `13_golfers_fist_bump` | ~640 px wide | ≥ 1300 px wide | ~3:2 | Two golfers celebrating — connection, community |
@@ -44,7 +54,7 @@ same problem.
 | Social sharing default | *generated* (`app/opengraph-image.tsx`) | 1200 × 630 | — | 1.91:1 | Branded card from design tokens — no photo needed |
 | Favicon / app icon | *generated* (`app/icon.svg`, `app/apple-icon.tsx`) | — | — | 1:1 | Tee-and-ball brand mark |
 
-Unused-but-extracted frames (02, 08, 14, 16, 17, 19, 24, 25) remain in
+Unused-but-extracted frames (01, 02, 08, 14, 16, 17, 19, 24, 25) remain in
 `public/images/` as options for future sections; the same replacement and
 licensing rules apply if they are put into use. Frame 24 (junior golfer)
 must only ever appear in a context that reflects the parent/guardian rule.

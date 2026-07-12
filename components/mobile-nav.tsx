@@ -4,7 +4,7 @@ import Link from "next/link";
 import { Menu, X } from "lucide-react";
 import { useCallback, useEffect, useId, useRef, useState } from "react";
 
-import { LogoMark } from "@/components/logo";
+import { Wordmark } from "@/components/logo";
 import { headerActions, primaryNavigation } from "@/lib/site";
 
 /**
@@ -69,14 +69,11 @@ export function MobileNav() {
           role="dialog"
           aria-modal="true"
           aria-label="Site navigation"
-          className="fixed inset-0 z-50 flex flex-col bg-offwhite"
+          className="fixed inset-0 z-50 flex flex-col bg-white"
         >
           <div className="flex items-center justify-between px-4 py-4 sm:px-6">
-            <span className="inline-flex items-center gap-2 text-forest">
-              <LogoMark className="h-6 w-6" />
-              <span className="font-serif text-2xl font-semibold italic tracking-tight">
-                BuyMeATee
-              </span>
+            <span className="inline-flex items-center text-forest">
+              <Wordmark />
             </span>
             <button
               type="button"
@@ -106,7 +103,7 @@ export function MobileNav() {
               <Link
                 href={headerActions.primary.href}
                 onClick={() => setOpen(false)}
-                className="inline-flex min-h-12 items-center justify-center rounded-full bg-forest px-6 text-base font-medium text-cream hover:bg-forest-dark"
+                className="inline-flex min-h-12 items-center justify-center rounded-full bg-forest px-6 text-base font-medium text-white hover:bg-forest-dark"
               >
                 {headerActions.primary.label}
               </Link>
