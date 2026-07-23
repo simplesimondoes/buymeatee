@@ -1,6 +1,7 @@
 import type { Metadata } from "next";
 import { Fraunces, Inter } from "next/font/google";
 
+import { Analytics } from "@/components/analytics";
 import { Footer } from "@/components/footer";
 import { Header } from "@/components/header";
 import { StructuredData } from "@/components/structured-data";
@@ -42,6 +43,7 @@ export default function RootLayout({
         </main>
         <Footer />
         <StructuredData data={webSiteJsonLd()} />
+        <Analytics />
       </body>
     </html>
   );
