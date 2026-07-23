@@ -61,6 +61,8 @@ describe("rootMetadata", () => {
       default: "BuyMeATee — Support the Golf Journey",
       template: "%s | BuyMeATee",
     });
-    expect(metadata.metadataBase?.origin).toBe("https://buymeatee.com");
+    const base = metadata.metadataBase;
+    expect(base).toBeInstanceOf(URL);
+    expect((base as URL).origin).toBe("https://buymeatee.com");
   });
 });

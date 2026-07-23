@@ -11,4 +11,7 @@
 | **Form service** | Early-access form UI + isolated submission boundary (shared schema, server validation, `EARLY_ACCESS_API_URL`, honeypot, honest states). | `components/early-access-form.tsx`, `lib/early-access/`, `app/api/early-access/route.ts` |
 | **Legal pages** | Privacy and terms drafts, clearly marked for legal review. | `app/privacy/`, `app/terms/` |
 | **Analytics abstraction** | Thin typed event API with no provider installed by default. | `lib/analytics.ts` |
+| **Authentication** | Passwordless magic-link sign-in, cookie sessions, session-refresh middleware scoped to authed areas only (ADR-010). | `app/sign-in/`, `app/auth/`, `middleware.ts`, `lib/supabase/`, `lib/auth/` |
+| **Payment domain** | Stripe Connect destination charges: fees, connected accounts, gifts/checkout, verified webhooks, refunds, disputes, admin tools, reconciliation (ADR-009). | `lib/payments/`, `lib/stripe/`, `app/api/checkout/`, `app/api/connect/`, `app/api/stripe/webhooks/`, `app/api/admin/`, `components/payments/` |
+| **Goal domain** | Creator Goals with lifecycle, active-goal limit and webhook-verified progress; gift→goal attribution seam (ADR-011). | `lib/goals/`, `supabase/migrations/*_creator_goals.sql` |
 | **Public assets** | Programmatic logo (SVG mark + wordmark component), imagery, web manifest, generated icons. Image slots documented. | `components/logo.tsx`, `app/icon.svg`, `app/apple-icon.tsx`, `public/images/`, [.ai/context/image-requirements.md](../.ai/context/image-requirements.md) |

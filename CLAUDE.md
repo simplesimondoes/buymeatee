@@ -41,9 +41,11 @@ If the user explicitly instructs a commit, push or deploy as part of a particula
 - Early-access form behind an isolated service boundary (`lib/early-access/`, `EARLY_ACCESS_API_URL`)
 - Vitest + React Testing Library (`*.test.ts(x)` co-located with source)
 - Vercel (production domain: `https://buymeatee.com`)
-- No production database (not until explicitly introduced via ADR)
-- No payment provider selected yet
-- No authentication provider selected yet
+- Supabase database (project ref `hjpfycbamwwpemsrrsqy`, ADR-008): `profiles` + `early_access_signups` plus the payment domain tables (ADR-009), schema managed via CLI migrations in `supabase/migrations/` (`supabase db push`)
+- **Payments: Stripe Connect destination charges via Stripe-hosted Checkout (ADR-009)** — connected accounts (Express dashboard, `transfers` capability), application fees, verified webhooks, refunds, dispute tracking, admin view (`/admin/payments`), reconciliation. Fee model + rules: [.ai/skills/payments.md](.ai/skills/payments.md); operations: [docs/stripe-connect-setup.md](docs/stripe-connect-setup.md). Awaiting Stripe dashboard setup + env vars — fails safely (honest unavailable states) until configured
+- **Authentication: minimal Supabase Auth, email magic links only (ADR-010)** — `/sign-in`, `/auth/callback`, cookie sessions via `@supabase/ssr`; middleware matcher covers only authed areas so marketing pages stay static. No passwords, no social providers, no account management UI
+- **Creator Goals (ADR-011)** — `creator_goals` table + `lib/goals/` domain boundary; lifecycle `draft → active → completed/archived`, max 3 active per creator (`MAX_ACTIVE_GOALS`, mirrored by DB trigger), minor-unit amounts; `raised_amount` is written only by the verified webhook path via `apply_goal_contribution()` (no client write grant — progress can never be invented); gifts carry an optional `goal_id`
+- **Avatars via Supabase Storage (ADR-012)** — public `avatars` bucket created by migration, per-user-folder write RLS, 2 MB jpeg/png/webp limit enforced in bucket config and server-side with magic-byte checks (`lib/profile/avatar.ts`); one extensionless object per user, overwritten in place
 
 **Update this section whenever the implementation changes.** Stack conventions: [.ai/skills/nextjs-typescript.md](.ai/skills/nextjs-typescript.md).
 
@@ -94,6 +96,10 @@ Visual changes must also be verified at **375px, 768px, 1024px and 1440px**.
 | `lib/seo/` | Metadata and structured-data builders |
 | `lib/content/` | Typed content: images, example goals, FAQs, support options, blog articles (`articles/`) |
 | `lib/early-access/` | Form schema + isolated submission service (ADR-004) |
+| `lib/payments/` | Payment domain: fees, Connect, gifts/checkout, webhooks, admin, reconciliation (ADR-009) |
+| `lib/stripe/` + `lib/supabase/` | Stripe server client; Supabase server/admin/browser clients |
+| `lib/notifications/` | Idempotent gift-notification queue boundary |
+| `docs/` | Payment operations: Stripe setup checklist, deployment/rollback, legal-review list |
 | `public/images/` | Imagery — low-res placeholders, see [.ai/context/image-requirements.md](.ai/context/image-requirements.md) |
 | `.ai/agents/` | Role definitions to "wear" for specific kinds of work |
 | `.ai/skills/` | How this project actually works (stack, SEO, content, forms…) |
