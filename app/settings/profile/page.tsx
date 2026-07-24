@@ -75,6 +75,7 @@ export default async function ProfileSettingsPage() {
             initialSocialInstagram={profile?.social_instagram ?? ""}
             initialSocialTiktok={profile?.social_tiktok ?? ""}
             initialSocialWebsite={profile?.social_website ?? ""}
+            initialPinnedMediaUrl={profile?.pinned_media_url ?? ""}
           />
         </div>
       )}

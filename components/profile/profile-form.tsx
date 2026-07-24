@@ -26,6 +26,7 @@ interface ProfileFormProps {
   initialSocialInstagram: string;
   initialSocialTiktok: string;
   initialSocialWebsite: string;
+  initialPinnedMediaUrl: string;
 }
 
 const inputClasses =
@@ -63,6 +64,7 @@ export function ProfileForm({
   initialSocialInstagram,
   initialSocialTiktok,
   initialSocialWebsite,
+  initialPinnedMediaUrl,
 }: ProfileFormProps) {
   const fieldId = useId();
   const [username, setUsername] = useState(initialUsername ?? "");
@@ -78,6 +80,7 @@ export function ProfileForm({
   const [socialInstagram, setSocialInstagram] = useState(initialSocialInstagram);
   const [socialTiktok, setSocialTiktok] = useState(initialSocialTiktok);
   const [socialWebsite, setSocialWebsite] = useState(initialSocialWebsite);
+  const [pinnedMediaUrl, setPinnedMediaUrl] = useState(initialPinnedMediaUrl);
   const [savedUsername, setSavedUsername] = useState(initialUsername);
   const [errors, setErrors] = useState<FieldErrors>({});
   const [formError, setFormError] = useState<string | null>(null);
@@ -107,6 +110,7 @@ export function ProfileForm({
       socialInstagram,
       socialTiktok,
       socialWebsite,
+      pinnedMediaUrl,
     };
     const validation = validateProfileInput(payload);
     if (!validation.ok) {
@@ -400,6 +404,35 @@ export function ProfileForm({
             <FieldError id={`${fieldId}-${field}-error`} message={errors[field]} />
           </div>
         ))}
+
+        <div>
+          <label
+            htmlFor={`${fieldId}-pinnedMediaUrl`}
+            className={labelClasses}
+          >
+            Pinned media
+          </label>
+          <input
+            id={`${fieldId}-pinnedMediaUrl`}
+            type="url"
+            inputMode="url"
+            autoCapitalize="none"
+            spellCheck={false}
+            value={pinnedMediaUrl}
+            onChange={(event) => setPinnedMediaUrl(event.target.value)}
+            placeholder="https://youtube.com/watch?v=…"
+            className={inputClasses}
+            {...errorProps("pinnedMediaUrl")}
+          />
+          <FieldError
+            id={`${fieldId}-pinnedMediaUrl-error`}
+            message={errors.pinnedMediaUrl}
+          />
+          <p className="mt-1.5 text-sm text-ink/60">
+            Feature one thing near the top of your page — a YouTube video, an
+            Instagram post, or any link.
+          </p>
+        </div>
       </fieldset>
 
       <div className="space-y-3">

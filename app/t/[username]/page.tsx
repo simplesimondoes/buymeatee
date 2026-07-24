@@ -8,6 +8,7 @@ import { GiftComposer } from "@/components/payments/gift-composer";
 import { PublicGoals } from "@/components/goals/public-goals";
 import { Markdown } from "@/components/markdown";
 import { Avatar } from "@/components/profile/avatar";
+import { PinnedMedia } from "@/components/profile/pinned-media";
 import { PublicUpdates } from "@/components/updates/public-updates";
 import { CreatorStats } from "@/components/support/creator-stats";
 import { RecentSupport } from "@/components/support/recent-support";
@@ -43,12 +44,13 @@ type ProfileRow = {
   social_instagram: string | null;
   social_tiktok: string | null;
   social_website: string | null;
+  pinned_media_url: string | null;
   created_at: string | null;
   deactivated_at: string | null;
 };
 
 const PROFILE_COLUMNS =
-  "id, username, display_name, avatar_url, cover_image_url, bio, about, handicap, location, home_club, handedness, social_youtube, social_instagram, social_tiktok, social_website, created_at, deactivated_at";
+  "id, username, display_name, avatar_url, cover_image_url, bio, about, handicap, location, home_club, handedness, social_youtube, social_instagram, social_tiktok, social_website, pinned_media_url, created_at, deactivated_at";
 
 const loadProfile = cache(async (username: string): Promise<ProfileRow | null> => {
   if (!/^[a-z0-9]([a-z0-9-]{1,38}[a-z0-9])?$/.test(username)) {
@@ -322,6 +324,12 @@ export default async function RecipientProfilePage({
             <Markdown source={profile.about} />
           </div>
         </section>
+      ) : null}
+
+      {profile.pinned_media_url ? (
+        <div className="mt-8">
+          <PinnedMedia url={profile.pinned_media_url} />
+        </div>
       ) : null}
 
       <div className="mt-8">

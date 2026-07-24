@@ -26,6 +26,7 @@ export interface OwnProfile {
   social_instagram: string | null;
   social_tiktok: string | null;
   social_website: string | null;
+  pinned_media_url: string | null;
   role: "creator" | "supporter";
 }
 
@@ -34,7 +35,7 @@ export type UpdateProfileResult =
   | { ok: false; reason: "username_taken" | "unavailable" };
 
 const OWN_PROFILE_COLUMNS =
-  "id, username, display_name, avatar_url, cover_image_url, bio, about, country, handicap, location, home_club, handedness, social_youtube, social_instagram, social_tiktok, social_website, role";
+  "id, username, display_name, avatar_url, cover_image_url, bio, about, country, handicap, location, home_club, handedness, social_youtube, social_instagram, social_tiktok, social_website, pinned_media_url, role";
 
 export async function getOwnProfile(userId: string): Promise<OwnProfile | null> {
   const supabase = await getSupabaseServerClient();
@@ -68,6 +69,7 @@ export async function updateOwnProfile(
     social_instagram: input.socialInstagram ?? null,
     social_tiktok: input.socialTiktok ?? null,
     social_website: input.socialWebsite ?? null,
+    pinned_media_url: input.pinnedMediaUrl ?? null,
   };
 
   // The profile row is created by the handle_new_user trigger, so this is

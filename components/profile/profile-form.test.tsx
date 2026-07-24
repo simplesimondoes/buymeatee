@@ -14,6 +14,7 @@ const enrichment = {
   initialSocialInstagram: "",
   initialSocialTiktok: "",
   initialSocialWebsite: "",
+  initialPinnedMediaUrl: "",
 };
 
 const filledProps = {

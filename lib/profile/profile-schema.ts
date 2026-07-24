@@ -5,6 +5,8 @@
  * Field shapes mirror public.profiles in the foundation migration.
  */
 
+import { isValidPinnedMediaUrl } from "@/lib/profile/pinned-media";
+
 export const USERNAME_PATTERN = /^[a-z0-9]([a-z0-9-]{1,38}[a-z0-9])?$/;
 export const DISPLAY_NAME_MAX_LENGTH = 200;
 export const BIO_MAX_LENGTH = 1000;
@@ -125,6 +127,7 @@ export interface ProfileInput {
   socialInstagram?: string;
   socialTiktok?: string;
   socialWebsite?: string;
+  pinnedMediaUrl?: string;
 }
 
 export type ProfileFieldName =
@@ -140,7 +143,8 @@ export type ProfileFieldName =
   | "socialYoutube"
   | "socialInstagram"
   | "socialTiktok"
-  | "socialWebsite";
+  | "socialWebsite"
+  | "pinnedMediaUrl";
 
 export type ProfileValidationResult =
   | { ok: true; data: ProfileInput }
@@ -261,6 +265,17 @@ export function validateProfileInput(payload: unknown): ProfileValidationResult 
     }
   }
 
+  let pinnedMediaUrl: string | undefined;
+  const rawPinned = optionalText(input.pinnedMediaUrl);
+  if (rawPinned) {
+    if (isValidPinnedMediaUrl(rawPinned)) {
+      pinnedMediaUrl = rawPinned;
+    } else {
+      errors.pinnedMediaUrl =
+        "Paste a YouTube, Instagram or website link (https://…).";
+    }
+  }
+
   if (Object.keys(errors).length > 0) {
     return { ok: false, errors };
   }
@@ -281,6 +296,7 @@ export function validateProfileInput(payload: unknown): ProfileValidationResult 
       socialInstagram: socials.socialInstagram,
       socialTiktok: socials.socialTiktok,
       socialWebsite: socials.socialWebsite,
+      pinnedMediaUrl,
     },
   };
 }
