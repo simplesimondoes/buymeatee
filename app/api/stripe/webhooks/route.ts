@@ -5,7 +5,7 @@ import { logPaymentEvent } from "@/lib/payments/log";
 import { processStripeEvent, summariseEvent } from "@/lib/payments/webhooks";
 import {
   getStripeClient,
-  getWebhookSecret,
+  getWebhookSecrets,
   isLivemode,
 } from "@/lib/stripe/server";
 import { getSupabaseAdminClient } from "@/lib/supabase/admin";
@@ -29,11 +29,26 @@ export async function POST(request: Request) {
       return NextResponse.json({ error: "Missing signature." }, { status: 400 });
     }
     const rawBody = await request.text();
-    event = await getStripeClient().webhooks.constructEventAsync(
-      rawBody,
-      signature,
-      getWebhookSecret(),
-    );
+    // Try each configured secret — a platform points both an account-events
+    // and a Connect-events endpoint at this route, each with its own secret.
+    const stripe = getStripeClient();
+    let verified: Stripe.Event | null = null;
+    for (const secret of getWebhookSecrets()) {
+      try {
+        verified = await stripe.webhooks.constructEventAsync(
+          rawBody,
+          signature,
+          secret,
+        );
+        break;
+      } catch {
+        // Not this secret — try the next.
+      }
+    }
+    if (!verified) {
+      throw new Error("No configured webhook secret matched the signature.");
+    }
+    event = verified;
   } catch (error) {
     logPaymentEvent("warn", "webhook.signature_rejected", {
       reason: error instanceof Error ? error.message : "unknown",

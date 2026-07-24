@@ -34,10 +34,19 @@ export function isLivemode(): boolean {
   return secretKey.startsWith("sk_live_") || secretKey.startsWith("rk_live_");
 }
 
-export function getWebhookSecret(): string {
-  const secret = process.env.STRIPE_WEBHOOK_SECRET;
-  if (!secret) {
+/**
+ * Webhook signing secrets for this environment. Supports multiple
+ * comma-separated secrets so several Stripe endpoints pointed at the one
+ * webhook route — e.g. an account-events endpoint and a Connect-events
+ * endpoint, each with its own secret — all verify correctly.
+ */
+export function getWebhookSecrets(): string[] {
+  const secrets = (process.env.STRIPE_WEBHOOK_SECRET ?? "")
+    .split(",")
+    .map((value) => value.trim())
+    .filter(Boolean);
+  if (secrets.length === 0) {
     throw new Error("STRIPE_WEBHOOK_SECRET is not configured.");
   }
-  return secret;
+  return secrets;
 }

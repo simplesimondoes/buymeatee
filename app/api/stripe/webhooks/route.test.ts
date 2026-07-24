@@ -21,7 +21,7 @@ vi.mock("@/lib/payments/webhooks", () => ({
 vi.mock("@/lib/payments/log", () => ({ logPaymentEvent: vi.fn() }));
 vi.mock("@/lib/stripe/server", () => ({
   getStripeClient: () => new Stripe("sk_test_dummy"),
-  getWebhookSecret: () => WEBHOOK_SECRET,
+  getWebhookSecrets: () => [WEBHOOK_SECRET],
   isLivemode: () => false,
 }));
 vi.mock("@/lib/supabase/admin", () => ({
