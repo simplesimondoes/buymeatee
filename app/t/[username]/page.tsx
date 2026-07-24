@@ -6,6 +6,7 @@ import { Globe } from "lucide-react";
 
 import { GiftComposer } from "@/components/payments/gift-composer";
 import { PublicGoals } from "@/components/goals/public-goals";
+import { Markdown } from "@/components/markdown";
 import { Avatar } from "@/components/profile/avatar";
 import { getPublicGoalsForCreator, type PublicGoals as PublicGoalsData } from "@/lib/goals/public";
 import { getFeeConfig, PRESET_GIFT_AMOUNTS } from "@/lib/payments/config";
@@ -27,6 +28,7 @@ type ProfileRow = {
   avatar_url: string | null;
   cover_image_url: string | null;
   bio: string | null;
+  about: string | null;
   handicap: number | null;
   location: string | null;
   home_club: string | null;
@@ -39,7 +41,7 @@ type ProfileRow = {
 };
 
 const PROFILE_COLUMNS =
-  "id, username, display_name, avatar_url, cover_image_url, bio, handicap, location, home_club, handedness, social_youtube, social_instagram, social_tiktok, social_website, deactivated_at";
+  "id, username, display_name, avatar_url, cover_image_url, bio, about, handicap, location, home_club, handedness, social_youtube, social_instagram, social_tiktok, social_website, deactivated_at";
 
 const loadProfile = cache(async (username: string): Promise<ProfileRow | null> => {
   if (!/^[a-z0-9]([a-z0-9-]{1,38}[a-z0-9])?$/.test(username)) {
@@ -266,6 +268,15 @@ export default async function RecipientProfilePage({
         ) : null}
         <SocialLinks profile={profile} />
       </header>
+
+      {profile.about ? (
+        <section aria-label={`About ${name}`} className="mt-8">
+          <h2 className="font-serif text-xl font-semibold text-forest">About</h2>
+          <div className="mt-3">
+            <Markdown source={profile.about} />
+          </div>
+        </section>
+      ) : null}
 
       <div className="mt-8">
         <PublicGoals

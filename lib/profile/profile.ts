@@ -16,6 +16,7 @@ export interface OwnProfile {
   avatar_url: string | null;
   cover_image_url: string | null;
   bio: string | null;
+  about: string | null;
   country: string | null;
   handicap: number | null;
   location: string | null;
@@ -33,7 +34,7 @@ export type UpdateProfileResult =
   | { ok: false; reason: "username_taken" | "unavailable" };
 
 const OWN_PROFILE_COLUMNS =
-  "id, username, display_name, avatar_url, cover_image_url, bio, country, handicap, location, home_club, handedness, social_youtube, social_instagram, social_tiktok, social_website, role";
+  "id, username, display_name, avatar_url, cover_image_url, bio, about, country, handicap, location, home_club, handedness, social_youtube, social_instagram, social_tiktok, social_website, role";
 
 export async function getOwnProfile(userId: string): Promise<OwnProfile | null> {
   const supabase = await getSupabaseServerClient();
@@ -57,6 +58,7 @@ export async function updateOwnProfile(
     username: input.username,
     display_name: input.displayName,
     bio: input.bio ?? null,
+    about: input.about ?? null,
     country: input.country ?? null,
     handicap: input.handicap ?? null,
     location: input.location ?? null,

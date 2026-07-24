@@ -65,6 +65,7 @@ export default async function ProfileSettingsPage() {
             initialUsername={profile?.username ?? null}
             initialDisplayName={profile?.display_name ?? ""}
             initialBio={profile?.bio ?? ""}
+            initialAbout={profile?.about ?? ""}
             initialCountry={profile?.country ?? ""}
             initialHandicap={profile?.handicap != null ? String(profile.handicap) : ""}
             initialLocation={profile?.location ?? ""}

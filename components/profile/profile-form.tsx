@@ -4,6 +4,7 @@ import { Check, Copy, LoaderCircle, TriangleAlert } from "lucide-react";
 import { useId, useState } from "react";
 
 import {
+  ABOUT_MAX_LENGTH,
   BIO_MAX_LENGTH,
   validateProfileInput,
   type ProfileFieldName,
@@ -15,6 +16,7 @@ interface ProfileFormProps {
   initialUsername: string | null;
   initialDisplayName: string;
   initialBio: string;
+  initialAbout: string;
   initialCountry: string;
   initialHandicap: string;
   initialLocation: string;
@@ -51,6 +53,7 @@ export function ProfileForm({
   initialUsername,
   initialDisplayName,
   initialBio,
+  initialAbout,
   initialCountry,
   initialHandicap,
   initialLocation,
@@ -65,6 +68,7 @@ export function ProfileForm({
   const [username, setUsername] = useState(initialUsername ?? "");
   const [displayName, setDisplayName] = useState(initialDisplayName);
   const [bio, setBio] = useState(initialBio);
+  const [about, setAbout] = useState(initialAbout);
   const [country, setCountry] = useState(initialCountry);
   const [handicap, setHandicap] = useState(initialHandicap);
   const [location, setLocation] = useState(initialLocation);
@@ -93,6 +97,7 @@ export function ProfileForm({
       username,
       displayName,
       bio,
+      about,
       country,
       handicap,
       location,
@@ -241,6 +246,39 @@ export function ProfileForm({
           {...errorProps("bio")}
         />
         <FieldError id={`${fieldId}-bio-error`} message={errors.bio} />
+      </div>
+
+      <div>
+        <div className="flex items-baseline justify-between">
+          <label htmlFor={`${fieldId}-about`} className={labelClasses}>
+            About <span className="font-normal text-ink/50">(optional)</span>
+          </label>
+          <span
+            className={`text-xs tabular-nums ${
+              about.length > ABOUT_MAX_LENGTH ? "text-red-800" : "text-ink/50"
+            }`}
+            aria-live="polite"
+          >
+            {about.length}/{ABOUT_MAX_LENGTH}
+          </span>
+        </div>
+        <textarea
+          id={`${fieldId}-about`}
+          name="about"
+          rows={7}
+          value={about}
+          onChange={(event) => setAbout(event.target.value)}
+          placeholder={
+            "Tell your story. e.g. “Hi, I’m Simon, the developer behind Caddie Live…”\n\nMarkdown works: **bold**, _italics_, - lists, and [links](https://…)."
+          }
+          className={`${inputClasses} font-mono text-sm`}
+          {...errorProps("about")}
+        />
+        <FieldError id={`${fieldId}-about-error`} message={errors.about} />
+        <p className="mt-1.5 text-sm text-ink/60">
+          Supports Markdown — headings, <strong>bold</strong>, lists and links.
+          People back people, so make it personal.
+        </p>
       </div>
 
       <div>

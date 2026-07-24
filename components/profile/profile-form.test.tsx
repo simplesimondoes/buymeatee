@@ -4,11 +4,24 @@ import { afterEach, describe, expect, it, vi } from "vitest";
 
 import { ProfileForm } from "@/components/profile/profile-form";
 
+const enrichment = {
+  initialAbout: "",
+  initialHandicap: "",
+  initialLocation: "",
+  initialHomeClub: "",
+  initialHandedness: "",
+  initialSocialYoutube: "",
+  initialSocialInstagram: "",
+  initialSocialTiktok: "",
+  initialSocialWebsite: "",
+};
+
 const filledProps = {
   initialUsername: "callum-reid",
   initialDisplayName: "Callum Reid",
   initialBio: "Chasing scratch.",
   initialCountry: "Scotland",
+  ...enrichment,
 };
 
 const emptyProps = {
@@ -16,6 +29,7 @@ const emptyProps = {
   initialDisplayName: "",
   initialBio: "",
   initialCountry: "",
+  ...enrichment,
 };
 
 describe("ProfileForm", () => {

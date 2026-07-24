@@ -257,3 +257,22 @@ A generic `email_outbox` table for all four emails — cleaner uniformity but a 
 
 ### Consequences
 The delivery worker needs a scheduler (Vercel Cron) calling `/api/notifications/deliver`; until then an admin can trigger it. Transient send failures leave queue rows "pending" for retry; terminal failures (no recipient email, unknown type) are marked "failed" for inspection. Newsletter/broadcast sending is explicitly not built. Email templates are hand-rolled HTML — if they proliferate, a rendering library becomes worthwhile.
+
+## ADR-014: Creator-authored markdown, rendered through a sanitiser
+
+### Status
+Accepted (July 2026)
+
+### Context
+The creator-profile v2 introduces long-form creator content — an "About" section and "Project Updates" — that creators author themselves. The marketing site deliberately used typed TypeScript content with no CMS/MDX (see the stack skill), so this is the first place the platform renders **arbitrary user-authored rich text**. Rendered naively, markdown-to-HTML is a stored-XSS vector.
+
+### Decision
+Store the raw markdown source in the database (`profiles.about`, `creator_updates.body`) and render it only through a single `Markdown` component built on `react-markdown` + `remark-gfm` (full GitHub-flavoured formatting) piped through **`rehype-sanitize`** with its default safe schema. No raw HTML, `<script>`, event handlers or `javascript:` URLs survive; element styling is applied by our own component mappings, never taken from the input. Links render with `rel="noopener noreferrer nofollow"` and `target="_blank"`.
+
+Live third-party **embeds** (YouTube/Instagram "Pinned Media") are deliberately kept OUT of the markdown path — they are a separate structured feature rendered as hardened `youtube-nocookie`/sandboxed iframes, so the markdown pipeline stays a closed, always-sanitised subset even though the product offers "full markdown + live embeds".
+
+### Alternatives considered
+`@tailwindcss/typography` (`prose`) for styling — avoided a dependency by mapping elements directly; revisit if content styling grows. Allowing raw HTML in markdown (`rehype-raw` without sanitising) for richer authoring — rejected outright as an XSS hole. A server-side sanitise-on-write approach — rejected: sanitising on render keeps the stored source faithful and puts the guarantee at the one place HTML is produced.
+
+### Consequences
+Creators get bold/italic/headings/lists/tables/links/images but not arbitrary HTML or inline embeds — a deliberate ceiling. If richer authoring is ever needed it must extend the sanitiser schema explicitly, per element, with review. The same `Markdown` component is the single rendering path for all future user-authored text.

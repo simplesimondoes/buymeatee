@@ -8,6 +8,7 @@
 export const USERNAME_PATTERN = /^[a-z0-9]([a-z0-9-]{1,38}[a-z0-9])?$/;
 export const DISPLAY_NAME_MAX_LENGTH = 200;
 export const BIO_MAX_LENGTH = 1000;
+export const ABOUT_MAX_LENGTH = 5000;
 export const COUNTRY_MAX_LENGTH = 200;
 export const LOCATION_MAX_LENGTH = 120;
 export const HOME_CLUB_MAX_LENGTH = 120;
@@ -113,6 +114,7 @@ export interface ProfileInput {
   username: string;
   displayName: string;
   bio?: string;
+  about?: string;
   country?: string;
   handicap?: number;
   location?: string;
@@ -128,6 +130,7 @@ export type ProfileFieldName =
   | "username"
   | "displayName"
   | "bio"
+  | "about"
   | "country"
   | "handicap"
   | "location"
@@ -173,6 +176,14 @@ export function validateProfileInput(payload: unknown): ProfileValidationResult 
     bio = input.bio.trim();
     if (bio.length > BIO_MAX_LENGTH) {
       errors.bio = `Keep your bio under ${BIO_MAX_LENGTH} characters.`;
+    }
+  }
+
+  let about: string | undefined;
+  if (typeof input.about === "string" && input.about.trim() !== "") {
+    about = input.about.trim();
+    if (about.length > ABOUT_MAX_LENGTH) {
+      errors.about = `Keep your About section under ${ABOUT_MAX_LENGTH} characters.`;
     }
   }
 
@@ -259,6 +270,7 @@ export function validateProfileInput(payload: unknown): ProfileValidationResult 
       username,
       displayName,
       bio,
+      about,
       country,
       handicap,
       location,
