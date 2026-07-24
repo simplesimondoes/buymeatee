@@ -9,6 +9,8 @@ import { PublicGoals } from "@/components/goals/public-goals";
 import { Markdown } from "@/components/markdown";
 import { Avatar } from "@/components/profile/avatar";
 import { PinnedMedia } from "@/components/profile/pinned-media";
+import { StickySupportBar } from "@/components/profile/sticky-support-bar";
+import { SupportHero } from "@/components/profile/support-hero";
 import { PublicUpdates } from "@/components/updates/public-updates";
 import { CreatorStats } from "@/components/support/creator-stats";
 import { RecentSupport } from "@/components/support/recent-support";
@@ -198,36 +200,43 @@ function LinkedinIcon({ className }: { className?: string }) {
   );
 }
 
+type SocialLink = {
+  url: string;
+  label: string;
+  Icon: typeof Globe;
+  /** Brand-coloured badge background (see social tokens in globals.css). */
+  badge: string;
+};
+
 function SocialLinks({ profile }: { profile: ProfileRow }) {
   const links = [
-    { url: profile.social_youtube, label: "YouTube", Icon: YoutubeIcon },
-    { url: profile.social_instagram, label: "Instagram", Icon: InstagramIcon },
-    { url: profile.social_tiktok, label: "TikTok", Icon: TikTokIcon },
-    { url: profile.social_x, label: "X", Icon: XIcon },
-    { url: profile.social_bluesky, label: "Bluesky", Icon: BlueskyIcon },
-    { url: profile.social_substack, label: "Substack", Icon: SubstackIcon },
-    { url: profile.social_facebook, label: "Facebook", Icon: FacebookIcon },
-    { url: profile.social_twitch, label: "Twitch", Icon: TwitchIcon },
-    { url: profile.social_linkedin, label: "LinkedIn", Icon: LinkedinIcon },
-    { url: profile.social_website, label: "Website", Icon: Globe },
-  ].filter((link): link is { url: string; label: string; Icon: typeof Globe } =>
-    Boolean(link.url),
-  );
+    { url: profile.social_youtube, label: "YouTube", Icon: YoutubeIcon, badge: "bg-youtube" },
+    { url: profile.social_instagram, label: "Instagram", Icon: InstagramIcon, badge: "bg-instagram" },
+    { url: profile.social_tiktok, label: "TikTok", Icon: TikTokIcon, badge: "bg-tiktok" },
+    { url: profile.social_x, label: "X", Icon: XIcon, badge: "bg-x" },
+    { url: profile.social_bluesky, label: "Bluesky", Icon: BlueskyIcon, badge: "bg-bluesky" },
+    { url: profile.social_substack, label: "Substack", Icon: SubstackIcon, badge: "bg-substack" },
+    { url: profile.social_facebook, label: "Facebook", Icon: FacebookIcon, badge: "bg-facebook" },
+    { url: profile.social_twitch, label: "Twitch", Icon: TwitchIcon, badge: "bg-twitch" },
+    { url: profile.social_linkedin, label: "LinkedIn", Icon: LinkedinIcon, badge: "bg-linkedin" },
+    { url: profile.social_website, label: "Website", Icon: Globe, badge: "bg-forest" },
+  ].filter((link): link is SocialLink => Boolean(link.url));
   if (links.length === 0) {
     return null;
   }
   return (
-    <div className="mt-4 flex flex-wrap gap-2">
-      {links.map(({ url, label, Icon }) => (
+    <div className="mt-4 flex flex-wrap gap-2.5">
+      {links.map(({ url, label, Icon, badge }) => (
         <a
           key={label}
           href={url}
           target="_blank"
           rel="noopener noreferrer nofollow"
           aria-label={label}
-          className="inline-flex h-9 w-9 items-center justify-center rounded-full border border-stone text-ink/70 transition-colors hover:border-forest hover:text-forest"
+          title={label}
+          className={`inline-flex h-10 w-10 items-center justify-center rounded-full text-white shadow-sm transition-transform hover:-translate-y-0.5 hover:shadow-md ${badge}`}
         >
-          <Icon className="h-4 w-4" />
+          <Icon className="h-[18px] w-[18px]" />
         </a>
       ))}
     </div>
@@ -398,6 +407,7 @@ export default async function RecipientProfilePage({
           </p>
         ) : null}
         <SocialLinks profile={profile} />
+        <SupportHero name={name} goal={goals.active[0] ?? null} ready={ready} />
       </header>
 
       <div className="mt-5">
@@ -424,7 +434,7 @@ export default async function RecipientProfilePage({
         </div>
       ) : null}
 
-      <div className="mt-8">
+      <div id="support" className="mt-8 scroll-mt-6">
         <PublicGoals
           active={goals.active}
           completed={goals.completed}
@@ -479,6 +489,8 @@ export default async function RecipientProfilePage({
           isOwner={isOwner}
         />
       </div>
+
+      {ready ? <StickySupportBar name={name} /> : null}
     </main>
   );
 }

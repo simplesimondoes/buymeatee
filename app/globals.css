@@ -13,6 +13,19 @@
   --color-gold-deep: #776027;
   --color-ink: #15201b;
 
+  /* Social brand colours — used only for the coloured icon badges on creator
+     profiles. Not part of the brand palette; kept here so components stay
+     free of raw hex. */
+  --color-youtube: #ff0000;
+  --color-instagram: #e1306c;
+  --color-tiktok: #010101;
+  --color-x: #000000;
+  --color-bluesky: #1185fe;
+  --color-substack: #ff6719;
+  --color-facebook: #1877f2;
+  --color-twitch: #9146ff;
+  --color-linkedin: #0a66c2;
+
   --font-sans: var(--font-inter), ui-sans-serif, system-ui, sans-serif;
   --font-serif: var(--font-fraunces), ui-serif, Georgia, serif;
 }
