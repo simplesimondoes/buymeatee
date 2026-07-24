@@ -252,8 +252,15 @@ manual script below with test cards.
 ## Known limitations / deliberate choices
 
 - Cards only; no wallets/bank debits yet (`payment_method_types: ["card"]`).
-- One connected account per user; country fixed at onboarding (GB default).
+- One connected account per user; country fixed at onboarding (chosen by the
+  creator from the picker, GB default).
 - Gift currency must equal the recipient account's settlement currency.
+- Payout countries/currencies are the 2-decimal set in
+  `lib/payments/countries.ts` (English + EU core, Switzerland + Nordics).
+  Restrict who can onboard via `STRIPE_CONNECT_ALLOWED_COUNTRIES` to match the
+  countries your platform Stripe account supports **cross-border Connect** for
+  — an unsupported country fails safely at account creation. Japan/Korea
+  (JPY/KRW, zero-decimal) are deferred (ADR-017).
 - The in-memory rate limiter is per serverless instance (best-effort); the
   security boundary is server-side validation, not the limiter.
 - Notifications are queued in `gift_notifications` and shown in the dashboard;

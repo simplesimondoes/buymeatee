@@ -3,6 +3,11 @@
 import { ExternalLink, LoaderCircle } from "lucide-react";
 import { useState } from "react";
 
+import {
+  CountrySelect,
+  type CountryOption,
+} from "@/components/payments/country-select";
+
 type Busy = "none" | "onboarding" | "dashboard";
 
 const buttonClasses =
@@ -25,7 +30,7 @@ export function ConnectActions({
   onboardingLabel: string | null;
   showDashboardLink: boolean;
   /** Country choices shown only before the account is created; omit after. */
-  countryOptions?: { code: string; label: string }[];
+  countryOptions?: CountryOption[];
 }) {
   const [busy, setBusy] = useState<Busy>("none");
   const [error, setError] = useState<string | null>(null);
@@ -70,18 +75,13 @@ export function ConnectActions({
           >
             Your country
           </label>
-          <select
+          <CountrySelect
             id="connect-country"
+            label="Your country"
             value={country}
-            onChange={(event) => setCountry(event.target.value)}
-            className="mt-1.5 w-full max-w-xs rounded-xl border border-stone bg-white px-4 py-2.5 text-base text-ink focus:border-forest focus:outline-none focus:ring-2 focus:ring-forest/20"
-          >
-            {countryOptions!.map((option) => (
-              <option key={option.code} value={option.code}>
-                {option.label}
-              </option>
-            ))}
-          </select>
+            onChange={setCountry}
+            options={countryOptions!}
+          />
           <p className="mt-1.5 text-xs text-ink/60">
             Set once and can&apos;t be changed later — it fixes your payout
             currency.

@@ -5,7 +5,9 @@ import {
   getAllowedConnectCountries,
   getFeeConfig,
   getStripeUrls,
+  PRESET_GIFT_AMOUNTS,
 } from "@/lib/payments/config";
+import { SUPPORTED_CURRENCIES } from "@/lib/payments/currency";
 
 afterEach(() => {
   vi.unstubAllEnvs();
@@ -16,10 +18,27 @@ describe("getFeeConfig", () => {
     const config = getFeeConfig();
     expect(config.platformFeeBps).toBe(500);
     expect(config.paymentFeeBps).toBe(150);
-    expect(config.paymentFeeFixed).toEqual({ gbp: 20, eur: 25 });
-    expect(config.minimumGift).toEqual({ gbp: 100, eur: 100 });
-    expect(config.maximumGift).toEqual({ gbp: 50_000, eur: 50_000 });
+    expect(config.paymentFeeFixed.gbp).toBe(20);
+    expect(config.paymentFeeFixed.eur).toBe(25);
+    expect(config.paymentFeeFixed.usd).toBe(30);
+    expect(config.paymentFeeFixed.sek).toBe(180);
+    expect(config.minimumGift.gbp).toBe(100);
+    expect(config.minimumGift.sek).toBe(1000);
+    expect(config.maximumGift.gbp).toBe(50_000);
+    expect(config.maximumGift.dkk).toBe(500_000);
     expect(config.feeModelVersion).toMatch(/^\d{4}-\d{2}-v\d+$/);
+  });
+
+  it("covers every supported currency in each amount record", () => {
+    const config = getFeeConfig();
+    for (const currency of SUPPORTED_CURRENCIES) {
+      expect(config.paymentFeeFixed[currency]).toBeTypeOf("number");
+      expect(config.minimumGift[currency]).toBeGreaterThan(0);
+      expect(config.maximumGift[currency]).toBeGreaterThan(
+        config.minimumGift[currency],
+      );
+      expect(PRESET_GIFT_AMOUNTS[currency].length).toBeGreaterThan(0);
+    }
   });
 
   it("parses percent env values as basis points via string arithmetic", () => {
@@ -62,9 +81,12 @@ describe("getFeeConfig", () => {
 });
 
 describe("getAllowedConnectCountries", () => {
-  it("defaults to the GB + euro-area list", () => {
-    expect(getAllowedConnectCountries()).toContain("GB");
-    expect(getAllowedConnectCountries()).toContain("IE");
+  it("defaults to the full supported set", () => {
+    const list = getAllowedConnectCountries();
+    expect(list).toContain("GB");
+    expect(list).toContain("IE");
+    expect(list).toContain("US");
+    expect(list).toContain("SE");
   });
 
   it("parses and sanitises the override", () => {
@@ -74,9 +96,16 @@ describe("getAllowedConnectCountries", () => {
 });
 
 describe("defaultCurrencyForCountry", () => {
-  it("maps GB to gbp and everything else to eur", () => {
+  it("maps each country to its settlement currency", () => {
     expect(defaultCurrencyForCountry("GB")).toBe("gbp");
     expect(defaultCurrencyForCountry("IE")).toBe("eur");
+    expect(defaultCurrencyForCountry("US")).toBe("usd");
+    expect(defaultCurrencyForCountry("CH")).toBe("chf");
+    expect(defaultCurrencyForCountry("SE")).toBe("sek");
+  });
+
+  it("falls back to gbp for unknown countries", () => {
+    expect(defaultCurrencyForCountry("ZZ")).toBe("gbp");
   });
 });
 

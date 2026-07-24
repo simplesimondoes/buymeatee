@@ -1,7 +1,18 @@
 import "server-only";
 
-import type { SupportedCurrency } from "@/lib/payments/currency";
+import {
+  CONNECT_COUNTRY_CODES,
+  defaultCurrencyForCountry,
+} from "@/lib/payments/countries";
+import {
+  SUPPORTED_CURRENCIES,
+  type SupportedCurrency,
+} from "@/lib/payments/currency";
 import type { FeeConfig } from "@/lib/payments/fees";
+
+// Re-exported so callers that reach for currency-by-country keep a single
+// import surface; the mapping itself lives in lib/payments/countries.ts.
+export { defaultCurrencyForCountry };
 
 /**
  * Server-side payment configuration, read from environment variables with
@@ -46,6 +57,70 @@ function readPercentEnvAsBps(name: string, fallbackBps: number): number {
   return whole * 100 + fraction;
 }
 
+/**
+ * Per-currency commercial defaults (minor units). Every supported currency
+ * needs an entry. The "kr" currencies (SEK/NOK/DKK) trade ~10:1 against
+ * GBP/EUR, so their fixed fee, minimum and maximum are scaled accordingly.
+ * Each is overridable with STRIPE_<NAME>_<CUR> (e.g. STRIPE_MINIMUM_GIFT_SEK).
+ */
+const PAYMENT_FEE_FIXED_DEFAULTS: Record<SupportedCurrency, number> = {
+  gbp: 20,
+  eur: 25,
+  usd: 30,
+  cad: 30,
+  aud: 30,
+  nzd: 30,
+  chf: 30,
+  sek: 180,
+  nok: 180,
+  dkk: 180,
+};
+
+const MINIMUM_GIFT_DEFAULTS: Record<SupportedCurrency, number> = {
+  gbp: 100,
+  eur: 100,
+  usd: 100,
+  cad: 100,
+  aud: 100,
+  nzd: 100,
+  chf: 100,
+  sek: 1000,
+  nok: 1000,
+  dkk: 1000,
+};
+
+const MAXIMUM_GIFT_DEFAULTS: Record<SupportedCurrency, number> = {
+  gbp: 50_000,
+  eur: 50_000,
+  usd: 50_000,
+  cad: 50_000,
+  aud: 50_000,
+  nzd: 50_000,
+  chf: 50_000,
+  sek: 500_000,
+  nok: 500_000,
+  dkk: 500_000,
+};
+
+/**
+ * Build a per-currency amount record, reading STRIPE_<name>_<CUR> for each
+ * currency and falling back to the documented default.
+ */
+function readCurrencyAmounts(
+  envPrefix: string,
+  defaults: Record<SupportedCurrency, number>,
+): Record<SupportedCurrency, number> {
+  return Object.fromEntries(
+    SUPPORTED_CURRENCIES.map((currency) => [
+      currency,
+      readIntegerEnv(
+        `${envPrefix}_${currency.toUpperCase()}`,
+        defaults[currency],
+      ),
+    ]),
+  ) as Record<SupportedCurrency, number>;
+}
+
 export function getFeeConfig(): FeeConfig {
   const platformFeeBps = readIntegerEnv("STRIPE_PLATFORM_FEE_BPS", 500);
   const paymentFeeBps = readPercentEnvAsBps("STRIPE_PAYMENT_FEE_PERCENT", 150);
@@ -56,45 +131,47 @@ export function getFeeConfig(): FeeConfig {
     feeModelVersion: FEE_MODEL_VERSION,
     platformFeeBps,
     paymentFeeBps,
-    paymentFeeFixed: {
-      gbp: readIntegerEnv("STRIPE_PAYMENT_FEE_FIXED_GBP", 20),
-      eur: readIntegerEnv("STRIPE_PAYMENT_FEE_FIXED_EUR", 25),
-    },
-    minimumGift: {
-      gbp: readIntegerEnv("STRIPE_MINIMUM_GIFT_GBP", 100),
-      eur: readIntegerEnv("STRIPE_MINIMUM_GIFT_EUR", 100),
-    },
-    maximumGift: {
-      gbp: readIntegerEnv("STRIPE_MAXIMUM_GIFT_GBP", 50_000),
-      eur: readIntegerEnv("STRIPE_MAXIMUM_GIFT_EUR", 50_000),
-    },
+    paymentFeeFixed: readCurrencyAmounts(
+      "STRIPE_PAYMENT_FEE_FIXED",
+      PAYMENT_FEE_FIXED_DEFAULTS,
+    ),
+    minimumGift: readCurrencyAmounts("STRIPE_MINIMUM_GIFT", MINIMUM_GIFT_DEFAULTS),
+    maximumGift: readCurrencyAmounts("STRIPE_MAXIMUM_GIFT", MAXIMUM_GIFT_DEFAULTS),
   };
 }
 
+const STANDARD_PRESETS = [300, 500, 1000, 2500];
+const KRONA_PRESETS = [3000, 5000, 10000, 25000];
+
 /** Suggested gift amounts shown in the composer, minor units per currency. */
 export const PRESET_GIFT_AMOUNTS: Record<SupportedCurrency, number[]> = {
-  gbp: [300, 500, 1000, 2500],
-  eur: [300, 500, 1000, 2500],
+  gbp: STANDARD_PRESETS,
+  eur: STANDARD_PRESETS,
+  usd: STANDARD_PRESETS,
+  cad: STANDARD_PRESETS,
+  aud: STANDARD_PRESETS,
+  nzd: STANDARD_PRESETS,
+  chf: STANDARD_PRESETS,
+  sek: KRONA_PRESETS,
+  nok: KRONA_PRESETS,
+  dkk: KRONA_PRESETS,
 };
 
 /**
- * Countries a recipient may onboard from (ISO 3166-1 alpha-2). GBP/EUR only
- * for the MVP, so the default list covers the UK and euro-area countries
- * Stripe Connect commonly supports.
+ * Countries a recipient may onboard from (ISO 3166-1 alpha-2). Defaults to the
+ * full set we support (lib/payments/countries.ts); override with
+ * STRIPE_CONNECT_ALLOWED_COUNTRIES to gate onboarding to the subset the
+ * platform's Stripe account actually supports cross-border Connect for.
  */
 export function getAllowedConnectCountries(): string[] {
   const raw = process.env.STRIPE_CONNECT_ALLOWED_COUNTRIES;
-  const list = (raw?.trim() ? raw.split(",") : ["GB", "IE", "DE", "FR", "ES", "NL", "BE", "AT", "PT", "FI"])
+  const list = (raw?.trim() ? raw.split(",") : [...CONNECT_COUNTRY_CODES])
     .map((entry) => entry.trim().toUpperCase())
     .filter((entry) => /^[A-Z]{2}$/.test(entry));
   if (list.length === 0) {
     throw new Error("STRIPE_CONNECT_ALLOWED_COUNTRIES resolved to an empty list.");
   }
   return list;
-}
-
-export function defaultCurrencyForCountry(country: string): SupportedCurrency {
-  return country === "GB" ? "gbp" : "eur";
 }
 
 function siteOrigin(): string {

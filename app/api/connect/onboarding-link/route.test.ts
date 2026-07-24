@@ -61,7 +61,8 @@ describe("POST /api/connect/onboarding-link", () => {
 
   it("rejects unsupported countries", async () => {
     getAuthenticatedUser.mockResolvedValue({ id: "user-1" });
-    const response = await POST(request({ country: "US" }));
+    // JP is deferred (zero-decimal currency), so it is not an allowed country.
+    const response = await POST(request({ country: "JP" }));
     expect(response.status).toBe(400);
     expect(getOrCreateConnectedAccount).not.toHaveBeenCalled();
   });

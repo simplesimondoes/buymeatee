@@ -26,6 +26,7 @@
 | Module | Role |
 | --- | --- |
 | `lib/payments/fees.ts`, `currency.ts`, `gift-schema.ts` | Pure: calculation, minor units, validation (client-shareable) |
+| `lib/payments/countries.ts` | Source of truth: country → name → settlement currency, flag helper (ADR-017) |
 | `lib/payments/config.ts` | Server: env-backed fee model, URLs, countries, presets |
 | `lib/payments/connect.ts` | Connected accounts: create (controller model, `transfers` only), account links, dashboard login links, status sync |
 | `lib/payments/gifts.ts` | Gift + Checkout Session creation (destination charge), safe public status projection, audit events |
@@ -34,6 +35,23 @@
 | `lib/notifications/gift-notifications.ts` | Idempotent queue boundary (no email provider yet) |
 | `lib/stripe/server.ts`, `lib/supabase/{server,admin,browser}.ts` | Clients; admin client bypasses RLS — trusted code only |
 | `app/api/stripe/webhooks` | Raw body + signature verify + idempotency ledger |
+
+## Currencies & countries (ADR-017)
+
+`lib/payments/countries.ts` is the single source of truth: `CONNECT_COUNTRIES`
+maps each ISO alpha-2 code to a display name and its Stripe **settlement
+currency** (fixed by country). Ten 2-decimal currencies are supported: `gbp,
+eur, usd, cad, aud, nzd, chf, sek, nok, dkk`. To add a country/currency: add
+the enum value in a migration, add the row here, and add per-currency defaults
+in `config.ts` — **2-decimal only**. Zero-decimal currencies (JPY/KRW) are
+deferred because `formatMinorAmount`/`parseMajorAmountToMinor` assume 100 minor
+units per major unit; adding them needs a per-currency exponent first.
+
+Which countries are actually offered is gated by
+`STRIPE_CONNECT_ALLOWED_COUNTRIES` (a subset of the table), because onboarding
+each depends on the platform's Stripe account supporting cross-border Connect to
+it. The code fails safe — Stripe rejects an unsupported country at account
+creation and the existing error path surfaces it.
 
 ## Database conventions
 

@@ -7,10 +7,15 @@ import {
 } from "@/lib/payments/currency";
 
 describe("isSupportedCurrency", () => {
-  it("accepts gbp and eur only", () => {
-    expect(isSupportedCurrency("gbp")).toBe(true);
-    expect(isSupportedCurrency("eur")).toBe(true);
-    expect(isSupportedCurrency("usd")).toBe(false);
+  it("accepts the supported 2-decimal currencies", () => {
+    for (const code of ["gbp", "eur", "usd", "cad", "aud", "nzd", "chf", "sek", "nok", "dkk"]) {
+      expect(isSupportedCurrency(code)).toBe(true);
+    }
+  });
+
+  it("rejects unsupported codes, casing, and non-strings", () => {
+    expect(isSupportedCurrency("jpy")).toBe(false);
+    expect(isSupportedCurrency("krw")).toBe(false);
     expect(isSupportedCurrency("GBP")).toBe(false);
     expect(isSupportedCurrency(5)).toBe(false);
     expect(isSupportedCurrency(null)).toBe(false);
@@ -35,6 +40,17 @@ describe("formatMinorAmount", () => {
     expect(formatMinorAmount(9, "eur")).toBe("€0.09");
     expect(formatMinorAmount(123456, "eur")).toBe("€1234.56");
     expect(formatMinorAmount(-250, "gbp")).toBe("-£2.50");
+  });
+
+  it("uses the per-currency symbol for the new currencies", () => {
+    expect(formatMinorAmount(500, "usd")).toBe("$5.00");
+    expect(formatMinorAmount(500, "cad")).toBe("CA$5.00");
+    expect(formatMinorAmount(500, "aud")).toBe("A$5.00");
+    expect(formatMinorAmount(500, "nzd")).toBe("NZ$5.00");
+    expect(formatMinorAmount(500, "chf")).toBe("CHF 5.00");
+    expect(formatMinorAmount(2500, "sek")).toBe("kr 25.00");
+    expect(formatMinorAmount(2500, "nok")).toBe("kr 25.00");
+    expect(formatMinorAmount(2500, "dkk")).toBe("kr 25.00");
   });
 
   it("refuses non-integer amounts", () => {

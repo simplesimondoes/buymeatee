@@ -21,6 +21,7 @@ import { getCreatorSupport, type CreatorSupport } from "@/lib/support/public";
 import { canonicalUrl } from "@/lib/seo/metadata";
 import { siteConfig } from "@/lib/site";
 import { getFeeConfig, PRESET_GIFT_AMOUNTS } from "@/lib/payments/config";
+import type { SupportedCurrency } from "@/lib/payments/currency";
 import { getConnectedAccountForUser } from "@/lib/payments/connect";
 import { canReceiveGifts } from "@/lib/payments/types";
 import { isLivemode } from "@/lib/stripe/server";
@@ -325,7 +326,7 @@ export default async function RecipientProfilePage({
   }
 
   let ready = false;
-  let currency: "gbp" | "eur" = "gbp";
+  let currency: SupportedCurrency = "gbp";
   try {
     const account = await getConnectedAccountForUser(profile.id);
     ready =
@@ -350,7 +351,6 @@ export default async function RecipientProfilePage({
     profile.handicap != null ? `${formatHandicap(profile.handicap)} handicap` : null,
     profile.location,
     profile.home_club,
-    profile.handedness ? `${profile.handedness === "left" ? "Left" : "Right"}-handed` : null,
   ].filter(Boolean) as string[];
 
   return (
@@ -376,17 +376,23 @@ export default async function RecipientProfilePage({
       {/* Identity — on mobile this is a white card with a rounded top that
           overlaps the cover for depth; on larger screens it's a plain column. */}
       <header className="relative z-10 -mx-4 -mt-8 rounded-t-3xl bg-white px-4 shadow-[0_-16px_32px_-24px_rgba(7,62,46,0.35)] sm:mx-0 sm:mt-0 sm:rounded-none sm:bg-transparent sm:px-0 sm:shadow-none">
-        <div className="-mt-10 sm:-mt-12">
-          <div className="inline-flex rounded-full ring-4 ring-white">
-            <Avatar src={profile.avatar_url} name={name} size="lg" />
+        {/* On phones the name sits beside the avatar so the top row reads as
+            one unit (no dead space); on larger screens it stacks below. */}
+        <div className="flex items-end gap-4 sm:block">
+          <div className="-mt-10 shrink-0 sm:-mt-12">
+            <div className="inline-flex rounded-full ring-4 ring-white">
+              <Avatar src={profile.avatar_url} name={name} size="lg" />
+            </div>
+          </div>
+          <div className="min-w-0 pb-1 sm:pb-0">
+            <p className="text-sm font-medium uppercase tracking-wide text-gold-deep sm:mt-4">
+              Support the journey
+            </p>
+            <h1 className="mt-1 font-serif text-3xl font-semibold text-forest sm:text-4xl">
+              {name}
+            </h1>
           </div>
         </div>
-        <p className="mt-4 text-sm font-medium uppercase tracking-wide text-gold-deep">
-          Support the journey
-        </p>
-        <h1 className="mt-1 font-serif text-3xl font-semibold text-forest sm:text-4xl">
-          {name}
-        </h1>
         {meta.length > 0 ? (
           <div className="mt-2 flex flex-wrap items-center gap-x-2 gap-y-1 text-sm text-ink/70">
             {meta.map((item, index) => (

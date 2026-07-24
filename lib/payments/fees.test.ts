@@ -1,15 +1,32 @@
 import { describe, expect, it } from "vitest";
 
+import {
+  SUPPORTED_CURRENCIES,
+  type SupportedCurrency,
+} from "@/lib/payments/currency";
 import { calculateFees, type FeeConfig } from "@/lib/payments/fees";
+
+/** A per-currency record with per-currency overrides and a shared fallback. */
+function currencyRecord(
+  overrides: Partial<Record<SupportedCurrency, number>>,
+  fallback: number,
+): Record<SupportedCurrency, number> {
+  return Object.fromEntries(
+    SUPPORTED_CURRENCIES.map((currency) => [
+      currency,
+      overrides[currency] ?? fallback,
+    ]),
+  ) as Record<SupportedCurrency, number>;
+}
 
 /** The documented default commercial assumptions (see lib/payments/config.ts). */
 const config: FeeConfig = {
   feeModelVersion: "2026-07-v1",
   platformFeeBps: 500, // 5%
   paymentFeeBps: 150, // 1.5%
-  paymentFeeFixed: { gbp: 20, eur: 25 },
-  minimumGift: { gbp: 100, eur: 100 },
-  maximumGift: { gbp: 50_000, eur: 50_000 },
+  paymentFeeFixed: currencyRecord({ gbp: 20, eur: 25 }, 30),
+  minimumGift: currencyRecord({}, 100),
+  maximumGift: currencyRecord({}, 50_000),
 };
 
 describe("calculateFees", () => {
@@ -152,7 +169,7 @@ describe("calculateFees", () => {
   });
 
   it("rejects unsupported currencies", () => {
-    expect(calculateFees(500, "usd", config)).toEqual({
+    expect(calculateFees(500, "jpy", config)).toEqual({
       ok: false,
       error: "unsupported-currency",
     });
@@ -167,7 +184,7 @@ describe("calculateFees", () => {
       ...config,
       platformFeeBps: 0,
       paymentFeeBps: 0,
-      paymentFeeFixed: { gbp: 0, eur: 0 },
+      paymentFeeFixed: currencyRecord({}, 0),
     };
     const result = calculateFees(500, "gbp", free);
     expect(result.ok).toBe(true);

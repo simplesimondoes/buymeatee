@@ -5,6 +5,11 @@ import { redirect } from "next/navigation";
 import { ConnectActions } from "@/components/payments/connect-actions";
 import { getAllowedConnectCountries } from "@/lib/payments/config";
 import {
+  CONNECT_COUNTRIES,
+  countryFlagEmoji,
+  countryName,
+} from "@/lib/payments/countries";
+import {
   getConnectedAccountForUser,
   syncConnectedAccount,
 } from "@/lib/payments/connect";
@@ -23,20 +28,6 @@ export const metadata: Metadata = {
 };
 
 const SYNC_STALENESS_MS = 5 * 60 * 1000;
-
-/** Display names for the supported Connect countries (ISO alpha-2). */
-const COUNTRY_LABELS: Record<string, string> = {
-  GB: "United Kingdom",
-  IE: "Ireland",
-  DE: "Germany",
-  FR: "France",
-  ES: "Spain",
-  NL: "Netherlands",
-  BE: "Belgium",
-  AT: "Austria",
-  PT: "Portugal",
-  FI: "Finland",
-};
 
 type StateCopy = {
   heading: string;
@@ -155,13 +146,18 @@ export default async function PaymentSettingsPage() {
   const ready = canReceiveGifts(account);
 
   // The country is chosen only before the account exists (Stripe fixes it at
-  // creation). Once an account exists, no picker — the country is set.
+  // creation). Once an account exists, no picker — the country is set. Build
+  // the picker from our country table, gated by the allowed-country list.
+  const allowed = new Set(getAllowedConnectCountries());
   const countryOptions = account
     ? undefined
-    : getAllowedConnectCountries().map((code) => ({
-        code,
-        label: COUNTRY_LABELS[code] ?? code,
-      }));
+    : CONNECT_COUNTRIES.filter((country) => allowed.has(country.code)).map(
+        (country) => ({
+          code: country.code,
+          label: country.name,
+          flag: countryFlagEmoji(country.code),
+        }),
+      );
 
   return (
     <main className="mx-auto w-full max-w-2xl px-4 py-16 sm:px-6 sm:py-24">
@@ -202,7 +198,12 @@ export default async function PaymentSettingsPage() {
                 <dl className="mt-4 grid gap-x-8 gap-y-1 text-sm text-ink/70 sm:grid-cols-2">
                   <div className="flex gap-2">
                     <dt className="font-medium text-ink/80">Country:</dt>
-                    <dd>{account.country}</dd>
+                    <dd>
+                      <span aria-hidden="true">
+                        {countryFlagEmoji(account.country)}
+                      </span>{" "}
+                      {countryName(account.country)}
+                    </dd>
                   </div>
                   <div className="flex gap-2">
                     <dt className="font-medium text-ink/80">Receiving Tees:</dt>

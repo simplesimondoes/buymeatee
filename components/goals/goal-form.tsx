@@ -38,6 +38,14 @@ interface GoalFormProps {
 const currencyLabels: Record<SupportedCurrency, string> = {
   gbp: "£ GBP",
   eur: "€ EUR",
+  usd: "$ USD",
+  cad: "CA$ CAD",
+  aud: "A$ AUD",
+  nzd: "NZ$ NZD",
+  chf: "CHF",
+  sek: "kr SEK",
+  nok: "kr NOK",
+  dkk: "kr DKK",
 };
 
 const inputClasses =

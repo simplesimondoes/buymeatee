@@ -59,7 +59,7 @@ describe("validateGoalInput", () => {
   });
 
   it("rejects unsupported currencies", () => {
-    const result = validateGoalInput({ ...valid, currency: "usd" });
+    const result = validateGoalInput({ ...valid, currency: "jpy" });
     expect(result.ok).toBe(false);
     if (!result.ok) {
       expect(result.errors.currency).toBeDefined();

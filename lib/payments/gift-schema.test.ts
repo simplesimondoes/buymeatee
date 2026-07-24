@@ -60,7 +60,7 @@ describe("validateGiftInput", () => {
   });
 
   it("rejects unsupported currencies", () => {
-    const result = validateGiftInput({ ...valid, currency: "usd" });
+    const result = validateGiftInput({ ...valid, currency: "jpy" });
     expect(result.ok).toBe(false);
   });
 

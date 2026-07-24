@@ -314,3 +314,22 @@ Auto-posting on every gift via the X API — rejected (consent, spam/suspension,
 
 ### Consequences
 No external social dependency, no stored tokens, no automation to secure. Awareness is pull-based (rich unfurls + one-tap compose) rather than push. If true auto-posting is ever wanted it is a net-new, opt-in integration boundary, not an extension of this. The card reads a creator's top active goal only; multi-goal or per-goal cards would extend the OG route. `lib/goals/share.ts` is the single source of share copy — keep brand vocabulary and the no-invented-data rule there.
+
+## ADR-017: Multi-currency payout countries (2-decimal only)
+
+### Status
+Accepted (July 2026)
+
+### Context
+Payments launched GBP/EUR-only (ADR-009): `SupportedCurrency` was `"gbp" | "eur"`, `getAllowedConnectCountries` defaulted to the UK plus euro-area countries, and `defaultCurrencyForCountry` was a binary `GB ? gbp : eur`. The target markets are broader — English (UK, US, Canada, Australia, NZ, Ireland…), German, French, Spanish, Italian and Portuguese — so creators in the US, Canada, Australia, NZ, Italy, Switzerland and the Nordics could not onboard. Because a Stripe Connect account's **settlement currency is fixed by its country**, expanding payout countries is inseparable from expanding supported currencies. The whole payment domain works in **integer minor units** and `formatMinorAmount`/`parseMajorAmountToMinor` assume 100 minor units per major unit, so any zero-decimal currency (JPY, KRW) would silently corrupt amounts.
+
+### Decision
+Expand to ten **2-decimal** currencies — `gbp, eur, usd, cad, aud, nzd, chf, sek, nok, dkk` — covering English + EU core and Switzerland + Nordics. A single source of truth, `lib/payments/countries.ts` (`CONNECT_COUNTRIES`: code → name → currency, plus `countryFlagEmoji`/`countryName`/`defaultCurrencyForCountry`), replaces the duplicated country data that previously lived half in `config.ts` and half in the settings page. `config.ts` builds its per-currency `paymentFeeFixed`/`minimumGift`/`maximumGift`/`PRESET_GIFT_AMOUNTS` records by mapping over `SUPPORTED_CURRENCIES` with documented per-currency defaults (kr currencies scaled ~10×), each overridable via `STRIPE_<NAME>_<CUR>`. A DB migration adds the eight new values to the `payment_currency` enum. The country picker becomes an accessible, flag-badged custom listbox (`components/payments/country-select.tsx`) following the house disclosure pattern (`account-menu.tsx`) — a native `<select>` cannot style its OS-drawn option list.
+
+**Japan and Korea are explicitly deferred**: JPY/KRW are zero-decimal and would require threading a per-currency minor-unit exponent through `formatMinorAmount` and `parseMajorAmountToMinor`. That rework is out of scope; adding them without it would produce 100×-wrong amounts.
+
+### Alternatives considered
+Adding JPY/KRW now with the current 2-decimal math — rejected: it silently multiplies every Japanese/Korean amount by 100. Keeping the native `<select>` and only restyling its trigger — rejected: the open option list stays OS-rendered and unbranded (the original complaint). Leaving country data spread across `config.ts` and the page — rejected: two lists that must agree drift apart. Using a headless UI library for the dropdown — rejected: none is installed and the repo hand-rolls disclosures (`account-menu.tsx`, `share-controls.tsx`).
+
+### Consequences
+Creators in ~19 countries can onboard with the correct settlement currency. `lib/payments/countries.ts` is now the one place to add a currency+country (add the enum value, add the row; 2-decimal only). Which countries are actually offered is still gated operationally by `STRIPE_CONNECT_ALLOWED_COUNTRIES`, because onboarding each depends on the platform's Stripe account supporting cross-border Connect to it — the code fails safe when Stripe rejects an unsupported country. Supporting zero-decimal currencies (JPY/KRW) remains a follow-up requiring the minor-unit-exponent rework. Locking a goal's currency to the creator's payout currency (`goal-form.tsx` still lists all currencies) is a separate follow-up.
