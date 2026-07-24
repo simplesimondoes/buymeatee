@@ -9,18 +9,21 @@
 -- NEW writable column must be granted to `authenticated` here, or client
 -- updates fail with permission denied.
 
+-- `if not exists` guards keep this replayable: the columns were applied to
+-- some environments before this file's history row was recorded, so a push
+-- must skip existing columns rather than error (SQLSTATE 42701).
 alter table public.profiles
-  add column social_x         text
+  add column if not exists social_x         text
     check (char_length(social_x) <= 300),
-  add column social_bluesky   text
+  add column if not exists social_bluesky   text
     check (char_length(social_bluesky) <= 300),
-  add column social_substack  text
+  add column if not exists social_substack  text
     check (char_length(social_substack) <= 300),
-  add column social_facebook  text
+  add column if not exists social_facebook  text
     check (char_length(social_facebook) <= 300),
-  add column social_twitch    text
+  add column if not exists social_twitch    text
     check (char_length(social_twitch) <= 300),
-  add column social_linkedin  text
+  add column if not exists social_linkedin  text
     check (char_length(social_linkedin) <= 300);
 
 -- Extend the client write grants to the new columns (GRANT is additive;
