@@ -199,6 +199,13 @@ export default async function DashboardPage() {
               </p>
             )}
           </CardShell>
+
+          <CardShell title="Updates" href="/dashboard/updates" linkLabel="Post an update">
+            <p>
+              Share progress with your supporters — new features, milestones,
+              rounds played. Published updates appear on your page.
+            </p>
+          </CardShell>
         </div>
       </div>
     </main>

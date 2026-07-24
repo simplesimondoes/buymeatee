@@ -51,3 +51,8 @@ export function profileCoverObjectPath(userId: string): string {
 export function goalCoverObjectPath(userId: string, goalId: string): string {
   return `${userId}/goal-${goalId}`;
 }
+
+/** Storage object path for a single update's image, namespaced by owner. */
+export function updateImageObjectPath(userId: string, updateId: string): string {
+  return `${userId}/update-${updateId}`;
+}

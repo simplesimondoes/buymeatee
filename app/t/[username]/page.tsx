@@ -8,7 +8,10 @@ import { GiftComposer } from "@/components/payments/gift-composer";
 import { PublicGoals } from "@/components/goals/public-goals";
 import { Markdown } from "@/components/markdown";
 import { Avatar } from "@/components/profile/avatar";
+import { PublicUpdates } from "@/components/updates/public-updates";
 import { getPublicGoalsForCreator, type PublicGoals as PublicGoalsData } from "@/lib/goals/public";
+import { getPublishedUpdatesForCreator } from "@/lib/updates/public";
+import type { CreatorUpdateRow } from "@/lib/updates/types";
 import { getFeeConfig, PRESET_GIFT_AMOUNTS } from "@/lib/payments/config";
 import { getConnectedAccountForUser } from "@/lib/payments/connect";
 import { canReceiveGifts } from "@/lib/payments/types";
@@ -63,6 +66,16 @@ const loadPublicGoals = cache(
     } catch {
       // Goals unavailable: the page still works as general support.
       return { active: [], completed: [] };
+    }
+  },
+);
+
+const loadPublicUpdates = cache(
+  async (creatorId: string): Promise<CreatorUpdateRow[]> => {
+    try {
+      return await getPublishedUpdatesForCreator(creatorId);
+    } catch {
+      return [];
     }
   },
 );
@@ -208,6 +221,7 @@ export default async function RecipientProfilePage({
   const name = profile.display_name || profile.username;
 
   const goals = await loadPublicGoals(profile.id);
+  const updates = await loadPublicUpdates(profile.id);
 
   const meta = [
     profile.handicap != null ? `${formatHandicap(profile.handicap)} handicap` : null,
@@ -319,6 +333,14 @@ export default async function RecipientProfilePage({
             ) : null}
           </div>
         )}
+      </div>
+
+      <div className="mt-10">
+        <PublicUpdates
+          updates={updates}
+          creatorName={name}
+          isOwner={isOwner}
+        />
       </div>
     </main>
   );
