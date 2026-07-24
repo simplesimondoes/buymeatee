@@ -5,6 +5,7 @@ import { canonicalUrl } from "@/lib/seo/metadata";
 
 export const staticRoutes = [
   "/",
+  "/discover",
   "/how-it-works",
   "/for-creators",
   "/for-supporters",

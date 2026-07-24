@@ -74,6 +74,7 @@ export const RESERVED_USERNAMES: readonly string[] = [
   "creator",
   "creators",
   "dashboard",
+  "discover",
   "early-access",
   "faq",
   "for-creators",

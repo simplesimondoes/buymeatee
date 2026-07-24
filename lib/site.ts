@@ -25,6 +25,7 @@ export type NavItem = {
 };
 
 export const primaryNavigation: NavItem[] = [
+  { label: "Discover", href: "/discover" },
   { label: "How it works", href: "/how-it-works" },
   { label: "For creators", href: "/for-creators" },
   { label: "For supporters", href: "/for-supporters" },
@@ -41,6 +42,7 @@ export const footerNavigation: { heading: string; items: NavItem[] }[] = [
   {
     heading: "Product",
     items: [
+      { label: "Discover", href: "/discover" },
       { label: "How it works", href: "/how-it-works" },
       { label: "For creators", href: "/for-creators" },
       { label: "For supporters", href: "/for-supporters" },
