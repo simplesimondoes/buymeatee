@@ -1,7 +1,6 @@
 import { describe, expect, it } from "vitest";
 
 import {
-  renderEarlyAccessWelcomeEmail,
   renderGiftReceiptEmail,
   renderGiftReceivedEmail,
   renderGoalReachedEmail,
@@ -74,26 +73,6 @@ describe("renderGiftReceiptEmail", () => {
     });
     expect(email.html).not.toContain("<b>x</b>");
     expect(email.html).toContain("&lt;b&gt;");
-  });
-});
-
-describe("renderEarlyAccessWelcomeEmail", () => {
-  it("greets by name and reflects the creator role", () => {
-    const email = renderEarlyAccessWelcomeEmail({
-      name: "Robin",
-      role: "creator",
-    });
-    expect(email.html).toContain("Hi Robin");
-    expect(email.html).toContain("As a creator");
-    expect(email.text).toContain("you're on the list");
-  });
-
-  it("reflects the supporter role", () => {
-    const email = renderEarlyAccessWelcomeEmail({
-      name: "Robin",
-      role: "supporter",
-    });
-    expect(email.html).toContain("As a supporter");
   });
 });
 

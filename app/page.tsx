@@ -1,6 +1,5 @@
 import { CallToAction } from "@/components/call-to-action";
 import { AudiencePanels } from "@/components/home/audience-panels";
-import { EarlyAccessSection } from "@/components/home/early-access-section";
 import { ExampleGoalsSection } from "@/components/home/example-goals-section";
 import { FaqPreviewSection } from "@/components/home/faq-preview-section";
 import { Hero } from "@/components/home/hero";
@@ -17,7 +16,6 @@ export default function HomePage() {
       <SupportOptionsSection />
       <ExampleGoalsSection />
       <TipJarSection />
-      <EarlyAccessSection />
       <FaqPreviewSection />
       <CallToAction />
     </>

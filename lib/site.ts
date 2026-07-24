@@ -34,8 +34,8 @@ export const primaryNavigation: NavItem[] = [
 ];
 
 export const headerActions = {
-  primary: { label: "Start your page", href: "/#early-access" },
-  secondary: { label: "Join early access", href: "/#early-access" },
+  primary: { label: "Register", href: "/sign-in" },
+  secondary: { label: "Log in", href: "/sign-in" },
 } as const;
 
 export const footerNavigation: { heading: string; items: NavItem[] }[] = [
@@ -46,7 +46,7 @@ export const footerNavigation: { heading: string; items: NavItem[] }[] = [
       { label: "How it works", href: "/how-it-works" },
       { label: "For creators", href: "/for-creators" },
       { label: "For supporters", href: "/for-supporters" },
-      { label: "Join early access", href: "/#early-access" },
+      { label: "Sign in", href: "/sign-in" },
     ],
   },
   {

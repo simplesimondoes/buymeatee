@@ -83,7 +83,7 @@ export const golfSponsorshipAmateurs: Article = {
     { type: "h2", text: "Putting a season together" },
     {
       type: "p",
-      text: "In practice, most funded amateur seasons are a patchwork: some club support, a local business covering travel, community backing for entries, and personal savings for the rest. Start with the rules, cost the season honestly, and match each cost to the funding route that suits it. If community support is a piece of your patchwork, [see how goal-based backing works](/for-supporters) from the supporter's side — it will sharpen how you present your goal — and consider [joining BuyMeATee's early access](/#early-access) as the platform takes shape.",
+      text: "In practice, most funded amateur seasons are a patchwork: some club support, a local business covering travel, community backing for entries, and personal savings for the rest. Start with the rules, cost the season honestly, and match each cost to the funding route that suits it. If community support is a piece of your patchwork, [see how goal-based backing works](/for-supporters) from the supporter's side — it will sharpen how you present your goal — and consider [getting started on BuyMeATee](/sign-in) as the platform takes shape.",
     },
   ],
 };

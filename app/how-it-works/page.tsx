@@ -2,7 +2,6 @@ import type { Metadata } from "next";
 import Image from "next/image";
 
 import { CallToAction } from "@/components/call-to-action";
-import { ExampleBadge } from "@/components/example-badge";
 import { PageHeader } from "@/components/page-header";
 import { SectionHeading } from "@/components/section-heading";
 import { images } from "@/lib/content/images";
@@ -112,15 +111,14 @@ export default function HowItWorksPage() {
         breadcrumbs={[{ label: "How it works", href: "/how-it-works" }]}
         eyebrow="How it works"
         heading="Simple. Transparent. Golf."
-        intro="Two journeys, one platform: creators share real golfing goals, supporters help make them happen. Here's how each side will work."
+        intro="Two journeys, one platform: creators share real golfing goals, supporters help make them happen. Here's how each side works."
       />
 
       <section className="bg-white">
         <div className="mx-auto max-w-6xl px-4 py-16 sm:px-6 lg:px-8 lg:py-24">
           <p className="mx-auto max-w-2xl text-center text-sm text-ink/70">
-            <ExampleBadge label="Preview" className="mr-2 align-middle" />
-            BuyMeATee is in early development. The journeys below describe the
-            product we&apos;re building — features are planned, not yet live.
+            The journeys below walk through how each side of BuyMeATee works,
+            step by step.
           </p>
           <div className="mt-12 grid gap-6 lg:grid-cols-2">
             <div className="on-dark rounded-3xl bg-forest p-6 sm:p-8 lg:p-10">

@@ -50,7 +50,7 @@ export const faqGroups: FaqGroup[] = [
       {
         question: "What will it cost me?",
         answer:
-          "BuyMeATee is in early development and fees have not been finalised. Final payment and fee details will be published transparently before launch — there will be no surprises buried in small print.",
+          "Creating a page and sharing goals is free. When a supporter buys you a tee, BuyMeATee keeps a small platform fee and standard card-processing costs apply; the rest goes to you. The full breakdown is shown before anyone confirms a contribution — no surprises buried in small print.",
       },
     ],
   },
@@ -78,14 +78,14 @@ export const faqGroups: FaqGroup[] = [
     heading: "Payments and fees",
     faqs: [
       {
-        question: "How will payments work?",
+        question: "How do payments work?",
         answer:
-          "Payments are not live yet. BuyMeATee is in early development and a payment provider has not been selected. The platform is being designed around transparent goals and responsible payments, and final payment and fee details will be published before launch.",
+          "Supporters pay securely by card through Stripe's hosted checkout. The money goes to the creator's connected Stripe account, minus a small platform fee and card-processing costs. Creators connect a Stripe account to receive payouts, and BuyMeATee never sees or stores card details.",
       },
       {
-        question: "Will supporters be charged anything today?",
+        question: "Are payments secure?",
         answer:
-          "No. Nothing on this site takes payment. Right now you can register early-access interest — that is all.",
+          "Yes. All payments are processed by Stripe, a global payments provider. Card details are entered on Stripe's secure checkout and never touch BuyMeATee's servers. A goal's total only moves when a payment genuinely clears.",
       },
     ],
   },
@@ -95,7 +95,7 @@ export const faqGroups: FaqGroup[] = [
       {
         question: "How does BuyMeATee handle honesty on creator pages?",
         answer:
-          "Honesty is a founding principle. Even on this pre-launch site, every fictional creator, goal or preview is clearly labelled as an example — and the same standard of transparency will apply to real creator pages, goals and progress at launch.",
+          "Honesty is a founding principle. Real creator pages show real, verified progress — a goal's total only moves when a payment genuinely clears, never by hand. Any illustrative example used to show how the product works is always clearly labelled as an example.",
       },
       {
         question: "What about junior golfers?",
@@ -105,22 +105,22 @@ export const faqGroups: FaqGroup[] = [
       {
         question: "What personal data do you collect?",
         answer:
-          "As little as possible. The early-access form asks for your name, email, role and country, plus optional extras you choose to share. See the privacy policy for the full picture.",
+          "As little as possible. Creating an account stores your email; creators add the profile details they choose to show and connect a Stripe account to receive payouts. Supporters' card details are handled entirely by Stripe and never stored by us. See the privacy policy for the full picture.",
       },
     ],
   },
   {
-    heading: "Launch and availability",
+    heading: "Getting started",
     faqs: [
       {
-        question: "When will BuyMeATee launch?",
+        question: "Is BuyMeATee available now?",
         answer:
-          "A launch date has not been set. The team is validating the idea with creators and supporters first — joining early access is the best way to shape the product and hear about launch as soon as there is news.",
+          "Yes — BuyMeATee is live. You can create your page and share a goal as a creator, or back a golfer you follow as a supporter, today.",
       },
       {
-        question: "How do I get early access?",
+        question: "How do I get started?",
         answer:
-          "Register your interest through the early-access form as a creator or a supporter. Early registrants will be first in line as features roll out.",
+          "Sign in with your email to create your page and set up your first goal, or find a creator to support. There are no passwords — we email you a secure one-time sign-in link.",
       },
     ],
   },
@@ -132,8 +132,8 @@ export const homepageFaqs: Faq[] = [
   faqGroups[1].faqs[0], // Who can create a page?
   faqGroups[0].faqs[2], // Is BuyMeATee only for influencers?
   faqGroups[2].faqs[0], // What can supporters contribute towards?
-  faqGroups[3].faqs[0], // How will payments work?
-  faqGroups[5].faqs[0], // When will BuyMeATee launch?
+  faqGroups[3].faqs[0], // How do payments work?
+  faqGroups[5].faqs[0], // Is BuyMeATee available now?
 ];
 
 export const allFaqs: Faq[] = faqGroups.flatMap((group) => group.faqs);

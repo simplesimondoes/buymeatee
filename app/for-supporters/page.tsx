@@ -158,7 +158,7 @@ export default function ForSupportersPage() {
             </div>
           </div>
           <div className="mt-10 text-center">
-            <ButtonLink href="/#early-access" size="lg">
+            <ButtonLink href="/sign-in" size="lg">
               Join as a supporter
             </ButtonLink>
           </div>
@@ -167,7 +167,7 @@ export default function ForSupportersPage() {
 
       <CallToAction
         heading="Be part of someone's next round."
-        body="Join early access and follow the first journeys from the start."
+        body="Find a golfer whose journey you believe in and follow it from the start."
       />
     </>
   );

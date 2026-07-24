@@ -8,7 +8,7 @@ type CallToActionProps = {
 /** Full-width closing CTA band, reused across marketing pages. */
 export function CallToAction({
   heading = "Ready to support the journey?",
-  body = "Join early access and be part of BuyMeATee from the first tee.",
+  body = "Create your page and start sharing your golf goals from the first tee.",
 }: CallToActionProps) {
   return (
     <section className="on-dark bg-forest">
@@ -18,11 +18,11 @@ export function CallToAction({
         </h2>
         <p className="mx-auto mt-4 max-w-xl text-base text-white/80">{body}</p>
         <div className="mt-8 flex flex-col items-center justify-center gap-3 sm:flex-row">
-          <ButtonLink href="/#early-access" variant="onDark" size="lg">
+          <ButtonLink href="/sign-in" variant="onDark" size="lg">
             Start your page
           </ButtonLink>
-          <ButtonLink href="/#early-access" variant="onDarkOutline" size="lg">
-            Join early access
+          <ButtonLink href="/how-it-works" variant="onDarkOutline" size="lg">
+            See how it works
           </ButtonLink>
         </div>
       </div>

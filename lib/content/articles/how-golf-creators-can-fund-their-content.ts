@@ -81,7 +81,7 @@ export const fundGolfContent: Article = {
     { type: "h2", text: "Start smaller than feels impressive" },
     {
       type: "p",
-      text: "The instinct is to launch audience funding with a grand target. Resist it. A first goal that funds one meaningful round — filmed, delivered and reported back on — teaches your audience that supporting you works. From there, targets can grow with trust. Fund the journey one hole at a time, and the audience walks it with you. If that's the kind of relationship you want with your viewers, [see what BuyMeATee is building for creators](/for-creators) and [register for early access](/#early-access).",
+      text: "The instinct is to launch audience funding with a grand target. Resist it. A first goal that funds one meaningful round — filmed, delivered and reported back on — teaches your audience that supporting you works. From there, targets can grow with trust. Fund the journey one hole at a time, and the audience walks it with you. If that's the kind of relationship you want with your viewers, [see what BuyMeATee is building for creators](/for-creators) and [create your page](/sign-in).",
     },
   ],
 };

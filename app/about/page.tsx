@@ -51,14 +51,13 @@ export default function AboutPage() {
               participation.
             </p>
             <p>
-              We&apos;re at the start of our own journey. BuyMeATee is in early
-              development, being shaped in the open with the creators and
-              supporters who join{" "}
+              We&apos;re at the start of our own journey, building BuyMeATee in
+              the open with the creators and supporters who{" "}
               <Link
-                href="/#early-access"
+                href="/sign-in"
                 className="font-medium text-gold-deep underline hover:text-forest"
               >
-                early access
+                sign up
               </Link>
               . If that sounds like a round you&apos;d want in on, we&apos;d
               love to have you.
@@ -80,7 +79,7 @@ export default function AboutPage() {
 
       <CallToAction
         heading="Help shape BuyMeATee."
-        body="Creators and supporters in early access will influence what gets built first."
+        body="The creators and supporters who join now help influence what gets built first."
       />
     </>
   );

@@ -66,7 +66,7 @@ export default async function DiscoverPage() {
         heading="Gaining momentum"
         intro="Journeys picking up support right now."
         preview={data.trending.preview}
-        previewNote="Concept ranking — a support-velocity signal will power this at launch."
+        previewNote="Concept ranking — a support-velocity signal will power this in a future update."
         background="mist"
       >
         {data.trending.items.map((goal) => (

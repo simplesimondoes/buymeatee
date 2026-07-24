@@ -22,7 +22,7 @@ export default function FaqPage() {
         breadcrumbs={[{ label: "FAQ", href: "/faq" }]}
         eyebrow="FAQ"
         heading="Fair questions, straight answers"
-        intro="BuyMeATee is in early development, and we'd rather be honest than impressive. Here's everything we can answer today."
+        intro="We'd rather be honest than impressive. Here's everything you might want to know about how BuyMeATee works."
       />
 
       <section className="bg-white">
@@ -45,7 +45,7 @@ export default function FaqPage() {
 
       <CallToAction
         heading="Still curious?"
-        body="Join early access and ask us anything as the product takes shape."
+        body="Create your page to get started, or reach out and ask us anything."
       />
     </>
   );

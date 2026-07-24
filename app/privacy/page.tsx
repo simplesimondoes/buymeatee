@@ -44,7 +44,8 @@ export default function PrivacyPage() {
               This policy describes what the product actually does, but it has
               not yet been reviewed by a qualified lawyer or data-protection
               adviser. It is not legal advice. The payments, accounts and
-              analytics sections in particular must be verified before launch.
+              analytics sections in particular still need sign-off from a
+              qualified adviser.
             </p>
           </div>
 
@@ -70,12 +71,6 @@ export default function PrivacyPage() {
           </p>
 
           <h2 className={sectionHeading}>What we collect</h2>
-          <p className={paragraph}>
-            <strong className="text-forest">Early-access sign-ups:</strong> your
-            name, email, whether you&apos;re a creator or supporter, country,
-            optionally a profile/social link, and optionally your answer to what
-            you&apos;d use BuyMeATee for.
-          </p>
           <p className={paragraph}>
             <strong className="text-forest">Accounts:</strong> we use passwordless
             sign-in, so we hold your email address and sign-in session data. We
@@ -105,7 +100,7 @@ export default function PrivacyPage() {
             this sets analytics cookies. The exact analytics configuration and
             whether a consent banner is required for your region are being
             finalised as part of the legal review, and this section will be
-            updated accordingly before launch.
+            updated accordingly as that review completes.
           </p>
 
           <h2 className={sectionHeading}>Why we collect it, and our legal basis</h2>
@@ -113,10 +108,6 @@ export default function PrivacyPage() {
             <li>
               To provide the service — accounts, creator pages, goals, updates
               and processing Tees (<em>performance of a contract</em>).
-            </li>
-            <li>
-              To send early-access and launch news, where you&apos;ve asked us
-              to (<em>consent</em>, withdrawable at any time).
             </li>
             <li>
               To send transactional email — sign-in links, gift receipts and
@@ -195,9 +186,8 @@ export default function PrivacyPage() {
           <p className={paragraph}>
             We keep account, profile and payment records for as long as you have
             an account and as long as we must for legal, tax and accounting
-            reasons after that. Early-access sign-ups are kept until launch or
-            until you ask us to remove yours. Public content you post remains
-            visible until you remove it or close your account.
+            reasons after that. Public content you post remains visible until you
+            remove it or close your account.
           </p>
 
           <h2 className={sectionHeading}>Your rights</h2>

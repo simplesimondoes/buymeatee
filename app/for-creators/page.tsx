@@ -173,13 +173,13 @@ export default function ForCreatorsPage() {
         </div>
       </section>
 
-      {/* Planned workflow */}
+      {/* Creator workflow */}
       <section className="bg-white">
         <div className="mx-auto max-w-6xl px-4 py-16 sm:px-6 lg:px-8 lg:py-24">
           <SectionHeading
-            eyebrow="Planned creator workflow"
-            heading="How your page will work"
-            intro="BuyMeATee is in early development — this is the workflow we're building towards."
+            eyebrow="Creator workflow"
+            heading="How your page works"
+            intro="From setting up your page to celebrating a completed goal — here's the workflow end to end."
           />
           <ol className="mt-12 grid gap-6 sm:grid-cols-2 lg:grid-cols-3">
             {plannedWorkflow.map((step, index) => (
@@ -210,7 +210,7 @@ export default function ForCreatorsPage() {
             .
           </p>
           <div className="mt-10 text-center">
-            <ButtonLink href="/#early-access" size="lg">
+            <ButtonLink href="/sign-in" size="lg">
               Start your page
             </ButtonLink>
           </div>
@@ -219,7 +219,7 @@ export default function ForCreatorsPage() {
 
       <CallToAction
         heading="Your journey deserves backing."
-        body="Join early access and be among the first creators on BuyMeATee."
+        body="Set up your page and start sharing your golf goals on BuyMeATee."
       />
     </>
   );

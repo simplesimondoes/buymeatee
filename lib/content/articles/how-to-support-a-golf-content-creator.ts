@@ -68,7 +68,7 @@ export const supportGolfCreator: Article = {
     },
     {
       type: "p",
-      text: "None of this requires wealth or a huge following of your own. It requires deciding that the golf content you enjoy is worth keeping alive, and acting on it once in a while. If you'd like a golf-native way to do the direct part, [see how BuyMeATee works](/how-it-works) or [join early access](/#early-access) — and if you're a creator reading this from the other side, [there's a page for you too](/for-creators).",
+      text: "None of this requires wealth or a huge following of your own. It requires deciding that the golf content you enjoy is worth keeping alive, and acting on it once in a while. If you'd like a golf-native way to do the direct part, [see how BuyMeATee works](/how-it-works) or [sign up](/sign-in) — and if you're a creator reading this from the other side, [there's a page for you too](/for-creators).",
     },
   ],
 };

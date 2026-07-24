@@ -3,25 +3,20 @@ import "server-only";
 import { isEmailConfigured } from "@/lib/email/config";
 import { logEmailEvent } from "@/lib/email/log";
 import { sendEmail, type EmailOutcome } from "@/lib/email/send";
-import {
-  renderEarlyAccessWelcomeEmail,
-  renderGiftReceiptEmail,
-} from "@/lib/email/templates";
-import type { EarlyAccessRole } from "@/lib/early-access/schema";
+import { renderGiftReceiptEmail } from "@/lib/email/templates";
 import type { SupportedCurrency } from "@/lib/payments/currency";
 import { getSupabaseAdminClient } from "@/lib/supabase/admin";
 
 /**
  * Direct (non-queued) email sends (ADR-013).
  *
- * These two emails do NOT go through the gift_notifications queue:
- *  - the gift RECEIPT is addressed to the Supporter, who may be anonymous and
- *    has no profile row (the queue is keyed on a Creator profile), and whose
- *    email must never sit in a Creator-readable payload;
- *  - the early-access welcome happens at form time, with no payment involved.
+ * The gift RECEIPT does NOT go through the gift_notifications queue: it is
+ * addressed to the Supporter, who may be anonymous and has no profile row (the
+ * queue is keyed on a Creator profile), and whose email must never sit in a
+ * Creator-readable payload.
  *
- * Both are best-effort: they never throw, so a delivery problem can't fail the
- * webhook or the signup that triggered them.
+ * It is best-effort: it never throws, so a delivery problem can't fail the
+ * webhook that triggered it.
  */
 
 /** Receipt / thank-you to the Supporter who bought the tee. */
@@ -65,27 +60,5 @@ export async function sendGiftReceipt(input: {
     html: email.html,
     text: email.text,
     kind: "gift_receipt",
-  });
-}
-
-/** Confirmation to someone who just joined the early-access list. */
-export async function sendEarlyAccessWelcome(input: {
-  name: string;
-  role: EarlyAccessRole;
-  email: string;
-}): Promise<EmailOutcome> {
-  if (!isEmailConfigured()) {
-    return "not-configured";
-  }
-  const email = renderEarlyAccessWelcomeEmail({
-    name: input.name,
-    role: input.role,
-  });
-  return sendEmail({
-    to: input.email,
-    subject: email.subject,
-    html: email.html,
-    text: email.text,
-    kind: "early_access_welcome",
   });
 }

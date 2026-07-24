@@ -48,8 +48,8 @@ describe("MobileNav", () => {
       "For supporters",
       "Blog",
       "FAQ",
-      "Start your page",
-      "Join early access",
+      "Register",
+      "Log in",
     ]) {
       expect(screen.getByRole("link", { name: label })).toBeInTheDocument();
     }

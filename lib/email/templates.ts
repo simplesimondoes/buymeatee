@@ -108,42 +108,6 @@ export function renderGiftReceiptEmail(input: {
   };
 }
 
-/** Confirmation that someone joined the early-access list. */
-export function renderEarlyAccessWelcomeEmail(input: {
-  name: string;
-  role: "creator" | "supporter";
-}): RenderedEmail {
-  const name = escapeHtml(input.name || "there");
-  const roleLine =
-    input.role === "creator"
-      ? "As a creator, you'll be among the first to set up goals and let supporters buy you a tee."
-      : "As a supporter, you'll be among the first to back the golfers whose journeys you follow.";
-
-  const bodyHtml = [
-    paragraph(`Hi ${name}, you're on the list.`),
-    paragraph(escapeHtml(roleLine)),
-    paragraph("We'll email you the moment early access opens. No spam in the meantime."),
-  ].join("");
-
-  const textLines = [
-    `Hi ${input.name || "there"}, you're on the list.`,
-    "",
-    roleLine,
-    "",
-    "We'll email you the moment early access opens. No spam in the meantime.",
-  ];
-
-  return {
-    subject: `You're on the ${siteConfig.name} early-access list`,
-    html: renderEmailLayout({
-      preheader: "You're on the early-access list.",
-      heading: "Welcome to the early list",
-      bodyHtml,
-    }),
-    text: renderTextEmail(textLines),
-  };
-}
-
 /**
  * A Creator's Goal reached its target. Goals never auto-complete (ADR-011) —
  * this celebrates hitting the number and nudges the Creator to mark it

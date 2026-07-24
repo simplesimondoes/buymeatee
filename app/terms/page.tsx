@@ -43,8 +43,8 @@ export default function TermsPage() {
               </strong>{" "}
               These terms are written in plain language and have not yet been
               reviewed by a qualified lawyer. They are not legal advice. Because
-              BuyMeATee now handles real payments, they must be reviewed —
-              alongside the Stripe Connected Account Agreement — before launch.
+              BuyMeATee handles real payments, they must be reviewed as a
+              priority — alongside the Stripe Connected Account Agreement.
             </p>
           </div>
 

@@ -87,7 +87,7 @@ export function AudiencePanels() {
             </h3>
             <PointList points={creatorPoints} tone="dark" />
             <div className="mt-8">
-              <ButtonLink href="/#early-access" variant="onDark">
+              <ButtonLink href="/sign-in" variant="onDark">
                 Start your page
               </ButtonLink>
             </div>
@@ -105,7 +105,7 @@ export function AudiencePanels() {
             </h3>
             <PointList points={supporterPoints} tone="light" />
             <div className="mt-8">
-              <ButtonLink href="/#early-access">Join as a supporter</ButtonLink>
+              <ButtonLink href="/sign-in">Join as a supporter</ButtonLink>
             </div>
             <div className="mt-8">
               <SupporterCollectionConcept />

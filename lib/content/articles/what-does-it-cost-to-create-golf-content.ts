@@ -61,7 +61,7 @@ export const costOfGolfContent: Article = {
     { type: "h2", text: "Budgeting honestly as a creator" },
     {
       type: "p",
-      text: "If you create golf content, run the exercise once: list a typical video's course fee, travel, gear wear, software share and editing hours, and you'll have your true cost per video. That number tells you what sustainable support looks like — and it's the number behind a well-set goal. Goals priced from real costs are the ones audiences trust and fund, which is the principle [BuyMeATee](/how-it-works) is built on: specific golfing goals, transparent progress, and support in units golfers understand. If that would change what you're able to make, [join the early access list](/#early-access).",
+      text: "If you create golf content, run the exercise once: list a typical video's course fee, travel, gear wear, software share and editing hours, and you'll have your true cost per video. That number tells you what sustainable support looks like — and it's the number behind a well-set goal. Goals priced from real costs are the ones audiences trust and fund, which is the principle [BuyMeATee](/how-it-works) is built on: specific golfing goals, transparent progress, and support in units golfers understand. If that would change what you're able to make, [create your page](/sign-in).",
     },
   ],
 };

@@ -16,7 +16,7 @@ The product must feel like participation in a golfer's journey, not a generic do
 
 > Marketing website and product validation.
 
-**The marketing website is implemented (July 2026) and awaiting release.** All Marketing Wave scopes (foundation, audiences, SEO/blog, early access, legal drafts) exist in the repository; see the GitHub milestones and backlog for remaining polish and follow-up work.
+**The marketing website is implemented (July 2026) and awaiting release.** All Marketing Wave scopes (foundation, audiences, SEO/blog, legal drafts) exist in the repository; see the GitHub milestones and backlog for remaining polish and follow-up work.
 
 Do not build the full application, payments, creator dashboard, supporter dashboard or authentication unless a future issue explicitly introduces them. See [.ai/context/current-phase.md](.ai/context/current-phase.md).
 
@@ -38,7 +38,6 @@ If the user explicitly instructs a commit, push or deploy as part of a particula
 - Fonts via `next/font`: Fraunces (serif headings), Inter (sans body)
 - Lucide icons; no other UI framework
 - Typed local content (no CMS, no MDX): `lib/content/` — blog articles, FAQs, goals, support options, images
-- Early-access form behind an isolated service boundary (`lib/early-access/`, `EARLY_ACCESS_API_URL`)
 - Vitest + React Testing Library (`*.test.ts(x)` co-located with source)
 - Vercel (production domain: `https://buymeatee.com`)
 - Supabase database (project ref `hjpfycbamwwpemsrrsqy`, ADR-008): `profiles` + `early_access_signups` plus the payment domain tables (ADR-009), schema managed via CLI migrations in `supabase/migrations/` (`supabase db push`)
@@ -47,14 +46,14 @@ If the user explicitly instructs a commit, push or deploy as part of a particula
 - **Creator Goals (ADR-011)** — `creator_goals` table + `lib/goals/` domain boundary; lifecycle `draft → active → completed/archived`, max 3 active per creator (`MAX_ACTIVE_GOALS`, mirrored by DB trigger), minor-unit amounts; `raised_amount` is written only by the verified webhook path via `apply_goal_contribution()` (no client write grant — progress can never be invented); gifts carry an optional `goal_id`
 - **Avatars via Supabase Storage (ADR-012)** — public `avatars` bucket created by migration, per-user-folder write RLS, 2 MB jpeg/png/webp limit enforced in bucket config and server-side with magic-byte checks (`lib/profile/avatar.ts`); one extensionless object per user, overwritten in place
 - **Discover page (ADR-015)** — `/discover` in the top nav; `lib/discover/` boundary is the platform's first cross-creator public listing (anon client + RLS: published goals, non-deactivated creators, published updates). Hybrid by design: each section shows real verified data when it exists and otherwise falls back to clearly-labelled **Preview** content (`lib/content/preview-creators.ts`, ADR-007). Trending and the Recently Funded activity feed have no data pipeline yet, so they are always Preview/Concept. A shared client context (`components/discover/`) links the hero search + category chips to the browse/filter grid. Statically generated (`revalidate = 300`), fails safe to all-Preview when Supabase is unconfigured
-- **Transactional email via Resend (ADR-013)** — `lib/email/` boundary; four emails: gift received → creator and goal reached → creator (queued in `gift_notifications`, drained by `deliverPendingNotifications()` at `POST /api/notifications/deliver`, cron/admin-gated), gift receipt → supporter and early-access welcome (sent directly, best-effort). Single `sendEmail()` primitive, pure HTML+text templates with all user content escaped, privacy-conscious logging (kind + outcome only). Fails safely (honest "not-configured") until `RESEND_API_KEY`/`EMAIL_FROM` are set. Magic-link sign-in emails are Supabase-sent (route via Resend SMTP in the dashboard); no password reset (auth is passwordless). Operations: [docs/email-setup.md](docs/email-setup.md)
+- **Transactional email via Resend (ADR-013)** — `lib/email/` boundary; three emails: gift received → creator and goal reached → creator (queued in `gift_notifications`, drained by `deliverPendingNotifications()` at `POST /api/notifications/deliver`, cron/admin-gated), and gift receipt → supporter (sent directly, best-effort). Single `sendEmail()` primitive, pure HTML+text templates with all user content escaped, privacy-conscious logging (kind + outcome only). Fails safely (honest "not-configured") until `RESEND_API_KEY`/`EMAIL_FROM` are set. Magic-link sign-in emails are Supabase-sent (route via Resend SMTP in the dashboard); no password reset (auth is passwordless). Operations: [docs/email-setup.md](docs/email-setup.md)
 - **Creator-initiated sharing (ADR-016)** — manual only, never auto-posting. `components/share-controls.tsx` offers "Post to X" via the `twitter.com/intent/tweet` web-intent (pre-fills, creator sends — no X API, no tokens), copy-link and Web Share. Share copy is pure and tested in `lib/goals/share.ts` (`reachedMilestone()` on honest 25/50/75/100% thresholds; first-person, on-brand, no invented amounts/counts); milestone state is derived live, never stored. Shareable **card** is a per-creator dynamic OG image at `app/t/[username]/opengraph-image.tsx` (top active goal's real progress, generic fallback), wired into the profile page's `openGraph`/`twitter` metadata; the page stays `noindex` (social unfurls still work)
 
 **Update this section whenever the implementation changes.** Stack conventions: [.ai/skills/nextjs-typescript.md](.ai/skills/nextjs-typescript.md).
 
 ## Product vocabulary
 
-Use consistently: **BuyMeATee, Creator, Supporter, Goal, Journey, Buy a tee, Support a round, Green fee, Early access**.
+Use consistently: **BuyMeATee, Creator, Supporter, Goal, Journey, Buy a tee, Support a round, Green fee**.
 
 Avoid: donation, recipient, begging, crowdfunding campaign, influencer-only wording.
 
@@ -98,7 +97,6 @@ Visual changes must also be verified at **375px, 768px, 1024px and 1440px**.
 | `lib/site.ts` | Brand config, navigation and footer links |
 | `lib/seo/` | Metadata and structured-data builders |
 | `lib/content/` | Typed content: images, example goals, FAQs, support options, blog articles (`articles/`) |
-| `lib/early-access/` | Form schema + isolated submission service (ADR-004) |
 | `lib/discover/` | Cross-creator public listing + hybrid real/Preview aggregation for `/discover` (ADR-015) |
 | `lib/payments/` | Payment domain: fees, Connect, gifts/checkout, webhooks, admin, reconciliation (ADR-009) |
 | `lib/stripe/` + `lib/supabase/` | Stripe server client; Supabase server/admin/browser clients |

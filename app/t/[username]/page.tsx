@@ -204,8 +204,8 @@ export async function generateMetadata({
   return {
     title,
     description,
-    // Pre-launch: profile pages exist for early recipients only. noindex keeps
-    // them out of search; social unfurls (the point of sharing) still work.
+    // Profile pages stay noindex by design (ADR-016): out of search, while
+    // social unfurls (the point of sharing) still work.
     robots: { index: false, follow: false },
     openGraph: {
       title,
