@@ -6,6 +6,8 @@ import { getOwnGoals } from "@/lib/goals/goals";
 import type { CreatorGoalRow } from "@/lib/goals/types";
 import { getConnectedAccountForUser } from "@/lib/payments/connect";
 import type { SupportedCurrency } from "@/lib/payments/currency";
+import { getOwnProfile } from "@/lib/profile/profile";
+import { siteConfig } from "@/lib/site";
 import { getAuthenticatedUser } from "@/lib/supabase/server";
 
 export const metadata: Metadata = {
@@ -38,6 +40,18 @@ export default async function GoalsPage() {
     payoutCurrency = undefined;
   }
 
+  // Sharing links to the creator's public page — only once they've claimed a
+  // username, so the share targets a real, reachable URL.
+  let pageUrl: string | undefined;
+  try {
+    const profile = await getOwnProfile(user.id);
+    pageUrl = profile?.username
+      ? `${siteConfig.url.replace(/\/$/, "")}/t/${profile.username}`
+      : undefined;
+  } catch {
+    pageUrl = undefined;
+  }
+
   return (
     <main className="mx-auto w-full max-w-2xl px-4 py-16 sm:px-6 sm:py-24">
       <p className="text-sm font-medium uppercase tracking-wide text-gold-deep">
@@ -60,7 +74,11 @@ export default async function GoalsPage() {
             Goals aren&apos;t available right now. Please try again shortly.
           </div>
         ) : (
-          <GoalManager initialGoals={goals} payoutCurrency={payoutCurrency} />
+          <GoalManager
+            initialGoals={goals}
+            payoutCurrency={payoutCurrency}
+            pageUrl={pageUrl}
+          />
         )}
       </div>
     </main>

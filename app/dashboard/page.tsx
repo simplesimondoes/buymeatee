@@ -6,6 +6,9 @@ import { redirect } from "next/navigation";
 import { Avatar } from "@/components/profile/avatar";
 import { CopyLinkButton } from "@/components/profile/copy-link-button";
 import { OnboardingChecklist } from "@/components/profile/onboarding-checklist";
+import { ShareControls } from "@/components/share-controls";
+import { pageShareText } from "@/lib/goals/share";
+import { siteConfig } from "@/lib/site";
 import { formatMinorAmount, type SupportedCurrency } from "@/lib/payments/currency";
 import type { PaymentSetupState } from "@/lib/payments/types";
 import { getCreatorSetupState } from "@/lib/profile/setup-state";
@@ -118,6 +121,13 @@ export default async function DashboardPage() {
               </div>
               <div className="flex flex-wrap items-center gap-2">
                 <CopyLinkButton username={profile.username} />
+                <ShareControls
+                  url={`${siteConfig.url.replace(/\/$/, "")}/t/${profile.username}`}
+                  text={pageShareText()}
+                  showCopy={false}
+                  buttonLabel="Share page"
+                  size="md"
+                />
                 <Link
                   href={`/t/${profile.username}`}
                   className="inline-flex min-h-11 items-center justify-center gap-1.5 rounded-full border border-forest/30 px-5 text-sm font-medium text-forest transition-colors hover:border-forest hover:bg-forest/5"

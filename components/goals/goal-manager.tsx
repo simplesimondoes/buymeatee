@@ -6,9 +6,16 @@ import { useState } from "react";
 import { GoalForm, type GoalFormErrors } from "@/components/goals/goal-form";
 import { CoverUploader } from "@/components/profile/cover-uploader";
 import { ProgressBar } from "@/components/progress-bar";
+import { ShareControls } from "@/components/share-controls";
+import {
+  completedGoalShareText,
+  goalShareText,
+  reachedMilestone,
+} from "@/lib/goals/share";
 import type { GoalInput } from "@/lib/goals/goal-schema";
 import {
   goalProgressPercent,
+  isPubliclyVisible,
   MAX_ACTIVE_GOALS,
   type CreatorGoalRow,
   type GoalStatus,
@@ -66,9 +73,15 @@ async function postGoalAction(
 export function GoalManager({
   initialGoals,
   payoutCurrency,
+  pageUrl,
 }: {
   initialGoals: CreatorGoalRow[];
   payoutCurrency?: SupportedCurrency;
+  /**
+   * Absolute URL of the creator's public page, when they've claimed a
+   * username. Undefined hides sharing — there's nothing public to link to yet.
+   */
+  pageUrl?: string;
 }) {
   const [goals, setGoals] = useState(initialGoals);
   const [creating, setCreating] = useState(false);
@@ -236,6 +249,11 @@ export function GoalManager({
         {goals.map((goal, index) => {
           const chip = statusChips[goal.status];
           const busy = busyId === goal.id;
+          const canShare = Boolean(pageUrl) && isPubliclyVisible(goal.status);
+          const milestone =
+            goal.status === "active"
+              ? reachedMilestone(goal.raised_amount, goal.target_amount)
+              : null;
           return (
             <li
               key={goal.id}
@@ -298,6 +316,26 @@ export function GoalManager({
                     />
                   </div>
 
+                  {canShare && milestone ? (
+                    <div className="mt-4 flex flex-wrap items-center justify-between gap-3 rounded-2xl bg-gold/10 p-3">
+                      <p className="text-sm text-gold-deep">
+                        {milestone === 100
+                          ? "🎉 Goal reached! Share the moment with your supporters."
+                          : `🏌️ You're ${milestone}% of the way there — a great time to share.`}
+                      </p>
+                      <ShareControls
+                        url={pageUrl as string}
+                        text={goalShareText(
+                          goal.title,
+                          goal.raised_amount,
+                          goal.target_amount,
+                        )}
+                        buttonLabel="Share progress"
+                        align="right"
+                      />
+                    </div>
+                  ) : null}
+
                   {goal.taken_down_at ? (
                     <p className="mt-4 rounded-2xl bg-red-50 p-3 text-sm text-red-900">
                       This goal was removed by BuyMeATee and can&apos;t be
@@ -356,6 +394,20 @@ export function GoalManager({
                       >
                         Delete
                       </button>
+                    ) : null}
+                    {canShare && !milestone ? (
+                      <ShareControls
+                        url={pageUrl as string}
+                        text={
+                          goal.status === "completed"
+                            ? completedGoalShareText(goal.title)
+                            : goalShareText(
+                                goal.title,
+                                goal.raised_amount,
+                                goal.target_amount,
+                              )
+                        }
+                      />
                     ) : null}
                     <span className="ml-auto flex gap-1">
                       <button

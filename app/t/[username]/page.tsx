@@ -16,6 +16,8 @@ import { getPublicGoalsForCreator, type PublicGoals as PublicGoalsData } from "@
 import { getPublishedUpdatesForCreator } from "@/lib/updates/public";
 import type { CreatorUpdateRow } from "@/lib/updates/types";
 import { getCreatorSupport, type CreatorSupport } from "@/lib/support/public";
+import { canonicalUrl } from "@/lib/seo/metadata";
+import { siteConfig } from "@/lib/site";
 import { getFeeConfig, PRESET_GIFT_AMOUNTS } from "@/lib/payments/config";
 import { getConnectedAccountForUser } from "@/lib/payments/connect";
 import { canReceiveGifts } from "@/lib/payments/types";
@@ -186,14 +188,40 @@ export async function generateMetadata({
   }
   const name = profile?.display_name || username;
   const goals = profile ? await loadPublicGoals(profile.id) : { active: [] };
+  const title = `Buy ${name} a Tee`;
+  const description =
+    goals.active.length > 0
+      ? `Support ${name}'s golf journey with a Tee — back a real goal and watch it happen.`
+      : `Support ${name}'s golf journey with a Tee.`;
+  const url = canonicalUrl(`/t/${username.toLowerCase()}`);
+  // Shareable card generated per-creator by ./opengraph-image.tsx.
+  const image = {
+    url: canonicalUrl(`/t/${username.toLowerCase()}/opengraph-image`),
+    width: 1200,
+    height: 630,
+    alt: `Support ${name} on BuyMeATee`,
+  };
   return {
-    title: `Buy ${name} a Tee`,
-    description:
-      goals.active.length > 0
-        ? `Support ${name}'s golf journey with a Tee — back a real goal and watch it happen.`
-        : `Support ${name}'s golf journey with a Tee.`,
-    // Pre-launch: profile pages exist for early recipients only.
+    title,
+    description,
+    // Pre-launch: profile pages exist for early recipients only. noindex keeps
+    // them out of search; social unfurls (the point of sharing) still work.
     robots: { index: false, follow: false },
+    openGraph: {
+      title,
+      description,
+      url,
+      siteName: siteConfig.name,
+      locale: siteConfig.locale,
+      type: "profile",
+      images: [image],
+    },
+    twitter: {
+      card: "summary_large_image",
+      title,
+      description,
+      images: [image.url],
+    },
   };
 }
 

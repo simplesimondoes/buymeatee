@@ -295,3 +295,22 @@ Admin (service-role) client for the listing, mirroring `app/t/[username]` — re
 
 ### Consequences
 Discover is the one place that reads across creators; any future ranking (real trending, near-completion feeds) extends `lib/discover/`. Trending and Recently Funded remain Preview until a support-velocity signal and a privacy-respecting activity feed exist. Category filtering only narrows Preview content until a real `category` field is added to profiles/goals. Preview content in `lib/content/preview-creators.ts` is fictional and must stay behind Preview/Concept labels; it is illustrative, not seed data.
+
+## ADR-016: Creator-initiated sharing — web intents + per-creator OG cards, no auto-posting
+
+### Status
+Accepted (July 2026)
+
+### Context
+A proposal to auto-post to a creator's X account on every gift was rejected: posting on someone's behalf needs revocable, per-account OAuth write access; per-gift automation trips X's spam heuristics and risks suspending creators' own accounts; the paid X API is a heavy external dependency; broadcasting every gift can expose supporters who gave quietly; and reflexive "someone donated" posts fight the *Support the journey* brand (CLAUDE.md forbids donation/crowdfunding framing and inventing supporter data). The underlying goal — social proof and awareness — is still worth serving, pulled rather than pushed.
+
+### Decision
+Sharing is always **creator-initiated and manual**. `components/share-controls.tsx` (client) offers "Post to X" via the standard `twitter.com/intent/tweet` web-intent (pre-fills text + URL, the creator reviews and sends — no API, no token, no automation), plus copy-link and the Web Share API where available. Share copy lives in a pure, tested `lib/goals/share.ts`: `reachedMilestone()` reports the highest of 25/50/75/100% a goal has **honestly** reached (reusing `goalProgressPercent`, capped, 100 only when the target is actually met), and the compose helpers are first-person, on-brand, and never fabricate amounts or supporter counts. The goal manager surfaces a milestone prompt on active goals that have crossed a threshold and a plain share elsewhere; completed goals use a completion message that does not assert a funding level (completion is the creator's call, ADR-011). Milestone state is derived live from `raised_amount`, never persisted — there is no "already shared" flag and no new table.
+
+The shareable **card** is a per-creator dynamic OG image at `app/t/[username]/opengraph-image.tsx`, generated from the same verified data as the public page (top active goal's title + honest progress) and degrading to a generic "Support the journey" card when there is no goal or Supabase is unconfigured, so a shared link never unfurls broken. `app/t/[username]` `generateMetadata` points `openGraph.images`/`twitter.images` at that route; the page stays `robots: noindex` (pre-launch) — that governs search indexing, not social unfurls.
+
+### Alternatives considered
+Auto-posting on every gift via the X API — rejected (consent, spam/suspension, cost, privacy, brand, all above). Milestone-only auto-posting behind per-creator opt-in — deferred: still needs OAuth + an integration boundary and its own ADR; revisit only if validation shows creators want it. Persisting which milestones were shared — rejected as premature; live derivation is honest and stateless. A per-goal public URL + per-goal OG route — deferred: goals are not individually addressable (no slug, ADR-011), so the card is per-page and highlights the top active goal.
+
+### Consequences
+No external social dependency, no stored tokens, no automation to secure. Awareness is pull-based (rich unfurls + one-tap compose) rather than push. If true auto-posting is ever wanted it is a net-new, opt-in integration boundary, not an extension of this. The card reads a creator's top active goal only; multi-goal or per-goal cards would extend the OG route. `lib/goals/share.ts` is the single source of share copy — keep brand vocabulary and the no-invented-data rule there.
