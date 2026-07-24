@@ -99,6 +99,8 @@ const retrievePaymentIntent = vi.fn();
 const retrieveCharge = vi.fn();
 const syncConnectedAccount = vi.fn();
 const enqueueNotification = vi.fn();
+const enqueueGoalReached = vi.fn();
+const sendGiftReceipt = vi.fn();
 
 let tables: Record<string, Row[]>;
 
@@ -119,6 +121,11 @@ vi.mock("@/lib/payments/connect", () => ({
 vi.mock("@/lib/notifications/gift-notifications", () => ({
   enqueueGiftReceivedNotification: (...args: unknown[]) =>
     enqueueNotification(...args),
+  enqueueGoalReachedNotification: (...args: unknown[]) =>
+    enqueueGoalReached(...args),
+}));
+vi.mock("@/lib/email/notify", () => ({
+  sendGiftReceipt: (...args: unknown[]) => sendGiftReceipt(...args),
 }));
 vi.mock("@/lib/payments/log", () => ({ logPaymentEvent: vi.fn() }));
 

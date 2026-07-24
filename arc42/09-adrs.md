@@ -233,3 +233,27 @@ URL-only avatar field — poor experience and a content-safety hole (arbitrary e
 
 ### Consequences
 Anything uploaded to `avatars` is world-readable — the UI says so plainly. Goal/cover images and any resizing pipeline are follow-up decisions; the per-user-folder RLS pattern is the template for future buckets.
+
+## ADR-013: Transactional email via Resend
+
+### Status
+Accepted (July 2026)
+
+### Context
+Product Wave 1 introduced payments, goals and early-access capture, but the platform had no way to email anyone. The gift-notification queue (ADR-009) was built anticipating a provider ("a delivery worker drains rows with status pending"). We need Creator and Supporter notifications without coupling delivery to payment processing, and without faking success when unconfigured.
+
+### Decision
+Use Resend behind an isolated `lib/email/` boundary. A single `sendEmail()` primitive owns provider details, honest "not-configured" handling and privacy-conscious logging (kind + outcome only — never addresses, subjects or bodies). Templates are pure string builders (HTML + text, brand colours inlined, all user content HTML-escaped). Four transactional emails ship:
+
+- **Gift received → Creator** and **Goal reached → Creator**: enqueued in the creator-scoped `gift_notifications` queue and drained by `deliverPendingNotifications()` (exposed at `POST /api/notifications/deliver`, admin- or cron-bearer-gated). Fully decoupled; idempotent via the `(gift_id, type)` unique constraint. Goal-reached fires once, only when a gift crosses the target (goals never auto-complete, ADR-011).
+- **Gift receipt → Supporter** and **Early-access welcome**: sent directly (best-effort, never throw) from the webhook / signup route. Not queued — the Supporter may be anonymous with no profile row, and their email must never sit in a Creator-readable payload; the welcome has no payment to gate on.
+
+Recipient addresses live in `auth.users`, so delivery resolves them via the service-role admin client (`getUserEmail`). Configuration fails safe: with no `RESEND_API_KEY`/`EMAIL_FROM`, every send reports "not-configured" and nothing is faked.
+
+Magic-link **sign-in** emails are deliberately out of scope for this boundary — Supabase Auth sends them. They are routed through Resend by pointing Supabase's SMTP settings at Resend in the dashboard (docs/email-setup.md), not by app code. There is no "password reset" email: auth is passwordless (ADR-010).
+
+### Alternatives considered
+A generic `email_outbox` table for all four emails — cleaner uniformity but a new table and migration for two emails that have no Creator profile to key on; deferred until a second non-creator notification appears. Sending the creator gift email inline from the webhook — rejected: it recouples delivery to payment, the exact thing ADR-009's queue avoided. Supabase Edge Functions for delivery — a second runtime for no current benefit.
+
+### Consequences
+The delivery worker needs a scheduler (Vercel Cron) calling `/api/notifications/deliver`; until then an admin can trigger it. Transient send failures leave queue rows "pending" for retry; terminal failures (no recipient email, unknown type) are marked "failed" for inspection. Newsletter/broadcast sending is explicitly not built. Email templates are hand-rolled HTML — if they proliferate, a rendering library becomes worthwhile.

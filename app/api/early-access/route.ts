@@ -1,5 +1,6 @@
 import { NextResponse } from "next/server";
 
+import { sendEarlyAccessWelcome } from "@/lib/email/notify";
 import { validateEarlyAccessSubmission } from "@/lib/early-access/schema";
 import { submitEarlyAccess } from "@/lib/early-access/service";
 
@@ -36,6 +37,13 @@ export async function POST(request: Request) {
   const outcome = await submitEarlyAccess(result.data);
   switch (outcome) {
     case "submitted":
+      // Best-effort welcome — never blocks or fails the signup response, and
+      // only sent once the signup was genuinely captured (honest confirmation).
+      await sendEarlyAccessWelcome({
+        name: result.data.name,
+        role: result.data.role,
+        email: result.data.email,
+      });
       return NextResponse.json({ status: "submitted" });
     case "not-configured":
       return NextResponse.json({ status: "not-configured" }, { status: 503 });

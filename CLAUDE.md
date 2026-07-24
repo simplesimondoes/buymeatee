@@ -46,6 +46,7 @@ If the user explicitly instructs a commit, push or deploy as part of a particula
 - **Authentication: minimal Supabase Auth, email magic links only (ADR-010)** — `/sign-in`, `/auth/callback`, cookie sessions via `@supabase/ssr`; middleware matcher covers only authed areas so marketing pages stay static. No passwords, no social providers, no account management UI
 - **Creator Goals (ADR-011)** — `creator_goals` table + `lib/goals/` domain boundary; lifecycle `draft → active → completed/archived`, max 3 active per creator (`MAX_ACTIVE_GOALS`, mirrored by DB trigger), minor-unit amounts; `raised_amount` is written only by the verified webhook path via `apply_goal_contribution()` (no client write grant — progress can never be invented); gifts carry an optional `goal_id`
 - **Avatars via Supabase Storage (ADR-012)** — public `avatars` bucket created by migration, per-user-folder write RLS, 2 MB jpeg/png/webp limit enforced in bucket config and server-side with magic-byte checks (`lib/profile/avatar.ts`); one extensionless object per user, overwritten in place
+- **Transactional email via Resend (ADR-013)** — `lib/email/` boundary; four emails: gift received → creator and goal reached → creator (queued in `gift_notifications`, drained by `deliverPendingNotifications()` at `POST /api/notifications/deliver`, cron/admin-gated), gift receipt → supporter and early-access welcome (sent directly, best-effort). Single `sendEmail()` primitive, pure HTML+text templates with all user content escaped, privacy-conscious logging (kind + outcome only). Fails safely (honest "not-configured") until `RESEND_API_KEY`/`EMAIL_FROM` are set. Magic-link sign-in emails are Supabase-sent (route via Resend SMTP in the dashboard); no password reset (auth is passwordless). Operations: [docs/email-setup.md](docs/email-setup.md)
 
 **Update this section whenever the implementation changes.** Stack conventions: [.ai/skills/nextjs-typescript.md](.ai/skills/nextjs-typescript.md).
 
@@ -99,7 +100,8 @@ Visual changes must also be verified at **375px, 768px, 1024px and 1440px**.
 | `lib/payments/` | Payment domain: fees, Connect, gifts/checkout, webhooks, admin, reconciliation (ADR-009) |
 | `lib/stripe/` + `lib/supabase/` | Stripe server client; Supabase server/admin/browser clients |
 | `lib/notifications/` | Idempotent gift-notification queue boundary |
-| `docs/` | Payment operations: Stripe setup checklist, deployment/rollback, legal-review list |
+| `lib/email/` | Email boundary (ADR-013): Resend client, templates, queue-drain worker, direct sends |
+| `docs/` | Operations: Stripe setup, email/Resend setup, deployment/rollback, legal-review list |
 | `public/images/` | Imagery — low-res placeholders, see [.ai/context/image-requirements.md](.ai/context/image-requirements.md) |
 | `.ai/agents/` | Role definitions to "wear" for specific kinds of work |
 | `.ai/skills/` | How this project actually works (stack, SEO, content, forms…) |

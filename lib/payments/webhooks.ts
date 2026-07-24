@@ -7,7 +7,11 @@ import {
   goalRefundDelta,
 } from "@/lib/goals/contribution-math";
 import { applyGoalContribution } from "@/lib/goals/contributions";
-import { enqueueGiftReceivedNotification } from "@/lib/notifications/gift-notifications";
+import { sendGiftReceipt } from "@/lib/email/notify";
+import {
+  enqueueGiftReceivedNotification,
+  enqueueGoalReachedNotification,
+} from "@/lib/notifications/gift-notifications";
 import { syncConnectedAccount } from "@/lib/payments/connect";
 import { recordGiftEvent } from "@/lib/payments/gifts";
 import { logPaymentEvent } from "@/lib/payments/log";
@@ -225,10 +229,31 @@ export async function markGiftPaidVerified(
     // Goal progress is credited HERE and only here — behind the
     // exactly-once paid transition, so webhook replays can't double-count.
     if (gift.goal_id) {
-      await applyGoalContribution(gift.goal_id, gift.gift_amount, {
-        giftId: gift.id,
-        stripeEventId,
-        reason: "gift_paid",
+      const credited = await applyGoalContribution(
+        gift.goal_id,
+        gift.gift_amount,
+        {
+          giftId: gift.id,
+          stripeEventId,
+          reason: "gift_paid",
+        },
+      );
+      // Notify the Creator only when this gift crossed the target. Idempotent
+      // and decoupled from delivery (drained by deliverPendingNotifications).
+      if (credited) {
+        await enqueueGoalReachedNotification(gift);
+      }
+    }
+    // Receipt to the Supporter (best-effort, never fails the payment). Not
+    // queued: the Supporter may be anonymous with no profile row, and their
+    // email must never live in a Creator-readable notification payload.
+    const receiptEmail = gift.sender_email ?? sessionEmail ?? null;
+    if (receiptEmail) {
+      await sendGiftReceipt({
+        creatorUserId: gift.recipient_user_id,
+        amount: gift.gift_amount,
+        currency: gift.currency,
+        toEmail: receiptEmail,
       });
     }
     logPaymentEvent("info", "webhook.gift_paid", {
