@@ -25,6 +25,8 @@ interface GoalFormProps {
   initialTargetAmount?: number | null;
   /** Goals with attributed support keep their currency (ADR-011). */
   currencyLocked?: boolean;
+  /** When set, goals are locked to the creator's payout currency. */
+  payoutCurrency?: SupportedCurrency;
   submitLabel: string;
   onCancel: () => void;
   /** Resolves to server-side field errors, a form error, or null on success. */
@@ -67,6 +69,7 @@ export function GoalForm({
   initialCurrency = "gbp",
   initialTargetAmount = null,
   currencyLocked = false,
+  payoutCurrency,
   submitLabel,
   onCancel,
   onSubmit,
@@ -74,7 +77,12 @@ export function GoalForm({
   const fieldId = useId();
   const [title, setTitle] = useState(initialTitle);
   const [description, setDescription] = useState(initialDescription);
-  const [currency, setCurrency] = useState<SupportedCurrency>(initialCurrency);
+  // A funded goal keeps its own currency; otherwise lock to the payout
+  // currency when we know it (so no one can create an unfundable goal).
+  const [currency, setCurrency] = useState<SupportedCurrency>(
+    currencyLocked ? initialCurrency : payoutCurrency ?? initialCurrency,
+  );
+  const currencyDisabled = currencyLocked || payoutCurrency !== undefined;
   const [target, setTarget] = useState(minorToMajorString(initialTargetAmount));
   const [errors, setErrors] = useState<GoalFormErrors>({});
   const [formError, setFormError] = useState<string | null>(null);
@@ -201,13 +209,13 @@ export function GoalForm({
           <select
             id={`${fieldId}-currency`}
             value={currency}
-            disabled={currencyLocked}
+            disabled={currencyDisabled}
             onChange={(event) =>
               setCurrency(event.target.value as SupportedCurrency)
             }
             className={`${inputClasses} disabled:bg-mist disabled:text-ink/60`}
             aria-describedby={
-              currencyLocked ? `${fieldId}-currency-locked` : undefined
+              currencyDisabled ? `${fieldId}-currency-locked` : undefined
             }
           >
             {SUPPORTED_CURRENCIES.map((code) => (
@@ -219,6 +227,10 @@ export function GoalForm({
           {currencyLocked ? (
             <p id={`${fieldId}-currency-locked`} className="mt-1.5 text-xs text-ink/60">
               This goal has received support, so its currency can&apos;t change.
+            </p>
+          ) : payoutCurrency ? (
+            <p id={`${fieldId}-currency-locked`} className="mt-1.5 text-xs text-ink/60">
+              Goals use your payout currency so supporters can fund them.
             </p>
           ) : null}
         </div>

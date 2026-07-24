@@ -32,6 +32,10 @@ const failureResponses: Record<GoalMutationFailure, { error: string; status: num
     error: "A goal that has received support keeps its currency.",
     status: 409,
   },
+  currency_mismatch: {
+    error: "Goals must use your payout currency.",
+    status: 409,
+  },
   has_support: {
     error: "This goal has received support, so it can't be deleted — archive it instead.",
     status: 409,

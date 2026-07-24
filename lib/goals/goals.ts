@@ -7,6 +7,7 @@ import {
   type CreatorGoalRow,
   type GoalStatus,
 } from "@/lib/goals/types";
+import { getConnectedAccountForUser } from "@/lib/payments/connect";
 import { getSupabaseServerClient } from "@/lib/supabase/server";
 
 /**
@@ -28,8 +29,30 @@ export type GoalMutationFailure =
   | "active_limit"
   | "invalid_transition"
   | "currency_locked"
+  | "currency_mismatch"
   | "has_support"
   | "unavailable";
+
+/**
+ * A goal must use the creator's payout currency, or supporters can't fund it
+ * (gifts settle in the connected account's currency). Enforced here so a
+ * direct API call can't create an unfundable goal; the form also locks it.
+ * No account yet → nothing to match against (they can't receive gifts anyway).
+ */
+async function payoutCurrencyMismatch(
+  userId: string,
+  currency: string,
+): Promise<boolean> {
+  try {
+    const account = await getConnectedAccountForUser(userId);
+    return (
+      Boolean(account?.default_currency) &&
+      account?.default_currency !== currency
+    );
+  } catch {
+    return false;
+  }
+}
 
 export async function getOwnGoals(userId: string): Promise<CreatorGoalRow[]> {
   const supabase = await getSupabaseServerClient();
@@ -77,6 +100,9 @@ export async function createGoal(
   input: GoalInput,
 ): Promise<GoalMutationResult> {
   try {
+    if (await payoutCurrencyMismatch(userId, input.currency)) {
+      return { ok: false, reason: "currency_mismatch" };
+    }
     const supabase = await getSupabaseServerClient();
     const { data: last } = await supabase
       .from("creator_goals")
@@ -121,6 +147,9 @@ export async function updateGoal(
     }
     if (existing.raised_amount > 0 && input.currency !== existing.currency) {
       return { ok: false, reason: "currency_locked" };
+    }
+    if (await payoutCurrencyMismatch(userId, input.currency)) {
+      return { ok: false, reason: "currency_mismatch" };
     }
 
     const supabase = await getSupabaseServerClient();

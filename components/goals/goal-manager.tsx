@@ -13,7 +13,7 @@ import {
   type CreatorGoalRow,
   type GoalStatus,
 } from "@/lib/goals/types";
-import { formatMinorAmount } from "@/lib/payments/currency";
+import { formatMinorAmount, type SupportedCurrency } from "@/lib/payments/currency";
 
 /**
  * The creator's goal list: create, edit, reorder and move goals through
@@ -63,7 +63,13 @@ async function postGoalAction(
   }
 }
 
-export function GoalManager({ initialGoals }: { initialGoals: CreatorGoalRow[] }) {
+export function GoalManager({
+  initialGoals,
+  payoutCurrency,
+}: {
+  initialGoals: CreatorGoalRow[];
+  payoutCurrency?: SupportedCurrency;
+}) {
   const [goals, setGoals] = useState(initialGoals);
   const [creating, setCreating] = useState(false);
   const [editingId, setEditingId] = useState<string | null>(null);
@@ -196,6 +202,7 @@ export function GoalManager({ initialGoals }: { initialGoals: CreatorGoalRow[] }
             New goal
           </h2>
           <GoalForm
+            payoutCurrency={payoutCurrency}
             submitLabel="Save goal"
             onCancel={() => setCreating(false)}
             onSubmit={handleCreate}
@@ -249,6 +256,7 @@ export function GoalManager({ initialGoals }: { initialGoals: CreatorGoalRow[] }
                     initialCurrency={goal.currency}
                     initialTargetAmount={goal.target_amount}
                     currencyLocked={goal.raised_amount > 0}
+                    payoutCurrency={payoutCurrency}
                     submitLabel="Save changes"
                     onCancel={() => setEditingId(null)}
                     onSubmit={(input) => handleEdit(goal.id, input)}

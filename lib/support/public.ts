@@ -1,6 +1,7 @@
 import "server-only";
 
 import type { SupportedCurrency } from "@/lib/payments/currency";
+import { isLivemode } from "@/lib/stripe/server";
 import { getSupabaseAdminClient } from "@/lib/supabase/admin";
 
 /**
@@ -50,6 +51,9 @@ export async function getCreatorSupport(
     )
     .eq("recipient_user_id", creatorId)
     .eq("status", "paid")
+    // Only gifts from the current environment: test-mode Tees never show up as
+    // real support once live keys are configured, and vice versa.
+    .eq("livemode", isLivemode())
     .order("paid_at", { ascending: false });
   if (error) {
     throw new Error(`Failed to load support: ${error.message}`);

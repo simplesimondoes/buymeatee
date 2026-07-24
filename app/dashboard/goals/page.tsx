@@ -4,6 +4,8 @@ import { redirect } from "next/navigation";
 import { GoalManager } from "@/components/goals/goal-manager";
 import { getOwnGoals } from "@/lib/goals/goals";
 import type { CreatorGoalRow } from "@/lib/goals/types";
+import { getConnectedAccountForUser } from "@/lib/payments/connect";
+import type { SupportedCurrency } from "@/lib/payments/currency";
 import { getAuthenticatedUser } from "@/lib/supabase/server";
 
 export const metadata: Metadata = {
@@ -24,6 +26,16 @@ export default async function GoalsPage() {
     goals = await getOwnGoals(user.id);
   } catch {
     unavailable = true;
+  }
+
+  // Lock new goals to the creator's payout currency (if their account is set
+  // up), so they can't create a goal supporters are unable to fund.
+  let payoutCurrency: SupportedCurrency | undefined;
+  try {
+    const account = await getConnectedAccountForUser(user.id);
+    payoutCurrency = account?.default_currency ?? undefined;
+  } catch {
+    payoutCurrency = undefined;
   }
 
   return (
@@ -48,7 +60,7 @@ export default async function GoalsPage() {
             Goals aren&apos;t available right now. Please try again shortly.
           </div>
         ) : (
-          <GoalManager initialGoals={goals} />
+          <GoalManager initialGoals={goals} payoutCurrency={payoutCurrency} />
         )}
       </div>
     </main>

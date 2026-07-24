@@ -32,6 +32,12 @@ export async function POST(request: Request) {
 
   const result = await createGoal(user.id, validation.data);
   if (!result.ok) {
+    if (result.reason === "currency_mismatch") {
+      return NextResponse.json(
+        { errors: { currency: "Goals must use your payout currency." } },
+        { status: 409 },
+      );
+    }
     return NextResponse.json(
       { error: "Saving isn't available right now. Please try again." },
       { status: 503 },
