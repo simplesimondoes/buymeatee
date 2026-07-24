@@ -9,9 +9,12 @@ import { PublicGoals } from "@/components/goals/public-goals";
 import { Markdown } from "@/components/markdown";
 import { Avatar } from "@/components/profile/avatar";
 import { PublicUpdates } from "@/components/updates/public-updates";
+import { CreatorStats } from "@/components/support/creator-stats";
+import { RecentSupport } from "@/components/support/recent-support";
 import { getPublicGoalsForCreator, type PublicGoals as PublicGoalsData } from "@/lib/goals/public";
 import { getPublishedUpdatesForCreator } from "@/lib/updates/public";
 import type { CreatorUpdateRow } from "@/lib/updates/types";
+import { getCreatorSupport, type CreatorSupport } from "@/lib/support/public";
 import { getFeeConfig, PRESET_GIFT_AMOUNTS } from "@/lib/payments/config";
 import { getConnectedAccountForUser } from "@/lib/payments/connect";
 import { canReceiveGifts } from "@/lib/payments/types";
@@ -40,11 +43,12 @@ type ProfileRow = {
   social_instagram: string | null;
   social_tiktok: string | null;
   social_website: string | null;
+  created_at: string | null;
   deactivated_at: string | null;
 };
 
 const PROFILE_COLUMNS =
-  "id, username, display_name, avatar_url, cover_image_url, bio, about, handicap, location, home_club, handedness, social_youtube, social_instagram, social_tiktok, social_website, deactivated_at";
+  "id, username, display_name, avatar_url, cover_image_url, bio, about, handicap, location, home_club, handedness, social_youtube, social_instagram, social_tiktok, social_website, created_at, deactivated_at";
 
 const loadProfile = cache(async (username: string): Promise<ProfileRow | null> => {
   if (!/^[a-z0-9]([a-z0-9-]{1,38}[a-z0-9])?$/.test(username)) {
@@ -79,6 +83,21 @@ const loadPublicUpdates = cache(
     }
   },
 );
+
+const loadSupport = cache(
+  async (creatorId: string): Promise<CreatorSupport> => {
+    try {
+      return await getCreatorSupport(creatorId);
+    } catch {
+      return { recent: [], totalCount: 0, byGoal: {} };
+    }
+  },
+);
+
+const joinedFormat = new Intl.DateTimeFormat("en-GB", {
+  month: "long",
+  year: "numeric",
+});
 
 /** Format a stored handicap for display: negatives are "plus" handicaps. */
 function formatHandicap(handicap: number): string {
@@ -222,6 +241,10 @@ export default async function RecipientProfilePage({
 
   const goals = await loadPublicGoals(profile.id);
   const updates = await loadPublicUpdates(profile.id);
+  const support = await loadSupport(profile.id);
+  const joined = profile.created_at
+    ? joinedFormat.format(new Date(profile.created_at))
+    : null;
 
   const meta = [
     profile.handicap != null ? `${formatHandicap(profile.handicap)} handicap` : null,
@@ -283,6 +306,15 @@ export default async function RecipientProfilePage({
         <SocialLinks profile={profile} />
       </header>
 
+      <div className="mt-5">
+        <CreatorStats
+          supporters={support.totalCount}
+          goalsReached={goals.completed.length}
+          updates={updates.length}
+          joined={joined}
+        />
+      </div>
+
       {profile.about ? (
         <section aria-label={`About ${name}`} className="mt-8">
           <h2 className="font-serif text-xl font-semibold text-forest">About</h2>
@@ -298,6 +330,7 @@ export default async function RecipientProfilePage({
           completed={goals.completed}
           creatorName={name}
           isOwner={isOwner}
+          supportersByGoal={support.byGoal}
         />
       </div>
 
@@ -333,6 +366,10 @@ export default async function RecipientProfilePage({
             ) : null}
           </div>
         )}
+      </div>
+
+      <div className="mt-10">
+        <RecentSupport items={support.recent} />
       </div>
 
       <div className="mt-10">

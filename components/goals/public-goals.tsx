@@ -15,7 +15,13 @@ import { formatMinorAmount } from "@/lib/payments/currency";
  * their real total.
  */
 
-function PublicGoalCard({ goal }: { goal: CreatorGoalRow }) {
+function PublicGoalCard({
+  goal,
+  supporters,
+}: {
+  goal: CreatorGoalRow;
+  supporters: number;
+}) {
   const percent = goalProgressPercent(goal.raised_amount, goal.target_amount);
   const target = formatMinorAmount(goal.target_amount, goal.currency);
   const raised = formatMinorAmount(goal.raised_amount, goal.currency);
@@ -67,6 +73,10 @@ function PublicGoalCard({ goal }: { goal: CreatorGoalRow }) {
             <p className="mt-2 text-xs text-ink/60">
               Just getting started — be the first to back it.
             </p>
+          ) : supporters > 0 ? (
+            <p className="mt-2 text-xs text-ink/60">
+              Supported by {supporters} {supporters === 1 ? "golfer" : "golfers"}
+            </p>
           ) : null}
         </div>
       </div>
@@ -79,11 +89,13 @@ export function PublicGoals({
   completed,
   creatorName,
   isOwner,
+  supportersByGoal = {},
 }: {
   active: CreatorGoalRow[];
   completed: CreatorGoalRow[];
   creatorName: string;
   isOwner: boolean;
+  supportersByGoal?: Record<string, number>;
 }) {
   if (active.length === 0 && completed.length === 0) {
     if (!isOwner) {
@@ -113,7 +125,11 @@ export function PublicGoals({
             {creatorName}&apos;s goals
           </h2>
           {active.map((goal) => (
-            <PublicGoalCard key={goal.id} goal={goal} />
+            <PublicGoalCard
+              key={goal.id}
+              goal={goal}
+              supporters={supportersByGoal[goal.id] ?? 0}
+            />
           ))}
         </>
       ) : null}
