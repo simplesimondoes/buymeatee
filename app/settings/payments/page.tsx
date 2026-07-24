@@ -3,6 +3,7 @@ import type { Metadata } from "next";
 import { redirect } from "next/navigation";
 
 import { ConnectActions } from "@/components/payments/connect-actions";
+import { getAllowedConnectCountries } from "@/lib/payments/config";
 import {
   getConnectedAccountForUser,
   syncConnectedAccount,
@@ -22,6 +23,20 @@ export const metadata: Metadata = {
 };
 
 const SYNC_STALENESS_MS = 5 * 60 * 1000;
+
+/** Display names for the supported Connect countries (ISO alpha-2). */
+const COUNTRY_LABELS: Record<string, string> = {
+  GB: "United Kingdom",
+  IE: "Ireland",
+  DE: "Germany",
+  FR: "France",
+  ES: "Spain",
+  NL: "Netherlands",
+  BE: "Belgium",
+  AT: "Austria",
+  PT: "Portugal",
+  FI: "Finland",
+};
 
 type StateCopy = {
   heading: string;
@@ -139,6 +154,15 @@ export default async function PaymentSettingsPage() {
   const copy = stateCopy[state];
   const ready = canReceiveGifts(account);
 
+  // The country is chosen only before the account exists (Stripe fixes it at
+  // creation). Once an account exists, no picker — the country is set.
+  const countryOptions = account
+    ? undefined
+    : getAllowedConnectCountries().map((code) => ({
+        code,
+        label: COUNTRY_LABELS[code] ?? code,
+      }));
+
   return (
     <main className="mx-auto w-full max-w-2xl px-4 py-16 sm:px-6 sm:py-24">
       <p className="text-sm font-medium uppercase tracking-wide text-gold-deep">
@@ -192,6 +216,7 @@ export default async function PaymentSettingsPage() {
             <ConnectActions
               onboardingLabel={copy.onboardingLabel}
               showDashboardLink={Boolean(account?.details_submitted)}
+              countryOptions={countryOptions}
             />
           </div>
         </section>

@@ -11,29 +11,49 @@ const buttonClasses =
 /**
  * Buttons that ask the server for single-use Stripe URLs (onboarding link /
  * dashboard login link) and follow them. No Stripe ids in the browser.
+ *
+ * Before an account exists, a country picker is shown: the connected account's
+ * country is fixed at creation by Stripe and can't be changed later, so the
+ * creator chooses it here (it also determines their payout currency).
  */
 export function ConnectActions({
   onboardingLabel,
   showDashboardLink,
+  countryOptions,
 }: {
   /** null hides the onboarding button (account fully ready). */
   onboardingLabel: string | null;
   showDashboardLink: boolean;
+  /** Country choices shown only before the account is created; omit after. */
+  countryOptions?: { code: string; label: string }[];
 }) {
   const [busy, setBusy] = useState<Busy>("none");
   const [error, setError] = useState<string | null>(null);
+  const [country, setCountry] = useState(countryOptions?.[0]?.code ?? "GB");
 
-  async function follow(endpoint: string, kind: Busy) {
+  const showCountry = Boolean(
+    onboardingLabel && countryOptions && countryOptions.length > 0,
+  );
+
+  async function follow(endpoint: string, kind: Busy, body?: unknown) {
     setBusy(kind);
     setError(null);
     try {
-      const response = await fetch(endpoint, { method: "POST" });
-      const body = (await response.json()) as { url?: string; error?: string };
-      if (response.ok && body.url) {
-        window.location.assign(body.url);
+      const response = await fetch(endpoint, {
+        method: "POST",
+        ...(body
+          ? {
+              headers: { "Content-Type": "application/json" },
+              body: JSON.stringify(body),
+            }
+          : {}),
+      });
+      const data = (await response.json()) as { url?: string; error?: string };
+      if (response.ok && data.url) {
+        window.location.assign(data.url);
         return;
       }
-      setError(body.error ?? "Something went wrong. Please try again.");
+      setError(data.error ?? "Something went wrong. Please try again.");
     } catch {
       setError("Something went wrong. Please try again.");
     }
@@ -41,13 +61,46 @@ export function ConnectActions({
   }
 
   return (
-    <div className="space-y-3">
+    <div className="space-y-4">
+      {showCountry ? (
+        <div>
+          <label
+            htmlFor="connect-country"
+            className="block text-sm font-medium text-ink/80"
+          >
+            Your country
+          </label>
+          <select
+            id="connect-country"
+            value={country}
+            onChange={(event) => setCountry(event.target.value)}
+            className="mt-1.5 w-full max-w-xs rounded-xl border border-stone bg-white px-4 py-2.5 text-base text-ink focus:border-forest focus:outline-none focus:ring-2 focus:ring-forest/20"
+          >
+            {countryOptions!.map((option) => (
+              <option key={option.code} value={option.code}>
+                {option.label}
+              </option>
+            ))}
+          </select>
+          <p className="mt-1.5 text-xs text-ink/60">
+            Set once and can&apos;t be changed later — it fixes your payout
+            currency.
+          </p>
+        </div>
+      ) : null}
+
       <div className="flex flex-wrap gap-3">
         {onboardingLabel ? (
           <button
             type="button"
             disabled={busy !== "none"}
-            onClick={() => follow("/api/connect/onboarding-link", "onboarding")}
+            onClick={() =>
+              follow(
+                "/api/connect/onboarding-link",
+                "onboarding",
+                showCountry ? { country } : undefined,
+              )
+            }
             className={`${buttonClasses} bg-forest text-white hover:bg-forest-dark`}
           >
             {busy === "onboarding" ? (
