@@ -4,6 +4,7 @@ import { ArrowDown, ArrowUp, Plus } from "lucide-react";
 import { useState } from "react";
 
 import { GoalForm, type GoalFormErrors } from "@/components/goals/goal-form";
+import { CoverUploader } from "@/components/profile/cover-uploader";
 import { ProgressBar } from "@/components/progress-bar";
 import type { GoalInput } from "@/lib/goals/goal-schema";
 import {
@@ -234,16 +235,25 @@ export function GoalManager({ initialGoals }: { initialGoals: CreatorGoalRow[] }
               className="rounded-3xl border border-stone bg-white p-5 sm:p-6"
             >
               {editingId === goal.id ? (
-                <GoalForm
-                  initialTitle={goal.title}
-                  initialDescription={goal.description ?? ""}
-                  initialCurrency={goal.currency}
-                  initialTargetAmount={goal.target_amount}
-                  currencyLocked={goal.raised_amount > 0}
-                  submitLabel="Save changes"
-                  onCancel={() => setEditingId(null)}
-                  onSubmit={(input) => handleEdit(goal.id, input)}
-                />
+                <div className="space-y-6">
+                  <CoverUploader
+                    endpoint={`/api/goals/${goal.id}/cover`}
+                    initialUrl={goal.cover_image_url}
+                    label="Goal cover image"
+                    helpText="JPEG, PNG or WebP up to 5 MB. Shown at the top of this goal's card on your page."
+                    aspectClassName="aspect-[16/9]"
+                  />
+                  <GoalForm
+                    initialTitle={goal.title}
+                    initialDescription={goal.description ?? ""}
+                    initialCurrency={goal.currency}
+                    initialTargetAmount={goal.target_amount}
+                    currencyLocked={goal.raised_amount > 0}
+                    submitLabel="Save changes"
+                    onCancel={() => setEditingId(null)}
+                    onSubmit={(input) => handleEdit(goal.id, input)}
+                  />
+                </div>
               ) : (
                 <>
                   <div className="flex flex-wrap items-start justify-between gap-2">

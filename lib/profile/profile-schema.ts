@@ -9,6 +9,52 @@ export const USERNAME_PATTERN = /^[a-z0-9]([a-z0-9-]{1,38}[a-z0-9])?$/;
 export const DISPLAY_NAME_MAX_LENGTH = 200;
 export const BIO_MAX_LENGTH = 1000;
 export const COUNTRY_MAX_LENGTH = 200;
+export const LOCATION_MAX_LENGTH = 120;
+export const HOME_CLUB_MAX_LENGTH = 120;
+export const SOCIAL_URL_MAX_LENGTH = 300;
+/** WHS bounds: plus handicaps are negative; the max index is 54.0. */
+export const HANDICAP_MIN = -10;
+export const HANDICAP_MAX = 54;
+export const HANDEDNESS_VALUES = ["left", "right"] as const;
+export type Handedness = (typeof HANDEDNESS_VALUES)[number];
+
+/**
+ * Social links are stored as full https URLs. For the three known platforms
+ * we also require the host to match, so an Instagram field can't quietly hold
+ * a phishing link. `null` host means "any https URL" (the website field).
+ */
+const SOCIAL_HOSTS: Record<string, readonly string[] | null> = {
+  socialYoutube: ["youtube.com", "youtu.be"],
+  socialInstagram: ["instagram.com"],
+  socialTiktok: ["tiktok.com"],
+  socialWebsite: null,
+};
+
+function normaliseSocialUrl(
+  field: keyof typeof SOCIAL_HOSTS,
+  raw: string,
+): { ok: true; value: string } | { ok: false } {
+  let url: URL;
+  try {
+    url = new URL(raw.trim());
+  } catch {
+    return { ok: false };
+  }
+  if (url.protocol !== "https:") {
+    return { ok: false };
+  }
+  if (url.href.length > SOCIAL_URL_MAX_LENGTH) {
+    return { ok: false };
+  }
+  const allowed = SOCIAL_HOSTS[field];
+  if (allowed) {
+    const host = url.hostname.replace(/^www\./, "");
+    if (!allowed.some((h) => host === h || host.endsWith(`.${h}`))) {
+      return { ok: false };
+    }
+  }
+  return { ok: true, value: url.href };
+}
 
 /**
  * Slugs that would collide with (or shadow) platform routes and identities.
@@ -68,9 +114,29 @@ export interface ProfileInput {
   displayName: string;
   bio?: string;
   country?: string;
+  handicap?: number;
+  location?: string;
+  homeClub?: string;
+  handedness?: Handedness;
+  socialYoutube?: string;
+  socialInstagram?: string;
+  socialTiktok?: string;
+  socialWebsite?: string;
 }
 
-export type ProfileFieldName = "username" | "displayName" | "bio" | "country";
+export type ProfileFieldName =
+  | "username"
+  | "displayName"
+  | "bio"
+  | "country"
+  | "handicap"
+  | "location"
+  | "homeClub"
+  | "handedness"
+  | "socialYoutube"
+  | "socialInstagram"
+  | "socialTiktok"
+  | "socialWebsite";
 
 export type ProfileValidationResult =
   | { ok: true; data: ProfileInput }
@@ -118,12 +184,96 @@ export function validateProfileInput(payload: unknown): ProfileValidationResult 
     }
   }
 
+  // Handicap: accepts a number or numeric string; empty clears it.
+  let handicap: number | undefined;
+  const rawHandicap = input.handicap;
+  if (
+    rawHandicap !== undefined &&
+    rawHandicap !== null &&
+    String(rawHandicap).trim() !== ""
+  ) {
+    const parsed =
+      typeof rawHandicap === "number" ? rawHandicap : Number(rawHandicap);
+    if (
+      !Number.isFinite(parsed) ||
+      parsed < HANDICAP_MIN ||
+      parsed > HANDICAP_MAX
+    ) {
+      errors.handicap = `Enter a handicap between ${HANDICAP_MIN} and ${HANDICAP_MAX}.`;
+    } else {
+      handicap = Math.round(parsed * 10) / 10;
+    }
+  }
+
+  const location = optionalText(input.location);
+  if (location && location.length > LOCATION_MAX_LENGTH) {
+    errors.location = `Keep the location under ${LOCATION_MAX_LENGTH} characters.`;
+  }
+
+  const homeClub = optionalText(input.homeClub);
+  if (homeClub && homeClub.length > HOME_CLUB_MAX_LENGTH) {
+    errors.homeClub = `Keep the club name under ${HOME_CLUB_MAX_LENGTH} characters.`;
+  }
+
+  let handedness: Handedness | undefined;
+  if (typeof input.handedness === "string" && input.handedness.trim() !== "") {
+    if ((HANDEDNESS_VALUES as readonly string[]).includes(input.handedness)) {
+      handedness = input.handedness as Handedness;
+    } else {
+      errors.handedness = "Choose left or right.";
+    }
+  }
+
+  const socials: Record<string, string | undefined> = {};
+  const socialFields = [
+    "socialYoutube",
+    "socialInstagram",
+    "socialTiktok",
+    "socialWebsite",
+  ] as const;
+  const socialErrorLabels: Record<(typeof socialFields)[number], string> = {
+    socialYoutube: "YouTube",
+    socialInstagram: "Instagram",
+    socialTiktok: "TikTok",
+    socialWebsite: "website",
+  };
+  for (const field of socialFields) {
+    const raw = input[field];
+    if (typeof raw === "string" && raw.trim() !== "") {
+      const result = normaliseSocialUrl(field, raw);
+      if (result.ok) {
+        socials[field] = result.value;
+      } else {
+        errors[field] = `Enter a valid ${socialErrorLabels[field]} link (https://…).`;
+      }
+    }
+  }
+
   if (Object.keys(errors).length > 0) {
     return { ok: false, errors };
   }
 
   return {
     ok: true,
-    data: { username, displayName, bio, country },
+    data: {
+      username,
+      displayName,
+      bio,
+      country,
+      handicap,
+      location,
+      homeClub,
+      handedness,
+      socialYoutube: socials.socialYoutube,
+      socialInstagram: socials.socialInstagram,
+      socialTiktok: socials.socialTiktok,
+      socialWebsite: socials.socialWebsite,
+    },
   };
+}
+
+function optionalText(value: unknown): string | undefined {
+  return typeof value === "string" && value.trim() !== ""
+    ? value.trim()
+    : undefined;
 }

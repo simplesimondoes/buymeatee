@@ -11,7 +11,7 @@ import { getSupabaseAnonClient } from "@/lib/supabase/anon";
  */
 
 const PUBLIC_GOAL_COLUMNS =
-  "id, creator_id, title, description, currency, target_amount, raised_amount, status, sort_order, taken_down_at, created_at, updated_at";
+  "id, creator_id, title, description, cover_image_url, currency, target_amount, raised_amount, status, sort_order, taken_down_at, created_at, updated_at";
 
 export interface PublicGoals {
   active: CreatorGoalRow[];

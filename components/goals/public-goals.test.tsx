@@ -58,7 +58,8 @@ describe("PublicGoals", () => {
       />,
     );
 
-    expect(screen.getByText(/£540\.00 of £1000\.00 raised/)).toBeVisible();
+    expect(screen.getByText(/£540\.00 of £1000\.00/)).toBeVisible();
+    expect(screen.getByText(/^54%$/)).toBeVisible();
     const bar = screen.getByRole("progressbar");
     expect(bar).toHaveAttribute("aria-valuenow", "54");
     expect(bar).toHaveAccessibleName(
@@ -75,7 +76,7 @@ describe("PublicGoals", () => {
       />,
     );
 
-    expect(screen.getByText(/£1300\.00 of £1000\.00 raised/)).toBeVisible();
+    expect(screen.getByText(/£1300\.00 of £1000\.00/)).toBeVisible();
     expect(screen.getByText(/beyond the goal/i)).toBeVisible();
     expect(screen.getByRole("progressbar")).toHaveAttribute(
       "aria-valuenow",

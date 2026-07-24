@@ -20,41 +20,55 @@ function PublicGoalCard({ goal }: { goal: CreatorGoalRow }) {
   const target = formatMinorAmount(goal.target_amount, goal.currency);
   const raised = formatMinorAmount(goal.raised_amount, goal.currency);
   const overTarget = goal.raised_amount > goal.target_amount;
+  const started = goal.raised_amount > 0;
 
   return (
-    <article className="rounded-3xl border border-stone bg-white p-5 sm:p-6">
-      <h3 className="font-serif text-lg font-semibold text-forest">
-        {goal.title}
-      </h3>
-      {goal.description ? (
-        <p className="mt-1 text-sm leading-relaxed text-ink/75">
-          {goal.description}
-        </p>
+    <article className="overflow-hidden rounded-3xl border border-stone bg-white">
+      {goal.cover_image_url ? (
+        <div className="aspect-[16/9] w-full overflow-hidden bg-mist">
+          {/* eslint-disable-next-line @next/next/no-img-element */}
+          <img
+            src={goal.cover_image_url}
+            alt=""
+            className="h-full w-full object-cover"
+            loading="lazy"
+          />
+        </div>
       ) : null}
-      <div className="mt-4">
-        {goal.raised_amount === 0 ? (
-          <p className="text-sm text-ink/70">
-            <span className="font-semibold text-forest">{target} goal</span>
-            <span className="mx-1.5" aria-hidden="true">
-              ·
+      <div className="p-5 sm:p-6">
+        <h3 className="font-serif text-lg font-semibold text-forest">
+          {goal.title}
+        </h3>
+        {goal.description ? (
+          <p className="mt-1 text-sm leading-relaxed text-ink/75">
+            {goal.description}
+          </p>
+        ) : null}
+        <div className="mt-4">
+          <div className="flex items-baseline justify-between gap-3">
+            <p className="text-sm font-semibold text-forest">
+              {started ? `${raised} of ${target}` : `${target} goal`}
+              {overTarget ? (
+                <span className="ml-1.5 font-normal text-gold-deep">
+                  — beyond the goal!
+                </span>
+              ) : null}
+            </p>
+            <span className="shrink-0 text-sm font-semibold text-gold-deep">
+              {started ? `${percent}%` : "Be the first"}
             </span>
-            Just getting started — be the first to back it.
-          </p>
-        ) : (
-          <p className="text-sm font-semibold text-forest">
-            {raised} of {target} raised
-            {overTarget ? (
-              <span className="ml-1.5 font-normal text-gold-deep">
-                — beyond the goal!
-              </span>
-            ) : null}
-          </p>
-        )}
-        <ProgressBar
-          value={percent}
-          label={`Progress towards ${goal.title}: ${raised} of ${target} raised`}
-          className="mt-2"
-        />
+          </div>
+          <ProgressBar
+            value={percent}
+            label={`Progress towards ${goal.title}: ${raised} of ${target} raised`}
+            className="mt-2"
+          />
+          {!started ? (
+            <p className="mt-2 text-xs text-ink/60">
+              Just getting started — be the first to back it.
+            </p>
+          ) : null}
+        </div>
       </div>
     </article>
   );

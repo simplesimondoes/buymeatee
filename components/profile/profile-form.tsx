@@ -16,6 +16,14 @@ interface ProfileFormProps {
   initialDisplayName: string;
   initialBio: string;
   initialCountry: string;
+  initialHandicap: string;
+  initialLocation: string;
+  initialHomeClub: string;
+  initialHandedness: string;
+  initialSocialYoutube: string;
+  initialSocialInstagram: string;
+  initialSocialTiktok: string;
+  initialSocialWebsite: string;
 }
 
 const inputClasses =
@@ -44,12 +52,28 @@ export function ProfileForm({
   initialDisplayName,
   initialBio,
   initialCountry,
+  initialHandicap,
+  initialLocation,
+  initialHomeClub,
+  initialHandedness,
+  initialSocialYoutube,
+  initialSocialInstagram,
+  initialSocialTiktok,
+  initialSocialWebsite,
 }: ProfileFormProps) {
   const fieldId = useId();
   const [username, setUsername] = useState(initialUsername ?? "");
   const [displayName, setDisplayName] = useState(initialDisplayName);
   const [bio, setBio] = useState(initialBio);
   const [country, setCountry] = useState(initialCountry);
+  const [handicap, setHandicap] = useState(initialHandicap);
+  const [location, setLocation] = useState(initialLocation);
+  const [homeClub, setHomeClub] = useState(initialHomeClub);
+  const [handedness, setHandedness] = useState(initialHandedness);
+  const [socialYoutube, setSocialYoutube] = useState(initialSocialYoutube);
+  const [socialInstagram, setSocialInstagram] = useState(initialSocialInstagram);
+  const [socialTiktok, setSocialTiktok] = useState(initialSocialTiktok);
+  const [socialWebsite, setSocialWebsite] = useState(initialSocialWebsite);
   const [savedUsername, setSavedUsername] = useState(initialUsername);
   const [errors, setErrors] = useState<FieldErrors>({});
   const [formError, setFormError] = useState<string | null>(null);
@@ -65,7 +89,20 @@ export function ProfileForm({
     setSaved(false);
     setFormError(null);
 
-    const payload = { username, displayName, bio, country };
+    const payload = {
+      username,
+      displayName,
+      bio,
+      country,
+      handicap,
+      location,
+      homeClub,
+      handedness,
+      socialYoutube,
+      socialInstagram,
+      socialTiktok,
+      socialWebsite,
+    };
     const validation = validateProfileInput(payload);
     if (!validation.ok) {
       setErrors(validation.errors);
@@ -222,6 +259,110 @@ export function ProfileForm({
         />
         <FieldError id={`${fieldId}-country-error`} message={errors.country} />
       </div>
+
+      <fieldset className="space-y-5 border-t border-stone pt-6">
+        <legend className="text-sm font-medium text-forest">
+          Your golf <span className="font-normal text-ink/50">(optional)</span>
+        </legend>
+        <div className="grid gap-5 sm:grid-cols-2">
+          <div>
+            <label htmlFor={`${fieldId}-handicap`} className={labelClasses}>
+              Handicap
+            </label>
+            <input
+              id={`${fieldId}-handicap`}
+              type="text"
+              inputMode="decimal"
+              value={handicap}
+              onChange={(event) => setHandicap(event.target.value)}
+              placeholder="9.4"
+              className={inputClasses}
+              {...errorProps("handicap")}
+            />
+            <FieldError id={`${fieldId}-handicap-error`} message={errors.handicap} />
+          </div>
+          <div>
+            <label htmlFor={`${fieldId}-handedness`} className={labelClasses}>
+              Handedness
+            </label>
+            <select
+              id={`${fieldId}-handedness`}
+              value={handedness}
+              onChange={(event) => setHandedness(event.target.value)}
+              className={inputClasses}
+              {...errorProps("handedness")}
+            >
+              <option value="">Not set</option>
+              <option value="right">Right-handed</option>
+              <option value="left">Left-handed</option>
+            </select>
+            <FieldError id={`${fieldId}-handedness-error`} message={errors.handedness} />
+          </div>
+        </div>
+        <div>
+          <label htmlFor={`${fieldId}-location`} className={labelClasses}>
+            Location
+          </label>
+          <input
+            id={`${fieldId}-location`}
+            type="text"
+            value={location}
+            onChange={(event) => setLocation(event.target.value)}
+            placeholder="Surrey, England"
+            className={inputClasses}
+            {...errorProps("location")}
+          />
+          <FieldError id={`${fieldId}-location-error`} message={errors.location} />
+        </div>
+        <div>
+          <label htmlFor={`${fieldId}-homeClub`} className={labelClasses}>
+            Home club
+          </label>
+          <input
+            id={`${fieldId}-homeClub`}
+            type="text"
+            value={homeClub}
+            onChange={(event) => setHomeClub(event.target.value)}
+            placeholder="Surrey Downs GC"
+            className={inputClasses}
+            {...errorProps("homeClub")}
+          />
+          <FieldError id={`${fieldId}-homeClub-error`} message={errors.homeClub} />
+        </div>
+      </fieldset>
+
+      <fieldset className="space-y-5 border-t border-stone pt-6">
+        <legend className="text-sm font-medium text-forest">
+          Links <span className="font-normal text-ink/50">(optional)</span>
+        </legend>
+        {(
+          [
+            ["socialYoutube", "YouTube", "https://youtube.com/@you", setSocialYoutube, socialYoutube],
+            ["socialInstagram", "Instagram", "https://instagram.com/you", setSocialInstagram, socialInstagram],
+            ["socialTiktok", "TikTok", "https://tiktok.com/@you", setSocialTiktok, socialTiktok],
+            ["socialWebsite", "Website", "https://your-site.com", setSocialWebsite, socialWebsite],
+          ] as const
+        ).map(([field, label, placeholder, setter, value]) => (
+          <div key={field}>
+            <label htmlFor={`${fieldId}-${field}`} className={labelClasses}>
+              {label}
+            </label>
+            <input
+              id={`${fieldId}-${field}`}
+              type="url"
+              inputMode="url"
+              autoCapitalize="none"
+              spellCheck={false}
+              value={value}
+              onChange={(event) => setter(event.target.value)}
+              placeholder={placeholder}
+              className={inputClasses}
+              {...errorProps(field)}
+            />
+            <FieldError id={`${fieldId}-${field}-error`} message={errors[field]} />
+          </div>
+        ))}
+      </fieldset>
 
       <div className="space-y-3">
         <button

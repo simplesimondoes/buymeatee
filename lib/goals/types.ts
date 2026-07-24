@@ -29,6 +29,7 @@ export interface CreatorGoalRow {
   creator_id: string;
   title: string;
   description: string | null;
+  cover_image_url: string | null;
   currency: SupportedCurrency;
   target_amount: number;
   raised_amount: number;

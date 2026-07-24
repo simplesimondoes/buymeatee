@@ -2,6 +2,7 @@ import type { Metadata } from "next";
 import { redirect } from "next/navigation";
 
 import { AvatarUploader } from "@/components/profile/avatar-uploader";
+import { CoverUploader } from "@/components/profile/cover-uploader";
 import { ProfileForm } from "@/components/profile/profile-form";
 import { getOwnProfile, type OwnProfile } from "@/lib/profile/profile";
 import { getAuthenticatedUser } from "@/lib/supabase/server";
@@ -49,6 +50,13 @@ export default async function ProfileSettingsPage() {
         </div>
       ) : (
         <div className="mt-8 space-y-8 rounded-3xl border border-stone bg-white p-6 sm:p-8">
+          <CoverUploader
+            endpoint="/api/profile/cover"
+            initialUrl={profile?.cover_image_url ?? null}
+            label="Cover image"
+            helpText="JPEG, PNG or WebP up to 5 MB. A wide photo works best — it's the banner across the top of your page."
+            aspectClassName="aspect-[3/1]"
+          />
           <AvatarUploader
             initialAvatarUrl={profile?.avatar_url ?? null}
             displayName={profile?.display_name ?? ""}
@@ -58,6 +66,14 @@ export default async function ProfileSettingsPage() {
             initialDisplayName={profile?.display_name ?? ""}
             initialBio={profile?.bio ?? ""}
             initialCountry={profile?.country ?? ""}
+            initialHandicap={profile?.handicap != null ? String(profile.handicap) : ""}
+            initialLocation={profile?.location ?? ""}
+            initialHomeClub={profile?.home_club ?? ""}
+            initialHandedness={profile?.handedness ?? ""}
+            initialSocialYoutube={profile?.social_youtube ?? ""}
+            initialSocialInstagram={profile?.social_instagram ?? ""}
+            initialSocialTiktok={profile?.social_tiktok ?? ""}
+            initialSocialWebsite={profile?.social_website ?? ""}
           />
         </div>
       )}
