@@ -131,7 +131,44 @@ export async function getDiscoverData(): Promise<DiscoverData> {
     }
   }
 
-  const realCreatorCards: DiscoverCreatorCard[] = creators.map((creator) => {
+  // A discoverable creator is anyone with a public page (role 'creator') OR
+  // anyone with a publicly-visible goal — the `role` flag alone would hide
+  // real creators who set up a goal without it being toggled.
+  type CreatorInfo = {
+    id: string;
+    username: string;
+    display_name: string;
+    avatar_url: string | null;
+    cover_image_url: string | null;
+    bio: string | null;
+    location: string | null;
+    country: string | null;
+    created_at: string;
+  };
+  const creatorInfoById = new Map<string, CreatorInfo>();
+  for (const creator of creators) {
+    if (!creator.username) continue;
+    creatorInfoById.set(creator.id, creator as CreatorInfo);
+  }
+  for (const row of goals) {
+    if (!row.creator?.username || creatorInfoById.has(row.creator_id)) continue;
+    // Derived from the goal's creator join — less rich (no bio/cover), but real.
+    creatorInfoById.set(row.creator_id, {
+      id: row.creator_id,
+      username: row.creator.username,
+      display_name: row.creator.display_name,
+      avatar_url: row.creator.avatar_url,
+      cover_image_url: null,
+      bio: null,
+      location: row.creator.location,
+      country: row.creator.country,
+      created_at: row.created_at,
+    });
+  }
+
+  const realCreatorCards: DiscoverCreatorCard[] = Array.from(
+    creatorInfoById.values(),
+  ).map((creator) => {
     const goal = currentGoalByCreator.get(creator.id);
     return {
       key: `creator-${creator.id}`,

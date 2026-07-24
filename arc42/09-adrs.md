@@ -276,3 +276,22 @@ Live third-party **embeds** (YouTube/Instagram "Pinned Media") are deliberately 
 
 ### Consequences
 Creators get bold/italic/headings/lists/tables/links/images but not arbitrary HTML or inline embeds — a deliberate ceiling. If richer authoring is ever needed it must extend the sanitiser schema explicitly, per element, with review. The same `Markdown` component is the single rendering path for all future user-authored text.
+
+## ADR-015: Discover page — cross-creator listing with a hybrid real/Preview fallback
+
+### Status
+Accepted (July 2026)
+
+### Context
+Until now every profile and goal read was single-creator (`getPublicGoalsForCreator`, `loadProfile` — all filtered by one `username`/`creator_id`). The Discover page is the platform's first surface that must list creators and goals **across all creators** so a supporter with no specific creator in mind can browse and back a journey. Two constraints shape it: the CLAUDE.md hard rules forbid inventing users, supporter counts or payment totals (`raised_amount` is webhook-only, ADR-011); and at build time the platform has few or no real creators, so a listing that shows only real data would render an empty, lifeless page during validation.
+
+### Decision
+Add a `lib/discover/` domain boundary with cross-creator reads on the **anonymous** client (`queries.ts`), relying on RLS rather than hand-written filters for safety: `profiles` hides deactivated rows from anon, so an `inner` join to `profiles` also drops a deactivated creator's goals; `creator_goals` exposes only `active`/`completed` to anon; `creator_updates` only `published`. No admin/service-role client is used for the public listing.
+
+The page is **hybrid** (`data.ts` `getDiscoverData()`): each section renders real, verified data when it exists and otherwise falls back to clearly-labelled **Preview** content (ADR-007) from `lib/content/preview-creators.ts`. A creator is discoverable if they have a public page (`role = 'creator'`) **or** own any publicly-visible goal — the `role` flag alone would hide real creators who set up a goal without it. Two sections that need a data pipeline we don't have yet — **Trending** (no view/velocity signal) and **Recently Funded** (no privacy-safe public gift feed) — are always shown as Preview/Concept placeholders, never fabricated as real. If Supabase is unconfigured every real read fails safe to empty and the whole page renders as honest Preview. The page is statically generated with `revalidate = 300`.
+
+### Alternatives considered
+Admin (service-role) client for the listing, mirroring `app/t/[username]` — rejected: it bypasses RLS and would require re-implementing every public-visibility filter by hand, exactly the "filter someone could forget" risk `getPublicGoalsForCreator` was designed to avoid. A real-data-only page — rejected for the validation phase: it would be empty until creators join, defeating the "inspire exploration" goal. A fully fictional concept page — rejected: it cannot surface the real creators/goals that already exist and would drift from reality at launch. Adding a `category` column now to power real category filtering — deferred: categories ship as browse facets over Preview content until creators can self-categorise.
+
+### Consequences
+Discover is the one place that reads across creators; any future ranking (real trending, near-completion feeds) extends `lib/discover/`. Trending and Recently Funded remain Preview until a support-velocity signal and a privacy-respecting activity feed exist. Category filtering only narrows Preview content until a real `category` field is added to profiles/goals. Preview content in `lib/content/preview-creators.ts` is fictional and must stay behind Preview/Concept labels; it is illustrative, not seed data.
