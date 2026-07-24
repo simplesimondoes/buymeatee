@@ -8,7 +8,7 @@ import { pageMetadata } from "@/lib/seo/metadata";
 export const metadata: Metadata = pageMetadata({
   title: "Privacy Policy",
   description:
-    "How BuyMeATee handles personal data during early access: what the site collects, why, and your rights. Pre-launch draft pending legal review.",
+    "How BuyMeATee handles personal data: what we collect for accounts, profiles and payments, who processes it, and your rights. Draft pending legal review.",
   path: "/privacy",
 });
 
@@ -25,7 +25,7 @@ export default function PrivacyPage() {
         breadcrumbs={[{ label: "Privacy", href: "/privacy" }]}
         eyebrow="Legal"
         heading="Privacy Policy"
-        intro="What this website collects, why, and the choices you have."
+        intro="What we collect, why, who processes it, and the choices you have."
       />
       <section className="bg-white">
         <div className="mx-auto max-w-3xl px-4 py-12 sm:px-6 lg:px-8 lg:py-16">
@@ -41,111 +41,183 @@ export default function PrivacyPage() {
               <strong className="text-forest">
                 Draft — pending legal review.
               </strong>{" "}
-              This pre-launch privacy policy describes what the site actually
-              does today. It has not yet been reviewed by a lawyer and will be
-              finalised before the full product launches.
+              This policy describes what the product actually does, but it has
+              not yet been reviewed by a qualified lawyer or data-protection
+              adviser. It is not legal advice. The payments, accounts and
+              analytics sections in particular must be verified before launch.
             </p>
           </div>
 
-          <p className={paragraph}>Last updated: 11 July 2026.</p>
+          <p className={paragraph}>Last updated: 24 July 2026.</p>
 
           <h2 className={sectionHeading}>Who we are</h2>
           <p className={paragraph}>
-            BuyMeATee (&ldquo;we&rdquo;, &ldquo;us&rdquo;) operates the website
-            at buymeatee.com. BuyMeATee is a pre-launch product: this website
-            presents the concept and lets you register early-access interest.
-            There are no user accounts and no payments.
+            BuyMeATee (&ldquo;we&rdquo;, &ldquo;us&rdquo;) operates the platform
+            at buymeatee.com — a golf-focused way for supporters to back
+            creators with a &ldquo;Tee&rdquo;. We are the data controller for
+            the personal data described here. For payments we work with Stripe,
+            who acts as an independent controller for the payment and
+            identity-verification data it collects (see &ldquo;Payments&rdquo;
+            below). A contact address for privacy requests will be confirmed
+            before launch.
           </p>
 
           <h2 className={sectionHeading}>What we collect</h2>
           <p className={paragraph}>
-            The only personal data this website collects is what you choose to
-            submit through the early-access form:
+            <strong className="text-forest">Early-access sign-ups:</strong> your
+            name, email, whether you&apos;re a creator or supporter, country,
+            optionally a profile/social link, and optionally your answer to what
+            you&apos;d use BuyMeATee for.
           </p>
+          <p className={paragraph}>
+            <strong className="text-forest">Accounts:</strong> we use passwordless
+            sign-in, so we hold your email address and sign-in session data. We
+            never store passwords.
+          </p>
+          <p className={paragraph}>
+            <strong className="text-forest">Creator profiles:</strong> the
+            details you choose to publish — display name, page link (username),
+            bio and About text, photo and cover image, and optional golf details
+            (handicap, location, home club, handedness), social links, pinned
+            media, goals and posted updates. This information is public by
+            design.
+          </p>
+          <p className={paragraph}>
+            <strong className="text-forest">Sending or receiving Tees:</strong>{" "}
+            when you send a Tee we handle the amount, an optional message, the
+            name shown (or &ldquo;Anonymous&rdquo; if you choose), and — if you
+            provide one — an email for your receipt. Card details are entered
+            directly with Stripe and never reach our servers. Creators who
+            receive Tees complete identity and payout setup with Stripe.
+          </p>
+
+          <h2 className={sectionHeading}>Cookies and analytics</h2>
+          <p className={paragraph}>
+            We use essential cookies to keep you signed in. We also use Google
+            Analytics (GA4) to understand, in aggregate, how the site is used;
+            this sets analytics cookies. The exact analytics configuration and
+            whether a consent banner is required for your region are being
+            finalised as part of the legal review, and this section will be
+            updated accordingly before launch.
+          </p>
+
+          <h2 className={sectionHeading}>Why we collect it, and our legal basis</h2>
           <ul className={list}>
-            <li>Your name</li>
-            <li>Your email address</li>
             <li>
-              Whether you&apos;re interested as a creator or a supporter
+              To provide the service — accounts, creator pages, goals, updates
+              and processing Tees (<em>performance of a contract</em>).
             </li>
-            <li>Your country</li>
-            <li>Optionally, a creator profile or social link</li>
             <li>
-              Optionally, your answer to &ldquo;What would you use BuyMeATee
-              for?&rdquo;
+              To send early-access and launch news, where you&apos;ve asked us
+              to (<em>consent</em>, withdrawable at any time).
+            </li>
+            <li>
+              To send transactional email — sign-in links, gift receipts and
+              creator notifications (<em>contract / legitimate interests</em>).
+            </li>
+            <li>
+              To keep the platform secure, prevent fraud and abuse, and
+              understand usage (<em>legitimate interests</em>).
+            </li>
+            <li>
+              To meet legal, tax and anti-money-laundering obligations around
+              payments (<em>legal obligation</em>, largely via Stripe).
             </li>
           </ul>
           <p className={paragraph}>
-            We deliberately keep this minimal. We do not collect anything else
-            through the form, and we never ask for payment details.
+            We do not sell your personal data.
           </p>
 
-          <h2 className={sectionHeading}>Cookies and tracking</h2>
+          <h2 className={sectionHeading}>Payments (Stripe)</h2>
           <p className={paragraph}>
-            This website does not set marketing or analytics cookies and does
-            not run third-party tracking scripts. That is why there is no
-            cookie banner. If we later add privacy-friendly analytics, this
-            policy will be updated first.
+            Payments run on Stripe using Stripe Connect. When you pay, your card
+            details go directly to Stripe — BuyMeATee never sees or stores them.
+            Creators receiving Tees onboard with Stripe, which collects the
+            identity and bank details it needs to verify them and pay them out;
+            Stripe processes that data as an independent controller under its
+            own{" "}
+            <a
+              href="https://stripe.com/privacy"
+              target="_blank"
+              rel="noopener noreferrer nofollow"
+              className="font-medium text-gold-deep underline hover:text-forest"
+            >
+              privacy policy
+            </a>
+            . We store a record of each Tee (amounts, status, references and any
+            message) to run the service, show progress and handle refunds and
+            disputes.
           </p>
 
-          <h2 className={sectionHeading}>Why we collect it</h2>
-          <p className={paragraph}>We use early-access details to:</p>
+          <h2 className={sectionHeading}>Who processes your data</h2>
+          <p className={paragraph}>
+            We share personal data only with service providers who help us run
+            BuyMeATee:
+          </p>
           <ul className={list}>
-            <li>Contact you about BuyMeATee early access and launch news</li>
             <li>
-              Understand which kinds of creators and supporters are interested,
-              so we build the right product
+              <strong className="text-forest">Supabase</strong> — database,
+              file storage and authentication (hosted in the EU).
+            </li>
+            <li>
+              <strong className="text-forest">Stripe</strong> — payments,
+              payouts and identity verification.
+            </li>
+            <li>
+              <strong className="text-forest">Resend</strong> — sending
+              transactional email.
+            </li>
+            <li>
+              <strong className="text-forest">Vercel</strong> — website hosting
+              and standard server logs.
+            </li>
+            <li>
+              <strong className="text-forest">Google Analytics</strong> —
+              aggregate usage analytics.
             </li>
           </ul>
           <p className={paragraph}>
-            The legal basis is your consent, given when you tick the consent
-            box on the form. We will not sell your details or use them for
-            unrelated marketing.
-          </p>
-
-          <h2 className={sectionHeading}>Where your data goes</h2>
-          <p className={paragraph}>
-            Form submissions are sent to the sign-up service we have configured
-            at the time of your submission, and the website is hosted on
-            Vercel, whose infrastructure processes requests to serve the site
-            (including standard server logs). If no sign-up service is
-            connected, the form tells you so honestly and your details are not
-            stored at all. The specific provider will be named in this policy
-            once the choice is final.
+            Some of these providers are based in, or process data in, the United
+            States. Where personal data leaves the UK/EEA, it is protected by
+            appropriate safeguards such as Standard Contractual Clauses. The
+            full processor list and transfer mechanisms will be confirmed in the
+            legal review.
           </p>
 
           <h2 className={sectionHeading}>How long we keep it</h2>
           <p className={paragraph}>
-            We keep early-access registrations until BuyMeATee launches and the
-            early-access programme ends, or until you ask us to remove yours —
-            whichever comes first.
+            We keep account, profile and payment records for as long as you have
+            an account and as long as we must for legal, tax and accounting
+            reasons after that. Early-access sign-ups are kept until launch or
+            until you ask us to remove yours. Public content you post remains
+            visible until you remove it or close your account.
           </p>
 
           <h2 className={sectionHeading}>Your rights</h2>
           <p className={paragraph}>
-            Under UK and EU data-protection law you can ask us to access,
-            correct or delete the personal data we hold about you, and you can
-            withdraw your consent at any time — every email we send will
-            include a way to do so.
+            Under UK and EU data-protection law you can ask to access, correct,
+            delete or export your personal data, object to or restrict certain
+            processing, and withdraw consent at any time. You can also complain
+            to your data-protection regulator (in the UK, the ICO). Some payment
+            and tax records must be retained even if you ask for deletion.
           </p>
 
           <h2 className={sectionHeading}>Children</h2>
           <p className={paragraph}>
-            This website and the early-access programme are intended for
-            adults. Junior golfers will take part in BuyMeATee only through an
-            appropriate parent or guardian.
+            BuyMeATee is for adults (18+). Junior golfers take part only through
+            an appropriate parent or guardian, who is responsible for their
+            participation.
           </p>
 
           <h2 className={sectionHeading}>Changes to this policy</h2>
           <p className={paragraph}>
-            As BuyMeATee develops — particularly when payments and accounts are
-            introduced — this policy will change substantially and will be
-            reviewed legally before launch. The date at the top reflects the
-            latest revision.
+            We&apos;ll update this policy as the product evolves; the date above
+            reflects the latest revision. Material changes will be highlighted
+            before they take effect.
           </p>
 
           <p className={paragraph}>
-            Questions about privacy? See also our{" "}
+            See also our{" "}
             <Link
               href="/terms"
               className="font-medium text-gold-deep underline hover:text-forest"
