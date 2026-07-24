@@ -4,8 +4,10 @@ import Link from "next/link";
 import { Menu, X } from "lucide-react";
 import { useCallback, useEffect, useId, useRef, useState } from "react";
 
+import { Avatar } from "@/components/profile/avatar";
 import { Wordmark } from "@/components/logo";
-import { headerActions, primaryNavigation } from "@/lib/site";
+import { useSession } from "@/components/auth/use-session";
+import { authActions, headerActions, primaryNavigation } from "@/lib/site";
 
 /**
  * Accessible mobile navigation: toggle button + full-screen panel.
@@ -13,6 +15,7 @@ import { headerActions, primaryNavigation } from "@/lib/site";
  */
 export function MobileNav() {
   const [open, setOpen] = useState(false);
+  const session = useSession();
   const panelId = useId();
   const toggleRef = useRef<HTMLButtonElement>(null);
   const firstLinkRef = useRef<HTMLAnchorElement>(null);
@@ -100,20 +103,68 @@ export function MobileNav() {
               </Link>
             ))}
             <div className="mt-6 flex flex-col gap-3">
-              <Link
-                href={headerActions.primary.href}
-                onClick={() => setOpen(false)}
-                className="inline-flex min-h-12 items-center justify-center rounded-full bg-forest px-6 text-base font-medium text-white hover:bg-forest-dark"
-              >
-                {headerActions.primary.label}
-              </Link>
-              <Link
-                href={headerActions.secondary.href}
-                onClick={() => setOpen(false)}
-                className="inline-flex min-h-12 items-center justify-center rounded-full border border-forest/30 px-6 text-base font-medium text-forest hover:border-forest"
-              >
-                {headerActions.secondary.label}
-              </Link>
+              {session.status === "authed" ? (
+                <>
+                  <div className="flex items-center gap-3 px-1 pb-2">
+                    <Avatar
+                      src={session.avatarUrl}
+                      name={session.displayName || session.username || "You"}
+                      size="sm"
+                    />
+                    <span className="truncate text-base font-medium text-forest">
+                      {session.displayName || session.username || "Your account"}
+                    </span>
+                  </div>
+                  <Link
+                    href={authActions.dashboard.href}
+                    onClick={() => setOpen(false)}
+                    className="inline-flex min-h-12 items-center justify-center rounded-full bg-forest px-6 text-base font-medium text-white hover:bg-forest-dark"
+                  >
+                    {authActions.dashboard.label}
+                  </Link>
+                  {session.username ? (
+                    <Link
+                      href={`/t/${session.username}`}
+                      onClick={() => setOpen(false)}
+                      className="inline-flex min-h-12 items-center justify-center rounded-full border border-forest/30 px-6 text-base font-medium text-forest hover:border-forest"
+                    >
+                      {authActions.myPage.label}
+                    </Link>
+                  ) : null}
+                  <Link
+                    href="/settings/profile"
+                    onClick={() => setOpen(false)}
+                    className="inline-flex min-h-12 items-center justify-center rounded-full border border-forest/30 px-6 text-base font-medium text-forest hover:border-forest"
+                  >
+                    Settings
+                  </Link>
+                  <form action={authActions.signOut.href} method="post">
+                    <button
+                      type="submit"
+                      className="inline-flex min-h-12 w-full items-center justify-center rounded-full px-6 text-base font-medium text-ink/70 hover:text-forest"
+                    >
+                      {authActions.signOut.label}
+                    </button>
+                  </form>
+                </>
+              ) : (
+                <>
+                  <Link
+                    href={headerActions.primary.href}
+                    onClick={() => setOpen(false)}
+                    className="inline-flex min-h-12 items-center justify-center rounded-full bg-forest px-6 text-base font-medium text-white hover:bg-forest-dark"
+                  >
+                    {headerActions.primary.label}
+                  </Link>
+                  <Link
+                    href={headerActions.secondary.href}
+                    onClick={() => setOpen(false)}
+                    className="inline-flex min-h-12 items-center justify-center rounded-full border border-forest/30 px-6 text-base font-medium text-forest hover:border-forest"
+                  >
+                    {headerActions.secondary.label}
+                  </Link>
+                </>
+              )}
             </div>
           </nav>
         </div>

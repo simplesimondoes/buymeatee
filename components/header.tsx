@@ -1,9 +1,9 @@
 import Link from "next/link";
 
-import { ButtonLink } from "@/components/button-link";
+import { HeaderAuth } from "@/components/header-auth";
 import { Logo } from "@/components/logo";
 import { MobileNav } from "@/components/mobile-nav";
-import { headerActions, primaryNavigation } from "@/lib/site";
+import { primaryNavigation } from "@/lib/site";
 
 export function Header() {
   return (
@@ -21,14 +21,7 @@ export function Header() {
             </Link>
           ))}
         </nav>
-        <div className="hidden items-center gap-3 lg:flex">
-          <ButtonLink href={headerActions.secondary.href} variant="secondary">
-            {headerActions.secondary.label}
-          </ButtonLink>
-          <ButtonLink href={headerActions.primary.href}>
-            {headerActions.primary.label}
-          </ButtonLink>
-        </div>
+        <HeaderAuth />
         <MobileNav />
       </div>
     </header>

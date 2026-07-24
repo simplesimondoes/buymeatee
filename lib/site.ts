@@ -38,6 +38,17 @@ export const headerActions = {
   secondary: { label: "Log in", href: "/sign-in" },
 } as const;
 
+/**
+ * Header actions shown once a visitor is signed in. `myPage` is completed with
+ * the creator's username at render time; `signOut` posts to the server route
+ * that clears the session cookie.
+ */
+export const authActions = {
+  dashboard: { label: "Dashboard", href: "/dashboard" },
+  myPage: { label: "My page" },
+  signOut: { label: "Log out", href: "/auth/sign-out" },
+} as const;
+
 export const footerNavigation: { heading: string; items: NavItem[] }[] = [
   {
     heading: "Product",
