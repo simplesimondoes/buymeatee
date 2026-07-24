@@ -80,11 +80,22 @@ export async function getOrCreateConnectedAccount(
       },
       country,
       email,
-      capabilities: { transfers: { requested: true } },
+      // Destination-charge model: the card is charged on the platform and the
+      // creator's share is transferred to this account. Live-mode Connect will
+      // not onboard `transfers`-only accounts without Stripe approval, so we
+      // request `card_payments` alongside it (the standard destination-charge
+      // capability pair). The platform stays merchant of record and
+      // dispute-liable via controller.losses.payments = "application".
+      capabilities: {
+        card_payments: { requested: true },
+        transfers: { requested: true },
+      },
       metadata: { buymeatee_user_id: userId },
     },
     // One account per user: retries of the same creation are deduplicated.
-    { idempotencyKey: `bmat-account-create-${userId}` },
+    // The -v2 suffix is tied to the capability set above — bump it whenever the
+    // create parameters change so a cached idempotent result can't collide.
+    { idempotencyKey: `bmat-account-create-v2-${userId}` },
   );
 
   const supabase = getSupabaseAdminClient();
