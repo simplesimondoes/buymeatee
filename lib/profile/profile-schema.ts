@@ -30,6 +30,12 @@ const SOCIAL_HOSTS: Record<string, readonly string[] | null> = {
   socialYoutube: ["youtube.com", "youtu.be"],
   socialInstagram: ["instagram.com"],
   socialTiktok: ["tiktok.com"],
+  socialX: ["x.com", "twitter.com"],
+  socialBluesky: ["bsky.app"],
+  socialSubstack: ["substack.com"],
+  socialFacebook: ["facebook.com", "fb.com"],
+  socialTwitch: ["twitch.tv"],
+  socialLinkedin: ["linkedin.com"],
   socialWebsite: null,
 };
 
@@ -126,6 +132,12 @@ export interface ProfileInput {
   socialYoutube?: string;
   socialInstagram?: string;
   socialTiktok?: string;
+  socialX?: string;
+  socialBluesky?: string;
+  socialSubstack?: string;
+  socialFacebook?: string;
+  socialTwitch?: string;
+  socialLinkedin?: string;
   socialWebsite?: string;
   pinnedMediaUrl?: string;
 }
@@ -143,6 +155,12 @@ export type ProfileFieldName =
   | "socialYoutube"
   | "socialInstagram"
   | "socialTiktok"
+  | "socialX"
+  | "socialBluesky"
+  | "socialSubstack"
+  | "socialFacebook"
+  | "socialTwitch"
+  | "socialLinkedin"
   | "socialWebsite"
   | "pinnedMediaUrl";
 
@@ -245,12 +263,24 @@ export function validateProfileInput(payload: unknown): ProfileValidationResult 
     "socialYoutube",
     "socialInstagram",
     "socialTiktok",
+    "socialX",
+    "socialBluesky",
+    "socialSubstack",
+    "socialFacebook",
+    "socialTwitch",
+    "socialLinkedin",
     "socialWebsite",
   ] as const;
   const socialErrorLabels: Record<(typeof socialFields)[number], string> = {
     socialYoutube: "YouTube",
     socialInstagram: "Instagram",
     socialTiktok: "TikTok",
+    socialX: "X",
+    socialBluesky: "Bluesky",
+    socialSubstack: "Substack",
+    socialFacebook: "Facebook",
+    socialTwitch: "Twitch",
+    socialLinkedin: "LinkedIn",
     socialWebsite: "website",
   };
   for (const field of socialFields) {
@@ -295,6 +325,12 @@ export function validateProfileInput(payload: unknown): ProfileValidationResult 
       socialYoutube: socials.socialYoutube,
       socialInstagram: socials.socialInstagram,
       socialTiktok: socials.socialTiktok,
+      socialX: socials.socialX,
+      socialBluesky: socials.socialBluesky,
+      socialSubstack: socials.socialSubstack,
+      socialFacebook: socials.socialFacebook,
+      socialTwitch: socials.socialTwitch,
+      socialLinkedin: socials.socialLinkedin,
       socialWebsite: socials.socialWebsite,
       pinnedMediaUrl,
     },

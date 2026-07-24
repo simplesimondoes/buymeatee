@@ -25,6 +25,12 @@ export interface OwnProfile {
   social_youtube: string | null;
   social_instagram: string | null;
   social_tiktok: string | null;
+  social_x: string | null;
+  social_bluesky: string | null;
+  social_substack: string | null;
+  social_facebook: string | null;
+  social_twitch: string | null;
+  social_linkedin: string | null;
   social_website: string | null;
   pinned_media_url: string | null;
   role: "creator" | "supporter";
@@ -35,7 +41,7 @@ export type UpdateProfileResult =
   | { ok: false; reason: "username_taken" | "unavailable" };
 
 const OWN_PROFILE_COLUMNS =
-  "id, username, display_name, avatar_url, cover_image_url, bio, about, country, handicap, location, home_club, handedness, social_youtube, social_instagram, social_tiktok, social_website, pinned_media_url, role";
+  "id, username, display_name, avatar_url, cover_image_url, bio, about, country, handicap, location, home_club, handedness, social_youtube, social_instagram, social_tiktok, social_x, social_bluesky, social_substack, social_facebook, social_twitch, social_linkedin, social_website, pinned_media_url, role";
 
 export async function getOwnProfile(userId: string): Promise<OwnProfile | null> {
   const supabase = await getSupabaseServerClient();
@@ -68,6 +74,12 @@ export async function updateOwnProfile(
     social_youtube: input.socialYoutube ?? null,
     social_instagram: input.socialInstagram ?? null,
     social_tiktok: input.socialTiktok ?? null,
+    social_x: input.socialX ?? null,
+    social_bluesky: input.socialBluesky ?? null,
+    social_substack: input.socialSubstack ?? null,
+    social_facebook: input.socialFacebook ?? null,
+    social_twitch: input.socialTwitch ?? null,
+    social_linkedin: input.socialLinkedin ?? null,
     social_website: input.socialWebsite ?? null,
     pinned_media_url: input.pinnedMediaUrl ?? null,
   };

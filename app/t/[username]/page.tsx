@@ -45,6 +45,12 @@ type ProfileRow = {
   social_youtube: string | null;
   social_instagram: string | null;
   social_tiktok: string | null;
+  social_x: string | null;
+  social_bluesky: string | null;
+  social_substack: string | null;
+  social_facebook: string | null;
+  social_twitch: string | null;
+  social_linkedin: string | null;
   social_website: string | null;
   pinned_media_url: string | null;
   created_at: string | null;
@@ -52,7 +58,7 @@ type ProfileRow = {
 };
 
 const PROFILE_COLUMNS =
-  "id, username, display_name, avatar_url, cover_image_url, bio, about, handicap, location, home_club, handedness, social_youtube, social_instagram, social_tiktok, social_website, pinned_media_url, created_at, deactivated_at";
+  "id, username, display_name, avatar_url, cover_image_url, bio, about, handicap, location, home_club, handedness, social_youtube, social_instagram, social_tiktok, social_x, social_bluesky, social_substack, social_facebook, social_twitch, social_linkedin, social_website, pinned_media_url, created_at, deactivated_at";
 
 const loadProfile = cache(async (username: string): Promise<ProfileRow | null> => {
   if (!/^[a-z0-9]([a-z0-9-]{1,38}[a-z0-9])?$/.test(username)) {
@@ -143,11 +149,66 @@ function InstagramIcon({ className }: { className?: string }) {
   );
 }
 
+function XIcon({ className }: { className?: string }) {
+  return (
+    <svg viewBox="0 0 24 24" fill="currentColor" aria-hidden="true" className={className}>
+      <path d="M18.244 2.25h3.308l-7.227 8.26 8.502 11.24h-6.66l-5.214-6.817-5.97 6.817H1.68l7.73-8.835L1.254 2.25h6.83l4.713 6.231zm-1.161 17.52h1.833L7.084 4.126H5.117z" />
+    </svg>
+  );
+}
+
+function BlueskyIcon({ className }: { className?: string }) {
+  return (
+    <svg viewBox="0 0 24 24" fill="currentColor" aria-hidden="true" className={className}>
+      <path d="M12 10.8C10.9 8.6 7.9 4.5 5.1 2.6 2.4.8 1.4 1.1.7 1.4 0 1.7 0 2.9 0 3.6c0 .7.4 5.5.6 6.3.8 2.6 3.5 3.5 6 3.2-3.7.5-7 1.9-2.7 6.7 4.8 4.9 6.6-1 7.5-3.9.9 2.9 2 8.6 7.4 3.9 4-3.9.8-6.2-2.9-6.7 2.5.3 5.2-.6 6-3.2.2-.8.6-5.6.6-6.3 0-.7 0-1.9-.7-2.2-.7-.3-1.7-.6-4.4 1.2C16.1 4.5 13.1 8.6 12 10.8z" />
+    </svg>
+  );
+}
+
+function SubstackIcon({ className }: { className?: string }) {
+  return (
+    <svg viewBox="0 0 24 24" fill="currentColor" aria-hidden="true" className={className}>
+      <path d="M4 3.6h16v2.6H4zM4 8.7h16v2.6H4zM4 13.8v6.6l8-3.5 8 3.5v-6.6z" />
+    </svg>
+  );
+}
+
+function FacebookIcon({ className }: { className?: string }) {
+  return (
+    <svg viewBox="0 0 24 24" fill="currentColor" aria-hidden="true" className={className}>
+      <path d="M22 12a10 10 0 1 0-11.6 9.9v-7H7.9V12h2.5V9.8c0-2.5 1.5-3.9 3.7-3.9 1.1 0 2.2.2 2.2.2v2.5h-1.3c-1.2 0-1.6.8-1.6 1.6V12h2.8l-.4 2.9h-2.4v7A10 10 0 0 0 22 12z" />
+    </svg>
+  );
+}
+
+function TwitchIcon({ className }: { className?: string }) {
+  return (
+    <svg viewBox="0 0 24 24" fill="currentColor" aria-hidden="true" className={className}>
+      <path d="M4.3 3 3 6.4v13.1h4.5V22h2.5l2.5-2.5h3.6L21 14.6V3zm14.4 10.7-2.5 2.5h-3.6L10.5 18v-1.8H6.9V4.4h11.8z" />
+      <path d="M15.6 7.4h-1.5v4.2h1.5zm-4 0h-1.5v4.2h1.5z" />
+    </svg>
+  );
+}
+
+function LinkedinIcon({ className }: { className?: string }) {
+  return (
+    <svg viewBox="0 0 24 24" fill="currentColor" aria-hidden="true" className={className}>
+      <path d="M20.4 3H3.6C3 3 2.5 3.5 2.5 4.1v15.8c0 .6.5 1.1 1.1 1.1h16.8c.6 0 1.1-.5 1.1-1.1V4.1c0-.6-.5-1.1-1.1-1.1zM8.3 18.3H5.5V9.5h2.8zM6.9 8.3a1.6 1.6 0 1 1 0-3.2 1.6 1.6 0 0 1 0 3.2zm11.4 10h-2.8v-4.3c0-1 0-2.3-1.4-2.3s-1.6 1.1-1.6 2.3v4.3H9.7V9.5h2.7v1.2h.04c.4-.7 1.3-1.5 2.7-1.5 2.9 0 3.4 1.9 3.4 4.3z" />
+    </svg>
+  );
+}
+
 function SocialLinks({ profile }: { profile: ProfileRow }) {
   const links = [
     { url: profile.social_youtube, label: "YouTube", Icon: YoutubeIcon },
     { url: profile.social_instagram, label: "Instagram", Icon: InstagramIcon },
     { url: profile.social_tiktok, label: "TikTok", Icon: TikTokIcon },
+    { url: profile.social_x, label: "X", Icon: XIcon },
+    { url: profile.social_bluesky, label: "Bluesky", Icon: BlueskyIcon },
+    { url: profile.social_substack, label: "Substack", Icon: SubstackIcon },
+    { url: profile.social_facebook, label: "Facebook", Icon: FacebookIcon },
+    { url: profile.social_twitch, label: "Twitch", Icon: TwitchIcon },
+    { url: profile.social_linkedin, label: "LinkedIn", Icon: LinkedinIcon },
     { url: profile.social_website, label: "Website", Icon: Globe },
   ].filter((link): link is { url: string; label: string; Icon: typeof Globe } =>
     Boolean(link.url),

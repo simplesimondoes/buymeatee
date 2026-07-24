@@ -25,6 +25,12 @@ interface ProfileFormProps {
   initialSocialYoutube: string;
   initialSocialInstagram: string;
   initialSocialTiktok: string;
+  initialSocialX: string;
+  initialSocialBluesky: string;
+  initialSocialSubstack: string;
+  initialSocialFacebook: string;
+  initialSocialTwitch: string;
+  initialSocialLinkedin: string;
   initialSocialWebsite: string;
   initialPinnedMediaUrl: string;
 }
@@ -63,6 +69,12 @@ export function ProfileForm({
   initialSocialYoutube,
   initialSocialInstagram,
   initialSocialTiktok,
+  initialSocialX,
+  initialSocialBluesky,
+  initialSocialSubstack,
+  initialSocialFacebook,
+  initialSocialTwitch,
+  initialSocialLinkedin,
   initialSocialWebsite,
   initialPinnedMediaUrl,
 }: ProfileFormProps) {
@@ -79,6 +91,12 @@ export function ProfileForm({
   const [socialYoutube, setSocialYoutube] = useState(initialSocialYoutube);
   const [socialInstagram, setSocialInstagram] = useState(initialSocialInstagram);
   const [socialTiktok, setSocialTiktok] = useState(initialSocialTiktok);
+  const [socialX, setSocialX] = useState(initialSocialX);
+  const [socialBluesky, setSocialBluesky] = useState(initialSocialBluesky);
+  const [socialSubstack, setSocialSubstack] = useState(initialSocialSubstack);
+  const [socialFacebook, setSocialFacebook] = useState(initialSocialFacebook);
+  const [socialTwitch, setSocialTwitch] = useState(initialSocialTwitch);
+  const [socialLinkedin, setSocialLinkedin] = useState(initialSocialLinkedin);
   const [socialWebsite, setSocialWebsite] = useState(initialSocialWebsite);
   const [pinnedMediaUrl, setPinnedMediaUrl] = useState(initialPinnedMediaUrl);
   const [savedUsername, setSavedUsername] = useState(initialUsername);
@@ -109,6 +127,12 @@ export function ProfileForm({
       socialYoutube,
       socialInstagram,
       socialTiktok,
+      socialX,
+      socialBluesky,
+      socialSubstack,
+      socialFacebook,
+      socialTwitch,
+      socialLinkedin,
       socialWebsite,
       pinnedMediaUrl,
     };
@@ -382,6 +406,12 @@ export function ProfileForm({
             ["socialYoutube", "YouTube", "https://youtube.com/@you", setSocialYoutube, socialYoutube],
             ["socialInstagram", "Instagram", "https://instagram.com/you", setSocialInstagram, socialInstagram],
             ["socialTiktok", "TikTok", "https://tiktok.com/@you", setSocialTiktok, socialTiktok],
+            ["socialX", "X", "https://x.com/you", setSocialX, socialX],
+            ["socialBluesky", "Bluesky", "https://bsky.app/profile/you", setSocialBluesky, socialBluesky],
+            ["socialSubstack", "Substack", "https://you.substack.com", setSocialSubstack, socialSubstack],
+            ["socialFacebook", "Facebook", "https://facebook.com/you", setSocialFacebook, socialFacebook],
+            ["socialTwitch", "Twitch", "https://twitch.tv/you", setSocialTwitch, socialTwitch],
+            ["socialLinkedin", "LinkedIn", "https://linkedin.com/in/you", setSocialLinkedin, socialLinkedin],
             ["socialWebsite", "Website", "https://your-site.com", setSocialWebsite, socialWebsite],
           ] as const
         ).map(([field, label, placeholder, setter, value]) => (

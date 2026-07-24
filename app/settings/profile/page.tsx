@@ -74,6 +74,12 @@ export default async function ProfileSettingsPage() {
             initialSocialYoutube={profile?.social_youtube ?? ""}
             initialSocialInstagram={profile?.social_instagram ?? ""}
             initialSocialTiktok={profile?.social_tiktok ?? ""}
+            initialSocialX={profile?.social_x ?? ""}
+            initialSocialBluesky={profile?.social_bluesky ?? ""}
+            initialSocialSubstack={profile?.social_substack ?? ""}
+            initialSocialFacebook={profile?.social_facebook ?? ""}
+            initialSocialTwitch={profile?.social_twitch ?? ""}
+            initialSocialLinkedin={profile?.social_linkedin ?? ""}
             initialSocialWebsite={profile?.social_website ?? ""}
             initialPinnedMediaUrl={profile?.pinned_media_url ?? ""}
           />

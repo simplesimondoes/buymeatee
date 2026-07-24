@@ -13,6 +13,12 @@ const enrichment = {
   initialSocialYoutube: "",
   initialSocialInstagram: "",
   initialSocialTiktok: "",
+  initialSocialX: "",
+  initialSocialBluesky: "",
+  initialSocialSubstack: "",
+  initialSocialFacebook: "",
+  initialSocialTwitch: "",
+  initialSocialLinkedin: "",
   initialSocialWebsite: "",
   initialPinnedMediaUrl: "",
 };

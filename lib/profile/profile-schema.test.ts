@@ -99,4 +99,52 @@ describe("validateProfileInput", () => {
       expect(result.errors.displayName).toBeDefined();
     }
   });
+
+  it("accepts host-matched social links across every platform", () => {
+    const result = validateProfileInput({
+      ...valid,
+      socialYoutube: "https://youtube.com/@callum",
+      socialInstagram: "https://instagram.com/callum",
+      socialTiktok: "https://tiktok.com/@callum",
+      socialX: "https://x.com/callum",
+      socialBluesky: "https://bsky.app/profile/callum.bsky.social",
+      socialSubstack: "https://callum.substack.com",
+      socialFacebook: "https://facebook.com/callum",
+      socialTwitch: "https://twitch.tv/callum",
+      socialLinkedin: "https://www.linkedin.com/in/callum",
+      socialWebsite: "https://callum.golf",
+    });
+    expect(result.ok).toBe(true);
+    if (result.ok) {
+      expect(result.data.socialX).toBe("https://x.com/callum");
+      expect(result.data.socialBluesky).toBe(
+        "https://bsky.app/profile/callum.bsky.social",
+      );
+      expect(result.data.socialSubstack).toBe("https://callum.substack.com/");
+      expect(result.data.socialTwitch).toBe("https://twitch.tv/callum");
+    }
+  });
+
+  it("accepts twitter.com in the X field", () => {
+    const result = validateProfileInput({
+      ...valid,
+      socialX: "https://twitter.com/callum",
+    });
+    expect(result.ok).toBe(true);
+  });
+
+  it("rejects a social link on the wrong host or scheme", () => {
+    const cases = {
+      socialX: "https://example.com/callum", // wrong host
+      socialBluesky: "http://bsky.app/profile/callum", // not https
+      socialTwitch: "https://youtube.com/callum", // wrong host
+    } as const;
+    for (const [field, url] of Object.entries(cases)) {
+      const result = validateProfileInput({ ...valid, [field]: url });
+      expect(result.ok).toBe(false);
+      if (!result.ok) {
+        expect(result.errors[field as keyof typeof cases]).toBeDefined();
+      }
+    }
+  });
 });
