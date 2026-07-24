@@ -54,8 +54,8 @@ export default async function ProfileSettingsPage() {
             endpoint="/api/profile/cover"
             initialUrl={profile?.cover_image_url ?? null}
             label="Cover image"
-            helpText="JPEG, PNG or WebP up to 5 MB. A wide photo works best — it's the banner across the top of your page."
-            aspectClassName="aspect-[3/1]"
+            helpText="JPEG, PNG or WebP up to 5 MB. A landscape photo works best — around 1600 × 1067 px (3:2). Keep the main subject roughly centred: the edges are trimmed to fit phones and wider screens."
+            aspectClassName="aspect-[3/2]"
           />
           <AvatarUploader
             initialAvatarUrl={profile?.avatar_url ?? null}

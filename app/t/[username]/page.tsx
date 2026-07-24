@@ -346,10 +346,12 @@ export default async function RecipientProfilePage({
 
   return (
     <main className="mx-auto w-full max-w-2xl px-4 pb-16 sm:px-6 sm:pb-24">
-      {/* Cover hero */}
+      {/* Cover hero — a tall, full-bleed image on phones (where most
+          supporters land) that the content card rises over; a wide banner on
+          larger screens. */}
       <div className="-mx-4 sm:mx-0 sm:mt-8">
         {profile.cover_image_url ? (
-          <div className="aspect-[3/1] w-full overflow-hidden bg-mist sm:rounded-3xl">
+          <div className="aspect-[3/2] w-full overflow-hidden bg-mist sm:aspect-[3/1] sm:rounded-3xl">
             {/* eslint-disable-next-line @next/next/no-img-element */}
             <img
               src={profile.cover_image_url}
@@ -358,12 +360,13 @@ export default async function RecipientProfilePage({
             />
           </div>
         ) : (
-          <div className="aspect-[3/1] w-full bg-gradient-to-br from-forest to-forest-dark sm:rounded-3xl" />
+          <div className="aspect-[3/2] w-full bg-gradient-to-br from-forest to-forest-dark sm:aspect-[3/1] sm:rounded-3xl" />
         )}
       </div>
 
-      {/* Identity */}
-      <header className="px-1 sm:px-0">
+      {/* Identity — on mobile this is a white card with a rounded top that
+          overlaps the cover for depth; on larger screens it's a plain column. */}
+      <header className="relative z-10 -mx-4 -mt-8 rounded-t-3xl bg-white px-4 shadow-[0_-16px_32px_-24px_rgba(7,62,46,0.35)] sm:mx-0 sm:mt-0 sm:rounded-none sm:bg-transparent sm:px-0 sm:shadow-none">
         <div className="-mt-10 sm:-mt-12">
           <div className="inline-flex rounded-full ring-4 ring-white">
             <Avatar src={profile.avatar_url} name={name} size="lg" />
