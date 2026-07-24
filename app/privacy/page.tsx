@@ -52,14 +52,21 @@ export default function PrivacyPage() {
 
           <h2 className={sectionHeading}>Who we are</h2>
           <p className={paragraph}>
-            BuyMeATee (&ldquo;we&rdquo;, &ldquo;us&rdquo;) operates the platform
-            at buymeatee.com — a golf-focused way for supporters to back
-            creators with a &ldquo;Tee&rdquo;. We are the data controller for
-            the personal data described here. For payments we work with Stripe,
-            who acts as an independent controller for the payment and
-            identity-verification data it collects (see &ldquo;Payments&rdquo;
-            below). A contact address for privacy requests will be confirmed
-            before launch.
+            BuyMeATee (&ldquo;we&rdquo;, &ldquo;us&rdquo;) is the platform at
+            buymeatee.com — a golf-focused way for supporters to back creators
+            with a &ldquo;Tee&rdquo;. It is operated by Simon Berriman, a sole
+            trader based at Karl-Rothe-Str. 4, 04105 Leipzig, Germany, who is
+            the data controller for the personal data described here. For
+            payments we work with Stripe, who acts as an independent controller
+            for the payment and identity-verification data it collects (see
+            &ldquo;Payments&rdquo; below). For any privacy request, contact{" "}
+            <a
+              href="mailto:hello@buymeatee.com"
+              className="font-medium text-gold-deep underline hover:text-forest"
+            >
+              hello@buymeatee.com
+            </a>
+            .
           </p>
 
           <h2 className={sectionHeading}>What we collect</h2>

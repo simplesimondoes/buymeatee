@@ -59,6 +59,21 @@ export default function TermsPage() {
             your money. By using BuyMeATee you agree to these terms.
           </p>
 
+          <h2 className={sectionHeading}>Who operates BuyMeATee</h2>
+          <p className={paragraph}>
+            BuyMeATee is operated by Simon Berriman, a sole trader (freelance),
+            Karl-Rothe-Str. 4, 04105 Leipzig, Germany. Contact:{" "}
+            <a
+              href="mailto:hello@buymeatee.com"
+              className="font-medium text-gold-deep underline hover:text-forest"
+            >
+              hello@buymeatee.com
+            </a>
+            , +49 15207075439. (German law may require these details to be
+            presented as a separate Impressum — to be confirmed in the legal
+            review.)
+          </p>
+
           <h2 className={sectionHeading}>Your account</h2>
           <ul className={list}>
             <li>You must be at least 18 to create an account.</li>
