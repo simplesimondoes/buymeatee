@@ -1,0 +1,71 @@
+{
+  "brand": {
+    "homeAria": "BuyMeATee — home",
+    "tagline": "Support the journey."
+  },
+  "nav": {
+    "discover": "Discover",
+    "howItWorks": "How it works",
+    "forCreators": "For creators",
+    "forSupporters": "For supporters",
+    "blog": "Blog",
+    "faq": "FAQ",
+    "primaryLabel": "Primary",
+    "siteNavigation": "Site navigation",
+    "home": "Home",
+    "breadcrumb": "Breadcrumb",
+    "openMenu": "Open menu",
+    "closeMenu": "Close menu"
+  },
+  "actions": {
+    "register": "Register",
+    "logIn": "Log in",
+    "logOut": "Log out",
+    "signIn": "Sign in",
+    "dashboard": "Dashboard",
+    "myPage": "My page",
+    "settings": "Settings"
+  },
+  "account": {
+    "menuLabel": "Account",
+    "fallbackName": "Your account",
+    "signedInAs": "Signed in as <name>{displayName}</name>"
+  },
+  "footer": {
+    "productHeading": "Product",
+    "companyHeading": "Company",
+    "legalHeading": "Legal",
+    "about": "About",
+    "privacy": "Privacy",
+    "terms": "Terms",
+    "impressum": "Impressum",
+    "accessibility": "Accessibility",
+    "description": "BuyMeATee is where golf fans help creators play more, achieve more and chase their goals. Follow the journey. Support a goal. Buy them a tee.",
+    "copyright": "© {year} BuyMeATee. All rights reserved.",
+    "productLine": "A <brand>Caddie Live</brand> product · Built for golfers"
+  },
+  "cookies": {
+    "regionLabel": "Cookie consent",
+    "message": "We use essential cookies to keep you signed in. With your permission we also use Google Analytics to understand how the site is used. See our <link>Privacy Policy</link>.",
+    "decline": "Decline",
+    "accept": "Accept analytics",
+    "settings": "Cookie settings"
+  },
+  "upload": {
+    "addImage": "Add an image",
+    "changeImage": "Change image",
+    "remove": "Remove"
+  },
+  "errorBoundary": {
+    "heading": "Something went wrong.",
+    "body": "An unexpected error interrupted the round. Please try again.",
+    "retry": "Try again"
+  },
+  "a11y": {
+    "skipToContent": "Skip to content"
+  },
+  "language": {
+    "label": "Language",
+    "switcherLabel": "Change language"
+  }
+}

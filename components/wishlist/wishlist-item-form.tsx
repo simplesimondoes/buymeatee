@@ -1,8 +1,11 @@
 "use client";
 
 import { LoaderCircle } from "lucide-react";
+import { useTranslations } from "next-intl";
 import { useId, useState } from "react";
 
+import { useErrorMessage } from "@/components/intl/use-error-message";
+import type { ErrorDetail } from "@/lib/i18n/errors";
 import { parseMajorAmountToMinor } from "@/lib/payments/gift-schema";
 import {
   SUPPORTED_CURRENCIES,
@@ -15,7 +18,10 @@ import {
 } from "@/lib/wishlist/item-schema";
 import { WISHLIST_DESCRIPTION_MAX_LENGTH } from "@/lib/wishlist/types";
 
-export type WishlistFormErrors = Partial<Record<WishlistFieldName, string>>;
+/** Field errors: coded details from the schema/API, or legacy raw strings. */
+export type WishlistFormErrors = Partial<
+  Record<WishlistFieldName, ErrorDetail | string>
+>;
 
 interface WishlistItemFormProps {
   initialTitle?: string;
@@ -32,7 +38,7 @@ interface WishlistItemFormProps {
   /** Resolves to server-side field errors, a form error, or null on success. */
   onSubmit: (
     input: WishlistItemInput,
-  ) => Promise<{ errors?: WishlistFormErrors; error?: string } | null>;
+  ) => Promise<{ errors?: WishlistFormErrors; error?: ErrorDetail | string } | null>;
 }
 
 const currencyLabels: Record<SupportedCurrency, string> = {
@@ -82,6 +88,8 @@ export function WishlistItemForm({
   onCancel,
   onSubmit,
 }: WishlistItemFormProps) {
+  const t = useTranslations("dashboard");
+  const errorMessage = useErrorMessage();
   const fieldId = useId();
   const [title, setTitle] = useState(initialTitle);
   const [description, setDescription] = useState(initialDescription);
@@ -95,6 +103,9 @@ export function WishlistItemForm({
   const [errors, setErrors] = useState<WishlistFormErrors>({});
   const [formError, setFormError] = useState<string | null>(null);
   const [saving, setSaving] = useState(false);
+
+  const fieldError = (field: WishlistFieldName): string | undefined =>
+    errors[field] === undefined ? undefined : errorMessage(errors[field]);
 
   async function handleSubmit(event: React.FormEvent<HTMLFormElement>) {
     event.preventDefault();
@@ -118,7 +129,7 @@ export function WishlistItemForm({
     if (failure?.errors) {
       setErrors(failure.errors);
     } else if (failure?.error) {
-      setFormError(failure.error);
+      setFormError(errorMessage(failure.error));
     }
   }
 
@@ -129,19 +140,19 @@ export function WishlistItemForm({
           htmlFor={`${fieldId}-title`}
           className="block text-sm font-medium text-ink/80"
         >
-          What would help your journey?
+          {t("wishlist.form.titleLabel")}
         </label>
         <input
           id={`${fieldId}-title`}
           type="text"
           value={title}
           onChange={(event) => setTitle(event.target.value)}
-          placeholder="A dozen tour balls"
+          placeholder={t("wishlist.form.titlePlaceholder")}
           className={inputClasses}
           aria-invalid={errors.title ? true : undefined}
           aria-describedby={errors.title ? `${fieldId}-title-error` : undefined}
         />
-        <FieldError id={`${fieldId}-title-error`} message={errors.title} />
+        <FieldError id={`${fieldId}-title-error`} message={fieldError("title")} />
       </div>
 
       <div>
@@ -150,8 +161,10 @@ export function WishlistItemForm({
             htmlFor={`${fieldId}-description`}
             className="block text-sm font-medium text-ink/80"
           >
-            A little more{" "}
-            <span className="font-normal text-ink/50">(optional)</span>
+            {t("wishlist.form.descriptionLabel")}{" "}
+            <span className="font-normal text-ink/50">
+              {t("wishlist.form.optional")}
+            </span>
           </label>
           <span
             className={`text-xs tabular-nums ${
@@ -168,7 +181,7 @@ export function WishlistItemForm({
           rows={3}
           value={description}
           onChange={(event) => setDescription(event.target.value)}
-          placeholder="What it is and why it would make a difference — the model, the event, the trip."
+          placeholder={t("wishlist.form.descriptionPlaceholder")}
           className={inputClasses}
           aria-invalid={errors.description ? true : undefined}
           aria-describedby={
@@ -177,7 +190,7 @@ export function WishlistItemForm({
         />
         <FieldError
           id={`${fieldId}-description-error`}
-          message={errors.description}
+          message={fieldError("description")}
         />
       </div>
 
@@ -187,7 +200,7 @@ export function WishlistItemForm({
             htmlFor={`${fieldId}-price`}
             className="block text-sm font-medium text-ink/80"
           >
-            Price
+            {t("wishlist.form.priceLabel")}
           </label>
           <input
             id={`${fieldId}-price`}
@@ -195,7 +208,7 @@ export function WishlistItemForm({
             inputMode="decimal"
             value={price}
             onChange={(event) => setPrice(event.target.value)}
-            placeholder="45"
+            placeholder={t("wishlist.form.pricePlaceholder")}
             className={inputClasses}
             disabled={priceLocked}
             aria-invalid={errors.priceAmount ? true : undefined}
@@ -209,16 +222,15 @@ export function WishlistItemForm({
           />
           <FieldError
             id={`${fieldId}-price-error`}
-            message={errors.priceAmount}
+            message={fieldError("priceAmount")}
           />
           {priceLocked ? (
             <p id={`${fieldId}-price-locked`} className="mt-1.5 text-xs text-ink/60">
-              This item has been funded, so its price can&apos;t change.
+              {t("wishlist.form.priceLockedHelp")}
             </p>
           ) : (
             <p className="mt-1.5 text-xs text-ink/60">
-              One supporter funds the whole item, so keep it to what a single
-              Tee can cover.
+              {t("wishlist.form.priceHelp")}
             </p>
           )}
         </div>
@@ -227,7 +239,7 @@ export function WishlistItemForm({
             htmlFor={`${fieldId}-currency`}
             className="block text-sm font-medium text-ink/80"
           >
-            Currency
+            {t("wishlist.form.currencyLabel")}
           </label>
           <select
             id={`${fieldId}-currency`}
@@ -249,11 +261,11 @@ export function WishlistItemForm({
           </select>
           {priceLocked ? (
             <p id={`${fieldId}-currency-locked`} className="mt-1.5 text-xs text-ink/60">
-              This item has been funded, so its currency can&apos;t change.
+              {t("wishlist.form.currencyLockedHelp")}
             </p>
           ) : payoutCurrency ? (
             <p id={`${fieldId}-currency-locked`} className="mt-1.5 text-xs text-ink/60">
-              Items use your payout currency so supporters can fund them.
+              {t("wishlist.form.currencyPayoutHelp")}
             </p>
           ) : null}
         </div>
@@ -275,7 +287,7 @@ export function WishlistItemForm({
           onClick={onCancel}
           className="inline-flex min-h-11 items-center justify-center rounded-full px-4 text-sm font-medium text-ink/60 transition-colors hover:text-ink"
         >
-          Cancel
+          {t("actions.cancel")}
         </button>
         {formError ? (
           <p role="alert" className="w-full text-sm text-red-800">

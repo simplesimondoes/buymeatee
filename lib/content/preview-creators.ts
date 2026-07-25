@@ -8,6 +8,16 @@ import { images, type SiteImage } from "@/lib/content/images";
  * CLAUDE.md hard rules. The Discover page shows this illustrative content only
  * while a section has no real creators yet; real data replaces it as creators
  * join. Amounts are whole pounds (converted to minor units at render time).
+ *
+ * Localisation: translatable strings (bios, goal titles/descriptions,
+ * locations, update notes) live in the `content` message namespace
+ * (`messages/<locale>/content.json`); the key-based `previewCreatorItems`
+ * export references them (keys are relative to the `content` namespace, e.g.
+ * `useTranslations("content")` then `t(item.bioKey)`). Persona NAMES are
+ * fictional proper nouns and deliberately stay as plain data here — names
+ * don't translate. Amounts, categories, images and dates stay in TS. The
+ * English-string exports remain as deprecated fallbacks until consumers
+ * migrate.
  */
 
 export type PreviewCreator = {
@@ -31,6 +41,246 @@ export type PreviewCreator = {
   joined: string;
 };
 
+/** Locale-aware shape: stable id + message-key references, no raw English. */
+export type PreviewCreatorItem = {
+  id: string;
+  /** Fictional persona name — proper noun, not translated. */
+  name: string;
+  /** Discover category slug (see lib/discover/categories.ts). */
+  category: string;
+  /** Key in the `content` namespace, e.g. "previewCreators.coachDan.location". */
+  locationKey: string;
+  /** Key in the `content` namespace. */
+  countryKey: string;
+  /** Key in the `content` namespace. */
+  bioKey: string;
+  image: SiteImage;
+  goal: {
+    /** Key in the `content` namespace. */
+    titleKey: string;
+    /** Key in the `content` namespace. */
+    descriptionKey: string;
+    /** Whole pounds — illustrative only. */
+    raised: number;
+    target: number;
+  };
+  /** Key in the `content` namespace; `undefined` when the creator has no update line. */
+  updateNoteKey: string | undefined;
+  /** ISO date used only to order Preview "new"/"updated" sections deterministically. */
+  joined: string;
+};
+
+export const previewCreatorItems = [
+  {
+    id: "caddieLive",
+    name: "Caddie Live",
+    category: "golf-apps",
+    locationKey: "previewCreators.caddieLive.location",
+    countryKey: "previewCreators.caddieLive.country",
+    bioKey: "previewCreators.caddieLive.bio",
+    image: images.creatorVloggingGolf,
+    goal: {
+      titleKey: "previewCreators.caddieLive.goalTitle",
+      descriptionKey: "previewCreators.caddieLive.goalDescription",
+      raised: 8400,
+      target: 10000,
+    },
+    updateNoteKey: "previewCreators.caddieLive.updateNote",
+    joined: "2026-07-20",
+  },
+  {
+    id: "sarahBell",
+    name: "Sarah Bell",
+    category: "content-creators",
+    locationKey: "previewCreators.sarahBell.location",
+    countryKey: "previewCreators.sarahBell.country",
+    bioKey: "previewCreators.sarahBell.bio",
+    image: images.womanFullSwing,
+    goal: {
+      titleKey: "previewCreators.sarahBell.goalTitle",
+      descriptionKey: "previewCreators.sarahBell.goalDescription",
+      raised: 3200,
+      target: 5000,
+    },
+    updateNoteKey: "previewCreators.sarahBell.updateNote",
+    joined: "2026-07-22",
+  },
+  {
+    id: "jackMorrison",
+    name: "Jack Morrison",
+    category: "professional-golfers",
+    locationKey: "previewCreators.jackMorrison.location",
+    countryKey: "previewCreators.jackMorrison.country",
+    bioKey: "previewCreators.jackMorrison.bio",
+    image: images.tournamentCompetition,
+    goal: {
+      titleKey: "previewCreators.jackMorrison.goalTitle",
+      descriptionKey: "previewCreators.jackMorrison.goalDescription",
+      raised: 4600,
+      target: 5000,
+    },
+    updateNoteKey: "previewCreators.jackMorrison.updateNote",
+    joined: "2026-07-18",
+  },
+  {
+    id: "priyaShah",
+    name: "Priya Shah",
+    category: "amateurs",
+    locationKey: "previewCreators.priyaShah.location",
+    countryKey: "previewCreators.priyaShah.country",
+    bioKey: "previewCreators.priyaShah.bio",
+    image: images.womanReadingPutt,
+    goal: {
+      titleKey: "previewCreators.priyaShah.goalTitle",
+      descriptionKey: "previewCreators.priyaShah.goalDescription",
+      raised: 640,
+      target: 1200,
+    },
+    updateNoteKey: undefined,
+    joined: "2026-07-23",
+  },
+  {
+    id: "firstTeeNorth",
+    name: "First Tee North",
+    category: "junior-golf",
+    locationKey: "previewCreators.firstTeeNorth.location",
+    countryKey: "previewCreators.firstTeeNorth.country",
+    bioKey: "previewCreators.firstTeeNorth.bio",
+    image: images.juniorGolferSwing,
+    goal: {
+      titleKey: "previewCreators.firstTeeNorth.goalTitle",
+      descriptionKey: "previewCreators.firstTeeNorth.goalDescription",
+      raised: 2700,
+      target: 3000,
+    },
+    updateNoteKey: "previewCreators.firstTeeNorth.updateNote",
+    joined: "2026-07-15",
+  },
+  {
+    id: "callumReid",
+    name: "Callum Reid",
+    category: "golf-trips",
+    locationKey: "previewCreators.callumReid.location",
+    countryKey: "previewCreators.callumReid.country",
+    bioKey: "previewCreators.callumReid.bio",
+    image: images.linksCourseAerial,
+    goal: {
+      titleKey: "previewCreators.callumReid.goalTitle",
+      descriptionKey: "previewCreators.callumReid.goalDescription",
+      raised: 540,
+      target: 1000,
+    },
+    updateNoteKey: "previewCreators.callumReid.updateNote",
+    joined: "2026-07-21",
+  },
+  {
+    id: "fairwaySociety",
+    name: "Fairway Society",
+    category: "golf-societies",
+    locationKey: "previewCreators.fairwaySociety.location",
+    countryKey: "previewCreators.fairwaySociety.country",
+    bioKey: "previewCreators.fairwaySociety.bio",
+    image: images.friendsWalkingFairway,
+    goal: {
+      titleKey: "previewCreators.fairwaySociety.goalTitle",
+      descriptionKey: "previewCreators.fairwaySociety.goalDescription",
+      raised: 820,
+      target: 1500,
+    },
+    updateNoteKey: undefined,
+    joined: "2026-07-19",
+  },
+  {
+    id: "coachDan",
+    name: "Coach Dan",
+    category: "golf-coaches",
+    locationKey: "previewCreators.coachDan.location",
+    countryKey: "previewCreators.coachDan.country",
+    bioKey: "previewCreators.coachDan.bio",
+    image: images.putterAndBall,
+    goal: {
+      titleKey: "previewCreators.coachDan.goalTitle",
+      descriptionKey: "previewCreators.coachDan.goalDescription",
+      raised: 7600,
+      target: 8000,
+    },
+    updateNoteKey: "previewCreators.coachDan.updateNote",
+    joined: "2026-07-16",
+  },
+  {
+    id: "linksCamera",
+    name: "Links Camera",
+    category: "golf-photography",
+    locationKey: "previewCreators.linksCamera.location",
+    countryKey: "previewCreators.linksCamera.country",
+    bioKey: "previewCreators.linksCamera.bio",
+    image: images.coastalCliffHole,
+    goal: {
+      titleKey: "previewCreators.linksCamera.goalTitle",
+      descriptionKey: "previewCreators.linksCamera.goalDescription",
+      raised: 430,
+      target: 900,
+    },
+    updateNoteKey: "previewCreators.linksCamera.updateNote",
+    joined: "2026-07-22",
+  },
+  {
+    id: "backNinePod",
+    name: "The Back Nine Pod",
+    category: "golf-podcasts",
+    locationKey: "previewCreators.backNinePod.location",
+    countryKey: "previewCreators.backNinePod.country",
+    bioKey: "previewCreators.backNinePod.bio",
+    image: images.clubhouseEvening,
+    goal: {
+      titleKey: "previewCreators.backNinePod.goalTitle",
+      descriptionKey: "previewCreators.backNinePod.goalDescription",
+      raised: 1100,
+      target: 2000,
+    },
+    updateNoteKey: undefined,
+    joined: "2026-07-17",
+  },
+  {
+    id: "meganFrost",
+    name: "Megan Frost",
+    category: "equipment-testing",
+    locationKey: "previewCreators.meganFrost.location",
+    countryKey: "previewCreators.meganFrost.country",
+    bioKey: "previewCreators.meganFrost.bio",
+    image: images.golferDriverSwing,
+    goal: {
+      titleKey: "previewCreators.meganFrost.goalTitle",
+      descriptionKey: "previewCreators.meganFrost.goalDescription",
+      raised: 380,
+      target: 800,
+    },
+    updateNoteKey: undefined,
+    joined: "2026-07-20",
+  },
+  {
+    id: "clubhouseRevival",
+    name: "Clubhouse Revival",
+    category: "club-projects",
+    locationKey: "previewCreators.clubhouseRevival.location",
+    countryKey: "previewCreators.clubhouseRevival.country",
+    bioKey: "previewCreators.clubhouseRevival.bio",
+    image: images.mountainCourseView,
+    goal: {
+      titleKey: "previewCreators.clubhouseRevival.goalTitle",
+      descriptionKey: "previewCreators.clubhouseRevival.goalDescription",
+      raised: 9100,
+      target: 10000,
+    },
+    updateNoteKey: "previewCreators.clubhouseRevival.updateNote",
+    joined: "2026-07-14",
+  },
+] as const satisfies readonly PreviewCreatorItem[];
+
+/**
+ * @deprecated English-only strings. Use `previewCreatorItems` with the
+ * `content` message namespace instead.
+ */
 export const previewCreators: PreviewCreator[] = [
   {
     name: "Caddie Live",
@@ -234,6 +484,60 @@ export type PreviewActivity = {
   target: string;
 };
 
+/** Locale-aware shape: stable id + message-key references, no raw English. */
+export type PreviewActivityItem = {
+  id: string;
+  /** Key in the `content` namespace, e.g. "previewActivity.sarahBellTee.supporter". */
+  supporterKey: string;
+  /** Key in the `content` namespace. */
+  actionKey: string;
+  /** Key in the `content` namespace. */
+  targetKey: string;
+};
+
+export const previewActivityItems = [
+  {
+    id: "sarahBellTee",
+    supporterKey: "previewActivity.sarahBellTee.supporter",
+    actionKey: "previewActivity.sarahBellTee.action",
+    targetKey: "previewActivity.sarahBellTee.target",
+  },
+  {
+    id: "coachDanStudio",
+    supporterKey: "previewActivity.coachDanStudio.supporter",
+    actionKey: "previewActivity.coachDanStudio.action",
+    targetKey: "previewActivity.coachDanStudio.target",
+  },
+  {
+    id: "juniorProgramme",
+    supporterKey: "previewActivity.juniorProgramme.supporter",
+    actionKey: "previewActivity.juniorProgramme.action",
+    targetKey: "previewActivity.juniorProgramme.target",
+  },
+  {
+    id: "caddieLiveTee",
+    supporterKey: "previewActivity.caddieLiveTee.supporter",
+    actionKey: "previewActivity.caddieLiveTee.action",
+    targetKey: "previewActivity.caddieLiveTee.target",
+  },
+  {
+    id: "jackMorrisonQSchool",
+    supporterKey: "previewActivity.jackMorrisonQSchool.supporter",
+    actionKey: "previewActivity.jackMorrisonQSchool.action",
+    targetKey: "previewActivity.jackMorrisonQSchool.target",
+  },
+  {
+    id: "scotlandLinksTrip",
+    supporterKey: "previewActivity.scotlandLinksTrip.supporter",
+    actionKey: "previewActivity.scotlandLinksTrip.action",
+    targetKey: "previewActivity.scotlandLinksTrip.target",
+  },
+] as const satisfies readonly PreviewActivityItem[];
+
+/**
+ * @deprecated English-only strings. Use `previewActivityItems` with the
+ * `content` message namespace instead.
+ */
 export const previewActivity: PreviewActivity[] = [
   { supporter: "Alex", action: "bought", target: "Sarah Bell a Tee" },
   { supporter: "Jordan", action: "supported", target: "Coach Dan's studio" },

@@ -1,13 +1,17 @@
 import { Banknote, Lock, Users } from "lucide-react";
 import Image from "next/image";
-import Link from "next/link";
+import { useTranslations } from "next-intl";
 
+import { Link } from "@/i18n/navigation";
 import { ButtonLink } from "@/components/button-link";
-import { BuyATeeCard } from "@/components/home/buy-a-tee-card";
+import { SupportWaysCard } from "@/components/home/support-ways-card";
 import { images } from "@/lib/content/images";
 
 export function Hero() {
+  const t = useTranslations("home");
+  const tContent = useTranslations("content");
   const hero = images.heroJourney;
+  const heroAlt = hero.altKey ? tContent(hero.altKey as never) : hero.alt;
   return (
     <section className="relative isolate overflow-hidden bg-white">
       {/* Full-bleed image from sm upwards; subjects sit right of centre, so
@@ -27,7 +31,7 @@ export function Hero() {
       <div className="sm:hidden">
         <Image
           src={hero.src}
-          alt={hero.alt}
+          alt={heroAlt}
           width={hero.width}
           height={hero.height}
           priority
@@ -39,47 +43,49 @@ export function Hero() {
         <div className="grid items-center gap-10 pb-10 pt-12 sm:min-h-[560px] sm:py-20 lg:min-h-[640px] lg:grid-cols-[1.05fr_0.95fr]">
           <div className="flex max-w-xl flex-col justify-center">
             <p className="mb-5 text-sm font-semibold uppercase tracking-[0.18em] text-gold-deep">
-              Support the journey
+              {t("hero.eyebrow")}
             </p>
             <h1 className="font-serif text-5xl font-semibold tracking-tight text-forest text-balance sm:text-6xl lg:text-[4.25rem] lg:leading-[1.02]">
-              Get funded to chase your golf goals.
+              {t("hero.heading")}
             </h1>
             <p className="mt-6 max-w-lg text-lg leading-relaxed text-ink/75 sm:text-xl">
-              Turn the fans who follow your golf into supporters who help fund
-              your next round, lesson and competition.
+              {t("hero.intro")}
             </p>
             <div className="mt-8 flex flex-col gap-3 sm:flex-row sm:items-center">
               <ButtonLink href="/sign-in" size="lg">
-                Start your page
+                {t("hero.startCta")}
               </ButtonLink>
               <Link
                 href="/how-it-works"
                 className="inline-flex min-h-11 items-center justify-center px-2 font-medium text-forest underline-offset-4 hover:underline"
               >
-                See how it works
+                {t("hero.howCta")}
               </Link>
             </div>
-            <p className="mt-6 text-sm text-ink/70">
-              Free to set up · Takes under a minute · Built for golfers
-            </p>
+            <p className="mt-6 text-sm text-ink/70">{t("hero.reassurance")}</p>
             <ul className="mt-6 flex flex-wrap items-center gap-x-6 gap-y-3 border-t border-ink/10 pt-5 text-sm text-ink/70">
               <li className="inline-flex items-center gap-2">
                 <Lock aria-hidden="true" className="size-4 text-gold-deep" />
-                Payments secured by{" "}
-                <span className="font-semibold text-ink">Stripe</span>
+                <span>
+                  {t.rich("hero.trust.stripe", {
+                    strong: (chunks) => (
+                      <span className="font-semibold text-ink">{chunks}</span>
+                    ),
+                  })}
+                </span>
               </li>
               <li className="inline-flex items-center gap-2">
                 <Users aria-hidden="true" className="size-4 text-gold-deep" />
-                Your supporters stay yours
+                {t("hero.trust.supporters")}
               </li>
               <li className="inline-flex items-center gap-2">
                 <Banknote aria-hidden="true" className="size-4 text-gold-deep" />
-                Fast payouts
+                {t("hero.trust.payouts")}
               </li>
             </ul>
           </div>
           <div className="lg:justify-self-end">
-            <BuyATeeCard />
+            <SupportWaysCard />
           </div>
         </div>
       </div>

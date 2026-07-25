@@ -1,0 +1,100 @@
+{
+  "anonymous": "匿名",
+  "composer": {
+    "funding": {
+      "label": "支援するアイテム",
+      "note": "1本のティーでこのアイテムをまるごとカバーします。お支払いが確認されると「支援済み」と表示されます。",
+      "chooseDifferent": "代わりに別の金額を選ぶ"
+    },
+    "target": {
+      "supporting": "応援先",
+      "general": "{name}さんへの応援（全般）",
+      "change": "変更",
+      "chooseLabel": "応援先を選ぶ",
+      "progress": "{target}のうち{raised} · {percent}"
+    },
+    "amount": {
+      "legend": "ティーを選ぶ",
+      "customLabel": "またはお好きな金額（{symbol}）",
+      "placeholder": "7.50",
+      "formatError": "5や7.50のような金額を入力してください。",
+      "belowMinimum": "ティーの最低額は{amount}です。",
+      "aboveMaximum": "ティーの上限額は{amount}です。",
+      "invalid": "有効な金額を入力してください。"
+    },
+    "goalNote": {
+      "brings": "あなたのティーで、この目標は<strong>{percent}</strong>に到達します。",
+      "verified": "目標の進捗には確認済みの支払いだけが反映されます — あなたのティーは確認され次第表示されます。"
+    },
+    "fields": {
+      "yourName": "お名前",
+      "email": "領収書の送付先メールアドレス",
+      "optional": "（任意）",
+      "messageFor": "{name}さんへのメッセージ",
+      "anonymous": "名前を非公開にする — このティーを「匿名」として表示します。"
+    },
+    "breakdown": {
+      "label": "お支払いの内訳",
+      "yourTee": "あなたのティー",
+      "platformFee": "BuyMeATeeプラットフォーム手数料",
+      "paymentHandling": "決済手数料",
+      "total": "合計",
+      "recipientReceives": "{name}さんが{amount}を受け取ります。決済手数料は、カード決済にかかる推定コストをまかなうものです。"
+    },
+    "submit": {
+      "goal": "Stripeでこの目標を応援",
+      "item": "Stripeでこのアイテムを支援",
+      "general": "Stripeでティーを贈る",
+      "preparing": "安全なチェックアウトを準備中…"
+    },
+    "stripeNotice": "お支払いはStripeの安全なチェックアウトで行われます。BuyMeATeeがカード情報を見ることはありません。"
+  },
+  "confirmation": {
+    "thanksMetaTitle": "ティーをありがとうございます",
+    "cancelledMetaTitle": "チェックアウトをキャンセルしました",
+    "confirmingHeading": "お支払いを確認しています…",
+    "confirmingBody": "Stripeからの確認を待っています。通常は数秒で完了します。",
+    "stillConfirmingHeading": "まだ確認中です",
+    "stillConfirmingBody": "確認に通常より時間がかかっています。お支払いが完了していれば必ず記録されます — 少し待ってから、もう一度ご確認ください。",
+    "checkAgain": "もう一度確認",
+    "paidHeading": "あなたのティーが{name}さんへ向かっています。",
+    "paidBody": "{sender}さんからの{amount}のお支払いが完了しました。",
+    "paidBodyToward": "<target>{title}</target>に向けた、{sender}さんからの{amount}のお支払いが完了しました。",
+    "backToPage": "{name}さんのページに戻る",
+    "backToHome": "BuyMeATeeに戻る",
+    "pendingHeading": "お支払いを処理中",
+    "pendingBody": "お支払いは処理中です。完了しだい、ティーを記録します。",
+    "expiredHeading": "このチェックアウトは期限切れになりました",
+    "expiredBody": "お支払いは発生していません。ティーはいつでも改めて贈れます。",
+    "cancelledHeading": "チェックアウトをキャンセルしました",
+    "cancelledBody": "お支払いは発生していません。",
+    "cancelledPageBody": "お支払いは発生していません。{name}さんには何も届いていません — ティーはいつでも贈れます。",
+    "failedHeading": "お支払いが完了しませんでした",
+    "failedBody": "お支払いが通らず、請求は発生していません。別のカードでもう一度お試しください。",
+    "tryAgain": "もう一度試す"
+  },
+  "share": {
+    "button": "共有",
+    "postToX": "Xに投稿",
+    "bluesky": "Blueskyで共有",
+    "whatsapp": "WhatsAppで共有",
+    "facebook": "Facebookで共有",
+    "linkedin": "LinkedInで共有",
+    "copyLink": "リンクをコピー",
+    "linkCopied": "リンクをコピーしました",
+    "moreOptions": "その他のオプション…",
+    "copyFailed": "コピーが利用できません — リンクを手動で選択してください。",
+    "copiedAnnouncement": "リンクをクリップボードにコピーしました",
+    "copyYourLink": "あなたのリンクをコピー",
+    "copied": "コピーしました",
+    "copyYourLinkFailed": "コピーが利用できません — 代わりにリンクのテキストを選択してください。",
+    "page": "BuyMeATeeで私のゴルフのジャーニーを応援してください — 実際の目標を後押しして、一緒に達成まで進みましょう。⛳️",
+    "goalFunded": "「{title}」が達成されました！🎉 BuyMeATeeでジャーニーを応援してくれたみなさん、本当にありがとうございます。次の目標へ。",
+    "goalMilestone": "BuyMeATeeで「{title}」まで{percent}%到達 🏌️ 応援してくださるみなさん、ありがとうございます — 達成まで力を貸してください。",
+    "goalStarting": "BuyMeATeeのページで「{title}」に取り組んでいます。ジャーニーを応援して、達成を後押ししてください。⛳️",
+    "goalCompleted": "「{title}」 — BuyMeATeeのジャーニーで、またひとつ目標を達成しました。応援してくれたみなさん、ありがとうございます。⛳️",
+    "supportGoal": "BuyMeATeeのページで「{title}」に応援が届きました 🙌 あなたもジャーニーを後押ししてください。⛳️",
+    "supportWishlist": "BuyMeATeeのウィッシュリストから「{title}」を支援していただきました 🙌 ありがとうございます — あなたもジャーニーを応援してください。⛳️",
+    "supportGeneral": "BuyMeATeeで私のゴルフのジャーニーに応援が届きました 🙌 ありがとうございます — あなたも応援できます。⛳️"
+  }
+}

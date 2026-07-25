@@ -1,6 +1,9 @@
-import Link from "next/link";
+import { useLocale, useTranslations } from "next-intl";
+import { Link } from "@/i18n/navigation";
 
 import { Markdown } from "@/components/markdown";
+import type { AppLocale } from "@/i18n/locales";
+import { formatDate } from "@/lib/i18n/format";
 import type { CreatorUpdateRow } from "@/lib/updates/types";
 
 /**
@@ -8,17 +11,6 @@ import type { CreatorUpdateRow } from "@/lib/updates/types";
  * feed of real progress. Server-rendered; markdown bodies go through the
  * sanitising <Markdown> (ADR-014).
  */
-
-const dateFormat = new Intl.DateTimeFormat("en-GB", {
-  day: "numeric",
-  month: "long",
-  year: "numeric",
-});
-
-function formatDate(iso: string | null): string {
-  return iso ? dateFormat.format(new Date(iso)) : "";
-}
-
 export function PublicUpdates({
   updates,
   creatorName,
@@ -28,36 +20,38 @@ export function PublicUpdates({
   creatorName: string;
   isOwner: boolean;
 }) {
+  const t = useTranslations("profilePage.updates");
+  const locale = useLocale() as AppLocale;
+
   if (updates.length === 0) {
     if (!isOwner) {
       return null;
     }
     return (
       <section
-        aria-label="Updates"
+        aria-label={t("sectionLabel")}
         className="rounded-3xl border border-dashed border-stone bg-mist p-6 text-center"
       >
         <h2 className="font-serif text-lg font-semibold text-forest">
-          This journey has only just begun.
+          {t("emptyOwnerHeading")}
         </h2>
         <p className="mx-auto mt-2 max-w-md text-sm leading-relaxed text-ink/70">
-          Post updates to show supporters where their backing goes — progress
-          is what keeps them coming back.
+          {t("emptyOwnerBody")}
         </p>
         <Link
           href="/dashboard/updates"
           className="mt-4 inline-flex min-h-11 items-center justify-center rounded-full border border-forest/30 px-5 text-sm font-medium text-forest transition-colors hover:border-forest hover:bg-forest/5"
         >
-          Write your first update
+          {t("writeFirst")}
         </Link>
       </section>
     );
   }
 
   return (
-    <section aria-label="Updates" className="space-y-5">
+    <section aria-label={t("sectionLabel")} className="space-y-5">
       <h2 className="font-serif text-xl font-semibold text-forest">
-        {creatorName}&apos;s updates
+        {t("heading", { name: creatorName })}
       </h2>
       <ol className="space-y-5">
         {updates.map((update) => (
@@ -81,7 +75,9 @@ export function PublicUpdates({
                 dateTime={update.published_at ?? undefined}
                 className="text-xs font-medium uppercase tracking-wide text-gold-deep"
               >
-                {formatDate(update.published_at)}
+                {update.published_at
+                  ? formatDate(update.published_at, locale)
+                  : ""}
               </time>
               <h3 className="mt-1 font-serif text-lg font-semibold text-forest">
                 {update.title}

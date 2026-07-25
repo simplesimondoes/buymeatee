@@ -1,12 +1,14 @@
 "use client";
 
-import Link from "next/link";
 import { Menu, X } from "lucide-react";
+import { useTranslations } from "next-intl";
 import { useCallback, useEffect, useId, useRef, useState } from "react";
 
 import { Avatar } from "@/components/profile/avatar";
+import { LanguageSwitcher } from "@/components/language-switcher";
 import { Wordmark } from "@/components/logo";
 import { useSession } from "@/components/auth/use-session";
+import { Link } from "@/i18n/navigation";
 import { authActions, headerActions, primaryNavigation } from "@/lib/site";
 
 /**
@@ -14,6 +16,8 @@ import { authActions, headerActions, primaryNavigation } from "@/lib/site";
  * Client island — the rest of the header stays server rendered.
  */
 export function MobileNav() {
+  const t = useTranslations("common");
+  const label = (key: string) => t(key as Parameters<typeof t>[0]);
   const [open, setOpen] = useState(false);
   const session = useSession();
   const panelId = useId();
@@ -62,7 +66,7 @@ export function MobileNav() {
           className="inline-flex h-11 w-11 items-center justify-center rounded-full text-forest hover:bg-forest/5"
         >
           <Menu aria-hidden="true" />
-          <span className="sr-only">Open menu</span>
+          <span className="sr-only">{t("nav.openMenu")}</span>
         </button>
       ) : null}
 
@@ -71,7 +75,7 @@ export function MobileNav() {
           id={panelId}
           role="dialog"
           aria-modal="true"
-          aria-label="Site navigation"
+          aria-label={t("nav.siteNavigation")}
           className="fixed inset-0 z-50 flex flex-col bg-white"
         >
           <div className="flex items-center justify-between px-4 py-4 sm:px-6">
@@ -84,11 +88,11 @@ export function MobileNav() {
               className="inline-flex h-11 w-11 items-center justify-center rounded-full text-forest hover:bg-forest/5"
             >
               <X aria-hidden="true" />
-              <span className="sr-only">Close menu</span>
+              <span className="sr-only">{t("nav.closeMenu")}</span>
             </button>
           </div>
           <nav
-            aria-label="Primary"
+            aria-label={t("nav.primaryLabel")}
             className="flex flex-1 flex-col gap-1 overflow-y-auto px-4 pb-8 pt-4 sm:px-6"
           >
             {primaryNavigation.map((item, index) => (
@@ -99,7 +103,7 @@ export function MobileNav() {
                 onClick={() => setOpen(false)}
                 className="rounded-xl px-3 py-3.5 font-serif text-2xl font-medium text-forest hover:bg-forest/5"
               >
-                {item.label}
+                {label(item.labelKey)}
               </Link>
             ))}
             <div className="mt-6 flex flex-col gap-3">
@@ -108,11 +112,11 @@ export function MobileNav() {
                   <div className="flex items-center gap-3 px-1 pb-2">
                     <Avatar
                       src={session.avatarUrl}
-                      name={session.displayName || session.username || "You"}
+                      name={session.displayName || session.username || t("account.fallbackName")}
                       size="sm"
                     />
                     <span className="truncate text-base font-medium text-forest">
-                      {session.displayName || session.username || "Your account"}
+                      {session.displayName || session.username || t("account.fallbackName")}
                     </span>
                   </div>
                   <Link
@@ -120,7 +124,7 @@ export function MobileNav() {
                     onClick={() => setOpen(false)}
                     className="inline-flex min-h-12 items-center justify-center rounded-full bg-forest px-6 text-base font-medium text-white hover:bg-forest-dark"
                   >
-                    {authActions.dashboard.label}
+                    {t("actions.dashboard")}
                   </Link>
                   {session.username ? (
                     <Link
@@ -128,7 +132,7 @@ export function MobileNav() {
                       onClick={() => setOpen(false)}
                       className="inline-flex min-h-12 items-center justify-center rounded-full border border-forest/30 px-6 text-base font-medium text-forest hover:border-forest"
                     >
-                      {authActions.myPage.label}
+                      {t("actions.myPage")}
                     </Link>
                   ) : null}
                   <Link
@@ -136,14 +140,14 @@ export function MobileNav() {
                     onClick={() => setOpen(false)}
                     className="inline-flex min-h-12 items-center justify-center rounded-full border border-forest/30 px-6 text-base font-medium text-forest hover:border-forest"
                   >
-                    Settings
+                    {t("actions.settings")}
                   </Link>
                   <form action={authActions.signOut.href} method="post">
                     <button
                       type="submit"
                       className="inline-flex min-h-12 w-full items-center justify-center rounded-full px-6 text-base font-medium text-ink/70 hover:text-forest"
                     >
-                      {authActions.signOut.label}
+                      {t("actions.logOut")}
                     </button>
                   </form>
                 </>
@@ -154,17 +158,20 @@ export function MobileNav() {
                     onClick={() => setOpen(false)}
                     className="inline-flex min-h-12 items-center justify-center rounded-full bg-forest px-6 text-base font-medium text-white hover:bg-forest-dark"
                   >
-                    {headerActions.primary.label}
+                    {t("actions.register")}
                   </Link>
                   <Link
                     href={headerActions.secondary.href}
                     onClick={() => setOpen(false)}
                     className="inline-flex min-h-12 items-center justify-center rounded-full border border-forest/30 px-6 text-base font-medium text-forest hover:border-forest"
                   >
-                    {headerActions.secondary.label}
+                    {t("actions.logIn")}
                   </Link>
                 </>
               )}
+            </div>
+            <div className="mt-6 border-t border-stone pt-5">
+              <LanguageSwitcher direction="up" align="left" />
             </div>
           </nav>
         </div>

@@ -1,6 +1,8 @@
 import { NextResponse } from "next/server";
 
+import { apiError } from "@/lib/api/errors";
 import { isAdmin } from "@/lib/payments/admin";
+import { logPaymentEvent } from "@/lib/payments/log";
 import {
   reconcileGoalProgress,
   reconcileStuckGifts,
@@ -21,7 +23,7 @@ export async function POST(request: Request) {
   if (!viaSecret) {
     const user = await getAuthenticatedUser();
     if (!user || !(await isAdmin(user.id))) {
-      return NextResponse.json({ error: "Not authorised." }, { status: 403 });
+      return apiError("api.notAuthorised", { status: 403 });
     }
   }
 
@@ -30,9 +32,10 @@ export async function POST(request: Request) {
     const goals = await reconcileGoalProgress();
     return NextResponse.json({ ...report, goals });
   } catch (error) {
-    return NextResponse.json(
-      { error: error instanceof Error ? error.message : "Reconciliation failed." },
-      { status: 500 },
-    );
+    // Raw provider/DB errors stay in the logs (ADR-019), never in responses.
+    logPaymentEvent("error", "admin.reconcile_failed", {
+      message: error instanceof Error ? error.message : String(error),
+    });
+    return apiError("api.unavailable", { status: 500 });
   }
 }

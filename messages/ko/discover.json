@@ -1,0 +1,102 @@
+{
+  "meta": {
+    "title": "둘러보기",
+    "description": "응원할 가치가 있는 골퍼, 크리에이터, 자선단체, 프로젝트를 만나 보세요. 추천 여정과 카테고리, 목표를 둘러보고 마음이 가는 곳을 응원하세요."
+  },
+  "hero": {
+    "eyebrow": "둘러보기",
+    "heading": "골프를 응원하세요.",
+    "intro": "골프를 더 좋게 만드는 멋진 골퍼, 크리에이터, 자선단체, 프로젝트를 만나 보고 — 함께하고 싶은 여정을 응원하세요.",
+    "searchLabel": "크리에이터, 프로젝트, 목표 검색",
+    "searchPlaceholder": "크리에이터, 프로젝트, 목표 검색…",
+    "searchButton": "검색"
+  },
+  "sections": {
+    "featuredGoals": {
+      "eyebrow": "추천 목표",
+      "heading": "이름이 아니라 미션을 응원하세요",
+      "intro": "사람들은 미션을 응원해요. 지금 바로 함께할 수 있는 목표들이에요."
+    },
+    "trending": {
+      "eyebrow": "인기 급상승",
+      "heading": "탄력을 받는 중",
+      "intro": "지금 응원이 모이고 있는 여정들이에요.",
+      "previewNote": "콘셉트 순위예요 — 향후 업데이트에서 응원 속도 신호가 순위를 결정할 예정이에요."
+    },
+    "nearCompletion": {
+      "eyebrow": "달성 임박",
+      "heading": "마지막 고비를 함께 넘어요",
+      "intro": "달성률 80~95%의 목표들 — 작은 응원이면 완주할 수 있어요."
+    },
+    "categories": {
+      "eyebrow": "카테고리",
+      "heading": "나에게 맞는 골프를 찾아 보세요",
+      "intro": "프로 지망생부터 클럽 프로젝트, 자선단체까지 — 마음이 가는 여정을 둘러보세요."
+    },
+    "activity": {
+      "eyebrow": "최근 후원",
+      "heading": "응원으로 살아 움직이는 플랫폼",
+      "intro": "서포터의 활동이 둘러보기를 어떻게 채워 갈지 미리 보여 드려요.",
+      "conceptNote": "예시 활동이에요 — 실제 서포터나 선물이 아니에요.",
+      "line": "<name>{supporter}</name>님이 {target} {action}"
+    }
+  },
+  "previewNoteDefault": "지금은 예시예요 — 크리에이터가 합류하면 실제 항목이 여기 표시돼요.",
+  "categories": {
+    "golf-apps": "골프 앱",
+    "content-creators": "콘텐츠 크리에이터",
+    "professional-golfers": "프로 골퍼",
+    "amateurs": "아마추어",
+    "junior-golf": "주니어 골프",
+    "charities": "자선단체",
+    "golf-trips": "골프 여행",
+    "golf-societies": "골프 소사이어티",
+    "golf-coaches": "골프 코치",
+    "club-projects": "클럽 프로젝트",
+    "equipment-testing": "장비 테스트",
+    "golf-photography": "골프 사진",
+    "golf-podcasts": "골프 팟캐스트"
+  },
+  "browse": {
+    "eyebrow": "검색",
+    "heading": "모든 여정을 검색하세요",
+    "intro": "크리에이터, 프로젝트, 목표, 지역, 카테고리로 검색하고 — 원하는 기준으로 정렬해 보세요.",
+    "searchLabel": "크리에이터, 프로젝트, 목표 검색",
+    "searchPlaceholder": "크리에이터, 프로젝트, 목표 검색…",
+    "filter": "필터",
+    "category": "카테고리",
+    "allCategories": "모든 카테고리",
+    "country": "국가",
+    "allCountries": "모든 국가",
+    "sortLabel": "정렬",
+    "sort": {
+      "newest": "최신순",
+      "mostSupported": "응원 많은 순",
+      "nearCompletion": "달성 임박순",
+      "trending": "인기순"
+    },
+    "clear": "초기화",
+    "resultCount": "{count, plural, other {여정 #개}}",
+    "showMore": "여정 더 보기",
+    "empty": "검색과 일치하는 여정이 아직 없어요. 필터를 지우거나 다른 검색어를 시도해 보세요."
+  },
+  "goalCard": {
+    "creatorFallback": "크리에이터",
+    "raisedOfTarget": "{target} 중 {raised}",
+    "targetGoal": "목표 {target}",
+    "beTheFirst": "첫 번째가 되어 주세요",
+    "support": "응원하기",
+    "seeHowGoalsWork": "목표 작동 방식 보기",
+    "progressLabel": "{title} 진행 상황: {target} 중 {raised}"
+  },
+  "creatorCard": {
+    "new": "신규",
+    "support": "응원하기",
+    "seeHowItWorks": "이용 방법 보기",
+    "progressLabel": "{name}: {title} 진행 상황"
+  },
+  "cta": {
+    "heading": "나만의 여정을 시작하세요",
+    "body": "목표를 세우고 페이지를 공유하면, 골프 팬들이 여정을 함께 응원해 줘요."
+  }
+}

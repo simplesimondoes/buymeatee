@@ -1,0 +1,71 @@
+{
+  "brand": {
+    "homeAria": "BuyMeATee — 홈",
+    "tagline": "여정을 응원하세요."
+  },
+  "nav": {
+    "discover": "둘러보기",
+    "howItWorks": "이용 방법",
+    "forCreators": "크리에이터 안내",
+    "forSupporters": "서포터 안내",
+    "blog": "블로그",
+    "faq": "자주 묻는 질문",
+    "primaryLabel": "주 메뉴",
+    "siteNavigation": "사이트 탐색",
+    "home": "홈",
+    "breadcrumb": "현재 위치",
+    "openMenu": "메뉴 열기",
+    "closeMenu": "메뉴 닫기"
+  },
+  "actions": {
+    "register": "가입하기",
+    "logIn": "로그인",
+    "logOut": "로그아웃",
+    "signIn": "로그인",
+    "dashboard": "대시보드",
+    "myPage": "내 페이지",
+    "settings": "설정"
+  },
+  "account": {
+    "menuLabel": "계정",
+    "fallbackName": "내 계정",
+    "signedInAs": "<name>{displayName}</name>님으로 로그인됨"
+  },
+  "footer": {
+    "productHeading": "서비스",
+    "companyHeading": "회사",
+    "legalHeading": "법적 고지",
+    "about": "소개",
+    "privacy": "개인정보 처리방침",
+    "terms": "이용약관",
+    "impressum": "Impressum",
+    "accessibility": "접근성",
+    "description": "BuyMeATee는 골프 팬들이 크리에이터가 더 많이 플레이하고, 더 많이 이루고, 목표를 향해 나아가도록 돕는 곳이에요. 여정을 지켜보고, 목표를 응원하고, 티를 선물해 보세요.",
+    "copyright": "© {year} BuyMeATee. 모든 권리 보유.",
+    "productLine": "<brand>Caddie Live</brand>가 만든 서비스 · 골퍼를 위해 만들었어요"
+  },
+  "cookies": {
+    "regionLabel": "쿠키 동의",
+    "message": "로그인 상태 유지를 위해 필수 쿠키를 사용해요. 동의해 주시면 사이트 이용 현황을 파악하기 위해 Google Analytics도 사용해요. 자세한 내용은 <link>개인정보 처리방침</link>을 확인해 주세요.",
+    "decline": "거부",
+    "accept": "분석 쿠키 허용",
+    "settings": "쿠키 설정"
+  },
+  "upload": {
+    "addImage": "이미지 추가",
+    "changeImage": "이미지 변경",
+    "remove": "삭제"
+  },
+  "errorBoundary": {
+    "heading": "문제가 발생했어요.",
+    "body": "예상치 못한 오류로 라운드가 중단됐어요. 다시 시도해 주세요.",
+    "retry": "다시 시도"
+  },
+  "a11y": {
+    "skipToContent": "본문으로 건너뛰기"
+  },
+  "language": {
+    "label": "언어",
+    "switcherLabel": "언어 변경"
+  }
+}

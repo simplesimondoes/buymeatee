@@ -1,0 +1,95 @@
+{
+  "metadata": {
+    "title": "Invita a {name} a un Tee",
+    "description": "Apoya el camino de {name} en el golf con un Tee.",
+    "descriptionWithGoal": "Apoya el camino de {name} en el golf con un Tee — respalda un objetivo real y velo hacerse realidad.",
+    "imageAlt": "Apoya a {name} en BuyMeATee"
+  },
+  "unavailable": {
+    "metaTitle": "Página no disponible",
+    "heading": "Esta página no está disponible ahora mismo.",
+    "body": "De momento no puede recibir Tees. Si crees que es un error, vuelve a comprobarlo más tarde."
+  },
+  "hero": {
+    "kicker": "Apoya el camino",
+    "handicap": "Hándicap {handicap}",
+    "websiteLabel": "Sitio web"
+  },
+  "about": {
+    "heading": "Sobre mí",
+    "sectionLabel": "Sobre {name}"
+  },
+  "stats": {
+    "supporters": "{count, plural, one {apoyo} other {apoyos}}",
+    "goalsReached": "{count, plural, one {objetivo alcanzado} other {objetivos alcanzados}}",
+    "updates": "{count, plural, one {novedad} other {novedades}}",
+    "joinedLabel": "Miembro desde",
+    "joined": "Miembro desde {date}"
+  },
+  "cta": {
+    "supportGoal": "Apoyar este objetivo",
+    "buyTee": "Invita a {name} a un tee"
+  },
+  "supportHero": {
+    "currentGoal": "Objetivo actual",
+    "raisedOfTarget": "{raised} de {target}",
+    "goalOnly": "Meta de {target}",
+    "beFirst": "Sé el primero",
+    "progressLabel": "Progreso hacia {title}: {raised} de {target} recaudados"
+  },
+  "notAccepting": {
+    "heading": "{name} aún no acepta Tees.",
+    "body": "Vuelve pronto — su configuración de pagos no está terminada.",
+    "finishSetup": "Termina tu configuración de pagos"
+  },
+  "goals": {
+    "sectionLabel": "Objetivos",
+    "heading": "Los objetivos de {name}",
+    "beyondGoal": "— ¡más allá de la meta!",
+    "justStarted": "Acaba de empezar — sé el primero en respaldarlo.",
+    "supportedBy": "{count, plural, one {Con el apoyo de # golfista} other {Con el apoyo de # golfistas}}",
+    "completedHeading": "Hecho posible por quienes apoyan",
+    "completedRaised": "— {amount} recaudados",
+    "emptyOwnerBody": "Tu página aún no tiene objetivos. Los objetivos dan a quienes te apoyan algo real que respaldar.",
+    "addFirstGoal": "Añade tu primer objetivo",
+    "noActiveOwner": "Ahora mismo no hay objetivos activos — <link>publica uno</link> para dar a quienes te apoyan algo que respaldar."
+  },
+  "wishlist": {
+    "sectionLabel": "Lista de deseos",
+    "heading": "La lista de deseos de {name}",
+    "intro": "Cosas concretas que puedes financiar de una vez — elige una y queda cubierta.",
+    "fundThis": "Financiar esto",
+    "fundedHeading": "Financiado por quienes apoyan",
+    "emptyOwnerBody": "Tu lista de deseos está vacía. Añade cosas concretas que se puedan financiar: una caja de bolas, una inscripción, una clase.",
+    "addFirstItem": "Añade tu primer artículo"
+  },
+  "updates": {
+    "sectionLabel": "Novedades",
+    "heading": "Las novedades de {name}",
+    "emptyOwnerHeading": "Este camino no ha hecho más que empezar.",
+    "emptyOwnerBody": "Publica novedades para mostrar adónde va el respaldo — el progreso es lo que hace volver a la gente.",
+    "writeFirst": "Escribe tu primera novedad"
+  },
+  "recentSupport": {
+    "sectionLabel": "Apoyo reciente",
+    "heading": "Apoyo reciente",
+    "empty": "Sé el primer golfista en respaldar este proyecto.",
+    "supported": "<supporter>{name}</supporter> apoyó con <sum>{amount}</sum>",
+    "towardGoal": "hacia {title}",
+    "fundedItem": "financió {title}"
+  },
+  "pinnedMedia": {
+    "sectionLabel": "Contenido destacado",
+    "iframeTitle": "Contenido destacado",
+    "featuredLink": "Enlace destacado",
+    "featuredLinkAria": "Enlace destacado: {host}"
+  },
+  "ogCard": {
+    "kicker": "Apoya el camino",
+    "headline": "Apoya a {name}",
+    "headlineFallback": "Apoya el camino.",
+    "tagline": "Respalda un objetivo real y sigue el camino de un golfista.",
+    "goalLine": "{raised} de {target} · {percent}",
+    "goalLineFresh": "Meta de {target} · sé el primero en respaldarla"
+  }
+}

@@ -1,0 +1,102 @@
+{
+  "meta": {
+    "title": "Entdecken",
+    "description": "Entdecke Golfer, Creator, gemeinnützige Organisationen und Projekte, die Unterstützung verdienen. Stöbere durch vorgestellte Wege, Kategorien und Ziele — und unterstütze die, die dir wichtig sind."
+  },
+  "hero": {
+    "eyebrow": "Entdecken",
+    "heading": "Unterstütze Golf.",
+    "intro": "Entdecke großartige Golfer, Creator, gemeinnützige Organisationen und Projekte, die Golf besser machen — und stell dich hinter die Wege, die es verdienen.",
+    "searchLabel": "Creator, Projekte und Ziele durchsuchen",
+    "searchPlaceholder": "Creator, Projekte, Ziele suchen…",
+    "searchButton": "Suchen"
+  },
+  "sections": {
+    "featuredGoals": {
+      "eyebrow": "Ausgewählte Ziele",
+      "heading": "Unterstütze eine Mission, nicht nur einen Namen",
+      "intro": "Menschen stehen hinter Missionen. Das sind die Ziele, die Unterstützer:innen jetzt gerade unterstützen können."
+    },
+    "trending": {
+      "eyebrow": "Im Trend",
+      "heading": "Nimmt gerade Fahrt auf",
+      "intro": "Wege, die gerade an Unterstützung gewinnen.",
+      "previewNote": "Konzept-Ranking — in einem späteren Update wird hier ein echtes Signal für Unterstützungs-Tempo dahinterstehen."
+    },
+    "nearCompletion": {
+      "eyebrow": "Kurz vor dem Ziel",
+      "heading": "Hilf ihnen über die Linie",
+      "intro": "Ziele zwischen 80 % und 95 % Finanzierung — ein bisschen Unterstützung macht die Sache rund."
+    },
+    "categories": {
+      "eyebrow": "Kategorien",
+      "heading": "Finde deine Art von Golf",
+      "intro": "Von angehenden Profis über Clubprojekte bis zu gemeinnützigen Organisationen — stöbere durch die Wege, die dir wichtig sind."
+    },
+    "activity": {
+      "eyebrow": "Kürzlich finanziert",
+      "heading": "Die Plattform, lebendig durch Unterstützung",
+      "intro": "Ein Ausblick darauf, wie die Aktivität der Unterstützer:innen Entdecken in Bewegung halten wird.",
+      "conceptNote": "Illustrative Aktivität — es werden keine echten Unterstützer:innen oder Tees gezeigt.",
+      "line": "<name>{supporter}</name> {action} {target}"
+    }
+  },
+  "previewNoteDefault": "Vorerst illustrativ — echte Einträge erscheinen hier, sobald Creator dazukommen.",
+  "categories": {
+    "golf-apps": "Golf-Apps",
+    "content-creators": "Content-Creator",
+    "professional-golfers": "Profigolfer",
+    "amateurs": "Amateure",
+    "junior-golf": "Jugendgolf",
+    "charities": "Gemeinnützige Organisationen",
+    "golf-trips": "Golfreisen",
+    "golf-societies": "Golfgemeinschaften",
+    "golf-coaches": "Golftrainer",
+    "club-projects": "Clubprojekte",
+    "equipment-testing": "Equipment-Tests",
+    "golf-photography": "Golffotografie",
+    "golf-podcasts": "Golf-Podcasts"
+  },
+  "browse": {
+    "eyebrow": "Suche",
+    "heading": "Durchsuche jeden Weg",
+    "intro": "Suche nach Creator, Projekt, Ziel, Ort oder Kategorie — und sortiere nach dem, was dir wichtig ist.",
+    "searchLabel": "Creator, Projekte und Ziele durchsuchen",
+    "searchPlaceholder": "Creator, Projekte, Ziele suchen…",
+    "filter": "Filtern",
+    "category": "Kategorie",
+    "allCategories": "Alle Kategorien",
+    "country": "Land",
+    "allCountries": "Alle Länder",
+    "sortLabel": "Sortieren",
+    "sort": {
+      "newest": "Neueste",
+      "mostSupported": "Meist unterstützt",
+      "nearCompletion": "Kurz vor dem Ziel",
+      "trending": "Im Trend"
+    },
+    "clear": "Zurücksetzen",
+    "resultCount": "{count, plural, one {# Weg} other {# Wege}}",
+    "showMore": "Mehr Wege anzeigen",
+    "empty": "Noch keine Wege passen zu deiner Suche. Entferne einen Filter oder probiere einen anderen Begriff."
+  },
+  "goalCard": {
+    "creatorFallback": "Ein Creator",
+    "raisedOfTarget": "{raised} von {target}",
+    "targetGoal": "Ziel: {target}",
+    "beTheFirst": "Mach den Anfang",
+    "support": "Unterstützen",
+    "seeHowGoalsWork": "So funktionieren Ziele",
+    "progressLabel": "Fortschritt bei {title}: {raised} von {target}"
+  },
+  "creatorCard": {
+    "new": "Neu",
+    "support": "Unterstützen",
+    "seeHowItWorks": "So funktioniert's",
+    "progressLabel": "{name}: Fortschritt bei {title}"
+  },
+  "cta": {
+    "heading": "Starte deinen eigenen Weg",
+    "body": "Setz dir ein Ziel, teile deine Seite und lass Golf-Fans gemeinsam mit dir hinter deinem Weg stehen."
+  }
+}

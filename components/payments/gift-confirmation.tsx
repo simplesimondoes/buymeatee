@@ -1,10 +1,13 @@
 "use client";
 
 import { CircleAlert, CircleCheck, Clock, LoaderCircle } from "lucide-react";
-import Link from "next/link";
+import { useLocale, useTranslations } from "next-intl";
+import { Link } from "@/i18n/navigation";
 import { useEffect, useState } from "react";
 
-import { formatMinorAmount, type SupportedCurrency } from "@/lib/payments/currency";
+import type { AppLocale } from "@/i18n/locales";
+import { formatMinorAmount } from "@/lib/i18n/format";
+import type { SupportedCurrency } from "@/lib/payments/currency";
 
 export interface GiftConfirmationStatus {
   phase: "confirming" | "paid" | "pending" | "failed" | "expired" | "cancelled";
@@ -34,6 +37,9 @@ export function GiftConfirmation({
   publicId: string;
   initial: GiftConfirmationStatus;
 }) {
+  const locale = useLocale() as AppLocale;
+  const t = useTranslations("gifts.confirmation");
+  const tGifts = useTranslations("gifts");
   const [status, setStatus] = useState(initial);
   const [polls, setPolls] = useState(0);
 
@@ -67,29 +73,27 @@ export function GiftConfirmation({
               className="mx-auto h-10 w-10 animate-spin text-forest"
             />
             <h1 className="mt-4 font-serif text-2xl font-semibold text-forest">
-              Confirming your payment…
+              {t("confirmingHeading")}
             </h1>
             <p className="mx-auto mt-2 max-w-md text-sm leading-relaxed text-ink/70">
-              We&apos;re waiting for Stripe to confirm. This usually takes a
-              few seconds.
+              {t("confirmingBody")}
             </p>
           </>
         ) : (
           <>
             <Clock aria-hidden="true" className="mx-auto h-10 w-10 text-ink/60" />
             <h1 className="mt-4 font-serif text-2xl font-semibold text-forest">
-              Still confirming
+              {t("stillConfirmingHeading")}
             </h1>
             <p className="mx-auto mt-2 max-w-md text-sm leading-relaxed text-ink/70">
-              Confirmation is taking longer than usual. If you completed
-              payment, it will be recorded — you can check again in a moment.
+              {t("stillConfirmingBody")}
             </p>
             <button
               type="button"
               onClick={() => setPolls(0)}
               className="mt-5 inline-flex min-h-11 items-center justify-center rounded-full border border-forest/30 px-6 text-sm font-medium text-forest transition-colors hover:border-forest hover:bg-forest/5"
             >
-              Check again
+              {t("checkAgain")}
             </button>
           </>
         )}
@@ -98,26 +102,25 @@ export function GiftConfirmation({
   }
 
   if (status.phase === "paid") {
+    const amount = formatMinorAmount(status.giftAmount, status.currency, locale);
+    const sender = status.isAnonymous ? tGifts("anonymous") : status.senderName;
     return (
       <div className="rounded-3xl border border-forest/25 bg-forest/5 p-8 text-center">
         <CircleCheck aria-hidden="true" className="mx-auto h-10 w-10 text-forest" />
         <h1 className="mt-4 font-serif text-2xl font-semibold text-forest">
-          Your Tee is on its way to {status.recipientName}.
+          {t("paidHeading", { name: status.recipientName })}
         </h1>
         <p className="mx-auto mt-2 max-w-md text-sm leading-relaxed text-ink/70">
-          {formatMinorAmount(status.giftAmount, status.currency)} from{" "}
-          {status.isAnonymous ? "Anonymous" : status.senderName} was paid
-          successfully
-          {status.target ? (
-            <>
-              {" "}
-              toward{" "}
-              <span className="font-medium text-forest">
-                {status.target.title}
-              </span>
-            </>
-          ) : null}
-          .
+          {status.target
+            ? t.rich("paidBodyToward", {
+                amount,
+                sender,
+                title: status.target.title,
+                target: (chunks) => (
+                  <span className="font-medium text-forest">{chunks}</span>
+                ),
+              })
+            : t("paidBody", { amount, sender })}
         </p>
         {status.message ? (
           <blockquote className="mx-auto mt-4 max-w-md rounded-2xl bg-white p-4 text-sm italic leading-relaxed text-ink/80">
@@ -130,8 +133,8 @@ export function GiftConfirmation({
             className="inline-flex min-h-11 items-center justify-center rounded-full bg-forest px-6 text-sm font-medium text-white transition-colors hover:bg-forest-dark"
           >
             {status.recipientUsername
-              ? `Back to ${status.recipientName}'s page`
-              : "Back to BuyMeATee"}
+              ? t("backToPage", { name: status.recipientName })
+              : t("backToHome")}
           </Link>
         </div>
       </div>
@@ -143,11 +146,10 @@ export function GiftConfirmation({
       <div role="status" className="rounded-3xl border border-stone bg-mist p-8 text-center">
         <Clock aria-hidden="true" className="mx-auto h-10 w-10 text-ink/60" />
         <h1 className="mt-4 font-serif text-2xl font-semibold text-forest">
-          Payment pending
+          {t("pendingHeading")}
         </h1>
         <p className="mx-auto mt-2 max-w-md text-sm leading-relaxed text-ink/70">
-          Your payment is being processed. We&apos;ll record the Tee as soon as
-          it completes.
+          {t("pendingBody")}
         </p>
       </div>
     );
@@ -155,19 +157,10 @@ export function GiftConfirmation({
 
   const failedCopy =
     status.phase === "expired"
-      ? {
-          heading: "This checkout expired",
-          body: "No payment was taken. You can send the Tee again whenever you like.",
-        }
+      ? { heading: t("expiredHeading"), body: t("expiredBody") }
       : status.phase === "cancelled"
-        ? {
-            heading: "Checkout cancelled",
-            body: "No payment was taken.",
-          }
-        : {
-            heading: "Payment unsuccessful",
-            body: "Your payment didn't go through and nothing was charged. You can try again with a different card.",
-          };
+        ? { heading: t("cancelledHeading"), body: t("cancelledBody") }
+        : { heading: t("failedHeading"), body: t("failedBody") };
 
   return (
     <div className="rounded-3xl border border-stone bg-white p-8 text-center">
@@ -184,7 +177,7 @@ export function GiftConfirmation({
             href={`/t/${status.recipientUsername}`}
             className="inline-flex min-h-11 items-center justify-center rounded-full bg-forest px-6 text-sm font-medium text-white transition-colors hover:bg-forest-dark"
           >
-            Try again
+            {t("tryAgain")}
           </Link>
         </div>
       ) : null}

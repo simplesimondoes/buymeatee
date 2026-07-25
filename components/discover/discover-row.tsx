@@ -1,3 +1,4 @@
+import { useTranslations } from "next-intl";
 import type { ReactNode } from "react";
 
 import { ExampleBadge } from "@/components/example-badge";
@@ -29,12 +30,14 @@ export function DiscoverRow({
   heading,
   intro,
   preview = false,
-  previewNote = "Illustrative for now — real entries appear here as creators join.",
+  previewNote,
   layout = "carousel",
   action,
   background = "white",
   children,
 }: DiscoverRowProps) {
+  const t = useTranslations("discover");
+  const note = previewNote ?? t("previewNoteDefault");
   return (
     <section className={background === "mist" ? "bg-mist" : "bg-white"}>
       <div className="mx-auto max-w-6xl px-4 py-14 sm:px-6 lg:px-8 lg:py-20">
@@ -49,7 +52,7 @@ export function DiscoverRow({
             {preview ? (
               <p className="mt-3 flex items-center gap-2 text-sm text-ink/60">
                 <ExampleBadge label="Preview" />
-                {previewNote}
+                {note}
               </p>
             ) : null}
           </div>

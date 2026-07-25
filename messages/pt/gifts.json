@@ -1,0 +1,100 @@
+{
+  "anonymous": "Anónimo",
+  "composer": {
+    "funding": {
+      "label": "Estás a financiar",
+      "note": "Um Tee cobre este item por inteiro. Aparece como financiado assim que o teu pagamento for verificado.",
+      "chooseDifferent": "Escolher antes um montante diferente"
+    },
+    "target": {
+      "supporting": "A apoiar",
+      "general": "Apoio geral a {name}",
+      "change": "Mudar",
+      "chooseLabel": "Escolhe o que apoiar",
+      "progress": "{raised} de {target} · {percent}"
+    },
+    "amount": {
+      "legend": "Escolhe o teu Tee",
+      "customLabel": "Ou um montante à tua escolha ({symbol})",
+      "placeholder": "7.50",
+      "formatError": "Introduz um montante como 5 ou 7.50.",
+      "belowMinimum": "O Tee mínimo é {amount}.",
+      "aboveMaximum": "O Tee máximo é {amount}.",
+      "invalid": "Introduz um montante válido."
+    },
+    "goalNote": {
+      "brings": "O teu Tee leva este objetivo até <strong>{percent}</strong>.",
+      "verified": "O progresso do objetivo só conta pagamentos confirmados — o teu Tee aparece assim que for verificado."
+    },
+    "fields": {
+      "yourName": "O teu nome",
+      "email": "Email para o teu recibo",
+      "optional": "(opcional)",
+      "messageFor": "Mensagem para {name}",
+      "anonymous": "Manter o meu nome privado — mostrar este Tee como sendo de “Anónimo”."
+    },
+    "breakdown": {
+      "label": "Detalhe do pagamento",
+      "yourTee": "O teu Tee",
+      "platformFee": "Taxa da plataforma BuyMeATee",
+      "paymentHandling": "Processamento do pagamento",
+      "total": "Total",
+      "recipientReceives": "{name} recebe {amount}. O processamento do pagamento cobre os custos estimados de processamento do cartão."
+    },
+    "submit": {
+      "goal": "Apoiar este objetivo com a Stripe",
+      "item": "Financiar este item com a Stripe",
+      "general": "Enviar um Tee com a Stripe",
+      "preparing": "A preparar o checkout seguro…"
+    },
+    "stripeNotice": "Pagas no checkout seguro da Stripe. O BuyMeATee nunca vê os dados do teu cartão."
+  },
+  "confirmation": {
+    "thanksMetaTitle": "Obrigado pelo Tee",
+    "cancelledMetaTitle": "Checkout cancelado",
+    "confirmingHeading": "A confirmar o teu pagamento…",
+    "confirmingBody": "Estamos à espera da confirmação da Stripe. Normalmente demora só uns segundos.",
+    "stillConfirmingHeading": "Ainda a confirmar",
+    "stillConfirmingBody": "A confirmação está a demorar mais do que o habitual. Se concluíste o pagamento, ele será registado — podes verificar de novo daqui a pouco.",
+    "checkAgain": "Verificar de novo",
+    "paidHeading": "O teu Tee segue a caminho de {name}.",
+    "paidBody": "{amount} de {sender} foi pago com sucesso.",
+    "paidBodyToward": "{amount} de {sender} foi pago com sucesso para <target>{title}</target>.",
+    "backToPage": "Voltar à página de {name}",
+    "backToHome": "Voltar ao BuyMeATee",
+    "pendingHeading": "Pagamento pendente",
+    "pendingBody": "O teu pagamento está a ser processado. Registamos o Tee assim que ficar concluído.",
+    "expiredHeading": "Este checkout expirou",
+    "expiredBody": "Não foi cobrado nenhum pagamento. Podes enviar o Tee de novo quando quiseres.",
+    "cancelledHeading": "Checkout cancelado",
+    "cancelledBody": "Não foi cobrado nenhum pagamento.",
+    "cancelledPageBody": "Não foi cobrado nenhum pagamento. {name} não recebeu nada — podes enviar um Tee a qualquer momento.",
+    "failedHeading": "Pagamento sem sucesso",
+    "failedBody": "O teu pagamento não foi concluído e nada foi cobrado. Podes tentar de novo com outro cartão.",
+    "tryAgain": "Tentar novamente"
+  },
+  "share": {
+    "button": "Partilhar",
+    "postToX": "Publicar no X",
+    "bluesky": "Partilhar no Bluesky",
+    "whatsapp": "Partilhar no WhatsApp",
+    "facebook": "Partilhar no Facebook",
+    "linkedin": "Partilhar no LinkedIn",
+    "copyLink": "Copiar ligação",
+    "linkCopied": "Ligação copiada",
+    "moreOptions": "Mais opções…",
+    "copyFailed": "Não é possível copiar — seleciona a ligação manualmente.",
+    "copiedAnnouncement": "Ligação copiada para a área de transferência",
+    "copyYourLink": "Copia a tua ligação",
+    "copied": "Copiado",
+    "copyYourLinkFailed": "Não é possível copiar — seleciona antes o texto da ligação.",
+    "page": "Acompanha o meu percurso no golfe no BuyMeATee — apoia um objetivo real e ajuda-me a lá chegar. ⛳️",
+    "goalFunded": "“{title}” está financiado! 🎉 Um enorme obrigado a todos os que apoiaram o percurso no BuyMeATee. Rumo ao próximo.",
+    "goalMilestone": "{percent}% do caminho até “{title}” no BuyMeATee 🏌️ Obrigado a todos os que estão a apoiar o percurso — ajudem-me a alcançar o objetivo.",
+    "goalStarting": "Estou a trabalhar para “{title}” na minha página BuyMeATee. Apoia o percurso e ajuda-me a lá chegar. ⛳️",
+    "goalCompleted": "“{title}” — mais um objetivo alcançado no meu percurso BuyMeATee. Obrigado a todos os que o apoiaram. ⛳️",
+    "supportGoal": "Alguém acabou de apoiar “{title}” na minha página BuyMeATee 🙌 Apoia o percurso e ajuda-me a lá chegar. ⛳️",
+    "supportWishlist": "Alguém acabou de financiar “{title}” da minha lista de desejos no BuyMeATee 🙌 Obrigado — apoia tu também o percurso. ⛳️",
+    "supportGeneral": "Alguém acabou de apoiar o meu percurso no golfe no BuyMeATee 🙌 Obrigado — também podes apoiar o percurso. ⛳️"
+  }
+}

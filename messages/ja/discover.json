@@ -1,0 +1,102 @@
+{
+  "meta": {
+    "title": "見つける",
+    "description": "応援する価値のあるゴルファー、クリエイター、チャリティ、プロジェクトを見つけましょう。注目のジャーニー、カテゴリー、目標を眺めて、心に響くものを後押しできます。"
+  },
+  "hero": {
+    "eyebrow": "見つける",
+    "heading": "ゴルフを応援しよう。",
+    "intro": "ゴルフをもっと良くしている素晴らしいゴルファー、クリエイター、チャリティ、プロジェクトを見つけて、応援したくなるジャーニーを後押ししましょう。",
+    "searchLabel": "クリエイター・プロジェクト・目標を検索",
+    "searchPlaceholder": "クリエイター、プロジェクト、目標を検索…",
+    "searchButton": "検索"
+  },
+  "sections": {
+    "featuredGoals": {
+      "eyebrow": "注目の目標",
+      "heading": "名前ではなく、ミッションを応援しよう",
+      "intro": "人が応援するのはミッションです。いますぐ後押しできる目標がこちらです。"
+    },
+    "trending": {
+      "eyebrow": "トレンド",
+      "heading": "勢いに乗っています",
+      "intro": "いままさに応援が集まっているジャーニー。",
+      "previewNote": "コンセプト段階のランキングです — 今後のアップデートで、応援の勢いを示すシグナルに基づくようになります。"
+    },
+    "nearCompletion": {
+      "eyebrow": "達成まであと少し",
+      "heading": "ゴールまで後押ししよう",
+      "intro": "達成率80〜95%の目標 — もうひと押しで完了します。"
+    },
+    "categories": {
+      "eyebrow": "カテゴリー",
+      "heading": "あなたに合ったゴルフを見つけよう",
+      "intro": "プロを目指す選手からクラブのプロジェクト、チャリティまで — 気になるジャーニーを見て回りましょう。"
+    },
+    "activity": {
+      "eyebrow": "最近の支援",
+      "heading": "応援で動き続けるプラットフォーム",
+      "intro": "サポーターの活動が「見つける」をどう動かし続けるかのイメージです。",
+      "conceptNote": "イメージ用の活動例です — 実際のサポーターやギフトは表示していません。",
+      "line": "<name>{supporter}</name>が{target}{action}"
+    }
+  },
+  "previewNoteDefault": "現在はイメージ表示です — クリエイターの参加に伴い、実際の内容がここに表示されます。",
+  "categories": {
+    "golf-apps": "ゴルフアプリ",
+    "content-creators": "コンテンツクリエイター",
+    "professional-golfers": "プロゴルファー",
+    "amateurs": "アマチュア",
+    "junior-golf": "ジュニアゴルフ",
+    "charities": "チャリティ",
+    "golf-trips": "ゴルフ旅行",
+    "golf-societies": "ゴルフソサエティ",
+    "golf-coaches": "ゴルフコーチ",
+    "club-projects": "クラブプロジェクト",
+    "equipment-testing": "ギアテスト",
+    "golf-photography": "ゴルフ写真",
+    "golf-podcasts": "ゴルフポッドキャスト"
+  },
+  "browse": {
+    "eyebrow": "検索",
+    "heading": "すべてのジャーニーを検索",
+    "intro": "クリエイター、プロジェクト、目標、場所、カテゴリーで検索して、重視したい順に並べ替えられます。",
+    "searchLabel": "クリエイター・プロジェクト・目標を検索",
+    "searchPlaceholder": "クリエイター、プロジェクト、目標を検索…",
+    "filter": "絞り込み",
+    "category": "カテゴリー",
+    "allCategories": "すべてのカテゴリー",
+    "country": "国",
+    "allCountries": "すべての国",
+    "sortLabel": "並べ替え",
+    "sort": {
+      "newest": "新着順",
+      "mostSupported": "応援が多い順",
+      "nearCompletion": "達成間近",
+      "trending": "トレンド"
+    },
+    "clear": "クリア",
+    "resultCount": "{count, plural, other {#件のジャーニー}}",
+    "showMore": "ジャーニーをさらに表示",
+    "empty": "検索に一致するジャーニーはまだありません。フィルターを外すか、別のキーワードをお試しください。"
+  },
+  "goalCard": {
+    "creatorFallback": "クリエイター",
+    "raisedOfTarget": "{target}のうち{raised}",
+    "targetGoal": "目標{target}",
+    "beTheFirst": "最初の応援者になる",
+    "support": "応援する",
+    "seeHowGoalsWork": "目標の仕組みを見る",
+    "progressLabel": "{title}への進捗：{target}のうち{raised}"
+  },
+  "creatorCard": {
+    "new": "新着",
+    "support": "応援する",
+    "seeHowItWorks": "仕組みを見る",
+    "progressLabel": "{name}：{title}への進捗"
+  },
+  "cta": {
+    "heading": "あなた自身のジャーニーを始めよう",
+    "body": "目標を設定し、ページを共有して、ゴルフファンと一緒にジャーニーを進みましょう。"
+  }
+}

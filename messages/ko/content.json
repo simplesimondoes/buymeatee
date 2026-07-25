@@ -1,0 +1,214 @@
+{
+  "supportOptions": {
+    "oneTee": {
+      "name": "티 1개",
+      "description": "계속 나아가라는 마음을 담은 작은 응원이에요."
+    },
+    "threeTees": {
+      "name": "티 3개",
+      "description": "다음 연습을 위한 응원 한 세트예요."
+    },
+    "nineHoles": {
+      "name": "9홀",
+      "description": "다음 승부의 9홀을 향한 의미 있는 응원이에요."
+    },
+    "eighteenHoles": {
+      "name": "18홀",
+      "description": "의미 있는 코스에서의 라운드 전체를 후원해요."
+    },
+    "greenFee": {
+      "name": "그린피",
+      "description": "특별한 곳에서 플레이하는 비용을 대신해 주세요."
+    },
+    "customSupport": {
+      "name": "자유 응원",
+      "description": "나만의 방식으로 여정을 응원해 보세요."
+    },
+    "note": "크리에이터는 응원 옵션을 직접 설정하고 각 후원이 어디에 쓰이는지 보여줄 수 있게 될 거예요."
+  },
+  "exampleGoals": {
+    "scotlandLinksTrip": {
+      "title": "스코틀랜드 링크스 여행",
+      "creator": "Callum Reid",
+      "description": "스코틀랜드 해안의 유서 깊은 링크스 코스 다섯 곳을 플레이하며 촬영해요."
+    },
+    "roadToScratch": {
+      "title": "스크래치를 향한 길",
+      "creator": "Priya Shah",
+      "description": "핸디캡 7.8에서 스크래치까지, 모든 레슨과 라운드를 기록해요."
+    },
+    "amateurChampionshipEntry": {
+      "title": "아마추어 챔피언십 출전",
+      "creator": "Tom Fletcher",
+      "description": "지역 아마추어 대회 한 시즌 전체의 참가비와 이동 경비예요."
+    },
+    "independentCourseReviews": {
+      "title": "독립 코스 리뷰",
+      "creator": "Megan Frost",
+      "description": "평범한 골퍼들이 실제로 플레이하는 코스를 스폰서 없이 솔직하게 리뷰해요."
+    },
+    "firstProfessionalSeason": {
+      "title": "첫 프로 시즌",
+      "creator": "Dan Whitmore",
+      "description": "미니 투어에서 시드에 도전해요 — 모든 출전을 안에서 들려드려요."
+    },
+    "womensGolfSeries": {
+      "title": "여성 골프 콘텐츠 시리즈",
+      "creator": "Lauren Park",
+      "description": "한 라운드씩, 더 많은 여성이 골프를 시작하도록 돕는 영상 시리즈예요."
+    }
+  },
+  "previewCreators": {
+    "caddieLive": {
+      "location": "맨체스터",
+      "country": "잉글랜드",
+      "bio": "골퍼가 골퍼를 위해 만든 라이브 스코어링·코스 매핑 앱이에요.",
+      "goalTitle": "골프 코스 10,000곳 추가",
+      "goalDescription": "모든 라운드를 담을 수 있도록 코스 1만 곳을 매핑하고 검증해요.",
+      "updateNote": "소식: 6,200개 코스 매핑 완료, 계속 늘어나는 중이에요."
+    },
+    "sarahBell": {
+      "location": "세인트앤드루스",
+      "country": "스코틀랜드",
+      "bio": "골프의 고향에서의 삶을 스폰서 없이 솔직하게 담아내고 있어요.",
+      "goalTitle": "새 YouTube 다큐멘터리",
+      "goalDescription": "링크스 골프를 지켜온 사람들을 담은 4부작 시리즈예요.",
+      "updateNote": "소식: 2화 첫 편집본이 나왔어요."
+    },
+    "jackMorrison": {
+      "location": "포트마녹",
+      "country": "아일랜드",
+      "bio": "정공법으로 투어 카드에 도전해요 — 모든 출전을 안에서 들려드려요.",
+      "goalTitle": "Q스쿨 예선 통과",
+      "goalDescription": "투어 퀄리파잉 풀 도전을 위한 참가비와 이동 경비예요.",
+      "updateNote": "소식: 지역 예선에서 컷을 통과했어요."
+    },
+    "priyaShah": {
+      "location": "글렌이글스",
+      "country": "스코틀랜드",
+      "bio": "핸디캡 7.8에서 스크래치까지, 모든 레슨과 라운드를 기록해요.",
+      "goalTitle": "스코틀랜드 아마추어 시즌",
+      "goalDescription": "아마추어 대회 한 시즌 전체의 참가비와 이동 경비예요."
+    },
+    "firstTeeNorth": {
+      "location": "리즈",
+      "country": "잉글랜드",
+      "bio": "골프를 접할 기회가 없던 아이들 손에 클럽을 쥐여 주고 있어요.",
+      "goalTitle": "주니어 골프 프로그램",
+      "goalDescription": "주니어 40명을 위한 한 시즌의 무료 코칭과 장비예요.",
+      "updateNote": "소식: 여름 프로그램에 주니어 28명이 등록했어요."
+    },
+    "callumReid": {
+      "location": "에어셔",
+      "country": "스코틀랜드",
+      "bio": "스코틀랜드 해안의 유서 깊은 링크스 코스를 플레이하며 촬영해요.",
+      "goalTitle": "스코틀랜드 링크스 여행",
+      "goalDescription": "열흘에 걸쳐 촬영하는 유서 깊은 링크스 코스 다섯 곳이에요.",
+      "updateNote": "소식: 서해안 일정을 확정했어요."
+    },
+    "fairwaySociety": {
+      "location": "서리",
+      "country": "잉글랜드",
+      "bio": "남부 곳곳에서 부담 없는 골프 모임을 여는 친목 소사이어티예요.",
+      "goalTitle": "소사이어티 투어 시즌",
+      "goalDescription": "한 해 일정 전체를 위한 그린피와 상품이에요."
+    },
+    "coachDan": {
+      "location": "브리스틀",
+      "country": "잉글랜드",
+      "bio": "사계절 전천후 연습 공간을 만들고 있는 PGA 코치예요.",
+      "goalTitle": "실내 코칭 스튜디오 만들기",
+      "goalDescription": "겨울에도 레슨을 이어갈 런치 모니터 베이예요.",
+      "updateNote": "소식: 스튜디오 임대 계약을 마쳤어요."
+    },
+    "linksCamera": {
+      "location": "앵글시",
+      "country": "웨일스",
+      "bio": "대부분의 골퍼가 보지 못하는 해안 코스를 담는 파인아트 사진 작업이에요.",
+      "goalTitle": "해안 코스 사진 시리즈",
+      "goalDescription": "잘 알려지지 않은 바닷가 홀 30곳을 담은 인쇄 컬렉션이에요.",
+      "updateNote": "소식: 이번 주 동틀 녘에 파3 홀을 촬영했어요."
+    },
+    "backNinePod": {
+      "location": "에든버러",
+      "country": "스코틀랜드",
+      "bio": "친구 둘, 마이크 하나, 그리고 아마추어 골프를 향한 진심이에요.",
+      "goalTitle": "시즌 2 스튜디오 장비",
+      "goalDescription": "더 깨끗한 사운드를 위한 제대로 된 마이크와 방음 설비예요."
+    },
+    "meganFrost": {
+      "location": "켄트",
+      "country": "잉글랜드",
+      "bio": "평범한 골퍼들이 사는 장비를 스폰서 없이 독립적으로 테스트해요.",
+      "goalTitle": "독립 장비 테스트",
+      "goalDescription": "브랜드가 아닌 골퍼들의 후원으로 꾸리는 1년간의 솔직한 리뷰예요."
+    },
+    "clubhouseRevival": {
+      "location": "파이프",
+      "country": "스코틀랜드",
+      "bio": "100년 된 사랑받는 클럽하우스를 회원들이 직접 복원하는 프로젝트예요.",
+      "goalTitle": "옛 클럽하우스 복원",
+      "goalDescription": "지붕을 수리하고 회원 라운지를 다시 여는 일이에요.",
+      "updateNote": "소식: 새 지붕 목재가 현장에 도착했어요."
+    }
+  },
+  "previewActivity": {
+    "sarahBellTee": {
+      "supporter": "Alex",
+      "action": "선물했어요",
+      "target": "Sarah Bell님에게 티를"
+    },
+    "coachDanStudio": {
+      "supporter": "Jordan",
+      "action": "응원했어요",
+      "target": "Coach Dan님의 스튜디오를"
+    },
+    "juniorProgramme": {
+      "supporter": "익명",
+      "action": "후원했어요",
+      "target": "주니어 골프 프로그램을"
+    },
+    "caddieLiveTee": {
+      "supporter": "Sam",
+      "action": "선물했어요",
+      "target": "Caddie Live에 티를"
+    },
+    "jackMorrisonQSchool": {
+      "supporter": "Rory",
+      "action": "응원했어요",
+      "target": "Jack Morrison님의 Q스쿨 도전을"
+    },
+    "scotlandLinksTrip": {
+      "supporter": "Emily",
+      "action": "후원했어요",
+      "target": "스코틀랜드 링크스 여행을"
+    }
+  },
+  "imageAlt": {
+    "heroJourney": "해질녘 해안 코스를 따라 골프백을 메고 걸어가는 골퍼 세 명",
+    "appConceptCreatorProfile": "현재 목표와 진행 바가 있는 가상 크리에이터 프로필의 콘셉트 앱 화면",
+    "appConceptSupporterCollection": "수집한 코스와 배지가 있는 가상 서포터 프로필의 콘셉트 앱 화면",
+    "heroLinksGolfer": "해질녘 바다 위 링크스 코스에서 드라이브 샷을 마무리하는 골퍼",
+    "groupDiverseGolfers": "코스에서 골프백 옆에 모여 이야기를 나누는 골퍼 네 명",
+    "womanReadingPutt": "그린 위에 몸을 낮추고 퍼트 라인을 읽는 골퍼",
+    "golferDriverSwing": "맑은 하늘을 배경으로 드라이버를 휘두르는 골퍼",
+    "friendsWalkingFairway": "노을 지는 시간, 골프백을 메고 페어웨이를 걸어 내려가는 세 친구",
+    "linksCourseAerial": "해안선을 따라 굽이도는 링크스 코스의 항공 사진",
+    "clubhouseEvening": "저녁, 따뜻한 불빛이 새어 나오는 석조 클럽하우스",
+    "golfBallCloseup": "이슬 맺힌 잔디 위에 놓인 골프공 클로즈업",
+    "flagAtSunset": "황금빛 노을 하늘을 배경으로 한 핀 깃발 실루엣",
+    "womanFullSwing": "코스에서 풀 스윙을 마무리하는 골퍼",
+    "golfersFistBump": "바닷가 코스에서 주먹 인사를 나누는 두 골퍼",
+    "mountainCourseView": "호수 옆 푸른 산골짜기에 자리한 골프 코스",
+    "bunkerShotAction": "벙커에서 모래를 튀기며 샷을 하는 골퍼",
+    "womanSunriseView": "해 뜰 무렵 코스를 바라보는 골퍼",
+    "putterAndBall": "연습 그린의 홀 옆에 놓인 퍼터와 공",
+    "friendsGolfCart": "골프 카트에서 함께 웃고 있는 두 골퍼",
+    "coastalCliffHole": "바다 위 해안 절벽에 자리한 극적인 골프 홀",
+    "tournamentCompetition": "대회 갤러리 앞에서 티샷을 날리는 골퍼",
+    "travelGolfTrip": "공항 통로에서 여행용 골프백을 옮기는 골퍼",
+    "creatorVloggingGolf": "코스에서 카메라 짐벌로 자신을 촬영하는 골프 크리에이터",
+    "juniorGolferSwing": "아이언 스윙을 연습하는 주니어 골퍼",
+    "aerialGolfHole": "벙커와 물에 둘러싸인 아일랜드 그린의 항공 사진"
+  }
+}

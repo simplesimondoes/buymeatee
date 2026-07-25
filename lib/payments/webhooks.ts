@@ -2,6 +2,7 @@ import "server-only";
 
 import type Stripe from "stripe";
 
+import { isAppLocale } from "@/i18n/locales";
 import {
   goalReductionForRefund,
   goalRefundDelta,
@@ -270,6 +271,8 @@ export async function markGiftPaidVerified(
         toEmail: receiptEmail,
         goalId: gift.goal_id,
         wishlistItemId: gift.wishlist_item_id,
+        // Language the supporter used at checkout (null on legacy rows -> en).
+        locale: isAppLocale(gift.locale) ? gift.locale : undefined,
       });
     }
     logPaymentEvent("info", "webhook.gift_paid", {

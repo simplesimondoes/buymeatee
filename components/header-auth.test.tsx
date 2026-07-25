@@ -1,6 +1,7 @@
-import { render, screen } from "@testing-library/react";
+import { screen } from "@testing-library/react";
 import { beforeEach, describe, expect, it, vi } from "vitest";
 
+import { renderWithIntl } from "@/test/i18n-test-utils";
 import { HeaderAuth } from "@/components/header-auth";
 import type { SessionState } from "@/components/auth/use-session";
 
@@ -17,7 +18,7 @@ describe("HeaderAuth", () => {
 
   it("shows Log in and Register while signed out", () => {
     mockSession.mockReturnValue({ status: "anon" });
-    render(<HeaderAuth />);
+    renderWithIntl(<HeaderAuth />);
 
     expect(screen.getByRole("link", { name: "Log in" })).toBeInTheDocument();
     expect(screen.getByRole("link", { name: "Register" })).toBeInTheDocument();
@@ -28,7 +29,7 @@ describe("HeaderAuth", () => {
 
   it("treats the loading state as signed out", () => {
     mockSession.mockReturnValue({ status: "loading" });
-    render(<HeaderAuth />);
+    renderWithIntl(<HeaderAuth />);
 
     expect(screen.getByRole("link", { name: "Log in" })).toBeInTheDocument();
   });
@@ -40,7 +41,7 @@ describe("HeaderAuth", () => {
       displayName: "Caddie Live",
       avatarUrl: null,
     });
-    render(<HeaderAuth />);
+    renderWithIntl(<HeaderAuth />);
 
     expect(screen.getByRole("button", { name: /Caddie Live/ })).toHaveAttribute(
       "aria-haspopup",

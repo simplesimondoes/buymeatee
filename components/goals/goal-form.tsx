@@ -1,8 +1,11 @@
 "use client";
 
 import { LoaderCircle } from "lucide-react";
+import { useTranslations } from "next-intl";
 import { useId, useState } from "react";
 
+import { useErrorMessage } from "@/components/intl/use-error-message";
+import type { ErrorDetail } from "@/lib/i18n/errors";
 import {
   validateGoalInput,
   type GoalFieldName,
@@ -15,7 +18,10 @@ import {
 } from "@/lib/payments/currency";
 import { parseMajorAmountToMinor } from "@/lib/payments/gift-schema";
 
-export type GoalFormErrors = Partial<Record<GoalFieldName, string>>;
+/** Field errors: coded details from the schema/API, or legacy raw strings. */
+export type GoalFormErrors = Partial<
+  Record<GoalFieldName, ErrorDetail | string>
+>;
 
 interface GoalFormProps {
   initialTitle?: string;
@@ -32,7 +38,7 @@ interface GoalFormProps {
   /** Resolves to server-side field errors, a form error, or null on success. */
   onSubmit: (
     input: GoalInput,
-  ) => Promise<{ errors?: GoalFormErrors; error?: string } | null>;
+  ) => Promise<{ errors?: GoalFormErrors; error?: ErrorDetail | string } | null>;
 }
 
 const currencyLabels: Record<SupportedCurrency, string> = {
@@ -82,6 +88,8 @@ export function GoalForm({
   onCancel,
   onSubmit,
 }: GoalFormProps) {
+  const t = useTranslations("dashboard");
+  const errorMessage = useErrorMessage();
   const fieldId = useId();
   const [title, setTitle] = useState(initialTitle);
   const [description, setDescription] = useState(initialDescription);
@@ -95,6 +103,9 @@ export function GoalForm({
   const [errors, setErrors] = useState<GoalFormErrors>({});
   const [formError, setFormError] = useState<string | null>(null);
   const [saving, setSaving] = useState(false);
+
+  const fieldError = (field: GoalFieldName): string | undefined =>
+    errors[field] === undefined ? undefined : errorMessage(errors[field]);
 
   async function handleSubmit(event: React.FormEvent<HTMLFormElement>) {
     event.preventDefault();
@@ -118,7 +129,7 @@ export function GoalForm({
     if (failure?.errors) {
       setErrors(failure.errors);
     } else if (failure?.error) {
-      setFormError(failure.error);
+      setFormError(errorMessage(failure.error));
     }
   }
 
@@ -129,19 +140,19 @@ export function GoalForm({
           htmlFor={`${fieldId}-title`}
           className="block text-sm font-medium text-ink/80"
         >
-          What are you working towards?
+          {t("goals.form.titleLabel")}
         </label>
         <input
           id={`${fieldId}-title`}
           type="text"
           value={title}
           onChange={(event) => setTitle(event.target.value)}
-          placeholder="A season of tournament entries"
+          placeholder={t("goals.form.titlePlaceholder")}
           className={inputClasses}
           aria-invalid={errors.title ? true : undefined}
           aria-describedby={errors.title ? `${fieldId}-title-error` : undefined}
         />
-        <FieldError id={`${fieldId}-title-error`} message={errors.title} />
+        <FieldError id={`${fieldId}-title-error`} message={fieldError("title")} />
       </div>
 
       <div>
@@ -150,8 +161,10 @@ export function GoalForm({
             htmlFor={`${fieldId}-description`}
             className="block text-sm font-medium text-ink/80"
           >
-            Why it matters{" "}
-            <span className="font-normal text-ink/50">(optional)</span>
+            {t("goals.form.descriptionLabel")}{" "}
+            <span className="font-normal text-ink/50">
+              {t("goals.form.optional")}
+            </span>
           </label>
           <span
             className={`text-xs tabular-nums ${
@@ -168,7 +181,7 @@ export function GoalForm({
           rows={3}
           value={description}
           onChange={(event) => setDescription(event.target.value)}
-          placeholder="Tell supporters what this goal makes possible — green fees, travel, entries, coaching."
+          placeholder={t("goals.form.descriptionPlaceholder")}
           className={inputClasses}
           aria-invalid={errors.description ? true : undefined}
           aria-describedby={
@@ -177,7 +190,7 @@ export function GoalForm({
         />
         <FieldError
           id={`${fieldId}-description-error`}
-          message={errors.description}
+          message={fieldError("description")}
         />
       </div>
 
@@ -187,7 +200,7 @@ export function GoalForm({
             htmlFor={`${fieldId}-target`}
             className="block text-sm font-medium text-ink/80"
           >
-            Target
+            {t("goals.form.targetLabel")}
           </label>
           <input
             id={`${fieldId}-target`}
@@ -195,7 +208,7 @@ export function GoalForm({
             inputMode="decimal"
             value={target}
             onChange={(event) => setTarget(event.target.value)}
-            placeholder="500"
+            placeholder={t("goals.form.targetPlaceholder")}
             className={inputClasses}
             aria-invalid={errors.targetAmount ? true : undefined}
             aria-describedby={
@@ -204,7 +217,7 @@ export function GoalForm({
           />
           <FieldError
             id={`${fieldId}-target-error`}
-            message={errors.targetAmount}
+            message={fieldError("targetAmount")}
           />
         </div>
         <div>
@@ -212,7 +225,7 @@ export function GoalForm({
             htmlFor={`${fieldId}-currency`}
             className="block text-sm font-medium text-ink/80"
           >
-            Currency
+            {t("goals.form.currencyLabel")}
           </label>
           <select
             id={`${fieldId}-currency`}
@@ -234,11 +247,11 @@ export function GoalForm({
           </select>
           {currencyLocked ? (
             <p id={`${fieldId}-currency-locked`} className="mt-1.5 text-xs text-ink/60">
-              This goal has received support, so its currency can&apos;t change.
+              {t("goals.form.currencyLockedHelp")}
             </p>
           ) : payoutCurrency ? (
             <p id={`${fieldId}-currency-locked`} className="mt-1.5 text-xs text-ink/60">
-              Goals use your payout currency so supporters can fund them.
+              {t("goals.form.currencyPayoutHelp")}
             </p>
           ) : null}
         </div>
@@ -260,7 +273,7 @@ export function GoalForm({
           onClick={onCancel}
           className="inline-flex min-h-11 items-center justify-center rounded-full px-4 text-sm font-medium text-ink/60 transition-colors hover:text-ink"
         >
-          Cancel
+          {t("actions.cancel")}
         </button>
         {formError ? (
           <p role="alert" className="w-full text-sm text-red-800">

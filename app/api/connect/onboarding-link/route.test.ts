@@ -59,11 +59,13 @@ describe("POST /api/connect/onboarding-link", () => {
     });
   });
 
-  it("rejects unsupported countries", async () => {
+  it("rejects unsupported countries with a stable error code", async () => {
     getAuthenticatedUser.mockResolvedValue({ id: "user-1" });
     // JP is deferred (zero-decimal currency), so it is not an allowed country.
     const response = await POST(request({ country: "JP" }));
     expect(response.status).toBe(400);
+    const body = (await response.json()) as { error: { code: string } };
+    expect(body.error.code).toBe("api.connectCountryUnsupported");
     expect(getOrCreateConnectedAccount).not.toHaveBeenCalled();
   });
 
@@ -72,7 +74,9 @@ describe("POST /api/connect/onboarding-link", () => {
     getOrCreateConnectedAccount.mockRejectedValue(new Error("no key"));
     const response = await POST(request());
     expect(response.status).toBe(503);
-    const body = (await response.json()) as { error: string };
-    expect(body.error).not.toContain("no key"); // internals stay internal
+    const body = (await response.json()) as { error: { code: string } };
+    // Internals stay internal: only a stable code crosses the boundary.
+    expect(body.error.code).toBe("api.connectUnavailable");
+    expect(JSON.stringify(body)).not.toContain("no key");
   });
 });

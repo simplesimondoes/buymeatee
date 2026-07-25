@@ -1,8 +1,11 @@
 "use client";
 
 import { LoaderCircle } from "lucide-react";
+import { useTranslations } from "next-intl";
 import { useId, useState } from "react";
 
+import { useErrorMessage } from "@/components/intl/use-error-message";
+import type { ErrorDetail } from "@/lib/i18n/errors";
 import {
   validateUpdateInput,
   type UpdateFieldName,
@@ -10,7 +13,10 @@ import {
 } from "@/lib/updates/update-schema";
 import { UPDATE_BODY_MAX_LENGTH } from "@/lib/updates/types";
 
-export type UpdateFormErrors = Partial<Record<UpdateFieldName, string>>;
+/** Field errors: coded details from the schema/API, or legacy raw strings. */
+export type UpdateFormErrors = Partial<
+  Record<UpdateFieldName, ErrorDetail | string>
+>;
 
 interface UpdateFormProps {
   initialTitle?: string;
@@ -19,7 +25,7 @@ interface UpdateFormProps {
   onCancel: () => void;
   onSubmit: (
     input: UpdateInput,
-  ) => Promise<{ errors?: UpdateFormErrors; error?: string } | null>;
+  ) => Promise<{ errors?: UpdateFormErrors; error?: ErrorDetail | string } | null>;
 }
 
 const inputClasses =
@@ -43,12 +49,17 @@ export function UpdateForm({
   onCancel,
   onSubmit,
 }: UpdateFormProps) {
+  const t = useTranslations("dashboard");
+  const errorMessage = useErrorMessage();
   const fieldId = useId();
   const [title, setTitle] = useState(initialTitle);
   const [body, setBody] = useState(initialBody);
   const [errors, setErrors] = useState<UpdateFormErrors>({});
   const [formError, setFormError] = useState<string | null>(null);
   const [saving, setSaving] = useState(false);
+
+  const fieldError = (field: UpdateFieldName): string | undefined =>
+    errors[field] === undefined ? undefined : errorMessage(errors[field]);
 
   async function handleSubmit(event: React.FormEvent<HTMLFormElement>) {
     event.preventDefault();
@@ -65,7 +76,7 @@ export function UpdateForm({
     if (failure?.errors) {
       setErrors(failure.errors);
     } else if (failure?.error) {
-      setFormError(failure.error);
+      setFormError(errorMessage(failure.error));
     }
   }
 
@@ -76,19 +87,19 @@ export function UpdateForm({
           htmlFor={`${fieldId}-title`}
           className="block text-sm font-medium text-ink/80"
         >
-          Title
+          {t("updates.form.titleLabel")}
         </label>
         <input
           id={`${fieldId}-title`}
           type="text"
           value={title}
           onChange={(event) => setTitle(event.target.value)}
-          placeholder="July update — 1,200 new courses"
+          placeholder={t("updates.form.titlePlaceholder")}
           className={inputClasses}
           aria-invalid={errors.title ? true : undefined}
           aria-describedby={errors.title ? `${fieldId}-title-error` : undefined}
         />
-        <FieldError id={`${fieldId}-title-error`} message={errors.title} />
+        <FieldError id={`${fieldId}-title-error`} message={fieldError("title")} />
       </div>
 
       <div>
@@ -97,7 +108,7 @@ export function UpdateForm({
             htmlFor={`${fieldId}-body`}
             className="block text-sm font-medium text-ink/80"
           >
-            Update
+            {t("updates.form.bodyLabel")}
           </label>
           <span
             className={`text-xs tabular-nums ${
@@ -112,14 +123,12 @@ export function UpdateForm({
           rows={8}
           value={body}
           onChange={(event) => setBody(event.target.value)}
-          placeholder={
-            "What's new? Supporters love seeing progress.\n\nMarkdown works: **bold**, - lists, and [links](https://…)."
-          }
+          placeholder={t("updates.form.bodyPlaceholder")}
           className={`${inputClasses} font-mono text-sm`}
           aria-invalid={errors.body ? true : undefined}
           aria-describedby={errors.body ? `${fieldId}-body-error` : undefined}
         />
-        <FieldError id={`${fieldId}-body-error`} message={errors.body} />
+        <FieldError id={`${fieldId}-body-error`} message={fieldError("body")} />
       </div>
 
       <div className="flex flex-wrap items-center gap-3">
@@ -138,7 +147,7 @@ export function UpdateForm({
           onClick={onCancel}
           className="inline-flex min-h-11 items-center justify-center rounded-full px-4 text-sm font-medium text-ink/60 transition-colors hover:text-ink"
         >
-          Cancel
+          {t("actions.cancel")}
         </button>
         {formError ? (
           <p role="alert" className="w-full text-sm text-red-800">

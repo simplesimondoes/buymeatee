@@ -1,0 +1,187 @@
+{
+  "meta": {
+    "profile": {
+      "title": "プロフィール設定",
+      "description": "公開されるBuyMeATeeページを設定しましょう。"
+    },
+    "payments": {
+      "title": "決済設定",
+      "description": "Stripeを通じてティーを受け取る方法を設定します。"
+    },
+    "paymentsReturn": {
+      "title": "決済設定を仕上げています"
+    }
+  },
+  "nav": {
+    "label": "設定のセクション",
+    "profile": "プロフィール",
+    "payments": "決済"
+  },
+  "eyebrow": "設定",
+  "profile": {
+    "title": "プロフィール",
+    "intro": "ここで設定した内容が、公開ページでサポーターに表示されます — あなたのリンク、名前、そしてジャーニーの行き先。",
+    "unavailable": "プロフィール設定は現在利用できません。しばらくしてからもう一度お試しください。",
+    "language": {
+      "label": "言語",
+      "help": "このデバイスでの、BuyMeATee全体に適用されます。"
+    },
+    "cover": {
+      "label": "カバー画像",
+      "help": "JPEG、PNG、WebP（5 MBまで）。横長の写真が最適です — 目安は1600 × 1067 px（3:2）。スマートフォンや幅広の画面に合わせて端が切り取られるため、主役はおおよそ中央に配置してください。",
+      "add": "画像を追加",
+      "change": "画像を変更",
+      "remove": "削除",
+      "errors": {
+        "type": "JPEG、PNG、またはWebP画像を使用してください。",
+        "size": "画像は5 MB以内にしてください。"
+      }
+    },
+    "photo": {
+      "label": "写真",
+      "add": "写真を追加",
+      "change": "写真を変更",
+      "remove": "削除",
+      "help": "JPEG、PNG、WebP（2 MBまで）。写真は公開され、あなたのページで誰でも見ることができます。",
+      "chooseAria": "プロフィール写真を選ぶ",
+      "fallbackName": "あなたのプロフィール",
+      "errors": {
+        "type": "JPEG、PNG、またはWebP画像を使用してください。",
+        "size": "画像は2 MB以内にしてください。"
+      }
+    },
+    "form": {
+      "optional": "（任意）",
+      "charCount": "{count}/{max}",
+      "usernameLabel": "あなたの公開リンク",
+      "usernamePlaceholder": "your-name",
+      "usernameHelp": "小文字の英字、数字、ハイフンが使えます。サポーターがティーを贈るために訪れるリンクです。",
+      "usernameChangeWarning": "保存すると公開リンクが変わります。これまでに共有したbuymeatee.com/t/{username}は、すべて使えなくなります。",
+      "displayNameLabel": "表示名",
+      "bioLabel": "ひとこと紹介",
+      "bioPlaceholder": "あなたのゴルフのジャーニーがどこへ向かっていて、応援が何の助けになるのか。",
+      "aboutLabel": "自己紹介",
+      "aboutPlaceholder": "あなたのストーリーを聞かせてください。例：「こんにちは、Caddie Liveを開発しているSimonです…」\n\nMarkdownが使えます：**太字**、_斜体_、- リスト、[リンク](https://…)。",
+      "aboutHelp": "Markdownに対応 — 見出し、<strong>太字</strong>、リスト、リンク。人は人を応援するもの。あなたらしく書きましょう。",
+      "countryLabel": "国",
+      "golfLegend": "あなたのゴルフ",
+      "handicapLabel": "ハンディキャップ",
+      "handicapPlaceholder": "9.4",
+      "handednessLabel": "利き手",
+      "handednessNotSet": "未設定",
+      "handednessRight": "右利き",
+      "handednessLeft": "左利き",
+      "locationLabel": "所在地",
+      "locationPlaceholder": "サリー、イングランド",
+      "homeClubLabel": "ホームコース",
+      "homeClubPlaceholder": "Surrey Downs GC",
+      "linksLegend": "リンク",
+      "websiteLabel": "ウェブサイト",
+      "socialPlaceholders": {
+        "youtube": "https://youtube.com/@you",
+        "instagram": "https://instagram.com/you",
+        "tiktok": "https://tiktok.com/@you",
+        "x": "https://x.com/you",
+        "bluesky": "https://bsky.app/profile/you",
+        "substack": "https://you.substack.com",
+        "facebook": "https://facebook.com/you",
+        "twitch": "https://twitch.tv/you",
+        "linkedin": "https://linkedin.com/in/you",
+        "website": "https://your-site.com"
+      },
+      "pinnedLabel": "ピン留めメディア",
+      "pinnedPlaceholder": "https://youtube.com/watch?v=…",
+      "pinnedHelp": "ページ上部の近くに、ひとつだけ紹介できます — YouTube動画、Instagram投稿、または任意のリンク。",
+      "save": "プロフィールを保存",
+      "saved": "プロフィールを保存しました。ページはこちらで公開中です：",
+      "copyLink": "リンクをコピー",
+      "copied": "コピーしました"
+    }
+  },
+  "payments": {
+    "title": "決済",
+    "intro": "ティーの受け取りはStripe上で動いています。Stripeが本人確認や銀行情報を求めることがあります — それは決済を安全に保つための仕組みです。",
+    "unavailable": "決済設定は現在利用できません。しばらくしてからもう一度お試しください。",
+    "statusAria": "決済設定の状況",
+    "countryTerm": "国：",
+    "receivingTerm": "ティーの受け取り：",
+    "receivingYes": "可能",
+    "receivingNo": "まだ",
+    "footnote": "出金は、BuyMeATeeではなくStripeが行います。ギフトが「支払い済み」になった時点でStripeアカウントに届いています — 銀行口座への出金タイミングは、あなたのStripe出金スケジュールに従います。",
+    "state": {
+      "notStarted": {
+        "heading": "決済は未設定です",
+        "body": "ティーを受け取るには、Stripeアカウントを連携してください。本人確認、銀行情報、出金はStripeが取り扱います — BuyMeATeeがあなたのお金を預かることはありません。",
+        "cta": "Stripeで決済を設定"
+      },
+      "onboardingNotStarted": {
+        "heading": "Stripeアカウントを作成済み",
+        "body": "Stripeアカウントはありますが、オンボーディングがまだ始まっていません。数分で完了します。",
+        "cta": "Stripeオンボーディングを開始"
+      },
+      "onboardingIncomplete": {
+        "heading": "オンボーディングが未完了です",
+        "body": "ティーを受け取るには、Stripeにあといくつかの情報が必要です。途中から再開できます。",
+        "cta": "Stripeオンボーディングを続ける"
+      },
+      "informationRequired": {
+        "heading": "Stripeが追加情報を求めています",
+        "body": "Stripeから追加情報の提出を求められています。提出されるまで、決済や出金が制限されることがあります。",
+        "cta": "不足している情報を提出"
+      },
+      "verificationPending": {
+        "heading": "本人確認中",
+        "body": "提出された情報をStripeが確認しています。通常はすぐに完了します — また少ししたらご確認ください。"
+      },
+      "ready": {
+        "heading": "ティーを受け取れます",
+        "body": "Stripeアカウントの設定は完了しています。ギフトはあなたのStripeアカウントに直接届き、Stripeがそのスケジュールに従って銀行口座へ出金します。"
+      },
+      "paymentsRestricted": {
+        "heading": "決済が制限されています",
+        "body": "Stripeがこのアカウントを制限しているため、現在ティーを受け取れません。詳細はStripeダッシュボードを開くか、Stripeサポートにお問い合わせください。",
+        "cta": "Stripeで確認"
+      },
+      "payoutsDisabled": {
+        "heading": "出金が停止されています",
+        "body": "決済は可能ですが、銀行口座への出金が現在停止されています。多くの場合、Stripeは最新の銀行情報または本人確認情報を必要としています。",
+        "cta": "Stripeで情報を更新"
+      }
+    },
+    "connect": {
+      "countryLabel": "あなたの国",
+      "countryHelp": "一度設定すると、後から変更できません — 出金通貨がこの設定で決まります。",
+      "dashboardCta": "Stripeで出金と詳細を確認"
+    }
+  },
+  "checklist": {
+    "aria": "はじめの一歩",
+    "title": "ジャーニーをセットアップ",
+    "progress": "{total}件中{done}件完了",
+    "intro": "あと少しのステップで、サポーターがティーを贈れるようになります。",
+    "stepDone": "— 完了",
+    "stepTodo": "— 未完了",
+    "steps": {
+      "claimLink": {
+        "title": "リンクを取得する",
+        "detail": "サポーターが訪れるbuymeatee.com/t/の名前を選びましょう。",
+        "action": "リンクを選ぶ"
+      },
+      "completeProfile": {
+        "title": "プロフィールを完成させる",
+        "detail": "名前に加えて、ひとこと紹介か写真を — ジャーニーの主が誰なのかを伝えましょう。",
+        "action": "プロフィールを編集"
+      },
+      "firstGoal": {
+        "title": "最初の目標を公開する",
+        "detail": "サポーターが応援できる、具体的なものを用意しましょう。",
+        "action": "目標を追加"
+      },
+      "connectPayments": {
+        "title": "決済を連携する",
+        "detail": "お金のことはStripeにおまかせ — ティーはまっすぐあなたに届きます。",
+        "action": "決済を設定"
+      }
+    }
+  }
+}

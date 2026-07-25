@@ -1,0 +1,36 @@
+{
+  "layout": {
+    "tagline": "Unterstütze den Weg."
+  },
+  "giftReceived": {
+    "subject": "Du hast ein Tee bekommen — {amount} von {sender}",
+    "preheader": "{sender} hat dir ein Tee spendiert ({amount}).",
+    "heading": "Du hast ein Tee bekommen ⛳",
+    "body": "{sender} hat dir gerade ein Tee spendiert — {amount}.",
+    "encouragement": "Jedes Tee bedeutet: Da steht jemand hinter deinem Weg. Weiter so.",
+    "cta": "Zum Dashboard",
+    "fallbackSender": "Ein:e Unterstützer:in",
+    "fallbackSenderInline": "ein:e Unterstützer:in"
+  },
+  "giftReceipt": {
+    "subject": "Dein Beleg — {amount} an {creator}",
+    "preheader": "Beleg: dein Tee für {creator} ({amount}).",
+    "heading": "Danke für deine Unterstützung",
+    "thanks": "Danke für dein Tee an {creator}.",
+    "target": "Dein Beitrag geht an: {target}.",
+    "receipt": "Deine Unterstützung von {amount} ist auf dem Weg zum Creator — diese E-Mail ist dein Beleg.",
+    "closing": "Du hast gerade geholfen, einen Golf-Weg in Bewegung zu halten. Genau darum geht es.",
+    "cta": "Mehr Creator entdecken",
+    "fallbackCreator": "einen Creator"
+  },
+  "goalReached": {
+    "subject": "Ziel erreicht: {title} 🎉",
+    "preheader": "{title} hat den Zielbetrag erreicht ({raised}).",
+    "heading": "Dein Ziel ist erreicht 🎯",
+    "body": "Dein Ziel {title} hat gerade den Zielbetrag erreicht.",
+    "progress": "Bisher erreicht: {raised} von {target}.",
+    "nextStep": "Geh in dein Dashboard, markiere es als abgeschlossen und teile den Moment mit den Unterstützer:innen, die dich dorthin gebracht haben.",
+    "cta": "Ziel ansehen",
+    "fallbackTitle": "dein Ziel"
+  }
+}

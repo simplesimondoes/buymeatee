@@ -1,0 +1,190 @@
+{
+  "nav": {
+    "label": "관리자 섹션",
+    "payments": "결제",
+    "users": "사용자",
+    "moderation": "운영 관리"
+  },
+  "meta": {
+    "payments": {
+      "title": "결제 관리"
+    },
+    "users": {
+      "title": "사용자 관리"
+    },
+    "userDetail": {
+      "title": "사용자 관리"
+    },
+    "moderation": {
+      "title": "운영 관리"
+    }
+  },
+  "common": {
+    "eyebrow": "관리자",
+    "search": "검색",
+    "noName": "(이름 없음)"
+  },
+  "statuses": {
+    "gift": {
+      "draft": "임시",
+      "checkout_created": "결제 세션 생성됨",
+      "processing": "처리 중",
+      "paid": "결제 완료",
+      "payment_failed": "결제 실패",
+      "expired": "만료됨",
+      "partially_refunded": "부분 환불",
+      "refunded": "환불됨",
+      "disputed": "이의 제기됨",
+      "dispute_won": "이의 제기 승소",
+      "dispute_lost": "이의 제기 패소",
+      "cancelled": "취소됨"
+    },
+    "goal": {
+      "draft": "임시 저장",
+      "active": "진행 중",
+      "completed": "달성 완료",
+      "archived": "보관됨"
+    },
+    "payment": {
+      "not_started": "시작 전",
+      "onboarding_not_started": "온보딩 시작 전",
+      "onboarding_incomplete": "온보딩 미완료",
+      "information_required": "정보 필요",
+      "verification_pending": "확인 대기 중",
+      "ready": "준비 완료",
+      "payments_restricted": "결제 제한됨",
+      "payouts_disabled": "정산 비활성화됨"
+    },
+    "role": {
+      "creator": "크리에이터",
+      "supporter": "서포터"
+    },
+    "account": {
+      "active": "활성",
+      "deactivated": "비활성화됨"
+    }
+  },
+  "payments": {
+    "title": "결제",
+    "searchLabel": "검색 (선물 공개 ID, cs_…, pi_…, 또는 수신자 사용자 이름)",
+    "statusLabel": "상태",
+    "statusAll": "전체",
+    "unavailable": "지금은 결제 데이터를 이용할 수 없어요.",
+    "reconciliationErrorsHeading": "대사 오류 — 수동 검토 필요",
+    "giftsHeading": "선물 (최신순)",
+    "giftsHeadingMatching": "“{query}” 검색 결과 선물",
+    "table": {
+      "created": "생성",
+      "publicId": "공개 ID",
+      "recipient": "수신자",
+      "sender": "보낸 사람",
+      "gift": "선물",
+      "platformFee": "플랫폼 수수료",
+      "total": "합계",
+      "status": "상태",
+      "refunded": "환불",
+      "stripe": "Stripe"
+    },
+    "anonymousSender": "(익명)",
+    "testMode": "(테스트)",
+    "openInStripe": "열기",
+    "empty": "선물이 없어요.",
+    "refund": {
+      "heading": "선물 환불",
+      "description": "전액 환불만 가능해요(MVP): 수신자 이체를 되돌리고 플랫폼 수수료를 환불해요. 웹훅으로 확정돼요."
+    },
+    "reconcile": {
+      "heading": "대사(Reconciliation)",
+      "description": "임시 / 결제 대기 / 처리 중 상태에 멈춘 선물을 Stripe와 대조해서 안전한 불일치를 복구해요."
+    }
+  },
+  "moderation": {
+    "title": "운영 관리",
+    "intro": "최근 변경된 공개 콘텐츠를 최신순으로 보여줘요. 게시 중단은 감사 로그에 사유를 기록하고, 삭제된 텍스트도 그곳에 보존돼요. 정책 초안: <policy>docs/moderation-policy.md</policy> (법률 검토 대기 중).",
+    "unavailable": "지금은 운영 관리를 이용할 수 없어요.",
+    "goalsSectionLabel": "최근 목표",
+    "goalsHeading": "목표 ({count})",
+    "goalsEmpty": "아직 목표가 없어요.",
+    "takenDownBadge": "게시 중단됨",
+    "goalTarget": "목표 금액 {amount}",
+    "profilesSectionLabel": "최근 프로필",
+    "profilesHeading": "공개 콘텐츠가 있는 프로필 ({count})",
+    "profilesEmpty": "아직 소개글이나 사진이 있는 프로필이 없어요.",
+    "takeDownButton": "게시 중단",
+    "restoreButton": "복원",
+    "clearBioButton": "소개글 지우기",
+    "removePhotoButton": "사진 삭제"
+  },
+  "action": {
+    "reasonRequired": "사유를 입력해 주세요 — 감사 로그에 기록돼요.",
+    "reasonFor": "{label} 사유",
+    "reasonPlaceholder": "사유 (감사 로그 기록)",
+    "confirm": "확인",
+    "cancel": "취소"
+  },
+  "users": {
+    "title": "사용자",
+    "searchLabel": "사용자 이름, 표시 이름 또는 사용자 ID로 검색",
+    "searchPlaceholder": "사용자 이름, 표시 이름 또는 사용자 ID",
+    "unavailable": "지금은 사용자 검색을 이용할 수 없어요.",
+    "empty": "일치하는 프로필이 없어요.",
+    "table": {
+      "profile": "프로필",
+      "publicLink": "공개 링크",
+      "role": "역할",
+      "status": "상태",
+      "joined": "가입일"
+    }
+  },
+  "userDetail": {
+    "breadcrumb": "관리자 · 사용자",
+    "deactivatedOn": "{date} 비활성화됨",
+    "profileHeading": "프로필",
+    "fields": {
+      "userId": "사용자 ID",
+      "publicLink": "공개 링크",
+      "role": "역할",
+      "country": "국가",
+      "bio": "소개글",
+      "joined": "가입일"
+    },
+    "linkNotClaimed": "미설정",
+    "paymentsHeading": "결제",
+    "stripeState": "Stripe 상태",
+    "canReceiveTees": "(티 수령 가능)",
+    "teesReceived": "받은 티",
+    "teesNone": "없음",
+    "teeTotal": "{count}건 · {amount}",
+    "goalsHeading": "목표 ({count})",
+    "goalsEmpty": "목표가 없어요.",
+    "goalProgress": "{target} 중 {raised}",
+    "actionsLabel": "작업",
+    "reinstateHeading": "복구",
+    "deactivateHeading": "비활성화",
+    "reinstateDescription": "복구하면 공개 페이지와 티 수령 기능이 되살아나요.",
+    "deactivateDescription": "비활성화하면 공개 페이지가 숨겨지고 새 티가 차단돼요. 이미 정산된 결제와 지급에는 영향이 없어요.",
+    "auditHeading": "감사 기록"
+  },
+  "userStatus": {
+    "reasonLabel": "사유 (감사 로그 기록)",
+    "reinstatePlaceholder": "예: 크리에이터와 문제 해결됨",
+    "deactivatePlaceholder": "예: 약관 위반 — 오해를 부르는 목표 주장",
+    "reinstateButton": "프로필 복구",
+    "deactivateButton": "프로필 비활성화"
+  },
+  "tools": {
+    "refund": {
+      "giftIdLabel": "선물 공개 ID",
+      "reasonLabel": "사유 (감사 기록)",
+      "submit": "전액 환불 실행",
+      "success": "환불 {refundId} 생성됨. Stripe가 웹훅으로 확정하면 선물이 업데이트돼요.",
+      "failed": "환불에 실패했어요."
+    },
+    "reconcile": {
+      "run": "멈춘 선물 대사 실행",
+      "report": "{scanned}건 검사: 결제 완료 {markedPaid}, 만료 {markedExpired}, 실패 {markedFailed}, 임시 취소 {cancelledDrafts}, 대기 중 {stillPending}, 플래그: {flagged}.",
+      "flaggedNone": "없음",
+      "failed": "대사에 실패했어요."
+    }
+  }
+}

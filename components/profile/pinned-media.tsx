@@ -1,4 +1,5 @@
 import { ExternalLink } from "lucide-react";
+import { useTranslations } from "next-intl";
 
 import { resolvePinnedMedia } from "@/lib/profile/pinned-media";
 
@@ -9,6 +10,7 @@ import { resolvePinnedMedia } from "@/lib/profile/pinned-media";
  * a link card that opens in a new tab. Renders nothing for an unusable URL.
  */
 export function PinnedMedia({ url }: { url: string | null }) {
+  const t = useTranslations("profilePage.pinnedMedia");
   const media = resolvePinnedMedia(url);
   if (!media) {
     return null;
@@ -17,7 +19,7 @@ export function PinnedMedia({ url }: { url: string | null }) {
   if (media.kind === "youtube" || media.kind === "instagram") {
     return (
       <section
-        aria-label="Featured media"
+        aria-label={t("sectionLabel")}
         className="overflow-hidden rounded-3xl border border-stone bg-white"
       >
         <div
@@ -29,7 +31,7 @@ export function PinnedMedia({ url }: { url: string | null }) {
         >
           <iframe
             src={media.embedUrl}
-            title="Featured media"
+            title={t("iframeTitle")}
             className="h-full w-full"
             loading="lazy"
             sandbox="allow-scripts allow-same-origin allow-presentation allow-popups"
@@ -47,11 +49,11 @@ export function PinnedMedia({ url }: { url: string | null }) {
       href={media.href}
       target="_blank"
       rel="noopener noreferrer nofollow"
-      aria-label={`Featured link: ${media.host}`}
+      aria-label={t("featuredLinkAria", { host: media.host })}
       className="flex items-center justify-between gap-3 rounded-3xl border border-stone bg-white p-5 transition-colors hover:border-forest/40 sm:p-6"
     >
       <div className="min-w-0">
-        <p className="text-sm font-medium text-forest">Featured link</p>
+        <p className="text-sm font-medium text-forest">{t("featuredLink")}</p>
         <p className="mt-0.5 truncate text-sm text-ink/70">{media.host}</p>
       </div>
       <ExternalLink aria-hidden="true" className="h-5 w-5 shrink-0 text-ink/40" />

@@ -35,6 +35,8 @@ describe("POST /api/admin/refunds", () => {
       request({ giftPublicId: GIFT_PUBLIC_ID, reason: "test" }),
     );
     expect(response.status).toBe(403);
+    const body = (await response.json()) as { error: { code: string } };
+    expect(body.error.code).toBe("api.notAuthorised");
     expect(adminRefundGift).not.toHaveBeenCalled();
   });
 
@@ -55,6 +57,8 @@ describe("POST /api/admin/refunds", () => {
       request({ giftPublicId: GIFT_PUBLIC_ID, reason: "" }),
     );
     expect(response.status).toBe(400);
+    const body = (await response.json()) as { error: { code: string } };
+    expect(body.error.code).toBe("api.adminRefundReferenceRequired");
   });
 
   it("lets an admin refund with an audited reason", async () => {
@@ -80,5 +84,7 @@ describe("POST /api/admin/refunds", () => {
       request({ giftPublicId: GIFT_PUBLIC_ID, reason: "Donor request" }),
     );
     expect(response.status).toBe(409);
+    const body = (await response.json()) as { error: { code: string } };
+    expect(body.error.code).toBe("api.adminNotRefundable");
   });
 });

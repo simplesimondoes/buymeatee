@@ -1,0 +1,132 @@
+{
+  "hero": {
+    "eyebrow": "Apoia o percurso",
+    "heading": "Recebe financiamento para perseguires os teus objetivos no golfe.",
+    "intro": "Transforma os fãs que seguem o teu golfe em apoiantes que ajudam a financiar a tua próxima volta, aula e competição.",
+    "startCta": "Cria a tua página",
+    "howCta": "Ver como funciona",
+    "reassurance": "Grátis para começar · Demora menos de um minuto · Feito para golfistas",
+    "trust": {
+      "stripe": "Pagamentos protegidos pela <strong>Stripe</strong>",
+      "supporters": "Os teus apoiantes continuam teus",
+      "payouts": "Transferências rápidas"
+    }
+  },
+  "supportWays": {
+    "eyebrow": "Formas de apoiar",
+    "items": {
+      "greenFee": {
+        "name": "Oferece um green fee",
+        "description": "Cobre uma volta num sítio especial."
+      },
+      "balls": {
+        "name": "Uma caixa de bolas",
+        "description": "Os essenciais do dia de treino."
+      },
+      "goal": {
+        "name": "Contribui para um objetivo",
+        "description": "Apoia um percurso de uma época inteira."
+      },
+      "eventEntry": {
+        "name": "Inscrição numa prova",
+        "description": "Leva-os até ao primeiro tee."
+      }
+    },
+    "note": "Os criadores escolhem as suas próprias opções de apoio — cada contributo vai para o percurso deles."
+  },
+  "tipJar": {
+    "heading": "Mais do que uma caixa de gorjetas.",
+    "intro": "O BuyMeATee foi desenhado em torno de objetivos reais de golfe, progresso visível e uma ligação contínua entre criadores e as pessoas que os apoiam.",
+    "features": {
+      "goalBased": {
+        "title": "Baseado em objetivos",
+        "body": "O apoio vai para objetivos reais de golfe com progresso visível."
+      },
+      "secure": {
+        "title": "Seguro e transparente",
+        "body": "Desenhado em torno de objetivos transparentes e pagamentos responsáveis."
+      },
+      "community": {
+        "title": "A comunidade primeiro",
+        "body": "Feito para a ligação entre criadores e os seus apoiantes."
+      },
+      "golf": {
+        "title": "Feito especificamente para o golfe",
+        "body": "Tees, buracos, voltas e green fees — por golfistas, para golfistas."
+      }
+    }
+  },
+  "howItWorks": {
+    "eyebrow": "Como funciona",
+    "heading": "Simples. Transparente. Golfe.",
+    "stepLabel": "Passo {number}",
+    "steps": {
+      "share": {
+        "title": "Os criadores partilham os seus objetivos",
+        "body": "Os golfistas criam uma página, contam a sua história e mostram aos apoiantes para que estão a trabalhar."
+      },
+      "buy": {
+        "title": "Os fãs oferecem um tee",
+        "body": "Os apoiantes escolhem um contributo com significado, de um simples tee a nove buracos, uma volta completa ou um montante à sua escolha."
+      },
+      "journey": {
+        "title": "O percurso continua",
+        "body": "Os criadores partilham progresso, marcos e novidades para os apoiantes verem o que ajudaram a tornar possível."
+      }
+    },
+    "cta": "Ver como funciona"
+  },
+  "audiences": {
+    "eyebrow": "Para quem é",
+    "heading": "Dois lados da mesma volta",
+    "intro": "Os criadores partilham o percurso. Os apoiantes tornam mais coisas possíveis.",
+    "creators": {
+      "eyebrow": "Para criadores de golfe",
+      "heading": "Transforma seguidores em parte do percurso.",
+      "cta": "Cria a tua página",
+      "points": {
+        "story": "Partilha a tua história e os teus objetivos",
+        "support": "Recebe apoio direto da tua comunidade",
+        "updates": "Mantém os apoiantes a par",
+        "milestones": "Celebra o progresso e os marcos",
+        "time": "Passa mais tempo a criar e a jogar"
+      }
+    },
+    "supporters": {
+      "eyebrow": "Para fãs de golfe",
+      "heading": "Apoia os golfistas em quem acreditas.",
+      "cta": "Junta-te como apoiante",
+      "points": {
+        "buy": "Oferece um tee ou apoia um objetivo específico",
+        "follow": "Acompanha o progresso e as novidades",
+        "story": "Faz parte da história do golfista",
+        "discover": "Descobre criadores de golfe emergentes",
+        "celebrate": "Celebrem as conquistas em conjunto"
+      }
+    }
+  },
+  "supportOptions": {
+    "eyebrow": "Opções de apoio",
+    "heading": "Formas de ajudar que falam golfe",
+    "intro": "Nem cafés, nem gorjetas — tees, buracos, voltas e green fees."
+  },
+  "exampleGoals": {
+    "eyebrow": "Objetivos de exemplo",
+    "heading": "Os percursos que os apoiantes abraçam",
+    "intro": "Ilustrações do tipo de objetivos que os criadores partilham — cada cartão aqui é um exemplo identificado."
+  },
+  "faqPreview": {
+    "eyebrow": "FAQ",
+    "heading": "Perguntas justas, respostas diretas",
+    "cta": "Ler a FAQ completa"
+  },
+  "creatorPreview": {
+    "name": "Alex Morgan",
+    "handicap": "Handicap 7,8",
+    "currentGoalLabel": "Objetivo atual",
+    "goalTitle": "Rumo ao Scratch",
+    "amounts": "640 £ de 1 200 £",
+    "percent": "53%",
+    "progressLabel": "Progresso do objetivo Rumo ao Scratch (exemplo)"
+  }
+}

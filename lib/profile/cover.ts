@@ -6,6 +6,10 @@
  */
 
 import {
+  errorDetail,
+  type ErrorDetail,
+} from "@/lib/i18n/errors";
+import {
   isAllowedAvatarType,
   matchesAvatarSignature,
   type AvatarMimeType,
@@ -36,10 +40,18 @@ export function validateCoverFile(
   return null;
 }
 
+/** @deprecated Display text is locale-aware now — use COVER_ERROR_DETAILS. */
 export const COVER_ERROR_MESSAGES: Record<CoverValidationError, string> = {
   type: "Use a JPEG, PNG or WebP image.",
   size: "Keep the image under 5 MB.",
   content: "That file doesn't look like a valid image.",
+};
+
+/** Stable error codes (ADR-019) rendered per locale by useErrorMessage. */
+export const COVER_ERROR_DETAILS: Record<CoverValidationError, ErrorDetail> = {
+  type: errorDetail("validation.image.type"),
+  size: errorDetail("validation.image.size", { maxMb: 5 }),
+  content: errorDetail("validation.image.content"),
 };
 
 /** Storage object path for a user's profile cover (extensionless on purpose). */

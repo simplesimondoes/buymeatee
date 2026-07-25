@@ -1,3 +1,5 @@
+import { useTranslations } from "next-intl";
+
 /**
  * A small, subtle stats strip for a creator page — supporters, goals reached,
  * updates and when they joined. Renders nothing until there's something real
@@ -12,24 +14,23 @@ export function CreatorStats({
   supporters: number;
   goalsReached: number;
   updates: number;
-  /** Pre-formatted, e.g. "July 2026". */
+  /** Pre-formatted for the visitor's locale, e.g. "July 2026". */
   joined: string | null;
 }) {
+  const t = useTranslations("profilePage.stats");
+
   const counts: { value: number; label: string }[] = [];
   if (supporters > 0) {
-    counts.push({
-      value: supporters,
-      label: supporters === 1 ? "supporter" : "supporters",
-    });
+    counts.push({ value: supporters, label: t("supporters", { count: supporters }) });
   }
   if (goalsReached > 0) {
     counts.push({
       value: goalsReached,
-      label: goalsReached === 1 ? "goal reached" : "goals reached",
+      label: t("goalsReached", { count: goalsReached }),
     });
   }
   if (updates > 0) {
-    counts.push({ value: updates, label: updates === 1 ? "update" : "updates" });
+    counts.push({ value: updates, label: t("updates", { count: updates }) });
   }
 
   if (counts.length === 0 && !joined) {
@@ -49,8 +50,8 @@ export function CreatorStats({
       ))}
       {joined ? (
         <div className="flex items-baseline gap-1.5">
-          <dt className="sr-only">joined</dt>
-          <dd>Joined {joined}</dd>
+          <dt className="sr-only">{t("joinedLabel")}</dt>
+          <dd>{t("joined", { date: joined })}</dd>
         </div>
       ) : null}
     </dl>

@@ -1,0 +1,260 @@
+{
+  "meta": {
+    "overview": {
+      "title": "Painel",
+      "description": "O teu percurso num relance."
+    },
+    "goals": {
+      "title": "Os teus objetivos",
+      "description": "Define os objetivos que os apoiantes podem apoiar na tua página."
+    },
+    "updates": {
+      "title": "As tuas novidades",
+      "description": "Publica novidades sobre o teu progresso para os teus apoiantes acompanharem."
+    },
+    "wishlist": {
+      "title": "A tua lista de desejos",
+      "description": "Enumera as coisas específicas que os apoiantes podem financiar para o teu percurso."
+    },
+    "payments": {
+      "title": "Tees recebidos",
+      "description": "Apoios recebidos através da tua página BuyMeATee."
+    }
+  },
+  "nav": {
+    "sections": "Secções do painel",
+    "overview": "Visão geral",
+    "goals": "Objetivos",
+    "wishlist": "Lista de desejos",
+    "updates": "Novidades",
+    "payments": "Pagamentos",
+    "profile": "Perfil"
+  },
+  "eyebrow": "Painel",
+  "actions": {
+    "cancel": "Cancelar",
+    "edit": "Editar",
+    "archive": "Arquivar",
+    "delete": "Eliminar",
+    "saveChanges": "Guardar alterações"
+  },
+  "paymentState": {
+    "not_started": "Ainda não configurado",
+    "onboarding_not_started": "Onboarding da Stripe não iniciado",
+    "onboarding_incomplete": "Onboarding da Stripe incompleto",
+    "information_required": "A Stripe precisa de mais informação",
+    "verification_pending": "Verificação da Stripe em curso",
+    "ready": "Pronto para receber Tees",
+    "payments_restricted": "Restringido — verifica junto da Stripe",
+    "payouts_disabled": "Transferências desativadas de momento"
+  },
+  "overview": {
+    "title": "O teu percurso",
+    "pageCard": {
+      "ariaLabel": "A tua página pública",
+      "title": "A tua página é onde os Tees acontecem",
+      "sharePage": "Partilhar página",
+      "viewPage": "Ver página"
+    },
+    "profileCard": {
+      "title": "Perfil",
+      "link": "Editar perfil",
+      "unavailable": "Os detalhes do perfil não estão disponíveis de momento.",
+      "fallbackName": "o teu perfil",
+      "summaryWithBio": "És <name>{displayName}</name> em <name>/t/{username}</name> — bio no sítio.",
+      "summaryNoBio": "És <name>{displayName}</name> em <name>/t/{username}</name> — ainda sem bio.",
+      "noLink": "Ainda não tens ligação pública. Reclama o teu nome buymeatee.com/t/ para os apoiantes te encontrarem."
+    },
+    "goalsCard": {
+      "title": "Objetivos",
+      "link": "Gerir objetivos",
+      "unavailable": "Os objetivos não estão disponíveis de momento.",
+      "activeCount": "<strong>{count}</strong> {count, plural, one {objetivo ativo} other {objetivos ativos}} na tua página.",
+      "raised": "{amounts} angariados nos teus objetivos.",
+      "noTees": "Ainda não há Tees para objetivos.",
+      "empty": "Ainda não há objetivos na tua página. Os objetivos dão aos apoiantes algo real para apoiar."
+    },
+    "wishlistCard": {
+      "title": "Lista de desejos",
+      "link": "Gerir lista de desejos",
+      "body": "Enumera coisas específicas que os apoiantes podem financiar por inteiro — uma caixa de bolas, uma taxa de inscrição, uma aula, uma cerveja depois da volta. Ficam lado a lado com os teus objetivos."
+    },
+    "paymentsCard": {
+      "title": "Pagamentos",
+      "linkReady": "Ver Tees recebidos",
+      "linkSetup": "Definições de pagamentos",
+      "unavailable": "O estado dos pagamentos não está disponível de momento.",
+      "ready": "<strong>{state}</strong> — os Tees vão diretamente para a tua conta Stripe.",
+      "notReady": "<strong>{state}</strong> — os apoiantes não podem enviar Tees enquanto isto não estiver concluído."
+    },
+    "updatesCard": {
+      "title": "Novidades",
+      "link": "Publicar uma novidade",
+      "body": "Partilha o progresso com os teus apoiantes — novas funcionalidades, marcos, voltas jogadas. As novidades publicadas aparecem na tua página."
+    }
+  },
+  "goals": {
+    "page": {
+      "title": "Objetivos",
+      "intro": "Os objetivos transformam apoio num percurso. Publica até três de cada vez — o progresso vem de Tees reais, nunca de um número que escreves à mão.",
+      "unavailable": "Os objetivos não estão disponíveis de momento. Tenta novamente dentro de instantes."
+    },
+    "supportButton": "Apoiar este objetivo",
+    "manager": {
+      "activeCount": "{count} de {max, plural, one {# objetivo ativo} other {# objetivos ativos}} na tua página",
+      "newGoal": "Novo objetivo",
+      "emptyTitle": "Para onde caminha o teu percurso?",
+      "emptyBody": "Os bons objetivos são específicos e reais: uma época de green fees, uma viagem a um torneio de qualificação, inscrições em provas, um bloco de aulas. Por exemplo, “Taxa de inscrição na Q-School — 425 £” <example>(Exemplo)</example>. Os objetivos que publicares aparecem na tua página com progresso honesto.",
+      "addFirstGoal": "Adiciona o teu primeiro objetivo",
+      "saveGoal": "Guardar objetivo",
+      "coverLabel": "Imagem de capa do objetivo",
+      "coverHelp": "JPEG, PNG ou WebP até 5 MB. Aparece no topo do cartão deste objetivo na tua página.",
+      "status": {
+        "draft": "Rascunho",
+        "active": "Na tua página",
+        "completed": "Concluído",
+        "archived": "Arquivado"
+      },
+      "transitions": {
+        "publish": "Publicar na tua página",
+        "markCompleted": "Marcar como concluído",
+        "takeOff": "Retirar da tua página",
+        "reopen": "Reabrir",
+        "restore": "Restaurar como rascunho"
+      },
+      "raised": "{raised} de {target} <muted>angariados</muted>",
+      "progressLabel": "Progresso rumo a {title}",
+      "milestoneReached": "🎉 Objetivo alcançado! Partilha o momento com os teus apoiantes.",
+      "milestoneProgress": "🏌️ Estás a {percent}% do caminho — uma boa altura para partilhar.",
+      "shareProgress": "Partilhar progresso",
+      "takenDown": "Este objetivo foi removido pelo BuyMeATee e não pode ser publicado. Se achas que é um engano, contacta o suporte.",
+      "moveUp": "Mover {title} para cima",
+      "moveDown": "Mover {title} para baixo"
+    },
+    "form": {
+      "titleLabel": "Para que estás a trabalhar?",
+      "titlePlaceholder": "Uma época de inscrições em torneios",
+      "descriptionLabel": "Porque é que importa",
+      "optional": "(opcional)",
+      "descriptionPlaceholder": "Conta aos apoiantes o que este objetivo torna possível — green fees, viagens, inscrições, aulas.",
+      "targetLabel": "Meta",
+      "targetPlaceholder": "500",
+      "currencyLabel": "Moeda",
+      "currencyLockedHelp": "Este objetivo já recebeu apoio, por isso a moeda não pode mudar.",
+      "currencyPayoutHelp": "Os objetivos usam a tua moeda de pagamento para que os apoiantes os possam financiar."
+    }
+  },
+  "updates": {
+    "page": {
+      "title": "Novidades",
+      "intro": "Mostra aos apoiantes para onde vai o apoio deles — novas funcionalidades, marcos, voltas jogadas. Os rascunhos ficam privados até os publicares.",
+      "unavailable": "As novidades não estão disponíveis de momento. Tenta novamente dentro de instantes."
+    },
+    "manager": {
+      "newUpdate": "Criar novidade",
+      "emptyTitle": "Partilha o teu progresso.",
+      "emptyBody": "As novidades são a forma de os apoiantes verem o apoio deles a transformar-se em progresso real — novas funcionalidades, marcos, uma volta jogada. Publica a primeira.",
+      "writeFirstUpdate": "Escreve a tua primeira novidade",
+      "saveDraft": "Guardar rascunho",
+      "imageLabel": "Imagem da novidade (opcional)",
+      "imageHelp": "JPEG, PNG ou WebP até 5 MB. Aparece junto desta novidade na tua página.",
+      "draft": "Rascunho",
+      "published": "Publicada",
+      "publishedOn": "Publicada a {date}",
+      "publish": "Publicar",
+      "unpublish": "Anular publicação"
+    },
+    "form": {
+      "titleLabel": "Título",
+      "titlePlaceholder": "Novidades de julho — 1 200 campos novos",
+      "bodyLabel": "Novidade",
+      "bodyPlaceholder": "O que há de novo? Os apoiantes adoram ver progresso.\n\nMarkdown funciona: **negrito**, - listas e [ligações](https://…)."
+    }
+  },
+  "wishlist": {
+    "page": {
+      "title": "Lista de desejos",
+      "intro": "Enumera coisas específicas que um apoiante pode financiar por inteiro — uma caixa de bolas, uma inscrição num torneio, uma aula, uma cerveja depois da volta. Ficam lado a lado com os teus objetivos maiores. Um item só aparece como financiado quando um Tee real o pagar.",
+      "unavailable": "A tua lista de desejos não está disponível de momento. Tenta novamente dentro de instantes."
+    },
+    "manager": {
+      "itemCount": "{count, plural, one {# item} other {# itens}} na tua página",
+      "newItem": "Novo item",
+      "emptyTitle": "O que ajudaria o teu percurso?",
+      "emptyBody": "Os itens da lista de desejos são específicos e tangíveis: uma caixa de bolas, uma inscrição num torneio, uma aula, uma viagem a um torneio de qualificação, até uma cerveja depois de uma boa volta. Por exemplo, “Uma dúzia de bolas de tour — 45 £” <example>(Exemplo)</example>. Os apoiantes financiam o item inteiro num só Tee.",
+      "addFirstItem": "Adiciona o teu primeiro item",
+      "saveItem": "Guardar item",
+      "imageLabel": "Imagem do item",
+      "imageHelp": "JPEG, PNG ou WebP até 5 MB. Uma fotografia clara ajuda os apoiantes a visualizar o que estão a financiar.",
+      "status": {
+        "draft": "Rascunho",
+        "active": "Na tua página",
+        "funded": "Financiado",
+        "archived": "Arquivado"
+      },
+      "transitions": {
+        "publish": "Publicar na tua página",
+        "takeOff": "Retirar da tua página",
+        "restore": "Restaurar como rascunho"
+      },
+      "fundedNote": "Um apoiante financiou isto — agradece-lhe na tua próxima novidade!",
+      "moveUp": "Mover {title} para cima",
+      "moveDown": "Mover {title} para baixo"
+    },
+    "form": {
+      "titleLabel": "O que ajudaria o teu percurso?",
+      "titlePlaceholder": "Uma dúzia de bolas de tour",
+      "descriptionLabel": "Um pouco mais",
+      "optional": "(opcional)",
+      "descriptionPlaceholder": "O que é e porque faria diferença — o modelo, a prova, a viagem.",
+      "priceLabel": "Preço",
+      "pricePlaceholder": "45",
+      "priceHelp": "Um único apoiante financia o item inteiro, por isso mantém-no dentro do que um só Tee pode cobrir.",
+      "priceLockedHelp": "Este item já foi financiado, por isso o preço não pode mudar.",
+      "currencyLabel": "Moeda",
+      "currencyLockedHelp": "Este item já foi financiado, por isso a moeda não pode mudar.",
+      "currencyPayoutHelp": "Os itens usam a tua moeda de pagamento para que os apoiantes os possam financiar."
+    }
+  },
+  "payments": {
+    "title": "Tees recebidos",
+    "statusAria": "Estado dos pagamentos",
+    "receiving": "A receber Tees",
+    "notReceiving": "Ainda sem receber Tees",
+    "readyBody": "Os pagamentos estão ativos. A Stripe transfere para o teu banco segundo o teu calendário de transferências da Stripe.",
+    "setupBody": "Configura os pagamentos para começares a receber Tees.",
+    "attentionBody": "A tua configuração de pagamentos precisa de atenção.",
+    "paymentSettings": "Definições de pagamentos",
+    "grossLabel": "Valor bruto em Tees ({currency})",
+    "payoutNote": "Os montantes são o que cada remetente escolheu para ti. As transferências são geridas pela Stripe — um Tee pago está na tua conta Stripe, não necessariamente já no teu banco.",
+    "giftsAria": "Tees recebidos",
+    "latestTees": "Tees mais recentes",
+    "attribution": {
+      "towardGoals": "{count} para objetivos",
+      "towardWishlist": "{count} para a lista de desejos",
+      "general": "{count} gerais"
+    },
+    "empty": "Ainda não há Tees. Partilha a tua página para os apoiantes se juntarem ao teu percurso.",
+    "anonymous": "Anónimo",
+    "toward": "Para {title}",
+    "funded": "Financiou {title}",
+    "fallbackGoal": "um objetivo",
+    "fallbackItem": "um item",
+    "refundedNote": "{amount} do pagamento foi reembolsado.",
+    "shareNews": "Partilha a novidade com o teu público",
+    "share": "Partilhar",
+    "giftStatus": {
+      "paid": "Pago",
+      "partially_refunded": "Parcialmente reembolsado",
+      "refunded": "Reembolsado",
+      "disputed": "Contestado",
+      "dispute_won": "Disputa ganha",
+      "dispute_lost": "Disputa perdida",
+      "processing": "Em processamento",
+      "payment_failed": "Pagamento falhou",
+      "expired": "Expirado",
+      "checkout_created": "A aguardar pagamento",
+      "cancelled": "Cancelado"
+    }
+  }
+}

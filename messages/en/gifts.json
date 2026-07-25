@@ -1,0 +1,100 @@
+{
+  "anonymous": "Anonymous",
+  "composer": {
+    "funding": {
+      "label": "You're funding",
+      "note": "One Tee covers this item in full. It shows as funded once your payment is verified.",
+      "chooseDifferent": "Choose a different amount instead"
+    },
+    "target": {
+      "supporting": "Supporting",
+      "general": "General support for {name}",
+      "change": "Change",
+      "chooseLabel": "Choose what to support",
+      "progress": "{raised} of {target} · {percent}"
+    },
+    "amount": {
+      "legend": "Choose your Tee",
+      "customLabel": "Or a custom amount ({symbol})",
+      "placeholder": "7.50",
+      "formatError": "Enter an amount like 5 or 7.50.",
+      "belowMinimum": "The minimum Tee is {amount}.",
+      "aboveMaximum": "The maximum Tee is {amount}.",
+      "invalid": "Enter a valid amount."
+    },
+    "goalNote": {
+      "brings": "Your Tee brings this goal to <strong>{percent}</strong>.",
+      "verified": "Goal progress only counts confirmed payments — your Tee shows up once it's verified."
+    },
+    "fields": {
+      "yourName": "Your name",
+      "email": "Email for your receipt",
+      "optional": "(optional)",
+      "messageFor": "Message for {name}",
+      "anonymous": "Keep my name private — show this Tee as from “Anonymous”."
+    },
+    "breakdown": {
+      "label": "Payment breakdown",
+      "yourTee": "Your Tee",
+      "platformFee": "BuyMeATee platform fee",
+      "paymentHandling": "Payment handling",
+      "total": "Total",
+      "recipientReceives": "{name} receives {amount}. Payment handling covers estimated card-processing costs."
+    },
+    "submit": {
+      "goal": "Support this goal with Stripe",
+      "item": "Fund this item with Stripe",
+      "general": "Send a Tee with Stripe",
+      "preparing": "Preparing secure checkout…"
+    },
+    "stripeNotice": "You'll pay on Stripe's secure checkout. BuyMeATee never sees your card details."
+  },
+  "confirmation": {
+    "thanksMetaTitle": "Thanks for the Tee",
+    "cancelledMetaTitle": "Checkout cancelled",
+    "confirmingHeading": "Confirming your payment…",
+    "confirmingBody": "We're waiting for Stripe to confirm. This usually takes a few seconds.",
+    "stillConfirmingHeading": "Still confirming",
+    "stillConfirmingBody": "Confirmation is taking longer than usual. If you completed payment, it will be recorded — you can check again in a moment.",
+    "checkAgain": "Check again",
+    "paidHeading": "Your Tee is on its way to {name}.",
+    "paidBody": "{amount} from {sender} was paid successfully.",
+    "paidBodyToward": "{amount} from {sender} was paid successfully toward <target>{title}</target>.",
+    "backToPage": "Back to {name}'s page",
+    "backToHome": "Back to BuyMeATee",
+    "pendingHeading": "Payment pending",
+    "pendingBody": "Your payment is being processed. We'll record the Tee as soon as it completes.",
+    "expiredHeading": "This checkout expired",
+    "expiredBody": "No payment was taken. You can send the Tee again whenever you like.",
+    "cancelledHeading": "Checkout cancelled",
+    "cancelledBody": "No payment was taken.",
+    "cancelledPageBody": "No payment was taken. {name} didn't receive anything — you can send a Tee any time.",
+    "failedHeading": "Payment unsuccessful",
+    "failedBody": "Your payment didn't go through and nothing was charged. You can try again with a different card.",
+    "tryAgain": "Try again"
+  },
+  "share": {
+    "button": "Share",
+    "postToX": "Post to X",
+    "bluesky": "Share on Bluesky",
+    "whatsapp": "Share on WhatsApp",
+    "facebook": "Share on Facebook",
+    "linkedin": "Share on LinkedIn",
+    "copyLink": "Copy link",
+    "linkCopied": "Link copied",
+    "moreOptions": "More options…",
+    "copyFailed": "Copying isn't available — select the link by hand.",
+    "copiedAnnouncement": "Link copied to clipboard",
+    "copyYourLink": "Copy your link",
+    "copied": "Copied",
+    "copyYourLinkFailed": "Copying isn't available — select the link text instead.",
+    "page": "Follow my golf journey on BuyMeATee — back a real goal and help me get there. ⛳️",
+    "goalFunded": "“{title}” is funded! 🎉 Huge thanks to everyone who backed the journey on BuyMeATee. On to the next one.",
+    "goalMilestone": "{percent}% of the way to “{title}” on BuyMeATee 🏌️ Thank you to everyone backing the journey — help me reach the goal.",
+    "goalStarting": "I'm working towards “{title}” on my BuyMeATee page. Support the journey and help me get there. ⛳️",
+    "goalCompleted": "“{title}” — another goal reached on my BuyMeATee journey. Thank you to everyone who backed it. ⛳️",
+    "supportGoal": "Someone just backed “{title}” on my BuyMeATee page 🙌 Support the journey and help me get there. ⛳️",
+    "supportWishlist": "Someone just funded “{title}” from my BuyMeATee wish list 🙌 Thank you — back the journey too. ⛳️",
+    "supportGeneral": "Someone just backed my golf journey on BuyMeATee 🙌 Thank you — you can support the journey too. ⛳️"
+  }
+}

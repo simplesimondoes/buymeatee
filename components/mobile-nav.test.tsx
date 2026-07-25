@@ -1,13 +1,29 @@
-import { render, screen } from "@testing-library/react";
+import { screen } from "@testing-library/react";
 import userEvent from "@testing-library/user-event";
-import { describe, expect, it } from "vitest";
+import { describe, expect, it, vi } from "vitest";
 
+import { renderWithIntl } from "@/test/i18n-test-utils";
 import { MobileNav } from "@/components/mobile-nav";
+
+// The embedded LanguageSwitcher reads Next's router/pathname, which have no
+// provider under jsdom — mock the raw next/navigation hooks it relies on.
+vi.mock("next/navigation", async (importOriginal) => ({
+  ...(await importOriginal<typeof import("next/navigation")>()),
+  usePathname: () => "/en",
+  useRouter: () => ({
+    push: vi.fn(),
+    replace: vi.fn(),
+    refresh: vi.fn(),
+    back: vi.fn(),
+    forward: vi.fn(),
+    prefetch: vi.fn(),
+  }),
+}));
 
 describe("MobileNav", () => {
   it("opens and closes via the toggle button", async () => {
     const user = userEvent.setup();
-    render(<MobileNav />);
+    renderWithIntl(<MobileNav />);
 
     const toggle = screen.getByRole("button", { name: "Open menu" });
     expect(toggle).toHaveAttribute("aria-expanded", "false");
@@ -28,7 +44,7 @@ describe("MobileNav", () => {
 
   it("closes on Escape", async () => {
     const user = userEvent.setup();
-    render(<MobileNav />);
+    renderWithIntl(<MobileNav />);
 
     await user.click(screen.getByRole("button", { name: "Open menu" }));
     expect(screen.getByRole("dialog")).toBeInTheDocument();
@@ -39,7 +55,7 @@ describe("MobileNav", () => {
 
   it("contains all primary navigation links and both actions", async () => {
     const user = userEvent.setup();
-    render(<MobileNav />);
+    renderWithIntl(<MobileNav />);
     await user.click(screen.getByRole("button", { name: "Open menu" }));
 
     for (const label of [

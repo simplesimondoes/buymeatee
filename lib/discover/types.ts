@@ -8,6 +8,14 @@ import type { SupportedCurrency } from "@/lib/payments/currency";
  * (isPreview === false) are built only from verified, publicly-visible data:
  * published goals and their raised amounts come from the webhook path, so
  * progress can never be invented.
+ *
+ * Localisation contract: when `isPreview` is true, the human-text fields
+ * (title, description, bio, location, country, updateNote, imageAlt,
+ * currentGoal.title) hold message KEYS in the `content` namespace and must be
+ * resolved with `useTranslations("content")` at render time. When `isPreview`
+ * is false they hold real, user-generated strings that are never translated.
+ * `category` is always a language-neutral slug (see lib/discover/categories.ts)
+ * and `creatorName` is always a plain name (fictional persona or real user).
  */
 
 export type DiscoverGoalCard = {

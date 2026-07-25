@@ -1,3 +1,4 @@
+import { errorDetail, type ErrorDetail } from "@/lib/i18n/errors";
 import {
   isSupportedCurrency,
   isValidMinorAmount,
@@ -12,7 +13,8 @@ import {
 /**
  * Goal form input validation. Pure module shared by the client (inline
  * errors) and the server (authoritative — mutations revalidate everything).
- * Status changes are validated separately via canTransitionGoal().
+ * Errors are stable codes (ADR-019), rendered into the visitor's language at
+ * the edge. Status changes are validated separately via canTransitionGoal().
  */
 
 export interface GoalInput {
@@ -25,12 +27,14 @@ export interface GoalInput {
 
 export type GoalFieldName = "title" | "description" | "currency" | "targetAmount";
 
+export type GoalFieldErrors = Partial<Record<GoalFieldName, ErrorDetail>>;
+
 export type GoalValidationResult =
   | { ok: true; data: GoalInput }
-  | { ok: false; errors: Partial<Record<GoalFieldName, string>> };
+  | { ok: false; errors: GoalFieldErrors };
 
 export function validateGoalInput(payload: unknown): GoalValidationResult {
-  const errors: Partial<Record<GoalFieldName, string>> = {};
+  const errors: GoalFieldErrors = {};
   const input =
     typeof payload === "object" && payload !== null
       ? (payload as Record<string, unknown>)
@@ -38,7 +42,9 @@ export function validateGoalInput(payload: unknown): GoalValidationResult {
 
   const title = typeof input.title === "string" ? input.title.trim() : "";
   if (title.length < 1 || title.length > GOAL_TITLE_MAX_LENGTH) {
-    errors.title = `Give your goal a title (up to ${GOAL_TITLE_MAX_LENGTH} characters).`;
+    errors.title = errorDetail("validation.goal.title", {
+      max: GOAL_TITLE_MAX_LENGTH,
+    });
   }
 
   let description: string | undefined;
@@ -48,12 +54,14 @@ export function validateGoalInput(payload: unknown): GoalValidationResult {
   ) {
     description = input.description.trim();
     if (description.length > GOAL_DESCRIPTION_MAX_LENGTH) {
-      errors.description = `Keep the description under ${GOAL_DESCRIPTION_MAX_LENGTH} characters.`;
+      errors.description = errorDetail("validation.goal.description", {
+        max: GOAL_DESCRIPTION_MAX_LENGTH,
+      });
     }
   }
 
   if (!isSupportedCurrency(input.currency)) {
-    errors.currency = "That currency isn't supported.";
+    errors.currency = errorDetail("validation.goal.currency");
   }
 
   const targetAmount = input.targetAmount;
@@ -62,7 +70,7 @@ export function validateGoalInput(payload: unknown): GoalValidationResult {
     targetAmount <= 0 ||
     targetAmount > GOAL_TARGET_MAX_MINOR
   ) {
-    errors.targetAmount = "Enter a valid target amount.";
+    errors.targetAmount = errorDetail("validation.goal.targetAmount");
   }
 
   if (Object.keys(errors).length > 0) {

@@ -1,6 +1,7 @@
-import { fireEvent, render, screen } from "@testing-library/react";
+import { fireEvent, screen } from "@testing-library/react";
 import { describe, expect, it } from "vitest";
 
+import { renderWithIntl } from "@/test/i18n-test-utils";
 import { GoalSupportButton } from "@/components/goals/goal-support-button";
 import {
   SupportTargetProvider,
@@ -18,7 +19,7 @@ function Probe() {
 
 describe("GoalSupportButton", () => {
   it("selects the goal (with its progress) as the support target", () => {
-    render(
+    renderWithIntl(
       <SupportTargetProvider>
         <GoalSupportButton
           id="g1"

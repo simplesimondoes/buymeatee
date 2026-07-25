@@ -89,6 +89,8 @@ export interface GiftRow {
   created_at: string;
   updated_at: string;
   metadata: Record<string, unknown>;
+  /** Supporter UI language captured at checkout (ADR-019); null on legacy rows. */
+  locale: string | null;
 }
 
 /**

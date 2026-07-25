@@ -1,0 +1,71 @@
+{
+  "brand": {
+    "homeAria": "BuyMeATee — inicio",
+    "tagline": "Apoya el camino."
+  },
+  "nav": {
+    "discover": "Descubrir",
+    "howItWorks": "Cómo funciona",
+    "forCreators": "Para creadores",
+    "forSupporters": "Para quienes apoyan",
+    "blog": "Blog",
+    "faq": "Preguntas frecuentes",
+    "primaryLabel": "Principal",
+    "siteNavigation": "Navegación del sitio",
+    "home": "Inicio",
+    "breadcrumb": "Ruta de navegación",
+    "openMenu": "Abrir menú",
+    "closeMenu": "Cerrar menú"
+  },
+  "actions": {
+    "register": "Registrarse",
+    "logIn": "Entrar",
+    "logOut": "Cerrar sesión",
+    "signIn": "Iniciar sesión",
+    "dashboard": "Panel",
+    "myPage": "Mi página",
+    "settings": "Ajustes"
+  },
+  "account": {
+    "menuLabel": "Cuenta",
+    "fallbackName": "Tu cuenta",
+    "signedInAs": "Sesión iniciada como <name>{displayName}</name>"
+  },
+  "footer": {
+    "productHeading": "Producto",
+    "companyHeading": "Empresa",
+    "legalHeading": "Legal",
+    "about": "Sobre nosotros",
+    "privacy": "Privacidad",
+    "terms": "Términos",
+    "impressum": "Impressum",
+    "accessibility": "Accesibilidad",
+    "description": "BuyMeATee es donde los aficionados al golf ayudan a los creadores a jugar más, lograr más y perseguir sus objetivos. Sigue el camino. Apoya un objetivo. Invítales a un tee.",
+    "copyright": "© {year} BuyMeATee. Todos los derechos reservados.",
+    "productLine": "Un producto de <brand>Caddie Live</brand> · Hecho para golfistas"
+  },
+  "cookies": {
+    "regionLabel": "Consentimiento de cookies",
+    "message": "Usamos cookies esenciales para mantener tu sesión iniciada. Con tu permiso, también usamos Google Analytics para entender cómo se usa el sitio. Consulta nuestra <link>Política de privacidad</link>.",
+    "decline": "Rechazar",
+    "accept": "Aceptar analítica",
+    "settings": "Configuración de cookies"
+  },
+  "upload": {
+    "addImage": "Añadir una imagen",
+    "changeImage": "Cambiar imagen",
+    "remove": "Quitar"
+  },
+  "errorBoundary": {
+    "heading": "Algo ha salido mal.",
+    "body": "Un error inesperado ha interrumpido la ronda. Vuelve a intentarlo.",
+    "retry": "Reintentar"
+  },
+  "a11y": {
+    "skipToContent": "Saltar al contenido"
+  },
+  "language": {
+    "label": "Idioma",
+    "switcherLabel": "Cambiar idioma"
+  }
+}

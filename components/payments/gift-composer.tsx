@@ -1,11 +1,20 @@
 "use client";
 
 import { CircleAlert, Flag, LoaderCircle } from "lucide-react";
+import { useLocale, useTranslations } from "next-intl";
 import { useMemo, useState } from "react";
 
+import { useErrorMessage } from "@/components/intl/use-error-message";
 import { useSupportTarget } from "@/components/payments/support-target-context";
+import { intlLocale, type AppLocale } from "@/i18n/locales";
 import { goalProgressPercent } from "@/lib/goals/types";
-import { formatMinorAmount, type SupportedCurrency } from "@/lib/payments/currency";
+import {
+  errorDetail,
+  isErrorDetail,
+  type ErrorDetail,
+} from "@/lib/i18n/errors";
+import { formatMinorAmount, formatPercent } from "@/lib/i18n/format";
+import type { SupportedCurrency } from "@/lib/payments/currency";
 import { calculateFees, type FeeConfig } from "@/lib/payments/fees";
 import {
   GIFT_MESSAGE_MAX_LENGTH,
@@ -15,6 +24,18 @@ import {
 
 const inputClasses =
   "mt-1.5 w-full rounded-xl border border-stone bg-white px-4 py-3 text-base text-ink placeholder:text-ink/40 focus:border-forest";
+
+/** The currency's own symbol as the visitor's locale renders it (£, $, kr…). */
+function currencySymbol(currency: SupportedCurrency, locale: AppLocale): string {
+  return (
+    new Intl.NumberFormat(intlLocale[locale], {
+      style: "currency",
+      currency: currency.toUpperCase(),
+    })
+      .formatToParts(0)
+      .find((part) => part.type === "currency")?.value ?? currency.toUpperCase()
+  );
+}
 
 /**
  * Donor-side gift composer. The breakdown shown here is an estimate rendered
@@ -50,6 +71,9 @@ export function GiftComposer({
   /** The recipient's active goals in this currency. Optional by design. */
   goals?: ComposerGoalOption[];
 }) {
+  const locale = useLocale() as AppLocale;
+  const t = useTranslations("gifts.composer");
+  const errorMessage = useErrorMessage();
   const [selectedPreset, setSelectedPreset] = useState<number | null>(
     presetAmounts[1] ?? presetAmounts[0] ?? null,
   );
@@ -60,7 +84,7 @@ export function GiftComposer({
   const [isAnonymous, setIsAnonymous] = useState(false);
   const [changingTarget, setChangingTarget] = useState(false);
   const [submitting, setSubmitting] = useState(false);
-  const [error, setError] = useState<string | null>(null);
+  const [error, setError] = useState<ErrorDetail | null>(null);
 
   const { target, select, clear } = useSupportTarget();
   const goalTarget = target?.kind === "goal" ? target : null;
@@ -83,13 +107,25 @@ export function GiftComposer({
 
   const amountError =
     customRaw.trim() !== "" && customMinor === null
-      ? "Enter an amount like 5 or 7.50."
+      ? t("amount.formatError")
       : fees && !fees.ok
         ? fees.error === "below-minimum"
-          ? `The minimum Tee is ${formatMinorAmount(feeConfig.minimumGift[currency], currency)}.`
+          ? t("amount.belowMinimum", {
+              amount: formatMinorAmount(
+                feeConfig.minimumGift[currency],
+                currency,
+                locale,
+              ),
+            })
           : fees.error === "above-maximum"
-            ? `The maximum Tee is ${formatMinorAmount(feeConfig.maximumGift[currency], currency)}.`
-            : "Enter a valid amount."
+            ? t("amount.aboveMaximum", {
+                amount: formatMinorAmount(
+                  feeConfig.maximumGift[currency],
+                  currency,
+                  locale,
+                ),
+              })
+            : t("amount.invalid")
         : null;
 
   // Live "brings this goal to X%" once an amount is valid.
@@ -99,10 +135,10 @@ export function GiftComposer({
       : null;
 
   const submitLabel = goalTarget
-    ? "Support this goal"
+    ? t("submit.goal")
     : wishlistTarget
-      ? "Fund this item"
-      : `Send a Tee`;
+      ? t("submit.item")
+      : t("submit.general");
 
   async function handleSubmit(event: React.FormEvent<HTMLFormElement>) {
     event.preventDefault();
@@ -122,7 +158,7 @@ export function GiftComposer({
     };
     const validation = validateGiftInput(payload);
     if (!validation.ok || !fees?.ok) {
-      setError("Please check the highlighted fields.");
+      setError(errorDetail("api.checkFields"));
       return;
     }
 
@@ -131,16 +167,21 @@ export function GiftComposer({
       const response = await fetch("/api/checkout", {
         method: "POST",
         headers: { "Content-Type": "application/json" },
-        body: JSON.stringify(validation.data),
+        body: JSON.stringify({ ...validation.data, locale }),
       });
-      const body = (await response.json()) as { url?: string; error?: string };
+      const body = (await response.json()) as {
+        url?: string;
+        error?: unknown;
+      };
       if (response.ok && body.url) {
         window.location.assign(body.url);
         return;
       }
-      setError(body.error ?? "Something went wrong. Please try again.");
+      setError(
+        isErrorDetail(body.error) ? body.error : errorDetail("generic"),
+      );
     } catch {
-      setError("Something went wrong. Please try again.");
+      setError(errorDetail("generic"));
     }
     setSubmitting(false);
   }
@@ -149,25 +190,22 @@ export function GiftComposer({
     <form onSubmit={handleSubmit} noValidate className="space-y-5">
       {wishlistTarget ? (
         <div className="rounded-2xl border border-forest/30 bg-forest/5 p-5">
-          <p className="text-sm font-medium text-forest">You&apos;re funding</p>
+          <p className="text-sm font-medium text-forest">{t("funding.label")}</p>
           <div className="mt-1 flex items-baseline justify-between gap-3">
             <p className="font-serif text-lg font-semibold text-forest">
               {wishlistTarget.title}
             </p>
             <p className="shrink-0 text-lg font-semibold text-forest">
-              {formatMinorAmount(wishlistTarget.priceAmount, currency)}
+              {formatMinorAmount(wishlistTarget.priceAmount, currency, locale)}
             </p>
           </div>
-          <p className="mt-1 text-xs text-ink/65">
-            One Tee covers this item in full. It shows as funded once your
-            payment is verified.
-          </p>
+          <p className="mt-1 text-xs text-ink/65">{t("funding.note")}</p>
           <button
             type="button"
             onClick={clear}
             className="mt-3 text-sm font-medium text-forest underline underline-offset-2 hover:text-forest-dark"
           >
-            Choose a different amount instead
+            {t("funding.chooseDifferent")}
           </button>
         </div>
       ) : (
@@ -178,16 +216,23 @@ export function GiftComposer({
                 <Flag aria-hidden="true" className="mt-0.5 h-5 w-5 shrink-0 text-forest" />
                 <div className="min-w-0 flex-1">
                   <p className="text-xs font-medium uppercase tracking-wide text-forest/80">
-                    Supporting
+                    {t("target.supporting")}
                   </p>
                   <p className="truncate font-medium text-forest">
-                    {goalTarget ? goalTarget.title : `General support for ${recipientName}`}
+                    {goalTarget
+                      ? goalTarget.title
+                      : t("target.general", { name: recipientName })}
                   </p>
                   {goalTarget ? (
                     <p className="mt-0.5 text-xs text-forest/80">
-                      {formatMinorAmount(goalTarget.raised, currency)} of{" "}
-                      {formatMinorAmount(goalTarget.target, currency)} ·{" "}
-                      {goalProgressPercent(goalTarget.raised, goalTarget.target)}%
+                      {t("target.progress", {
+                        raised: formatMinorAmount(goalTarget.raised, currency, locale),
+                        target: formatMinorAmount(goalTarget.target, currency, locale),
+                        percent: formatPercent(
+                          goalProgressPercent(goalTarget.raised, goalTarget.target),
+                          locale,
+                        ),
+                      })}
                     </p>
                   ) : null}
                 </div>
@@ -197,18 +242,18 @@ export function GiftComposer({
                   onClick={() => setChangingTarget((open) => !open)}
                   className="shrink-0 text-sm font-medium text-forest underline underline-offset-2 hover:text-forest-dark"
                 >
-                  Change
+                  {t("target.change")}
                 </button>
               </div>
 
               {changingTarget ? (
                 <div
                   role="radiogroup"
-                  aria-label="Choose what to support"
+                  aria-label={t("target.chooseLabel")}
                   className="mt-3 space-y-1 border-t border-forest/15 pt-3"
                 >
                   <TargetOption
-                    label={`General support for ${recipientName}`}
+                    label={t("target.general", { name: recipientName })}
                     checked={!goalTarget}
                     onSelect={() => {
                       clear();
@@ -233,7 +278,7 @@ export function GiftComposer({
 
           <fieldset>
             <legend className="text-sm font-medium text-forest">
-              Choose your Tee
+              {t("amount.legend")}
             </legend>
             <div className="mt-2 flex flex-wrap gap-2">
               {presetAmounts.map((amount) => (
@@ -251,19 +296,21 @@ export function GiftComposer({
                       : "border-stone bg-white text-ink hover:border-forest/40"
                   }`}
                 >
-                  {formatMinorAmount(amount, currency)}
+                  {formatMinorAmount(amount, currency, locale)}
                 </button>
               ))}
             </div>
             <div className="mt-3">
               <label htmlFor="gift-custom" className="text-sm font-medium text-forest">
-                Or a custom amount ({currency === "gbp" ? "£" : "€"})
+                {t("amount.customLabel", {
+                  symbol: currencySymbol(currency, locale),
+                })}
               </label>
               <input
                 id="gift-custom"
                 type="text"
                 inputMode="decimal"
-                placeholder="7.50"
+                placeholder={t("amount.placeholder")}
                 value={customRaw}
                 onChange={(event) => {
                   setCustomRaw(event.target.value);
@@ -287,12 +334,15 @@ export function GiftComposer({
               <p className="mt-3 text-xs text-ink/70">
                 {projectedGoalPercent !== null && projectedGoalPercent >= 1 ? (
                   <>
-                    Your Tee brings this goal to{" "}
-                    <span className="font-medium text-forest">{projectedGoalPercent}%</span>.{" "}
+                    {t.rich("goalNote.brings", {
+                      percent: formatPercent(projectedGoalPercent, locale),
+                      strong: (chunks) => (
+                        <span className="font-medium text-forest">{chunks}</span>
+                      ),
+                    })}{" "}
                   </>
                 ) : null}
-                Goal progress only counts confirmed payments — your Tee shows up
-                once it&apos;s verified.
+                {t("goalNote.verified")}
               </p>
             ) : null}
           </fieldset>
@@ -301,7 +351,7 @@ export function GiftComposer({
 
       <div>
         <label htmlFor="gift-sender" className="text-sm font-medium text-forest">
-          Your name
+          {t("fields.yourName")}
         </label>
         <input
           id="gift-sender"
@@ -317,8 +367,8 @@ export function GiftComposer({
 
       <div>
         <label htmlFor="gift-email" className="text-sm font-medium text-forest">
-          Email for your receipt{" "}
-          <span className="font-normal text-ink/70">(optional)</span>
+          {t("fields.email")}{" "}
+          <span className="font-normal text-ink/70">{t("fields.optional")}</span>
         </label>
         <input
           id="gift-email"
@@ -332,8 +382,8 @@ export function GiftComposer({
 
       <div>
         <label htmlFor="gift-message" className="text-sm font-medium text-forest">
-          Message for {recipientName}{" "}
-          <span className="font-normal text-ink/70">(optional)</span>
+          {t("fields.messageFor", { name: recipientName })}{" "}
+          <span className="font-normal text-ink/70">{t("fields.optional")}</span>
         </label>
         <textarea
           id="gift-message"
@@ -352,45 +402,58 @@ export function GiftComposer({
           onChange={(event) => setIsAnonymous(event.target.checked)}
           className="mt-0.5 h-5 w-5 shrink-0 accent-[--color-forest]"
         />
-        <span>Keep my name private — show this Tee as from “Anonymous”.</span>
+        <span>{t("fields.anonymous")}</span>
       </label>
 
       {fees?.ok ? (
         <dl
-          aria-label="Payment breakdown"
+          aria-label={t("breakdown.label")}
           className="space-y-1.5 rounded-2xl border border-stone bg-mist p-5 text-sm text-ink/80"
         >
           <div className="flex justify-between">
-            <dt>Your Tee</dt>
+            <dt>{t("breakdown.yourTee")}</dt>
             <dd className="font-medium text-ink">
-              {formatMinorAmount(fees.breakdown.giftAmount, currency)}
+              {formatMinorAmount(fees.breakdown.giftAmount, currency, locale)}
             </dd>
           </div>
           <div className="flex justify-between">
-            <dt>BuyMeATee platform fee</dt>
-            <dd>{formatMinorAmount(fees.breakdown.platformFeeAmount, currency)}</dd>
+            <dt>{t("breakdown.platformFee")}</dt>
+            <dd>
+              {formatMinorAmount(fees.breakdown.platformFeeAmount, currency, locale)}
+            </dd>
           </div>
           <div className="flex justify-between">
-            <dt>Payment handling</dt>
+            <dt>{t("breakdown.paymentHandling")}</dt>
             <dd>
-              {formatMinorAmount(fees.breakdown.paymentHandlingAmount, currency)}
+              {formatMinorAmount(
+                fees.breakdown.paymentHandlingAmount,
+                currency,
+                locale,
+              )}
             </dd>
           </div>
           <div className="flex justify-between border-t border-stone pt-1.5 text-base font-semibold text-ink">
-            <dt>Total</dt>
-            <dd>{formatMinorAmount(fees.breakdown.totalChargeAmount, currency)}</dd>
+            <dt>{t("breakdown.total")}</dt>
+            <dd>
+              {formatMinorAmount(fees.breakdown.totalChargeAmount, currency, locale)}
+            </dd>
           </div>
           <p className="pt-1 text-xs text-ink/65">
-            {recipientName} receives{" "}
-            {formatMinorAmount(fees.breakdown.recipientTargetAmount, currency)}.
-            Payment handling covers estimated card-processing costs.
+            {t("breakdown.recipientReceives", {
+              name: recipientName,
+              amount: formatMinorAmount(
+                fees.breakdown.recipientTargetAmount,
+                currency,
+                locale,
+              ),
+            })}
           </p>
         </dl>
       ) : null}
 
       {error ? (
         <div role="alert" className="rounded-2xl bg-red-50 p-4 text-sm text-red-900">
-          {error}
+          {errorMessage(error)}
         </div>
       ) : null}
 
@@ -402,16 +465,13 @@ export function GiftComposer({
         {submitting ? (
           <>
             <LoaderCircle aria-hidden="true" className="h-5 w-5 animate-spin" />
-            Preparing secure checkout…
+            {t("submit.preparing")}
           </>
         ) : (
-          `${submitLabel} with Stripe`
+          submitLabel
         )}
       </button>
-      <p className="text-center text-xs text-ink/60">
-        You&apos;ll pay on Stripe&apos;s secure checkout. BuyMeATee never sees
-        your card details.
-      </p>
+      <p className="text-center text-xs text-ink/60">{t("stripeNotice")}</p>
     </form>
   );
 }

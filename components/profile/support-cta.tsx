@@ -1,5 +1,7 @@
 "use client";
 
+import { useTranslations } from "next-intl";
+
 import {
   scrollToComposer,
   useSupportTarget,
@@ -32,6 +34,7 @@ export function SupportCta({
   className: string;
   tabIndex?: number;
 }) {
+  const t = useTranslations("profilePage.cta");
   const { select, clear } = useSupportTarget();
   return (
     <button
@@ -48,7 +51,7 @@ export function SupportCta({
       }}
       className={className}
     >
-      {topGoal ? "Support this goal" : `Buy ${name} a tee`}
+      {topGoal ? t("supportGoal") : t("buyTee", { name })}
     </button>
   );
 }

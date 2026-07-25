@@ -1,0 +1,36 @@
+{
+  "layout": {
+    "tagline": "Support the journey."
+  },
+  "giftReceived": {
+    "subject": "You got a tee — {amount} from {sender}",
+    "preheader": "{sender} bought you a tee ({amount}).",
+    "heading": "You got a tee ⛳",
+    "body": "{sender} just bought you a tee — {amount}.",
+    "encouragement": "Every tee is someone backing your journey. Nice work.",
+    "cta": "View your dashboard",
+    "fallbackSender": "A supporter",
+    "fallbackSenderInline": "a supporter"
+  },
+  "giftReceipt": {
+    "subject": "Your receipt — {amount} to {creator}",
+    "preheader": "Receipt: you bought {creator} a tee ({amount}).",
+    "heading": "Thanks for the support",
+    "thanks": "Thanks for buying {creator} a tee.",
+    "target": "You put it toward {target}.",
+    "receipt": "Your support of {amount} is on its way to them — this email is your receipt.",
+    "closing": "You just helped keep a golf journey moving. That's the whole idea.",
+    "cta": "Discover more creators",
+    "fallbackCreator": "a creator"
+  },
+  "goalReached": {
+    "subject": "Goal reached: {title} 🎉",
+    "preheader": "{title} reached its target ({raised}).",
+    "heading": "Your goal hit its target 🎯",
+    "body": "Your goal {title} just hit its target.",
+    "progress": "Raised so far: {raised} of {target}.",
+    "nextStep": "Head to your dashboard to mark it complete and share the moment with the supporters who got you there.",
+    "cta": "View your goal",
+    "fallbackTitle": "your goal"
+  }
+}

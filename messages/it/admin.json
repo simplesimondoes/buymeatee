@@ -1,0 +1,190 @@
+{
+  "nav": {
+    "label": "Sezioni admin",
+    "payments": "Pagamenti",
+    "users": "Utenti",
+    "moderation": "Moderazione"
+  },
+  "meta": {
+    "payments": {
+      "title": "Admin pagamenti"
+    },
+    "users": {
+      "title": "Admin utenti"
+    },
+    "userDetail": {
+      "title": "Admin utente"
+    },
+    "moderation": {
+      "title": "Admin moderazione"
+    }
+  },
+  "common": {
+    "eyebrow": "Admin",
+    "search": "Cerca",
+    "noName": "(senza nome)"
+  },
+  "statuses": {
+    "gift": {
+      "draft": "Bozza",
+      "checkout_created": "Checkout creato",
+      "processing": "In elaborazione",
+      "paid": "Pagato",
+      "payment_failed": "Pagamento non riuscito",
+      "expired": "Scaduto",
+      "partially_refunded": "Parzialmente rimborsato",
+      "refunded": "Rimborsato",
+      "disputed": "Contestato",
+      "dispute_won": "Contestazione vinta",
+      "dispute_lost": "Contestazione persa",
+      "cancelled": "Annullato"
+    },
+    "goal": {
+      "draft": "Bozza",
+      "active": "Attivo",
+      "completed": "Completato",
+      "archived": "Archiviato"
+    },
+    "payment": {
+      "not_started": "Non avviato",
+      "onboarding_not_started": "Onboarding non avviato",
+      "onboarding_incomplete": "Onboarding incompleto",
+      "information_required": "Informazioni richieste",
+      "verification_pending": "Verifica in corso",
+      "ready": "Pronto",
+      "payments_restricted": "Pagamenti limitati",
+      "payouts_disabled": "Accrediti disattivati"
+    },
+    "role": {
+      "creator": "creator",
+      "supporter": "sostenitore"
+    },
+    "account": {
+      "active": "Attivo",
+      "deactivated": "Disattivato"
+    }
+  },
+  "payments": {
+    "title": "Pagamenti",
+    "searchLabel": "Cerca (id pubblico del regalo, cs_…, pi_… o username del destinatario)",
+    "statusLabel": "Stato",
+    "statusAll": "Tutti",
+    "unavailable": "I dati di pagamento non sono disponibili in questo momento.",
+    "reconciliationErrorsHeading": "Errori di riconciliazione — richiesta revisione manuale",
+    "giftsHeading": "Regali (più recenti)",
+    "giftsHeadingMatching": "Regali corrispondenti a “{query}”",
+    "table": {
+      "created": "Creato",
+      "publicId": "Id pubblico",
+      "recipient": "Destinatario",
+      "sender": "Mittente",
+      "gift": "Regalo",
+      "platformFee": "Commissione della piattaforma",
+      "total": "Totale",
+      "status": "Stato",
+      "refunded": "Rimborsato",
+      "stripe": "Stripe"
+    },
+    "anonymousSender": "(anonimo)",
+    "testMode": "(test)",
+    "openInStripe": "Apri",
+    "empty": "Nessun regalo trovato.",
+    "refund": {
+      "heading": "Rimborsa un regalo",
+      "description": "Solo rimborsi totali (MVP): annulla il trasferimento al destinatario e rimborsa la commissione della piattaforma. Confermato tramite webhook."
+    },
+    "reconcile": {
+      "heading": "Riconciliazione",
+      "description": "Confronta con Stripe i regali bloccati in bozza / in attesa di pagamento / in elaborazione e corregge le discrepanze sicure."
+    }
+  },
+  "moderation": {
+    "title": "Moderazione",
+    "intro": "Contenuti pubblici modificati di recente, dal più nuovo. Le rimozioni registrano una motivazione nel log di audit; anche il testo rimosso viene conservato lì. Bozza della policy: <policy>docs/moderation-policy.md</policy> (in attesa di revisione legale).",
+    "unavailable": "La moderazione non è disponibile in questo momento.",
+    "goalsSectionLabel": "Obiettivi recenti",
+    "goalsHeading": "Obiettivi ({count})",
+    "goalsEmpty": "Ancora nessun obiettivo.",
+    "takenDownBadge": "Rimosso",
+    "goalTarget": "Traguardo: {amount}",
+    "profilesSectionLabel": "Profili recenti",
+    "profilesHeading": "Profili con contenuti pubblici ({count})",
+    "profilesEmpty": "Ancora nessun profilo con bio o foto.",
+    "takeDownButton": "Rimuovi",
+    "restoreButton": "Ripristina",
+    "clearBioButton": "Svuota la bio",
+    "removePhotoButton": "Rimuovi la foto"
+  },
+  "action": {
+    "reasonRequired": "Aggiungi una motivazione — finisce nel log di audit.",
+    "reasonFor": "Motivazione per {label}",
+    "reasonPlaceholder": "Motivazione (registrata nel log di audit)",
+    "confirm": "Conferma",
+    "cancel": "Annulla"
+  },
+  "users": {
+    "title": "Utenti",
+    "searchLabel": "Cerca per username, nome visualizzato o id utente",
+    "searchPlaceholder": "Username, nome visualizzato o id utente",
+    "unavailable": "La ricerca utenti non è disponibile in questo momento.",
+    "empty": "Nessun profilo corrispondente.",
+    "table": {
+      "profile": "Profilo",
+      "publicLink": "Link pubblico",
+      "role": "Ruolo",
+      "status": "Stato",
+      "joined": "Iscrizione"
+    }
+  },
+  "userDetail": {
+    "breadcrumb": "Admin · Utenti",
+    "deactivatedOn": "Disattivato il {date}",
+    "profileHeading": "Profilo",
+    "fields": {
+      "userId": "Id utente",
+      "publicLink": "Link pubblico",
+      "role": "Ruolo",
+      "country": "Paese",
+      "bio": "Bio",
+      "joined": "Iscrizione"
+    },
+    "linkNotClaimed": "non rivendicato",
+    "paymentsHeading": "Pagamenti",
+    "stripeState": "Stato Stripe",
+    "canReceiveTees": "(può ricevere Tee)",
+    "teesReceived": "Tee ricevuti",
+    "teesNone": "nessuno",
+    "teeTotal": "{count} · {amount}",
+    "goalsHeading": "Obiettivi ({count})",
+    "goalsEmpty": "Nessun obiettivo.",
+    "goalProgress": "{raised} su {target}",
+    "actionsLabel": "Azioni",
+    "reinstateHeading": "Riattiva",
+    "deactivateHeading": "Disattiva",
+    "reinstateDescription": "La riattivazione ripristina la pagina pubblica e la possibilità di ricevere Tee.",
+    "deactivateDescription": "La disattivazione nasconde la pagina pubblica e blocca i nuovi Tee. I pagamenti e gli accrediti già regolati non vengono toccati.",
+    "auditHeading": "Registro di audit"
+  },
+  "userStatus": {
+    "reasonLabel": "Motivazione (registrata nel log di audit)",
+    "reinstatePlaceholder": "es. Problema risolto con il creator",
+    "deactivatePlaceholder": "es. Violazione dei termini: dichiarazioni fuorvianti sull'obiettivo",
+    "reinstateButton": "Riattiva il profilo",
+    "deactivateButton": "Disattiva il profilo"
+  },
+  "tools": {
+    "refund": {
+      "giftIdLabel": "Id pubblico del regalo",
+      "reasonLabel": "Motivazione (sotto audit)",
+      "submit": "Emetti rimborso totale",
+      "success": "Rimborso {refundId} creato. Il regalo si aggiorna quando Stripe conferma via webhook.",
+      "failed": "Rimborso non riuscito."
+    },
+    "reconcile": {
+      "run": "Riconcilia i regali bloccati",
+      "report": "Analizzati {scanned}: {markedPaid} pagati, {markedExpired} scaduti, {markedFailed} non riusciti, {cancelledDrafts} bozze annullate, {stillPending} in sospeso, segnalati: {flagged}.",
+      "flaggedNone": "nessuno",
+      "failed": "Riconciliazione non riuscita."
+    }
+  }
+}

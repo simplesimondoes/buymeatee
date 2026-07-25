@@ -1,0 +1,187 @@
+{
+  "meta": {
+    "profile": {
+      "title": "Definições de perfil",
+      "description": "Configura a tua página pública BuyMeATee."
+    },
+    "payments": {
+      "title": "Definições de pagamentos",
+      "description": "Configura a forma como recebes Tees através da Stripe."
+    },
+    "paymentsReturn": {
+      "title": "A concluir a configuração de pagamentos"
+    }
+  },
+  "nav": {
+    "label": "Secções de definições",
+    "profile": "Perfil",
+    "payments": "Pagamentos"
+  },
+  "eyebrow": "Definições",
+  "profile": {
+    "title": "Perfil",
+    "intro": "Isto é o que os apoiantes veem na tua página pública — a tua ligação, o teu nome e para onde vai o teu percurso.",
+    "unavailable": "As definições de perfil não estão disponíveis de momento. Tenta novamente dentro de instantes.",
+    "language": {
+      "label": "Idioma",
+      "help": "Usado em todo o BuyMeATee neste dispositivo."
+    },
+    "cover": {
+      "label": "Imagem de capa",
+      "help": "JPEG, PNG ou WebP até 5 MB. Uma fotografia ao baixo funciona melhor — cerca de 1600 × 1067 px (3:2). Mantém o motivo principal aproximadamente ao centro: as margens são aparadas para caber em telemóveis e ecrãs mais largos.",
+      "add": "Adicionar uma imagem",
+      "change": "Mudar imagem",
+      "remove": "Remover",
+      "errors": {
+        "type": "Usa uma imagem JPEG, PNG ou WebP.",
+        "size": "Mantém a imagem abaixo de 5 MB."
+      }
+    },
+    "photo": {
+      "label": "Fotografia",
+      "add": "Adicionar uma fotografia",
+      "change": "Mudar fotografia",
+      "remove": "Remover",
+      "help": "JPEG, PNG ou WebP até 2 MB. A tua fotografia é pública — aparece na tua página para qualquer pessoa ver.",
+      "chooseAria": "Escolher uma fotografia de perfil",
+      "fallbackName": "O teu perfil",
+      "errors": {
+        "type": "Usa uma imagem JPEG, PNG ou WebP.",
+        "size": "Mantém a imagem abaixo de 2 MB."
+      }
+    },
+    "form": {
+      "optional": "(opcional)",
+      "charCount": "{count}/{max}",
+      "usernameLabel": "A tua ligação pública",
+      "usernamePlaceholder": "o-teu-nome",
+      "usernameHelp": "Letras minúsculas, números e hífenes. Esta é a ligação que os apoiantes visitam para te oferecer um tee.",
+      "usernameChangeWarning": "Guardar altera a tua ligação pública. Todos os sítios onde partilhaste buymeatee.com/t/{username} deixarão de funcionar.",
+      "displayNameLabel": "Nome apresentado",
+      "bioLabel": "Bio",
+      "bioPlaceholder": "Para onde vai o teu percurso no golfe e o que o apoio te permite fazer.",
+      "aboutLabel": "Sobre",
+      "aboutPlaceholder": "Conta a tua história. p. ex. “Olá, sou o Simon, o programador por trás do Caddie Live…”\n\nMarkdown funciona: **negrito**, _itálico_, - listas e [ligações](https://…).",
+      "aboutHelp": "Suporta Markdown — títulos, <strong>negrito</strong>, listas e ligações. As pessoas apoiam pessoas, por isso torna-o pessoal.",
+      "countryLabel": "País",
+      "golfLegend": "O teu golfe",
+      "handicapLabel": "Handicap",
+      "handicapPlaceholder": "9.4",
+      "handednessLabel": "Mão dominante",
+      "handednessNotSet": "Por definir",
+      "handednessRight": "Destro",
+      "handednessLeft": "Canhoto",
+      "locationLabel": "Localização",
+      "locationPlaceholder": "Cascais, Portugal",
+      "homeClubLabel": "Clube de origem",
+      "homeClubPlaceholder": "Golfe Costa Verde GC",
+      "linksLegend": "Ligações",
+      "websiteLabel": "Website",
+      "socialPlaceholders": {
+        "youtube": "https://youtube.com/@tu",
+        "instagram": "https://instagram.com/tu",
+        "tiktok": "https://tiktok.com/@tu",
+        "x": "https://x.com/tu",
+        "bluesky": "https://bsky.app/profile/tu",
+        "substack": "https://tu.substack.com",
+        "facebook": "https://facebook.com/tu",
+        "twitch": "https://twitch.tv/tu",
+        "linkedin": "https://linkedin.com/in/tu",
+        "website": "https://o-teu-site.com"
+      },
+      "pinnedLabel": "Media afixada",
+      "pinnedPlaceholder": "https://youtube.com/watch?v=…",
+      "pinnedHelp": "Destaca uma coisa perto do topo da tua página — um vídeo do YouTube, uma publicação do Instagram ou qualquer ligação.",
+      "save": "Guardar perfil",
+      "saved": "Perfil guardado. A tua página está no ar em:",
+      "copyLink": "Copiar ligação",
+      "copied": "Copiado"
+    }
+  },
+  "payments": {
+    "title": "Pagamentos",
+    "intro": "A receção de Tees funciona sobre a Stripe. A Stripe pode pedir informação de identidade ou bancária — faz parte de manter os pagamentos seguros.",
+    "unavailable": "As definições de pagamentos não estão disponíveis de momento. Tenta novamente dentro de instantes.",
+    "statusAria": "Estado da configuração de pagamentos",
+    "countryTerm": "País:",
+    "receivingTerm": "A receber Tees:",
+    "receivingYes": "Sim",
+    "receivingNo": "Ainda não",
+    "footnote": "As transferências são geridas pela Stripe, não pelo BuyMeATee. Um apoio pago significa que chegou à tua conta Stripe — o momento da transferência para o teu banco segue o teu calendário de transferências da Stripe.",
+    "state": {
+      "notStarted": {
+        "heading": "Pagamentos por configurar",
+        "body": "Para receberes Tees, associa uma conta Stripe. A Stripe trata das verificações de identidade, dos dados bancários e das transferências — o BuyMeATee nunca guarda o teu dinheiro.",
+        "cta": "Configurar pagamentos com a Stripe"
+      },
+      "onboardingNotStarted": {
+        "heading": "Conta Stripe criada",
+        "body": "A tua conta Stripe existe, mas o onboarding ainda não começou. Demora só uns minutos.",
+        "cta": "Começar o onboarding da Stripe"
+      },
+      "onboardingIncomplete": {
+        "heading": "Onboarding incompleto",
+        "body": "A Stripe ainda precisa de alguns detalhes antes de poderes receber Tees. Retoma onde ficaste.",
+        "cta": "Continuar o onboarding da Stripe"
+      },
+      "informationRequired": {
+        "heading": "A Stripe precisa de mais informação",
+        "body": "A Stripe pediu informação adicional. Enquanto não for fornecida, os pagamentos ou as transferências podem ficar limitados.",
+        "cta": "Fornecer a informação em falta"
+      },
+      "verificationPending": {
+        "heading": "Verificação em curso",
+        "body": "Os teus dados foram submetidos e a Stripe está a verificá-los. Normalmente conclui-se depressa — volta a ver em breve."
+      },
+      "ready": {
+        "heading": "Pronto para receber Tees",
+        "body": "A tua conta Stripe está totalmente configurada. Os apoios vão diretamente para a tua conta Stripe e a Stripe transfere para o teu banco segundo o seu calendário."
+      },
+      "paymentsRestricted": {
+        "heading": "Pagamentos restringidos",
+        "body": "A Stripe restringiu esta conta, por isso não pode receber Tees de momento. Abre o teu dashboard da Stripe para detalhes, ou contacta o suporte da Stripe.",
+        "cta": "Verificar junto da Stripe"
+      },
+      "payoutsDisabled": {
+        "heading": "Transferências desativadas",
+        "body": "Os pagamentos são possíveis, mas as transferências para o teu banco estão desativadas de momento. Normalmente a Stripe precisa de dados bancários ou de identidade atualizados.",
+        "cta": "Atualizar dados junto da Stripe"
+      }
+    },
+    "connect": {
+      "countryLabel": "O teu país",
+      "countryHelp": "Define-se uma vez e não pode ser alterado depois — fixa a tua moeda de pagamento.",
+      "dashboardCta": "Transferências e dados na Stripe"
+    }
+  },
+  "checklist": {
+    "aria": "Primeiros passos",
+    "title": "Prepara o teu percurso",
+    "progress": "{done} de {total} concluídos",
+    "intro": "Uns poucos passos e os apoiantes podem oferecer-te um tee.",
+    "stepDone": "— feito",
+    "stepTodo": "— por fazer",
+    "steps": {
+      "claimLink": {
+        "title": "Reclama a tua ligação",
+        "detail": "Escolhe o nome buymeatee.com/t/ que os apoiantes vão visitar.",
+        "action": "Escolher uma ligação"
+      },
+      "completeProfile": {
+        "title": "Completa o teu perfil",
+        "detail": "Um nome mais uma bio ou fotografia — quem está por trás do percurso.",
+        "action": "Editar perfil"
+      },
+      "firstGoal": {
+        "title": "Publica o teu primeiro objetivo",
+        "detail": "Dá aos apoiantes algo real para abraçar.",
+        "action": "Adicionar um objetivo"
+      },
+      "connectPayments": {
+        "title": "Associa os pagamentos",
+        "detail": "A Stripe trata do dinheiro — os Tees vão diretamente para ti.",
+        "action": "Configurar pagamentos"
+      }
+    }
+  }
+}

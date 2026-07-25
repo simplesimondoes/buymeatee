@@ -1,7 +1,8 @@
-import { render, screen } from "@testing-library/react";
+import { screen } from "@testing-library/react";
 import userEvent from "@testing-library/user-event";
 import { describe, expect, it } from "vitest";
 
+import { renderWithIntl } from "@/test/i18n-test-utils";
 import { AccountMenu } from "@/components/account-menu";
 
 const authed = {
@@ -13,7 +14,7 @@ const authed = {
 describe("AccountMenu", () => {
   it("is collapsed by default and reveals actions on click", async () => {
     const user = userEvent.setup();
-    render(<AccountMenu {...authed} />);
+    renderWithIntl(<AccountMenu {...authed} />);
 
     const trigger = screen.getByRole("button", { name: /Caddie Live/ });
     expect(trigger).toHaveAttribute("aria-expanded", "false");
@@ -24,14 +25,14 @@ describe("AccountMenu", () => {
 
     expect(screen.getByRole("menuitem", { name: "My page" })).toHaveAttribute(
       "href",
-      "/t/caddielive",
+      "/en/t/caddielive",
     );
     expect(
       screen.getByRole("menuitem", { name: "Dashboard" }),
-    ).toHaveAttribute("href", "/dashboard");
+    ).toHaveAttribute("href", "/en/dashboard");
     expect(screen.getByRole("menuitem", { name: "Settings" })).toHaveAttribute(
       "href",
-      "/settings/profile",
+      "/en/settings/profile",
     );
     expect(
       screen.getByRole("menuitem", { name: "Log out" }),
@@ -40,7 +41,7 @@ describe("AccountMenu", () => {
 
   it("logs out via a POST to the sign-out route", async () => {
     const user = userEvent.setup();
-    render(<AccountMenu {...authed} />);
+    renderWithIntl(<AccountMenu {...authed} />);
     await user.click(screen.getByRole("button", { name: /Caddie Live/ }));
 
     const form = screen
@@ -52,7 +53,7 @@ describe("AccountMenu", () => {
 
   it("closes on Escape and restores focus to the trigger", async () => {
     const user = userEvent.setup();
-    render(<AccountMenu {...authed} />);
+    renderWithIntl(<AccountMenu {...authed} />);
     const trigger = screen.getByRole("button", { name: /Caddie Live/ });
 
     await user.click(trigger);
@@ -65,7 +66,7 @@ describe("AccountMenu", () => {
 
   it("hides My page until a username is claimed", async () => {
     const user = userEvent.setup();
-    render(
+    renderWithIntl(
       <AccountMenu username={null} displayName="Caddie Live" avatarUrl={null} />,
     );
     await user.click(screen.getByRole("button", { name: /Caddie Live/ }));

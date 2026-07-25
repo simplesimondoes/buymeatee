@@ -1,14 +1,19 @@
 "use client";
 
 import { ArrowDown, ArrowUp, CircleCheck, Plus } from "lucide-react";
+import { useLocale, useTranslations } from "next-intl";
 import { useState } from "react";
 
+import { useErrorMessage } from "@/components/intl/use-error-message";
 import { CoverUploader } from "@/components/profile/cover-uploader";
 import {
   WishlistItemForm,
   type WishlistFormErrors,
 } from "@/components/wishlist/wishlist-item-form";
-import { formatMinorAmount, type SupportedCurrency } from "@/lib/payments/currency";
+import type { AppLocale } from "@/i18n/locales";
+import { errorDetail, type ErrorDetail } from "@/lib/i18n/errors";
+import { formatMinorAmount } from "@/lib/i18n/format";
+import type { SupportedCurrency } from "@/lib/payments/currency";
 import type { WishlistItemInput } from "@/lib/wishlist/item-schema";
 import {
   type WishlistItemRow,
@@ -22,21 +27,24 @@ import {
  * button here: only a supporter's verified payment sets it (ADR-018).
  */
 
-const statusChips: Record<WishlistItemStatus, { label: string; classes: string }> =
-  {
-    draft: { label: "Draft", classes: "bg-mist text-ink/70" },
-    active: { label: "On your page", classes: "bg-forest/10 text-forest" },
-    funded: { label: "Funded", classes: "bg-gold/20 text-gold-deep" },
-    archived: { label: "Archived", classes: "bg-stone/60 text-ink/60" },
-  };
+const statusChipClasses: Record<WishlistItemStatus, string> = {
+  draft: "bg-mist text-ink/70",
+  active: "bg-forest/10 text-forest",
+  funded: "bg-gold/20 text-gold-deep",
+  archived: "bg-stone/60 text-ink/60",
+};
 
-type Transition = { to: WishlistItemStatus; label: string; emphasis?: boolean };
+type Transition = {
+  to: WishlistItemStatus;
+  labelKey: "publish" | "takeOff" | "restore";
+  emphasis?: boolean;
+};
 
 const transitionsFor: Record<WishlistItemStatus, Transition[]> = {
-  draft: [{ to: "active", label: "Publish to your page", emphasis: true }],
-  active: [{ to: "draft", label: "Take off your page" }],
+  draft: [{ to: "active", labelKey: "publish", emphasis: true }],
+  active: [{ to: "draft", labelKey: "takeOff" }],
   funded: [],
-  archived: [{ to: "draft", label: "Restore as draft" }],
+  archived: [{ to: "draft", labelKey: "restore" }],
 };
 
 const secondaryButton =
@@ -45,7 +53,11 @@ const secondaryButton =
 async function postItemAction(
   itemId: string,
   body: Record<string, unknown>,
-): Promise<{ item?: WishlistItemRow; errors?: WishlistFormErrors; error?: string }> {
+): Promise<{
+  item?: WishlistItemRow;
+  errors?: WishlistFormErrors;
+  error?: ErrorDetail | string;
+}> {
   try {
     const response = await fetch(`/api/wishlist/${itemId}`, {
       method: "POST",
@@ -55,10 +67,10 @@ async function postItemAction(
     return (await response.json().catch(() => ({}))) as {
       item?: WishlistItemRow;
       errors?: WishlistFormErrors;
-      error?: string;
+      error?: ErrorDetail | string;
     };
   } catch {
-    return { error: "Something went wrong. Please try again." };
+    return { error: errorDetail("generic") };
   }
 }
 
@@ -69,6 +81,9 @@ export function WishlistManager({
   initialItems: WishlistItemRow[];
   payoutCurrency?: SupportedCurrency;
 }) {
+  const t = useTranslations("dashboard");
+  const locale = useLocale() as AppLocale;
+  const errorMessage = useErrorMessage();
   const [items, setItems] = useState(initialItems);
   const [creating, setCreating] = useState(false);
   const [editingId, setEditingId] = useState<string | null>(null);
@@ -93,7 +108,7 @@ export function WishlistManager({
       const body = (await response.json().catch(() => ({}))) as {
         item?: WishlistItemRow;
         errors?: WishlistFormErrors;
-        error?: string;
+        error?: ErrorDetail | string;
       };
       if (response.ok && body.item) {
         setItems((current) => [...current, body.item as WishlistItemRow]);
@@ -102,7 +117,7 @@ export function WishlistManager({
       }
       return { errors: body.errors, error: body.error };
     } catch {
-      return { error: "Something went wrong. Please try again." };
+      return { error: errorDetail("generic") };
     }
   }
 
@@ -124,7 +139,7 @@ export function WishlistManager({
     if (body.item) {
       replaceItem(body.item);
     } else {
-      setActionError(body.error ?? "Something went wrong. Please try again.");
+      setActionError(errorMessage(body.error ?? null));
     }
   }
 
@@ -139,7 +154,7 @@ export function WishlistManager({
     const body = await postItemAction(itemId, { action: "move", direction });
     setBusyId(null);
     if (body.error) {
-      setActionError(body.error);
+      setActionError(errorMessage(body.error));
       return;
     }
     setItems((current) => {
@@ -158,12 +173,12 @@ export function WishlistManager({
         setItems((current) => current.filter((item) => item.id !== itemId));
       } else {
         const body = (await response.json().catch(() => ({}))) as {
-          error?: string;
+          error?: ErrorDetail | string;
         };
-        setActionError(body.error ?? "Something went wrong. Please try again.");
+        setActionError(errorMessage(body.error ?? null));
       }
     } catch {
-      setActionError("Something went wrong. Please try again.");
+      setActionError(errorMessage(null));
     }
     setBusyId(null);
   }
@@ -172,7 +187,7 @@ export function WishlistManager({
     <div className="space-y-6">
       <div className="flex flex-wrap items-center justify-between gap-3">
         <p className="text-sm text-ink/70">
-          {activeCount} {activeCount === 1 ? "item" : "items"} on your page
+          {t("wishlist.manager.itemCount", { count: activeCount })}
         </p>
         {!creating ? (
           <button
@@ -184,7 +199,7 @@ export function WishlistManager({
             className="inline-flex min-h-11 items-center justify-center gap-2 rounded-full bg-forest px-5 text-sm font-medium text-white transition-colors hover:bg-forest-dark"
           >
             <Plus aria-hidden="true" className="h-4 w-4" />
-            New item
+            {t("wishlist.manager.newItem")}
           </button>
         ) : null}
       </div>
@@ -198,11 +213,11 @@ export function WishlistManager({
       {creating ? (
         <div className="rounded-3xl border border-stone bg-white p-6">
           <h2 className="mb-4 font-serif text-lg font-semibold text-forest">
-            New item
+            {t("wishlist.manager.newItem")}
           </h2>
           <WishlistItemForm
             payoutCurrency={payoutCurrency}
-            submitLabel="Save item"
+            submitLabel={t("wishlist.manager.saveItem")}
             onCancel={() => setCreating(false)}
             onSubmit={handleCreate}
           />
@@ -212,14 +227,12 @@ export function WishlistManager({
       {items.length === 0 && !creating ? (
         <div className="rounded-3xl border border-stone bg-mist p-6 text-center sm:p-10">
           <h2 className="font-serif text-xl font-semibold text-forest">
-            What would help your journey?
+            {t("wishlist.manager.emptyTitle")}
           </h2>
           <p className="mx-auto mt-2 max-w-md text-sm leading-relaxed text-ink/70">
-            Wish-list items are specific and tangible: a box of balls, a
-            tournament entry, a coaching session, travel to a qualifier, even a
-            beer after a good round. For instance &ldquo;A dozen tour balls —
-            £45&rdquo; <em>(Example)</em>. Supporters fund the whole item in one
-            Tee.
+            {t.rich("wishlist.manager.emptyBody", {
+              example: (chunks) => <em>{chunks}</em>,
+            })}
           </p>
           <button
             type="button"
@@ -227,14 +240,13 @@ export function WishlistManager({
             className="mt-5 inline-flex min-h-11 items-center justify-center gap-2 rounded-full bg-forest px-6 text-sm font-medium text-white transition-colors hover:bg-forest-dark"
           >
             <Plus aria-hidden="true" className="h-4 w-4" />
-            Add your first item
+            {t("wishlist.manager.addFirstItem")}
           </button>
         </div>
       ) : null}
 
       <ul className="space-y-4">
         {items.map((item, index) => {
-          const chip = statusChips[item.status];
           const busy = busyId === item.id;
           const funded = item.status === "funded";
           return (
@@ -247,8 +259,8 @@ export function WishlistManager({
                   <CoverUploader
                     endpoint={`/api/wishlist/${item.id}/image`}
                     initialUrl={item.image_url}
-                    label="Item image"
-                    helpText="JPEG, PNG or WebP up to 5 MB. A clear photo helps supporters picture what they're funding."
+                    label={t("wishlist.manager.imageLabel")}
+                    helpText={t("wishlist.manager.imageHelp")}
                     aspectClassName="aspect-[4/3]"
                   />
                   <WishlistItemForm
@@ -258,7 +270,7 @@ export function WishlistManager({
                     initialPriceAmount={item.price_amount}
                     priceLocked={item.funded_by_gift_id !== null}
                     payoutCurrency={payoutCurrency}
-                    submitLabel="Save changes"
+                    submitLabel={t("actions.saveChanges")}
                     onCancel={() => setEditingId(null)}
                     onSubmit={(input) => handleEdit(item.id, input)}
                   />
@@ -277,27 +289,27 @@ export function WishlistManager({
                       ) : null}
                     </div>
                     <span
-                      className={`rounded-full px-3 py-1 text-xs font-medium ${chip.classes}`}
+                      className={`rounded-full px-3 py-1 text-xs font-medium ${statusChipClasses[item.status]}`}
                     >
-                      {chip.label}
+                      {t(`wishlist.manager.status.${item.status}`)}
                     </span>
                   </div>
 
                   <p className="mt-4 text-sm font-semibold text-forest">
-                    {formatMinorAmount(item.price_amount, item.currency)}
+                    {formatMinorAmount(item.price_amount, item.currency, locale)}
                   </p>
 
                   {funded ? (
                     <p className="mt-4 flex items-center gap-2 rounded-2xl bg-gold/10 p-3 text-sm text-gold-deep">
                       <CircleCheck aria-hidden="true" className="h-4 w-4 shrink-0" />
-                      A supporter funded this — thank them on your next update!
+                      {t("wishlist.manager.fundedNote")}
                     </p>
                   ) : null}
 
                   <div className="mt-4 flex flex-wrap items-center gap-2">
                     {transitionsFor[item.status].map((transition) => (
                       <button
-                        key={transition.to + transition.label}
+                        key={transition.to + transition.labelKey}
                         type="button"
                         disabled={busy}
                         onClick={() => handleTransition(item.id, transition.to)}
@@ -307,7 +319,7 @@ export function WishlistManager({
                             : secondaryButton
                         }
                       >
-                        {transition.label}
+                        {t(`wishlist.manager.transitions.${transition.labelKey}`)}
                       </button>
                     ))}
                     {item.status !== "archived" ? (
@@ -322,7 +334,7 @@ export function WishlistManager({
                             }}
                             className={secondaryButton}
                           >
-                            Edit
+                            {t("actions.edit")}
                           </button>
                         ) : null}
                         <button
@@ -331,7 +343,7 @@ export function WishlistManager({
                           onClick={() => handleTransition(item.id, "archived")}
                           className={secondaryButton}
                         >
-                          Archive
+                          {t("actions.archive")}
                         </button>
                       </>
                     ) : null}
@@ -342,7 +354,7 @@ export function WishlistManager({
                         onClick={() => handleDelete(item.id)}
                         className="inline-flex min-h-9 items-center justify-center rounded-full px-3.5 text-xs font-medium text-red-800/80 transition-colors hover:text-red-800 disabled:opacity-60"
                       >
-                        Delete
+                        {t("actions.delete")}
                       </button>
                     ) : null}
                     <span className="ml-auto flex gap-1">
@@ -350,7 +362,9 @@ export function WishlistManager({
                         type="button"
                         disabled={busy || index === 0}
                         onClick={() => handleMove(item.id, "up")}
-                        aria-label={`Move ${item.title} up`}
+                        aria-label={t("wishlist.manager.moveUp", {
+                          title: item.title,
+                        })}
                         className={`${secondaryButton} px-2.5`}
                       >
                         <ArrowUp aria-hidden="true" className="h-3.5 w-3.5" />
@@ -359,7 +373,9 @@ export function WishlistManager({
                         type="button"
                         disabled={busy || index === items.length - 1}
                         onClick={() => handleMove(item.id, "down")}
-                        aria-label={`Move ${item.title} down`}
+                        aria-label={t("wishlist.manager.moveDown", {
+                          title: item.title,
+                        })}
                         className={`${secondaryButton} px-2.5`}
                       >
                         <ArrowDown aria-hidden="true" className="h-3.5 w-3.5" />

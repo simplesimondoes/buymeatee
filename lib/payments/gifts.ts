@@ -1,5 +1,6 @@
 import "server-only";
 
+import { defaultLocale, type AppLocale } from "@/i18n/locales";
 import { getFeeConfig, getStripeUrls } from "@/lib/payments/config";
 import { formatMinorAmount } from "@/lib/payments/currency";
 import { calculateFees, type FeeCalculationError } from "@/lib/payments/fees";
@@ -64,9 +65,28 @@ export type CreateCheckoutResult =
   | { ok: true; checkoutUrl: string; giftPublicId: string }
   | { ok: false; error: CreateCheckoutError };
 
+/**
+ * Stripe-hosted Checkout is localised too: our app locales map 1:1 onto
+ * Stripe Checkout locales (English keeps the en-GB brand voice).
+ */
+const STRIPE_CHECKOUT_LOCALES: Record<
+  AppLocale,
+  "en-GB" | "de" | "fr" | "es" | "it" | "ja" | "ko" | "pt"
+> = {
+  en: "en-GB",
+  de: "de",
+  fr: "fr",
+  es: "es",
+  it: "it",
+  ja: "ja",
+  ko: "ko",
+  pt: "pt",
+};
+
 export async function createGiftCheckout(
   input: GiftInput,
   senderUserId: string | null,
+  locale: AppLocale = defaultLocale,
 ): Promise<CreateCheckoutResult> {
   const supabase = getSupabaseAdminClient();
 
@@ -201,6 +221,9 @@ export async function createGiftCheckout(
       is_anonymous: input.isAnonymous,
       fee_model_version: b.feeModelVersion,
       livemode: isLivemode(),
+      // The supporter's UI language at checkout — used for their receipt
+      // email later (they may have no account/profile).
+      locale,
     })
     .select("*")
     .single();
@@ -267,14 +290,13 @@ export async function createGiftCheckout(
             : {}),
         },
         customer_email: input.senderEmail,
-        success_url: urls.checkoutSuccessUrl.replace(
-          "{GIFT_PUBLIC_ID}",
-          giftRow.public_id,
-        ),
-        cancel_url: urls.checkoutCancelUrl.replace(
-          "{GIFT_PUBLIC_ID}",
-          giftRow.public_id,
-        ),
+        locale: STRIPE_CHECKOUT_LOCALES[locale],
+        success_url: urls.checkoutSuccessUrl
+          .replace("{LOCALE}", locale)
+          .replace("{GIFT_PUBLIC_ID}", giftRow.public_id),
+        cancel_url: urls.checkoutCancelUrl
+          .replace("{LOCALE}", locale)
+          .replace("{GIFT_PUBLIC_ID}", giftRow.public_id),
       },
       { idempotencyKey: `bmat-checkout-${giftRow.id}` },
     );

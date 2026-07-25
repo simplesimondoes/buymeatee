@@ -1,0 +1,260 @@
+{
+  "meta": {
+    "overview": {
+      "title": "Tableau de bord",
+      "description": "Ton parcours en un coup d'œil."
+    },
+    "goals": {
+      "title": "Tes objectifs",
+      "description": "Définis les objectifs que les supporters peuvent soutenir sur ta page."
+    },
+    "updates": {
+      "title": "Tes actualités",
+      "description": "Publie des nouvelles de ta progression que tes supporters peuvent suivre."
+    },
+    "wishlist": {
+      "title": "Ta liste de souhaits",
+      "description": "Liste les choses précises que les supporters peuvent financer pour ton parcours."
+    },
+    "payments": {
+      "title": "Tees reçus",
+      "description": "Les cadeaux reçus via ta page BuyMeATee."
+    }
+  },
+  "nav": {
+    "sections": "Sections du tableau de bord",
+    "overview": "Vue d'ensemble",
+    "goals": "Objectifs",
+    "wishlist": "Liste de souhaits",
+    "updates": "Actualités",
+    "payments": "Paiements",
+    "profile": "Profil"
+  },
+  "eyebrow": "Tableau de bord",
+  "actions": {
+    "cancel": "Annuler",
+    "edit": "Modifier",
+    "archive": "Archiver",
+    "delete": "Supprimer",
+    "saveChanges": "Enregistrer les modifications"
+  },
+  "paymentState": {
+    "not_started": "Pas encore configuré",
+    "onboarding_not_started": "Inscription Stripe non commencée",
+    "onboarding_incomplete": "Inscription Stripe incomplète",
+    "information_required": "Stripe demande plus d'informations",
+    "verification_pending": "Vérification Stripe en cours",
+    "ready": "Prêt à recevoir des Tees",
+    "payments_restricted": "Restreint — à examiner avec Stripe",
+    "payouts_disabled": "Versements actuellement désactivés"
+  },
+  "overview": {
+    "title": "Ton parcours",
+    "pageCard": {
+      "ariaLabel": "Ta page publique",
+      "title": "Ta page, c'est là que les Tees arrivent",
+      "sharePage": "Partager la page",
+      "viewPage": "Voir la page"
+    },
+    "profileCard": {
+      "title": "Profil",
+      "link": "Modifier le profil",
+      "unavailable": "Les détails du profil sont indisponibles pour le moment.",
+      "fallbackName": "ton profil",
+      "summaryWithBio": "Tu es <name>{displayName}</name> sur <name>/t/{username}</name> — bio en place.",
+      "summaryNoBio": "Tu es <name>{displayName}</name> sur <name>/t/{username}</name> — pas encore de bio.",
+      "noLink": "Pas encore de lien public. Réclame ton nom buymeatee.com/t/ pour que les supporters puissent te trouver."
+    },
+    "goalsCard": {
+      "title": "Objectifs",
+      "link": "Gérer les objectifs",
+      "unavailable": "Les objectifs sont indisponibles pour le moment.",
+      "activeCount": "<strong>{count}</strong> {count, plural, one {objectif actif} other {objectifs actifs}} sur ta page.",
+      "raised": "{amounts} récoltés sur l'ensemble de tes objectifs.",
+      "noTees": "Pas encore de Tees vers des objectifs.",
+      "empty": "Pas encore d'objectifs sur ta page. Les objectifs donnent aux supporters quelque chose de concret à soutenir."
+    },
+    "wishlistCard": {
+      "title": "Liste de souhaits",
+      "link": "Gérer la liste de souhaits",
+      "body": "Liste les choses précises que les supporters peuvent financer en une fois — une boîte de balles, des frais d'inscription, une séance de coaching, une bière après une partie. Elles s'affichent aux côtés de tes objectifs."
+    },
+    "paymentsCard": {
+      "title": "Paiements",
+      "linkReady": "Voir les Tees reçus",
+      "linkSetup": "Paramètres de paiement",
+      "unavailable": "Le statut des paiements est indisponible pour le moment.",
+      "ready": "<strong>{state}</strong> — les Tees vont directement sur ton compte Stripe.",
+      "notReady": "<strong>{state}</strong> — les supporters ne peuvent pas envoyer de Tees tant que ce n'est pas terminé."
+    },
+    "updatesCard": {
+      "title": "Actualités",
+      "link": "Publier une actualité",
+      "body": "Partage ta progression avec tes supporters — nouvelles fonctionnalités, jalons, parties jouées. Les actualités publiées apparaissent sur ta page."
+    }
+  },
+  "goals": {
+    "page": {
+      "title": "Objectifs",
+      "intro": "Les objectifs transforment le soutien en parcours. Publies-en jusqu'à trois à la fois — la progression vient de vrais Tees, jamais d'un chiffre saisi à la main.",
+      "unavailable": "Les objectifs sont indisponibles pour le moment. Réessaie sous peu."
+    },
+    "supportButton": "Soutenir cet objectif",
+    "manager": {
+      "activeCount": "{count} sur {max, plural, one {# objectif actif} other {# objectifs actifs}} sur ta page",
+      "newGoal": "Nouvel objectif",
+      "emptyTitle": "Vers quoi ton parcours avance-t-il ?",
+      "emptyBody": "Les bons objectifs sont précis et concrets : une saison de green fees, un déplacement pour une qualification, des inscriptions à des tournois, un bloc de cours. Par exemple « Frais d'inscription à la Q-School — 425 £ » <example>(Exemple)</example>. Les objectifs que tu publies apparaissent sur ta page avec une progression honnête.",
+      "addFirstGoal": "Ajoute ton premier objectif",
+      "saveGoal": "Enregistrer l'objectif",
+      "coverLabel": "Image de couverture de l'objectif",
+      "coverHelp": "JPEG, PNG ou WebP jusqu'à 5 Mo. Affichée en haut de la carte de cet objectif sur ta page.",
+      "status": {
+        "draft": "Brouillon",
+        "active": "Sur ta page",
+        "completed": "Atteint",
+        "archived": "Archivé"
+      },
+      "transitions": {
+        "publish": "Publier sur ta page",
+        "markCompleted": "Marquer comme atteint",
+        "takeOff": "Retirer de ta page",
+        "reopen": "Rouvrir",
+        "restore": "Restaurer en brouillon"
+      },
+      "raised": "{raised} sur {target} <muted>récoltés</muted>",
+      "progressLabel": "Progression vers {title}",
+      "milestoneReached": "🎉 Objectif atteint ! Partage ce moment avec tes supporters.",
+      "milestoneProgress": "🏌️ Tu es à {percent} % du chemin — le bon moment pour partager.",
+      "shareProgress": "Partager la progression",
+      "takenDown": "Cet objectif a été retiré par BuyMeATee et ne peut pas être publié. Si tu penses qu'il s'agit d'une erreur, contacte le support.",
+      "moveUp": "Monter {title}",
+      "moveDown": "Descendre {title}"
+    },
+    "form": {
+      "titleLabel": "Vers quoi travailles-tu ?",
+      "titlePlaceholder": "Une saison d'inscriptions à des tournois",
+      "descriptionLabel": "Pourquoi c'est important",
+      "optional": "(facultatif)",
+      "descriptionPlaceholder": "Explique aux supporters ce que cet objectif rend possible — green fees, déplacements, inscriptions, coaching.",
+      "targetLabel": "Montant cible",
+      "targetPlaceholder": "500",
+      "currencyLabel": "Devise",
+      "currencyLockedHelp": "Cet objectif a reçu du soutien, sa devise ne peut donc plus changer.",
+      "currencyPayoutHelp": "Les objectifs utilisent ta devise de versement pour que les supporters puissent les financer."
+    }
+  },
+  "updates": {
+    "page": {
+      "title": "Actualités",
+      "intro": "Montre aux supporters où va leur soutien — nouvelles fonctionnalités, jalons, parties jouées. Les brouillons restent privés jusqu'à leur publication.",
+      "unavailable": "Les actualités sont indisponibles pour le moment. Réessaie sous peu."
+    },
+    "manager": {
+      "newUpdate": "Nouvelle actualité",
+      "emptyTitle": "Partage ta progression.",
+      "emptyBody": "Les actualités, c'est ce qui permet aux supporters de voir leur soutien se transformer en vrais progrès — nouvelles fonctionnalités, jalons, une partie jouée. Publie la première.",
+      "writeFirstUpdate": "Écris ta première actualité",
+      "saveDraft": "Enregistrer le brouillon",
+      "imageLabel": "Image de l'actualité (facultatif)",
+      "imageHelp": "JPEG, PNG ou WebP jusqu'à 5 Mo. Affichée avec cette actualité sur ta page.",
+      "draft": "Brouillon",
+      "published": "Publiée",
+      "publishedOn": "Publiée le {date}",
+      "publish": "Publier",
+      "unpublish": "Dépublier"
+    },
+    "form": {
+      "titleLabel": "Titre",
+      "titlePlaceholder": "Actualité de juillet — 1 200 nouveaux parcours",
+      "bodyLabel": "Actualité",
+      "bodyPlaceholder": "Quoi de neuf ? Les supporters adorent voir la progression.\n\nMarkdown accepté : **gras**, - listes, et [liens](https://…)."
+    }
+  },
+  "wishlist": {
+    "page": {
+      "title": "Liste de souhaits",
+      "intro": "Liste les choses précises qu'un supporter peut financer en une fois — une boîte de balles, une inscription à un tournoi, une séance de coaching, une bière après une partie. Elles s'affichent aux côtés de tes objectifs plus ambitieux. Un article n'apparaît comme financé qu'une fois qu'un vrai Tee l'a payé.",
+      "unavailable": "Ta liste de souhaits est indisponible pour le moment. Réessaie sous peu."
+    },
+    "manager": {
+      "itemCount": "{count, plural, one {# article} other {# articles}} sur ta page",
+      "newItem": "Nouvel article",
+      "emptyTitle": "Qu'est-ce qui aiderait ton parcours ?",
+      "emptyBody": "Les articles d'une liste de souhaits sont précis et concrets : une boîte de balles, une inscription à un tournoi, une séance de coaching, un déplacement pour une qualification, même une bière après une bonne partie. Par exemple « Une douzaine de balles tour — 45 £ » <example>(Exemple)</example>. Les supporters financent l'article entier en un seul Tee.",
+      "addFirstItem": "Ajoute ton premier article",
+      "saveItem": "Enregistrer l'article",
+      "imageLabel": "Image de l'article",
+      "imageHelp": "JPEG, PNG ou WebP jusqu'à 5 Mo. Une photo claire aide les supporters à visualiser ce qu'ils financent.",
+      "status": {
+        "draft": "Brouillon",
+        "active": "Sur ta page",
+        "funded": "Financé",
+        "archived": "Archivé"
+      },
+      "transitions": {
+        "publish": "Publier sur ta page",
+        "takeOff": "Retirer de ta page",
+        "restore": "Restaurer en brouillon"
+      },
+      "fundedNote": "Un supporter a financé cet article — remercie-le dans ta prochaine actualité !",
+      "moveUp": "Monter {title}",
+      "moveDown": "Descendre {title}"
+    },
+    "form": {
+      "titleLabel": "Qu'est-ce qui aiderait ton parcours ?",
+      "titlePlaceholder": "Une douzaine de balles tour",
+      "descriptionLabel": "Un peu plus de détails",
+      "optional": "(facultatif)",
+      "descriptionPlaceholder": "Ce que c'est et pourquoi ça ferait la différence — le modèle, l'épreuve, le voyage.",
+      "priceLabel": "Prix",
+      "pricePlaceholder": "45",
+      "priceHelp": "Un seul supporter finance l'article entier, alors reste dans ce qu'un seul Tee peut couvrir.",
+      "priceLockedHelp": "Cet article a été financé, son prix ne peut donc plus changer.",
+      "currencyLabel": "Devise",
+      "currencyLockedHelp": "Cet article a été financé, sa devise ne peut donc plus changer.",
+      "currencyPayoutHelp": "Les articles utilisent ta devise de versement pour que les supporters puissent les financer."
+    }
+  },
+  "payments": {
+    "title": "Tees reçus",
+    "statusAria": "Statut des paiements",
+    "receiving": "Tu reçois des Tees",
+    "notReceiving": "Tu ne reçois pas encore de Tees",
+    "readyBody": "Les paiements sont activés. Stripe verse l'argent sur ton compte bancaire selon ton calendrier de versement Stripe.",
+    "setupBody": "Configure les paiements pour commencer à recevoir des Tees.",
+    "attentionBody": "Ta configuration des paiements a besoin d'attention.",
+    "paymentSettings": "Paramètres de paiement",
+    "grossLabel": "Valeur brute des Tees ({currency})",
+    "payoutNote": "Les montants des cadeaux sont ceux que leurs expéditeurs ont choisis pour toi. Stripe gère les versements — un Tee payé se trouve sur ton compte Stripe, pas forcément déjà sur ton compte bancaire.",
+    "giftsAria": "Cadeaux reçus",
+    "latestTees": "Derniers Tees",
+    "attribution": {
+      "towardGoals": "{count} vers des objectifs",
+      "towardWishlist": "{count} vers la liste de souhaits",
+      "general": "{count} en soutien général"
+    },
+    "empty": "Pas encore de Tees. Partage ta page pour que les supporters rejoignent ton parcours.",
+    "anonymous": "Anonyme",
+    "toward": "Pour {title}",
+    "funded": "A financé {title}",
+    "fallbackGoal": "un objectif",
+    "fallbackItem": "un article",
+    "refundedNote": "{amount} du paiement a été remboursé.",
+    "shareNews": "Partage la nouvelle avec ton audience",
+    "share": "Partager",
+    "giftStatus": {
+      "paid": "Payé",
+      "partially_refunded": "Partiellement remboursé",
+      "refunded": "Remboursé",
+      "disputed": "Contesté",
+      "dispute_won": "Litige gagné",
+      "dispute_lost": "Litige perdu",
+      "processing": "En cours de traitement",
+      "payment_failed": "Paiement échoué",
+      "expired": "Expiré",
+      "checkout_created": "En attente de paiement",
+      "cancelled": "Annulé"
+    }
+  }
+}

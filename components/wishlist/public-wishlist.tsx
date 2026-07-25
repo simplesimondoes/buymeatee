@@ -1,9 +1,12 @@
 "use client";
 
 import { CircleCheck } from "lucide-react";
-import Link from "next/link";
+import { useLocale, useTranslations } from "next-intl";
+import { Link } from "@/i18n/navigation";
 
-import { formatMinorAmount, type SupportedCurrency } from "@/lib/payments/currency";
+import type { AppLocale } from "@/i18n/locales";
+import { formatMinorAmount } from "@/lib/i18n/format";
+import type { SupportedCurrency } from "@/lib/payments/currency";
 import {
   scrollToComposer,
   useSupportTarget,
@@ -25,8 +28,10 @@ function AvailableItemCard({
   /** Ready to receive AND in the creator's payout currency, so it can be funded. */
   fundable: boolean;
 }) {
+  const t = useTranslations("profilePage.wishlist");
+  const locale = useLocale() as AppLocale;
   const { select } = useSupportTarget();
-  const price = formatMinorAmount(item.price_amount, item.currency);
+  const price = formatMinorAmount(item.price_amount, item.currency, locale);
 
   function handleFund() {
     select({
@@ -69,7 +74,7 @@ function AvailableItemCard({
               onClick={handleFund}
               className="inline-flex min-h-10 items-center justify-center rounded-full bg-forest px-5 text-sm font-medium text-white transition-colors hover:bg-forest-dark"
             >
-              Fund this
+              {t("fundThis")}
             </button>
           ) : null}
         </div>
@@ -94,38 +99,38 @@ export function PublicWishlist({
   currency: SupportedCurrency;
   isOwner: boolean;
 }) {
+  const t = useTranslations("profilePage.wishlist");
+  const locale = useLocale() as AppLocale;
+
   if (available.length === 0 && funded.length === 0) {
     if (!isOwner) {
       return null;
     }
     return (
       <section
-        aria-label="Wish list"
+        aria-label={t("sectionLabel")}
         className="rounded-3xl border border-dashed border-stone bg-mist p-6 text-center"
       >
         <p className="text-sm leading-relaxed text-ink/70">
-          Your wish list is empty. Add specific things supporters can fund — a
-          box of balls, an entry fee, a coaching session.
+          {t("emptyOwnerBody")}
         </p>
         <Link
           href="/dashboard/wishlist"
           className="mt-4 inline-flex min-h-11 items-center justify-center rounded-full border border-forest/30 px-5 text-sm font-medium text-forest transition-colors hover:border-forest hover:bg-forest/5"
         >
-          Add your first item
+          {t("addFirstItem")}
         </Link>
       </section>
     );
   }
 
   return (
-    <section aria-label="Wish list" className="space-y-4">
+    <section aria-label={t("sectionLabel")} className="space-y-4">
       <div>
         <h2 className="font-serif text-xl font-semibold text-forest">
-          {creatorName}&apos;s wish list
+          {t("heading", { name: creatorName })}
         </h2>
-        <p className="mt-1 text-sm text-ink/70">
-          Specific things you can fund outright — pick one and it&apos;s covered.
-        </p>
+        <p className="mt-1 text-sm text-ink/70">{t("intro")}</p>
       </div>
 
       {available.length > 0 ? (
@@ -143,7 +148,7 @@ export function PublicWishlist({
       {funded.length > 0 ? (
         <div className="rounded-3xl border border-stone bg-mist p-5">
           <h3 className="text-sm font-medium uppercase tracking-wide text-gold-deep">
-            Funded by supporters
+            {t("fundedHeading")}
           </h3>
           <ul className="mt-3 space-y-2">
             {funded.map((item) => (
@@ -159,7 +164,7 @@ export function PublicWishlist({
                   {item.title}
                   <span className="text-ink/60">
                     {" "}
-                    — {formatMinorAmount(item.price_amount, item.currency)}
+                    — {formatMinorAmount(item.price_amount, item.currency, locale)}
                   </span>
                 </span>
               </li>

@@ -1,10 +1,16 @@
-import Link from "next/link";
+import { useTranslations } from "next-intl";
 
+import { CookieSettingsButton } from "@/components/cookie-settings-button";
+import { LanguageSwitcher } from "@/components/language-switcher";
 import { Logo } from "@/components/logo";
-import { footerNavigation, siteConfig } from "@/lib/site";
+import { Link } from "@/i18n/navigation";
+import { footerNavigation } from "@/lib/site";
 
 export function Footer() {
+  const t = useTranslations("common");
+  const label = (key: string) => t(key as Parameters<typeof t>[0]);
   const year = new Date().getFullYear();
+
   return (
     <footer className="on-dark bg-forest-dark text-white">
       <div className="mx-auto max-w-6xl px-4 py-14 sm:px-6 lg:px-8">
@@ -12,15 +18,13 @@ export function Footer() {
           <div>
             <Logo variant="light" />
             <p className="mt-4 max-w-xs text-sm leading-relaxed text-white/70">
-              BuyMeATee is where golf fans help creators play more, achieve
-              more and chase their goals. Follow the journey. Support a goal.
-              Buy them a tee.
+              {t("footer.description")}
             </p>
           </div>
           {footerNavigation.map((group) => (
-            <nav key={group.heading} aria-label={group.heading}>
+            <nav key={group.headingKey} aria-label={label(group.headingKey)}>
               <h2 className="text-xs font-semibold uppercase tracking-[0.2em] text-gold">
-                {group.heading}
+                {label(group.headingKey)}
               </h2>
               <ul className="mt-4 space-y-2.5">
                 {group.items.map((item) => (
@@ -29,7 +33,7 @@ export function Footer() {
                       href={item.href}
                       className="text-sm text-white/80 transition-colors hover:text-white"
                     >
-                      {item.label}
+                      {label(item.labelKey)}
                     </Link>
                   </li>
                 ))}
@@ -37,11 +41,19 @@ export function Footer() {
             </nav>
           ))}
         </div>
-        <div className="mt-12 flex flex-col gap-2 border-t border-white/15 pt-6 text-xs text-white/60 sm:flex-row sm:items-center sm:justify-between">
+        <div className="mt-12 flex flex-col gap-4 border-t border-white/15 pt-6 text-xs text-white/60 sm:flex-row sm:items-center sm:justify-between">
+          <div className="flex flex-wrap items-center gap-x-4 gap-y-2">
+            <LanguageSwitcher tone="light" align="left" direction="up" />
+            <p>{t("footer.copyright", { year })}</p>
+            <CookieSettingsButton />
+          </div>
           <p>
-            © {year} BuyMeATee. All rights reserved.
+            {t.rich("footer.productLine", {
+              brand: (chunks) => (
+                <span className="font-medium text-white/85">{chunks}</span>
+              ),
+            })}
           </p>
-          <p>{siteConfig.domain}</p>
         </div>
       </div>
     </footer>

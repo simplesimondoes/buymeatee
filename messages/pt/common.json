@@ -1,0 +1,71 @@
+{
+  "brand": {
+    "homeAria": "BuyMeATee — início",
+    "tagline": "Apoia o percurso."
+  },
+  "nav": {
+    "discover": "Descobrir",
+    "howItWorks": "Como funciona",
+    "forCreators": "Para criadores",
+    "forSupporters": "Para apoiantes",
+    "blog": "Blog",
+    "faq": "FAQ",
+    "primaryLabel": "Principal",
+    "siteNavigation": "Navegação do site",
+    "home": "Início",
+    "breadcrumb": "Navegação estrutural",
+    "openMenu": "Abrir menu",
+    "closeMenu": "Fechar menu"
+  },
+  "actions": {
+    "register": "Registar",
+    "logIn": "Entrar",
+    "logOut": "Terminar sessão",
+    "signIn": "Iniciar sessão",
+    "dashboard": "Painel",
+    "myPage": "A minha página",
+    "settings": "Definições"
+  },
+  "account": {
+    "menuLabel": "Conta",
+    "fallbackName": "A tua conta",
+    "signedInAs": "Sessão iniciada como <name>{displayName}</name>"
+  },
+  "footer": {
+    "productHeading": "Produto",
+    "companyHeading": "Empresa",
+    "legalHeading": "Legal",
+    "about": "Sobre",
+    "privacy": "Privacidade",
+    "terms": "Termos",
+    "impressum": "Impressum",
+    "accessibility": "Acessibilidade",
+    "description": "O BuyMeATee é onde os fãs de golfe ajudam criadores a jogar mais, alcançar mais e perseguir os seus objetivos. Acompanha o percurso. Apoia um objetivo. Oferece-lhes um tee.",
+    "copyright": "© {year} BuyMeATee. Todos os direitos reservados.",
+    "productLine": "Um produto <brand>Caddie Live</brand> · Feito para golfistas"
+  },
+  "cookies": {
+    "regionLabel": "Consentimento de cookies",
+    "message": "Utilizamos cookies essenciais para manter a tua sessão iniciada. Com a tua permissão, utilizamos também o Google Analytics para perceber como o site é usado. Consulta a nossa <link>Política de privacidade</link>.",
+    "decline": "Recusar",
+    "accept": "Aceitar estatísticas",
+    "settings": "Definições de cookies"
+  },
+  "upload": {
+    "addImage": "Adicionar uma imagem",
+    "changeImage": "Mudar imagem",
+    "remove": "Remover"
+  },
+  "errorBoundary": {
+    "heading": "Algo correu mal.",
+    "body": "Um erro inesperado interrompeu a volta. Tenta novamente.",
+    "retry": "Tentar novamente"
+  },
+  "a11y": {
+    "skipToContent": "Saltar para o conteúdo"
+  },
+  "language": {
+    "label": "Idioma",
+    "switcherLabel": "Mudar de idioma"
+  }
+}

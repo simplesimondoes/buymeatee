@@ -1,10 +1,11 @@
 # Design — Creator Wish Lists
 
-> Status: **Built (staged, not released)** · Owner: Simon · Date: 2026-07-25
+> Status: **RELEASED** (commit `e010246`, pushed to `main` → Vercel prod;
+> migration `20260725100000` applied to production Supabase) · Date: 2026-07-25
 > Recorded as **ADR-018**. Decisions taken: outright-only, one-and-done, build it.
 > Delivered M1–M6 (migration, `lib/wishlist/` domain, checkout/webhook wiring,
-> creator + public UI, tests). Awaiting: `supabase db push` for the migration,
-> then release on the explicit `Release` instruction.
+> creator + public UI, tests). Follow-ups: chip-in/part-funding, repeatedly-
+> fundable items, raising `STRIPE_MAX_<CUR>` for higher-value items.
 
 ## 1. What we're building
 

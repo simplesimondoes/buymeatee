@@ -1,0 +1,190 @@
+{
+  "nav": {
+    "label": "Admin sections",
+    "payments": "Payments",
+    "users": "Users",
+    "moderation": "Moderation"
+  },
+  "meta": {
+    "payments": {
+      "title": "Payments admin"
+    },
+    "users": {
+      "title": "Users admin"
+    },
+    "userDetail": {
+      "title": "User admin"
+    },
+    "moderation": {
+      "title": "Moderation admin"
+    }
+  },
+  "common": {
+    "eyebrow": "Admin",
+    "search": "Search",
+    "noName": "(no name)"
+  },
+  "statuses": {
+    "gift": {
+      "draft": "Draft",
+      "checkout_created": "Checkout created",
+      "processing": "Processing",
+      "paid": "Paid",
+      "payment_failed": "Payment failed",
+      "expired": "Expired",
+      "partially_refunded": "Partially refunded",
+      "refunded": "Refunded",
+      "disputed": "Disputed",
+      "dispute_won": "Dispute won",
+      "dispute_lost": "Dispute lost",
+      "cancelled": "Cancelled"
+    },
+    "goal": {
+      "draft": "Draft",
+      "active": "Active",
+      "completed": "Completed",
+      "archived": "Archived"
+    },
+    "payment": {
+      "not_started": "Not started",
+      "onboarding_not_started": "Onboarding not started",
+      "onboarding_incomplete": "Onboarding incomplete",
+      "information_required": "Information required",
+      "verification_pending": "Verification pending",
+      "ready": "Ready",
+      "payments_restricted": "Payments restricted",
+      "payouts_disabled": "Payouts disabled"
+    },
+    "role": {
+      "creator": "creator",
+      "supporter": "supporter"
+    },
+    "account": {
+      "active": "Active",
+      "deactivated": "Deactivated"
+    }
+  },
+  "payments": {
+    "title": "Payments",
+    "searchLabel": "Search (gift public id, cs_…, pi_…, or recipient username)",
+    "statusLabel": "Status",
+    "statusAll": "All",
+    "unavailable": "Payment data isn't available right now.",
+    "reconciliationErrorsHeading": "Reconciliation errors — manual review required",
+    "giftsHeading": "Gifts (latest)",
+    "giftsHeadingMatching": "Gifts matching “{query}”",
+    "table": {
+      "created": "Created",
+      "publicId": "Public id",
+      "recipient": "Recipient",
+      "sender": "Sender",
+      "gift": "Gift",
+      "platformFee": "Platform fee",
+      "total": "Total",
+      "status": "Status",
+      "refunded": "Refunded",
+      "stripe": "Stripe"
+    },
+    "anonymousSender": "(anonymous)",
+    "testMode": "(test)",
+    "openInStripe": "Open",
+    "empty": "No gifts found.",
+    "refund": {
+      "heading": "Refund a gift",
+      "description": "Full refunds only (MVP): reverses the recipient transfer and refunds the platform fee. Confirmed by webhook."
+    },
+    "reconcile": {
+      "heading": "Reconciliation",
+      "description": "Checks gifts stuck in draft / awaiting payment / processing against Stripe and repairs safe drift."
+    }
+  },
+  "moderation": {
+    "title": "Moderation",
+    "intro": "Recently changed public content, newest first. Takedowns record a reason in the audit log; removed text is preserved there too. Policy draft: <policy>docs/moderation-policy.md</policy> (pending legal review).",
+    "unavailable": "Moderation isn't available right now.",
+    "goalsSectionLabel": "Recent goals",
+    "goalsHeading": "Goals ({count})",
+    "goalsEmpty": "No goals yet.",
+    "takenDownBadge": "Taken down",
+    "goalTarget": "{amount} target",
+    "profilesSectionLabel": "Recent profiles",
+    "profilesHeading": "Profiles with public content ({count})",
+    "profilesEmpty": "No profiles with bios or photos yet.",
+    "takeDownButton": "Take down",
+    "restoreButton": "Restore",
+    "clearBioButton": "Clear bio",
+    "removePhotoButton": "Remove photo"
+  },
+  "action": {
+    "reasonRequired": "Add a reason — it goes in the audit log.",
+    "reasonFor": "Reason for {label}",
+    "reasonPlaceholder": "Reason (audit-logged)",
+    "confirm": "Confirm",
+    "cancel": "Cancel"
+  },
+  "users": {
+    "title": "Users",
+    "searchLabel": "Search by username, display name or user id",
+    "searchPlaceholder": "Username, display name or user id",
+    "unavailable": "User search isn't available right now.",
+    "empty": "No matching profiles.",
+    "table": {
+      "profile": "Profile",
+      "publicLink": "Public link",
+      "role": "Role",
+      "status": "Status",
+      "joined": "Joined"
+    }
+  },
+  "userDetail": {
+    "breadcrumb": "Admin · Users",
+    "deactivatedOn": "Deactivated {date}",
+    "profileHeading": "Profile",
+    "fields": {
+      "userId": "User id",
+      "publicLink": "Public link",
+      "role": "Role",
+      "country": "Country",
+      "bio": "Bio",
+      "joined": "Joined"
+    },
+    "linkNotClaimed": "not claimed",
+    "paymentsHeading": "Payments",
+    "stripeState": "Stripe state",
+    "canReceiveTees": "(can receive Tees)",
+    "teesReceived": "Tees received",
+    "teesNone": "none",
+    "teeTotal": "{count} · {amount}",
+    "goalsHeading": "Goals ({count})",
+    "goalsEmpty": "No goals.",
+    "goalProgress": "{raised} of {target}",
+    "actionsLabel": "Actions",
+    "reinstateHeading": "Reinstate",
+    "deactivateHeading": "Deactivate",
+    "reinstateDescription": "Reinstating restores the public page and the ability to receive Tees.",
+    "deactivateDescription": "Deactivating hides the public page and blocks new Tees. Settled payments and payouts are untouched.",
+    "auditHeading": "Audit trail"
+  },
+  "userStatus": {
+    "reasonLabel": "Reason (audit-logged)",
+    "reinstatePlaceholder": "e.g. Issue resolved with the creator",
+    "deactivatePlaceholder": "e.g. Terms breach: misleading goal claims",
+    "reinstateButton": "Reinstate profile",
+    "deactivateButton": "Deactivate profile"
+  },
+  "tools": {
+    "refund": {
+      "giftIdLabel": "Gift public id",
+      "reasonLabel": "Reason (audited)",
+      "submit": "Issue full refund",
+      "success": "Refund {refundId} created. The gift updates when Stripe confirms via webhook.",
+      "failed": "Refund failed."
+    },
+    "reconcile": {
+      "run": "Reconcile stuck gifts",
+      "report": "Scanned {scanned}: {markedPaid} paid, {markedExpired} expired, {markedFailed} failed, {cancelledDrafts} drafts cancelled, {stillPending} pending, flagged: {flagged}.",
+      "flaggedNone": "none",
+      "failed": "Reconciliation failed."
+    }
+  }
+}

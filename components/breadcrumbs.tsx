@@ -1,7 +1,8 @@
 import { ChevronRight } from "lucide-react";
-import Link from "next/link";
+import { useLocale, useTranslations } from "next-intl";
 
 import { StructuredData } from "@/components/structured-data";
+import { Link } from "@/i18n/navigation";
 import {
   breadcrumbJsonLd,
   type BreadcrumbItem,
@@ -13,9 +14,14 @@ type BreadcrumbsProps = {
 };
 
 export function Breadcrumbs({ items }: BreadcrumbsProps) {
-  const trail: BreadcrumbItem[] = [{ label: "Home", href: "/" }, ...items];
+  const t = useTranslations("common");
+  const locale = useLocale();
+  const trail: BreadcrumbItem[] = [
+    { label: t("nav.home"), href: "/" },
+    ...items,
+  ];
   return (
-    <nav aria-label="Breadcrumb" className="text-sm">
+    <nav aria-label={t("nav.breadcrumb")} className="text-sm">
       <ol className="flex flex-wrap items-center gap-1.5 text-ink/70">
         {trail.map((item, index) => {
           const isCurrent = index === trail.length - 1;
@@ -43,7 +49,7 @@ export function Breadcrumbs({ items }: BreadcrumbsProps) {
           );
         })}
       </ol>
-      <StructuredData data={breadcrumbJsonLd(trail)} />
+      <StructuredData data={breadcrumbJsonLd(trail, locale)} />
     </nav>
   );
 }

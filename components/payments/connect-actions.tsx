@@ -1,12 +1,15 @@
 "use client";
 
 import { ExternalLink, LoaderCircle } from "lucide-react";
+import { useTranslations } from "next-intl";
 import { useState } from "react";
 
+import { useErrorMessage } from "@/components/intl/use-error-message";
 import {
   CountrySelect,
   type CountryOption,
 } from "@/components/payments/country-select";
+import { errorDetail, type ErrorDetail } from "@/lib/i18n/errors";
 
 type Busy = "none" | "onboarding" | "dashboard";
 
@@ -26,14 +29,16 @@ export function ConnectActions({
   showDashboardLink,
   countryOptions,
 }: {
-  /** null hides the onboarding button (account fully ready). */
+  /** null hides the onboarding button (account fully ready). Translated by the caller. */
   onboardingLabel: string | null;
   showDashboardLink: boolean;
   /** Country choices shown only before the account is created; omit after. */
   countryOptions?: CountryOption[];
 }) {
+  const t = useTranslations("settings");
+  const errorMessage = useErrorMessage();
   const [busy, setBusy] = useState<Busy>("none");
-  const [error, setError] = useState<string | null>(null);
+  const [error, setError] = useState<ErrorDetail | string | null>(null);
   const [country, setCountry] = useState(countryOptions?.[0]?.code ?? "GB");
 
   const showCountry = Boolean(
@@ -53,14 +58,17 @@ export function ConnectActions({
             }
           : {}),
       });
-      const data = (await response.json()) as { url?: string; error?: string };
+      const data = (await response.json()) as {
+        url?: string;
+        error?: ErrorDetail | string;
+      };
       if (response.ok && data.url) {
         window.location.assign(data.url);
         return;
       }
-      setError(data.error ?? "Something went wrong. Please try again.");
+      setError(data.error ?? errorDetail("generic"));
     } catch {
-      setError("Something went wrong. Please try again.");
+      setError(errorDetail("generic"));
     }
     setBusy("none");
   }
@@ -73,18 +81,17 @@ export function ConnectActions({
             htmlFor="connect-country"
             className="block text-sm font-medium text-ink/80"
           >
-            Your country
+            {t("payments.connect.countryLabel")}
           </label>
           <CountrySelect
             id="connect-country"
-            label="Your country"
+            label={t("payments.connect.countryLabel")}
             value={country}
             onChange={setCountry}
             options={countryOptions!}
           />
           <p className="mt-1.5 text-xs text-ink/60">
-            Set once and can&apos;t be changed later — it fixes your payout
-            currency.
+            {t("payments.connect.countryHelp")}
           </p>
         </div>
       ) : null}
@@ -121,13 +128,13 @@ export function ConnectActions({
             ) : (
               <ExternalLink aria-hidden="true" className="h-4 w-4" />
             )}
-            Payouts &amp; details on Stripe
+            {t("payments.connect.dashboardCta")}
           </button>
         ) : null}
       </div>
       {error ? (
         <p role="alert" className="text-sm text-red-800">
-          {error}
+          {errorMessage(error)}
         </p>
       ) : null}
     </div>

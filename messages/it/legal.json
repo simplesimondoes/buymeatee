@@ -1,0 +1,27 @@
+{
+  "eyebrow": "Note legali",
+  "draftBanner": "Bozza — in attesa di revisione legale.",
+  "lastUpdated": "Ultimo aggiornamento: {date}.",
+  "notice": {
+    "title": "Fa fede la versione inglese.",
+    "body": "Questa traduzione è fornita solo per comodità. La versione inglese è quella legalmente vincolante e prevale in caso di qualsiasi discrepanza."
+  },
+  "meta": {
+    "terms": {
+      "title": "Termini di utilizzo",
+      "description": "Le condizioni per usare BuyMeATee — account, pagine creator, invio e ricezione di Tee, commissioni e uso accettabile. Bozza in attesa di revisione legale."
+    },
+    "privacy": {
+      "title": "Informativa sulla privacy",
+      "description": "Come BuyMeATee tratta i dati personali: cosa raccogliamo per account, profili e pagamenti, chi li elabora e quali sono i tuoi diritti. Bozza in attesa di revisione legale."
+    },
+    "impressum": {
+      "title": "Impressum",
+      "description": "Nota legale (Impressum) di BuyMeATee — gestore, indirizzo e recapiti, come richiesto dalla legge tedesca."
+    },
+    "accessibility": {
+      "title": "Accessibilità",
+      "description": "L'approccio di BuyMeATee all'accessibilità — il nostro impegno verso le WCAG 2.2 AA, cosa facciamo, i limiti noti e come segnalare un problema."
+    }
+  }
+}

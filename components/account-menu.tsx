@@ -1,7 +1,7 @@
 "use client";
 
-import Link from "next/link";
 import { ChevronDown } from "lucide-react";
+import { useTranslations } from "next-intl";
 import {
   useCallback,
   useEffect,
@@ -12,6 +12,7 @@ import {
 } from "react";
 
 import { Avatar } from "@/components/profile/avatar";
+import { Link } from "@/i18n/navigation";
 import { authActions } from "@/lib/site";
 
 type AccountMenuProps = {
@@ -31,12 +32,13 @@ export function AccountMenu({
   displayName,
   avatarUrl,
 }: AccountMenuProps) {
+  const t = useTranslations("common");
   const [open, setOpen] = useState(false);
   const menuId = useId();
   const containerRef = useRef<HTMLDivElement>(null);
   const buttonRef = useRef<HTMLButtonElement>(null);
 
-  const name = displayName || username || "Your account";
+  const name = displayName || username || t("account.fallbackName");
 
   const close = useCallback((returnFocus = true) => {
     setOpen(false);
@@ -114,12 +116,16 @@ export function AccountMenu({
         <div
           id={menuId}
           role="menu"
-          aria-label="Account"
+          aria-label={t("account.menuLabel")}
           className="absolute right-0 z-50 mt-2 w-52 rounded-2xl border border-stone bg-white p-1.5 shadow-lg"
         >
           <p className="px-3 py-2 text-xs text-ink/50">
-            Signed in as{" "}
-            <span className="font-medium text-ink/80">{name}</span>
+            {t.rich("account.signedInAs", {
+              displayName: name,
+              name: (chunks) => (
+                <span className="font-medium text-ink/80">{chunks}</span>
+              ),
+            })}
           </p>
           {username ? (
             <MenuLink
@@ -128,7 +134,7 @@ export function AccountMenu({
               onClick={() => close(false)}
               onKeyDown={onItemKeyDown}
             >
-              {authActions.myPage.label}
+              {t("actions.myPage")}
             </MenuLink>
           ) : null}
           <MenuLink
@@ -137,14 +143,14 @@ export function AccountMenu({
             onClick={() => close(false)}
             onKeyDown={onItemKeyDown}
           >
-            {authActions.dashboard.label}
+            {t("actions.dashboard")}
           </MenuLink>
           <MenuLink
             href="/settings/profile"
             onClick={() => close(false)}
             onKeyDown={onItemKeyDown}
           >
-            Settings
+            {t("actions.settings")}
           </MenuLink>
           <form action={authActions.signOut.href} method="post" className="mt-1 border-t border-stone pt-1">
             <button
@@ -153,7 +159,7 @@ export function AccountMenu({
               onKeyDown={onItemKeyDown}
               className="w-full rounded-xl px-3 py-2 text-left text-sm font-medium text-ink/80 transition-colors hover:bg-forest/5 hover:text-forest"
             >
-              {authActions.signOut.label}
+              {t("actions.logOut")}
             </button>
           </form>
         </div>

@@ -1,0 +1,27 @@
+{
+  "eyebrow": "Legal",
+  "draftBanner": "Rascunho — a aguardar revisão jurídica.",
+  "lastUpdated": "Última atualização: {date}.",
+  "notice": {
+    "title": "A versão inglesa prevalece.",
+    "body": "Esta tradução é disponibilizada apenas por conveniência. A versão inglesa é a versão juridicamente vinculativa e prevalece em caso de qualquer conflito."
+  },
+  "meta": {
+    "terms": {
+      "title": "Termos de utilização",
+      "description": "Os termos de utilização do BuyMeATee — contas, páginas de criadores, envio e receção de Tees, taxas e utilização aceitável. Rascunho a aguardar revisão jurídica."
+    },
+    "privacy": {
+      "title": "Política de privacidade",
+      "description": "Como o BuyMeATee trata os dados pessoais: o que recolhemos para contas, perfis e pagamentos, quem os processa e os teus direitos. Rascunho a aguardar revisão jurídica."
+    },
+    "impressum": {
+      "title": "Impressum",
+      "description": "Aviso legal (Impressum) do BuyMeATee — operador, morada e contactos, conforme exigido pela lei alemã."
+    },
+    "accessibility": {
+      "title": "Acessibilidade",
+      "description": "Como o BuyMeATee aborda a acessibilidade — o nosso compromisso com as WCAG 2.2 AA, o que fazemos, limitações conhecidas e como comunicar um problema."
+    }
+  }
+}

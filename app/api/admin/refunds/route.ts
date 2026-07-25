@@ -1,5 +1,6 @@
 import { NextResponse } from "next/server";
 
+import { apiError } from "@/lib/api/errors";
 import { adminRefundGift, isAdmin } from "@/lib/payments/admin";
 import { getAuthenticatedUser } from "@/lib/supabase/server";
 
@@ -11,14 +12,14 @@ import { getAuthenticatedUser } from "@/lib/supabase/server";
 export async function POST(request: Request) {
   const user = await getAuthenticatedUser();
   if (!user || !(await isAdmin(user.id))) {
-    return NextResponse.json({ error: "Not authorised." }, { status: 403 });
+    return apiError("api.notAuthorised", { status: 403 });
   }
 
   let payload: { giftPublicId?: unknown; reason?: unknown };
   try {
     payload = (await request.json()) as typeof payload;
   } catch {
-    return NextResponse.json({ error: "Invalid request." }, { status: 400 });
+    return apiError("api.invalidRequest", { status: 400 });
   }
 
   const giftPublicId =
@@ -26,10 +27,7 @@ export async function POST(request: Request) {
   const reason =
     typeof payload.reason === "string" ? payload.reason.trim().slice(0, 500) : "";
   if (!/^[0-9a-f-]{36}$/i.test(giftPublicId) || reason.length === 0) {
-    return NextResponse.json(
-      { error: "A gift reference and a reason are required." },
-      { status: 400 },
-    );
+    return apiError("api.adminRefundReferenceRequired", { status: 400 });
   }
 
   const result = await adminRefundGift(giftPublicId, user.id, reason);
@@ -38,16 +36,10 @@ export async function POST(request: Request) {
   }
   switch (result.error) {
     case "not-found":
-      return NextResponse.json({ error: "Gift not found." }, { status: 404 });
+      return apiError("api.giftNotFound", { status: 404 });
     case "not-refundable":
-      return NextResponse.json(
-        { error: "This gift can't be refunded (not paid, or already refunded)." },
-        { status: 409 },
-      );
+      return apiError("api.adminNotRefundable", { status: 409 });
     default:
-      return NextResponse.json(
-        { error: "Refund failed. Check the logs and Stripe dashboard." },
-        { status: 502 },
-      );
+      return apiError("api.adminRefundFailed", { status: 502 });
   }
 }

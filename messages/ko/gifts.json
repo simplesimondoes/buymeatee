@@ -1,0 +1,100 @@
+{
+  "anonymous": "익명",
+  "composer": {
+    "funding": {
+      "label": "후원하는 항목",
+      "note": "티 한 번이면 이 항목 전체가 후원돼요. 결제가 확인되면 후원 완료로 표시돼요.",
+      "chooseDifferent": "대신 다른 금액 선택하기"
+    },
+    "target": {
+      "supporting": "응원 대상",
+      "general": "{name}님을 위한 일반 응원",
+      "change": "변경",
+      "chooseLabel": "무엇을 응원할지 선택하세요",
+      "progress": "{target} 중 {raised} · {percent}"
+    },
+    "amount": {
+      "legend": "티를 선택하세요",
+      "customLabel": "또는 직접 입력 ({symbol})",
+      "placeholder": "7.50",
+      "formatError": "5 또는 7.50 같은 형식으로 입력해 주세요.",
+      "belowMinimum": "최소 티 금액은 {amount}예요.",
+      "aboveMaximum": "최대 티 금액은 {amount}예요.",
+      "invalid": "올바른 금액을 입력해 주세요."
+    },
+    "goalNote": {
+      "brings": "내 티로 이 목표가 <strong>{percent}</strong>까지 올라가요.",
+      "verified": "목표 진행률에는 확인된 결제만 반영돼요 — 내 티는 결제가 확인된 뒤에 표시돼요."
+    },
+    "fields": {
+      "yourName": "이름",
+      "email": "영수증 받을 이메일",
+      "optional": "(선택)",
+      "messageFor": "{name}님에게 보내는 메시지",
+      "anonymous": "이름은 비공개로 — 이 티를 “익명”의 선물로 표시할게요."
+    },
+    "breakdown": {
+      "label": "결제 내역",
+      "yourTee": "내 티",
+      "platformFee": "BuyMeATee 플랫폼 수수료",
+      "paymentHandling": "결제 처리 수수료",
+      "total": "합계",
+      "recipientReceives": "{name}님이 받는 금액: {amount}. 결제 처리 수수료는 예상 카드 결제 비용에 쓰여요."
+    },
+    "submit": {
+      "goal": "Stripe로 이 목표 응원하기",
+      "item": "Stripe로 이 항목 후원하기",
+      "general": "Stripe로 티 보내기",
+      "preparing": "안전한 결제 준비 중…"
+    },
+    "stripeNotice": "결제는 Stripe의 안전한 결제 페이지에서 진행돼요. BuyMeATee는 카드 정보를 절대 볼 수 없어요."
+  },
+  "confirmation": {
+    "thanksMetaTitle": "티 감사합니다",
+    "cancelledMetaTitle": "결제 취소됨",
+    "confirmingHeading": "결제를 확인하고 있어요…",
+    "confirmingBody": "Stripe의 확인을 기다리고 있어요. 보통 몇 초면 끝나요.",
+    "stillConfirmingHeading": "아직 확인 중이에요",
+    "stillConfirmingBody": "확인이 평소보다 오래 걸리고 있어요. 결제를 완료하셨다면 기록될 예정이니 잠시 후 다시 확인해 보세요.",
+    "checkAgain": "다시 확인",
+    "paidHeading": "티가 {name}님에게 가고 있어요.",
+    "paidBody": "{sender}님의 {amount} 결제가 완료됐어요.",
+    "paidBodyToward": "<target>{title}</target>에 보내는 {sender}님의 {amount} 결제가 완료됐어요.",
+    "backToPage": "{name}님의 페이지로 돌아가기",
+    "backToHome": "BuyMeATee로 돌아가기",
+    "pendingHeading": "결제 대기 중",
+    "pendingBody": "결제가 처리되고 있어요. 완료되는 대로 티를 기록할게요.",
+    "expiredHeading": "이 결제 세션이 만료됐어요",
+    "expiredBody": "결제된 금액은 없어요. 언제든 다시 티를 보낼 수 있어요.",
+    "cancelledHeading": "결제 취소됨",
+    "cancelledBody": "결제된 금액은 없어요.",
+    "cancelledPageBody": "결제된 금액은 없어요. {name}님에게 전달된 것도 없으니, 언제든 다시 티를 보낼 수 있어요.",
+    "failedHeading": "결제 실패",
+    "failedBody": "결제가 완료되지 않았고 청구된 금액도 없어요. 다른 카드로 다시 시도해 보세요.",
+    "tryAgain": "다시 시도"
+  },
+  "share": {
+    "button": "공유",
+    "postToX": "X에 올리기",
+    "bluesky": "Bluesky에 공유",
+    "whatsapp": "WhatsApp으로 공유",
+    "facebook": "Facebook에 공유",
+    "linkedin": "LinkedIn에 공유",
+    "copyLink": "링크 복사",
+    "linkCopied": "링크 복사됨",
+    "moreOptions": "더 많은 옵션…",
+    "copyFailed": "복사를 사용할 수 없어요 — 링크를 직접 선택해 주세요.",
+    "copiedAnnouncement": "링크가 클립보드에 복사됐어요",
+    "copyYourLink": "내 링크 복사",
+    "copied": "복사됨",
+    "copyYourLinkFailed": "복사를 사용할 수 없어요 — 링크 텍스트를 직접 선택해 주세요.",
+    "page": "BuyMeATee에서 제 골프 여정을 지켜봐 주세요 — 진짜 목표를 응원하고 함께 이뤄 가요. ⛳️",
+    "goalFunded": "“{title}” 목표를 달성했어요! 🎉 BuyMeATee에서 이 여정을 응원해 주신 모든 분께 진심으로 감사드려요. 다음 목표로 갑니다.",
+    "goalMilestone": "BuyMeATee에서 “{title}”까지 {percent}% 왔어요 🏌️ 여정을 응원해 주시는 모든 분께 감사드려요 — 목표 달성까지 힘을 보태 주세요.",
+    "goalStarting": "제 BuyMeATee 페이지에서 “{title}” 목표에 도전하고 있어요. 여정을 응원하고 함께 이뤄 주세요. ⛳️",
+    "goalCompleted": "“{title}” — 제 BuyMeATee 여정에서 또 하나의 목표를 이뤘어요. 응원해 주신 모든 분께 감사드려요. ⛳️",
+    "supportGoal": "방금 누군가 제 BuyMeATee 페이지에서 “{title}” 목표를 응원해 줬어요 🙌 여러분도 여정에 힘을 보태 주세요. ⛳️",
+    "supportWishlist": "방금 누군가 제 BuyMeATee 위시리스트에서 “{title}” 항목을 후원해 줬어요 🙌 감사해요 — 여러분도 여정을 응원해 주세요. ⛳️",
+    "supportGeneral": "방금 누군가 BuyMeATee에서 제 골프 여정을 응원해 줬어요 🙌 감사해요 — 여러분도 함께할 수 있어요. ⛳️"
+  }
+}

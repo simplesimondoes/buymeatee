@@ -1,8 +1,10 @@
 "use client";
 
+import { useTranslations } from "next-intl";
+
 import { SectionHeading } from "@/components/section-heading";
 import { useDiscover } from "@/components/discover/discover-context";
-import { discoverCategories } from "@/lib/discover/categories";
+import { categoryLabelKey, discoverCategories } from "@/lib/discover/categories";
 
 /**
  * Browse-by-category chips. Selecting one filters the browse section below and
@@ -10,19 +12,20 @@ import { discoverCategories } from "@/lib/discover/categories";
  * they want to back.
  */
 export function CategoryGrid() {
+  const t = useTranslations("discover");
   const { setCategory, focusBrowse } = useDiscover();
 
   return (
     <section className="bg-white">
       <div className="mx-auto max-w-6xl px-4 py-14 sm:px-6 lg:px-8 lg:py-20">
         <SectionHeading
-          eyebrow="Categories"
-          heading="Find your kind of golf"
-          intro="From aspiring pros to club projects and charities — browse the journeys that matter to you."
+          eyebrow={t("sections.categories.eyebrow")}
+          heading={t("sections.categories.heading")}
+          intro={t("sections.categories.intro")}
           align="left"
         />
         <ul className="mt-10 grid grid-cols-2 gap-3 sm:grid-cols-3 lg:grid-cols-4">
-          {discoverCategories.map(({ slug, label, icon: Icon }) => (
+          {discoverCategories.map(({ slug, icon: Icon }) => (
             <li key={slug}>
               <button
                 type="button"
@@ -35,7 +38,9 @@ export function CategoryGrid() {
                 <span className="inline-flex h-10 w-10 shrink-0 items-center justify-center rounded-full bg-mist text-forest transition-colors group-hover:bg-forest group-hover:text-white">
                   <Icon aria-hidden="true" className="h-5 w-5" />
                 </span>
-                <span className="text-sm font-medium text-forest">{label}</span>
+                <span className="text-sm font-medium text-forest">
+                  {t(categoryLabelKey(slug) as never)}
+                </span>
               </button>
             </li>
           ))}

@@ -1,0 +1,187 @@
+{
+  "meta": {
+    "profile": {
+      "title": "Profileinstellungen",
+      "description": "Richte deine öffentliche BuyMeATee-Seite ein."
+    },
+    "payments": {
+      "title": "Zahlungseinstellungen",
+      "description": "Lege fest, wie du Tees über Stripe empfängst."
+    },
+    "paymentsReturn": {
+      "title": "Zahlungseinrichtung wird abgeschlossen"
+    }
+  },
+  "nav": {
+    "label": "Einstellungsbereiche",
+    "profile": "Profil",
+    "payments": "Zahlungen"
+  },
+  "eyebrow": "Einstellungen",
+  "profile": {
+    "title": "Profil",
+    "intro": "Das sehen Unterstützer:innen auf deiner öffentlichen Seite — dein Link, dein Name und wohin dein Weg führt.",
+    "unavailable": "Die Profileinstellungen sind gerade nicht verfügbar. Bitte versuche es gleich noch einmal.",
+    "language": {
+      "label": "Sprache",
+      "help": "Wird auf diesem Gerät überall auf BuyMeATee verwendet."
+    },
+    "cover": {
+      "label": "Titelbild",
+      "help": "JPEG, PNG oder WebP bis 5 MB. Ein Foto im Querformat funktioniert am besten — etwa 1600 × 1067 px (3:2). Halte das Hauptmotiv ungefähr mittig: Die Ränder werden für Handys und breitere Bildschirme beschnitten.",
+      "add": "Bild hinzufügen",
+      "change": "Bild ändern",
+      "remove": "Entfernen",
+      "errors": {
+        "type": "Verwende ein Bild im Format JPEG, PNG oder WebP.",
+        "size": "Halte das Bild unter 5 MB."
+      }
+    },
+    "photo": {
+      "label": "Foto",
+      "add": "Foto hinzufügen",
+      "change": "Foto ändern",
+      "remove": "Entfernen",
+      "help": "JPEG, PNG oder WebP bis 2 MB. Dein Foto ist öffentlich — es erscheint auf deiner Seite und ist für alle sichtbar.",
+      "chooseAria": "Profilfoto auswählen",
+      "fallbackName": "Dein Profil",
+      "errors": {
+        "type": "Verwende ein Bild im Format JPEG, PNG oder WebP.",
+        "size": "Halte das Bild unter 2 MB."
+      }
+    },
+    "form": {
+      "optional": "(optional)",
+      "charCount": "{count}/{max}",
+      "usernameLabel": "Dein öffentlicher Link",
+      "usernamePlaceholder": "dein-name",
+      "usernameHelp": "Kleinbuchstaben, Zahlen und Bindestriche. Das ist der Link, den Unterstützer:innen besuchen, um dir ein Tee zu spendieren.",
+      "usernameChangeWarning": "Beim Speichern ändert sich dein öffentlicher Link. Überall, wo du buymeatee.com/t/{username} geteilt hast, funktioniert er dann nicht mehr.",
+      "displayNameLabel": "Anzeigename",
+      "bioLabel": "Bio",
+      "bioPlaceholder": "Wohin dein Golf-Weg führt und was Unterstützung dir möglich macht.",
+      "aboutLabel": "Über dich",
+      "aboutPlaceholder": "Erzähl deine Geschichte. z. B. „Hi, ich bin Simon, der Entwickler hinter Caddie Live…“\n\nMarkdown funktioniert: **fett**, _kursiv_, - Listen und [Links](https://…).",
+      "aboutHelp": "Unterstützt Markdown — Überschriften, <strong>fett</strong>, Listen und Links. Menschen unterstützen Menschen, also mach es persönlich.",
+      "countryLabel": "Land",
+      "golfLegend": "Dein Golf",
+      "handicapLabel": "Handicap",
+      "handicapPlaceholder": "9.4",
+      "handednessLabel": "Händigkeit",
+      "handednessNotSet": "Nicht angegeben",
+      "handednessRight": "Rechtshändig",
+      "handednessLeft": "Linkshändig",
+      "locationLabel": "Ort",
+      "locationPlaceholder": "Surrey, England",
+      "homeClubLabel": "Heimatclub",
+      "homeClubPlaceholder": "Surrey Downs GC",
+      "linksLegend": "Links",
+      "websiteLabel": "Website",
+      "socialPlaceholders": {
+        "youtube": "https://youtube.com/@du",
+        "instagram": "https://instagram.com/du",
+        "tiktok": "https://tiktok.com/@du",
+        "x": "https://x.com/du",
+        "bluesky": "https://bsky.app/profile/du",
+        "substack": "https://du.substack.com",
+        "facebook": "https://facebook.com/du",
+        "twitch": "https://twitch.tv/du",
+        "linkedin": "https://linkedin.com/in/du",
+        "website": "https://deine-website.com"
+      },
+      "pinnedLabel": "Angepinnte Medien",
+      "pinnedPlaceholder": "https://youtube.com/watch?v=…",
+      "pinnedHelp": "Hebe eine Sache weit oben auf deiner Seite hervor — ein YouTube-Video, einen Instagram-Post oder einen beliebigen Link.",
+      "save": "Profil speichern",
+      "saved": "Profil gespeichert. Deine Seite ist live unter:",
+      "copyLink": "Link kopieren",
+      "copied": "Kopiert"
+    }
+  },
+  "payments": {
+    "title": "Zahlungen",
+    "intro": "Der Empfang von Tees läuft über Stripe. Stripe fragt möglicherweise nach Identitäts- oder Bankdaten — das gehört dazu, damit Zahlungen sicher bleiben.",
+    "unavailable": "Die Zahlungseinstellungen sind gerade nicht verfügbar. Bitte versuche es gleich noch einmal.",
+    "statusAria": "Status der Zahlungseinrichtung",
+    "countryTerm": "Land:",
+    "receivingTerm": "Tees empfangen:",
+    "receivingYes": "Ja",
+    "receivingNo": "Noch nicht",
+    "footnote": "Auszahlungen übernimmt Stripe, nicht BuyMeATee. „Bezahlt“ heißt, das Tee ist auf deinem Stripe-Konto angekommen — wann es auf deinem Bankkonto landet, richtet sich nach deinem Stripe-Auszahlungsplan.",
+    "state": {
+      "notStarted": {
+        "heading": "Zahlungen nicht eingerichtet",
+        "body": "Um Tees zu empfangen, verbinde ein Stripe-Konto. Stripe übernimmt Identitätsprüfung, Bankdaten und Auszahlungen — BuyMeATee hält dein Geld nie.",
+        "cta": "Zahlungen mit Stripe einrichten"
+      },
+      "onboardingNotStarted": {
+        "heading": "Stripe-Konto erstellt",
+        "body": "Dein Stripe-Konto existiert, aber das Onboarding hat noch nicht begonnen. Es dauert nur ein paar Minuten.",
+        "cta": "Stripe-Onboarding starten"
+      },
+      "onboardingIncomplete": {
+        "heading": "Onboarding unvollständig",
+        "body": "Stripe braucht noch ein paar Angaben, bevor du Tees empfangen kannst. Mach da weiter, wo du aufgehört hast.",
+        "cta": "Stripe-Onboarding fortsetzen"
+      },
+      "informationRequired": {
+        "heading": "Stripe benötigt weitere Angaben",
+        "body": "Stripe hat zusätzliche Informationen angefordert. Bis sie vorliegen, können Zahlungen oder Auszahlungen eingeschränkt sein.",
+        "cta": "Fehlende Angaben nachreichen"
+      },
+      "verificationPending": {
+        "heading": "Verifizierung läuft",
+        "body": "Deine Angaben sind eingereicht und Stripe prüft sie. Das geht meist schnell — schau bald wieder vorbei."
+      },
+      "ready": {
+        "heading": "Bereit, Tees zu empfangen",
+        "body": "Dein Stripe-Konto ist vollständig eingerichtet. Tees gehen direkt auf dein Stripe-Konto, und Stripe zahlt nach seinem Zeitplan auf dein Bankkonto aus."
+      },
+      "paymentsRestricted": {
+        "heading": "Zahlungen eingeschränkt",
+        "body": "Stripe hat dieses Konto eingeschränkt, deshalb kann es im Moment keine Tees empfangen. Öffne dein Stripe-Dashboard für Details oder wende dich an den Stripe-Support.",
+        "cta": "Mit Stripe klären"
+      },
+      "payoutsDisabled": {
+        "heading": "Auszahlungen deaktiviert",
+        "body": "Zahlungen sind möglich, aber Auszahlungen auf dein Bankkonto sind derzeit deaktiviert. Meist braucht Stripe aktualisierte Bank- oder Identitätsdaten.",
+        "cta": "Angaben bei Stripe aktualisieren"
+      }
+    },
+    "connect": {
+      "countryLabel": "Dein Land",
+      "countryHelp": "Wird einmal festgelegt und kann später nicht geändert werden — es bestimmt deine Auszahlungswährung.",
+      "dashboardCta": "Auszahlungen & Details bei Stripe"
+    }
+  },
+  "checklist": {
+    "aria": "Erste Schritte",
+    "title": "Richte deinen Weg ein",
+    "progress": "{done} von {total} erledigt",
+    "intro": "Ein paar Schritte, und Unterstützer:innen können dir ein Tee spendieren.",
+    "stepDone": "— erledigt",
+    "stepTodo": "— offen",
+    "steps": {
+      "claimLink": {
+        "title": "Sichere dir deinen Link",
+        "detail": "Wähl den buymeatee.com/t/-Namen, den Unterstützer:innen besuchen.",
+        "action": "Link wählen"
+      },
+      "completeProfile": {
+        "title": "Vervollständige dein Profil",
+        "detail": "Ein Name plus Bio oder Foto — wer hinter dem Weg steht.",
+        "action": "Profil bearbeiten"
+      },
+      "firstGoal": {
+        "title": "Veröffentliche dein erstes Ziel",
+        "detail": "Gib Unterstützer:innen etwas Echtes, hinter dem sie stehen können.",
+        "action": "Ziel hinzufügen"
+      },
+      "connectPayments": {
+        "title": "Zahlungen verbinden",
+        "detail": "Stripe kümmert sich ums Geld — Tees gehen direkt an dich.",
+        "action": "Zahlungen einrichten"
+      }
+    }
+  }
+}

@@ -1,5 +1,7 @@
 "use client";
 
+import { useTranslations } from "next-intl";
+
 import { AccountMenu } from "@/components/account-menu";
 import { ButtonLink } from "@/components/button-link";
 import { useSession } from "@/components/auth/use-session";
@@ -11,6 +13,8 @@ import { headerActions } from "@/lib/site";
  * log out). Client island so the surrounding header stays static.
  */
 export function HeaderAuth() {
+  const t = useTranslations("common");
+  const label = (key: string) => t(key as Parameters<typeof t>[0]);
   const session = useSession();
 
   if (session.status === "authed") {
@@ -28,10 +32,10 @@ export function HeaderAuth() {
   return (
     <div className="hidden items-center gap-3 lg:flex">
       <ButtonLink href={headerActions.secondary.href} variant="secondary">
-        {headerActions.secondary.label}
+        {label(headerActions.secondary.labelKey)}
       </ButtonLink>
       <ButtonLink href={headerActions.primary.href}>
-        {headerActions.primary.label}
+        {label(headerActions.primary.labelKey)}
       </ButtonLink>
     </div>
   );

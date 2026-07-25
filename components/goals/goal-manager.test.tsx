@@ -1,7 +1,8 @@
-import { render, screen } from "@testing-library/react";
+import { screen } from "@testing-library/react";
 import userEvent from "@testing-library/user-event";
 import { afterEach, describe, expect, it, vi } from "vitest";
 
+import { renderWithIntl } from "@/test/i18n-test-utils";
 import { GoalManager } from "@/components/goals/goal-manager";
 import type { CreatorGoalRow } from "@/lib/goals/types";
 
@@ -16,6 +17,7 @@ function goal(overrides: Partial<CreatorGoalRow> = {}): CreatorGoalRow {
     raised_amount: 0,
     status: "draft",
     sort_order: 0,
+    cover_image_url: null,
     taken_down_at: null,
     created_at: "2026-07-12T00:00:00Z",
     updated_at: "2026-07-12T00:00:00Z",
@@ -29,7 +31,7 @@ describe("GoalManager", () => {
   });
 
   it("teaches with a labelled example in the empty state", () => {
-    render(<GoalManager initialGoals={[]} />);
+    renderWithIntl(<GoalManager initialGoals={[]} />);
 
     expect(
       screen.getByText(/what's your journey working towards\?/i),
@@ -44,7 +46,7 @@ describe("GoalManager", () => {
       new Response(JSON.stringify({ goal: created }), { status: 201 }),
     );
     const user = userEvent.setup();
-    render(<GoalManager initialGoals={[]} />);
+    renderWithIntl(<GoalManager initialGoals={[]} />);
 
     await user.click(
       screen.getByRole("button", { name: /add your first goal/i }),
@@ -60,13 +62,13 @@ describe("GoalManager", () => {
       await screen.findByRole("heading", { name: "Q-School entry" }),
     ).toBeVisible();
     expect(screen.getByText("Draft")).toBeVisible();
-    expect(screen.getByText(/£0\.00 of £1,?000\.00|£0\.00 of £1000\.00/)).toBeVisible();
+    expect(screen.getByText(/£0\.00 of £1,000\.00/)).toBeVisible();
   });
 
   it("shows honest amounts and the publish action for a draft", () => {
-    render(<GoalManager initialGoals={[goal()]} />);
+    renderWithIntl(<GoalManager initialGoals={[goal()]} />);
 
-    expect(screen.getByText(/£0\.00 of £1000\.00/)).toBeVisible();
+    expect(screen.getByText(/£0\.00 of £1,000\.00/)).toBeVisible();
     expect(
       screen.getByRole("button", { name: /publish to your page/i }),
     ).toBeVisible();
@@ -84,7 +86,7 @@ describe("GoalManager", () => {
       ),
     );
     const user = userEvent.setup();
-    render(<GoalManager initialGoals={[goal()]} />);
+    renderWithIntl(<GoalManager initialGoals={[goal()]} />);
 
     await user.click(
       screen.getByRole("button", { name: /publish to your page/i }),
@@ -96,13 +98,13 @@ describe("GoalManager", () => {
   });
 
   it("never offers delete for a goal with attributed support", () => {
-    render(
+    renderWithIntl(
       <GoalManager
         initialGoals={[goal({ status: "active", raised_amount: 12_000 })]}
       />,
     );
 
-    expect(screen.getByText(/£120\.00 of £1000\.00/)).toBeVisible();
+    expect(screen.getByText(/£120\.00 of £1,000\.00/)).toBeVisible();
     expect(screen.queryByRole("button", { name: "Delete" })).toBeNull();
     expect(
       screen.getByRole("button", { name: /mark completed/i }),

@@ -1,0 +1,71 @@
+{
+  "brand": {
+    "homeAria": "BuyMeATee — Startseite",
+    "tagline": "Unterstütze den Weg."
+  },
+  "nav": {
+    "discover": "Entdecken",
+    "howItWorks": "So funktioniert's",
+    "forCreators": "Für Creator",
+    "forSupporters": "Für Unterstützer:innen",
+    "blog": "Blog",
+    "faq": "FAQ",
+    "primaryLabel": "Hauptnavigation",
+    "siteNavigation": "Website-Navigation",
+    "home": "Startseite",
+    "breadcrumb": "Brotkrumennavigation",
+    "openMenu": "Menü öffnen",
+    "closeMenu": "Menü schließen"
+  },
+  "actions": {
+    "register": "Registrieren",
+    "logIn": "Einloggen",
+    "logOut": "Abmelden",
+    "signIn": "Anmelden",
+    "dashboard": "Dashboard",
+    "myPage": "Meine Seite",
+    "settings": "Einstellungen"
+  },
+  "account": {
+    "menuLabel": "Konto",
+    "fallbackName": "Dein Konto",
+    "signedInAs": "Angemeldet als <name>{displayName}</name>"
+  },
+  "footer": {
+    "productHeading": "Produkt",
+    "companyHeading": "Unternehmen",
+    "legalHeading": "Rechtliches",
+    "about": "Über uns",
+    "privacy": "Datenschutz",
+    "terms": "Nutzungsbedingungen",
+    "impressum": "Impressum",
+    "accessibility": "Barrierefreiheit",
+    "description": "BuyMeATee ist der Ort, an dem Golf-Fans Creatorn helfen, mehr zu spielen, mehr zu erreichen und ihre Ziele zu verfolgen. Begleite den Weg. Unterstütze ein Ziel. Spendier ihnen ein Tee.",
+    "copyright": "© {year} BuyMeATee. Alle Rechte vorbehalten.",
+    "productLine": "Ein Produkt von <brand>Caddie Live</brand> · Gemacht für Golfer"
+  },
+  "cookies": {
+    "regionLabel": "Cookie-Einwilligung",
+    "message": "Wir verwenden essenzielle Cookies, damit du angemeldet bleibst. Mit deiner Einwilligung nutzen wir außerdem Google Analytics, um zu verstehen, wie die Website genutzt wird. Mehr dazu in unserer <link>Datenschutzerklärung</link>.",
+    "decline": "Ablehnen",
+    "accept": "Analytics akzeptieren",
+    "settings": "Cookie-Einstellungen"
+  },
+  "upload": {
+    "addImage": "Bild hinzufügen",
+    "changeImage": "Bild ändern",
+    "remove": "Entfernen"
+  },
+  "errorBoundary": {
+    "heading": "Etwas ist schiefgelaufen.",
+    "body": "Ein unerwarteter Fehler hat die Runde unterbrochen. Bitte versuche es noch einmal.",
+    "retry": "Noch einmal versuchen"
+  },
+  "a11y": {
+    "skipToContent": "Zum Inhalt springen"
+  },
+  "language": {
+    "label": "Sprache",
+    "switcherLabel": "Sprache ändern"
+  }
+}

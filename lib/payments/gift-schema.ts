@@ -1,3 +1,4 @@
+import { errorDetail, type ErrorDetail } from "@/lib/i18n/errors";
 import {
   isSupportedCurrency,
   isValidMinorAmount,
@@ -8,6 +9,9 @@ import {
  * Gift composer input validation. Pure module shared by the client (inline
  * errors) and the server (authoritative — the API revalidates everything and
  * recalculates all amounts; client totals are never trusted).
+ *
+ * Errors are stable codes into the `errors` message namespace (ADR-019) —
+ * rendered into the visitor's language at the edge, never English here.
  */
 
 export const GIFT_MESSAGE_MAX_LENGTH = 280;
@@ -48,7 +52,7 @@ export type GiftFieldName =
 
 export type GiftValidationResult =
   | { ok: true; data: GiftInput }
-  | { ok: false; errors: Partial<Record<GiftFieldName, string>> };
+  | { ok: false; errors: Partial<Record<GiftFieldName, ErrorDetail>> };
 
 const USERNAME_PATTERN = /^[a-z0-9]([a-z0-9-]{1,38}[a-z0-9])?$/;
 const EMAIL_PATTERN = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
@@ -56,7 +60,7 @@ const UUID_PATTERN =
   /^[0-9a-f]{8}-[0-9a-f]{4}-[0-9a-f]{4}-[0-9a-f]{4}-[0-9a-f]{12}$/i;
 
 export function validateGiftInput(payload: unknown): GiftValidationResult {
-  const errors: Partial<Record<GiftFieldName, string>> = {};
+  const errors: Partial<Record<GiftFieldName, ErrorDetail>> = {};
   const input =
     typeof payload === "object" && payload !== null
       ? (payload as Record<string, unknown>)
@@ -67,29 +71,31 @@ export function validateGiftInput(payload: unknown): GiftValidationResult {
       ? input.recipientUsername.trim().toLowerCase()
       : "";
   if (!USERNAME_PATTERN.test(recipientUsername)) {
-    errors.recipientUsername = "We couldn't tell who this Tee is for.";
+    errors.recipientUsername = errorDetail("validation.gift.recipient");
   }
 
   const giftAmount = input.giftAmount;
   if (!isValidMinorAmount(giftAmount) || giftAmount <= 0) {
-    errors.giftAmount = "Enter a valid amount.";
+    errors.giftAmount = errorDetail("validation.gift.amount");
   }
 
   if (!isSupportedCurrency(input.currency)) {
-    errors.currency = "That currency isn't supported.";
+    errors.currency = errorDetail("validation.gift.currency");
   }
 
   const senderName =
     typeof input.senderName === "string" ? input.senderName.trim() : "";
   if (senderName.length < 1 || senderName.length > SENDER_NAME_MAX_LENGTH) {
-    errors.senderName = `Add your name (up to ${SENDER_NAME_MAX_LENGTH} characters).`;
+    errors.senderName = errorDetail("validation.gift.senderName", {
+      max: SENDER_NAME_MAX_LENGTH,
+    });
   }
 
   let senderEmail: string | undefined;
   if (typeof input.senderEmail === "string" && input.senderEmail.trim() !== "") {
     senderEmail = input.senderEmail.trim();
     if (senderEmail.length > 200 || !EMAIL_PATTERN.test(senderEmail)) {
-      errors.senderEmail = "That email address doesn't look right.";
+      errors.senderEmail = errorDetail("validation.gift.senderEmail");
     }
   }
 
@@ -97,7 +103,9 @@ export function validateGiftInput(payload: unknown): GiftValidationResult {
   if (typeof input.message === "string" && input.message.trim() !== "") {
     message = input.message.trim();
     if (message.length > GIFT_MESSAGE_MAX_LENGTH) {
-      errors.message = `Keep the message under ${GIFT_MESSAGE_MAX_LENGTH} characters.`;
+      errors.message = errorDetail("validation.gift.message", {
+        max: GIFT_MESSAGE_MAX_LENGTH,
+      });
     }
   }
 
@@ -105,7 +113,7 @@ export function validateGiftInput(payload: unknown): GiftValidationResult {
   if (typeof input.goalId === "string" && input.goalId.trim() !== "") {
     goalId = input.goalId.trim();
     if (!UUID_PATTERN.test(goalId)) {
-      errors.goalId = "That goal reference doesn't look right.";
+      errors.goalId = errorDetail("validation.gift.goalRef");
     }
   }
 
@@ -116,13 +124,13 @@ export function validateGiftInput(payload: unknown): GiftValidationResult {
   ) {
     wishlistItemId = input.wishlistItemId.trim();
     if (!UUID_PATTERN.test(wishlistItemId)) {
-      errors.wishlistItemId = "That item reference doesn't look right.";
+      errors.wishlistItemId = errorDetail("validation.gift.itemRef");
     }
   }
 
   // A Tee funds at most one thing: a goal OR a wish-list item, never both.
   if (goalId && wishlistItemId) {
-    errors.wishlistItemId = "Choose either a goal or a wish-list item.";
+    errors.wishlistItemId = errorDetail("validation.gift.targetConflict");
   }
 
   if (Object.keys(errors).length > 0) {

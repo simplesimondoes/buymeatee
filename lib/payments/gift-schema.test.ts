@@ -86,6 +86,38 @@ describe("validateGiftInput", () => {
     expect(validateGiftInput("gift").ok).toBe(false);
     expect(validateGiftInput(undefined).ok).toBe(false);
   });
+
+  it("reports stable error codes with ICU params (ADR-019), never English", () => {
+    const result = validateGiftInput({
+      recipientUsername: "-bad",
+      giftAmount: 0,
+      currency: "jpy",
+      senderName: "x".repeat(101),
+      senderEmail: "not-an-email",
+      message: "x".repeat(281),
+      goalId: "not-a-uuid",
+      isAnonymous: false,
+    });
+    expect(result.ok).toBe(false);
+    if (result.ok) return;
+    expect(result.errors.recipientUsername).toEqual({
+      code: "validation.gift.recipient",
+    });
+    expect(result.errors.giftAmount).toEqual({ code: "validation.gift.amount" });
+    expect(result.errors.currency).toEqual({ code: "validation.gift.currency" });
+    expect(result.errors.senderName).toEqual({
+      code: "validation.gift.senderName",
+      params: { max: 100 },
+    });
+    expect(result.errors.senderEmail).toEqual({
+      code: "validation.gift.senderEmail",
+    });
+    expect(result.errors.message).toEqual({
+      code: "validation.gift.message",
+      params: { max: 280 },
+    });
+    expect(result.errors.goalId).toEqual({ code: "validation.gift.goalRef" });
+  });
 });
 
 describe("parseMajorAmountToMinor", () => {
@@ -161,7 +193,9 @@ describe("wishlistItemId", () => {
       const result = validateGiftInput({ ...valid, wishlistItemId });
       expect(result.ok).toBe(false);
       if (!result.ok) {
-        expect(result.errors.wishlistItemId).toBeDefined();
+        expect(result.errors.wishlistItemId).toEqual({
+          code: "validation.gift.itemRef",
+        });
       }
     }
   });
@@ -174,7 +208,9 @@ describe("wishlistItemId", () => {
     });
     expect(result.ok).toBe(false);
     if (!result.ok) {
-      expect(result.errors.wishlistItemId).toBeDefined();
+      expect(result.errors.wishlistItemId).toEqual({
+        code: "validation.gift.targetConflict",
+      });
     }
   });
 });

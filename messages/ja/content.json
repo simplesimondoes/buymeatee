@@ -1,0 +1,214 @@
+{
+  "supportOptions": {
+    "oneTee": {
+      "name": "ティー1本",
+      "description": "「その調子で」という気持ちを伝えるシンプルなありがとう。"
+    },
+    "threeTees": {
+      "name": "ティー3本",
+      "description": "次の練習に向けた、ひとまわりの応援。"
+    },
+    "nineHoles": {
+      "name": "9ホール",
+      "description": "次の競技の9ホールに向けた、しっかりとした後押し。"
+    },
+    "eighteenHoles": {
+      "name": "18ホール",
+      "description": "勝負のコースでのフルラウンドを支えます。"
+    },
+    "greenFee": {
+      "name": "グリーンフィー",
+      "description": "特別な場所でプレーする費用をカバーします。"
+    },
+    "customSupport": {
+      "name": "カスタムサポート",
+      "description": "自分らしいかたちでジャーニーを応援できます。"
+    },
+    "note": "クリエイターはサポートの選択肢を自由に設定し、それぞれの支援が何に役立つのかを示せるようになります。"
+  },
+  "exampleGoals": {
+    "scotlandLinksTrip": {
+      "title": "スコットランド・リンクスの旅",
+      "creator": "Callum Reid",
+      "description": "スコットランド沿岸の歴史あるリンクスコース5か所をプレーし、撮影します。"
+    },
+    "roadToScratch": {
+      "title": "スクラッチへの道",
+      "creator": "Priya Shah",
+      "description": "ハンディキャップ7.8からスクラッチまで、すべてのレッスンとラウンドを記録します。"
+    },
+    "amateurChampionshipEntry": {
+      "title": "アマチュア選手権への出場",
+      "creator": "Tom Fletcher",
+      "description": "地域アマチュア大会フルシーズンの参加費と遠征費。"
+    },
+    "independentCourseReviews": {
+      "title": "独立系コースレビュー",
+      "creator": "Megan Frost",
+      "description": "一般のゴルファーが実際にプレーするコースを、スポンサーなしで正直にレビューします。"
+    },
+    "firstProfessionalSeason": {
+      "title": "プロ初シーズン",
+      "creator": "Dan Whitmore",
+      "description": "ミニツアーで出場資格を追いかけます — 一戦一戦を内側から伝えます。"
+    },
+    "womensGolfSeries": {
+      "title": "女子ゴルフコンテンツシリーズ",
+      "creator": "Lauren Park",
+      "description": "1ラウンドずつ、より多くの女性にゴルフを楽しんでもらうための動画シリーズ。"
+    }
+  },
+  "previewCreators": {
+    "caddieLive": {
+      "location": "マンチェスター",
+      "country": "イングランド",
+      "bio": "ゴルファーがゴルファーのために作った、ライブスコアとコースマッピングのアプリ。",
+      "goalTitle": "ゴルフコースを10,000件追加",
+      "goalDescription": "どのラウンドもカバーできるよう、1万件のコースをマッピングして検証します。",
+      "updateNote": "投稿：マッピング済みコースが6,200件を突破、さらに拡大中。"
+    },
+    "sarahBell": {
+      "location": "セント・アンドリュース",
+      "country": "スコットランド",
+      "bio": "ゴルフの聖地のまわりの暮らしを、スポンサーなしで正直に撮影しています。",
+      "goalTitle": "新しいYouTubeドキュメンタリー",
+      "goalDescription": "リンクスゴルフを支える人々を描く全4回のシリーズ。",
+      "updateNote": "投稿：第2話のファーストカットが完成。"
+    },
+    "jackMorrison": {
+      "location": "ポートマーノック",
+      "country": "アイルランド",
+      "bio": "険しい道のりでツアーカードを追いかけています — 一戦一戦を内側から。",
+      "goalTitle": "Qスクール予選への挑戦",
+      "goalDescription": "ツアー予選に本気で挑むための参加費と遠征費。",
+      "updateNote": "投稿：地域予選でカットを通過。"
+    },
+    "priyaShah": {
+      "location": "グレンイーグルス",
+      "country": "スコットランド",
+      "bio": "ハンディキャップ7.8からスクラッチまで、すべてのレッスンとラウンドを記録しています。",
+      "goalTitle": "スコティッシュアマチュアのシーズン",
+      "goalDescription": "アマチュア大会フルシーズンの参加費と遠征費。"
+    },
+    "firstTeeNorth": {
+      "location": "リーズ",
+      "country": "イングランド",
+      "bio": "本来ならプレーする機会のない子どもたちにクラブを届けています。",
+      "goalTitle": "ジュニアゴルフプログラム",
+      "goalDescription": "40人のジュニアに1シーズン分の無料コーチングと用具を。",
+      "updateNote": "投稿：夏に向けて28人のジュニアが登録。"
+    },
+    "callumReid": {
+      "location": "エアシャー",
+      "country": "スコットランド",
+      "bio": "スコットランド沿岸の歴史あるリンクスコースをプレーし、撮影しています。",
+      "goalTitle": "スコットランド・リンクスの旅",
+      "goalDescription": "歴史あるリンクスコース5か所を、10日間かけて撮影します。",
+      "updateNote": "投稿：西海岸の行程が確定。"
+    },
+    "fairwaySociety": {
+      "location": "サリー",
+      "country": "イングランド",
+      "bio": "南部一帯で手頃なゴルフデーを運営する、和気あいあいとしたソサエティ。",
+      "goalTitle": "ソサエティツアーのシーズン",
+      "goalDescription": "年間のソサエティデーに必要なグリーンフィーと賞品。"
+    },
+    "coachDan": {
+      "location": "ブリストル",
+      "country": "イングランド",
+      "bio": "一年中、天候を問わず練習できる拠点を作っているPGAコーチ。",
+      "goalTitle": "屋内コーチングスタジオを作る",
+      "goalDescription": "冬の間もレッスンを続けられる弾道測定器ブース。",
+      "updateNote": "投稿：スタジオの賃貸契約にサインしました。"
+    },
+    "linksCamera": {
+      "location": "アングルシー",
+      "country": "ウェールズ",
+      "bio": "多くのゴルファーが目にすることのない海辺のコースを撮るファインアート写真。",
+      "goalTitle": "海辺のコース写真シリーズ",
+      "goalDescription": "見過ごされてきた海辺の30ホールをまとめたプリント作品集。",
+      "updateNote": "投稿：今週、夜明けの光でパー3を撮影。"
+    },
+    "backNinePod": {
+      "location": "エディンバラ",
+      "country": "スコットランド",
+      "bio": "仲間ふたりとマイク1本、そしてアマチュアゴルフへの本物の愛。",
+      "goalTitle": "シーズン2のスタジオ機材",
+      "goalDescription": "よりクリアな音のための本格的なマイクと吸音材。"
+    },
+    "meganFrost": {
+      "location": "ケント",
+      "country": "イングランド",
+      "bio": "一般のゴルファーが買う道具を、独立した立場でスポンサーなしにテストしています。",
+      "goalTitle": "独立系ギアテスト",
+      "goalDescription": "ブランドではなくゴルファーに支えられた、1年間の正直なレビュー。"
+    },
+    "clubhouseRevival": {
+      "location": "ファイフ",
+      "country": "スコットランド",
+      "bio": "築100年の愛されるクラブハウスを修復する、メンバー主導のプロジェクト。",
+      "goalTitle": "旧クラブハウスの修復",
+      "goalDescription": "屋根を修理して、メンバーズルームを再オープンします。",
+      "updateNote": "投稿：新しい屋根の木材が現場に届きました。"
+    }
+  },
+  "previewActivity": {
+    "sarahBellTee": {
+      "supporter": "Alexさん",
+      "action": "贈りました",
+      "target": "Sarah Bellさんにティーを"
+    },
+    "coachDanStudio": {
+      "supporter": "Jordanさん",
+      "action": "応援しました",
+      "target": "Coach Danさんのスタジオを"
+    },
+    "juniorProgramme": {
+      "supporter": "匿名の方",
+      "action": "後押ししました",
+      "target": "ジュニアゴルフプログラムを"
+    },
+    "caddieLiveTee": {
+      "supporter": "Samさん",
+      "action": "贈りました",
+      "target": "Caddie Liveにティーを"
+    },
+    "jackMorrisonQSchool": {
+      "supporter": "Roryさん",
+      "action": "応援しました",
+      "target": "Jack MorrisonさんのQスクール挑戦を"
+    },
+    "scotlandLinksTrip": {
+      "supporter": "Emilyさん",
+      "action": "後押ししました",
+      "target": "スコットランド・リンクスの旅を"
+    }
+  },
+  "imageAlt": {
+    "heroJourney": "夕暮れの海辺のコースをバッグを担いで歩く3人のゴルファー",
+    "appConceptCreatorProfile": "現在の目標と進捗バーを表示した、架空のクリエイタープロフィールのコンセプトアプリ画面",
+    "appConceptSupporterCollection": "集めたコースとバッジを表示した、架空のサポータープロフィールのコンセプトアプリ画面",
+    "heroLinksGolfer": "夕日に染まる海を望むリンクスコースでドライバーショットを打ち終えるゴルファー",
+    "groupDiverseGolfers": "コースでバッグのそばに集まって談笑する4人のゴルファー",
+    "womanReadingPutt": "グリーンにしゃがんでパットのラインを読むゴルファー",
+    "golferDriverSwing": "明るい空を背にドライバーをスイングするゴルファー",
+    "friendsWalkingFairway": "夕暮れどきにバッグを担いでフェアウェイを歩く3人の友人",
+    "linksCourseAerial": "海岸線に沿って続くリンクスコースの空撮",
+    "clubhouseEvening": "夕暮れに温かな光をともす石造りのクラブハウス",
+    "golfBallCloseup": "朝露に濡れた芝の上のゴルフボールのクローズアップ",
+    "flagAtSunset": "金色の夕焼け空にシルエットで浮かぶピンフラッグ",
+    "womanFullSwing": "コースでフルスイングを振り抜くゴルファー",
+    "golfersFistBump": "海辺のコースでグータッチを交わす2人のゴルファー",
+    "mountainCourseView": "湖のほとり、緑の山あいに広がるゴルフコース",
+    "bunkerShotAction": "バンカーから砂を舞い上げてショットするゴルファー",
+    "womanSunriseView": "日の出のコースを見渡すゴルファー",
+    "putterAndBall": "練習グリーンのカップのそばに置かれたパターとボール",
+    "friendsGolfCart": "ゴルフカートで笑顔を交わす2人のゴルファー",
+    "coastalCliffHole": "海を見下ろす断崖の上に位置するドラマチックなゴルフホール",
+    "tournamentCompetition": "観客の前でティーショットを放つトーナメントのゴルファー",
+    "travelGolfTrip": "空港の通路をトラベルバッグを持って歩くゴルファー",
+    "creatorVloggingGolf": "コースでカメラジンバルを使って自分を撮影するゴルフクリエイター",
+    "juniorGolferSwing": "アイアンのスイングを練習するジュニアゴルファー",
+    "aerialGolfHole": "バンカーと池に囲まれたアイランドグリーンの空撮"
+  }
+}

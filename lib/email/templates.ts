@@ -1,15 +1,24 @@
-import { formatMinorAmount, type SupportedCurrency } from "@/lib/payments/currency";
+import { createTranslator } from "next-intl";
+
+import { enMessages } from "@/i18n/en";
+import { loadMessages } from "@/i18n/load-messages";
+import { defaultLocale, htmlLang, type AppLocale } from "@/i18n/locales";
 import {
   escapeHtml,
   renderEmailLayout,
   renderTextEmail,
 } from "@/lib/email/layout";
+import { formatMinorAmount } from "@/lib/i18n/format";
+import type { SupportedCurrency } from "@/lib/payments/currency";
 import { siteConfig } from "@/lib/site";
 
 /**
- * Platform email templates (ADR-013). Pure builders returning the subject
- * and both HTML + plain-text bodies. Product vocabulary is deliberate:
- * Creator, Supporter, Goal, tee, journey — never "donation" or "recipient".
+ * Platform email templates (ADR-013 + ADR-019). Pure builders returning the
+ * subject and both HTML + plain-text bodies, rendered in the recipient's
+ * locale (English fallback via the message deep-merge). Product vocabulary is
+ * deliberate: Creator, Supporter, Goal, tee, journey — never "donation" or
+ * "recipient". User-generated content (names, messages, titles) is never
+ * translated and always escaped in HTML.
  */
 
 export type RenderedEmail = {
@@ -18,24 +27,46 @@ export type RenderedEmail = {
   text: string;
 };
 
+type EmailTranslator = ReturnType<
+  typeof createTranslator<typeof enMessages, "emails">
+>;
+
+async function getEmailTranslator(
+  locale: AppLocale,
+): Promise<EmailTranslator> {
+  const messages = await loadMessages(locale);
+  return createTranslator({ locale, messages, namespace: "emails" });
+}
+
 function paragraph(html: string): string {
   return `<p style="margin:0 0 14px;">${html}</p>`;
 }
 
+function strong(value: string): string {
+  return `<strong>${escapeHtml(value)}</strong>`;
+}
+
 /**
- * A Supporter bought a Creator a tee. Sent to the Creator. The sender name
- * has already had the anonymity choice applied upstream (it may be
- * "Anonymous"); an optional message is included verbatim but escaped.
+ * A Supporter bought a Creator a tee. Sent to the Creator, in the Creator's
+ * preferred language. The sender name has already had the anonymity choice
+ * applied upstream (it may be "Anonymous"); an optional message is included
+ * verbatim but escaped.
  */
-export function renderGiftReceivedEmail(input: {
+export async function renderGiftReceivedEmail(input: {
   senderDisplayName: string;
   amount: number;
   currency: SupportedCurrency;
   message?: string | null;
-}): RenderedEmail {
-  const amount = formatMinorAmount(input.amount, input.currency);
-  const sender = escapeHtml(input.senderDisplayName || "A supporter");
-  const dashboardUrl = `${siteConfig.url}/dashboard`;
+  locale?: AppLocale;
+}): Promise<RenderedEmail> {
+  const locale = input.locale ?? defaultLocale;
+  const t = await getEmailTranslator(locale);
+  const amount = formatMinorAmount(input.amount, input.currency, locale);
+  const sender =
+    input.senderDisplayName || t("giftReceived.fallbackSender");
+  const senderInline =
+    input.senderDisplayName || t("giftReceived.fallbackSenderInline");
+  const dashboardUrl = `${siteConfig.url}/${locale}/dashboard`;
 
   const messageBlock =
     input.message && input.message.trim()
@@ -43,121 +74,140 @@ export function renderGiftReceivedEmail(input: {
       : "";
 
   const bodyHtml = [
-    paragraph(`<strong>${sender}</strong> just bought you a tee — <strong>${amount}</strong>.`),
+    paragraph(
+      t("giftReceived.body", { sender: strong(sender), amount: strong(amount) }),
+    ),
     messageBlock,
-    paragraph("Every tee is someone backing your journey. Nice work."),
+    paragraph(escapeHtml(t("giftReceived.encouragement"))),
   ].join("");
 
-  const textLines = [
-    `${input.senderDisplayName || "A supporter"} just bought you a tee — ${amount}.`,
-  ];
+  const textLines = [t("giftReceived.body", { sender, amount })];
   if (input.message && input.message.trim()) {
     textLines.push("", `"${input.message.trim()}"`);
   }
-  textLines.push("", "Every tee is someone backing your journey. Nice work.");
+  textLines.push("", t("giftReceived.encouragement"));
 
-  const cta = { label: "View your dashboard", url: dashboardUrl };
+  const cta = { label: t("giftReceived.cta"), url: dashboardUrl };
+  const tagline = t("layout.tagline");
   return {
-    subject: `You got a tee — ${amount} from ${input.senderDisplayName || "a supporter"}`,
+    subject: t("giftReceived.subject", { amount, sender: senderInline }),
     html: renderEmailLayout({
-      preheader: `${sender} bought you a tee (${amount}).`,
-      heading: "You got a tee ⛳",
+      preheader: t("giftReceived.preheader", { sender, amount }),
+      heading: t("giftReceived.heading"),
       bodyHtml,
       cta,
+      lang: htmlLang[locale],
+      tagline,
     }),
-    text: renderTextEmail(textLines, cta),
+    text: renderTextEmail(textLines, cta, tagline),
   };
 }
 
 /**
- * Receipt / thank-you sent to the Supporter who bought the tee. `creatorName`
- * is the public display name of the Creator they supported.
+ * Receipt / thank-you sent to the Supporter who bought the tee, in the
+ * language they used at checkout (gifts.locale). `creatorName` is the public
+ * display name of the Creator they supported.
  */
-export function renderGiftReceiptEmail(input: {
+export async function renderGiftReceiptEmail(input: {
   creatorName: string;
   amount: number;
   currency: SupportedCurrency;
   /** The goal / wish-list item the tee went toward, if any. */
   targetTitle?: string | null;
-}): RenderedEmail {
-  const amount = formatMinorAmount(input.amount, input.currency);
-  const creator = escapeHtml(input.creatorName || "a creator");
+  locale?: AppLocale;
+}): Promise<RenderedEmail> {
+  const locale = input.locale ?? defaultLocale;
+  const t = await getEmailTranslator(locale);
+  const amount = formatMinorAmount(input.amount, input.currency, locale);
+  const creator = input.creatorName || t("giftReceipt.fallbackCreator");
   const target = input.targetTitle?.trim() ? input.targetTitle.trim() : null;
 
   const bodyHtml = [
-    paragraph(`Thanks for buying <strong>${creator}</strong> a tee.`),
+    paragraph(t("giftReceipt.thanks", { creator: strong(creator) })),
     target
-      ? paragraph(`You put it toward <strong>${escapeHtml(target)}</strong>.`)
+      ? paragraph(t("giftReceipt.target", { target: strong(target) }))
       : "",
-    paragraph(`Your support of <strong>${amount}</strong> is on its way to them — this email is your receipt.`),
-    paragraph("You just helped keep a golf journey moving. That's the whole idea."),
+    paragraph(t("giftReceipt.receipt", { amount: strong(amount) })),
+    paragraph(escapeHtml(t("giftReceipt.closing"))),
   ].join("");
 
-  const textLines = [
-    `Thanks for buying ${input.creatorName || "a creator"} a tee.`,
-  ];
+  const textLines = [t("giftReceipt.thanks", { creator })];
   if (target) {
-    textLines.push("", `You put it toward ${target}.`);
+    textLines.push("", t("giftReceipt.target", { target }));
   }
   textLines.push(
     "",
-    `Your support of ${amount} is on its way to them — this email is your receipt.`,
+    t("giftReceipt.receipt", { amount }),
     "",
-    "You just helped keep a golf journey moving. That's the whole idea.",
+    t("giftReceipt.closing"),
   );
 
-  const cta = { label: "Discover more creators", url: siteConfig.url };
+  const cta = {
+    label: t("giftReceipt.cta"),
+    url: `${siteConfig.url}/${locale}/discover`,
+  };
+  const tagline = t("layout.tagline");
   return {
-    subject: `Your receipt — ${amount} to ${input.creatorName || "a creator"}`,
+    subject: t("giftReceipt.subject", { amount, creator }),
     html: renderEmailLayout({
-      preheader: `Receipt: you bought ${creator} a tee (${amount}).`,
-      heading: "Thanks for the support",
+      preheader: t("giftReceipt.preheader", { creator, amount }),
+      heading: t("giftReceipt.heading"),
       bodyHtml,
       cta,
+      lang: htmlLang[locale],
+      tagline,
     }),
-    text: renderTextEmail(textLines, cta),
+    text: renderTextEmail(textLines, cta, tagline),
   };
 }
 
 /**
- * A Creator's Goal reached its target. Goals never auto-complete (ADR-011) —
- * this celebrates hitting the number and nudges the Creator to mark it
- * complete when they're ready.
+ * A Creator's Goal reached its target, told in the Creator's language. Goals
+ * never auto-complete (ADR-011) — this celebrates hitting the number and
+ * nudges the Creator to mark it complete when they're ready.
  */
-export function renderGoalReachedEmail(input: {
+export async function renderGoalReachedEmail(input: {
   goalTitle: string;
   raisedAmount: number;
   targetAmount: number;
   currency: SupportedCurrency;
-}): RenderedEmail {
-  const title = escapeHtml(input.goalTitle || "your goal");
-  const raised = formatMinorAmount(input.raisedAmount, input.currency);
-  const target = formatMinorAmount(input.targetAmount, input.currency);
-  const dashboardUrl = `${siteConfig.url}/dashboard`;
+  locale?: AppLocale;
+}): Promise<RenderedEmail> {
+  const locale = input.locale ?? defaultLocale;
+  const t = await getEmailTranslator(locale);
+  const title = input.goalTitle || t("goalReached.fallbackTitle");
+  const raised = formatMinorAmount(input.raisedAmount, input.currency, locale);
+  const target = formatMinorAmount(input.targetAmount, input.currency, locale);
+  const dashboardUrl = `${siteConfig.url}/${locale}/dashboard`;
 
   const bodyHtml = [
-    paragraph(`Your goal <strong>${title}</strong> just hit its target.`),
-    paragraph(`Raised so far: <strong>${raised}</strong> of ${target}.`),
-    paragraph("Head to your dashboard to mark it complete and share the moment with the supporters who got you there."),
+    paragraph(t("goalReached.body", { title: strong(title) })),
+    paragraph(
+      t("goalReached.progress", { raised: strong(raised), target: escapeHtml(target) }),
+    ),
+    paragraph(escapeHtml(t("goalReached.nextStep"))),
   ].join("");
 
   const textLines = [
-    `Your goal "${input.goalTitle || "your goal"}" just hit its target.`,
+    t("goalReached.body", { title: `"${title}"` }),
     "",
-    `Raised so far: ${raised} of ${target}.`,
+    t("goalReached.progress", { raised, target }),
     "",
-    "Head to your dashboard to mark it complete and share the moment with the supporters who got you there.",
+    t("goalReached.nextStep"),
   ];
 
-  const cta = { label: "View your goal", url: dashboardUrl };
+  const cta = { label: t("goalReached.cta"), url: dashboardUrl };
+  const tagline = t("layout.tagline");
   return {
-    subject: `Goal reached: ${input.goalTitle || "your goal"} 🎉`,
+    subject: t("goalReached.subject", { title }),
     html: renderEmailLayout({
-      preheader: `${title} reached its target (${raised}).`,
-      heading: "Your goal hit its target 🎯",
+      preheader: t("goalReached.preheader", { title, raised }),
+      heading: t("goalReached.heading"),
       bodyHtml,
       cta,
+      lang: htmlLang[locale],
+      tagline,
     }),
-    text: renderTextEmail(textLines, cta),
+    text: renderTextEmail(textLines, cta, tagline),
   };
 }

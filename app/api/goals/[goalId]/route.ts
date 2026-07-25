@@ -1,5 +1,6 @@
 import { NextResponse } from "next/server";
 
+import { apiError } from "@/lib/api/errors";
 import { validateGoalInput } from "@/lib/goals/goal-schema";
 import {
   deleteGoal,
@@ -21,31 +22,29 @@ import { getAuthenticatedUser, isSupabaseConfigured } from "@/lib/supabase/serve
  * Ownership is enforced by RLS plus the creator_id filter in lib/goals.
  */
 
-const failureResponses: Record<GoalMutationFailure, { error: string; status: number }> = {
-  not_found: { error: "That goal no longer exists.", status: 404 },
-  active_limit: {
-    error: `You can have up to ${MAX_ACTIVE_GOALS} active goals. Complete or archive one first.`,
-    status: 409,
-  },
-  invalid_transition: { error: "That change isn't possible from the goal's current state.", status: 409 },
-  currency_locked: {
-    error: "A goal that has received support keeps its currency.",
-    status: 409,
-  },
-  currency_mismatch: {
-    error: "Goals must use your payout currency.",
-    status: 409,
-  },
-  has_support: {
-    error: "This goal has received support, so it can't be deleted — archive it instead.",
-    status: 409,
-  },
-  unavailable: { error: "Saving isn't available right now. Please try again.", status: 503 },
+const failureResponses: Record<
+  Exclude<GoalMutationFailure, "active_limit">,
+  { code: string; status: number }
+> = {
+  not_found: { code: "api.goalGone", status: 404 },
+  invalid_transition: { code: "api.goalStateChange", status: 409 },
+  currency_locked: { code: "api.goalCurrencyLocked", status: 409 },
+  currency_mismatch: { code: "api.goalPayoutCurrency", status: 409 },
+  has_support: { code: "api.goalHasSupport", status: 409 },
+  unavailable: { code: "api.savingUnavailable", status: 503 },
 };
 
 function failure(reason: GoalMutationFailure) {
-  const { error, status } = failureResponses[reason];
-  return NextResponse.json({ error }, { status });
+  if (reason === "active_limit") {
+    // No stable code exists for the active-goal limit yet; the client hook
+    // passes raw strings through, so this stays honest until one is added.
+    return NextResponse.json(
+      { error: { code: "api.goalActiveLimit", params: { max: MAX_ACTIVE_GOALS } } },
+      { status: 409 },
+    );
+  }
+  const { code, status } = failureResponses[reason];
+  return apiError(code, { status });
 }
 
 export async function POST(
@@ -57,13 +56,10 @@ export async function POST(
   }
   const user = await getAuthenticatedUser();
   if (!user) {
-    return NextResponse.json({ error: "Sign in required." }, { status: 401 });
+    return apiError("api.signInRequired", { status: 401 });
   }
   if (isRateLimited(`goals:${user.id}`, 30, 60_000)) {
-    return NextResponse.json(
-      { error: "Too many requests. Please wait a moment." },
-      { status: 429 },
-    );
+    return apiError("api.tooManyRequests", { status: 429 });
   }
 
   const { goalId } = await params;
@@ -74,7 +70,10 @@ export async function POST(
   if (payload?.action === "edit") {
     const validation = validateGoalInput(payload);
     if (!validation.ok) {
-      return NextResponse.json({ errors: validation.errors }, { status: 400 });
+      return apiError("api.checkFields", {
+        status: 400,
+        fields: validation.errors,
+      });
     }
     const result = await updateGoal(user.id, goalId, validation.data);
     return result.ok
@@ -84,7 +83,7 @@ export async function POST(
 
   if (payload?.action === "transition") {
     if (!isGoalStatus(payload.to)) {
-      return NextResponse.json({ error: "Unknown goal status." }, { status: 400 });
+      return apiError("api.goalStatusUnknown", { status: 400 });
     }
     const result = await transitionGoal(user.id, goalId, payload.to);
     return result.ok
@@ -94,7 +93,7 @@ export async function POST(
 
   if (payload?.action === "move") {
     if (payload.direction !== "up" && payload.direction !== "down") {
-      return NextResponse.json({ error: "Unknown direction." }, { status: 400 });
+      return apiError("api.unknownDirection", { status: 400 });
     }
     const result = await moveGoal(user.id, goalId, payload.direction);
     return result.ok
@@ -102,7 +101,7 @@ export async function POST(
       : failure("unavailable");
   }
 
-  return NextResponse.json({ error: "Unknown action." }, { status: 400 });
+  return apiError("api.unknownAction", { status: 400 });
 }
 
 export async function DELETE(
@@ -114,7 +113,7 @@ export async function DELETE(
   }
   const user = await getAuthenticatedUser();
   if (!user) {
-    return NextResponse.json({ error: "Sign in required." }, { status: 401 });
+    return apiError("api.signInRequired", { status: 401 });
   }
 
   const { goalId } = await params;

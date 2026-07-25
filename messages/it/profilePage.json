@@ -1,0 +1,95 @@
+{
+  "metadata": {
+    "title": "Offri un Tee a {name}",
+    "description": "Sostieni il percorso nel golf di {name} con un Tee.",
+    "descriptionWithGoal": "Sostieni il percorso nel golf di {name} con un Tee — appoggia un obiettivo reale e guardalo realizzarsi.",
+    "imageAlt": "Sostieni {name} su BuyMeATee"
+  },
+  "unavailable": {
+    "metaTitle": "Pagina non disponibile",
+    "heading": "Questa pagina non è disponibile in questo momento.",
+    "body": "Al momento non può ricevere Tee. Se pensi che sia un errore, riprova più tardi."
+  },
+  "hero": {
+    "kicker": "Sostieni il percorso",
+    "handicap": "Handicap {handicap}",
+    "websiteLabel": "Sito web"
+  },
+  "about": {
+    "heading": "Chi sono",
+    "sectionLabel": "Chi è {name}"
+  },
+  "stats": {
+    "supporters": "{count, plural, one {sostenitore} other {sostenitori}}",
+    "goalsReached": "{count, plural, one {obiettivo raggiunto} other {obiettivi raggiunti}}",
+    "updates": "{count, plural, one {aggiornamento} other {aggiornamenti}}",
+    "joinedLabel": "Iscrizione",
+    "joined": "Iscrizione: {date}"
+  },
+  "cta": {
+    "supportGoal": "Sostieni questo obiettivo",
+    "buyTee": "Offri un tee a {name}"
+  },
+  "supportHero": {
+    "currentGoal": "Obiettivo attuale",
+    "raisedOfTarget": "{raised} su {target}",
+    "goalOnly": "Traguardo: {target}",
+    "beFirst": "Sii il primo",
+    "progressLabel": "Avanzamento verso {title}: {raised} su {target} raccolti"
+  },
+  "notAccepting": {
+    "heading": "{name} non accetta ancora Tee.",
+    "body": "Torna presto — la configurazione dei pagamenti non è ancora completa.",
+    "finishSetup": "Completa la configurazione dei pagamenti"
+  },
+  "goals": {
+    "sectionLabel": "Obiettivi",
+    "heading": "Gli obiettivi di {name}",
+    "beyondGoal": "— oltre l'obiettivo!",
+    "justStarted": "È appena partito — sii il primo ad appoggiarlo.",
+    "supportedBy": "{count, plural, one {Sostenuto da # golfista} other {Sostenuto da # golfisti}}",
+    "completedHeading": "Reso possibile dai sostenitori",
+    "completedRaised": "— {amount} raccolti",
+    "emptyOwnerBody": "La tua pagina non ha ancora obiettivi. Gli obiettivi danno ai sostenitori qualcosa di concreto da appoggiare.",
+    "addFirstGoal": "Aggiungi il tuo primo obiettivo",
+    "noActiveOwner": "Nessun obiettivo attivo in questo momento — <link>pubblicane uno</link> per dare ai sostenitori qualcosa da appoggiare."
+  },
+  "wishlist": {
+    "sectionLabel": "Lista dei desideri",
+    "heading": "La lista dei desideri di {name}",
+    "intro": "Cose concrete che puoi finanziare per intero — scegline una ed è coperta.",
+    "fundThis": "Finanzia questo",
+    "fundedHeading": "Finanziati dai sostenitori",
+    "emptyOwnerBody": "La tua lista dei desideri è vuota. Aggiungi cose concrete che i sostenitori possono finanziare — una scatola di palline, una quota di iscrizione, una lezione.",
+    "addFirstItem": "Aggiungi il tuo primo articolo"
+  },
+  "updates": {
+    "sectionLabel": "Aggiornamenti",
+    "heading": "Gli aggiornamenti di {name}",
+    "emptyOwnerHeading": "Questo percorso è appena cominciato.",
+    "emptyOwnerBody": "Pubblica aggiornamenti per mostrare ai sostenitori dove va il loro appoggio — sono i progressi a farli tornare.",
+    "writeFirst": "Scrivi il tuo primo aggiornamento"
+  },
+  "recentSupport": {
+    "sectionLabel": "Sostegno recente",
+    "heading": "Sostegno recente",
+    "empty": "Sii il primo golfista ad appoggiare questo progetto.",
+    "supported": "<supporter>{name}</supporter> ha sostenuto con <sum>{amount}</sum>",
+    "towardGoal": "verso {title}",
+    "fundedItem": "ha finanziato {title}"
+  },
+  "pinnedMedia": {
+    "sectionLabel": "Contenuto in evidenza",
+    "iframeTitle": "Contenuto in evidenza",
+    "featuredLink": "Link in evidenza",
+    "featuredLinkAria": "Link in evidenza: {host}"
+  },
+  "ogCard": {
+    "kicker": "Sostieni il percorso",
+    "headline": "Sostieni {name}",
+    "headlineFallback": "Sostieni il percorso.",
+    "tagline": "Appoggia un obiettivo reale e segui il percorso di un golfista.",
+    "goalLine": "{raised} su {target} · {percent}",
+    "goalLineFresh": "Traguardo: {target} · sii il primo ad appoggiarlo"
+  }
+}

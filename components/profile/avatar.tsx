@@ -29,12 +29,15 @@ export function Avatar({
   name: string;
   size?: keyof typeof sizeClasses;
 }) {
+  // The accessible name is the person's name alone (no possessive suffix):
+  // this component renders in every locale's chrome, so it must not carry
+  // English grammar. User names themselves are never translated.
   if (src) {
     return (
       // eslint-disable-next-line @next/next/no-img-element
       <img
         src={src}
-        alt={`${name}'s photo`}
+        alt={name}
         className={`${sizeClasses[size]} rounded-full border border-stone object-cover`}
       />
     );
@@ -42,7 +45,7 @@ export function Avatar({
   return (
     <span
       role="img"
-      aria-label={`${name}'s initials`}
+      aria-label={name}
       className={`${sizeClasses[size]} inline-flex items-center justify-center rounded-full border border-stone bg-mist font-serif font-semibold text-forest`}
     >
       {initialsFor(name)}

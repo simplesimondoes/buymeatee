@@ -1,0 +1,4 @@
+{
+  "$comment": "Locales listed as complete must have full key parity with en (missing keys are errors, not warnings). Locales not listed are still under translation.",
+  "complete": ["en", "de", "fr", "es", "it", "ja", "ko", "pt"]
+}

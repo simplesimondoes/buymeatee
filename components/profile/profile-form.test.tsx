@@ -1,8 +1,9 @@
-import { render, screen } from "@testing-library/react";
+import { screen } from "@testing-library/react";
 import userEvent from "@testing-library/user-event";
 import { afterEach, describe, expect, it, vi } from "vitest";
 
 import { ProfileForm } from "@/components/profile/profile-form";
+import { renderWithIntl } from "@/test/i18n-test-utils";
 
 const enrichment = {
   initialAbout: "",
@@ -47,7 +48,7 @@ describe("ProfileForm", () => {
   it("shows validation errors instead of submitting an invalid form", async () => {
     const fetchMock = vi.spyOn(globalThis, "fetch");
     const user = userEvent.setup();
-    render(<ProfileForm {...emptyProps} />);
+    renderWithIntl(<ProfileForm {...emptyProps} />);
 
     await user.click(screen.getByRole("button", { name: "Save profile" }));
 
@@ -63,7 +64,7 @@ describe("ProfileForm", () => {
   it("rejects reserved usernames client-side", async () => {
     const fetchMock = vi.spyOn(globalThis, "fetch");
     const user = userEvent.setup();
-    render(<ProfileForm {...emptyProps} />);
+    renderWithIntl(<ProfileForm {...emptyProps} />);
 
     await user.type(screen.getByLabelText("Your public link"), "admin");
     await user.type(screen.getByLabelText("Display name"), "Admin Impostor");
@@ -75,7 +76,7 @@ describe("ProfileForm", () => {
 
   it("warns before saving a username change", async () => {
     const user = userEvent.setup();
-    render(<ProfileForm {...filledProps} />);
+    renderWithIntl(<ProfileForm {...filledProps} />);
 
     const usernameField = screen.getByLabelText("Your public link");
     await user.clear(usernameField);
@@ -101,7 +102,7 @@ describe("ProfileForm", () => {
       ),
     );
     const user = userEvent.setup();
-    render(<ProfileForm {...filledProps} />);
+    renderWithIntl(<ProfileForm {...filledProps} />);
 
     await user.click(screen.getByRole("button", { name: "Save profile" }));
 
@@ -127,13 +128,14 @@ describe("ProfileForm", () => {
     vi.spyOn(globalThis, "fetch").mockResolvedValue(
       new Response(
         JSON.stringify({
-          errors: { username: "That link is already taken. Pick another." },
+          error: { code: "api.checkFields" },
+          errors: { username: { code: "validation.profile.usernameTaken" } },
         }),
         { status: 409 },
       ),
     );
     const user = userEvent.setup();
-    render(<ProfileForm {...filledProps} />);
+    renderWithIntl(<ProfileForm {...filledProps} />);
 
     await user.click(screen.getByRole("button", { name: "Save profile" }));
 
@@ -144,7 +146,7 @@ describe("ProfileForm", () => {
 
   it("counts bio characters live", async () => {
     const user = userEvent.setup();
-    render(<ProfileForm {...emptyProps} />);
+    renderWithIntl(<ProfileForm {...emptyProps} />);
 
     await user.type(screen.getByLabelText(/bio/i), "On tour.");
 

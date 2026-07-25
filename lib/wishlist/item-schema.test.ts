@@ -1,7 +1,11 @@
 import { describe, expect, it } from "vitest";
 
 import { validateWishlistItemInput } from "@/lib/wishlist/item-schema";
-import { WISHLIST_PRICE_MAX_MINOR } from "@/lib/wishlist/types";
+import {
+  WISHLIST_DESCRIPTION_MAX_LENGTH,
+  WISHLIST_PRICE_MAX_MINOR,
+  WISHLIST_TITLE_MAX_LENGTH,
+} from "@/lib/wishlist/types";
 
 const valid = {
   title: "A dozen tour balls",
@@ -32,21 +36,41 @@ describe("validateWishlistItemInput", () => {
     expect(result.data.description).toBeUndefined();
   });
 
-  it("requires a title within length limits", () => {
-    expect(validateWishlistItemInput({ ...valid, title: "" }).ok).toBe(false);
-    expect(
-      validateWishlistItemInput({ ...valid, title: "x".repeat(121) }).ok,
-    ).toBe(false);
+  it("requires a title within length limits, with a coded error", () => {
+    for (const title of ["", "x".repeat(121)]) {
+      const result = validateWishlistItemInput({ ...valid, title });
+      expect(result.ok).toBe(false);
+      if (!result.ok) {
+        expect(result.errors.title).toEqual({
+          code: "validation.wishlist.title",
+          params: { max: WISHLIST_TITLE_MAX_LENGTH },
+        });
+      }
+    }
   });
 
-  it("enforces the description length limit", () => {
-    expect(
-      validateWishlistItemInput({ ...valid, description: "x".repeat(1001) }).ok,
-    ).toBe(false);
+  it("enforces the description length limit with a coded error", () => {
+    const result = validateWishlistItemInput({
+      ...valid,
+      description: "x".repeat(1001),
+    });
+    expect(result.ok).toBe(false);
+    if (!result.ok) {
+      expect(result.errors.description).toEqual({
+        code: "validation.wishlist.description",
+        params: { max: WISHLIST_DESCRIPTION_MAX_LENGTH },
+      });
+    }
   });
 
   it("rejects unsupported currencies", () => {
-    expect(validateWishlistItemInput({ ...valid, currency: "jpy" }).ok).toBe(false);
+    const result = validateWishlistItemInput({ ...valid, currency: "jpy" });
+    expect(result.ok).toBe(false);
+    if (!result.ok) {
+      expect(result.errors.currency).toEqual({
+        code: "validation.wishlist.currency",
+      });
+    }
   });
 
   it("rejects non-integer, zero, negative and over-cap prices", () => {
@@ -61,7 +85,9 @@ describe("validateWishlistItemInput", () => {
       const result = validateWishlistItemInput({ ...valid, priceAmount });
       expect(result.ok).toBe(false);
       if (!result.ok) {
-        expect(result.errors.priceAmount).toBeDefined();
+        expect(result.errors.priceAmount).toEqual({
+          code: "validation.wishlist.price",
+        });
       }
     }
   });

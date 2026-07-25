@@ -4,6 +4,14 @@ import { images, type SiteImage } from "@/lib/content/images";
  * Fictional example goals for the homepage grid.
  * Every entry is rendered with an explicit "Example" label (ADR-007) —
  * these are not real creators or real amounts.
+ *
+ * Localisation: display strings live in the `content` message namespace
+ * (`messages/<locale>/content.json`); the key-based `exampleGoalItems`
+ * export references them (keys are relative to the `content` namespace, e.g.
+ * `useTranslations("content")` then `t(item.titleKey)`). Amounts stay in TS —
+ * they are illustrative numbers, not translatable copy. The English-string
+ * `exampleGoals` export remains as a deprecated fallback until consumers
+ * migrate.
  */
 
 export type ExampleGoal = {
@@ -15,10 +23,88 @@ export type ExampleGoal = {
   image: SiteImage;
 };
 
-export function goalProgress(goal: ExampleGoal): number {
+/** Locale-aware shape: stable id + message-key references, no raw English. */
+export type ExampleGoalItem = {
+  id: string;
+  /** Key in the `content` namespace, e.g. "exampleGoals.roadToScratch.title". */
+  titleKey: string;
+  /** Key in the `content` namespace (fictional persona name). */
+  creatorKey: string;
+  /** Key in the `content` namespace. */
+  descriptionKey: string;
+  raised: number;
+  target: number;
+  image: SiteImage;
+};
+
+export function goalProgress(goal: {
+  raised: number;
+  target: number;
+}): number {
   return Math.round((goal.raised / goal.target) * 100);
 }
 
+export const exampleGoalItems = [
+  {
+    id: "scotlandLinksTrip",
+    titleKey: "exampleGoals.scotlandLinksTrip.title",
+    creatorKey: "exampleGoals.scotlandLinksTrip.creator",
+    descriptionKey: "exampleGoals.scotlandLinksTrip.description",
+    raised: 540,
+    target: 1000,
+    image: images.linksCourseAerial,
+  },
+  {
+    id: "roadToScratch",
+    titleKey: "exampleGoals.roadToScratch.title",
+    creatorKey: "exampleGoals.roadToScratch.creator",
+    descriptionKey: "exampleGoals.roadToScratch.description",
+    raised: 640,
+    target: 1200,
+    image: images.womanReadingPutt,
+  },
+  {
+    id: "amateurChampionshipEntry",
+    titleKey: "exampleGoals.amateurChampionshipEntry.title",
+    creatorKey: "exampleGoals.amateurChampionshipEntry.creator",
+    descriptionKey: "exampleGoals.amateurChampionshipEntry.description",
+    raised: 210,
+    target: 600,
+    image: images.tournamentCompetition,
+  },
+  {
+    id: "independentCourseReviews",
+    titleKey: "exampleGoals.independentCourseReviews.title",
+    creatorKey: "exampleGoals.independentCourseReviews.creator",
+    descriptionKey: "exampleGoals.independentCourseReviews.description",
+    raised: 380,
+    target: 800,
+    image: images.coastalCliffHole,
+  },
+  {
+    id: "firstProfessionalSeason",
+    titleKey: "exampleGoals.firstProfessionalSeason.title",
+    creatorKey: "exampleGoals.firstProfessionalSeason.creator",
+    descriptionKey: "exampleGoals.firstProfessionalSeason.description",
+    raised: 1150,
+    target: 2500,
+    image: images.bunkerShotAction,
+  },
+  {
+    id: "womensGolfSeries",
+    titleKey: "exampleGoals.womensGolfSeries.title",
+    creatorKey: "exampleGoals.womensGolfSeries.creator",
+    descriptionKey: "exampleGoals.womensGolfSeries.description",
+    raised: 460,
+    target: 900,
+    image: images.womanFullSwing,
+  },
+] as const satisfies readonly ExampleGoalItem[];
+
+/**
+ * @deprecated English-only strings. Use `exampleGoalItems` with the
+ * `content` message namespace instead.
+ */
 export const exampleGoals: ExampleGoal[] = [
   {
     title: "Scotland Links Trip",

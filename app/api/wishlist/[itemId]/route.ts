@@ -1,5 +1,6 @@
 import { NextResponse } from "next/server";
 
+import { apiError } from "@/lib/api/errors";
 import { isRateLimited } from "@/lib/rate-limit";
 import { getAuthenticatedUser, isSupabaseConfigured } from "@/lib/supabase/server";
 import { validateWishlistItemInput } from "@/lib/wishlist/item-schema";
@@ -23,40 +24,29 @@ import { isWishlistItemStatus } from "@/lib/wishlist/types";
  */
 
 const failureResponses: Record<
-  WishlistMutationFailure,
-  { error: string; status: number }
+  Exclude<WishlistMutationFailure, "has_support">,
+  { code: string; status: number }
 > = {
-  not_found: { error: "That item no longer exists.", status: 404 },
-  invalid_transition: {
-    error: "That change isn't possible from the item's current state.",
-    status: 409,
-  },
-  currency_locked: {
-    error: "A funded item keeps its price and currency.",
-    status: 409,
-  },
-  currency_mismatch: {
-    error: "Wish-list items must use your payout currency.",
-    status: 409,
-  },
-  price_unfundable: {
-    error: "That price is outside the range a supporter can fund in one Tee.",
-    status: 409,
-  },
-  has_support: {
-    error:
-      "This item has been funded, so it can't be deleted — archive it instead.",
-    status: 409,
-  },
-  unavailable: {
-    error: "Saving isn't available right now. Please try again.",
-    status: 503,
-  },
+  not_found: { code: "api.itemGone", status: 404 },
+  invalid_transition: { code: "api.itemStateChange", status: 409 },
+  currency_locked: { code: "api.itemPriceLocked", status: 409 },
+  currency_mismatch: { code: "api.itemPayoutCurrency", status: 409 },
+  price_unfundable: { code: "api.itemPriceRange", status: 409 },
+  unavailable: { code: "api.savingUnavailable", status: 503 },
 };
 
 function failure(reason: WishlistMutationFailure) {
-  const { error, status } = failureResponses[reason];
-  return NextResponse.json({ error }, { status });
+  if (reason === "has_support") {
+    // No stable code exists for the funded-item delete refusal yet; the
+    // client hook passes raw strings through, so this stays honest until
+    // one is added.
+    return NextResponse.json(
+      { error: { code: "api.itemFundedLocked" } },
+      { status: 409 },
+    );
+  }
+  const { code, status } = failureResponses[reason];
+  return apiError(code, { status });
 }
 
 export async function POST(
@@ -68,13 +58,10 @@ export async function POST(
   }
   const user = await getAuthenticatedUser();
   if (!user) {
-    return NextResponse.json({ error: "Sign in required." }, { status: 401 });
+    return apiError("api.signInRequired", { status: 401 });
   }
   if (isRateLimited(`wishlist:${user.id}`, 30, 60_000)) {
-    return NextResponse.json(
-      { error: "Too many requests. Please wait a moment." },
-      { status: 429 },
-    );
+    return apiError("api.tooManyRequests", { status: 429 });
   }
 
   const { itemId } = await params;
@@ -85,7 +72,10 @@ export async function POST(
   if (payload?.action === "edit") {
     const validation = validateWishlistItemInput(payload);
     if (!validation.ok) {
-      return NextResponse.json({ errors: validation.errors }, { status: 400 });
+      return apiError("api.checkFields", {
+        status: 400,
+        fields: validation.errors,
+      });
     }
     const result = await updateItem(user.id, itemId, validation.data);
     return result.ok
@@ -95,14 +85,11 @@ export async function POST(
 
   if (payload?.action === "transition") {
     if (!isWishlistItemStatus(payload.to)) {
-      return NextResponse.json({ error: "Unknown item status." }, { status: 400 });
+      return apiError("api.itemStatusUnknown", { status: 400 });
     }
     // 'funded' is set only by verified payment — refuse it as a client target.
     if (payload.to === "funded") {
-      return NextResponse.json(
-        { error: "Items become funded through a supporter's payment." },
-        { status: 409 },
-      );
+      return apiError("api.itemFundedBySupporters", { status: 409 });
     }
     const result = await transitionItem(user.id, itemId, payload.to);
     return result.ok
@@ -112,7 +99,7 @@ export async function POST(
 
   if (payload?.action === "move") {
     if (payload.direction !== "up" && payload.direction !== "down") {
-      return NextResponse.json({ error: "Unknown direction." }, { status: 400 });
+      return apiError("api.unknownDirection", { status: 400 });
     }
     const result = await moveItem(user.id, itemId, payload.direction);
     return result.ok
@@ -120,7 +107,7 @@ export async function POST(
       : failure("unavailable");
   }
 
-  return NextResponse.json({ error: "Unknown action." }, { status: 400 });
+  return apiError("api.unknownAction", { status: 400 });
 }
 
 export async function DELETE(
@@ -132,7 +119,7 @@ export async function DELETE(
   }
   const user = await getAuthenticatedUser();
   if (!user) {
-    return NextResponse.json({ error: "Sign in required." }, { status: 401 });
+    return apiError("api.signInRequired", { status: 401 });
   }
 
   const { itemId } = await params;

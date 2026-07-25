@@ -1,5 +1,8 @@
 import { NextResponse } from "next/server";
 
+import { defaultLocale, isAppLocale } from "@/i18n/locales";
+import { apiError } from "@/lib/api/errors";
+import type { ErrorDetail } from "@/lib/i18n/errors";
 import { validateGiftInput } from "@/lib/payments/gift-schema";
 import { createGiftCheckout } from "@/lib/payments/gifts";
 import { clientKeyFromHeaders, isRateLimited } from "@/lib/rate-limit";
@@ -10,33 +13,43 @@ import { getAuthenticatedUser } from "@/lib/supabase/server";
  * by design; signed-in donors get the gift attached to their account. Every
  * amount is recalculated server-side — the browser only ever sends the gift
  * amount, never fees or totals.
+ *
+ * Errors carry stable codes (ADR-019) rendered into the supporter's language
+ * by the client — never English sentences from here.
  */
 export async function POST(request: Request) {
   const clientKey = clientKeyFromHeaders(request.headers);
   if (isRateLimited(`checkout:${clientKey}`, 10, 60_000)) {
-    return NextResponse.json(
-      { error: "Too many attempts. Please wait a moment and try again." },
-      { status: 429 },
-    );
+    return apiError("api.tooManyAttempts", { status: 429 });
   }
 
   let payload: unknown;
   try {
     payload = await request.json();
   } catch {
-    return NextResponse.json({ error: "Invalid request." }, { status: 400 });
+    return apiError("api.invalidRequest", { status: 400 });
   }
 
   const validation = validateGiftInput(payload);
   if (!validation.ok) {
-    return NextResponse.json(
-      { error: "Please check the highlighted fields.", errors: validation.errors },
-      { status: 400 },
-    );
+    return apiError("api.checkFields", {
+      status: 400,
+      fields: validation.errors as Record<string, ErrorDetail>,
+    });
   }
 
+  // The supporter's UI language: validated against the allowlist, never
+  // trusted raw. Drives Stripe Checkout's language, the return URLs and the
+  // receipt email; unknown/missing values fall back to English.
+  const requestedLocale = (payload as { locale?: unknown }).locale;
+  const locale = isAppLocale(requestedLocale) ? requestedLocale : defaultLocale;
+
   const user = await getAuthenticatedUser().catch(() => null);
-  const result = await createGiftCheckout(validation.data, user?.id ?? null);
+  const result = await createGiftCheckout(
+    validation.data,
+    user?.id ?? null,
+    locale,
+  );
 
   if (result.ok) {
     return NextResponse.json({
@@ -47,60 +60,27 @@ export async function POST(request: Request) {
 
   switch (result.error.kind) {
     case "recipient-not-found":
-      return NextResponse.json(
-        { error: "We couldn't find that golfer." },
-        { status: 404 },
-      );
+      return apiError("api.recipientNotFound", { status: 404 });
     case "recipient-not-ready":
-      return NextResponse.json(
-        { error: "This golfer isn't accepting Tees yet." },
-        { status: 409 },
-      );
+      return apiError("api.recipientNotReady", { status: 409 });
     case "currency-mismatch":
-      return NextResponse.json(
-        { error: "This golfer can't receive Tees in that currency." },
-        { status: 400 },
-      );
+      return apiError("api.currencyMismatch", { status: 400 });
     case "goal-not-available":
-      return NextResponse.json(
-        {
-          error:
-            "That goal isn't open for support right now. Send general support instead, or refresh the page.",
-        },
-        { status: 409 },
-      );
+      return apiError("api.goalNotAvailable", { status: 409 });
     case "wishlist-item-not-available":
-      return NextResponse.json(
-        {
-          error:
-            "That wish-list item isn't available right now. It may have just been funded — refresh the page.",
-        },
-        { status: 409 },
-      );
+      return apiError("api.wishlistItemNotAvailable", { status: 409 });
     case "wishlist-amount-mismatch":
-      return NextResponse.json(
-        {
-          error:
-            "That item's price has changed. Refresh the page and try again.",
-        },
-        { status: 409 },
-      );
+      return apiError("api.wishlistAmountMismatch", { status: 409 });
     case "amount":
-      return NextResponse.json(
-        {
-          error:
-            result.error.error === "below-minimum"
-              ? "That amount is below the minimum for a Tee."
-              : result.error.error === "above-maximum"
-                ? "That amount is above the maximum for a Tee."
-                : "Enter a valid amount.",
-        },
+      return apiError(
+        result.error.error === "below-minimum"
+          ? "api.amountBelowMinimum"
+          : result.error.error === "above-maximum"
+            ? "api.amountAboveMaximum"
+            : "api.amountInvalid",
         { status: 400 },
       );
     case "unavailable":
-      return NextResponse.json(
-        { error: "Payments aren't available right now. Please try again shortly." },
-        { status: 503 },
-      );
+      return apiError("api.paymentsUnavailable", { status: 503 });
   }
 }

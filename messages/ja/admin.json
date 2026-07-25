@@ -1,0 +1,190 @@
+{
+  "nav": {
+    "label": "管理セクション",
+    "payments": "決済",
+    "users": "ユーザー",
+    "moderation": "モデレーション"
+  },
+  "meta": {
+    "payments": {
+      "title": "決済管理"
+    },
+    "users": {
+      "title": "ユーザー管理"
+    },
+    "userDetail": {
+      "title": "ユーザー管理"
+    },
+    "moderation": {
+      "title": "モデレーション管理"
+    }
+  },
+  "common": {
+    "eyebrow": "管理",
+    "search": "検索",
+    "noName": "（名前なし）"
+  },
+  "statuses": {
+    "gift": {
+      "draft": "下書き",
+      "checkout_created": "チェックアウト作成済み",
+      "processing": "処理中",
+      "paid": "支払い済み",
+      "payment_failed": "支払い失敗",
+      "expired": "期限切れ",
+      "partially_refunded": "一部返金済み",
+      "refunded": "返金済み",
+      "disputed": "異議申し立て中",
+      "dispute_won": "異議申し立てに勝訴",
+      "dispute_lost": "異議申し立てに敗訴",
+      "cancelled": "キャンセル済み"
+    },
+    "goal": {
+      "draft": "下書き",
+      "active": "公開中",
+      "completed": "達成済み",
+      "archived": "アーカイブ済み"
+    },
+    "payment": {
+      "not_started": "未設定",
+      "onboarding_not_started": "オンボーディング未開始",
+      "onboarding_incomplete": "オンボーディング未完了",
+      "information_required": "追加情報が必要",
+      "verification_pending": "本人確認中",
+      "ready": "受け取り可能",
+      "payments_restricted": "決済制限中",
+      "payouts_disabled": "出金停止中"
+    },
+    "role": {
+      "creator": "クリエイター",
+      "supporter": "サポーター"
+    },
+    "account": {
+      "active": "有効",
+      "deactivated": "無効化済み"
+    }
+  },
+  "payments": {
+    "title": "決済",
+    "searchLabel": "検索（ギフト公開ID、cs_…、pi_…、または受取人のユーザー名）",
+    "statusLabel": "ステータス",
+    "statusAll": "すべて",
+    "unavailable": "決済データは現在利用できません。",
+    "reconciliationErrorsHeading": "照合エラー — 手動での確認が必要です",
+    "giftsHeading": "ギフト（最新）",
+    "giftsHeadingMatching": "「{query}」に一致するギフト",
+    "table": {
+      "created": "作成日",
+      "publicId": "公開ID",
+      "recipient": "受取人",
+      "sender": "送り主",
+      "gift": "ギフト",
+      "platformFee": "プラットフォーム手数料",
+      "total": "合計",
+      "status": "ステータス",
+      "refunded": "返金",
+      "stripe": "Stripe"
+    },
+    "anonymousSender": "（匿名）",
+    "testMode": "（テスト）",
+    "openInStripe": "開く",
+    "empty": "ギフトが見つかりません。",
+    "refund": {
+      "heading": "ギフトの返金",
+      "description": "全額返金のみ（MVP）：受取人への送金を取り消し、プラットフォーム手数料も返金します。Webhookで確定します。"
+    },
+    "reconcile": {
+      "heading": "照合",
+      "description": "下書き・支払い待ち・処理中のまま止まっているギフトをStripeと照合し、安全に修復できるずれを修復します。"
+    }
+  },
+  "moderation": {
+    "title": "モデレーション",
+    "intro": "最近変更された公開コンテンツを新しい順に表示します。テイクダウンの際は理由が監査ログに記録され、削除されたテキストもそこに保存されます。ポリシー草案：<policy>docs/moderation-policy.md</policy>（法務レビュー待ち）。",
+    "unavailable": "モデレーションは現在利用できません。",
+    "goalsSectionLabel": "最近の目標",
+    "goalsHeading": "目標（{count}）",
+    "goalsEmpty": "目標はまだありません。",
+    "takenDownBadge": "テイクダウン済み",
+    "goalTarget": "目標額{amount}",
+    "profilesSectionLabel": "最近のプロフィール",
+    "profilesHeading": "公開コンテンツのあるプロフィール（{count}）",
+    "profilesEmpty": "自己紹介や写真のあるプロフィールはまだありません。",
+    "takeDownButton": "テイクダウン",
+    "restoreButton": "復元",
+    "clearBioButton": "自己紹介を消去",
+    "removePhotoButton": "写真を削除"
+  },
+  "action": {
+    "reasonRequired": "理由を入力してください — 監査ログに記録されます。",
+    "reasonFor": "{label}の理由",
+    "reasonPlaceholder": "理由（監査ログに記録）",
+    "confirm": "確認",
+    "cancel": "キャンセル"
+  },
+  "users": {
+    "title": "ユーザー",
+    "searchLabel": "ユーザー名、表示名、またはユーザーIDで検索",
+    "searchPlaceholder": "ユーザー名、表示名、またはユーザーID",
+    "unavailable": "ユーザー検索は現在利用できません。",
+    "empty": "一致するプロフィールがありません。",
+    "table": {
+      "profile": "プロフィール",
+      "publicLink": "公開リンク",
+      "role": "ロール",
+      "status": "ステータス",
+      "joined": "登録日"
+    }
+  },
+  "userDetail": {
+    "breadcrumb": "管理 · ユーザー",
+    "deactivatedOn": "{date}に無効化",
+    "profileHeading": "プロフィール",
+    "fields": {
+      "userId": "ユーザーID",
+      "publicLink": "公開リンク",
+      "role": "ロール",
+      "country": "国",
+      "bio": "自己紹介",
+      "joined": "登録日"
+    },
+    "linkNotClaimed": "未取得",
+    "paymentsHeading": "決済",
+    "stripeState": "Stripeの状態",
+    "canReceiveTees": "（ティーを受け取れます）",
+    "teesReceived": "受け取ったティー",
+    "teesNone": "なし",
+    "teeTotal": "{count}件 · {amount}",
+    "goalsHeading": "目標（{count}）",
+    "goalsEmpty": "目標はありません。",
+    "goalProgress": "{target}のうち{raised}",
+    "actionsLabel": "操作",
+    "reinstateHeading": "再有効化",
+    "deactivateHeading": "無効化",
+    "reinstateDescription": "再有効化すると、公開ページとティーを受け取る機能が復元されます。",
+    "deactivateDescription": "無効化すると公開ページが非表示になり、新しいティーがブロックされます。確定済みの支払いと出金には影響しません。",
+    "auditHeading": "監査履歴"
+  },
+  "userStatus": {
+    "reasonLabel": "理由（監査ログに記録）",
+    "reinstatePlaceholder": "例：クリエイターとの間で問題が解決した",
+    "deactivatePlaceholder": "例：規約違反 — 誤解を招く目標の記載",
+    "reinstateButton": "プロフィールを再有効化",
+    "deactivateButton": "プロフィールを無効化"
+  },
+  "tools": {
+    "refund": {
+      "giftIdLabel": "ギフトの公開ID",
+      "reasonLabel": "理由（監査対象）",
+      "submit": "全額返金を実行",
+      "success": "返金{refundId}を作成しました。StripeがWebhookで確定するとギフトが更新されます。",
+      "failed": "返金に失敗しました。"
+    },
+    "reconcile": {
+      "run": "停滞中のギフトを照合",
+      "report": "{scanned}件をスキャン：支払い済み{markedPaid}件、期限切れ{markedExpired}件、失敗{markedFailed}件、下書きキャンセル{cancelledDrafts}件、保留{stillPending}件、要確認：{flagged}。",
+      "flaggedNone": "なし",
+      "failed": "照合に失敗しました。"
+    }
+  }
+}

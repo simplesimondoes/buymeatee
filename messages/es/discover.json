@@ -1,0 +1,102 @@
+{
+  "meta": {
+    "title": "Descubrir",
+    "description": "Descubre golfistas, creadores, causas benéficas y proyectos que merecen apoyo. Explora caminos destacados, categorías y objetivos — y respalda los que te importan."
+  },
+  "hero": {
+    "eyebrow": "Descubrir",
+    "heading": "Apoya al golf.",
+    "intro": "Descubre golfistas, creadores, causas benéficas y proyectos increíbles que hacen mejor el golf — y respalda los caminos que merecen tu apoyo.",
+    "searchLabel": "Buscar creadores, proyectos y objetivos",
+    "searchPlaceholder": "Busca creadores, proyectos, objetivos…",
+    "searchButton": "Buscar"
+  },
+  "sections": {
+    "featuredGoals": {
+      "eyebrow": "Objetivos destacados",
+      "heading": "Respalda una misión, no solo un nombre",
+      "intro": "La gente respalda misiones. Estos son los objetivos que se pueden apoyar ahora mismo."
+    },
+    "trending": {
+      "eyebrow": "En tendencia",
+      "heading": "Cogiendo impulso",
+      "intro": "Caminos que están ganando apoyo ahora mismo.",
+      "previewNote": "Clasificación conceptual — en una futura actualización la impulsará una señal de velocidad de apoyo."
+    },
+    "nearCompletion": {
+      "eyebrow": "A punto de lograrlo",
+      "heading": "Ayúdales a cruzar la meta",
+      "intro": "Objetivos financiados entre el 80 % y el 95 % — un pequeño empujón remata el trabajo."
+    },
+    "categories": {
+      "eyebrow": "Categorías",
+      "heading": "Encuentra tu tipo de golf",
+      "intro": "De aspirantes a profesional a proyectos de club y causas benéficas — explora los caminos que te importan."
+    },
+    "activity": {
+      "eyebrow": "Financiado recientemente",
+      "heading": "La plataforma, viva y llena de apoyo",
+      "intro": "Un vistazo a cómo la actividad de apoyo mantendrá Descubrir en movimiento.",
+      "conceptNote": "Actividad ilustrativa — no se muestran personas ni regalos reales.",
+      "line": "<name>{supporter}</name> {action} {target}"
+    }
+  },
+  "previewNoteDefault": "Ilustrativo por ahora — aquí aparecerán entradas reales a medida que se unan creadores.",
+  "categories": {
+    "golf-apps": "Apps de golf",
+    "content-creators": "Creadores de contenido",
+    "professional-golfers": "Golfistas profesionales",
+    "amateurs": "Amateurs",
+    "junior-golf": "Golf júnior",
+    "charities": "Causas benéficas",
+    "golf-trips": "Viajes de golf",
+    "golf-societies": "Peñas de golf",
+    "golf-coaches": "Entrenadores de golf",
+    "club-projects": "Proyectos de club",
+    "equipment-testing": "Pruebas de material",
+    "golf-photography": "Fotografía de golf",
+    "golf-podcasts": "Pódcasts de golf"
+  },
+  "browse": {
+    "eyebrow": "Buscar",
+    "heading": "Busca en todos los caminos",
+    "intro": "Busca por creador, proyecto, objetivo, lugar o categoría — y ordena según lo que te importe.",
+    "searchLabel": "Buscar creadores, proyectos y objetivos",
+    "searchPlaceholder": "Busca creadores, proyectos, objetivos…",
+    "filter": "Filtrar",
+    "category": "Categoría",
+    "allCategories": "Todas las categorías",
+    "country": "País",
+    "allCountries": "Todos los países",
+    "sortLabel": "Ordenar",
+    "sort": {
+      "newest": "Más recientes",
+      "mostSupported": "Más apoyados",
+      "nearCompletion": "A punto de lograrlo",
+      "trending": "En tendencia"
+    },
+    "clear": "Borrar",
+    "resultCount": "{count, plural, one {# camino} other {# caminos}}",
+    "showMore": "Mostrar más caminos",
+    "empty": "Ningún camino coincide con tu búsqueda todavía. Prueba a quitar un filtro o con otro término."
+  },
+  "goalCard": {
+    "creatorFallback": "Un creador",
+    "raisedOfTarget": "{raised} de {target}",
+    "targetGoal": "Meta de {target}",
+    "beTheFirst": "Sé el primero",
+    "support": "Apoyar",
+    "seeHowGoalsWork": "Descubre cómo funcionan los objetivos",
+    "progressLabel": "Progreso hacia {title}: {raised} de {target}"
+  },
+  "creatorCard": {
+    "new": "Nuevo",
+    "support": "Apoyar",
+    "seeHowItWorks": "Descubre cómo funciona",
+    "progressLabel": "{name}: progreso hacia {title}"
+  },
+  "cta": {
+    "heading": "Empieza tu propio camino",
+    "body": "Define un objetivo, comparte tu página y deja que los aficionados al golf respalden el camino contigo."
+  }
+}

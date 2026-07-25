@@ -1,6 +1,7 @@
-import { fireEvent, render, screen } from "@testing-library/react";
+import { fireEvent, screen } from "@testing-library/react";
 import { describe, expect, it } from "vitest";
 
+import { renderWithIntl } from "@/test/i18n-test-utils";
 import {
   SupportTargetProvider,
   useSupportTarget,
@@ -31,14 +32,14 @@ const base = { creatorName: "Callum", currency: "gbp" as const, isOwner: false }
 
 describe("PublicWishlist", () => {
   it("renders nothing for visitors when there are no items", () => {
-    const { container } = render(
+    const { container } = renderWithIntl(
       <PublicWishlist available={[]} funded={[]} ready {...base} />,
     );
     expect(container).toBeEmptyDOMElement();
   });
 
   it("shows the owner a setup CTA when the list is empty", () => {
-    render(
+    renderWithIntl(
       <PublicWishlist
         available={[]}
         funded={[]}
@@ -50,11 +51,11 @@ describe("PublicWishlist", () => {
     );
     expect(
       screen.getByRole("link", { name: /add your first item/i }),
-    ).toHaveAttribute("href", "/dashboard/wishlist");
+    ).toHaveAttribute("href", "/en/dashboard/wishlist");
   });
 
   it("shows an item's price and a Fund button when ready", () => {
-    render(
+    renderWithIntl(
       <PublicWishlist available={[item()]} funded={[]} ready {...base} />,
     );
     expect(screen.getByText(/£45\.00/)).toBeVisible();
@@ -62,7 +63,7 @@ describe("PublicWishlist", () => {
   });
 
   it("hides the Fund button when the creator can't receive Tees yet", () => {
-    render(
+    renderWithIntl(
       <PublicWishlist available={[item()]} funded={[]} ready={false} {...base} />,
     );
     expect(screen.getByText(/£45\.00/)).toBeVisible();
@@ -70,7 +71,7 @@ describe("PublicWishlist", () => {
   });
 
   it("hides the Fund button for items in a different currency", () => {
-    render(
+    renderWithIntl(
       <PublicWishlist
         available={[item({ currency: "eur" })]}
         funded={[]}
@@ -86,7 +87,7 @@ describe("PublicWishlist", () => {
       const { target } = useSupportTarget();
       return <p>selected: {target?.title ?? "none"}</p>;
     }
-    render(
+    renderWithIntl(
       <SupportTargetProvider>
         <PublicWishlist available={[item()]} funded={[]} ready {...base} />
         <Probe />
@@ -98,7 +99,7 @@ describe("PublicWishlist", () => {
   });
 
   it("lists funded items as journey proof", () => {
-    render(
+    renderWithIntl(
       <PublicWishlist
         available={[]}
         funded={[item({ id: "done", status: "funded" })]}

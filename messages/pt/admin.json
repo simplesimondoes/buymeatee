@@ -1,0 +1,190 @@
+{
+  "nav": {
+    "label": "Secções de administração",
+    "payments": "Pagamentos",
+    "users": "Utilizadores",
+    "moderation": "Moderação"
+  },
+  "meta": {
+    "payments": {
+      "title": "Administração de pagamentos"
+    },
+    "users": {
+      "title": "Administração de utilizadores"
+    },
+    "userDetail": {
+      "title": "Administração de utilizador"
+    },
+    "moderation": {
+      "title": "Administração de moderação"
+    }
+  },
+  "common": {
+    "eyebrow": "Admin",
+    "search": "Pesquisar",
+    "noName": "(sem nome)"
+  },
+  "statuses": {
+    "gift": {
+      "draft": "Rascunho",
+      "checkout_created": "Checkout criado",
+      "processing": "Em processamento",
+      "paid": "Pago",
+      "payment_failed": "Pagamento falhou",
+      "expired": "Expirado",
+      "partially_refunded": "Parcialmente reembolsado",
+      "refunded": "Reembolsado",
+      "disputed": "Contestado",
+      "dispute_won": "Disputa ganha",
+      "dispute_lost": "Disputa perdida",
+      "cancelled": "Cancelado"
+    },
+    "goal": {
+      "draft": "Rascunho",
+      "active": "Ativo",
+      "completed": "Concluído",
+      "archived": "Arquivado"
+    },
+    "payment": {
+      "not_started": "Não iniciado",
+      "onboarding_not_started": "Onboarding não iniciado",
+      "onboarding_incomplete": "Onboarding incompleto",
+      "information_required": "Informação necessária",
+      "verification_pending": "Verificação pendente",
+      "ready": "Pronto",
+      "payments_restricted": "Pagamentos restringidos",
+      "payouts_disabled": "Transferências desativadas"
+    },
+    "role": {
+      "creator": "criador",
+      "supporter": "apoiante"
+    },
+    "account": {
+      "active": "Ativa",
+      "deactivated": "Desativada"
+    }
+  },
+  "payments": {
+    "title": "Pagamentos",
+    "searchLabel": "Pesquisar (id público do Tee, cs_…, pi_…, ou nome de utilizador do destinatário)",
+    "statusLabel": "Estado",
+    "statusAll": "Todos",
+    "unavailable": "Os dados de pagamentos não estão disponíveis de momento.",
+    "reconciliationErrorsHeading": "Erros de reconciliação — revisão manual necessária",
+    "giftsHeading": "Tees (mais recentes)",
+    "giftsHeadingMatching": "Tees correspondentes a “{query}”",
+    "table": {
+      "created": "Criado",
+      "publicId": "Id público",
+      "recipient": "Destinatário",
+      "sender": "Remetente",
+      "gift": "Tee",
+      "platformFee": "Taxa da plataforma",
+      "total": "Total",
+      "status": "Estado",
+      "refunded": "Reembolsado",
+      "stripe": "Stripe"
+    },
+    "anonymousSender": "(anónimo)",
+    "testMode": "(teste)",
+    "openInStripe": "Abrir",
+    "empty": "Nenhum Tee encontrado.",
+    "refund": {
+      "heading": "Reembolsar um Tee",
+      "description": "Apenas reembolsos totais (MVP): reverte a transferência para o destinatário e reembolsa a taxa da plataforma. Confirmado por webhook."
+    },
+    "reconcile": {
+      "heading": "Reconciliação",
+      "description": "Verifica junto da Stripe os Tees presos em rascunho / a aguardar pagamento / em processamento e corrige desvios seguros."
+    }
+  },
+  "moderation": {
+    "title": "Moderação",
+    "intro": "Conteúdo público alterado recentemente, do mais recente para o mais antigo. As remoções registam um motivo no registo de auditoria; o texto removido também fica lá preservado. Rascunho da política: <policy>docs/moderation-policy.md</policy> (a aguardar revisão jurídica).",
+    "unavailable": "A moderação não está disponível de momento.",
+    "goalsSectionLabel": "Objetivos recentes",
+    "goalsHeading": "Objetivos ({count})",
+    "goalsEmpty": "Ainda não há objetivos.",
+    "takenDownBadge": "Removido",
+    "goalTarget": "Meta de {amount}",
+    "profilesSectionLabel": "Perfis recentes",
+    "profilesHeading": "Perfis com conteúdo público ({count})",
+    "profilesEmpty": "Ainda não há perfis com bio ou fotografia.",
+    "takeDownButton": "Remover",
+    "restoreButton": "Restaurar",
+    "clearBioButton": "Limpar bio",
+    "removePhotoButton": "Remover fotografia"
+  },
+  "action": {
+    "reasonRequired": "Adiciona um motivo — fica no registo de auditoria.",
+    "reasonFor": "Motivo para {label}",
+    "reasonPlaceholder": "Motivo (registado em auditoria)",
+    "confirm": "Confirmar",
+    "cancel": "Cancelar"
+  },
+  "users": {
+    "title": "Utilizadores",
+    "searchLabel": "Pesquisar por nome de utilizador, nome apresentado ou id de utilizador",
+    "searchPlaceholder": "Nome de utilizador, nome apresentado ou id de utilizador",
+    "unavailable": "A pesquisa de utilizadores não está disponível de momento.",
+    "empty": "Sem perfis correspondentes.",
+    "table": {
+      "profile": "Perfil",
+      "publicLink": "Ligação pública",
+      "role": "Função",
+      "status": "Estado",
+      "joined": "Adesão"
+    }
+  },
+  "userDetail": {
+    "breadcrumb": "Admin · Utilizadores",
+    "deactivatedOn": "Desativado a {date}",
+    "profileHeading": "Perfil",
+    "fields": {
+      "userId": "Id de utilizador",
+      "publicLink": "Ligação pública",
+      "role": "Função",
+      "country": "País",
+      "bio": "Bio",
+      "joined": "Adesão"
+    },
+    "linkNotClaimed": "não reclamada",
+    "paymentsHeading": "Pagamentos",
+    "stripeState": "Estado na Stripe",
+    "canReceiveTees": "(pode receber Tees)",
+    "teesReceived": "Tees recebidos",
+    "teesNone": "nenhum",
+    "teeTotal": "{count} · {amount}",
+    "goalsHeading": "Objetivos ({count})",
+    "goalsEmpty": "Sem objetivos.",
+    "goalProgress": "{raised} de {target}",
+    "actionsLabel": "Ações",
+    "reinstateHeading": "Reativar",
+    "deactivateHeading": "Desativar",
+    "reinstateDescription": "Reativar restaura a página pública e a capacidade de receber Tees.",
+    "deactivateDescription": "Desativar oculta a página pública e bloqueia novos Tees. Pagamentos e transferências já liquidados não são afetados.",
+    "auditHeading": "Registo de auditoria"
+  },
+  "userStatus": {
+    "reasonLabel": "Motivo (registado em auditoria)",
+    "reinstatePlaceholder": "p. ex. Problema resolvido com o criador",
+    "deactivatePlaceholder": "p. ex. Violação dos termos: alegações enganosas no objetivo",
+    "reinstateButton": "Reativar perfil",
+    "deactivateButton": "Desativar perfil"
+  },
+  "tools": {
+    "refund": {
+      "giftIdLabel": "Id público do Tee",
+      "reasonLabel": "Motivo (auditado)",
+      "submit": "Emitir reembolso total",
+      "success": "Reembolso {refundId} criado. O Tee é atualizado quando a Stripe confirmar via webhook.",
+      "failed": "O reembolso falhou."
+    },
+    "reconcile": {
+      "run": "Reconciliar Tees presos",
+      "report": "Analisados {scanned}: {markedPaid} pagos, {markedExpired} expirados, {markedFailed} falhados, {cancelledDrafts} rascunhos cancelados, {stillPending} pendentes, sinalizados: {flagged}.",
+      "flaggedNone": "nenhum",
+      "failed": "A reconciliação falhou."
+    }
+  }
+}

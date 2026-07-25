@@ -1,6 +1,7 @@
-import { render, screen } from "@testing-library/react";
+import { screen } from "@testing-library/react";
 import { describe, expect, it } from "vitest";
 
+import { renderWithIntl } from "@/test/i18n-test-utils";
 import { OnboardingChecklist } from "@/components/profile/onboarding-checklist";
 import type { CreatorSetupState } from "@/lib/profile/setup-state";
 
@@ -27,24 +28,24 @@ function setupState(
 
 describe("OnboardingChecklist", () => {
   it("lists all four steps with actions for a fresh account", () => {
-    render(<OnboardingChecklist state={setupState({})} />);
+    renderWithIntl(<OnboardingChecklist state={setupState({})} />);
 
     expect(screen.getByText("0 of 4 done")).toBeVisible();
     expect(screen.getByRole("link", { name: "Choose a link" })).toHaveAttribute(
       "href",
-      "/settings/profile",
+      "/en/settings/profile",
     );
     expect(screen.getByRole("link", { name: "Add a goal" })).toHaveAttribute(
       "href",
-      "/dashboard/goals",
+      "/en/dashboard/goals",
     );
     expect(
       screen.getByRole("link", { name: "Set up payments" }),
-    ).toHaveAttribute("href", "/settings/payments");
+    ).toHaveAttribute("href", "/en/settings/payments");
   });
 
   it("marks completed steps and drops their action links", () => {
-    render(
+    renderWithIntl(
       <OnboardingChecklist
         state={setupState({ claimedLink: true, profileComplete: true })}
       />,
@@ -63,7 +64,7 @@ describe("OnboardingChecklist", () => {
   });
 
   it("disappears entirely once every step is done", () => {
-    const { container } = render(
+    const { container } = renderWithIntl(
       <OnboardingChecklist
         state={setupState({
           claimedLink: true,

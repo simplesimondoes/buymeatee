@@ -1,6 +1,7 @@
 "use client";
 
 import { CircleAlert, CircleCheck, LoaderCircle } from "lucide-react";
+import { useTranslations } from "next-intl";
 import { useState } from "react";
 
 import { getSupabaseBrowserClient } from "@/lib/supabase/browser";
@@ -17,6 +18,7 @@ export function SignInForm({
   next: string;
   initialError?: string;
 }) {
+  const t = useTranslations("auth");
   const [status, setStatus] = useState<FormStatus>("idle");
   const [email, setEmail] = useState("");
 
@@ -45,11 +47,13 @@ export function SignInForm({
       >
         <CircleCheck aria-hidden="true" className="mx-auto h-10 w-10 text-forest" />
         <h2 className="mt-4 font-serif text-2xl font-semibold text-forest">
-          Check your inbox.
+          {t("signIn.sentHeading")}
         </h2>
         <p className="mx-auto mt-2 max-w-md text-sm leading-relaxed text-ink/70">
-          We&apos;ve emailed a sign-in link to <strong>{email}</strong>. Open it
-          on this device to continue.
+          {t.rich("signIn.sentBody", {
+            email,
+            strong: (chunks) => <strong>{chunks}</strong>,
+          })}
         </p>
       </div>
     );
@@ -64,14 +68,14 @@ export function SignInForm({
         >
           <CircleAlert aria-hidden="true" className="mt-0.5 h-4 w-4 shrink-0" />
           {initialError === "link-invalid"
-            ? "That sign-in link is invalid or has expired. Request a fresh one below."
-            : "Sign-in isn't available right now. Please try again shortly."}
+            ? t("signIn.errorLinkInvalid")
+            : t("signIn.errorUnavailable")}
         </div>
       ) : null}
 
       <div>
         <label htmlFor="signin-email" className="text-sm font-medium text-forest">
-          Email
+          {t("signIn.emailLabel")}
         </label>
         <input
           id="signin-email"
@@ -87,15 +91,13 @@ export function SignInForm({
 
       {status === "unavailable" ? (
         <div role="alert" className="rounded-2xl bg-stone/40 p-4 text-sm text-ink/80">
-          Honest answer: sign-in isn&apos;t connected yet in this environment,
-          so no email was sent.
+          {t("signIn.notConfigured")}
         </div>
       ) : null}
 
       {status === "error" ? (
         <div role="alert" className="rounded-2xl bg-red-50 p-4 text-sm text-red-900">
-          We couldn&apos;t send the sign-in link. Please check the address and
-          try again.
+          {t("signIn.sendFailed")}
         </div>
       ) : null}
 
@@ -107,10 +109,10 @@ export function SignInForm({
         {status === "submitting" ? (
           <>
             <LoaderCircle aria-hidden="true" className="h-5 w-5 animate-spin" />
-            Sending link…
+            {t("signIn.submitting")}
           </>
         ) : (
-          "Email me a sign-in link"
+          t("signIn.submit")
         )}
       </button>
     </form>

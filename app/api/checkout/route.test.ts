@@ -83,6 +83,12 @@ describe("POST /api/checkout", () => {
     const response = await POST(request({ ...validBody, giftAmount: -5 }));
     expect(response.status).toBe(400);
     expect(createGiftCheckout).not.toHaveBeenCalled();
+    const body = (await response.json()) as {
+      error: { code: string };
+      errors: Record<string, { code: string }>;
+    };
+    expect(body.error).toEqual({ code: "api.checkFields" });
+    expect(body.errors.giftAmount).toEqual({ code: "validation.gift.amount" });
   });
 
   it("rejects malformed JSON", async () => {
@@ -102,8 +108,8 @@ describe("POST /api/checkout", () => {
     });
     const response = await POST(request(validBody));
     expect(response.status).toBe(409);
-    const body = (await response.json()) as { error: string };
-    expect(body.error).toBe("This golfer isn't accepting Tees yet.");
+    const body = (await response.json()) as { error: { code: string } };
+    expect(body.error).toEqual({ code: "api.recipientNotReady" });
   });
 
   it("returns 400 for currency mismatches", async () => {
@@ -122,6 +128,8 @@ describe("POST /api/checkout", () => {
     });
     const response = await POST(request(validBody));
     expect(response.status).toBe(400);
+    const body = (await response.json()) as { error: { code: string } };
+    expect(body.error).toEqual({ code: "api.amountBelowMinimum" });
   });
 
   it("rate limits repeated attempts from one client", async () => {

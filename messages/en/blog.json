@@ -1,0 +1,21 @@
+{
+  "meta": {
+    "index": {
+      "title": "Blog",
+      "description": "Guides and honest thinking on supporting golf creators, funding golf content, amateur sponsorship and the real costs behind the game."
+    }
+  },
+  "index": {
+    "breadcrumb": "Blog",
+    "eyebrow": "Blog",
+    "heading": "Notes from the journey",
+    "intro": "Practical guides on supporting golf creators, funding golf content and backing the amateur game — written honestly, without the filler."
+  },
+  "card": {
+    "readingTime": "{minutes, plural, one {# min read} other {# min read}}",
+    "readArticle": "Read the article"
+  },
+  "article": {
+    "updatedLabel": "Updated"
+  }
+}

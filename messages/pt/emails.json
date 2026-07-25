@@ -1,0 +1,36 @@
+{
+  "layout": {
+    "tagline": "Apoia o percurso."
+  },
+  "giftReceived": {
+    "subject": "Recebeste um tee — {amount} de {sender}",
+    "preheader": "{sender} ofereceu-te um tee ({amount}).",
+    "heading": "Recebeste um tee ⛳",
+    "body": "{sender} acabou de te oferecer um tee — {amount}.",
+    "encouragement": "Cada tee é alguém a apoiar o teu percurso. Bom trabalho.",
+    "cta": "Ver o teu painel",
+    "fallbackSender": "Um apoiante",
+    "fallbackSenderInline": "um apoiante"
+  },
+  "giftReceipt": {
+    "subject": "O teu recibo — {amount} para {creator}",
+    "preheader": "Recibo: ofereceste um tee a {creator} ({amount}).",
+    "heading": "Obrigado pelo apoio",
+    "thanks": "Obrigado por ofereceres um tee a {creator}.",
+    "target": "Destinaste-o a {target}.",
+    "receipt": "O teu apoio de {amount} está a caminho — este email é o teu recibo.",
+    "closing": "Acabaste de ajudar a manter um percurso no golfe em movimento. É essa a ideia.",
+    "cta": "Descobrir mais criadores",
+    "fallbackCreator": "um criador"
+  },
+  "goalReached": {
+    "subject": "Objetivo alcançado: {title} 🎉",
+    "preheader": "{title} atingiu a sua meta ({raised}).",
+    "heading": "O teu objetivo atingiu a meta 🎯",
+    "body": "O teu objetivo {title} acabou de atingir a meta.",
+    "progress": "Angariado até agora: {raised} de {target}.",
+    "nextStep": "Vai ao teu painel para o marcar como concluído e partilhar o momento com os apoiantes que te levaram até lá.",
+    "cta": "Ver o teu objetivo",
+    "fallbackTitle": "o teu objetivo"
+  }
+}

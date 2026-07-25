@@ -1,5 +1,6 @@
 import "server-only";
 
+import { defaultLocale, isAppLocale, type AppLocale } from "@/i18n/locales";
 import { logEmailEvent } from "@/lib/email/log";
 import { getSupabaseAdminClient } from "@/lib/supabase/admin";
 
@@ -23,5 +24,27 @@ export async function getUserEmail(userId: string): Promise<string | null> {
       reason: cause instanceof Error ? cause.message : "unknown",
     });
     return null;
+  }
+}
+
+/**
+ * Resolve the language a user's emails should be written in (ADR-019).
+ * Reads profiles.preferred_locale at delivery time — so a creator who
+ * changes language gets subsequent emails in the new one. Missing profile,
+ * unset preference or lookup failure all fall back to English; language
+ * must never block a delivery.
+ */
+export async function getUserEmailLocale(userId: string): Promise<AppLocale> {
+  try {
+    const supabase = getSupabaseAdminClient();
+    const { data } = await supabase
+      .from("profiles")
+      .select("preferred_locale")
+      .eq("id", userId)
+      .maybeSingle();
+    const preferred = data?.preferred_locale;
+    return isAppLocale(preferred) ? preferred : defaultLocale;
+  } catch {
+    return defaultLocale;
   }
 }

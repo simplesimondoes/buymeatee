@@ -1,0 +1,95 @@
+{
+  "metadata": {
+    "title": "Offrir un Tee à {name}",
+    "description": "Soutiens le parcours de golf de {name} avec un Tee.",
+    "descriptionWithGoal": "Soutiens le parcours de golf de {name} avec un Tee — appuie un vrai objectif et regarde-le se réaliser.",
+    "imageAlt": "Soutiens {name} sur BuyMeATee"
+  },
+  "unavailable": {
+    "metaTitle": "Page indisponible",
+    "heading": "Cette page n'est pas disponible pour le moment.",
+    "body": "Elle ne peut pas recevoir de Tees pour l'instant. Si tu penses qu'il s'agit d'une erreur, repasse plus tard."
+  },
+  "hero": {
+    "kicker": "Soutiens le parcours",
+    "handicap": "Index {handicap}",
+    "websiteLabel": "Site web"
+  },
+  "about": {
+    "heading": "À propos",
+    "sectionLabel": "À propos de {name}"
+  },
+  "stats": {
+    "supporters": "{count, plural, one {supporter} other {supporters}}",
+    "goalsReached": "{count, plural, one {objectif atteint} other {objectifs atteints}}",
+    "updates": "{count, plural, one {actualité} other {actualités}}",
+    "joinedLabel": "Inscription",
+    "joined": "Inscrit depuis {date}"
+  },
+  "cta": {
+    "supportGoal": "Soutenir cet objectif",
+    "buyTee": "Offrir un tee à {name}"
+  },
+  "supportHero": {
+    "currentGoal": "Objectif en cours",
+    "raisedOfTarget": "{raised} sur {target}",
+    "goalOnly": "Objectif : {target}",
+    "beFirst": "À toi l'honneur",
+    "progressLabel": "Progression vers {title} : {raised} sur {target} récoltés"
+  },
+  "notAccepting": {
+    "heading": "{name} n'accepte pas encore de Tees.",
+    "body": "Repasse bientôt — sa configuration des paiements n'est pas terminée.",
+    "finishSetup": "Terminer ta configuration des paiements"
+  },
+  "goals": {
+    "sectionLabel": "Objectifs",
+    "heading": "Les objectifs de {name}",
+    "beyondGoal": "— objectif dépassé !",
+    "justStarted": "Tout juste lancé — à toi l'honneur de le soutenir.",
+    "supportedBy": "{count, plural, one {Soutenu par # golfeur} other {Soutenu par # golfeurs}}",
+    "completedHeading": "Rendu possible grâce aux supporters",
+    "completedRaised": "— {amount} récoltés",
+    "emptyOwnerBody": "Ta page n'a pas encore d'objectifs. Les objectifs donnent aux supporters quelque chose de concret à soutenir.",
+    "addFirstGoal": "Ajoute ton premier objectif",
+    "noActiveOwner": "Aucun objectif actif pour l'instant — <link>publies-en un</link> pour donner aux supporters quelque chose à soutenir."
+  },
+  "wishlist": {
+    "sectionLabel": "Liste de souhaits",
+    "heading": "La liste de souhaits de {name}",
+    "intro": "Des choses précises que tu peux financer en une fois — choisis-en une, et c'est réglé.",
+    "fundThis": "Financer cet article",
+    "fundedHeading": "Financé par les supporters",
+    "emptyOwnerBody": "Ta liste de souhaits est vide. Ajoute des choses précises que les supporters peuvent financer — une boîte de balles, des frais d'inscription, une séance de coaching.",
+    "addFirstItem": "Ajoute ton premier article"
+  },
+  "updates": {
+    "sectionLabel": "Actualités",
+    "heading": "Les actualités de {name}",
+    "emptyOwnerHeading": "Ce parcours ne fait que commencer.",
+    "emptyOwnerBody": "Publie des actualités pour montrer aux supporters où va leur soutien — c'est la progression qui les fait revenir.",
+    "writeFirst": "Écris ta première actualité"
+  },
+  "recentSupport": {
+    "sectionLabel": "Soutien récent",
+    "heading": "Soutien récent",
+    "empty": "Sois le premier golfeur à soutenir ce projet.",
+    "supported": "<supporter>{name}</supporter> a soutenu à hauteur de <sum>{amount}</sum>",
+    "towardGoal": "pour {title}",
+    "fundedItem": "a financé {title}"
+  },
+  "pinnedMedia": {
+    "sectionLabel": "Média à la une",
+    "iframeTitle": "Média à la une",
+    "featuredLink": "Lien à la une",
+    "featuredLinkAria": "Lien à la une : {host}"
+  },
+  "ogCard": {
+    "kicker": "Soutiens le parcours",
+    "headline": "Soutiens {name}",
+    "headlineFallback": "Soutiens le parcours.",
+    "tagline": "Soutiens un vrai objectif et suis le parcours d'un golfeur.",
+    "goalLine": "{raised} sur {target} · {percent}",
+    "goalLineFresh": "Objectif : {target} · à toi l'honneur"
+  }
+}

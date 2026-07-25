@@ -1,12 +1,14 @@
 "use client";
 
 import { LoaderCircle } from "lucide-react";
+import { useTranslations } from "next-intl";
 import { useRef, useState } from "react";
 
+import { useErrorMessage } from "@/components/intl/use-error-message";
 import { Avatar } from "@/components/profile/avatar";
+import { errorDetail, type ErrorDetail } from "@/lib/i18n/errors";
 import {
   AVATAR_ALLOWED_TYPES,
-  AVATAR_ERROR_MESSAGES,
   AVATAR_MAX_BYTES,
   isAllowedAvatarType,
 } from "@/lib/profile/avatar";
@@ -22,19 +24,21 @@ export function AvatarUploader({
   initialAvatarUrl: string | null;
   displayName: string;
 }) {
+  const t = useTranslations("settings");
+  const errorMessage = useErrorMessage();
   const inputRef = useRef<HTMLInputElement>(null);
   const [avatarUrl, setAvatarUrl] = useState(initialAvatarUrl);
   const [busy, setBusy] = useState(false);
-  const [error, setError] = useState<string | null>(null);
+  const [error, setError] = useState<ErrorDetail | string | null>(null);
 
   async function handleFile(file: File) {
     setError(null);
     if (!isAllowedAvatarType(file.type)) {
-      setError(AVATAR_ERROR_MESSAGES.type);
+      setError(t("profile.photo.errors.type"));
       return;
     }
     if (file.size === 0 || file.size > AVATAR_MAX_BYTES) {
-      setError(AVATAR_ERROR_MESSAGES.size);
+      setError(t("profile.photo.errors.size"));
       return;
     }
     setBusy(true);
@@ -47,15 +51,15 @@ export function AvatarUploader({
       });
       const body = (await response.json().catch(() => ({}))) as {
         avatarUrl?: string;
-        error?: string;
+        error?: ErrorDetail | string;
       };
       if (response.ok && body.avatarUrl) {
         setAvatarUrl(body.avatarUrl);
       } else {
-        setError(body.error ?? "Something went wrong. Please try again.");
+        setError(body.error ?? errorDetail("generic"));
       }
     } catch {
-      setError("Something went wrong. Please try again.");
+      setError(errorDetail("generic"));
     }
     setBusy(false);
   }
@@ -69,21 +73,27 @@ export function AvatarUploader({
         setAvatarUrl(null);
       } else {
         const body = (await response.json().catch(() => ({}))) as {
-          error?: string;
+          error?: ErrorDetail | string;
         };
-        setError(body.error ?? "Something went wrong. Please try again.");
+        setError(body.error ?? errorDetail("generic"));
       }
     } catch {
-      setError("Something went wrong. Please try again.");
+      setError(errorDetail("generic"));
     }
     setBusy(false);
   }
 
   return (
     <div>
-      <span className="block text-sm font-medium text-ink/80">Photo</span>
+      <span className="block text-sm font-medium text-ink/80">
+        {t("profile.photo.label")}
+      </span>
       <div className="mt-2 flex items-center gap-4">
-        <Avatar src={avatarUrl} name={displayName || "Your profile"} size="lg" />
+        <Avatar
+          src={avatarUrl}
+          name={displayName || t("profile.photo.fallbackName")}
+          size="lg"
+        />
         <div className="space-y-2">
           <div className="flex flex-wrap gap-2">
             <button
@@ -95,7 +105,7 @@ export function AvatarUploader({
               {busy ? (
                 <LoaderCircle aria-hidden="true" className="h-4 w-4 animate-spin" />
               ) : null}
-              {avatarUrl ? "Change photo" : "Add a photo"}
+              {avatarUrl ? t("profile.photo.change") : t("profile.photo.add")}
             </button>
             {avatarUrl ? (
               <button
@@ -104,13 +114,12 @@ export function AvatarUploader({
                 onClick={handleRemove}
                 className="inline-flex min-h-11 items-center justify-center rounded-full px-4 text-sm font-medium text-ink/60 transition-colors hover:text-ink disabled:opacity-70"
               >
-                Remove
+                {t("profile.photo.remove")}
               </button>
             ) : null}
           </div>
           <p className="text-xs leading-relaxed text-ink/60">
-            JPEG, PNG or WebP up to 2 MB. Your photo is public — it appears on
-            your page for anyone to see.
+            {t("profile.photo.help")}
           </p>
         </div>
       </div>
@@ -119,7 +128,7 @@ export function AvatarUploader({
         type="file"
         accept={AVATAR_ALLOWED_TYPES.join(",")}
         className="sr-only"
-        aria-label="Choose a profile photo"
+        aria-label={t("profile.photo.chooseAria")}
         onChange={(event) => {
           const file = event.target.files?.[0];
           if (file) {
@@ -130,7 +139,7 @@ export function AvatarUploader({
       />
       {error ? (
         <p role="alert" className="mt-2 text-sm text-red-800">
-          {error}
+          {errorMessage(error)}
         </p>
       ) : null}
     </div>

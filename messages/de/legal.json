@@ -1,0 +1,27 @@
+{
+  "eyebrow": "Rechtliches",
+  "draftBanner": "Entwurf — juristische Prüfung ausstehend.",
+  "lastUpdated": "Zuletzt aktualisiert: {date}.",
+  "notice": {
+    "title": "Die englische Fassung ist maßgeblich.",
+    "body": "Diese Übersetzung dient nur der besseren Verständlichkeit. Rechtlich verbindlich ist die englische Fassung; bei Widersprüchen hat sie Vorrang."
+  },
+  "meta": {
+    "terms": {
+      "title": "Nutzungsbedingungen",
+      "description": "Die Bedingungen für die Nutzung von BuyMeATee — Konten, Creator-Seiten, das Senden und Empfangen von Tees, Gebühren und zulässige Nutzung. Entwurf, juristische Prüfung ausstehend."
+    },
+    "privacy": {
+      "title": "Datenschutzerklärung",
+      "description": "Wie BuyMeATee mit personenbezogenen Daten umgeht: was wir für Konten, Profile und Zahlungen erheben, wer die Daten verarbeitet und welche Rechte du hast. Entwurf, juristische Prüfung ausstehend."
+    },
+    "impressum": {
+      "title": "Impressum",
+      "description": "Impressum von BuyMeATee — Betreiber, Anschrift und Kontaktdaten, wie nach deutschem Recht erforderlich."
+    },
+    "accessibility": {
+      "title": "Barrierefreiheit",
+      "description": "Wie BuyMeATee Barrierefreiheit angeht — unser Bekenntnis zu WCAG 2.2 AA, was wir tun, bekannte Einschränkungen und wie du ein Problem melden kannst."
+    }
+  }
+}

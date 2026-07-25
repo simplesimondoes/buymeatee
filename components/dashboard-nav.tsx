@@ -1,7 +1,8 @@
 "use client";
 
-import Link from "next/link";
-import { usePathname } from "next/navigation";
+import { useTranslations } from "next-intl";
+
+import { Link, usePathname } from "@/i18n/navigation";
 
 /**
  * Tab-style navigation shared by every dashboard page, so goals, updates and
@@ -9,26 +10,28 @@ import { usePathname } from "next/navigation";
  * `exact` marks the overview link so it isn't highlighted on sub-pages.
  */
 const links = [
-  { href: "/dashboard", label: "Overview", exact: true },
-  { href: "/dashboard/goals", label: "Goals" },
-  { href: "/dashboard/wishlist", label: "Wish list" },
-  { href: "/dashboard/updates", label: "Updates" },
-  { href: "/dashboard/payments", label: "Payments" },
-  { href: "/settings/profile", label: "Profile" },
-];
+  { href: "/dashboard", labelKey: "overview", exact: true },
+  { href: "/dashboard/goals", labelKey: "goals" },
+  { href: "/dashboard/wishlist", labelKey: "wishlist" },
+  { href: "/dashboard/updates", labelKey: "updates" },
+  { href: "/dashboard/payments", labelKey: "payments" },
+  { href: "/settings/profile", labelKey: "profile" },
+] as const;
 
 export function DashboardNav() {
+  const t = useTranslations("dashboard");
   const pathname = usePathname();
   return (
     <nav
-      aria-label="Dashboard sections"
+      aria-label={t("nav.sections")}
       className="border-b border-stone bg-white"
     >
       <ul className="mx-auto flex w-full max-w-4xl gap-1 overflow-x-auto px-4 sm:px-6">
         {links.map((link) => {
-          const active = link.exact
-            ? pathname === link.href
-            : pathname?.startsWith(link.href);
+          const active =
+            "exact" in link && link.exact
+              ? pathname === link.href
+              : pathname?.startsWith(link.href);
           return (
             <li key={link.href}>
               <Link
@@ -40,7 +43,7 @@ export function DashboardNav() {
                     : "border-transparent text-ink/60 hover:text-ink"
                 }`}
               >
-                {link.label}
+                {t(`nav.${link.labelKey}`)}
               </Link>
             </li>
           );

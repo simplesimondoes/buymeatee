@@ -5,6 +5,8 @@
  * image MIME type; it is intentionally strict rather than clever.
  */
 
+import { errorDetail, type ErrorDetail } from "@/lib/i18n/errors";
+
 /** 2 MB — keep in sync with the bucket's file_size_limit. */
 export const AVATAR_MAX_BYTES = 2 * 1024 * 1024;
 
@@ -77,10 +79,18 @@ export function validateAvatarFile(
   return null;
 }
 
+/** @deprecated Display text is locale-aware now — use AVATAR_ERROR_DETAILS. */
 export const AVATAR_ERROR_MESSAGES: Record<AvatarValidationError, string> = {
   type: "Use a JPEG, PNG or WebP image.",
   size: "Keep the image under 2 MB.",
   content: "That file doesn't look like a valid image.",
+};
+
+/** Stable error codes (ADR-019) rendered per locale by useErrorMessage. */
+export const AVATAR_ERROR_DETAILS: Record<AvatarValidationError, ErrorDetail> = {
+  type: errorDetail("validation.image.type"),
+  size: errorDetail("validation.image.size", { maxMb: 2 }),
+  content: errorDetail("validation.image.content"),
 };
 
 /** Storage object path for a user's single avatar (extensionless on purpose). */

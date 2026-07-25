@@ -1,0 +1,260 @@
+{
+  "meta": {
+    "overview": {
+      "title": "Dashboard",
+      "description": "Your journey at a glance."
+    },
+    "goals": {
+      "title": "Your goals",
+      "description": "Set the goals supporters can back on your page."
+    },
+    "updates": {
+      "title": "Your updates",
+      "description": "Post progress updates your supporters can follow."
+    },
+    "wishlist": {
+      "title": "Your wish list",
+      "description": "List the specific things supporters can fund for your journey."
+    },
+    "payments": {
+      "title": "Tees received",
+      "description": "Gifts received through your BuyMeATee page."
+    }
+  },
+  "nav": {
+    "sections": "Dashboard sections",
+    "overview": "Overview",
+    "goals": "Goals",
+    "wishlist": "Wish list",
+    "updates": "Updates",
+    "payments": "Payments",
+    "profile": "Profile"
+  },
+  "eyebrow": "Dashboard",
+  "actions": {
+    "cancel": "Cancel",
+    "edit": "Edit",
+    "archive": "Archive",
+    "delete": "Delete",
+    "saveChanges": "Save changes"
+  },
+  "paymentState": {
+    "not_started": "Not set up yet",
+    "onboarding_not_started": "Stripe onboarding not started",
+    "onboarding_incomplete": "Stripe onboarding incomplete",
+    "information_required": "Stripe needs more information",
+    "verification_pending": "Stripe verification in progress",
+    "ready": "Ready to receive Tees",
+    "payments_restricted": "Restricted — review with Stripe",
+    "payouts_disabled": "Payouts currently disabled"
+  },
+  "overview": {
+    "title": "Your journey",
+    "pageCard": {
+      "ariaLabel": "Your public page",
+      "title": "Your page is where Tees happen",
+      "sharePage": "Share page",
+      "viewPage": "View page"
+    },
+    "profileCard": {
+      "title": "Profile",
+      "link": "Edit profile",
+      "unavailable": "Profile details aren't available right now.",
+      "fallbackName": "your profile",
+      "summaryWithBio": "You're <name>{displayName}</name> at <name>/t/{username}</name> — bio in place.",
+      "summaryNoBio": "You're <name>{displayName}</name> at <name>/t/{username}</name> — no bio yet.",
+      "noLink": "No public link yet. Claim your buymeatee.com/t/ name so supporters can find you."
+    },
+    "goalsCard": {
+      "title": "Goals",
+      "link": "Manage goals",
+      "unavailable": "Goals aren't available right now.",
+      "activeCount": "<strong>{count}</strong> active {count, plural, one {goal} other {goals}} on your page.",
+      "raised": "{amounts} raised across your goals.",
+      "noTees": "No Tees toward goals yet.",
+      "empty": "No goals on your page yet. Goals give supporters something real to back."
+    },
+    "wishlistCard": {
+      "title": "Wish list",
+      "link": "Manage wish list",
+      "body": "List specific things supporters can fund outright — a box of balls, an entry fee, a coaching session, a beer after a round. They sit alongside your goals."
+    },
+    "paymentsCard": {
+      "title": "Payments",
+      "linkReady": "See Tees received",
+      "linkSetup": "Payment settings",
+      "unavailable": "Payment status isn't available right now.",
+      "ready": "<strong>{state}</strong> — Tees go straight to your Stripe account.",
+      "notReady": "<strong>{state}</strong> — supporters can't send Tees until this is done."
+    },
+    "updatesCard": {
+      "title": "Updates",
+      "link": "Post an update",
+      "body": "Share progress with your supporters — new features, milestones, rounds played. Published updates appear on your page."
+    }
+  },
+  "goals": {
+    "page": {
+      "title": "Goals",
+      "intro": "Goals turn support into a journey. Publish up to three at a time — progress comes from real Tees, never a number you type in.",
+      "unavailable": "Goals aren't available right now. Please try again shortly."
+    },
+    "supportButton": "Support this goal",
+    "manager": {
+      "activeCount": "{count} of {max, plural, one {# active goal} other {# active goals}} on your page",
+      "newGoal": "New goal",
+      "emptyTitle": "What's your journey working towards?",
+      "emptyBody": "Good goals are specific and real: a season of green fees, travel to a qualifier, tournament entries, a coaching block. For instance “Q-School entry fee — £425” <example>(Example)</example>. Goals you publish appear on your page with honest progress.",
+      "addFirstGoal": "Add your first goal",
+      "saveGoal": "Save goal",
+      "coverLabel": "Goal cover image",
+      "coverHelp": "JPEG, PNG or WebP up to 5 MB. Shown at the top of this goal's card on your page.",
+      "status": {
+        "draft": "Draft",
+        "active": "On your page",
+        "completed": "Completed",
+        "archived": "Archived"
+      },
+      "transitions": {
+        "publish": "Publish to your page",
+        "markCompleted": "Mark completed",
+        "takeOff": "Take off your page",
+        "reopen": "Reopen",
+        "restore": "Restore as draft"
+      },
+      "raised": "{raised} of {target} <muted>raised</muted>",
+      "progressLabel": "Progress towards {title}",
+      "milestoneReached": "🎉 Goal reached! Share the moment with your supporters.",
+      "milestoneProgress": "🏌️ You're {percent}% of the way there — a great time to share.",
+      "shareProgress": "Share progress",
+      "takenDown": "This goal was removed by BuyMeATee and can't be published. If you think this is a mistake, contact support.",
+      "moveUp": "Move {title} up",
+      "moveDown": "Move {title} down"
+    },
+    "form": {
+      "titleLabel": "What are you working towards?",
+      "titlePlaceholder": "A season of tournament entries",
+      "descriptionLabel": "Why it matters",
+      "optional": "(optional)",
+      "descriptionPlaceholder": "Tell supporters what this goal makes possible — green fees, travel, entries, coaching.",
+      "targetLabel": "Target",
+      "targetPlaceholder": "500",
+      "currencyLabel": "Currency",
+      "currencyLockedHelp": "This goal has received support, so its currency can't change.",
+      "currencyPayoutHelp": "Goals use your payout currency so supporters can fund them."
+    }
+  },
+  "updates": {
+    "page": {
+      "title": "Updates",
+      "intro": "Show supporters where their backing goes — new features, milestones, rounds played. Drafts stay private until you publish them.",
+      "unavailable": "Updates aren't available right now. Please try again shortly."
+    },
+    "manager": {
+      "newUpdate": "New update",
+      "emptyTitle": "Share your progress.",
+      "emptyBody": "Updates are how supporters see their backing turn into real progress — new features, milestones, a round played. Post your first one.",
+      "writeFirstUpdate": "Write your first update",
+      "saveDraft": "Save draft",
+      "imageLabel": "Update image (optional)",
+      "imageHelp": "JPEG, PNG or WebP up to 5 MB. Shown with this update on your page.",
+      "draft": "Draft",
+      "published": "Published",
+      "publishedOn": "Published {date}",
+      "publish": "Publish",
+      "unpublish": "Unpublish"
+    },
+    "form": {
+      "titleLabel": "Title",
+      "titlePlaceholder": "July update — 1,200 new courses",
+      "bodyLabel": "Update",
+      "bodyPlaceholder": "What's new? Supporters love seeing progress.\n\nMarkdown works: **bold**, - lists, and [links](https://…)."
+    }
+  },
+  "wishlist": {
+    "page": {
+      "title": "Wish list",
+      "intro": "List specific things a supporter can fund outright — a box of balls, a tournament entry, a coaching session, a beer after a round. They sit alongside your bigger goals. An item shows as funded only once a real Tee pays for it.",
+      "unavailable": "Your wish list isn't available right now. Please try again shortly."
+    },
+    "manager": {
+      "itemCount": "{count, plural, one {# item} other {# items}} on your page",
+      "newItem": "New item",
+      "emptyTitle": "What would help your journey?",
+      "emptyBody": "Wish-list items are specific and tangible: a box of balls, a tournament entry, a coaching session, travel to a qualifier, even a beer after a good round. For instance “A dozen tour balls — £45” <example>(Example)</example>. Supporters fund the whole item in one Tee.",
+      "addFirstItem": "Add your first item",
+      "saveItem": "Save item",
+      "imageLabel": "Item image",
+      "imageHelp": "JPEG, PNG or WebP up to 5 MB. A clear photo helps supporters picture what they're funding.",
+      "status": {
+        "draft": "Draft",
+        "active": "On your page",
+        "funded": "Funded",
+        "archived": "Archived"
+      },
+      "transitions": {
+        "publish": "Publish to your page",
+        "takeOff": "Take off your page",
+        "restore": "Restore as draft"
+      },
+      "fundedNote": "A supporter funded this — thank them on your next update!",
+      "moveUp": "Move {title} up",
+      "moveDown": "Move {title} down"
+    },
+    "form": {
+      "titleLabel": "What would help your journey?",
+      "titlePlaceholder": "A dozen tour balls",
+      "descriptionLabel": "A little more",
+      "optional": "(optional)",
+      "descriptionPlaceholder": "What it is and why it would make a difference — the model, the event, the trip.",
+      "priceLabel": "Price",
+      "pricePlaceholder": "45",
+      "priceHelp": "One supporter funds the whole item, so keep it to what a single Tee can cover.",
+      "priceLockedHelp": "This item has been funded, so its price can't change.",
+      "currencyLabel": "Currency",
+      "currencyLockedHelp": "This item has been funded, so its currency can't change.",
+      "currencyPayoutHelp": "Items use your payout currency so supporters can fund them."
+    }
+  },
+  "payments": {
+    "title": "Tees received",
+    "statusAria": "Payment status",
+    "receiving": "Receiving Tees",
+    "notReceiving": "Not receiving Tees yet",
+    "readyBody": "Payments are enabled. Stripe pays out to your bank on your Stripe payout schedule.",
+    "setupBody": "Set up payments to start receiving Tees.",
+    "attentionBody": "Your payment setup needs attention.",
+    "paymentSettings": "Payment settings",
+    "grossLabel": "Gross Tee value ({currency})",
+    "payoutNote": "Gift amounts are what senders chose for you. Stripe handles payouts — a paid Tee is in your Stripe account, not necessarily in your bank yet.",
+    "giftsAria": "Gifts received",
+    "latestTees": "Latest Tees",
+    "attribution": {
+      "towardGoals": "{count} toward goals",
+      "towardWishlist": "{count} toward wish list",
+      "general": "{count} general"
+    },
+    "empty": "No Tees yet. Share your page to let supporters join your journey.",
+    "anonymous": "Anonymous",
+    "toward": "Toward {title}",
+    "funded": "Funded {title}",
+    "fallbackGoal": "a goal",
+    "fallbackItem": "an item",
+    "refundedNote": "{amount} of the payment was refunded.",
+    "shareNews": "Share the news with your audience",
+    "share": "Share",
+    "giftStatus": {
+      "paid": "Paid",
+      "partially_refunded": "Partially refunded",
+      "refunded": "Refunded",
+      "disputed": "Disputed",
+      "dispute_won": "Dispute won",
+      "dispute_lost": "Dispute lost",
+      "processing": "Processing",
+      "payment_failed": "Payment failed",
+      "expired": "Expired",
+      "checkout_created": "Awaiting payment",
+      "cancelled": "Cancelled"
+    }
+  }
+}

@@ -1,5 +1,6 @@
 import "server-only";
 
+import type { AppLocale } from "@/i18n/locales";
 import { isEmailConfigured } from "@/lib/email/config";
 import { logEmailEvent } from "@/lib/email/log";
 import { sendEmail, type EmailOutcome } from "@/lib/email/send";
@@ -28,12 +29,14 @@ export async function sendGiftReceipt(input: {
   /** The goal / wish-list item this tee funded, so the receipt can name it. */
   goalId?: string | null;
   wishlistItemId?: string | null;
+  /** The supporter's UI language captured at checkout (gifts.locale). */
+  locale?: AppLocale;
 }): Promise<EmailOutcome> {
   if (!isEmailConfigured()) {
     return "not-configured";
   }
 
-  let creatorName = "a creator";
+  let creatorName = "";
   let targetTitle: string | null = null;
   try {
     const supabase = getSupabaseAdminClient();
@@ -43,9 +46,7 @@ export async function sendGiftReceipt(input: {
       .eq("id", input.creatorUserId)
       .maybeSingle();
     creatorName =
-      (data?.display_name as string) ||
-      (data?.username as string) ||
-      "a creator";
+      (data?.display_name as string) || (data?.username as string) || "";
     if (input.goalId) {
       const { data: goal } = await supabase
         .from("creator_goals")
@@ -68,11 +69,12 @@ export async function sendGiftReceipt(input: {
     });
   }
 
-  const email = renderGiftReceiptEmail({
+  const email = await renderGiftReceiptEmail({
     creatorName,
     amount: input.amount,
     currency: input.currency,
     targetTitle,
+    locale: input.locale,
   });
   return sendEmail({
     to: input.toEmail,

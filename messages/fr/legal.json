@@ -1,0 +1,27 @@
+{
+  "eyebrow": "Mentions légales",
+  "draftBanner": "Brouillon — en attente de relecture juridique.",
+  "lastUpdated": "Dernière mise à jour : {date}.",
+  "notice": {
+    "title": "La version anglaise fait foi.",
+    "body": "Cette traduction est fournie uniquement pour ta commodité. La version anglaise est la seule version juridiquement contraignante et prévaut en cas de divergence."
+  },
+  "meta": {
+    "terms": {
+      "title": "Conditions d'utilisation",
+      "description": "Les conditions d'utilisation de BuyMeATee — comptes, pages de créateurs, envoi et réception de Tees, frais et usage acceptable. Brouillon en attente de relecture juridique."
+    },
+    "privacy": {
+      "title": "Politique de confidentialité",
+      "description": "Comment BuyMeATee traite les données personnelles : ce que nous collectons pour les comptes, les profils et les paiements, qui les traite, et tes droits. Brouillon en attente de relecture juridique."
+    },
+    "impressum": {
+      "title": "Impressum",
+      "description": "Mentions légales (Impressum) de BuyMeATee — exploitant, adresse et coordonnées, conformément au droit allemand."
+    },
+    "accessibility": {
+      "title": "Accessibilité",
+      "description": "Comment BuyMeATee aborde l'accessibilité — notre engagement envers WCAG 2.2 AA, ce que nous faisons, les limites connues et comment signaler un problème."
+    }
+  }
+}

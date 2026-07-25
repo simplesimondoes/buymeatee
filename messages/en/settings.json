@@ -1,0 +1,187 @@
+{
+  "meta": {
+    "profile": {
+      "title": "Profile settings",
+      "description": "Set up your public BuyMeATee page."
+    },
+    "payments": {
+      "title": "Payment settings",
+      "description": "Set up how you receive Tees through Stripe."
+    },
+    "paymentsReturn": {
+      "title": "Finishing payment setup"
+    }
+  },
+  "nav": {
+    "label": "Settings sections",
+    "profile": "Profile",
+    "payments": "Payments"
+  },
+  "eyebrow": "Settings",
+  "profile": {
+    "title": "Profile",
+    "intro": "This is what supporters see on your public page — your link, your name and where your journey is heading.",
+    "unavailable": "Profile settings aren't available right now. Please try again shortly.",
+    "language": {
+      "label": "Language",
+      "help": "Used across BuyMeATee on this device."
+    },
+    "cover": {
+      "label": "Cover image",
+      "help": "JPEG, PNG or WebP up to 5 MB. A landscape photo works best — around 1600 × 1067 px (3:2). Keep the main subject roughly centred: the edges are trimmed to fit phones and wider screens.",
+      "add": "Add an image",
+      "change": "Change image",
+      "remove": "Remove",
+      "errors": {
+        "type": "Use a JPEG, PNG or WebP image.",
+        "size": "Keep the image under 5 MB."
+      }
+    },
+    "photo": {
+      "label": "Photo",
+      "add": "Add a photo",
+      "change": "Change photo",
+      "remove": "Remove",
+      "help": "JPEG, PNG or WebP up to 2 MB. Your photo is public — it appears on your page for anyone to see.",
+      "chooseAria": "Choose a profile photo",
+      "fallbackName": "Your profile",
+      "errors": {
+        "type": "Use a JPEG, PNG or WebP image.",
+        "size": "Keep the image under 2 MB."
+      }
+    },
+    "form": {
+      "optional": "(optional)",
+      "charCount": "{count}/{max}",
+      "usernameLabel": "Your public link",
+      "usernamePlaceholder": "your-name",
+      "usernameHelp": "Lowercase letters, numbers and hyphens. This is the link supporters visit to buy you a tee.",
+      "usernameChangeWarning": "Saving changes your public link. Anywhere you shared buymeatee.com/t/{username} will stop working.",
+      "displayNameLabel": "Display name",
+      "bioLabel": "Bio",
+      "bioPlaceholder": "Where your golf journey is heading, and what support helps you do.",
+      "aboutLabel": "About",
+      "aboutPlaceholder": "Tell your story. e.g. “Hi, I’m Simon, the developer behind Caddie Live…”\n\nMarkdown works: **bold**, _italics_, - lists, and [links](https://…).",
+      "aboutHelp": "Supports Markdown — headings, <strong>bold</strong>, lists and links. People back people, so make it personal.",
+      "countryLabel": "Country",
+      "golfLegend": "Your golf",
+      "handicapLabel": "Handicap",
+      "handicapPlaceholder": "9.4",
+      "handednessLabel": "Handedness",
+      "handednessNotSet": "Not set",
+      "handednessRight": "Right-handed",
+      "handednessLeft": "Left-handed",
+      "locationLabel": "Location",
+      "locationPlaceholder": "Surrey, England",
+      "homeClubLabel": "Home club",
+      "homeClubPlaceholder": "Surrey Downs GC",
+      "linksLegend": "Links",
+      "websiteLabel": "Website",
+      "socialPlaceholders": {
+        "youtube": "https://youtube.com/@you",
+        "instagram": "https://instagram.com/you",
+        "tiktok": "https://tiktok.com/@you",
+        "x": "https://x.com/you",
+        "bluesky": "https://bsky.app/profile/you",
+        "substack": "https://you.substack.com",
+        "facebook": "https://facebook.com/you",
+        "twitch": "https://twitch.tv/you",
+        "linkedin": "https://linkedin.com/in/you",
+        "website": "https://your-site.com"
+      },
+      "pinnedLabel": "Pinned media",
+      "pinnedPlaceholder": "https://youtube.com/watch?v=…",
+      "pinnedHelp": "Feature one thing near the top of your page — a YouTube video, an Instagram post, or any link.",
+      "save": "Save profile",
+      "saved": "Profile saved. Your page is live at:",
+      "copyLink": "Copy link",
+      "copied": "Copied"
+    }
+  },
+  "payments": {
+    "title": "Payments",
+    "intro": "Receiving Tees runs on Stripe. Stripe may ask for identity or bank information — that's part of keeping payments safe.",
+    "unavailable": "Payment settings aren't available right now. Please try again shortly.",
+    "statusAria": "Payment setup status",
+    "countryTerm": "Country:",
+    "receivingTerm": "Receiving Tees:",
+    "receivingYes": "Yes",
+    "receivingNo": "Not yet",
+    "footnote": "Payouts are handled by Stripe, not BuyMeATee. A gift being paid means it reached your Stripe account — payout timing to your bank follows your Stripe payout schedule.",
+    "state": {
+      "notStarted": {
+        "heading": "Payments not set up",
+        "body": "To receive Tees, connect a Stripe account. Stripe handles identity checks, bank details and payouts — BuyMeATee never holds your money.",
+        "cta": "Set up payments with Stripe"
+      },
+      "onboardingNotStarted": {
+        "heading": "Stripe account created",
+        "body": "Your Stripe account exists but onboarding hasn't started. It only takes a few minutes.",
+        "cta": "Start Stripe onboarding"
+      },
+      "onboardingIncomplete": {
+        "heading": "Onboarding incomplete",
+        "body": "Stripe still needs a few details before you can receive Tees. Pick up where you left off.",
+        "cta": "Continue Stripe onboarding"
+      },
+      "informationRequired": {
+        "heading": "Stripe needs more information",
+        "body": "Stripe has asked for additional information. Until it's provided, payments or payouts may be limited.",
+        "cta": "Provide the missing information"
+      },
+      "verificationPending": {
+        "heading": "Verification in progress",
+        "body": "Your details are submitted and Stripe is verifying them. This usually completes quickly — check back soon."
+      },
+      "ready": {
+        "heading": "Ready to receive Tees",
+        "body": "Your Stripe account is fully set up. Gifts go directly to your Stripe account and Stripe pays out to your bank on its schedule."
+      },
+      "paymentsRestricted": {
+        "heading": "Payments restricted",
+        "body": "Stripe has restricted this account, so it can't receive Tees at the moment. Open your Stripe dashboard for details, or contact Stripe support.",
+        "cta": "Review with Stripe"
+      },
+      "payoutsDisabled": {
+        "heading": "Payouts disabled",
+        "body": "Payments are possible but payouts to your bank are currently disabled. Stripe usually needs updated bank or identity details.",
+        "cta": "Update details with Stripe"
+      }
+    },
+    "connect": {
+      "countryLabel": "Your country",
+      "countryHelp": "Set once and can't be changed later — it fixes your payout currency.",
+      "dashboardCta": "Payouts & details on Stripe"
+    }
+  },
+  "checklist": {
+    "aria": "Getting started",
+    "title": "Set up your journey",
+    "progress": "{done} of {total} done",
+    "intro": "A few steps and supporters can buy you a tee.",
+    "stepDone": "— done",
+    "stepTodo": "— to do",
+    "steps": {
+      "claimLink": {
+        "title": "Claim your link",
+        "detail": "Pick the buymeatee.com/t/ name supporters will visit.",
+        "action": "Choose a link"
+      },
+      "completeProfile": {
+        "title": "Complete your profile",
+        "detail": "A name plus a bio or photo — who's behind the journey.",
+        "action": "Edit profile"
+      },
+      "firstGoal": {
+        "title": "Publish your first goal",
+        "detail": "Give supporters something real to get behind.",
+        "action": "Add a goal"
+      },
+      "connectPayments": {
+        "title": "Connect payments",
+        "detail": "Stripe handles the money — Tees go straight to you.",
+        "action": "Set up payments"
+      }
+    }
+  }
+}

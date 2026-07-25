@@ -1,4 +1,7 @@
-import { formatMinorAmount } from "@/lib/payments/currency";
+import { useLocale, useTranslations } from "next-intl";
+
+import type { AppLocale } from "@/i18n/locales";
+import { formatMinorAmount } from "@/lib/i18n/format";
 import type { RecentSupportItem } from "@/lib/support/public";
 
 /**
@@ -11,23 +14,24 @@ export function RecentSupport({
 }: {
   items: RecentSupportItem[];
 }) {
+  const t = useTranslations("profilePage.recentSupport");
+  const locale = useLocale() as AppLocale;
+
   if (items.length === 0) {
     return (
       <section
-        aria-label="Recent support"
+        aria-label={t("sectionLabel")}
         className="rounded-3xl border border-dashed border-stone bg-mist p-6 text-center"
       >
-        <p className="text-sm leading-relaxed text-ink/70">
-          Be the first golfer to back this project.
-        </p>
+        <p className="text-sm leading-relaxed text-ink/70">{t("empty")}</p>
       </section>
     );
   }
 
   return (
-    <section aria-label="Recent support" className="space-y-4">
+    <section aria-label={t("sectionLabel")} className="space-y-4">
       <h2 className="font-serif text-xl font-semibold text-forest">
-        Recent support
+        {t("heading")}
       </h2>
       <ul className="space-y-3">
         {items.map((item, index) => (
@@ -36,18 +40,21 @@ export function RecentSupport({
             className="rounded-2xl border border-stone bg-white p-4 sm:p-5"
           >
             <p className="text-sm text-ink">
-              <span className="font-semibold text-forest">
-                {item.displayName}
-              </span>{" "}
-              supported with{" "}
-              <span className="font-semibold">
-                {formatMinorAmount(item.amount, item.currency)}
-              </span>
+              {t.rich("supported", {
+                name: item.displayName,
+                amount: formatMinorAmount(item.amount, item.currency, locale),
+                supporter: (chunks) => (
+                  <span className="font-semibold text-forest">{chunks}</span>
+                ),
+                sum: (chunks) => <span className="font-semibold">{chunks}</span>,
+              })}
               {item.target ? (
                 <span className="text-ink/60">
                   {" "}
-                  · {item.target.kind === "wishlist" ? "funded" : "toward"}{" "}
-                  {item.target.title}
+                  ·{" "}
+                  {item.target.kind === "wishlist"
+                    ? t("fundedItem", { title: item.target.title })
+                    : t("towardGoal", { title: item.target.title })}
                 </span>
               ) : null}
             </p>

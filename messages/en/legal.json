@@ -1,0 +1,27 @@
+{
+  "eyebrow": "Legal",
+  "draftBanner": "Draft — pending legal review.",
+  "lastUpdated": "Last updated: {date}.",
+  "notice": {
+    "title": "The English version governs.",
+    "body": "This translation is provided for convenience only. The English version is the legally binding version and governs in the event of any conflict."
+  },
+  "meta": {
+    "terms": {
+      "title": "Terms of Use",
+      "description": "The terms for using BuyMeATee — accounts, creator pages, sending and receiving Tees, fees and acceptable use. Draft pending legal review."
+    },
+    "privacy": {
+      "title": "Privacy Policy",
+      "description": "How BuyMeATee handles personal data: what we collect for accounts, profiles and payments, who processes it, and your rights. Draft pending legal review."
+    },
+    "impressum": {
+      "title": "Impressum",
+      "description": "Legal notice (Impressum) for BuyMeATee — operator, address and contact details, as required under German law."
+    },
+    "accessibility": {
+      "title": "Accessibility",
+      "description": "How BuyMeATee approaches accessibility — our commitment to WCAG 2.2 AA, what we do, known limitations, and how to report an issue."
+    }
+  }
+}

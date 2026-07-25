@@ -1,0 +1,21 @@
+{
+  "meta": {
+    "index": {
+      "title": "블로그",
+      "description": "골프 크리에이터 응원, 골프 콘텐츠 펀딩, 아마추어 스폰서십, 그리고 골프 이면의 실제 비용에 대한 가이드와 솔직한 이야기."
+    }
+  },
+  "index": {
+    "breadcrumb": "블로그",
+    "eyebrow": "블로그",
+    "heading": "여정에서 남긴 기록",
+    "intro": "골프 크리에이터 응원, 골프 콘텐츠 펀딩, 아마추어 골프 후원에 대한 실용적인 가이드 — 군더더기 없이 솔직하게 썼어요."
+  },
+  "card": {
+    "readingTime": "{minutes, plural, other {#분 분량}}",
+    "readArticle": "글 읽기"
+  },
+  "article": {
+    "updatedLabel": "업데이트"
+  }
+}

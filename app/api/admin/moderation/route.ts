@@ -7,6 +7,7 @@ import {
   takeDownGoal,
 } from "@/lib/admin/moderation";
 import type { AdminUserMutationResult } from "@/lib/admin/users";
+import { apiError } from "@/lib/api/errors";
 import { isAdmin } from "@/lib/payments/admin";
 import { getAuthenticatedUser } from "@/lib/supabase/server";
 
@@ -20,7 +21,7 @@ import { getAuthenticatedUser } from "@/lib/supabase/server";
 export async function POST(request: Request) {
   const user = await getAuthenticatedUser();
   if (!user || !(await isAdmin(user.id))) {
-    return NextResponse.json({ error: "Not authorised." }, { status: 403 });
+    return apiError("api.notAuthorised", { status: 403 });
   }
 
   const payload = (await request.json().catch(() => null)) as {
@@ -31,10 +32,10 @@ export async function POST(request: Request) {
   } | null;
   const reason = typeof payload?.reason === "string" ? payload.reason.trim() : "";
   if (reason.length < 1 || reason.length > 500) {
-    return NextResponse.json(
-      { error: "Add a reason (up to 500 characters) — it goes in the audit log." },
-      { status: 400 },
-    );
+    return apiError("api.adminReasonRequired", {
+      status: 400,
+      params: { max: 500 },
+    });
   }
 
   const goalId = typeof payload?.goalId === "string" ? payload.goalId : "";
@@ -46,7 +47,7 @@ export async function POST(request: Request) {
     case "goal_take_down":
     case "goal_restore": {
       if (!uuid.test(goalId)) {
-        return NextResponse.json({ error: "Unknown goal." }, { status: 400 });
+        return apiError("api.goalUnknown", { status: 400 });
       }
       result =
         payload.action === "goal_take_down"
@@ -57,7 +58,7 @@ export async function POST(request: Request) {
     case "clear_bio":
     case "remove_avatar": {
       if (!uuid.test(userId)) {
-        return NextResponse.json({ error: "Unknown user." }, { status: 400 });
+        return apiError("api.unknownUser", { status: 400 });
       }
       result =
         payload.action === "clear_bio"
@@ -66,23 +67,17 @@ export async function POST(request: Request) {
       break;
     }
     default:
-      return NextResponse.json({ error: "Unknown action." }, { status: 400 });
+      return apiError("api.unknownAction", { status: 400 });
   }
 
   if (!result.ok) {
     if (result.reason === "not_found") {
-      return NextResponse.json({ error: "Not found." }, { status: 404 });
+      return apiError("api.notFound", { status: 404 });
     }
     if (result.reason === "no_change") {
-      return NextResponse.json(
-        { error: "Already in that state — refresh the page." },
-        { status: 409 },
-      );
+      return apiError("api.alreadyInState", { status: 409 });
     }
-    return NextResponse.json(
-      { error: "Not available right now. Please try again." },
-      { status: 503 },
-    );
+    return apiError("api.unavailable", { status: 503 });
   }
   return NextResponse.json({ done: true });
 }

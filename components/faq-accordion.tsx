@@ -3,13 +3,19 @@
 import { ChevronDown } from "lucide-react";
 
 import { trackEvent } from "@/lib/analytics";
-import type { Faq } from "@/lib/content/faqs";
+
+/** Already-translated question/answer pair — parents resolve message keys. */
+export type FaqAccordionEntry = {
+  question: string;
+  answer: string;
+};
 
 /**
  * Accessible FAQ accordion built on native <details>/<summary> —
- * keyboard operable and crawlable without JavaScript.
+ * keyboard operable and crawlable without JavaScript. Deliberately dumb:
+ * it receives translated strings from its (server) parents.
  */
-export function FaqAccordion({ faqs }: { faqs: Faq[] }) {
+export function FaqAccordion({ faqs }: { faqs: FaqAccordionEntry[] }) {
   return (
     <div className="divide-y divide-stone rounded-3xl border border-stone bg-white">
       {faqs.map((faq) => (

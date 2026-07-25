@@ -30,6 +30,31 @@
   --font-serif: var(--font-fraunces), ui-serif, Georgia, serif;
 }
 
+/*
+ * CJK typography (ADR-019). Fraunces has no Japanese/Korean glyphs, so both
+ * body and heading faces fall back to Noto Sans (loaded via the Google Fonts
+ * stylesheet in the locale layout, on ja/ko pages only). Wide letter-spacing
+ * tuned for Latin display type is hostile to CJK text, so the eyebrow
+ * tracking utilities are damped; text-transform: uppercase is a no-op for
+ * CJK glyphs and needs no override.
+ */
+html:lang(ja) {
+  --font-sans: "Noto Sans JP", var(--font-inter), ui-sans-serif, system-ui,
+    sans-serif;
+  --font-serif: "Noto Sans JP", ui-serif, serif;
+}
+
+html:lang(ko) {
+  --font-sans: "Noto Sans KR", var(--font-inter), ui-sans-serif, system-ui,
+    sans-serif;
+  --font-serif: "Noto Sans KR", ui-serif, serif;
+}
+
+html:lang(ja) [class*="tracking-["],
+html:lang(ko) [class*="tracking-["] {
+  letter-spacing: 0.04em;
+}
+
 @media (prefers-reduced-motion: no-preference) {
   html {
     scroll-behavior: smooth;

@@ -1,5 +1,7 @@
 "use client";
 
+import { useTranslations } from "next-intl";
+
 import {
   scrollToComposer,
   useSupportTarget,
@@ -21,6 +23,7 @@ export function GoalSupportButton({
   raised: number;
   target: number;
 }) {
+  const t = useTranslations("dashboard");
   const { select } = useSupportTarget();
   return (
     <button
@@ -31,7 +34,7 @@ export function GoalSupportButton({
       }}
       className="inline-flex min-h-10 items-center justify-center rounded-full bg-forest px-5 text-sm font-medium text-white transition-colors hover:bg-forest-dark"
     >
-      Support this goal
+      {t("goals.supportButton")}
     </button>
   );
 }

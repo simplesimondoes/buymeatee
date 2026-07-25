@@ -1,0 +1,95 @@
+{
+  "metadata": {
+    "title": "{name}さんにティーを贈る",
+    "description": "{name}さんのゴルフのジャーニーを、ティーで応援しましょう。",
+    "descriptionWithGoal": "{name}さんのゴルフのジャーニーをティーで応援 — 実際の目標を後押しして、実現を見届けましょう。",
+    "imageAlt": "BuyMeATeeで{name}さんを応援"
+  },
+  "unavailable": {
+    "metaTitle": "ページを利用できません",
+    "heading": "このページは現在ご覧いただけません。",
+    "body": "現在ティーを受け取れない状態です。誤りだと思われる場合は、後ほど改めてご確認ください。"
+  },
+  "hero": {
+    "kicker": "その歩みを、応援しよう",
+    "handicap": "ハンディキャップ{handicap}",
+    "websiteLabel": "ウェブサイト"
+  },
+  "about": {
+    "heading": "自己紹介",
+    "sectionLabel": "{name}さんについて"
+  },
+  "stats": {
+    "supporters": "{count, plural, other {サポーター}}",
+    "goalsReached": "{count, plural, other {達成した目標}}",
+    "updates": "{count, plural, other {近況}}",
+    "joinedLabel": "参加",
+    "joined": "{date}に参加"
+  },
+  "cta": {
+    "supportGoal": "この目標を応援する",
+    "buyTee": "{name}さんにティーを贈る"
+  },
+  "supportHero": {
+    "currentGoal": "現在の目標",
+    "raisedOfTarget": "{target}のうち{raised}",
+    "goalOnly": "目標{target}",
+    "beFirst": "最初の応援者になる",
+    "progressLabel": "{title}への進捗：{target}のうち{raised}を達成"
+  },
+  "notAccepting": {
+    "heading": "{name}さんは、まだティーを受け取れません。",
+    "body": "決済の設定がまだ完了していません — また近いうちにご覧ください。",
+    "finishSetup": "決済設定を完了する"
+  },
+  "goals": {
+    "sectionLabel": "目標",
+    "heading": "{name}さんの目標",
+    "beyondGoal": "— 目標を超えました！",
+    "justStarted": "始まったばかりです — 最初の応援者になりましょう。",
+    "supportedBy": "{count, plural, other {#人のゴルファーが応援中}}",
+    "completedHeading": "サポーターの力で実現",
+    "completedRaised": "— {amount}を達成",
+    "emptyOwnerBody": "ページに目標がまだありません。目標があると、サポーターは具体的なものを応援できます。",
+    "addFirstGoal": "最初の目標を追加",
+    "noActiveOwner": "現在、公開中の目標はありません — <link>目標を公開して</link>、サポーターが応援できるものを用意しましょう。"
+  },
+  "wishlist": {
+    "sectionLabel": "ウィッシュリスト",
+    "heading": "{name}さんのウィッシュリスト",
+    "intro": "まるごと支援できる具体的なアイテムです — ひとつ選べば、それで完了。",
+    "fundThis": "これを支援",
+    "fundedHeading": "サポーターが支援済み",
+    "emptyOwnerBody": "ウィッシュリストは空です。サポーターが支援できる具体的なアイテムを追加しましょう — ボール1箱、参加費、コーチングセッションなど。",
+    "addFirstItem": "最初のアイテムを追加"
+  },
+  "updates": {
+    "sectionLabel": "近況",
+    "heading": "{name}さんの近況",
+    "emptyOwnerHeading": "このジャーニーは、まだ始まったばかりです。",
+    "emptyOwnerBody": "近況を投稿して、応援がどこに生きているのかをサポーターに見せましょう — 進捗こそが、また見に来たくなる理由です。",
+    "writeFirst": "最初の近況を書く"
+  },
+  "recentSupport": {
+    "sectionLabel": "最近の応援",
+    "heading": "最近の応援",
+    "empty": "このプロジェクトを応援する、最初のゴルファーになりましょう。",
+    "supported": "<supporter>{name}</supporter>さんが<sum>{amount}</sum>で応援しました",
+    "towardGoal": "{title}へ",
+    "fundedItem": "{title}を支援"
+  },
+  "pinnedMedia": {
+    "sectionLabel": "注目のメディア",
+    "iframeTitle": "注目のメディア",
+    "featuredLink": "注目のリンク",
+    "featuredLinkAria": "注目のリンク：{host}"
+  },
+  "ogCard": {
+    "kicker": "その歩みを、応援しよう",
+    "headline": "{name}さんを応援",
+    "headlineFallback": "その歩みを、応援しよう。",
+    "tagline": "実際の目標を後押しして、ゴルファーのジャーニーを追いかけよう。",
+    "goalLine": "{target}のうち{raised} · {percent}",
+    "goalLineFresh": "目標{target} · 最初の応援者になろう"
+  }
+}

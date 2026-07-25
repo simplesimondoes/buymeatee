@@ -1,13 +1,19 @@
 "use client";
 
 import { LoaderCircle } from "lucide-react";
+import { useTranslations } from "next-intl";
 import { useState } from "react";
+
+import { useErrorMessage } from "@/components/intl/use-error-message";
+import { isErrorDetail } from "@/lib/i18n/errors";
 
 const inputClasses =
   "w-full rounded-xl border border-stone bg-white px-4 py-2.5 text-sm text-ink placeholder:text-ink/40 focus:border-forest";
 
 /** Admin full-refund form. The server re-checks authorisation. */
 export function AdminRefundForm() {
+  const t = useTranslations("admin");
+  const errorMessage = useErrorMessage();
   const [giftPublicId, setGiftPublicId] = useState("");
   const [reason, setReason] = useState("");
   const [busy, setBusy] = useState(false);
@@ -25,15 +31,17 @@ export function AdminRefundForm() {
       });
       const body = (await response.json()) as {
         refundId?: string;
-        error?: string;
+        error?: unknown;
       };
       setResult(
         response.ok && body.refundId
-          ? `Refund ${body.refundId} created. The gift updates when Stripe confirms via webhook.`
-          : (body.error ?? "Refund failed."),
+          ? t("tools.refund.success", { refundId: body.refundId })
+          : isErrorDetail(body.error)
+            ? errorMessage(body.error)
+            : t("tools.refund.failed"),
       );
     } catch {
-      setResult("Refund failed.");
+      setResult(t("tools.refund.failed"));
     }
     setBusy(false);
   }
@@ -43,7 +51,7 @@ export function AdminRefundForm() {
       <div className="grid gap-3 sm:grid-cols-2">
         <div>
           <label htmlFor="refund-gift" className="text-sm font-medium text-forest">
-            Gift public id
+            {t("tools.refund.giftIdLabel")}
           </label>
           <input
             id="refund-gift"
@@ -56,7 +64,7 @@ export function AdminRefundForm() {
         </div>
         <div>
           <label htmlFor="refund-reason" className="text-sm font-medium text-forest">
-            Reason (audited)
+            {t("tools.refund.reasonLabel")}
           </label>
           <input
             id="refund-reason"
@@ -76,7 +84,7 @@ export function AdminRefundForm() {
         {busy ? (
           <LoaderCircle aria-hidden="true" className="h-4 w-4 animate-spin" />
         ) : null}
-        Issue full refund
+        {t("tools.refund.submit")}
       </button>
       {result ? (
         <p role="status" className="text-sm text-ink/80">
@@ -89,6 +97,8 @@ export function AdminRefundForm() {
 
 /** Runs server-side reconciliation and shows the report. */
 export function ReconcileButton() {
+  const t = useTranslations("admin");
+  const errorMessage = useErrorMessage();
   const [busy, setBusy] = useState(false);
   const [report, setReport] = useState<string | null>(null);
 
@@ -100,11 +110,24 @@ export function ReconcileButton() {
       const body = (await response.json()) as Record<string, unknown>;
       setReport(
         response.ok
-          ? `Scanned ${body.scanned}: ${body.markedPaid} paid, ${body.markedExpired} expired, ${body.markedFailed} failed, ${body.cancelledDrafts} drafts cancelled, ${body.stillPending} pending, flagged: ${(body.flagged as string[]).join(", ") || "none"}.`
-          : String(body.error ?? "Reconciliation failed."),
+          ? t("tools.reconcile.report", {
+              scanned: Number(body.scanned ?? 0),
+              markedPaid: Number(body.markedPaid ?? 0),
+              markedExpired: Number(body.markedExpired ?? 0),
+              markedFailed: Number(body.markedFailed ?? 0),
+              cancelledDrafts: Number(body.cancelledDrafts ?? 0),
+              stillPending: Number(body.stillPending ?? 0),
+              flagged:
+                Array.isArray(body.flagged) && body.flagged.length > 0
+                  ? (body.flagged as string[]).join(", ")
+                  : t("tools.reconcile.flaggedNone"),
+            })
+          : isErrorDetail(body.error)
+            ? errorMessage(body.error)
+            : t("tools.reconcile.failed"),
       );
     } catch {
-      setReport("Reconciliation failed.");
+      setReport(t("tools.reconcile.failed"));
     }
     setBusy(false);
   }
@@ -120,7 +143,7 @@ export function ReconcileButton() {
         {busy ? (
           <LoaderCircle aria-hidden="true" className="h-4 w-4 animate-spin" />
         ) : null}
-        Reconcile stuck gifts
+        {t("tools.reconcile.run")}
       </button>
       {report ? (
         <p role="status" className="text-sm text-ink/80">

@@ -1,3 +1,4 @@
+import { errorDetail, type ErrorDetail } from "@/lib/i18n/errors";
 import {
   UPDATE_BODY_MAX_LENGTH,
   UPDATE_TITLE_MAX_LENGTH,
@@ -6,7 +7,8 @@ import {
 /**
  * Project update input validation. Pure module shared by the client (inline
  * errors) and the server (authoritative — mutations revalidate everything).
- * Status changes (publish/unpublish) are handled separately.
+ * Errors are stable codes (ADR-019), rendered into the visitor's language at
+ * the edge. Status changes (publish/unpublish) are handled separately.
  */
 
 export interface UpdateInput {
@@ -17,12 +19,14 @@ export interface UpdateInput {
 
 export type UpdateFieldName = "title" | "body";
 
+export type UpdateFieldErrors = Partial<Record<UpdateFieldName, ErrorDetail>>;
+
 export type UpdateValidationResult =
   | { ok: true; data: UpdateInput }
-  | { ok: false; errors: Partial<Record<UpdateFieldName, string>> };
+  | { ok: false; errors: UpdateFieldErrors };
 
 export function validateUpdateInput(payload: unknown): UpdateValidationResult {
-  const errors: Partial<Record<UpdateFieldName, string>> = {};
+  const errors: UpdateFieldErrors = {};
   const input =
     typeof payload === "object" && payload !== null
       ? (payload as Record<string, unknown>)
@@ -30,14 +34,18 @@ export function validateUpdateInput(payload: unknown): UpdateValidationResult {
 
   const title = typeof input.title === "string" ? input.title.trim() : "";
   if (title.length < 1 || title.length > UPDATE_TITLE_MAX_LENGTH) {
-    errors.title = `Give your update a title (up to ${UPDATE_TITLE_MAX_LENGTH} characters).`;
+    errors.title = errorDetail("validation.update.title", {
+      max: UPDATE_TITLE_MAX_LENGTH,
+    });
   }
 
   const body = typeof input.body === "string" ? input.body.trim() : "";
   if (body.length < 1) {
-    errors.body = "Write something for your supporters.";
+    errors.body = errorDetail("validation.update.bodyRequired");
   } else if (body.length > UPDATE_BODY_MAX_LENGTH) {
-    errors.body = `Keep the update under ${UPDATE_BODY_MAX_LENGTH} characters.`;
+    errors.body = errorDetail("validation.update.bodyLength", {
+      max: UPDATE_BODY_MAX_LENGTH,
+    });
   }
 
   if (Object.keys(errors).length > 0) {

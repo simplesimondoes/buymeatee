@@ -1,0 +1,95 @@
+{
+  "metadata": {
+    "title": "Oferece um Tee a {name}",
+    "description": "Apoia o percurso de {name} no golfe com um Tee.",
+    "descriptionWithGoal": "Apoia o percurso de {name} no golfe com um Tee — apoia um objetivo real e vê-o acontecer.",
+    "imageAlt": "Apoia {name} no BuyMeATee"
+  },
+  "unavailable": {
+    "metaTitle": "Página indisponível",
+    "heading": "Esta página não está disponível de momento.",
+    "body": "Não pode receber Tees neste momento. Se achas que é um engano, volta a ver mais tarde."
+  },
+  "hero": {
+    "kicker": "Apoia o percurso",
+    "handicap": "Handicap {handicap}",
+    "websiteLabel": "Website"
+  },
+  "about": {
+    "heading": "Sobre",
+    "sectionLabel": "Sobre {name}"
+  },
+  "stats": {
+    "supporters": "{count, plural, one {apoiante} other {apoiantes}}",
+    "goalsReached": "{count, plural, one {objetivo alcançado} other {objetivos alcançados}}",
+    "updates": "{count, plural, one {novidade} other {novidades}}",
+    "joinedLabel": "Membro desde",
+    "joined": "Membro desde {date}"
+  },
+  "cta": {
+    "supportGoal": "Apoiar este objetivo",
+    "buyTee": "Oferece um tee a {name}"
+  },
+  "supportHero": {
+    "currentGoal": "Objetivo atual",
+    "raisedOfTarget": "{raised} de {target}",
+    "goalOnly": "Meta de {target}",
+    "beFirst": "Sê o primeiro",
+    "progressLabel": "Progresso rumo a {title}: {raised} de {target} angariados"
+  },
+  "notAccepting": {
+    "heading": "{name} ainda não está a aceitar Tees.",
+    "body": "Volta em breve — a configuração de pagamentos ainda não está concluída.",
+    "finishSetup": "Conclui a tua configuração de pagamentos"
+  },
+  "goals": {
+    "sectionLabel": "Objetivos",
+    "heading": "Objetivos de {name}",
+    "beyondGoal": "— para lá da meta!",
+    "justStarted": "Está mesmo a começar — sê o primeiro a apoiar.",
+    "supportedBy": "{count, plural, one {Apoiado por # golfista} other {Apoiado por # golfistas}}",
+    "completedHeading": "Tornado possível pelos apoiantes",
+    "completedRaised": "— {amount} angariados",
+    "emptyOwnerBody": "A tua página ainda não tem objetivos. Os objetivos dão aos apoiantes algo real para abraçar.",
+    "addFirstGoal": "Adiciona o teu primeiro objetivo",
+    "noActiveOwner": "Sem objetivos ativos de momento — <link>publica um</link> para dares aos apoiantes algo para apoiar."
+  },
+  "wishlist": {
+    "sectionLabel": "Lista de desejos",
+    "heading": "Lista de desejos de {name}",
+    "intro": "Coisas específicas que podes financiar por inteiro — escolhe uma e fica coberta.",
+    "fundThis": "Financiar isto",
+    "fundedHeading": "Financiado pelos apoiantes",
+    "emptyOwnerBody": "A tua lista de desejos está vazia. Adiciona coisas específicas que os apoiantes possam financiar — uma caixa de bolas, uma taxa de inscrição, uma aula.",
+    "addFirstItem": "Adiciona o teu primeiro item"
+  },
+  "updates": {
+    "sectionLabel": "Novidades",
+    "heading": "Novidades de {name}",
+    "emptyOwnerHeading": "Este percurso está apenas a começar.",
+    "emptyOwnerBody": "Publica novidades para mostrar aos apoiantes para onde vai o apoio deles — o progresso é o que os faz voltar.",
+    "writeFirst": "Escreve a tua primeira novidade"
+  },
+  "recentSupport": {
+    "sectionLabel": "Apoio recente",
+    "heading": "Apoio recente",
+    "empty": "Sê o primeiro golfista a apoiar este projeto.",
+    "supported": "<supporter>{name}</supporter> apoiou com <sum>{amount}</sum>",
+    "towardGoal": "para {title}",
+    "fundedItem": "financiou {title}"
+  },
+  "pinnedMedia": {
+    "sectionLabel": "Media em destaque",
+    "iframeTitle": "Media em destaque",
+    "featuredLink": "Ligação em destaque",
+    "featuredLinkAria": "Ligação em destaque: {host}"
+  },
+  "ogCard": {
+    "kicker": "Apoia o percurso",
+    "headline": "Apoia {name}",
+    "headlineFallback": "Apoia o percurso.",
+    "tagline": "Apoia um objetivo real e acompanha o percurso de um golfista.",
+    "goalLine": "{raised} de {target} · {percent}",
+    "goalLineFresh": "Meta de {target} · sê o primeiro a apoiar"
+  }
+}

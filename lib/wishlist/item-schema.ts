@@ -1,3 +1,4 @@
+import { errorDetail, type ErrorDetail } from "@/lib/i18n/errors";
 import {
   isSupportedCurrency,
   isValidMinorAmount,
@@ -12,8 +13,9 @@ import {
 /**
  * Wish-list item form validation. Pure module shared by the client (inline
  * errors) and the server (authoritative — mutations revalidate everything and
- * additionally check the price is fundable in a single gift). Status changes
- * are validated separately via canTransitionWishlistItem().
+ * additionally check the price is fundable in a single gift). Errors are
+ * stable codes (ADR-019), rendered into the visitor's language at the edge.
+ * Status changes are validated separately via canTransitionWishlistItem().
  */
 
 export interface WishlistItemInput {
@@ -30,14 +32,16 @@ export type WishlistFieldName =
   | "currency"
   | "priceAmount";
 
+export type WishlistFieldErrors = Partial<Record<WishlistFieldName, ErrorDetail>>;
+
 export type WishlistValidationResult =
   | { ok: true; data: WishlistItemInput }
-  | { ok: false; errors: Partial<Record<WishlistFieldName, string>> };
+  | { ok: false; errors: WishlistFieldErrors };
 
 export function validateWishlistItemInput(
   payload: unknown,
 ): WishlistValidationResult {
-  const errors: Partial<Record<WishlistFieldName, string>> = {};
+  const errors: WishlistFieldErrors = {};
   const input =
     typeof payload === "object" && payload !== null
       ? (payload as Record<string, unknown>)
@@ -45,7 +49,9 @@ export function validateWishlistItemInput(
 
   const title = typeof input.title === "string" ? input.title.trim() : "";
   if (title.length < 1 || title.length > WISHLIST_TITLE_MAX_LENGTH) {
-    errors.title = `Give the item a name (up to ${WISHLIST_TITLE_MAX_LENGTH} characters).`;
+    errors.title = errorDetail("validation.wishlist.title", {
+      max: WISHLIST_TITLE_MAX_LENGTH,
+    });
   }
 
   let description: string | undefined;
@@ -55,12 +61,14 @@ export function validateWishlistItemInput(
   ) {
     description = input.description.trim();
     if (description.length > WISHLIST_DESCRIPTION_MAX_LENGTH) {
-      errors.description = `Keep the description under ${WISHLIST_DESCRIPTION_MAX_LENGTH} characters.`;
+      errors.description = errorDetail("validation.wishlist.description", {
+        max: WISHLIST_DESCRIPTION_MAX_LENGTH,
+      });
     }
   }
 
   if (!isSupportedCurrency(input.currency)) {
-    errors.currency = "That currency isn't supported.";
+    errors.currency = errorDetail("validation.wishlist.currency");
   }
 
   const priceAmount = input.priceAmount;
@@ -69,7 +77,7 @@ export function validateWishlistItemInput(
     priceAmount <= 0 ||
     priceAmount > WISHLIST_PRICE_MAX_MINOR
   ) {
-    errors.priceAmount = "Enter a valid price.";
+    errors.priceAmount = errorDetail("validation.wishlist.price");
   }
 
   if (Object.keys(errors).length > 0) {

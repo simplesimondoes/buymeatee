@@ -1,8 +1,9 @@
 import { NextResponse } from "next/server";
 
+import { apiError } from "@/lib/api/errors";
 import type { AvatarMimeType } from "@/lib/profile/avatar";
 import {
-  COVER_ERROR_MESSAGES,
+  COVER_ERROR_DETAILS,
   goalCoverObjectPath,
   validateCoverFile,
 } from "@/lib/profile/cover";
@@ -20,10 +21,8 @@ import {
  * user's own folder). Mirrors the profile cover route.
  */
 
-const UNAVAILABLE = NextResponse.json(
-  { error: "Cover images aren't available right now. Please try again." },
-  { status: 503 },
-);
+const unavailable = () =>
+  apiError("api.coverImagesUnavailable", { status: 503 });
 
 const UUID = /^[0-9a-f-]{36}$/i;
 
@@ -32,32 +31,31 @@ export async function POST(
   { params }: { params: Promise<{ goalId: string }> },
 ) {
   if (!isSupabaseConfigured()) {
-    return UNAVAILABLE;
+    return unavailable();
   }
   const user = await getAuthenticatedUser();
   if (!user) {
-    return NextResponse.json({ error: "Sign in required." }, { status: 401 });
+    return apiError("api.signInRequired", { status: 401 });
   }
   const { goalId } = await params;
   if (!UUID.test(goalId)) {
-    return NextResponse.json({ error: "Goal not found." }, { status: 404 });
+    return apiError("api.goalNotFound", { status: 404 });
   }
   if (isRateLimited(`goalcover:${user.id}`, 15, 60_000)) {
-    return NextResponse.json(
-      { error: "Too many requests. Please wait a moment." },
-      { status: 429 },
-    );
+    return apiError("api.tooManyRequests", { status: 429 });
   }
 
   const formData = await request.formData().catch(() => null);
   const file = formData?.get("file");
   if (!(file instanceof File)) {
-    return NextResponse.json({ error: "Choose an image to upload." }, { status: 400 });
+    return apiError("api.chooseImage", { status: 400 });
   }
   const bytes = new Uint8Array(await file.arrayBuffer());
   const problem = validateCoverFile(file.type, bytes.byteLength, bytes.subarray(0, 16));
   if (problem) {
-    return NextResponse.json({ error: COVER_ERROR_MESSAGES[problem] }, { status: 400 });
+    // Cover-file problems have no stable code yet (see lib/profile/cover);
+    // the client hook passes raw strings through.
+    return NextResponse.json({ error: COVER_ERROR_DETAILS[problem] }, { status: 400 });
   }
 
   try {
@@ -70,7 +68,7 @@ export async function POST(
         upsert: true,
       });
     if (uploadError) {
-      return UNAVAILABLE;
+      return unavailable();
     }
 
     const { data: publicUrl } = supabase.storage.from("covers").getPublicUrl(path);
@@ -86,14 +84,14 @@ export async function POST(
       .select("id")
       .maybeSingle();
     if (error) {
-      return UNAVAILABLE;
+      return unavailable();
     }
     if (!data) {
-      return NextResponse.json({ error: "Goal not found." }, { status: 404 });
+      return apiError("api.goalNotFound", { status: 404 });
     }
     return NextResponse.json({ coverImageUrl });
   } catch {
-    return UNAVAILABLE;
+    return unavailable();
   }
 }
 
@@ -102,15 +100,15 @@ export async function DELETE(
   { params }: { params: Promise<{ goalId: string }> },
 ) {
   if (!isSupabaseConfigured()) {
-    return UNAVAILABLE;
+    return unavailable();
   }
   const user = await getAuthenticatedUser();
   if (!user) {
-    return NextResponse.json({ error: "Sign in required." }, { status: 401 });
+    return apiError("api.signInRequired", { status: 401 });
   }
   const { goalId } = await params;
   if (!UUID.test(goalId)) {
-    return NextResponse.json({ error: "Goal not found." }, { status: 404 });
+    return apiError("api.goalNotFound", { status: 404 });
   }
 
   try {
@@ -119,7 +117,7 @@ export async function DELETE(
       .from("covers")
       .remove([goalCoverObjectPath(user.id, goalId)]);
     if (removeError) {
-      return UNAVAILABLE;
+      return unavailable();
     }
     const { error } = await supabase
       .from("creator_goals")
@@ -127,10 +125,10 @@ export async function DELETE(
       .eq("id", goalId)
       .eq("creator_id", user.id);
     if (error) {
-      return UNAVAILABLE;
+      return unavailable();
     }
     return NextResponse.json({ coverImageUrl: null });
   } catch {
-    return UNAVAILABLE;
+    return unavailable();
   }
 }

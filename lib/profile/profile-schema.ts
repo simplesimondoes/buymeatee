@@ -5,6 +5,7 @@
  * Field shapes mirror public.profiles in the foundation migration.
  */
 
+import { errorDetail, type ErrorDetail } from "@/lib/i18n/errors";
 import { isValidPinnedMediaUrl } from "@/lib/profile/pinned-media";
 
 export const USERNAME_PATTERN = /^[a-z0-9]([a-z0-9-]{1,38}[a-z0-9])?$/;
@@ -164,15 +165,20 @@ export type ProfileFieldName =
   | "socialWebsite"
   | "pinnedMediaUrl";
 
+/**
+ * Field errors are stable codes + ICU params (ADR-019), rendered by
+ * useErrorMessage on the client. `pinnedMediaUrl` is the one transitional
+ * exception: no code exists in errors.json yet, so it stays a legacy English
+ * string (which useErrorMessage renders as-is).
+ */
+export type ProfileFieldError = ErrorDetail | string;
+
 export type ProfileValidationResult =
   | { ok: true; data: ProfileInput }
-  | { ok: false; errors: Partial<Record<ProfileFieldName, string>> };
-
-export const USERNAME_FORMAT_MESSAGE =
-  "Use 3–40 lowercase letters, numbers or hyphens (no leading, trailing or only-hyphen names).";
+  | { ok: false; errors: Partial<Record<ProfileFieldName, ProfileFieldError>> };
 
 export function validateProfileInput(payload: unknown): ProfileValidationResult {
-  const errors: Partial<Record<ProfileFieldName, string>> = {};
+  const errors: Partial<Record<ProfileFieldName, ProfileFieldError>> = {};
   const input =
     typeof payload === "object" && payload !== null
       ? (payload as Record<string, unknown>)
@@ -183,22 +189,24 @@ export function validateProfileInput(payload: unknown): ProfileValidationResult 
       ? input.username.trim().toLowerCase()
       : "";
   if (!USERNAME_PATTERN.test(username)) {
-    errors.username = USERNAME_FORMAT_MESSAGE;
+    errors.username = errorDetail("validation.profile.usernameFormat");
   } else if (isReservedUsername(username)) {
-    errors.username = "That name is reserved. Pick another.";
+    errors.username = errorDetail("validation.profile.usernameReserved");
   }
 
   const displayName =
     typeof input.displayName === "string" ? input.displayName.trim() : "";
   if (displayName.length < 1 || displayName.length > DISPLAY_NAME_MAX_LENGTH) {
-    errors.displayName = `Add the name supporters should see (up to ${DISPLAY_NAME_MAX_LENGTH} characters).`;
+    errors.displayName = errorDetail("validation.profile.displayName", {
+      max: DISPLAY_NAME_MAX_LENGTH,
+    });
   }
 
   let bio: string | undefined;
   if (typeof input.bio === "string" && input.bio.trim() !== "") {
     bio = input.bio.trim();
     if (bio.length > BIO_MAX_LENGTH) {
-      errors.bio = `Keep your bio under ${BIO_MAX_LENGTH} characters.`;
+      errors.bio = errorDetail("validation.profile.bio", { max: BIO_MAX_LENGTH });
     }
   }
 
@@ -206,7 +214,9 @@ export function validateProfileInput(payload: unknown): ProfileValidationResult 
   if (typeof input.about === "string" && input.about.trim() !== "") {
     about = input.about.trim();
     if (about.length > ABOUT_MAX_LENGTH) {
-      errors.about = `Keep your About section under ${ABOUT_MAX_LENGTH} characters.`;
+      errors.about = errorDetail("validation.profile.about", {
+        max: ABOUT_MAX_LENGTH,
+      });
     }
   }
 
@@ -214,7 +224,9 @@ export function validateProfileInput(payload: unknown): ProfileValidationResult 
   if (typeof input.country === "string" && input.country.trim() !== "") {
     country = input.country.trim();
     if (country.length > COUNTRY_MAX_LENGTH) {
-      errors.country = `Keep the country under ${COUNTRY_MAX_LENGTH} characters.`;
+      errors.country = errorDetail("validation.profile.country", {
+        max: COUNTRY_MAX_LENGTH,
+      });
     }
   }
 
@@ -233,7 +245,10 @@ export function validateProfileInput(payload: unknown): ProfileValidationResult 
       parsed < HANDICAP_MIN ||
       parsed > HANDICAP_MAX
     ) {
-      errors.handicap = `Enter a handicap between ${HANDICAP_MIN} and ${HANDICAP_MAX}.`;
+      errors.handicap = errorDetail("validation.profile.handicap", {
+        min: HANDICAP_MIN,
+        max: HANDICAP_MAX,
+      });
     } else {
       handicap = Math.round(parsed * 10) / 10;
     }
@@ -241,12 +256,16 @@ export function validateProfileInput(payload: unknown): ProfileValidationResult 
 
   const location = optionalText(input.location);
   if (location && location.length > LOCATION_MAX_LENGTH) {
-    errors.location = `Keep the location under ${LOCATION_MAX_LENGTH} characters.`;
+    errors.location = errorDetail("validation.profile.location", {
+      max: LOCATION_MAX_LENGTH,
+    });
   }
 
   const homeClub = optionalText(input.homeClub);
   if (homeClub && homeClub.length > HOME_CLUB_MAX_LENGTH) {
-    errors.homeClub = `Keep the club name under ${HOME_CLUB_MAX_LENGTH} characters.`;
+    errors.homeClub = errorDetail("validation.profile.homeClub", {
+      max: HOME_CLUB_MAX_LENGTH,
+    });
   }
 
   let handedness: Handedness | undefined;
@@ -254,7 +273,7 @@ export function validateProfileInput(payload: unknown): ProfileValidationResult 
     if ((HANDEDNESS_VALUES as readonly string[]).includes(input.handedness)) {
       handedness = input.handedness as Handedness;
     } else {
-      errors.handedness = "Choose left or right.";
+      errors.handedness = errorDetail("validation.profile.handedness");
     }
   }
 
@@ -290,7 +309,9 @@ export function validateProfileInput(payload: unknown): ProfileValidationResult 
       if (result.ok) {
         socials[field] = result.value;
       } else {
-        errors[field] = `Enter a valid ${socialErrorLabels[field]} link (https://…).`;
+        errors[field] = errorDetail("validation.profile.socialLink", {
+          label: socialErrorLabels[field],
+        });
       }
     }
   }
@@ -301,8 +322,7 @@ export function validateProfileInput(payload: unknown): ProfileValidationResult 
     if (isValidPinnedMediaUrl(rawPinned)) {
       pinnedMediaUrl = rawPinned;
     } else {
-      errors.pinnedMediaUrl =
-        "Paste a YouTube, Instagram or website link (https://…).";
+      errors.pinnedMediaUrl = errorDetail("validation.profile.pinnedMediaUrl");
     }
   }
 

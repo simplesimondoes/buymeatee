@@ -1,19 +1,20 @@
 "use client";
 
-import Link from "next/link";
-import { usePathname } from "next/navigation";
+import { useTranslations } from "next-intl";
 
-const links = [
-  { href: "/admin/payments", label: "Payments" },
-  { href: "/admin/users", label: "Users" },
-  { href: "/admin/moderation", label: "Moderation" },
-];
+import { Link, usePathname } from "@/i18n/navigation";
 
 /** Tab-style navigation shared by every /admin page. */
 export function AdminNav() {
+  const t = useTranslations("admin");
   const pathname = usePathname();
+  const links = [
+    { href: "/admin/payments", label: t("nav.payments") },
+    { href: "/admin/users", label: t("nav.users") },
+    { href: "/admin/moderation", label: t("nav.moderation") },
+  ];
   return (
-    <nav aria-label="Admin sections" className="border-b border-stone">
+    <nav aria-label={t("nav.label")} className="border-b border-stone">
       <ul className="mx-auto flex w-full max-w-5xl gap-1 px-4 sm:px-6">
         {links.map((link) => {
           const active = pathname?.startsWith(link.href);

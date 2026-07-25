@@ -1,5 +1,6 @@
 import { NextResponse } from "next/server";
 
+import { apiError } from "@/lib/api/errors";
 import { validateUpdateInput } from "@/lib/updates/update-schema";
 import {
   deleteUpdate,
@@ -23,12 +24,9 @@ function respond(result: UpdateMutationResult) {
     return NextResponse.json({ update: result.update });
   }
   if (result.reason === "not_found") {
-    return NextResponse.json({ error: "Update not found." }, { status: 404 });
+    return apiError("api.updateNotFound", { status: 404 });
   }
-  return NextResponse.json(
-    { error: "Couldn't save your update. Please try again." },
-    { status: 503 },
-  );
+  return apiError("api.updateSaveFailed", { status: 503 });
 }
 
 export async function POST(
@@ -36,24 +34,18 @@ export async function POST(
   { params }: { params: Promise<{ updateId: string }> },
 ) {
   if (!isSupabaseConfigured()) {
-    return NextResponse.json(
-      { error: "Updates aren't available right now." },
-      { status: 503 },
-    );
+    return apiError("api.updatesUnavailable", { status: 503 });
   }
   const user = await getAuthenticatedUser();
   if (!user) {
-    return NextResponse.json({ error: "Sign in required." }, { status: 401 });
+    return apiError("api.signInRequired", { status: 401 });
   }
   const { updateId } = await params;
   if (!UUID.test(updateId)) {
-    return NextResponse.json({ error: "Update not found." }, { status: 404 });
+    return apiError("api.updateNotFound", { status: 404 });
   }
   if (isRateLimited(`update:${user.id}`, 30, 60_000)) {
-    return NextResponse.json(
-      { error: "Too many requests. Please wait a moment." },
-      { status: 429 },
-    );
+    return apiError("api.tooManyRequests", { status: 429 });
   }
 
   const body = (await request.json().catch(() => null)) as
@@ -64,7 +56,10 @@ export async function POST(
     case "edit": {
       const validation = validateUpdateInput(body);
       if (!validation.ok) {
-        return NextResponse.json({ errors: validation.errors }, { status: 400 });
+        return apiError("api.checkFields", {
+          status: 400,
+          fields: validation.errors,
+        });
       }
       return respond(await editUpdate(user.id, updateId, validation.data));
     }
@@ -73,7 +68,7 @@ export async function POST(
     case "unpublish":
       return respond(await setUpdateStatus(user.id, updateId, "draft"));
     default:
-      return NextResponse.json({ error: "Unknown action." }, { status: 400 });
+      return apiError("api.unknownAction", { status: 400 });
   }
 }
 
@@ -82,26 +77,20 @@ export async function DELETE(
   { params }: { params: Promise<{ updateId: string }> },
 ) {
   if (!isSupabaseConfigured()) {
-    return NextResponse.json(
-      { error: "Updates aren't available right now." },
-      { status: 503 },
-    );
+    return apiError("api.updatesUnavailable", { status: 503 });
   }
   const user = await getAuthenticatedUser();
   if (!user) {
-    return NextResponse.json({ error: "Sign in required." }, { status: 401 });
+    return apiError("api.signInRequired", { status: 401 });
   }
   const { updateId } = await params;
   if (!UUID.test(updateId)) {
-    return NextResponse.json({ error: "Update not found." }, { status: 404 });
+    return apiError("api.updateNotFound", { status: 404 });
   }
 
   const result = await deleteUpdate(user.id, updateId);
   if (!result.ok) {
-    return NextResponse.json(
-      { error: "Couldn't delete the update. Please try again." },
-      { status: 503 },
-    );
+    return apiError("api.updateDeleteFailed", { status: 503 });
   }
   return NextResponse.json({ ok: true });
 }

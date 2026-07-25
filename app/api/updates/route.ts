@@ -1,5 +1,6 @@
 import { NextResponse } from "next/server";
 
+import { apiError } from "@/lib/api/errors";
 import { validateUpdateInput } from "@/lib/updates/update-schema";
 import { createUpdate } from "@/lib/updates/updates";
 import { isRateLimited } from "@/lib/rate-limit";
@@ -11,34 +12,28 @@ import { getAuthenticatedUser, isSupabaseConfigured } from "@/lib/supabase/serve
  */
 export async function POST(request: Request) {
   if (!isSupabaseConfigured()) {
-    return NextResponse.json(
-      { error: "Updates aren't available right now." },
-      { status: 503 },
-    );
+    return apiError("api.updatesUnavailable", { status: 503 });
   }
   const user = await getAuthenticatedUser();
   if (!user) {
-    return NextResponse.json({ error: "Sign in required." }, { status: 401 });
+    return apiError("api.signInRequired", { status: 401 });
   }
   if (isRateLimited(`update:${user.id}`, 30, 60_000)) {
-    return NextResponse.json(
-      { error: "Too many requests. Please wait a moment." },
-      { status: 429 },
-    );
+    return apiError("api.tooManyRequests", { status: 429 });
   }
 
   const payload = await request.json().catch(() => null);
   const validation = validateUpdateInput(payload);
   if (!validation.ok) {
-    return NextResponse.json({ errors: validation.errors }, { status: 400 });
+    return apiError("api.checkFields", {
+      status: 400,
+      fields: validation.errors,
+    });
   }
 
   const result = await createUpdate(user.id, validation.data);
   if (!result.ok) {
-    return NextResponse.json(
-      { error: "Couldn't save your update. Please try again." },
-      { status: 503 },
-    );
+    return apiError("api.updateSaveFailed", { status: 503 });
   }
   return NextResponse.json({ update: result.update });
 }

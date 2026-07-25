@@ -41,7 +41,7 @@ describe("validateProfileInput", () => {
     }
   });
 
-  it("rejects malformed usernames", () => {
+  it("rejects malformed usernames with the format code", () => {
     for (const username of [
       "ab", // too short
       "-callum", // leading hyphen
@@ -54,7 +54,9 @@ describe("validateProfileInput", () => {
       const result = validateProfileInput({ ...valid, username });
       expect(result.ok).toBe(false);
       if (!result.ok) {
-        expect(result.errors.username).toBeDefined();
+        expect(result.errors.username).toEqual({
+          code: "validation.profile.usernameFormat",
+        });
       }
     }
   });
@@ -65,7 +67,9 @@ describe("validateProfileInput", () => {
       const result = validateProfileInput({ ...valid, username });
       expect(result.ok).toBe(false);
       if (!result.ok) {
-        expect(result.errors.username).toContain("reserved");
+        expect(result.errors.username).toEqual({
+          code: "validation.profile.usernameReserved",
+        });
       }
     }
   });
@@ -75,7 +79,10 @@ describe("validateProfileInput", () => {
       const result = validateProfileInput({ ...valid, displayName });
       expect(result.ok).toBe(false);
       if (!result.ok) {
-        expect(result.errors.displayName).toBeDefined();
+        expect(result.errors.displayName).toEqual({
+          code: "validation.profile.displayName",
+          params: { max: DISPLAY_NAME_MAX_LENGTH },
+        });
       }
     }
   });
@@ -87,7 +94,10 @@ describe("validateProfileInput", () => {
     });
     expect(result.ok).toBe(false);
     if (!result.ok) {
-      expect(result.errors.bio).toBeDefined();
+      expect(result.errors.bio).toEqual({
+        code: "validation.profile.bio",
+        params: { max: BIO_MAX_LENGTH },
+      });
     }
   });
 
@@ -133,18 +143,34 @@ describe("validateProfileInput", () => {
     expect(result.ok).toBe(true);
   });
 
-  it("rejects a social link on the wrong host or scheme", () => {
+  it("rejects a social link on the wrong host or scheme with the platform label", () => {
     const cases = {
-      socialX: "https://example.com/callum", // wrong host
-      socialBluesky: "http://bsky.app/profile/callum", // not https
-      socialTwitch: "https://youtube.com/callum", // wrong host
+      socialX: ["https://example.com/callum", "X"], // wrong host
+      socialBluesky: ["http://bsky.app/profile/callum", "Bluesky"], // not https
+      socialTwitch: ["https://youtube.com/callum", "Twitch"], // wrong host
     } as const;
-    for (const [field, url] of Object.entries(cases)) {
+    for (const [field, [url, label]] of Object.entries(cases)) {
       const result = validateProfileInput({ ...valid, [field]: url });
       expect(result.ok).toBe(false);
       if (!result.ok) {
-        expect(result.errors[field as keyof typeof cases]).toBeDefined();
+        expect(result.errors[field as keyof typeof cases]).toEqual({
+          code: "validation.profile.socialLink",
+          params: { label },
+        });
       }
+    }
+  });
+
+  it("returns a stable code for an invalid pinned media link", () => {
+    const result = validateProfileInput({
+      ...valid,
+      pinnedMediaUrl: "ftp://not-a-link",
+    });
+    expect(result.ok).toBe(false);
+    if (!result.ok) {
+      expect(result.errors.pinnedMediaUrl).toEqual({
+        code: "validation.profile.pinnedMediaUrl",
+      });
     }
   });
 });

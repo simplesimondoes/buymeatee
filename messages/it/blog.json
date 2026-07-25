@@ -1,0 +1,21 @@
+{
+  "meta": {
+    "index": {
+      "title": "Blog",
+      "description": "Guide e riflessioni oneste su come sostenere i creator del golf, finanziare contenuti di golf, la sponsorizzazione dei dilettanti e i costi reali dietro questo sport."
+    }
+  },
+  "index": {
+    "breadcrumb": "Blog",
+    "eyebrow": "Blog",
+    "heading": "Appunti dal percorso",
+    "intro": "Guide pratiche su come sostenere i creator del golf, finanziare contenuti di golf e appoggiare il gioco dilettantistico — scritte con onestà, senza riempitivi."
+  },
+  "card": {
+    "readingTime": "{minutes, plural, one {# min di lettura} other {# min di lettura}}",
+    "readArticle": "Leggi l'articolo"
+  },
+  "article": {
+    "updatedLabel": "Aggiornato"
+  }
+}

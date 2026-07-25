@@ -1,8 +1,9 @@
 import { NextResponse } from "next/server";
 
+import { apiError } from "@/lib/api/errors";
 import type { AvatarMimeType } from "@/lib/profile/avatar";
 import {
-  COVER_ERROR_MESSAGES,
+  COVER_ERROR_DETAILS,
   profileCoverObjectPath,
   validateCoverFile,
 } from "@/lib/profile/cover";
@@ -21,36 +22,32 @@ import {
  * user, overwritten in place, so replacing a cover never orphans storage.
  */
 
-const UNAVAILABLE = NextResponse.json(
-  { error: "Cover images aren't available right now. Please try again." },
-  { status: 503 },
-);
+const unavailable = () => apiError("api.coverImagesUnavailable", { status: 503 });
 
 export async function POST(request: Request) {
   if (!isSupabaseConfigured()) {
-    return UNAVAILABLE;
+    return unavailable();
   }
   const user = await getAuthenticatedUser();
   if (!user) {
-    return NextResponse.json({ error: "Sign in required." }, { status: 401 });
+    return apiError("api.signInRequired", { status: 401 });
   }
   if (isRateLimited(`cover:${user.id}`, 10, 60_000)) {
-    return NextResponse.json(
-      { error: "Too many requests. Please wait a moment." },
-      { status: 429 },
-    );
+    return apiError("api.tooManyRequests", { status: 429 });
   }
 
   const formData = await request.formData().catch(() => null);
   const file = formData?.get("file");
   if (!(file instanceof File)) {
-    return NextResponse.json({ error: "Choose an image to upload." }, { status: 400 });
+    return apiError("api.chooseImage", { status: 400 });
   }
 
   const bytes = new Uint8Array(await file.arrayBuffer());
   const problem = validateCoverFile(file.type, bytes.byteLength, bytes.subarray(0, 16));
   if (problem) {
-    return NextResponse.json({ error: COVER_ERROR_MESSAGES[problem] }, { status: 400 });
+    // Transitional legacy string: errors.json has no code for image
+    // type/size/content problems yet. useErrorMessage renders it as-is.
+    return NextResponse.json({ error: COVER_ERROR_DETAILS[problem] }, { status: 400 });
   }
 
   try {
@@ -63,7 +60,7 @@ export async function POST(request: Request) {
         upsert: true,
       });
     if (uploadError) {
-      return UNAVAILABLE;
+      return unavailable();
     }
 
     const { data: publicUrl } = supabase.storage.from("covers").getPublicUrl(path);
@@ -74,22 +71,22 @@ export async function POST(request: Request) {
       .update({ cover_image_url: coverImageUrl })
       .eq("id", user.id);
     if (profileError) {
-      return UNAVAILABLE;
+      return unavailable();
     }
 
     return NextResponse.json({ coverImageUrl });
   } catch {
-    return UNAVAILABLE;
+    return unavailable();
   }
 }
 
 export async function DELETE() {
   if (!isSupabaseConfigured()) {
-    return UNAVAILABLE;
+    return unavailable();
   }
   const user = await getAuthenticatedUser();
   if (!user) {
-    return NextResponse.json({ error: "Sign in required." }, { status: 401 });
+    return apiError("api.signInRequired", { status: 401 });
   }
 
   try {
@@ -98,17 +95,17 @@ export async function DELETE() {
       .from("covers")
       .remove([profileCoverObjectPath(user.id)]);
     if (removeError) {
-      return UNAVAILABLE;
+      return unavailable();
     }
     const { error: profileError } = await supabase
       .from("profiles")
       .update({ cover_image_url: null })
       .eq("id", user.id);
     if (profileError) {
-      return UNAVAILABLE;
+      return unavailable();
     }
     return NextResponse.json({ coverImageUrl: null });
   } catch {
-    return UNAVAILABLE;
+    return unavailable();
   }
 }

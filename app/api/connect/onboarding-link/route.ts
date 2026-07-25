@@ -1,5 +1,6 @@
 import { NextResponse } from "next/server";
 
+import { apiError } from "@/lib/api/errors";
 import { getAllowedConnectCountries } from "@/lib/payments/config";
 import {
   createOnboardingLink,
@@ -18,14 +19,11 @@ import { getAuthenticatedUser } from "@/lib/supabase/server";
 export async function POST(request: Request) {
   const user = await getAuthenticatedUser();
   if (!user) {
-    return NextResponse.json({ error: "Sign in required." }, { status: 401 });
+    return apiError("api.signInRequired", { status: 401 });
   }
 
   if (isRateLimited(`onboard:${user.id}`, 10, 60_000)) {
-    return NextResponse.json(
-      { error: "Too many requests. Please wait a moment." },
-      { status: 429 },
-    );
+    return apiError("api.tooManyRequests", { status: 429 });
   }
 
   let country = "GB";
@@ -36,10 +34,7 @@ export async function POST(request: Request) {
     if (typeof body.country === "string") {
       const candidate = body.country.toUpperCase();
       if (!getAllowedConnectCountries().includes(candidate)) {
-        return NextResponse.json(
-          { error: "That country isn't supported yet." },
-          { status: 400 },
-        );
+        return apiError("api.connectCountryUnsupported", { status: 400 });
       }
       country = candidate;
     }
@@ -56,9 +51,6 @@ export async function POST(request: Request) {
       user_id: user.id,
       reason: error instanceof Error ? error.message : "unknown",
     });
-    return NextResponse.json(
-      { error: "Payment setup isn't available right now. Please try again later." },
-      { status: 503 },
-    );
+    return apiError("api.connectUnavailable", { status: 503 });
   }
 }

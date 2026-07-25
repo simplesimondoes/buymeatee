@@ -2,6 +2,8 @@ import { costOfGolfContent } from "@/lib/content/articles/what-does-it-cost-to-c
 import { fundGolfContent } from "@/lib/content/articles/how-golf-creators-can-fund-their-content";
 import { golfSponsorshipAmateurs } from "@/lib/content/articles/golf-sponsorship-for-amateur-players";
 import { supportGolfCreator } from "@/lib/content/articles/how-to-support-a-golf-content-creator";
+import { defaultLocale, type AppLocale } from "@/i18n/locales";
+import { formatDate } from "@/lib/i18n/format";
 import { stripInline } from "@/lib/content/inline";
 import type { SiteImage } from "@/lib/content/images";
 
@@ -31,6 +33,12 @@ export type Article = {
 
 export const articleAuthor = "BuyMeATee Editorial";
 
+/**
+ * The English source articles, newest first. Language-neutral consumers
+ * (sitemap, feeds) keep using this; locale-aware pages should use
+ * `getArticles(locale)` / `getArticle(slug, locale)` from
+ * `lib/content/article-registry.ts` instead.
+ */
 export const articles: Article[] = [
   supportGolfCreator,
   fundGolfContent,
@@ -38,6 +46,13 @@ export const articles: Article[] = [
   costOfGolfContent,
 ].sort((a, b) => b.publishedAt.localeCompare(a.publishedAt));
 
+/**
+ * English-only lookup.
+ *
+ * @deprecated Use `getArticle(slug, locale)` from
+ * `lib/content/article-registry.ts` for locale-aware lookup (falls back to
+ * English per article).
+ */
 export function getArticleBySlug(slug: string): Article | undefined {
   return articles.find((article) => article.slug === slug);
 }
@@ -57,8 +72,18 @@ export function readingTimeMinutes(article: Article): number {
   return Math.max(1, Math.ceil(articleWordCount(article) / WORDS_PER_MINUTE));
 }
 
-export function formatArticleDate(iso: string): string {
-  return new Date(`${iso}T00:00:00Z`).toLocaleDateString("en-GB", {
+/** Format an article's ISO date for display in the given locale. */
+export function formatArticleDate(iso: string, locale: AppLocale): string;
+/**
+ * @deprecated Pass the active locale explicitly — the no-locale form always
+ * renders English and exists only while call sites migrate.
+ */
+export function formatArticleDate(iso: string): string;
+export function formatArticleDate(
+  iso: string,
+  locale: AppLocale = defaultLocale,
+): string {
+  return formatDate(`${iso}T00:00:00Z`, locale, {
     day: "numeric",
     month: "long",
     year: "numeric",

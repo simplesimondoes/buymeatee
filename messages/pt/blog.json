@@ -1,0 +1,21 @@
+{
+  "meta": {
+    "index": {
+      "title": "Blog",
+      "description": "Guias e reflexões honestas sobre apoiar criadores de golfe, financiar conteúdos de golfe, patrocínio amador e os custos reais por trás do jogo."
+    }
+  },
+  "index": {
+    "breadcrumb": "Blog",
+    "eyebrow": "Blog",
+    "heading": "Notas do percurso",
+    "intro": "Guias práticos sobre apoiar criadores de golfe, financiar conteúdos de golfe e apoiar o jogo amador — escritos com honestidade, sem palha."
+  },
+  "card": {
+    "readingTime": "{minutes, plural, one {# min de leitura} other {# min de leitura}}",
+    "readArticle": "Ler o artigo"
+  },
+  "article": {
+    "updatedLabel": "Atualizado"
+  }
+}

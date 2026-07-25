@@ -1,9 +1,11 @@
 "use client";
 
 import { ArrowDown, ArrowUp, Plus } from "lucide-react";
+import { useLocale, useTranslations } from "next-intl";
 import { useState } from "react";
 
 import { GoalForm, type GoalFormErrors } from "@/components/goals/goal-form";
+import { useErrorMessage } from "@/components/intl/use-error-message";
 import { CoverUploader } from "@/components/profile/cover-uploader";
 import { ProgressBar } from "@/components/progress-bar";
 import { ShareControls } from "@/components/share-controls";
@@ -20,7 +22,10 @@ import {
   type CreatorGoalRow,
   type GoalStatus,
 } from "@/lib/goals/types";
-import { formatMinorAmount, type SupportedCurrency } from "@/lib/payments/currency";
+import { errorDetail, type ErrorDetail } from "@/lib/i18n/errors";
+import { formatMinorAmount } from "@/lib/i18n/format";
+import type { AppLocale } from "@/i18n/locales";
+import type { SupportedCurrency } from "@/lib/payments/currency";
 
 /**
  * The creator's goal list: create, edit, reorder and move goals through
@@ -28,23 +33,27 @@ import { formatMinorAmount, type SupportedCurrency } from "@/lib/payments/curren
  * currency freeze) — this component just reflects its answers.
  */
 
-const statusChips: Record<GoalStatus, { label: string; classes: string }> = {
-  draft: { label: "Draft", classes: "bg-mist text-ink/70" },
-  active: { label: "On your page", classes: "bg-forest/10 text-forest" },
-  completed: { label: "Completed", classes: "bg-gold/20 text-gold-deep" },
-  archived: { label: "Archived", classes: "bg-stone/60 text-ink/60" },
+const statusChipClasses: Record<GoalStatus, string> = {
+  draft: "bg-mist text-ink/70",
+  active: "bg-forest/10 text-forest",
+  completed: "bg-gold/20 text-gold-deep",
+  archived: "bg-stone/60 text-ink/60",
 };
 
-type Transition = { to: GoalStatus; label: string; emphasis?: boolean };
+type Transition = {
+  to: GoalStatus;
+  labelKey: "publish" | "markCompleted" | "takeOff" | "reopen" | "restore";
+  emphasis?: boolean;
+};
 
 const transitionsFor: Record<GoalStatus, Transition[]> = {
-  draft: [{ to: "active", label: "Publish to your page", emphasis: true }],
+  draft: [{ to: "active", labelKey: "publish", emphasis: true }],
   active: [
-    { to: "completed", label: "Mark completed", emphasis: true },
-    { to: "draft", label: "Take off your page" },
+    { to: "completed", labelKey: "markCompleted", emphasis: true },
+    { to: "draft", labelKey: "takeOff" },
   ],
-  completed: [{ to: "active", label: "Reopen" }],
-  archived: [{ to: "draft", label: "Restore as draft" }],
+  completed: [{ to: "active", labelKey: "reopen" }],
+  archived: [{ to: "draft", labelKey: "restore" }],
 };
 
 const secondaryButton =
@@ -53,7 +62,11 @@ const secondaryButton =
 async function postGoalAction(
   goalId: string,
   body: Record<string, unknown>,
-): Promise<{ goal?: CreatorGoalRow; errors?: GoalFormErrors; error?: string }> {
+): Promise<{
+  goal?: CreatorGoalRow;
+  errors?: GoalFormErrors;
+  error?: ErrorDetail | string;
+}> {
   try {
     const response = await fetch(`/api/goals/${goalId}`, {
       method: "POST",
@@ -63,10 +76,10 @@ async function postGoalAction(
     return (await response.json().catch(() => ({}))) as {
       goal?: CreatorGoalRow;
       errors?: GoalFormErrors;
-      error?: string;
+      error?: ErrorDetail | string;
     };
   } catch {
-    return { error: "Something went wrong. Please try again." };
+    return { error: errorDetail("generic") };
   }
 }
 
@@ -83,6 +96,9 @@ export function GoalManager({
    */
   pageUrl?: string;
 }) {
+  const t = useTranslations("dashboard");
+  const locale = useLocale() as AppLocale;
+  const errorMessage = useErrorMessage();
   const [goals, setGoals] = useState(initialGoals);
   const [creating, setCreating] = useState(false);
   const [editingId, setEditingId] = useState<string | null>(null);
@@ -107,7 +123,7 @@ export function GoalManager({
       const body = (await response.json().catch(() => ({}))) as {
         goal?: CreatorGoalRow;
         errors?: GoalFormErrors;
-        error?: string;
+        error?: ErrorDetail | string;
       };
       if (response.ok && body.goal) {
         setGoals((current) => [...current, body.goal as CreatorGoalRow]);
@@ -116,7 +132,7 @@ export function GoalManager({
       }
       return { errors: body.errors, error: body.error };
     } catch {
-      return { error: "Something went wrong. Please try again." };
+      return { error: errorDetail("generic") };
     }
   }
 
@@ -138,7 +154,7 @@ export function GoalManager({
     if (body.goal) {
       replaceGoal(body.goal);
     } else {
-      setActionError(body.error ?? "Something went wrong. Please try again.");
+      setActionError(errorMessage(body.error ?? null));
     }
   }
 
@@ -153,7 +169,7 @@ export function GoalManager({
     const body = await postGoalAction(goalId, { action: "move", direction });
     setBusyId(null);
     if (body.error) {
-      setActionError(body.error);
+      setActionError(errorMessage(body.error));
       return;
     }
     setGoals((current) => {
@@ -172,12 +188,12 @@ export function GoalManager({
         setGoals((current) => current.filter((goal) => goal.id !== goalId));
       } else {
         const body = (await response.json().catch(() => ({}))) as {
-          error?: string;
+          error?: ErrorDetail | string;
         };
-        setActionError(body.error ?? "Something went wrong. Please try again.");
+        setActionError(errorMessage(body.error ?? null));
       }
     } catch {
-      setActionError("Something went wrong. Please try again.");
+      setActionError(errorMessage(null));
     }
     setBusyId(null);
   }
@@ -186,7 +202,10 @@ export function GoalManager({
     <div className="space-y-6">
       <div className="flex flex-wrap items-center justify-between gap-3">
         <p className="text-sm text-ink/70">
-          {activeCount} of {MAX_ACTIVE_GOALS} active goals on your page
+          {t("goals.manager.activeCount", {
+            count: activeCount,
+            max: MAX_ACTIVE_GOALS,
+          })}
         </p>
         {!creating ? (
           <button
@@ -198,7 +217,7 @@ export function GoalManager({
             className="inline-flex min-h-11 items-center justify-center gap-2 rounded-full bg-forest px-5 text-sm font-medium text-white transition-colors hover:bg-forest-dark"
           >
             <Plus aria-hidden="true" className="h-4 w-4" />
-            New goal
+            {t("goals.manager.newGoal")}
           </button>
         ) : null}
       </div>
@@ -212,11 +231,11 @@ export function GoalManager({
       {creating ? (
         <div className="rounded-3xl border border-stone bg-white p-6">
           <h2 className="mb-4 font-serif text-lg font-semibold text-forest">
-            New goal
+            {t("goals.manager.newGoal")}
           </h2>
           <GoalForm
             payoutCurrency={payoutCurrency}
-            submitLabel="Save goal"
+            submitLabel={t("goals.manager.saveGoal")}
             onCancel={() => setCreating(false)}
             onSubmit={handleCreate}
           />
@@ -226,13 +245,12 @@ export function GoalManager({
       {goals.length === 0 && !creating ? (
         <div className="rounded-3xl border border-stone bg-mist p-6 text-center sm:p-10">
           <h2 className="font-serif text-xl font-semibold text-forest">
-            What&apos;s your journey working towards?
+            {t("goals.manager.emptyTitle")}
           </h2>
           <p className="mx-auto mt-2 max-w-md text-sm leading-relaxed text-ink/70">
-            Good goals are specific and real: a season of green fees, travel to
-            a qualifier, tournament entries, a coaching block. For instance
-            &ldquo;Q-School entry fee — £425&rdquo; <em>(Example)</em>. Goals
-            you publish appear on your page with honest progress.
+            {t.rich("goals.manager.emptyBody", {
+              example: (chunks) => <em>{chunks}</em>,
+            })}
           </p>
           <button
             type="button"
@@ -240,14 +258,13 @@ export function GoalManager({
             className="mt-5 inline-flex min-h-11 items-center justify-center gap-2 rounded-full bg-forest px-6 text-sm font-medium text-white transition-colors hover:bg-forest-dark"
           >
             <Plus aria-hidden="true" className="h-4 w-4" />
-            Add your first goal
+            {t("goals.manager.addFirstGoal")}
           </button>
         </div>
       ) : null}
 
       <ul className="space-y-4">
         {goals.map((goal, index) => {
-          const chip = statusChips[goal.status];
           const busy = busyId === goal.id;
           const canShare = Boolean(pageUrl) && isPubliclyVisible(goal.status);
           const milestone =
@@ -264,8 +281,8 @@ export function GoalManager({
                   <CoverUploader
                     endpoint={`/api/goals/${goal.id}/cover`}
                     initialUrl={goal.cover_image_url}
-                    label="Goal cover image"
-                    helpText="JPEG, PNG or WebP up to 5 MB. Shown at the top of this goal's card on your page."
+                    label={t("goals.manager.coverLabel")}
+                    helpText={t("goals.manager.coverHelp")}
                     aspectClassName="aspect-[16/9]"
                   />
                   <GoalForm
@@ -275,7 +292,7 @@ export function GoalManager({
                     initialTargetAmount={goal.target_amount}
                     currencyLocked={goal.raised_amount > 0}
                     payoutCurrency={payoutCurrency}
-                    submitLabel="Save changes"
+                    submitLabel={t("actions.saveChanges")}
                     onCancel={() => setEditingId(null)}
                     onSubmit={(input) => handleEdit(goal.id, input)}
                   />
@@ -294,24 +311,40 @@ export function GoalManager({
                       ) : null}
                     </div>
                     <span
-                      className={`rounded-full px-3 py-1 text-xs font-medium ${chip.classes}`}
+                      className={`rounded-full px-3 py-1 text-xs font-medium ${statusChipClasses[goal.status]}`}
                     >
-                      {chip.label}
+                      {t(`goals.manager.status.${goal.status}`)}
                     </span>
                   </div>
 
                   <div className="mt-4">
                     <p className="text-sm font-semibold text-forest">
-                      {formatMinorAmount(goal.raised_amount, goal.currency)} of{" "}
-                      {formatMinorAmount(goal.target_amount, goal.currency)}{" "}
-                      <span className="font-normal text-ink/60">raised</span>
+                      {t.rich("goals.manager.raised", {
+                        raised: formatMinorAmount(
+                          goal.raised_amount,
+                          goal.currency,
+                          locale,
+                        ),
+                        target: formatMinorAmount(
+                          goal.target_amount,
+                          goal.currency,
+                          locale,
+                        ),
+                        muted: (chunks) => (
+                          <span className="font-normal text-ink/60">
+                            {chunks}
+                          </span>
+                        ),
+                      })}
                     </p>
                     <ProgressBar
                       value={goalProgressPercent(
                         goal.raised_amount,
                         goal.target_amount,
                       )}
-                      label={`Progress towards ${goal.title}`}
+                      label={t("goals.manager.progressLabel", {
+                        title: goal.title,
+                      })}
                       className="mt-2"
                     />
                   </div>
@@ -320,8 +353,10 @@ export function GoalManager({
                     <div className="mt-4 flex flex-wrap items-center justify-between gap-3 rounded-2xl bg-gold/10 p-3">
                       <p className="text-sm text-gold-deep">
                         {milestone === 100
-                          ? "🎉 Goal reached! Share the moment with your supporters."
-                          : `🏌️ You're ${milestone}% of the way there — a great time to share.`}
+                          ? t("goals.manager.milestoneReached")
+                          : t("goals.manager.milestoneProgress", {
+                              percent: milestone,
+                            })}
                       </p>
                       <ShareControls
                         url={pageUrl as string}
@@ -330,7 +365,7 @@ export function GoalManager({
                           goal.raised_amount,
                           goal.target_amount,
                         )}
-                        buttonLabel="Share progress"
+                        buttonLabel={t("goals.manager.shareProgress")}
                         align="right"
                       />
                     </div>
@@ -338,16 +373,14 @@ export function GoalManager({
 
                   {goal.taken_down_at ? (
                     <p className="mt-4 rounded-2xl bg-red-50 p-3 text-sm text-red-900">
-                      This goal was removed by BuyMeATee and can&apos;t be
-                      published. If you think this is a mistake, contact
-                      support.
+                      {t("goals.manager.takenDown")}
                     </p>
                   ) : null}
 
                   <div className="mt-4 flex flex-wrap items-center gap-2">
                     {!goal.taken_down_at ? transitionsFor[goal.status].map((transition) => (
                       <button
-                        key={transition.to + transition.label}
+                        key={transition.to + transition.labelKey}
                         type="button"
                         disabled={busy}
                         onClick={() => handleTransition(goal.id, transition.to)}
@@ -357,7 +390,7 @@ export function GoalManager({
                             : secondaryButton
                         }
                       >
-                        {transition.label}
+                        {t(`goals.manager.transitions.${transition.labelKey}`)}
                       </button>
                     )) : null}
                     {goal.status !== "archived" && !goal.taken_down_at ? (
@@ -371,7 +404,7 @@ export function GoalManager({
                           }}
                           className={secondaryButton}
                         >
-                          Edit
+                          {t("actions.edit")}
                         </button>
                         {goal.status !== "completed" ? (
                           <button
@@ -380,7 +413,7 @@ export function GoalManager({
                             onClick={() => handleTransition(goal.id, "archived")}
                             className={secondaryButton}
                           >
-                            Archive
+                            {t("actions.archive")}
                           </button>
                         ) : null}
                       </>
@@ -392,7 +425,7 @@ export function GoalManager({
                         onClick={() => handleDelete(goal.id)}
                         className="inline-flex min-h-9 items-center justify-center rounded-full px-3.5 text-xs font-medium text-red-800/80 transition-colors hover:text-red-800 disabled:opacity-60"
                       >
-                        Delete
+                        {t("actions.delete")}
                       </button>
                     ) : null}
                     {canShare && !milestone ? (
@@ -414,7 +447,9 @@ export function GoalManager({
                         type="button"
                         disabled={busy || index === 0}
                         onClick={() => handleMove(goal.id, "up")}
-                        aria-label={`Move ${goal.title} up`}
+                        aria-label={t("goals.manager.moveUp", {
+                          title: goal.title,
+                        })}
                         className={`${secondaryButton} px-2.5`}
                       >
                         <ArrowUp aria-hidden="true" className="h-3.5 w-3.5" />
@@ -423,7 +458,9 @@ export function GoalManager({
                         type="button"
                         disabled={busy || index === goals.length - 1}
                         onClick={() => handleMove(goal.id, "down")}
-                        aria-label={`Move ${goal.title} down`}
+                        aria-label={t("goals.manager.moveDown", {
+                          title: goal.title,
+                        })}
                         className={`${secondaryButton} px-2.5`}
                       >
                         <ArrowDown aria-hidden="true" className="h-3.5 w-3.5" />

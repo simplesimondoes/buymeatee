@@ -1,4 +1,6 @@
-import Link from "next/link";
+import { useTranslations } from "next-intl";
+
+import { Link } from "@/i18n/navigation";
 
 type LogoProps = {
   /** "dark" = ink text for light backgrounds; "light" = white text for dark backgrounds. */
@@ -21,12 +23,13 @@ export function Wordmark({ className }: { className?: string }) {
 }
 
 export function Logo({ variant = "dark", className }: LogoProps) {
+  const t = useTranslations("common");
   const colour = variant === "dark" ? "text-forest" : "text-white";
   return (
     <Link
       href="/"
       className={`inline-flex items-center ${colour} ${className ?? ""}`}
-      aria-label="BuyMeATee — home"
+      aria-label={t("brand.homeAria")}
     >
       <Wordmark />
     </Link>

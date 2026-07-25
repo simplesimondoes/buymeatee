@@ -1,6 +1,7 @@
-import { fireEvent, render, screen, waitFor } from "@testing-library/react";
+import { fireEvent, screen, waitFor } from "@testing-library/react";
 import { afterEach, describe, expect, it, vi } from "vitest";
 
+import { renderWithIntl } from "@/test/i18n-test-utils";
 import { GiftComposer } from "@/components/payments/gift-composer";
 import {
   SupportTargetProvider,
@@ -36,7 +37,7 @@ const goal = {
 };
 
 function renderComposer(extra?: React.ReactNode) {
-  return render(
+  return renderWithIntl(
     <SupportTargetProvider>
       <GiftComposer
         recipientUsername="james"
@@ -82,7 +83,7 @@ describe("GiftComposer target scoping", () => {
     );
 
     expect(screen.getByText("Play every Open venue")).toBeInTheDocument();
-    expect(screen.getByText(/£620\.00 of £1000\.00 · 62%/)).toBeInTheDocument();
+    expect(screen.getByText(/£620\.00 of £1,000\.00 · 62%/)).toBeInTheDocument();
   });
 
   it("submits the chosen goal id to checkout", async () => {
@@ -107,7 +108,8 @@ describe("GiftComposer target scoping", () => {
     );
 
     await waitFor(() => expect(fetchMock).toHaveBeenCalled());
-    const body = JSON.parse(fetchMock.mock.calls[0][1].body as string);
+    const [, init] = fetchMock.mock.calls[0] as unknown as [string, RequestInit];
+    const body = JSON.parse(init.body as string);
     expect(body.goalId).toBe(GOAL_ID);
     expect(body.wishlistItemId).toBeUndefined();
   });

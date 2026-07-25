@@ -1,19 +1,49 @@
 import type { Metadata } from "next";
 
+import {
+  defaultLocale,
+  locales,
+  ogLocale,
+  type AppLocale,
+} from "@/i18n/locales";
 import { siteConfig } from "@/lib/site";
 
 type PageMetadataInput = {
   title: string;
   description: string;
-  /** Route path beginning with "/", e.g. "/for-creators" */
+  /** Route path beginning with "/", without a locale prefix, e.g. "/for-creators" */
   path: string;
-  ogType?: "website" | "article";
+  locale: AppLocale;
+  ogType?: "website" | "article" | "profile";
+  /**
+   * Skip hreflang alternates. Use for noindex surfaces (creator pages, gift
+   * confirmations) where alternate-language hints are pointless.
+   */
+  noHreflang?: boolean;
 };
 
-/** Absolute canonical URL for a route path. */
-export function canonicalUrl(path: string): string {
+/** "/de" + path, with the bare root collapsing to "/de". */
+export function localizedPath(path: string, locale: AppLocale): string {
+  return path === "/" ? `/${locale}` : `/${locale}${path}`;
+}
+
+/** Absolute, self-referencing canonical URL for a locale-prefixed route. */
+export function canonicalUrl(path: string, locale: AppLocale): string {
   const base = siteConfig.url.replace(/\/$/, "");
-  return path === "/" ? `${base}/` : `${base}${path}`;
+  return `${base}${localizedPath(path, locale)}`;
+}
+
+/**
+ * hreflang map for an indexable route: every supported locale plus
+ * x-default pointing at the English URL.
+ */
+export function hreflangAlternates(path: string): Record<string, string> {
+  return {
+    ...Object.fromEntries(
+      locales.map((locale) => [locale, canonicalUrl(path, locale)]),
+    ),
+    "x-default": canonicalUrl(path, defaultLocale),
+  };
 }
 
 /**
@@ -29,26 +59,35 @@ const defaultOgImage = {
 };
 
 /**
- * Build unique, accurate metadata for a route.
- * Title is passed through the root layout's title template.
+ * Build unique, accurate metadata for a route in a given locale.
+ * Canonicals are self-referencing per locale — a German page must never
+ * canonicalise to the English version.
  */
 export function pageMetadata({
   title,
   description,
   path,
+  locale,
   ogType = "website",
+  noHreflang = false,
 }: PageMetadataInput): Metadata {
-  const url = canonicalUrl(path);
+  const url = canonicalUrl(path, locale);
   return {
     title,
     description,
-    alternates: { canonical: url },
+    alternates: {
+      canonical: url,
+      ...(noHreflang ? {} : { languages: hreflangAlternates(path) }),
+    },
     openGraph: {
       title,
       description,
       url,
       siteName: siteConfig.name,
-      locale: siteConfig.locale,
+      locale: ogLocale[locale],
+      alternateLocale: noHreflang
+        ? undefined
+        : locales.filter((l) => l !== locale).map((l) => ogLocale[l]),
       type: ogType,
       images: [defaultOgImage],
     },
@@ -60,28 +99,37 @@ export function pageMetadata({
   };
 }
 
-/** Root metadata for app/layout.tsx. */
-export function rootMetadata(): Metadata {
+/** Root metadata for app/[locale]/layout.tsx. */
+export function rootMetadata(
+  locale: AppLocale,
+  {
+    title = siteConfig.defaultTitle,
+    description = siteConfig.description,
+  }: { title?: string; description?: string } = {},
+): Metadata {
   return {
     metadataBase: new URL(siteConfig.url),
     title: {
-      default: siteConfig.defaultTitle,
+      default: title,
       template: siteConfig.titleTemplate,
     },
-    description: siteConfig.description,
-    alternates: { canonical: canonicalUrl("/") },
+    description,
+    alternates: {
+      canonical: canonicalUrl("/", locale),
+      languages: hreflangAlternates("/"),
+    },
     openGraph: {
-      title: siteConfig.defaultTitle,
-      description: siteConfig.description,
-      url: canonicalUrl("/"),
+      title,
+      description,
+      url: canonicalUrl("/", locale),
       siteName: siteConfig.name,
-      locale: siteConfig.locale,
+      locale: ogLocale[locale],
       type: "website",
     },
     twitter: {
       card: "summary_large_image",
-      title: siteConfig.defaultTitle,
-      description: siteConfig.description,
+      title,
+      description,
     },
   };
 }

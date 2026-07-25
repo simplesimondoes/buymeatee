@@ -1,0 +1,190 @@
+{
+  "nav": {
+    "label": "Admin-Bereiche",
+    "payments": "Zahlungen",
+    "users": "Nutzer:innen",
+    "moderation": "Moderation"
+  },
+  "meta": {
+    "payments": {
+      "title": "Zahlungen (Admin)"
+    },
+    "users": {
+      "title": "Nutzer:innen (Admin)"
+    },
+    "userDetail": {
+      "title": "Nutzer:in (Admin)"
+    },
+    "moderation": {
+      "title": "Moderation (Admin)"
+    }
+  },
+  "common": {
+    "eyebrow": "Admin",
+    "search": "Suchen",
+    "noName": "(ohne Namen)"
+  },
+  "statuses": {
+    "gift": {
+      "draft": "Entwurf",
+      "checkout_created": "Checkout erstellt",
+      "processing": "In Bearbeitung",
+      "paid": "Bezahlt",
+      "payment_failed": "Zahlung fehlgeschlagen",
+      "expired": "Abgelaufen",
+      "partially_refunded": "Teilweise erstattet",
+      "refunded": "Erstattet",
+      "disputed": "Angefochten",
+      "dispute_won": "Streitfall gewonnen",
+      "dispute_lost": "Streitfall verloren",
+      "cancelled": "Storniert"
+    },
+    "goal": {
+      "draft": "Entwurf",
+      "active": "Aktiv",
+      "completed": "Abgeschlossen",
+      "archived": "Archiviert"
+    },
+    "payment": {
+      "not_started": "Nicht eingerichtet",
+      "onboarding_not_started": "Onboarding nicht gestartet",
+      "onboarding_incomplete": "Onboarding unvollständig",
+      "information_required": "Angaben erforderlich",
+      "verification_pending": "Verifizierung ausstehend",
+      "ready": "Bereit",
+      "payments_restricted": "Zahlungen eingeschränkt",
+      "payouts_disabled": "Auszahlungen deaktiviert"
+    },
+    "role": {
+      "creator": "Creator",
+      "supporter": "Unterstützer:in"
+    },
+    "account": {
+      "active": "Aktiv",
+      "deactivated": "Deaktiviert"
+    }
+  },
+  "payments": {
+    "title": "Zahlungen",
+    "searchLabel": "Suche (öffentliche Tee-ID, cs_…, pi_… oder Empfänger-Username)",
+    "statusLabel": "Status",
+    "statusAll": "Alle",
+    "unavailable": "Zahlungsdaten sind gerade nicht verfügbar.",
+    "reconciliationErrorsHeading": "Abgleichsfehler — manuelle Prüfung erforderlich",
+    "giftsHeading": "Tees (neueste)",
+    "giftsHeadingMatching": "Tees passend zu „{query}“",
+    "table": {
+      "created": "Erstellt",
+      "publicId": "Öffentliche ID",
+      "recipient": "Empfänger:in",
+      "sender": "Absender:in",
+      "gift": "Tee",
+      "platformFee": "Plattformgebühr",
+      "total": "Gesamt",
+      "status": "Status",
+      "refunded": "Erstattet",
+      "stripe": "Stripe"
+    },
+    "anonymousSender": "(anonym)",
+    "testMode": "(Test)",
+    "openInStripe": "Öffnen",
+    "empty": "Keine Tees gefunden.",
+    "refund": {
+      "heading": "Ein Tee erstatten",
+      "description": "Nur vollständige Erstattungen (MVP): macht den Transfer an die Empfängerseite rückgängig und erstattet die Plattformgebühr. Bestätigung per Webhook."
+    },
+    "reconcile": {
+      "heading": "Abgleich",
+      "description": "Prüft Tees, die in Entwurf / Zahlung ausstehend / in Bearbeitung feststecken, gegen Stripe und repariert sichere Abweichungen."
+    }
+  },
+  "moderation": {
+    "title": "Moderation",
+    "intro": "Kürzlich geänderte öffentliche Inhalte, neueste zuerst. Entfernungen halten eine Begründung im Audit-Log fest; entfernter Text bleibt dort ebenfalls erhalten. Richtlinien-Entwurf: <policy>docs/moderation-policy.md</policy> (juristische Prüfung ausstehend).",
+    "unavailable": "Die Moderation ist gerade nicht verfügbar.",
+    "goalsSectionLabel": "Neueste Ziele",
+    "goalsHeading": "Ziele ({count})",
+    "goalsEmpty": "Noch keine Ziele.",
+    "takenDownBadge": "Entfernt",
+    "goalTarget": "Zielbetrag {amount}",
+    "profilesSectionLabel": "Neueste Profile",
+    "profilesHeading": "Profile mit öffentlichen Inhalten ({count})",
+    "profilesEmpty": "Noch keine Profile mit Bio oder Foto.",
+    "takeDownButton": "Entfernen",
+    "restoreButton": "Wiederherstellen",
+    "clearBioButton": "Bio löschen",
+    "removePhotoButton": "Foto entfernen"
+  },
+  "action": {
+    "reasonRequired": "Gib eine Begründung an — sie landet im Audit-Log.",
+    "reasonFor": "Begründung für {label}",
+    "reasonPlaceholder": "Begründung (im Audit-Log erfasst)",
+    "confirm": "Bestätigen",
+    "cancel": "Abbrechen"
+  },
+  "users": {
+    "title": "Nutzer:innen",
+    "searchLabel": "Suche nach Username, Anzeigename oder Nutzer-ID",
+    "searchPlaceholder": "Username, Anzeigename oder Nutzer-ID",
+    "unavailable": "Die Nutzersuche ist gerade nicht verfügbar.",
+    "empty": "Keine passenden Profile.",
+    "table": {
+      "profile": "Profil",
+      "publicLink": "Öffentlicher Link",
+      "role": "Rolle",
+      "status": "Status",
+      "joined": "Beigetreten"
+    }
+  },
+  "userDetail": {
+    "breadcrumb": "Admin · Nutzer:innen",
+    "deactivatedOn": "Deaktiviert am {date}",
+    "profileHeading": "Profil",
+    "fields": {
+      "userId": "Nutzer-ID",
+      "publicLink": "Öffentlicher Link",
+      "role": "Rolle",
+      "country": "Land",
+      "bio": "Bio",
+      "joined": "Beigetreten"
+    },
+    "linkNotClaimed": "nicht beansprucht",
+    "paymentsHeading": "Zahlungen",
+    "stripeState": "Stripe-Status",
+    "canReceiveTees": "(kann Tees empfangen)",
+    "teesReceived": "Erhaltene Tees",
+    "teesNone": "keine",
+    "teeTotal": "{count} · {amount}",
+    "goalsHeading": "Ziele ({count})",
+    "goalsEmpty": "Keine Ziele.",
+    "goalProgress": "{raised} von {target}",
+    "actionsLabel": "Aktionen",
+    "reinstateHeading": "Reaktivieren",
+    "deactivateHeading": "Deaktivieren",
+    "reinstateDescription": "Die Reaktivierung stellt die öffentliche Seite wieder her und macht den Empfang von Tees wieder möglich.",
+    "deactivateDescription": "Die Deaktivierung verbirgt die öffentliche Seite und blockiert neue Tees. Abgewickelte Zahlungen und Auszahlungen bleiben unberührt.",
+    "auditHeading": "Audit-Verlauf"
+  },
+  "userStatus": {
+    "reasonLabel": "Begründung (im Audit-Log erfasst)",
+    "reinstatePlaceholder": "z. B. Problem mit dem Creator geklärt",
+    "deactivatePlaceholder": "z. B. Verstoß gegen die Nutzungsbedingungen: irreführende Zielangaben",
+    "reinstateButton": "Profil reaktivieren",
+    "deactivateButton": "Profil deaktivieren"
+  },
+  "tools": {
+    "refund": {
+      "giftIdLabel": "Öffentliche Tee-ID",
+      "reasonLabel": "Begründung (auditiert)",
+      "submit": "Vollständige Erstattung auslösen",
+      "success": "Erstattung {refundId} erstellt. Das Tee wird aktualisiert, sobald Stripe per Webhook bestätigt.",
+      "failed": "Erstattung fehlgeschlagen."
+    },
+    "reconcile": {
+      "run": "Feststeckende Tees abgleichen",
+      "report": "{scanned} geprüft: {markedPaid} bezahlt, {markedExpired} abgelaufen, {markedFailed} fehlgeschlagen, {cancelledDrafts} Entwürfe storniert, {stillPending} ausstehend, markiert: {flagged}.",
+      "flaggedNone": "keine",
+      "failed": "Abgleich fehlgeschlagen."
+    }
+  }
+}

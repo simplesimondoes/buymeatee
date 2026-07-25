@@ -1,0 +1,253 @@
+{
+  "meta": {
+    "about": {
+      "title": "About",
+      "description": "Why BuyMeATee exists: golf audiences deserve a more meaningful way to support the players and creators they follow. A tee creates a story a coffee never could."
+    },
+    "howItWorks": {
+      "title": "How It Works",
+      "description": "How BuyMeATee works for golf creators and supporters: share a goal, buy a tee, follow the journey. Simple, transparent and built for golf."
+    },
+    "forCreators": {
+      "title": "For Golf Creators",
+      "description": "Turn followers into part of the journey. BuyMeATee helps golf creators, amateur competitors, coaches and reviewers receive goal-based support from their community."
+    },
+    "forSupporters": {
+      "title": "For Golf Fans & Supporters",
+      "description": "Back the golfers you believe in. Discover creators, choose a goal and buy them a tee — then follow the journey you helped make possible."
+    }
+  },
+  "badge": {
+    "example": "Example",
+    "preview": "Preview",
+    "concept": "Concept"
+  },
+  "cta": {
+    "defaultHeading": "Ready to support the journey?",
+    "defaultBody": "Create your page and start sharing your golf goals from the first tee.",
+    "start": "Start your page",
+    "how": "See how it works"
+  },
+  "notFound": {
+    "metaTitle": "Page not found",
+    "heading": "That one's out of bounds.",
+    "body": "The page you're looking for doesn't exist — let's get you back on the fairway.",
+    "backHome": "Back to the homepage",
+    "howItWorks": "See how BuyMeATee works"
+  },
+  "about": {
+    "breadcrumb": "About",
+    "eyebrow": "About",
+    "heading": "Why BuyMeATee exists",
+    "quote": "BuyMeATee was created from the belief that golf audiences want a more meaningful way to support the players and creators they follow. A coffee is quickly forgotten; a tee, a round, a tournament entry or a journey creates a story.",
+    "paragraphGap": "Golf has a funding gap hiding in plain sight. The creators filming course reviews, the amateurs grinding through qualifying seasons, the coaches sharing what they know, the juniors coming through — they all carry real costs: green fees, entries, travel, equipment, production. Meanwhile, the audiences who love watching those journeys have no golf-native way to help beyond a generic tip.",
+    "paragraphClose": "BuyMeATee closes that gap with support that speaks golf. Instead of a coffee, you buy a tee. Instead of a vague donation, you back a specific goal — and then you follow it: the progress, the setbacks, the milestone when it finally lands. Support becomes participation.",
+    "paragraphJoin": "We're at the start of our own journey, building BuyMeATee in the open with the creators and supporters who <link>sign up</link>. If that sounds like a round you'd want in on, we'd love to have you.",
+    "cta": {
+      "heading": "Help shape BuyMeATee.",
+      "body": "The creators and supporters who join now help influence what gets built first."
+    }
+  },
+  "howItWorks": {
+    "breadcrumb": "How it works",
+    "eyebrow": "How it works",
+    "heading": "Simple. Transparent. Golf.",
+    "intro": "Two journeys, one platform: creators share real golfing goals, supporters help make them happen. Here's how each side works.",
+    "lead": "The journeys below walk through how each side of BuyMeATee works, step by step.",
+    "creator": {
+      "eyebrow": "The creator journey",
+      "heading": "Share the journey",
+      "steps": {
+        "createPage": {
+          "title": "Create a page",
+          "body": "Your profile, your story, your journey — set up in minutes."
+        },
+        "shareStory": {
+          "title": "Share your story",
+          "body": "Tell people who you are, what you play and where you're heading."
+        },
+        "addGoal": {
+          "title": "Add a goal",
+          "body": "Something specific and real: a trip, a season, an entry, a series."
+        },
+        "shareLink": {
+          "title": "Share your link",
+          "body": "Drop your page link where your audience already follows you."
+        },
+        "receiveSupport": {
+          "title": "Receive support",
+          "body": "Tees, holes, rounds and green fees from the people backing you."
+        },
+        "postUpdates": {
+          "title": "Post updates",
+          "body": "Keep supporters close to the journey they're helping to fund."
+        }
+      }
+    },
+    "supporter": {
+      "eyebrow": "The supporter journey",
+      "heading": "Back the journey",
+      "steps": {
+        "discover": {
+          "title": "Discover a creator",
+          "body": "Follow their link from YouTube, TikTok, Instagram or the course."
+        },
+        "chooseGoal": {
+          "title": "Choose a goal",
+          "body": "Pick the journey that resonates — and see exactly what it needs."
+        },
+        "buyTee": {
+          "title": "Buy a tee",
+          "body": "One tee, three tees, nine holes, a round, a green fee — or your own amount."
+        },
+        "leaveMessage": {
+          "title": "Leave a message",
+          "body": "A word of encouragement travels further than you'd think."
+        },
+        "followProgress": {
+          "title": "Follow progress",
+          "body": "Watch the goal move closer with every update."
+        },
+        "celebrate": {
+          "title": "Celebrate milestones",
+          "body": "When the goal lands, you're part of the story."
+        }
+      }
+    },
+    "why": {
+      "eyebrow": "Why it matters",
+      "heading": "Golf journeys are better shared",
+      "intro": "Green fees, entries, travel and gear add up fast — and the golfers creating the content and chasing the goals usually carry it all themselves. BuyMeATee spreads that weight across the community that wants to see them succeed."
+    }
+  },
+  "forCreators": {
+    "breadcrumb": "For creators",
+    "eyebrow": "For golf creators",
+    "heading": "Turn followers into part of the journey.",
+    "intro": "You create the content, play the tournaments and put in the practice. BuyMeATee gives the people who follow you a meaningful, golf-native way to back what you're working towards.",
+    "who": {
+      "eyebrow": "Who it's for",
+      "heading": "Made for emerging golfers, not just famous ones",
+      "intro": "If you have a journey worth following, you belong here — whatever the size of your audience.",
+      "audiences": {
+        "youtube": "YouTube golf creators",
+        "shortForm": "TikTok and Instagram golf creators",
+        "amateur": "Amateur tournament golfers",
+        "aspiringPro": "Aspiring professionals",
+        "coaches": "Golf coaches",
+        "reviewers": "Course reviewers",
+        "travel": "Golf travel creators",
+        "womens": "Women's golf creators",
+        "adaptive": "Adaptive golf creators"
+      },
+      "juniorsNote": "Junior golfers are welcome through a parent or guardian. Accounts involving anyone under 18 will always require an appropriate parent or guardian — minors will never enter financial agreements independently on BuyMeATee."
+    },
+    "goals": {
+      "eyebrow": "Goal-based support",
+      "heading": "Specific goals beat vague tips",
+      "intro": "Supporters respond to something real: a trip they can follow, a season they can back, a milestone they can celebrate with you. Goals give your community a reason to take part — and show them exactly what they helped make possible."
+    },
+    "benefits": {
+      "eyebrow": "Why creators join",
+      "heading": "Keep creating. Keep playing.",
+      "items": {
+        "story": "Share your story and goals with the people who already follow you",
+        "support": "Receive direct support from your community towards specific goals",
+        "updates": "Keep supporters updated with progress and milestones",
+        "celebrate": "Celebrate what your community helped make possible",
+        "time": "Spend more time creating and playing, less time chasing sponsorship"
+      }
+    },
+    "workflow": {
+      "eyebrow": "Creator workflow",
+      "heading": "How your page works",
+      "intro": "From setting up your page to celebrating a completed goal — here's the workflow end to end.",
+      "stepLabel": "Step {number}",
+      "steps": {
+        "createPage": {
+          "title": "Create your page",
+          "body": "Set up your profile, your story and what you're working towards."
+        },
+        "addGoal": {
+          "title": "Add a goal",
+          "body": "A trip, a season, an entry, new equipment — something real and specific."
+        },
+        "shareLink": {
+          "title": "Share your link",
+          "body": "Put your BuyMeATee link wherever your audience already is."
+        },
+        "receiveSupport": {
+          "title": "Receive support",
+          "body": "Supporters buy tees, holes, rounds or green fees towards your goal."
+        },
+        "postUpdates": {
+          "title": "Post updates",
+          "body": "Show progress and bring your supporters along for the ride."
+        },
+        "reachGoal": {
+          "title": "Reach the goal",
+          "body": "Celebrate it with the community that made it happen — then set the next one."
+        }
+      },
+      "supporterView": "Want the supporter view? <link>See how supporters take part</link>.",
+      "startCta": "Start your page"
+    },
+    "cta": {
+      "heading": "Your journey deserves backing.",
+      "body": "Set up your page and start sharing your golf goals on BuyMeATee."
+    }
+  },
+  "forSupporters": {
+    "breadcrumb": "For supporters",
+    "eyebrow": "For golf fans",
+    "heading": "Support the golfers you believe in.",
+    "intro": "A coffee is quickly forgotten. A tee, a round or a tournament entry becomes part of a story — one you helped write.",
+    "meaning": {
+      "eyebrow": "What buying a tee means",
+      "heading": "Small gestures, real momentum",
+      "intro": "Buying a tee is golf's version of saying keep going. It's a contribution towards something specific — a green fee, a tournament entry, the travel to get there — sized so anyone can take part.",
+      "body": "Every contribution sits against a visible goal with visible progress, so you always know what you're helping to make happen — and creators always know who to thank."
+    },
+    "how": {
+      "eyebrow": "How supporting works",
+      "heading": "From follower to part of the story",
+      "steps": {
+        "discover": {
+          "title": "Discover golfers",
+          "body": "Find creators through their own channels first — every creator shares their BuyMeATee link with their audience. Creator discovery inside the platform is planned for later."
+        },
+        "chooseGoal": {
+          "title": "Choose a goal",
+          "body": "Each creator shares specific goals — a trip, a season, an entry, a series. Pick the one that resonates and see exactly what your support goes towards."
+        },
+        "buyTee": {
+          "title": "Buy them a tee",
+          "body": "Choose a contribution that feels right: one tee, three tees, nine holes, a full round, a green fee or your own amount. Small support, made tangible."
+        },
+        "followProgress": {
+          "title": "Follow the progress",
+          "body": "Creators will post updates and milestones so you can see the goal getting closer — and know the part you played when it lands. (Planned for launch.)"
+        },
+        "collect": {
+          "title": "Collect the journey",
+          "body": "Badges and collections marking the goals you've backed are on the roadmap — a record of the journeys you've been part of. (Planned for after launch.)"
+        }
+      }
+    },
+    "boundary": {
+      "heading": "Support, plainly defined",
+      "body": "Supporting a golfer on BuyMeATee is exactly that — support. It is not an investment, it does not buy ownership or a share of anyone's career, and it does not guarantee content, results or rewards. What you get is honest: progress you can follow, milestones you helped reach, and a genuine connection to a journey you believe in.",
+      "payments": "Payments are processed securely by Stripe, and every contribution goes to the creator's connected account. See <link>the FAQ</link> for how payments and fees work.",
+      "joinCta": "Join as a supporter"
+    },
+    "cta": {
+      "heading": "Be part of someone's next round.",
+      "body": "Find a golfer whose journey you believe in and follow it from the start."
+    }
+  },
+  "goalCard": {
+    "raisedOfTarget": "{raised} of {target}",
+    "progressLabel": "Progress towards {title} (example)",
+    "seeHow": "See how goals work"
+  }
+}

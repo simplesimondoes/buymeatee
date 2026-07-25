@@ -27,14 +27,15 @@ export function CountrySelect({
   onChange,
   options,
   id,
-  label = "Your country",
+  label,
 }: {
   value: string;
   onChange: (code: string) => void;
   options: CountryOption[];
   /** Id for the trigger button, so an external <label> can point at it. */
   id?: string;
-  label?: string;
+  /** Accessible name for the trigger and listbox — pass a translated string. */
+  label: string;
 }) {
   const [open, setOpen] = useState(false);
   const generatedId = useId();

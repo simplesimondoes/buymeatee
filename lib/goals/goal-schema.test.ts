@@ -37,24 +37,30 @@ describe("validateGoalInput", () => {
     }
   });
 
-  it("rejects a missing or oversize title", () => {
+  it("rejects a missing or oversize title with a coded error", () => {
     for (const title of ["", "   ", "x".repeat(GOAL_TITLE_MAX_LENGTH + 1)]) {
       const result = validateGoalInput({ ...valid, title });
       expect(result.ok).toBe(false);
       if (!result.ok) {
-        expect(result.errors.title).toBeDefined();
+        expect(result.errors.title).toEqual({
+          code: "validation.goal.title",
+          params: { max: GOAL_TITLE_MAX_LENGTH },
+        });
       }
     }
   });
 
-  it("rejects an oversize description", () => {
+  it("rejects an oversize description with a coded error", () => {
     const result = validateGoalInput({
       ...valid,
       description: "x".repeat(GOAL_DESCRIPTION_MAX_LENGTH + 1),
     });
     expect(result.ok).toBe(false);
     if (!result.ok) {
-      expect(result.errors.description).toBeDefined();
+      expect(result.errors.description).toEqual({
+        code: "validation.goal.description",
+        params: { max: GOAL_DESCRIPTION_MAX_LENGTH },
+      });
     }
   });
 
@@ -62,7 +68,9 @@ describe("validateGoalInput", () => {
     const result = validateGoalInput({ ...valid, currency: "jpy" });
     expect(result.ok).toBe(false);
     if (!result.ok) {
-      expect(result.errors.currency).toBeDefined();
+      expect(result.errors.currency).toEqual({
+        code: "validation.goal.currency",
+      });
     }
   });
 
@@ -71,7 +79,9 @@ describe("validateGoalInput", () => {
       const result = validateGoalInput({ ...valid, targetAmount });
       expect(result.ok).toBe(false);
       if (!result.ok) {
-        expect(result.errors.targetAmount).toBeDefined();
+        expect(result.errors.targetAmount).toEqual({
+          code: "validation.goal.targetAmount",
+        });
       }
     }
   });
@@ -80,9 +90,11 @@ describe("validateGoalInput", () => {
     const result = validateGoalInput(null);
     expect(result.ok).toBe(false);
     if (!result.ok) {
-      expect(result.errors.title).toBeDefined();
-      expect(result.errors.currency).toBeDefined();
-      expect(result.errors.targetAmount).toBeDefined();
+      expect(result.errors.title?.code).toBe("validation.goal.title");
+      expect(result.errors.currency?.code).toBe("validation.goal.currency");
+      expect(result.errors.targetAmount?.code).toBe(
+        "validation.goal.targetAmount",
+      );
     }
   });
 });

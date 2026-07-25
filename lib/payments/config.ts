@@ -207,14 +207,15 @@ export function getStripeUrls() {
       "STRIPE_CONNECT_REFRESH_URL",
       "/api/connect/refresh",
     ),
-    // {GIFT_PUBLIC_ID} is replaced per checkout session.
+    // {GIFT_PUBLIC_ID} and {LOCALE} are replaced per checkout session, so
+    // supporters return to the confirmation page in their own language.
     checkoutSuccessUrl: readSameOriginUrlEnv(
       "STRIPE_CHECKOUT_SUCCESS_URL",
-      "/gifts/{GIFT_PUBLIC_ID}/thanks",
+      "/{LOCALE}/gifts/{GIFT_PUBLIC_ID}/thanks",
     ),
     checkoutCancelUrl: readSameOriginUrlEnv(
       "STRIPE_CHECKOUT_CANCEL_URL",
-      "/gifts/{GIFT_PUBLIC_ID}/cancelled",
+      "/{LOCALE}/gifts/{GIFT_PUBLIC_ID}/cancelled",
     ),
   };
 }

@@ -2,7 +2,11 @@
 
 import { LoaderCircle } from "lucide-react";
 import { useRouter } from "next/navigation";
+import { useTranslations } from "next-intl";
 import { useState } from "react";
+
+import { useErrorMessage } from "@/components/intl/use-error-message";
+import type { ErrorDetail } from "@/lib/i18n/errors";
 
 /**
  * Deactivate / reinstate a profile. The reason is mandatory — it becomes the
@@ -15,6 +19,8 @@ export function UserStatusActions({
   userId: string;
   isDeactivated: boolean;
 }) {
+  const t = useTranslations("admin");
+  const errorMessage = useErrorMessage();
   const router = useRouter();
   const [reason, setReason] = useState("");
   const [busy, setBusy] = useState(false);
@@ -23,7 +29,7 @@ export function UserStatusActions({
   async function submit() {
     setError(null);
     if (reason.trim().length === 0) {
-      setError("Add a reason — it goes in the audit log.");
+      setError(t("action.reasonRequired"));
       return;
     }
     setBusy(true);
@@ -41,12 +47,12 @@ export function UserStatusActions({
         router.refresh();
       } else {
         const body = (await response.json().catch(() => ({}))) as {
-          error?: string;
+          error?: ErrorDetail;
         };
-        setError(body.error ?? "Something went wrong. Please try again.");
+        setError(errorMessage(body.error ?? null));
       }
     } catch {
-      setError("Something went wrong. Please try again.");
+      setError(errorMessage(null));
     }
     setBusy(false);
   }
@@ -58,7 +64,7 @@ export function UserStatusActions({
           htmlFor="admin-action-reason"
           className="block text-sm font-medium text-ink/80"
         >
-          Reason (audit-logged)
+          {t("userStatus.reasonLabel")}
         </label>
         <input
           id="admin-action-reason"
@@ -68,8 +74,8 @@ export function UserStatusActions({
           onChange={(event) => setReason(event.target.value)}
           placeholder={
             isDeactivated
-              ? "e.g. Issue resolved with the creator"
-              : "e.g. Terms breach: misleading goal claims"
+              ? t("userStatus.reinstatePlaceholder")
+              : t("userStatus.deactivatePlaceholder")
           }
           className="mt-1.5 w-full rounded-xl border border-stone bg-white px-4 py-2.5 text-sm text-ink placeholder:text-ink/40 focus:border-forest focus:outline-none focus:ring-2 focus:ring-forest/20"
         />
@@ -87,7 +93,9 @@ export function UserStatusActions({
         {busy ? (
           <LoaderCircle aria-hidden="true" className="h-4 w-4 animate-spin" />
         ) : null}
-        {isDeactivated ? "Reinstate profile" : "Deactivate profile"}
+        {isDeactivated
+          ? t("userStatus.reinstateButton")
+          : t("userStatus.deactivateButton")}
       </button>
       {error ? (
         <p role="alert" className="text-sm text-red-800">

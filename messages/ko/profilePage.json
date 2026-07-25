@@ -1,0 +1,95 @@
+{
+  "metadata": {
+    "title": "{name}님에게 티 선물하기",
+    "description": "{name}님의 골프 여정을 티로 응원하세요.",
+    "descriptionWithGoal": "{name}님의 골프 여정을 티로 응원하세요 — 진짜 목표를 응원하고 이뤄지는 걸 지켜보세요.",
+    "imageAlt": "BuyMeATee에서 {name}님 응원하기"
+  },
+  "unavailable": {
+    "metaTitle": "페이지를 이용할 수 없음",
+    "heading": "지금은 이 페이지를 이용할 수 없어요.",
+    "body": "현재 티를 받을 수 없는 상태예요. 오류라고 생각되시면 나중에 다시 확인해 주세요."
+  },
+  "hero": {
+    "kicker": "여정을 응원하세요",
+    "handicap": "핸디캡 {handicap}",
+    "websiteLabel": "웹사이트"
+  },
+  "about": {
+    "heading": "소개",
+    "sectionLabel": "{name}님 소개"
+  },
+  "stats": {
+    "supporters": "{count, plural, other {서포터}}",
+    "goalsReached": "{count, plural, other {달성한 목표}}",
+    "updates": "{count, plural, other {소식}}",
+    "joinedLabel": "가입",
+    "joined": "{date} 가입"
+  },
+  "cta": {
+    "supportGoal": "이 목표 응원하기",
+    "buyTee": "{name}님에게 티 선물하기"
+  },
+  "supportHero": {
+    "currentGoal": "현재 목표",
+    "raisedOfTarget": "{target} 중 {raised}",
+    "goalOnly": "목표 {target}",
+    "beFirst": "첫 번째가 되어 주세요",
+    "progressLabel": "{title} 진행 상황: {target} 중 {raised} 모임"
+  },
+  "notAccepting": {
+    "heading": "{name}님은 아직 티를 받을 수 없어요.",
+    "body": "결제 설정이 아직 끝나지 않았어요 — 곧 다시 확인해 주세요.",
+    "finishSetup": "결제 설정 마치기"
+  },
+  "goals": {
+    "sectionLabel": "목표",
+    "heading": "{name}님의 목표",
+    "beyondGoal": "— 목표를 넘어섰어요!",
+    "justStarted": "이제 막 시작했어요 — 첫 번째 서포터가 되어 주세요.",
+    "supportedBy": "{count, plural, other {골퍼 #명이 응원했어요}}",
+    "completedHeading": "서포터들이 가능하게 했어요",
+    "completedRaised": "— {amount} 모임",
+    "emptyOwnerBody": "아직 페이지에 목표가 없어요. 목표가 있으면 서포터가 함께할 실질적인 대상이 생겨요.",
+    "addFirstGoal": "첫 목표 추가하기",
+    "noActiveOwner": "지금 진행 중인 목표가 없어요 — <link>하나 게시해서</link> 서포터가 응원할 대상을 만들어 주세요."
+  },
+  "wishlist": {
+    "sectionLabel": "위시리스트",
+    "heading": "{name}님의 위시리스트",
+    "intro": "통째로 후원할 수 있는 구체적인 항목들이에요 — 하나 고르면 그걸로 끝이에요.",
+    "fundThis": "이 항목 후원하기",
+    "fundedHeading": "서포터가 후원 완료",
+    "emptyOwnerBody": "위시리스트가 비어 있어요. 서포터가 후원할 수 있는 구체적인 항목을 추가해 보세요 — 볼 한 박스, 참가비, 코칭 한 회.",
+    "addFirstItem": "첫 항목 추가하기"
+  },
+  "updates": {
+    "sectionLabel": "소식",
+    "heading": "{name}님의 소식",
+    "emptyOwnerHeading": "이 여정은 이제 막 시작됐어요.",
+    "emptyOwnerBody": "응원이 어디에 쓰이는지 소식으로 보여 주세요 — 진전이야말로 서포터가 다시 찾아오는 이유예요.",
+    "writeFirst": "첫 소식 쓰기"
+  },
+  "recentSupport": {
+    "sectionLabel": "최근 응원",
+    "heading": "최근 응원",
+    "empty": "이 프로젝트를 응원하는 첫 골퍼가 되어 주세요.",
+    "supported": "<supporter>{name}</supporter>님이 <sum>{amount}</sum>의 응원을 보냈어요",
+    "towardGoal": "— {title}에 보탬",
+    "fundedItem": "— {title} 후원 완료"
+  },
+  "pinnedMedia": {
+    "sectionLabel": "대표 미디어",
+    "iframeTitle": "대표 미디어",
+    "featuredLink": "대표 링크",
+    "featuredLinkAria": "대표 링크: {host}"
+  },
+  "ogCard": {
+    "kicker": "여정을 응원하세요",
+    "headline": "{name}님을 응원하세요",
+    "headlineFallback": "여정을 응원하세요.",
+    "tagline": "진짜 목표를 응원하고 골퍼의 여정을 지켜보세요.",
+    "goalLine": "{target} 중 {raised} · {percent}",
+    "goalLineFresh": "목표 {target} · 첫 번째 서포터가 되어 주세요"
+  }
+}

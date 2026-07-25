@@ -1,0 +1,260 @@
+{
+  "meta": {
+    "overview": {
+      "title": "ダッシュボード",
+      "description": "あなたのジャーニーをひと目で。"
+    },
+    "goals": {
+      "title": "あなたの目標",
+      "description": "サポーターが応援できる目標をページに設定しましょう。"
+    },
+    "updates": {
+      "title": "あなたの近況",
+      "description": "サポーターが追いかけられる進捗の近況を投稿しましょう。"
+    },
+    "wishlist": {
+      "title": "あなたのウィッシュリスト",
+      "description": "ジャーニーのためにサポーターが支援できる具体的なアイテムを掲載しましょう。"
+    },
+    "payments": {
+      "title": "受け取ったティー",
+      "description": "あなたのBuyMeATeeページを通じて受け取ったギフト。"
+    }
+  },
+  "nav": {
+    "sections": "ダッシュボードのセクション",
+    "overview": "概要",
+    "goals": "目標",
+    "wishlist": "ウィッシュリスト",
+    "updates": "近況",
+    "payments": "決済",
+    "profile": "プロフィール"
+  },
+  "eyebrow": "ダッシュボード",
+  "actions": {
+    "cancel": "キャンセル",
+    "edit": "編集",
+    "archive": "アーカイブ",
+    "delete": "削除",
+    "saveChanges": "変更を保存"
+  },
+  "paymentState": {
+    "not_started": "未設定",
+    "onboarding_not_started": "Stripeオンボーディング未開始",
+    "onboarding_incomplete": "Stripeオンボーディング未完了",
+    "information_required": "Stripeが追加情報を求めています",
+    "verification_pending": "Stripeで本人確認中",
+    "ready": "ティーを受け取れます",
+    "payments_restricted": "制限中 — Stripeでご確認ください",
+    "payouts_disabled": "出金は現在停止中"
+  },
+  "overview": {
+    "title": "あなたのジャーニー",
+    "pageCard": {
+      "ariaLabel": "あなたの公開ページ",
+      "title": "ティーが届くのは、あなたのページ",
+      "sharePage": "ページを共有",
+      "viewPage": "ページを見る"
+    },
+    "profileCard": {
+      "title": "プロフィール",
+      "link": "プロフィールを編集",
+      "unavailable": "プロフィール情報は現在利用できません。",
+      "fallbackName": "あなたのプロフィール",
+      "summaryWithBio": "あなたは<name>/t/{username}</name>の<name>{displayName}</name>です — 自己紹介は設定済みです。",
+      "summaryNoBio": "あなたは<name>/t/{username}</name>の<name>{displayName}</name>です — 自己紹介はまだありません。",
+      "noLink": "公開リンクがまだありません。buymeatee.com/t/の名前を取得して、サポーターに見つけてもらいましょう。"
+    },
+    "goalsCard": {
+      "title": "目標",
+      "link": "目標を管理",
+      "unavailable": "目標は現在利用できません。",
+      "activeCount": "ページで<strong>{count}</strong>件の{count, plural, other {目標}}を公開中です。",
+      "raised": "目標全体で{amounts}を達成しました。",
+      "noTees": "目標へのティーはまだありません。",
+      "empty": "ページに目標がまだありません。目標があると、サポーターは具体的なものを応援できます。"
+    },
+    "wishlistCard": {
+      "title": "ウィッシュリスト",
+      "link": "ウィッシュリストを管理",
+      "body": "サポーターがまるごと支援できる具体的なアイテムを掲載しましょう — ボール1箱、参加費、コーチングセッション、ラウンド後のビールなど。目標と並んで表示されます。"
+    },
+    "paymentsCard": {
+      "title": "決済",
+      "linkReady": "受け取ったティーを見る",
+      "linkSetup": "決済設定",
+      "unavailable": "決済状況は現在確認できません。",
+      "ready": "<strong>{state}</strong> — ティーはあなたのStripeアカウントに直接届きます。",
+      "notReady": "<strong>{state}</strong> — 完了するまで、サポーターはティーを送れません。"
+    },
+    "updatesCard": {
+      "title": "近況",
+      "link": "近況を投稿",
+      "body": "サポーターに進捗を共有しましょう — 新機能、マイルストーン、プレーしたラウンドなど。公開した近況はページに表示されます。"
+    }
+  },
+  "goals": {
+    "page": {
+      "title": "目標",
+      "intro": "目標があることで、応援はジャーニーになります。同時に3件まで公開できます — 進捗は実際のティーだけから積み上がり、手入力の数字は一切ありません。",
+      "unavailable": "目標は現在利用できません。しばらくしてからもう一度お試しください。"
+    },
+    "supportButton": "この目標を応援する",
+    "manager": {
+      "activeCount": "公開中の目標：{max, plural, other {最大#件}}のうち{count}件",
+      "newGoal": "新しい目標",
+      "emptyTitle": "あなたのジャーニーは、何を目指していますか？",
+      "emptyBody": "良い目標は具体的で現実的です：1シーズン分のグリーンフィー、予選会への遠征、大会参加費、コーチングのひとまとまりなど。たとえば「Qスクール参加費 — £425」<example>（例）</example>。公開した目標は、正直な進捗とともにページに表示されます。",
+      "addFirstGoal": "最初の目標を追加",
+      "saveGoal": "目標を保存",
+      "coverLabel": "目標のカバー画像",
+      "coverHelp": "JPEG、PNG、WebP（5 MBまで）。ページ上のこの目標カードの上部に表示されます。",
+      "status": {
+        "draft": "下書き",
+        "active": "ページに公開中",
+        "completed": "達成済み",
+        "archived": "アーカイブ済み"
+      },
+      "transitions": {
+        "publish": "ページに公開",
+        "markCompleted": "達成にする",
+        "takeOff": "ページから外す",
+        "reopen": "再開する",
+        "restore": "下書きに戻す"
+      },
+      "raised": "{target}のうち{raised}を<muted>達成</muted>",
+      "progressLabel": "{title}への進捗",
+      "milestoneReached": "🎉 目標達成！この瞬間をサポーターと共有しましょう。",
+      "milestoneProgress": "🏌️ 達成まで{percent}%まで来ました — 共有する絶好のタイミングです。",
+      "shareProgress": "進捗を共有",
+      "takenDown": "この目標はBuyMeATeeによって削除されたため、公開できません。誤りだと思われる場合は、サポートまでご連絡ください。",
+      "moveUp": "{title}を上へ移動",
+      "moveDown": "{title}を下へ移動"
+    },
+    "form": {
+      "titleLabel": "何を目指していますか？",
+      "titlePlaceholder": "1シーズン分の大会エントリー",
+      "descriptionLabel": "なぜ大切なのか",
+      "optional": "（任意）",
+      "descriptionPlaceholder": "この目標で何が実現できるのかをサポーターに伝えましょう — グリーンフィー、遠征、参加費、コーチングなど。",
+      "targetLabel": "目標額",
+      "targetPlaceholder": "500",
+      "currencyLabel": "通貨",
+      "currencyLockedHelp": "この目標はすでに応援を受けているため、通貨は変更できません。",
+      "currencyPayoutHelp": "サポーターが支援できるよう、目標にはあなたの出金通貨を使用します。"
+    }
+  },
+  "updates": {
+    "page": {
+      "title": "近況",
+      "intro": "応援がどこに生きているのかをサポーターに見せましょう — 新機能、マイルストーン、プレーしたラウンドなど。下書きは公開するまで非公開のままです。",
+      "unavailable": "近況は現在利用できません。しばらくしてからもう一度お試しください。"
+    },
+    "manager": {
+      "newUpdate": "新しい近況",
+      "emptyTitle": "進捗を共有しましょう。",
+      "emptyBody": "近況は、応援が実際の前進に変わっていく様子をサポーターに届ける手段です — 新機能、マイルストーン、プレーしたラウンド。まずは最初の1件を投稿してみましょう。",
+      "writeFirstUpdate": "最初の近況を書く",
+      "saveDraft": "下書きを保存",
+      "imageLabel": "近況の画像（任意）",
+      "imageHelp": "JPEG、PNG、WebP（5 MBまで）。ページ上でこの近況とともに表示されます。",
+      "draft": "下書き",
+      "published": "公開済み",
+      "publishedOn": "{date}に公開",
+      "publish": "公開する",
+      "unpublish": "非公開にする"
+    },
+    "form": {
+      "titleLabel": "タイトル",
+      "titlePlaceholder": "7月の近況 — 新規コース1,200件",
+      "bodyLabel": "本文",
+      "bodyPlaceholder": "何が新しくなりましたか？サポーターは進捗を見るのが大好きです。\n\nMarkdownが使えます：**太字**、- リスト、[リンク](https://…)。"
+    }
+  },
+  "wishlist": {
+    "page": {
+      "title": "ウィッシュリスト",
+      "intro": "サポーターがまるごと支援できる具体的なアイテムを掲載しましょう — ボール1箱、大会参加費、コーチングセッション、ラウンド後のビールなど。大きな目標と並んで表示されます。アイテムは、実際のティーで支払われたときにのみ「支援済み」と表示されます。",
+      "unavailable": "ウィッシュリストは現在利用できません。しばらくしてからもう一度お試しください。"
+    },
+    "manager": {
+      "itemCount": "ページに{count, plural, other {#件のアイテム}}を掲載中",
+      "newItem": "新しいアイテム",
+      "emptyTitle": "ジャーニーの助けになるものは何ですか？",
+      "emptyBody": "ウィッシュリストのアイテムは、具体的で手に取れるものにしましょう：ボール1箱、大会参加費、コーチングセッション、予選会への遠征、良いラウンドの後のビールでも構いません。たとえば「ツアーボール1ダース — £45」<example>（例）</example>。サポーターは1本のティーでアイテムをまるごと支援します。",
+      "addFirstItem": "最初のアイテムを追加",
+      "saveItem": "アイテムを保存",
+      "imageLabel": "アイテムの画像",
+      "imageHelp": "JPEG、PNG、WebP（5 MBまで）。何を支援するのかが伝わる、わかりやすい写真がおすすめです。",
+      "status": {
+        "draft": "下書き",
+        "active": "ページに公開中",
+        "funded": "支援済み",
+        "archived": "アーカイブ済み"
+      },
+      "transitions": {
+        "publish": "ページに公開",
+        "takeOff": "ページから外す",
+        "restore": "下書きに戻す"
+      },
+      "fundedNote": "サポーターがこのアイテムを支援してくれました — 次の近況でお礼を伝えましょう！",
+      "moveUp": "{title}を上へ移動",
+      "moveDown": "{title}を下へ移動"
+    },
+    "form": {
+      "titleLabel": "ジャーニーの助けになるものは何ですか？",
+      "titlePlaceholder": "ツアーボール1ダース",
+      "descriptionLabel": "もう少し詳しく",
+      "optional": "（任意）",
+      "descriptionPlaceholder": "それが何で、なぜ役立つのか — モデル名、大会名、遠征先など。",
+      "priceLabel": "価格",
+      "pricePlaceholder": "45",
+      "priceHelp": "1人のサポーターがまるごと支援するので、1本のティーでまかなえる金額にしましょう。",
+      "priceLockedHelp": "このアイテムはすでに支援されているため、価格は変更できません。",
+      "currencyLabel": "通貨",
+      "currencyLockedHelp": "このアイテムはすでに支援されているため、通貨は変更できません。",
+      "currencyPayoutHelp": "サポーターが支援できるよう、アイテムにはあなたの出金通貨を使用します。"
+    }
+  },
+  "payments": {
+    "title": "受け取ったティー",
+    "statusAria": "決済状況",
+    "receiving": "ティーを受け取れます",
+    "notReceiving": "まだティーを受け取れません",
+    "readyBody": "決済は有効です。Stripeが、あなたのStripe出金スケジュールに従って銀行口座へ出金します。",
+    "setupBody": "決済を設定して、ティーの受け取りを始めましょう。",
+    "attentionBody": "決済の設定に対応が必要です。",
+    "paymentSettings": "決済設定",
+    "grossLabel": "ティーの総額（{currency}）",
+    "payoutNote": "ギフトの金額は、送り主があなたのために選んだものです。出金はStripeが行います — 支払い済みのティーはStripeアカウントに入っており、必ずしも銀行口座に着金しているとは限りません。",
+    "giftsAria": "受け取ったギフト",
+    "latestTees": "最新のティー",
+    "attribution": {
+      "towardGoals": "目標向け{count}件",
+      "towardWishlist": "ウィッシュリスト向け{count}件",
+      "general": "全般{count}件"
+    },
+    "empty": "ティーはまだありません。ページを共有して、サポーターにジャーニーへ加わってもらいましょう。",
+    "anonymous": "匿名",
+    "toward": "{title}へ",
+    "funded": "{title}を支援",
+    "fallbackGoal": "目標",
+    "fallbackItem": "アイテム",
+    "refundedNote": "支払いのうち{amount}が返金されました。",
+    "shareNews": "この知らせをオーディエンスに共有しましょう",
+    "share": "共有",
+    "giftStatus": {
+      "paid": "支払い済み",
+      "partially_refunded": "一部返金済み",
+      "refunded": "返金済み",
+      "disputed": "異議申し立て中",
+      "dispute_won": "異議申し立てに勝訴",
+      "dispute_lost": "異議申し立てに敗訴",
+      "processing": "処理中",
+      "payment_failed": "支払い失敗",
+      "expired": "期限切れ",
+      "checkout_created": "支払い待ち",
+      "cancelled": "キャンセル済み"
+    }
+  }
+}

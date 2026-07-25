@@ -1,0 +1,71 @@
+{
+  "brand": {
+    "homeAria": "BuyMeATee — accueil",
+    "tagline": "Soutiens le parcours."
+  },
+  "nav": {
+    "discover": "Découvrir",
+    "howItWorks": "Comment ça marche",
+    "forCreators": "Pour les créateurs",
+    "forSupporters": "Pour les supporters",
+    "blog": "Blog",
+    "faq": "FAQ",
+    "primaryLabel": "Navigation principale",
+    "siteNavigation": "Navigation du site",
+    "home": "Accueil",
+    "breadcrumb": "Fil d'Ariane",
+    "openMenu": "Ouvrir le menu",
+    "closeMenu": "Fermer le menu"
+  },
+  "actions": {
+    "register": "S'inscrire",
+    "logIn": "Connexion",
+    "logOut": "Déconnexion",
+    "signIn": "Se connecter",
+    "dashboard": "Tableau de bord",
+    "myPage": "Ma page",
+    "settings": "Paramètres"
+  },
+  "account": {
+    "menuLabel": "Compte",
+    "fallbackName": "Ton compte",
+    "signedInAs": "Connecté en tant que <name>{displayName}</name>"
+  },
+  "footer": {
+    "productHeading": "Produit",
+    "companyHeading": "Entreprise",
+    "legalHeading": "Mentions légales",
+    "about": "À propos",
+    "privacy": "Confidentialité",
+    "terms": "Conditions",
+    "impressum": "Impressum",
+    "accessibility": "Accessibilité",
+    "description": "BuyMeATee, c'est là où les fans de golf aident les créateurs à jouer plus, à accomplir plus et à poursuivre leurs objectifs. Suis le parcours. Soutiens un objectif. Offre-leur un tee.",
+    "copyright": "© {year} BuyMeATee. Tous droits réservés.",
+    "productLine": "Un produit <brand>Caddie Live</brand> · Conçu pour les golfeurs"
+  },
+  "cookies": {
+    "regionLabel": "Consentement aux cookies",
+    "message": "Nous utilisons des cookies essentiels pour te garder connecté. Avec ta permission, nous utilisons aussi Google Analytics pour comprendre comment le site est utilisé. Consulte notre <link>Politique de confidentialité</link>.",
+    "decline": "Refuser",
+    "accept": "Accepter l'analytique",
+    "settings": "Paramètres des cookies"
+  },
+  "upload": {
+    "addImage": "Ajouter une image",
+    "changeImage": "Changer l'image",
+    "remove": "Retirer"
+  },
+  "errorBoundary": {
+    "heading": "Un problème est survenu.",
+    "body": "Une erreur inattendue a interrompu la partie. Réessaie.",
+    "retry": "Réessayer"
+  },
+  "a11y": {
+    "skipToContent": "Aller au contenu"
+  },
+  "language": {
+    "label": "Langue",
+    "switcherLabel": "Changer de langue"
+  }
+}

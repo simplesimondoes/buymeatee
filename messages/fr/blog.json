@@ -1,0 +1,21 @@
+{
+  "meta": {
+    "index": {
+      "title": "Blog",
+      "description": "Des guides et une réflexion honnête sur le soutien aux créateurs de golf, le financement de contenus golf, le sponsoring amateur et les vrais coûts qui se cachent derrière ce jeu."
+    }
+  },
+  "index": {
+    "breadcrumb": "Blog",
+    "eyebrow": "Blog",
+    "heading": "Carnets de parcours",
+    "intro": "Des guides pratiques pour soutenir les créateurs de golf, financer des contenus golf et appuyer le golf amateur — écrits honnêtement, sans remplissage."
+  },
+  "card": {
+    "readingTime": "{minutes, plural, one {# min de lecture} other {# min de lecture}}",
+    "readArticle": "Lire l'article"
+  },
+  "article": {
+    "updatedLabel": "Mis à jour"
+  }
+}

@@ -1,0 +1,27 @@
+{
+  "eyebrow": "법적 고지",
+  "draftBanner": "초안 — 법률 검토 대기 중입니다.",
+  "lastUpdated": "최종 업데이트: {date}.",
+  "notice": {
+    "title": "영어 원문이 우선합니다.",
+    "body": "이 번역본은 이용 편의를 위해서만 제공됩니다. 법적 구속력을 가지는 것은 영어 원문이며, 내용이 상충하는 경우 영어 원문이 우선합니다."
+  },
+  "meta": {
+    "terms": {
+      "title": "이용약관",
+      "description": "BuyMeATee 이용에 관한 약관 — 계정, 크리에이터 페이지, 티 보내기와 받기, 수수료, 이용 규칙. 법률 검토 대기 중인 초안입니다."
+    },
+    "privacy": {
+      "title": "개인정보 처리방침",
+      "description": "BuyMeATee의 개인정보 처리 방식: 계정·프로필·결제를 위해 수집하는 정보, 처리 주체, 이용자의 권리. 법률 검토 대기 중인 초안입니다."
+    },
+    "impressum": {
+      "title": "Impressum",
+      "description": "독일 법에 따라 요구되는 BuyMeATee의 법적 고지(Impressum) — 운영자, 주소 및 연락처 정보입니다."
+    },
+    "accessibility": {
+      "title": "접근성",
+      "description": "BuyMeATee가 접근성을 대하는 방식 — WCAG 2.2 AA에 대한 약속, 실천 내용, 알려진 한계, 문제 신고 방법입니다."
+    }
+  }
+}

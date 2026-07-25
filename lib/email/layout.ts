@@ -30,10 +30,21 @@ export type LayoutInput = {
   /** Pre-escaped / trusted HTML for the body paragraphs and blocks. */
   bodyHtml: string;
   cta?: { label: string; url: string };
+  /** BCP 47 language of the email content (ADR-019). Defaults to en. */
+  lang?: string;
+  /** Localized footer tagline. Defaults to the English brand line. */
+  tagline?: string;
 };
 
 export function renderEmailLayout(input: LayoutInput): string {
-  const { preheader, heading, bodyHtml, cta } = input;
+  const {
+    preheader,
+    heading,
+    bodyHtml,
+    cta,
+    lang = "en",
+    tagline = "Support the journey.",
+  } = input;
 
   const button = cta
     ? `<table role="presentation" cellpadding="0" cellspacing="0" style="margin:28px 0;">
@@ -44,7 +55,7 @@ export function renderEmailLayout(input: LayoutInput): string {
     : "";
 
   return `<!doctype html>
-<html lang="en">
+<html lang="${escapeHtml(lang)}" dir="ltr">
 <head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1"></head>
 <body style="margin:0;padding:0;background-color:${MIST};">
   <span style="display:none!important;opacity:0;color:${MIST};height:0;width:0;overflow:hidden;">${escapeHtml(preheader)}</span>
@@ -60,7 +71,7 @@ export function renderEmailLayout(input: LayoutInput): string {
           ${button}
         </td></tr>
         <tr><td style="padding:20px 32px 32px;border-top:1px solid ${STONE};">
-          <p style="margin:0;font-family:Arial,Helvetica,sans-serif;font-size:13px;line-height:1.6;color:${GOLD_DEEP};">Support the journey.</p>
+          <p style="margin:0;font-family:Arial,Helvetica,sans-serif;font-size:13px;line-height:1.6;color:${GOLD_DEEP};">${escapeHtml(tagline)}</p>
           <p style="margin:8px 0 0;font-family:Arial,Helvetica,sans-serif;font-size:12px;line-height:1.6;color:#6b736e;">
             ${escapeHtml(siteConfig.name)} · <a href="${escapeHtml(siteConfig.url)}" style="color:#6b736e;">${escapeHtml(siteConfig.domain)}</a>
           </p>
@@ -76,11 +87,12 @@ export function renderEmailLayout(input: LayoutInput): string {
 export function renderTextEmail(
   lines: string[],
   cta?: { label: string; url: string },
+  tagline = "Support the journey.",
 ): string {
   const parts = [...lines];
   if (cta) {
     parts.push("", `${cta.label}: ${cta.url}`);
   }
-  parts.push("", "Support the journey.", `${siteConfig.name} — ${siteConfig.url}`);
+  parts.push("", tagline, `${siteConfig.name} — ${siteConfig.url}`);
   return parts.join("\n");
 }

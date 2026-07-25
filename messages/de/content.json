@@ -1,0 +1,214 @@
+{
+  "supportOptions": {
+    "oneTee": {
+      "name": "1 Tee",
+      "description": "Ein kleines Dankeschön, das sagt: weiter so."
+    },
+    "threeTees": {
+      "name": "3 Tees",
+      "description": "Eine Runde Rückenwind für die nächste Trainingseinheit."
+    },
+    "nineHoles": {
+      "name": "9 Löcher",
+      "description": "Echter Rückhalt für die nächsten neun Löcher im Wettkampf."
+    },
+    "eighteenHoles": {
+      "name": "18 Löcher",
+      "description": "Finanziere eine ganze Runde auf dem Platz, der zählt."
+    },
+    "greenFee": {
+      "name": "Greenfee",
+      "description": "Übernimm die Kosten für eine Runde an einem besonderen Ort."
+    },
+    "customSupport": {
+      "name": "Individuelle Unterstützung",
+      "description": "Wähle selbst, wie du den Weg unterstützt."
+    },
+    "note": "Creator werden ihre Unterstützungsoptionen anpassen und zeigen können, was jeder Beitrag mitfinanziert."
+  },
+  "exampleGoals": {
+    "scotlandLinksTrip": {
+      "title": "Schottland-Links-Trip",
+      "creator": "Callum Reid",
+      "description": "Fünf historische Links-Plätze an der schottischen Küste spielen und filmen."
+    },
+    "roadToScratch": {
+      "title": "Der Weg zu Scratch",
+      "creator": "Priya Shah",
+      "description": "Jede Trainerstunde und jede Runde dokumentiert — auf dem Weg von 7,8 zu Scratch."
+    },
+    "amateurChampionshipEntry": {
+      "title": "Startplatz bei der Amateurmeisterschaft",
+      "creator": "Tom Fletcher",
+      "description": "Startgelder und Reisekosten für eine ganze Saison regionaler Amateurturniere."
+    },
+    "independentCourseReviews": {
+      "title": "Unabhängige Platz-Reviews",
+      "creator": "Megan Frost",
+      "description": "Ehrliche, ungesponserte Reviews der Plätze, die normale Golfer wirklich spielen."
+    },
+    "firstProfessionalSeason": {
+      "title": "Erste Profi-Saison",
+      "creator": "Dan Whitmore",
+      "description": "Die Jagd nach Status auf den Mini-Touren — jeder Start, von innen erzählt."
+    },
+    "womensGolfSeries": {
+      "title": "Content-Serie Frauengolf",
+      "creator": "Lauren Park",
+      "description": "Eine Videoserie, die mehr Frauen ins Spiel bringt — eine Runde nach der anderen."
+    }
+  },
+  "previewCreators": {
+    "caddieLive": {
+      "location": "Manchester",
+      "country": "England",
+      "bio": "Eine App für Live-Scoring und Platz-Mapping, von Golfern für Golfer gebaut.",
+      "goalTitle": "10.000 Golfplätze hinzufügen",
+      "goalDescription": "Zehntausend Plätze kartieren und verifizieren, damit jede Runde abgedeckt ist.",
+      "updateNote": "Gepostet: 6.200 Plätze kartiert — Tendenz steigend."
+    },
+    "sarahBell": {
+      "location": "St Andrews",
+      "country": "Schottland",
+      "bio": "Ein ehrlicher, ungesponserter Blick auf das Leben rund um die Heimat des Golfsports.",
+      "goalTitle": "Neue YouTube-Doku",
+      "goalDescription": "Eine vierteilige Serie über die Menschen, die Links-Golf am Leben halten.",
+      "updateNote": "Gepostet: Der erste Schnitt von Folge zwei ist da."
+    },
+    "jackMorrison": {
+      "location": "Portmarnock",
+      "country": "Irland",
+      "bio": "Auf dem harten Weg zur Tourkarte — jeder Start, von innen erzählt.",
+      "goalTitle": "Qualifikation für die Q-School",
+      "goalDescription": "Startgelder und Reisekosten für einen kompletten Anlauf auf die Tour-Qualifikation.",
+      "updateNote": "Gepostet: Cut im regionalen Qualifier geschafft."
+    },
+    "priyaShah": {
+      "location": "Gleneagles",
+      "country": "Schottland",
+      "bio": "Jede Trainerstunde und jede Runde dokumentiert — auf dem Weg von 7,8 zu Scratch.",
+      "goalTitle": "Saison der Scottish Amateur",
+      "goalDescription": "Startgelder und Reisekosten für eine ganze Amateur-Saison."
+    },
+    "firstTeeNorth": {
+      "location": "Leeds",
+      "country": "England",
+      "bio": "Bringt Schläger in die Hände von Kids, die sonst nie spielen würden.",
+      "goalTitle": "Jugendgolf-Programm",
+      "goalDescription": "Eine Saison kostenloses Training und Ausrüstung für 40 Jugendliche.",
+      "updateNote": "Gepostet: 28 Jugendliche für den Sommer angemeldet."
+    },
+    "callumReid": {
+      "location": "Ayrshire",
+      "country": "Schottland",
+      "bio": "Spielt und filmt historische Links-Plätze entlang der schottischen Küste.",
+      "goalTitle": "Schottland-Links-Trip",
+      "goalDescription": "Fünf historische Links-Plätze, gefilmt in zehn Tagen.",
+      "updateNote": "Gepostet: Die Route für die Westküsten-Etappe steht."
+    },
+    "fairwaySociety": {
+      "location": "Surrey",
+      "country": "England",
+      "bio": "Eine freundliche Golfgemeinschaft, die bezahlbare Golftage im Süden organisiert.",
+      "goalTitle": "Saison der Golftage",
+      "goalDescription": "Greenfees und Preise für einen vollen Kalender an Golftagen."
+    },
+    "coachDan": {
+      "location": "Bristol",
+      "country": "England",
+      "bio": "PGA-Coach, der ein Zuhause für ganzjähriges Training bei jedem Wetter baut.",
+      "goalTitle": "Ein Indoor-Trainingsstudio bauen",
+      "goalDescription": "Eine Launch-Monitor-Bay, damit der Unterricht durch den Winter läuft.",
+      "updateNote": "Gepostet: Der Mietvertrag fürs Studio ist unterschrieben."
+    },
+    "linksCamera": {
+      "location": "Anglesey",
+      "country": "Wales",
+      "bio": "Kunstfotografie der Küstenplätze, die die meisten Golfer nie zu sehen bekommen.",
+      "goalTitle": "Fotoserie Küstenplätze",
+      "goalDescription": "Eine gedruckte Sammlung von dreißig übersehenen Löchern am Meer.",
+      "updateNote": "Gepostet: Das Par 3 diese Woche im ersten Licht fotografiert."
+    },
+    "backNinePod": {
+      "location": "Edinburgh",
+      "country": "Schottland",
+      "bio": "Zwei Kumpel, ein Mikro und echte Liebe zum Amateurgolf.",
+      "goalTitle": "Studio-Ausstattung für Staffel zwei",
+      "goalDescription": "Richtige Mikros und Akustik-Dämmung für einen saubereren Sound."
+    },
+    "meganFrost": {
+      "location": "Kent",
+      "country": "England",
+      "bio": "Unabhängige, ungesponserte Tests der Ausrüstung, die normale Golfer kaufen.",
+      "goalTitle": "Unabhängige Equipment-Tests",
+      "goalDescription": "Ein Jahr ehrlicher Reviews — finanziert von Golfern, nicht von Marken."
+    },
+    "clubhouseRevival": {
+      "location": "Fife",
+      "country": "Schottland",
+      "bio": "Ein von Mitgliedern getragenes Projekt zur Restaurierung eines geliebten, hundert Jahre alten Clubhauses.",
+      "goalTitle": "Das alte Clubhaus restaurieren",
+      "goalDescription": "Das Dach reparieren und den Mitgliederraum wiedereröffnen.",
+      "updateNote": "Gepostet: Die neuen Dachbalken sind auf der Baustelle angekommen."
+    }
+  },
+  "previewActivity": {
+    "sarahBellTee": {
+      "supporter": "Alex",
+      "action": "spendierte",
+      "target": "Sarah Bell ein Tee"
+    },
+    "coachDanStudio": {
+      "supporter": "Jordan",
+      "action": "unterstützte",
+      "target": "Coach Dans Studio"
+    },
+    "juniorProgramme": {
+      "supporter": "Anonym",
+      "action": "förderte",
+      "target": "das Jugendgolf-Programm"
+    },
+    "caddieLiveTee": {
+      "supporter": "Sam",
+      "action": "spendierte",
+      "target": "Caddie Live ein Tee"
+    },
+    "jackMorrisonQSchool": {
+      "supporter": "Rory",
+      "action": "unterstützte",
+      "target": "Jack Morrisons Weg zur Q-School"
+    },
+    "scotlandLinksTrip": {
+      "supporter": "Emily",
+      "action": "förderte",
+      "target": "den Schottland-Links-Trip"
+    }
+  },
+  "imageAlt": {
+    "heroJourney": "Drei Golfer tragen ihre Bags bei Sonnenuntergang über einen Küstenplatz",
+    "appConceptCreatorProfile": "Konzept-App-Ansicht eines fiktiven Creator-Profils mit aktuellem Ziel und Fortschrittsbalken",
+    "appConceptSupporterCollection": "Konzept-App-Ansicht eines fiktiven Unterstützer-Profils mit gesammelten Plätzen und Abzeichen",
+    "heroLinksGolfer": "Golfer beendet einen Drive auf einem Links-Platz über dem Meer bei Sonnenuntergang",
+    "groupDiverseGolfers": "Vier Golfer unterhalten sich neben ihren Bags auf dem Platz",
+    "womanReadingPutt": "Golferin kniet auf dem Grün und liest die Puttlinie",
+    "golferDriverSwing": "Golfer mitten im Schwung mit dem Driver vor hellem Himmel",
+    "friendsWalkingFairway": "Drei Freunde tragen ihre Bags zur goldenen Stunde das Fairway hinunter",
+    "linksCourseAerial": "Luftaufnahme eines Küsten-Links-Platzes, der sich an der Uferlinie entlangzieht",
+    "clubhouseEvening": "Steinernes Clubhaus in warmem Licht am Abend",
+    "golfBallCloseup": "Nahaufnahme eines Golfballs im taubedeckten Gras",
+    "flagAtSunset": "Silhouette einer Fahne vor goldenem Abendhimmel",
+    "womanFullSwing": "Golferin vollendet einen vollen Schwung auf dem Platz",
+    "golfersFistBump": "Zwei Golfer begrüßen sich mit einem Fist-Bump auf dem Platz am Meer",
+    "mountainCourseView": "Golfplatz in einem grünen Bergtal an einem See",
+    "bunkerShotAction": "Golfer lässt beim Schlag aus dem Bunker den Sand spritzen",
+    "womanSunriseView": "Golferin blickt bei Sonnenaufgang über den Platz",
+    "putterAndBall": "Putter und Ball neben dem Loch auf einem Übungsgrün",
+    "friendsGolfCart": "Zwei Golfer lachen zusammen in einem Golfcart",
+    "coastalCliffHole": "Spektakuläres Golfloch auf Küstenklippen hoch über dem Meer",
+    "tournamentCompetition": "Golfer schlägt vor Turnierpublikum vom Tee ab",
+    "travelGolfTrip": "Golfer trägt ein Reisebag durch einen Flughafengang",
+    "creatorVloggingGolf": "Golf-Creatorin filmt sich mit einem Kamera-Gimbal auf dem Platz",
+    "juniorGolferSwing": "Jugendlicher Golfer übt den Schwung mit dem Eisen",
+    "aerialGolfHole": "Luftaufnahme eines Inselgrüns, umgeben von Bunkern und Wasser"
+  }
+}

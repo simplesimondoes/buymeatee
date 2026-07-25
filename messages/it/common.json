@@ -1,0 +1,71 @@
+{
+  "brand": {
+    "homeAria": "BuyMeATee — home",
+    "tagline": "Sostieni il percorso."
+  },
+  "nav": {
+    "discover": "Scopri",
+    "howItWorks": "Come funziona",
+    "forCreators": "Per i creator",
+    "forSupporters": "Per i sostenitori",
+    "blog": "Blog",
+    "faq": "FAQ",
+    "primaryLabel": "Principale",
+    "siteNavigation": "Navigazione del sito",
+    "home": "Home",
+    "breadcrumb": "Percorso di navigazione",
+    "openMenu": "Apri il menu",
+    "closeMenu": "Chiudi il menu"
+  },
+  "actions": {
+    "register": "Registrati",
+    "logIn": "Accedi",
+    "logOut": "Esci",
+    "signIn": "Accedi",
+    "dashboard": "Dashboard",
+    "myPage": "La mia pagina",
+    "settings": "Impostazioni"
+  },
+  "account": {
+    "menuLabel": "Account",
+    "fallbackName": "Il tuo account",
+    "signedInAs": "Hai effettuato l'accesso come <name>{displayName}</name>"
+  },
+  "footer": {
+    "productHeading": "Prodotto",
+    "companyHeading": "Azienda",
+    "legalHeading": "Note legali",
+    "about": "Chi siamo",
+    "privacy": "Privacy",
+    "terms": "Termini",
+    "impressum": "Impressum",
+    "accessibility": "Accessibilità",
+    "description": "BuyMeATee è il posto dove gli appassionati di golf aiutano i creator a giocare di più, ottenere di più e inseguire i propri obiettivi. Segui il percorso. Sostieni un obiettivo. Offri loro un tee.",
+    "copyright": "© {year} BuyMeATee. Tutti i diritti riservati.",
+    "productLine": "Un prodotto <brand>Caddie Live</brand> · Creato per i golfisti"
+  },
+  "cookies": {
+    "regionLabel": "Consenso ai cookie",
+    "message": "Usiamo cookie essenziali per mantenerti collegato. Con il tuo permesso usiamo anche Google Analytics per capire come viene utilizzato il sito. Consulta la nostra <link>Informativa sulla privacy</link>.",
+    "decline": "Rifiuta",
+    "accept": "Accetta analytics",
+    "settings": "Impostazioni cookie"
+  },
+  "upload": {
+    "addImage": "Aggiungi un'immagine",
+    "changeImage": "Cambia immagine",
+    "remove": "Rimuovi"
+  },
+  "errorBoundary": {
+    "heading": "Qualcosa è andato storto.",
+    "body": "Un errore imprevisto ha interrotto il giro. Riprova.",
+    "retry": "Riprova"
+  },
+  "a11y": {
+    "skipToContent": "Vai al contenuto"
+  },
+  "language": {
+    "label": "Lingua",
+    "switcherLabel": "Cambia lingua"
+  }
+}

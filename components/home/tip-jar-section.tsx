@@ -1,36 +1,28 @@
 import { Flag, HeartHandshake, ShieldCheck, Target } from "lucide-react";
 import Image from "next/image";
-import type { ReactNode } from "react";
+import { useTranslations } from "next-intl";
+import type { ComponentType } from "react";
 
 import { ExampleBadge } from "@/components/example-badge";
 import { SectionHeading } from "@/components/section-heading";
 import { images } from "@/lib/content/images";
 
-const features: { icon: ReactNode; title: string; body: string }[] = [
-  {
-    icon: <Target aria-hidden="true" className="h-6 w-6" />,
-    title: "Goal based",
-    body: "Support goes towards real golfing goals with visible progress.",
-  },
-  {
-    icon: <ShieldCheck aria-hidden="true" className="h-6 w-6" />,
-    title: "Secure and transparent",
-    body: "Designed around transparent goals and responsible payments.",
-  },
-  {
-    icon: <HeartHandshake aria-hidden="true" className="h-6 w-6" />,
-    title: "Community first",
-    body: "Built for connection between creators and their supporters.",
-  },
-  {
-    icon: <Flag aria-hidden="true" className="h-6 w-6" />,
-    title: "Built specifically for golf",
-    body: "Tees, holes, rounds and green fees — by golfers, for golfers.",
-  },
-];
+/** Display strings live in the `home` namespace under `tipJar.features.<id>`. */
+const features: { id: string; icon: ComponentType<{ className?: string }> }[] =
+  [
+    { id: "goalBased", icon: Target },
+    { id: "secure", icon: ShieldCheck },
+    { id: "community", icon: HeartHandshake },
+    { id: "golf", icon: Flag },
+  ];
 
 export function TipJarSection() {
+  const t = useTranslations("home");
+  const tContent = useTranslations("content");
   const screen = images.appConceptCreatorProfile;
+  const screenAlt = screen.altKey
+    ? tContent(screen.altKey as never)
+    : screen.alt;
   return (
     <section className="bg-mist">
       <div className="mx-auto max-w-6xl px-4 py-16 sm:px-6 lg:px-8 lg:py-24">
@@ -38,21 +30,21 @@ export function TipJarSection() {
           <div>
             <SectionHeading
               align="left"
-              heading="More than just a tip jar."
-              intro="BuyMeATee is designed around real golfing goals, visible progress and an ongoing connection between creators and the people supporting them."
+              heading={t("tipJar.heading")}
+              intro={t("tipJar.intro")}
             />
             <ul className="mt-10 grid gap-8 sm:grid-cols-2">
-              {features.map((feature) => (
-                <li key={feature.title} className="flex items-start gap-4">
+              {features.map(({ id, icon: Icon }) => (
+                <li key={id} className="flex items-start gap-4">
                   <div className="flex h-12 w-12 shrink-0 items-center justify-center rounded-full bg-forest text-gold">
-                    {feature.icon}
+                    <Icon aria-hidden="true" className="h-6 w-6" />
                   </div>
                   <div>
                     <h3 className="font-serif text-lg font-semibold text-forest">
-                      {feature.title}
+                      {t(`tipJar.features.${id}.title` as never)}
                     </h3>
                     <p className="mt-1.5 text-sm leading-relaxed text-ink/70">
-                      {feature.body}
+                      {t(`tipJar.features.${id}.body` as never)}
                     </p>
                   </div>
                 </li>
@@ -66,7 +58,7 @@ export function TipJarSection() {
             </div>
             <Image
               src={screen.src}
-              alt={screen.alt}
+              alt={screenAlt}
               width={screen.width}
               height={screen.height}
               sizes="300px"

@@ -1,0 +1,36 @@
+{
+  "layout": {
+    "tagline": "その歩みを、応援しよう。"
+  },
+  "giftReceived": {
+    "subject": "ティーが届きました — {sender}さんから{amount}",
+    "preheader": "{sender}さんがあなたにティーを贈りました（{amount}）。",
+    "heading": "ティーが届きました ⛳",
+    "body": "{sender}さんがあなたにティーを贈りました — {amount}。",
+    "encouragement": "1本のティーは、誰かがあなたのジャーニーを応援している証です。その調子です。",
+    "cta": "ダッシュボードを見る",
+    "fallbackSender": "サポーター",
+    "fallbackSenderInline": "サポーター"
+  },
+  "giftReceipt": {
+    "subject": "領収書 — {creator}さんへ{amount}",
+    "preheader": "領収書：{creator}さんにティーを贈りました（{amount}）。",
+    "heading": "ご支援ありがとうございます",
+    "thanks": "{creator}さんにティーを贈っていただき、ありがとうございます。",
+    "target": "{target}に向けた応援として届けられます。",
+    "receipt": "{amount}のご支援はご本人へ送られます — このメールが領収書となります。",
+    "closing": "あなたの応援が、ひとつのゴルフのジャーニーを前へ進めました。それこそが、このサービスのすべてです。",
+    "cta": "ほかのクリエイターを見つける",
+    "fallbackCreator": "クリエイター"
+  },
+  "goalReached": {
+    "subject": "目標達成：{title} 🎉",
+    "preheader": "{title}が目標額に到達しました（{raised}）。",
+    "heading": "目標が達成されました 🎯",
+    "body": "あなたの目標「{title}」が目標額に到達しました。",
+    "progress": "現在の達成額：{target}のうち{raised}。",
+    "nextStep": "ダッシュボードで達成済みにして、ここまで支えてくれたサポーターとこの瞬間を共有しましょう。",
+    "cta": "目標を見る",
+    "fallbackTitle": "あなたの目標"
+  }
+}

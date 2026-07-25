@@ -20,34 +20,35 @@ import {
  * stored on creator profiles yet — so today they organise Preview content and
  * filter what a supporter is looking for. When creators can self-categorise,
  * the same slugs drive real filtering.
+ *
+ * Slugs are stable, language-neutral identifiers. The human-readable labels
+ * live in the `discover` message namespace (`categories.<slug>` in
+ * `messages/<locale>/discover.json`); render them with
+ * `t(categoryLabelKey(slug))`.
  */
 
 export type DiscoverCategory = {
   slug: string;
-  label: string;
   icon: LucideIcon;
 };
 
 export const discoverCategories: DiscoverCategory[] = [
-  { slug: "golf-apps", label: "Golf Apps", icon: Smartphone },
-  { slug: "content-creators", label: "Content Creators", icon: Video },
-  { slug: "professional-golfers", label: "Professional Golfers", icon: Trophy },
-  { slug: "amateurs", label: "Amateurs", icon: Flag },
-  { slug: "junior-golf", label: "Junior Golf", icon: Sprout },
-  { slug: "charities", label: "Charities", icon: Heart },
-  { slug: "golf-trips", label: "Golf Trips", icon: Plane },
-  { slug: "golf-societies", label: "Golf Societies", icon: Users },
-  { slug: "golf-coaches", label: "Golf Coaches", icon: GraduationCap },
-  { slug: "club-projects", label: "Club Projects", icon: Building2 },
-  { slug: "equipment-testing", label: "Equipment Testing", icon: FlaskConical },
-  { slug: "golf-photography", label: "Golf Photography", icon: Camera },
-  { slug: "golf-podcasts", label: "Golf Podcasts", icon: Mic },
+  { slug: "golf-apps", icon: Smartphone },
+  { slug: "content-creators", icon: Video },
+  { slug: "professional-golfers", icon: Trophy },
+  { slug: "amateurs", icon: Flag },
+  { slug: "junior-golf", icon: Sprout },
+  { slug: "charities", icon: Heart },
+  { slug: "golf-trips", icon: Plane },
+  { slug: "golf-societies", icon: Users },
+  { slug: "golf-coaches", icon: GraduationCap },
+  { slug: "club-projects", icon: Building2 },
+  { slug: "equipment-testing", icon: FlaskConical },
+  { slug: "golf-photography", icon: Camera },
+  { slug: "golf-podcasts", icon: Mic },
 ];
 
-const CATEGORY_LABELS = new Map(
-  discoverCategories.map((category) => [category.slug, category.label]),
-);
-
-export function categoryLabel(slug: string | null): string | null {
-  return slug ? CATEGORY_LABELS.get(slug) ?? null : null;
+/** Message key for a category label, relative to the `discover` namespace. */
+export function categoryLabelKey(slug: string): string {
+  return `categories.${slug}`;
 }

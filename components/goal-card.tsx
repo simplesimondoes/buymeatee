@@ -1,18 +1,32 @@
+import { useLocale, useTranslations } from "next-intl";
 import Image from "next/image";
-import Link from "next/link";
 
 import { ExampleBadge } from "@/components/example-badge";
 import { ProgressBar } from "@/components/progress-bar";
+import { Link } from "@/i18n/navigation";
+import type { AppLocale } from "@/i18n/locales";
 import { goalProgress, type ExampleGoal } from "@/lib/content/example-goals";
+import { formatMinorAmount, formatPercent } from "@/lib/i18n/format";
 
+/**
+ * Card for a labelled Example goal. Title/creator/description arrive already
+ * translated from the section that renders it; amounts are major-unit GBP
+ * from the example data and formatted per locale.
+ */
 export function GoalCard({ goal }: { goal: ExampleGoal }) {
+  const t = useTranslations("marketing");
+  const tContent = useTranslations("content");
+  const locale = useLocale() as AppLocale;
   const progress = goalProgress(goal);
+  const alt = goal.image.altKey
+    ? tContent(goal.image.altKey as Parameters<typeof tContent>[0])
+    : goal.image.alt;
   return (
     <article className="flex flex-col overflow-hidden rounded-3xl border border-stone bg-white">
       <div className="relative">
         <Image
           src={goal.image.src}
-          alt={goal.image.alt}
+          alt={alt}
           width={goal.image.width}
           height={goal.image.height}
           sizes="(min-width: 1024px) 22rem, (min-width: 640px) 50vw, 100vw"
@@ -30,21 +44,27 @@ export function GoalCard({ goal }: { goal: ExampleGoal }) {
         </p>
         <div className="mt-4 flex items-baseline justify-between text-sm">
           <span className="font-semibold text-forest">
-            £{goal.raised.toLocaleString("en-GB")} of £
-            {goal.target.toLocaleString("en-GB")}
+            {t("goalCard.raisedOfTarget", {
+              raised: formatMinorAmount(goal.raised * 100, "gbp", locale, {
+                trimWholeAmounts: true,
+              }),
+              target: formatMinorAmount(goal.target * 100, "gbp", locale, {
+                trimWholeAmounts: true,
+              }),
+            })}
           </span>
-          <span className="text-ink/70">{progress}%</span>
+          <span className="text-ink/70">{formatPercent(progress, locale)}</span>
         </div>
         <ProgressBar
           value={progress}
-          label={`Progress towards ${goal.title} (example)`}
+          label={t("goalCard.progressLabel", { title: goal.title })}
           className="mt-2"
         />
         <Link
           href="/how-it-works"
           className="mt-5 inline-flex items-center text-sm font-medium text-gold-deep hover:text-forest"
         >
-          See how goals work
+          {t("goalCard.seeHow")}
           <span aria-hidden="true" className="ml-1">
             →
           </span>

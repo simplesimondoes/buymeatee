@@ -1,6 +1,7 @@
 "use client";
 
 import { Search, SlidersHorizontal } from "lucide-react";
+import { useTranslations } from "next-intl";
 import { useMemo, useState } from "react";
 
 import { GoalCardView } from "@/components/discover/goal-card-view";
@@ -9,17 +10,18 @@ import {
   type DiscoverSort,
 } from "@/components/discover/discover-context";
 import { SectionHeading } from "@/components/section-heading";
-import { categoryLabel, discoverCategories } from "@/lib/discover/categories";
+import { categoryLabelKey, discoverCategories } from "@/lib/discover/categories";
 import type { DiscoverGoalCard } from "@/lib/discover/types";
 
 /** How many journeys to show before the supporter asks for more. */
 const PAGE_SIZE = 6;
 
-const SORT_OPTIONS: { value: DiscoverSort; label: string }[] = [
-  { value: "newest", label: "Newest" },
-  { value: "most-supported", label: "Most supported" },
-  { value: "near-completion", label: "Near completion" },
-  { value: "trending", label: "Trending" },
+/** Sort options with their `discover`-namespace label keys. */
+const SORT_OPTIONS: { value: DiscoverSort; labelKey: string }[] = [
+  { value: "newest", labelKey: "browse.sort.newest" },
+  { value: "most-supported", labelKey: "browse.sort.mostSupported" },
+  { value: "near-completion", labelKey: "browse.sort.nearCompletion" },
+  { value: "trending", labelKey: "browse.sort.trending" },
 ];
 
 function sortGoals(goals: DiscoverGoalCard[], sort: DiscoverSort) {
@@ -43,8 +45,14 @@ function sortGoals(goals: DiscoverGoalCard[], sort: DiscoverSort) {
  * The Discover search-and-filter surface. Operates over the full set of goals
  * (real + labelled Preview) so a supporter with no specific creator in mind can
  * search by name, project, place or category and sort by what matters to them.
+ *
+ * Preview cards carry `content`-namespace message keys in their text fields
+ * (see lib/discover/types.ts), so search and the country facet resolve them to
+ * the visitor's language first — a supporter searches what they can read.
  */
 export function DiscoverBrowser({ goals }: { goals: DiscoverGoalCard[] }) {
+  const t = useTranslations("discover");
+  const tContent = useTranslations("content");
   const {
     query,
     setQuery,
@@ -56,13 +64,30 @@ export function DiscoverBrowser({ goals }: { goals: DiscoverGoalCard[] }) {
     setSort,
   } = useDiscover();
 
+  // Display text for fields that hold message keys on Preview cards.
+  const resolved = useMemo(() => {
+    const text = (goal: DiscoverGoalCard, value: string | null) =>
+      value ? (goal.isPreview ? tContent(value as never) : value) : null;
+    return new Map(
+      goals.map((goal) => [
+        goal.key,
+        {
+          title: text(goal, goal.title) ?? goal.title,
+          location: text(goal, goal.location),
+          country: text(goal, goal.country),
+        },
+      ]),
+    );
+  }, [goals, tContent]);
+
   const countries = useMemo(() => {
     const set = new Set<string>();
     for (const goal of goals) {
-      if (goal.country) set.add(goal.country);
+      const display = resolved.get(goal.key)?.country;
+      if (display) set.add(display);
     }
-    return Array.from(set).sort();
-  }, [goals]);
+    return Array.from(set).sort((a, b) => a.localeCompare(b));
+  }, [goals, resolved]);
 
   const categories = useMemo(() => {
     const set = new Set<string>();
@@ -75,15 +100,16 @@ export function DiscoverBrowser({ goals }: { goals: DiscoverGoalCard[] }) {
   const results = useMemo(() => {
     const q = query.trim().toLowerCase();
     const filtered = goals.filter((goal) => {
+      const display = resolved.get(goal.key);
       if (category && goal.category !== category) return false;
-      if (country && goal.country !== country) return false;
+      if (country && display?.country !== country) return false;
       if (q) {
         const haystack = [
-          goal.title,
+          display?.title,
           goal.creatorName,
-          goal.location,
-          goal.country,
-          categoryLabel(goal.category),
+          display?.location,
+          display?.country,
+          goal.category ? t(categoryLabelKey(goal.category) as never) : null,
         ]
           .filter(Boolean)
           .join(" ")
@@ -93,7 +119,7 @@ export function DiscoverBrowser({ goals }: { goals: DiscoverGoalCard[] }) {
       return true;
     });
     return sortGoals(filtered, sort);
-  }, [goals, query, category, country, sort]);
+  }, [goals, resolved, query, category, country, sort, t]);
 
   const hasFilters = Boolean(query || category || country);
 
@@ -112,15 +138,15 @@ export function DiscoverBrowser({ goals }: { goals: DiscoverGoalCard[] }) {
     <section id="browse" className="scroll-mt-20 bg-white">
       <div className="mx-auto max-w-6xl px-4 py-14 sm:px-6 lg:px-8 lg:py-20">
         <SectionHeading
-          eyebrow="Search"
-          heading="Search every journey"
-          intro="Search by creator, project, goal, place or category — then sort by what matters to you."
+          eyebrow={t("browse.eyebrow")}
+          heading={t("browse.heading")}
+          intro={t("browse.intro")}
           align="left"
         />
 
         <div className="mt-8 rounded-3xl border border-stone bg-mist p-4 sm:p-5">
           <label htmlFor="discover-search" className="sr-only">
-            Search creators, projects and goals
+            {t("browse.searchLabel")}
           </label>
           <div className="flex items-center gap-2 rounded-full border border-stone bg-white px-3">
             <Search aria-hidden="true" className="h-5 w-5 text-ink/40" />
@@ -129,7 +155,7 @@ export function DiscoverBrowser({ goals }: { goals: DiscoverGoalCard[] }) {
               type="search"
               value={query}
               onChange={(event) => setQuery(event.target.value)}
-              placeholder="Search creators, projects, goals…"
+              placeholder={t("browse.searchPlaceholder")}
               className="min-w-0 flex-1 bg-transparent py-3 text-sm text-ink placeholder:text-ink/40 focus:outline-none"
             />
           </div>
@@ -137,28 +163,34 @@ export function DiscoverBrowser({ goals }: { goals: DiscoverGoalCard[] }) {
           <div className="mt-3 flex flex-wrap items-center gap-3">
             <span className="inline-flex items-center gap-1.5 text-xs font-semibold uppercase tracking-[0.12em] text-ink/50">
               <SlidersHorizontal aria-hidden="true" className="h-4 w-4" />
-              Filter
+              {t("browse.filter")}
             </span>
 
             <FilterSelect
-              label="Category"
+              label={t("browse.category")}
               value={category}
               onChange={setCategory}
-              options={categories.map((c) => ({ value: c.slug, label: c.label }))}
-              allLabel="All categories"
+              options={categories.map((c) => ({
+                value: c.slug,
+                label: t(categoryLabelKey(c.slug) as never),
+              }))}
+              allLabel={t("browse.allCategories")}
             />
             <FilterSelect
-              label="Country"
+              label={t("browse.country")}
               value={country}
               onChange={setCountry}
               options={countries.map((c) => ({ value: c, label: c }))}
-              allLabel="All countries"
+              allLabel={t("browse.allCountries")}
             />
             <FilterSelect
-              label="Sort"
+              label={t("browse.sortLabel")}
               value={sort}
               onChange={(value) => setSort(value as DiscoverSort)}
-              options={SORT_OPTIONS}
+              options={SORT_OPTIONS.map((option) => ({
+                value: option.value,
+                label: t(option.labelKey as never),
+              }))}
             />
 
             {hasFilters ? (
@@ -171,14 +203,14 @@ export function DiscoverBrowser({ goals }: { goals: DiscoverGoalCard[] }) {
                 }}
                 className="text-sm font-medium text-gold-deep hover:text-forest"
               >
-                Clear
+                {t("browse.clear")}
               </button>
             ) : null}
           </div>
         </div>
 
         <p className="mt-6 text-sm text-ink/60" aria-live="polite">
-          {results.length} {results.length === 1 ? "journey" : "journeys"}
+          {t("browse.resultCount", { count: results.length })}
         </p>
 
         {results.length > 0 ? (
@@ -195,7 +227,7 @@ export function DiscoverBrowser({ goals }: { goals: DiscoverGoalCard[] }) {
                   onClick={() => setVisible((v) => v + PAGE_SIZE)}
                   className="inline-flex min-h-11 items-center justify-center rounded-full border border-stone bg-white px-6 text-sm font-medium text-forest transition-colors hover:bg-mist"
                 >
-                  Show more journeys
+                  {t("browse.showMore")}
                 </button>
               </div>
             ) : null}
@@ -203,8 +235,7 @@ export function DiscoverBrowser({ goals }: { goals: DiscoverGoalCard[] }) {
         ) : (
           <div className="mt-4 rounded-3xl border border-dashed border-stone bg-white p-10 text-center">
             <p className="text-sm leading-relaxed text-ink/70">
-              No journeys match your search yet. Try clearing a filter or a
-              different term.
+              {t("browse.empty")}
             </p>
           </div>
         )}

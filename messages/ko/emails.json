@@ -1,0 +1,36 @@
+{
+  "layout": {
+    "tagline": "여정을 응원하세요."
+  },
+  "giftReceived": {
+    "subject": "티가 도착했어요 — {sender}님이 보낸 {amount}",
+    "preheader": "{sender}님이 티를 선물했어요({amount}).",
+    "heading": "티가 도착했어요 ⛳",
+    "body": "{sender}님이 방금 티를 선물했어요 — {amount}.",
+    "encouragement": "티 하나하나가 당신의 여정을 응원하는 마음이에요. 잘하고 있어요.",
+    "cta": "대시보드 보기",
+    "fallbackSender": "서포터",
+    "fallbackSenderInline": "서포터"
+  },
+  "giftReceipt": {
+    "subject": "영수증 — {creator}님에게 보낸 {amount}",
+    "preheader": "영수증: {creator}님에게 티를 선물했어요({amount}).",
+    "heading": "응원해 주셔서 감사해요",
+    "thanks": "{creator}님에게 티를 선물해 주셔서 감사해요.",
+    "target": "이번 응원은 {target}에 보탬이 돼요.",
+    "receipt": "{amount}의 응원이 크리에이터에게 전달되고 있어요 — 이 이메일이 영수증이에요.",
+    "closing": "방금 한 골퍼의 여정이 계속 나아가도록 도우셨어요. 그게 바로 저희가 하려는 일이에요.",
+    "cta": "더 많은 크리에이터 만나기",
+    "fallbackCreator": "크리에이터"
+  },
+  "goalReached": {
+    "subject": "목표 달성: {title} 🎉",
+    "preheader": "{title} 목표가 목표 금액({raised})에 도달했어요.",
+    "heading": "목표 금액에 도달했어요 🎯",
+    "body": "“{title}” 목표가 방금 목표 금액에 도달했어요.",
+    "progress": "지금까지 모인 금액: {target} 중 {raised}.",
+    "nextStep": "대시보드에서 달성 완료로 표시하고, 여기까지 함께해 준 서포터들과 이 순간을 나눠 보세요.",
+    "cta": "목표 보기",
+    "fallbackTitle": "내 목표"
+  }
+}

@@ -1,6 +1,6 @@
 import "server-only";
 
-import { previewCreators } from "@/lib/content/preview-creators";
+import { previewCreatorItems } from "@/lib/content/preview-creators";
 import { goalProgressPercent } from "@/lib/goals/types";
 import {
   listPublicCreators,
@@ -26,6 +26,12 @@ import type {
  *
  * If Supabase is not configured, every real read fails safely to empty and the
  * whole page renders as an honest Preview — it never invents real activity.
+ *
+ * Localisation: Preview cards carry `content`-namespace message KEYS in their
+ * human-text fields (title, description, bio, location, country, updateNote,
+ * imageAlt); the card views resolve them with `useTranslations("content")`
+ * when `isPreview` is true. Real cards carry user-generated strings verbatim —
+ * they are never translated.
  */
 
 const FEATURED = 8;
@@ -38,7 +44,9 @@ function section<T>(real: T[], preview: T[], take: number): DiscoverSection<T> {
 
 function realGoalCard(row: PublicGoalRow): DiscoverGoalCard {
   const percent = goalProgressPercent(row.raised_amount, row.target_amount);
-  const name = row.creator?.display_name || row.creator?.username || "A creator";
+  // Empty when the creator has no public name; the card view renders a
+  // localized fallback ("A creator") in that case.
+  const name = row.creator?.display_name || row.creator?.username || "";
   return {
     key: `goal-${row.id}`,
     title: row.title,
@@ -60,53 +68,55 @@ function realGoalCard(row: PublicGoalRow): DiscoverGoalCard {
   };
 }
 
-const previewGoalCards: DiscoverGoalCard[] = previewCreators.map((creator) => {
-  const raisedMinor = creator.goal.raised * 100;
-  const targetMinor = creator.goal.target * 100;
-  return {
-    key: `preview-goal-${creator.name}`,
-    title: creator.goal.title,
-    description: creator.goal.description,
-    imageSrc: creator.image.src,
-    imageAlt: creator.image.alt,
-    creatorName: creator.name,
-    creatorHref: null,
-    location: creator.location,
-    country: creator.country,
-    category: creator.category,
-    raisedMinor,
-    targetMinor,
-    currency: "gbp",
-    percent: goalProgressPercent(raisedMinor, targetMinor),
-    started: raisedMinor > 0,
-    isPreview: true,
-    createdAt: creator.joined,
-  };
-});
+const previewGoalCards: DiscoverGoalCard[] = previewCreatorItems.map(
+  (creator) => {
+    const raisedMinor = creator.goal.raised * 100;
+    const targetMinor = creator.goal.target * 100;
+    return {
+      key: `preview-goal-${creator.id}`,
+      title: creator.goal.titleKey,
+      description: creator.goal.descriptionKey,
+      imageSrc: creator.image.src,
+      imageAlt: creator.image.altKey ?? "",
+      creatorName: creator.name,
+      creatorHref: null,
+      location: creator.locationKey,
+      country: creator.countryKey,
+      category: creator.category,
+      raisedMinor,
+      targetMinor,
+      currency: "gbp",
+      percent: goalProgressPercent(raisedMinor, targetMinor),
+      started: raisedMinor > 0,
+      isPreview: true,
+      createdAt: creator.joined,
+    };
+  },
+);
 
-const previewCreatorCards: DiscoverCreatorCard[] = previewCreators.map(
+const previewCreatorCards: DiscoverCreatorCard[] = previewCreatorItems.map(
   (creator) => {
     const percent = goalProgressPercent(
       creator.goal.raised * 100,
       creator.goal.target * 100,
     );
     return {
-      key: `preview-creator-${creator.name}`,
+      key: `preview-creator-${creator.id}`,
       name: creator.name,
       href: null,
       avatarUrl: null,
       imageSrc: creator.image.src,
-      imageAlt: creator.image.alt,
-      bio: creator.bio,
-      location: creator.location,
-      country: creator.country,
+      imageAlt: creator.image.altKey ?? "",
+      bio: creator.bioKey,
+      location: creator.locationKey,
+      country: creator.countryKey,
       category: creator.category,
       currentGoal: {
-        title: creator.goal.title,
+        title: creator.goal.titleKey,
         percent,
         started: true,
       },
-      updateNote: creator.updateNote ?? null,
+      updateNote: creator.updateNoteKey ?? null,
       isPreview: true,
       createdAt: creator.joined,
     };

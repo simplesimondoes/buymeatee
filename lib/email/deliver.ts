@@ -3,12 +3,13 @@ import "server-only";
 import { isEmailConfigured } from "@/lib/email/config";
 import { logEmailEvent } from "@/lib/email/log";
 import { sendEmail } from "@/lib/email/send";
+import type { AppLocale } from "@/i18n/locales";
 import {
   renderGiftReceivedEmail,
   renderGoalReachedEmail,
   type RenderedEmail,
 } from "@/lib/email/templates";
-import { getUserEmail } from "@/lib/email/user-email";
+import { getUserEmail, getUserEmailLocale } from "@/lib/email/user-email";
 import { isSupportedCurrency } from "@/lib/payments/currency";
 import { getSupabaseAdminClient } from "@/lib/supabase/admin";
 
@@ -42,9 +43,10 @@ export type DeliverySummary = {
   retryable: number;
 };
 
-function renderByType(
+async function renderByType(
   notification: PendingNotification,
-): RenderedEmail | null {
+  locale: AppLocale,
+): Promise<RenderedEmail | null> {
   const { payload } = notification;
   const currency = payload.currency;
   if (!isSupportedCurrency(currency)) {
@@ -53,20 +55,22 @@ function renderByType(
 
   if (notification.type === "gift_received") {
     return renderGiftReceivedEmail({
-      senderDisplayName: String(payload.senderDisplayName ?? "A supporter"),
+      senderDisplayName: String(payload.senderDisplayName ?? ""),
       amount: Number(payload.giftAmount),
       currency,
       message:
         typeof payload.message === "string" ? payload.message : null,
+      locale,
     });
   }
 
   if (notification.type === "goal_reached") {
     return renderGoalReachedEmail({
-      goalTitle: String(payload.goalTitle ?? "your goal"),
+      goalTitle: String(payload.goalTitle ?? ""),
       raisedAmount: Number(payload.raisedAmount),
       targetAmount: Number(payload.targetAmount),
       currency,
+      locale,
     });
   }
 
@@ -104,7 +108,10 @@ export async function deliverPendingNotifications(): Promise<DeliverySummary> {
   summary.scanned = rows.length;
 
   for (const row of rows) {
-    const rendered = renderByType(row);
+    // Recipient language resolved at delivery time (ADR-019): a creator who
+    // switches language gets subsequent emails in the new one.
+    const locale = await getUserEmailLocale(row.recipient_user_id);
+    const rendered = await renderByType(row, locale).catch(() => null);
     if (!rendered) {
       await markStatus(row.id, "failed");
       summary.failed += 1;

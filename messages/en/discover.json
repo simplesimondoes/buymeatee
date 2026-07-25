@@ -1,0 +1,102 @@
+{
+  "meta": {
+    "title": "Discover",
+    "description": "Discover golfers, creators, charities and projects worth supporting. Browse featured journeys, categories and goals — and back the ones that matter to you."
+  },
+  "hero": {
+    "eyebrow": "Discover",
+    "heading": "Support Golf.",
+    "intro": "Discover amazing golfers, creators, charities and projects making golf better — and back the journeys worth getting behind.",
+    "searchLabel": "Search creators, projects and goals",
+    "searchPlaceholder": "Search creators, projects, goals…",
+    "searchButton": "Search"
+  },
+  "sections": {
+    "featuredGoals": {
+      "eyebrow": "Featured goals",
+      "heading": "Back a mission, not just a name",
+      "intro": "People back missions. These are the goals supporters can get behind right now."
+    },
+    "trending": {
+      "eyebrow": "Trending",
+      "heading": "Gaining momentum",
+      "intro": "Journeys picking up support right now.",
+      "previewNote": "Concept ranking — a support-velocity signal will power this in a future update."
+    },
+    "nearCompletion": {
+      "eyebrow": "Near completion",
+      "heading": "Help them cross the line",
+      "intro": "Goals between 80% and 95% funded — a little support finishes the job."
+    },
+    "categories": {
+      "eyebrow": "Categories",
+      "heading": "Find your kind of golf",
+      "intro": "From aspiring pros to club projects and charities — browse the journeys that matter to you."
+    },
+    "activity": {
+      "eyebrow": "Recently funded",
+      "heading": "The platform, alive with support",
+      "intro": "A glimpse of how supporter activity will keep Discover moving.",
+      "conceptNote": "Illustrative activity — no real supporters or gifts are shown.",
+      "line": "<name>{supporter}</name> {action} {target}"
+    }
+  },
+  "previewNoteDefault": "Illustrative for now — real entries appear here as creators join.",
+  "categories": {
+    "golf-apps": "Golf Apps",
+    "content-creators": "Content Creators",
+    "professional-golfers": "Professional Golfers",
+    "amateurs": "Amateurs",
+    "junior-golf": "Junior Golf",
+    "charities": "Charities",
+    "golf-trips": "Golf Trips",
+    "golf-societies": "Golf Societies",
+    "golf-coaches": "Golf Coaches",
+    "club-projects": "Club Projects",
+    "equipment-testing": "Equipment Testing",
+    "golf-photography": "Golf Photography",
+    "golf-podcasts": "Golf Podcasts"
+  },
+  "browse": {
+    "eyebrow": "Search",
+    "heading": "Search every journey",
+    "intro": "Search by creator, project, goal, place or category — then sort by what matters to you.",
+    "searchLabel": "Search creators, projects and goals",
+    "searchPlaceholder": "Search creators, projects, goals…",
+    "filter": "Filter",
+    "category": "Category",
+    "allCategories": "All categories",
+    "country": "Country",
+    "allCountries": "All countries",
+    "sortLabel": "Sort",
+    "sort": {
+      "newest": "Newest",
+      "mostSupported": "Most supported",
+      "nearCompletion": "Near completion",
+      "trending": "Trending"
+    },
+    "clear": "Clear",
+    "resultCount": "{count, plural, one {# journey} other {# journeys}}",
+    "showMore": "Show more journeys",
+    "empty": "No journeys match your search yet. Try clearing a filter or a different term."
+  },
+  "goalCard": {
+    "creatorFallback": "A creator",
+    "raisedOfTarget": "{raised} of {target}",
+    "targetGoal": "{target} goal",
+    "beTheFirst": "Be the first",
+    "support": "Support",
+    "seeHowGoalsWork": "See how goals work",
+    "progressLabel": "Progress towards {title}: {raised} of {target}"
+  },
+  "creatorCard": {
+    "new": "New",
+    "support": "Support",
+    "seeHowItWorks": "See how it works",
+    "progressLabel": "{name}: progress towards {title}"
+  },
+  "cta": {
+    "heading": "Start your own journey",
+    "body": "Set a goal, share your page and let golf fans back the journey with you."
+  }
+}

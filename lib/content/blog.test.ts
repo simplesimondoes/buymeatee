@@ -73,7 +73,13 @@ describe("blog content", () => {
     expect(getArticleBySlug("missing-article")).toBeUndefined();
   });
 
-  it("formats dates in British English", () => {
+  it("formats dates in British English by default", () => {
     expect(formatArticleDate("2026-07-11")).toBe("11 July 2026");
+    expect(formatArticleDate("2026-07-11", "en")).toBe("11 July 2026");
+  });
+
+  it("formats dates in the requested locale", () => {
+    expect(formatArticleDate("2026-07-11", "de")).toBe("11. Juli 2026");
+    expect(formatArticleDate("2026-07-11", "fr")).toBe("11 juillet 2026");
   });
 });

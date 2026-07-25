@@ -1,0 +1,71 @@
+{
+  "brand": {
+    "homeAria": "BuyMeATee — ホーム",
+    "tagline": "その歩みを、応援しよう。"
+  },
+  "nav": {
+    "discover": "見つける",
+    "howItWorks": "仕組み",
+    "forCreators": "クリエイター向け",
+    "forSupporters": "サポーター向け",
+    "blog": "ブログ",
+    "faq": "よくある質問",
+    "primaryLabel": "メイン",
+    "siteNavigation": "サイトナビゲーション",
+    "home": "ホーム",
+    "breadcrumb": "パンくずリスト",
+    "openMenu": "メニューを開く",
+    "closeMenu": "メニューを閉じる"
+  },
+  "actions": {
+    "register": "登録",
+    "logIn": "ログイン",
+    "logOut": "ログアウト",
+    "signIn": "サインイン",
+    "dashboard": "ダッシュボード",
+    "myPage": "マイページ",
+    "settings": "設定"
+  },
+  "account": {
+    "menuLabel": "アカウント",
+    "fallbackName": "あなたのアカウント",
+    "signedInAs": "<name>{displayName}</name>としてサインイン中"
+  },
+  "footer": {
+    "productHeading": "プロダクト",
+    "companyHeading": "会社情報",
+    "legalHeading": "法的情報",
+    "about": "BuyMeATeeとは",
+    "privacy": "プライバシー",
+    "terms": "利用規約",
+    "impressum": "Impressum",
+    "accessibility": "アクセシビリティ",
+    "description": "BuyMeATeeは、ゴルフファンがクリエイターを応援し、もっとプレーし、もっと成し遂げ、目標に挑む後押しをする場所です。ジャーニーを追いかけて、目標を応援して、ティーを贈りましょう。",
+    "copyright": "© {year} BuyMeATee. 無断転載を禁じます。",
+    "productLine": "<brand>Caddie Live</brand>のプロダクト · ゴルファーのための設計"
+  },
+  "cookies": {
+    "regionLabel": "Cookieの同意",
+    "message": "サインイン状態の維持に必要なCookieを使用しています。ご許可いただいた場合は、サイトの利用状況を把握するためにGoogle Analyticsも使用します。詳しくは<link>プライバシーポリシー</link>をご覧ください。",
+    "decline": "同意しない",
+    "accept": "分析を許可",
+    "settings": "Cookie設定"
+  },
+  "upload": {
+    "addImage": "画像を追加",
+    "changeImage": "画像を変更",
+    "remove": "削除"
+  },
+  "errorBoundary": {
+    "heading": "問題が発生しました。",
+    "body": "予期しないエラーでラウンドが中断されました。もう一度お試しください。",
+    "retry": "もう一度試す"
+  },
+  "a11y": {
+    "skipToContent": "本文へスキップ"
+  },
+  "language": {
+    "label": "言語",
+    "switcherLabel": "言語を変更"
+  }
+}

@@ -1,0 +1,214 @@
+{
+  "supportOptions": {
+    "oneTee": {
+      "name": "1 Tee",
+      "description": "A simple thank-you that says keep going."
+    },
+    "threeTees": {
+      "name": "3 Tees",
+      "description": "A round of encouragement for the next practice session."
+    },
+    "nineHoles": {
+      "name": "9 Holes",
+      "description": "Meaningful backing towards the next competitive nine."
+    },
+    "eighteenHoles": {
+      "name": "18 Holes",
+      "description": "Fund a full round on the course that matters."
+    },
+    "greenFee": {
+      "name": "Green Fee",
+      "description": "Cover the cost of playing somewhere special."
+    },
+    "customSupport": {
+      "name": "Custom Support",
+      "description": "Choose your own way to back the journey."
+    },
+    "note": "Creators will be able to customise support options and show what each contribution helps fund."
+  },
+  "exampleGoals": {
+    "scotlandLinksTrip": {
+      "title": "Scotland Links Trip",
+      "creator": "Callum Reid",
+      "description": "Playing and filming five historic links courses along the Scottish coast."
+    },
+    "roadToScratch": {
+      "title": "Road to Scratch",
+      "creator": "Priya Shah",
+      "description": "Documenting every lesson and round on the way from 7.8 to scratch."
+    },
+    "amateurChampionshipEntry": {
+      "title": "Amateur Championship Entry",
+      "creator": "Tom Fletcher",
+      "description": "Entry fees and travel for a full season of regional amateur events."
+    },
+    "independentCourseReviews": {
+      "title": "Independent Course Reviews",
+      "creator": "Megan Frost",
+      "description": "Honest, unsponsored reviews of the courses everyday golfers actually play."
+    },
+    "firstProfessionalSeason": {
+      "title": "First Professional Season",
+      "creator": "Dan Whitmore",
+      "description": "Chasing status on the mini-tours — every start, told from the inside."
+    },
+    "womensGolfSeries": {
+      "title": "Women's Golf Content Series",
+      "creator": "Lauren Park",
+      "description": "A video series getting more women into the game, one round at a time."
+    }
+  },
+  "previewCreators": {
+    "caddieLive": {
+      "location": "Manchester",
+      "country": "England",
+      "bio": "A live scoring and course-mapping app built by golfers, for golfers.",
+      "goalTitle": "Add 10,000 golf courses",
+      "goalDescription": "Mapping and verifying ten thousand courses so every round is covered.",
+      "updateNote": "Posted: 6,200 courses mapped and counting."
+    },
+    "sarahBell": {
+      "location": "St Andrews",
+      "country": "Scotland",
+      "bio": "Filming an honest, unsponsored look at life around the home of golf.",
+      "goalTitle": "New YouTube documentary",
+      "goalDescription": "A four-part series on the people who keep links golf alive.",
+      "updateNote": "Posted: first cut of episode two is in."
+    },
+    "jackMorrison": {
+      "location": "Portmarnock",
+      "country": "Ireland",
+      "bio": "Chasing a card the hard way — every start told from the inside.",
+      "goalTitle": "Qualify for Q School",
+      "goalDescription": "Entry fees and travel for a full run at tour qualifying.",
+      "updateNote": "Posted: made the cut in the regional qualifier."
+    },
+    "priyaShah": {
+      "location": "Gleneagles",
+      "country": "Scotland",
+      "bio": "Documenting every lesson and round on the way from 7.8 to scratch.",
+      "goalTitle": "Scottish Amateur season",
+      "goalDescription": "Entry fees and travel for a full season of amateur events."
+    },
+    "firstTeeNorth": {
+      "location": "Leeds",
+      "country": "England",
+      "bio": "Getting clubs into the hands of kids who would never otherwise play.",
+      "goalTitle": "Junior golf programme",
+      "goalDescription": "A season of free coaching and equipment for 40 juniors.",
+      "updateNote": "Posted: 28 juniors signed up for the summer."
+    },
+    "callumReid": {
+      "location": "Ayrshire",
+      "country": "Scotland",
+      "bio": "Playing and filming historic links courses along the Scottish coast.",
+      "goalTitle": "Scotland Links Trip",
+      "goalDescription": "Five historic links courses, filmed over ten days.",
+      "updateNote": "Posted: itinerary locked for the west coast leg."
+    },
+    "fairwaySociety": {
+      "location": "Surrey",
+      "country": "England",
+      "bio": "A friendly society running affordable golf days across the south.",
+      "goalTitle": "Society tour season",
+      "goalDescription": "Green fees and prizes for a full calendar of society days."
+    },
+    "coachDan": {
+      "location": "Bristol",
+      "country": "England",
+      "bio": "PGA coach building a home for year-round, all-weather practice.",
+      "goalTitle": "Build an indoor coaching studio",
+      "goalDescription": "A launch monitor bay so lessons run through the winter.",
+      "updateNote": "Posted: the studio lease is signed."
+    },
+    "linksCamera": {
+      "location": "Anglesey",
+      "country": "Wales",
+      "bio": "Fine-art photography of the coastal courses most golfers never see.",
+      "goalTitle": "Coastal courses photo series",
+      "goalDescription": "A printed collection of thirty overlooked seaside holes.",
+      "updateNote": "Posted: shot the par-3 at first light this week."
+    },
+    "backNinePod": {
+      "location": "Edinburgh",
+      "country": "Scotland",
+      "bio": "Two mates, one mic, and a genuine love for the amateur game.",
+      "goalTitle": "Season two studio kit",
+      "goalDescription": "Proper mics and acoustic treatment for a cleaner sound."
+    },
+    "meganFrost": {
+      "location": "Kent",
+      "country": "England",
+      "bio": "Independent, unsponsored testing of the gear everyday golfers buy.",
+      "goalTitle": "Independent equipment testing",
+      "goalDescription": "A year of honest reviews, funded by golfers not brands."
+    },
+    "clubhouseRevival": {
+      "location": "Fife",
+      "country": "Scotland",
+      "bio": "A member-led project restoring a much-loved century-old clubhouse.",
+      "goalTitle": "Restore the old clubhouse",
+      "goalDescription": "Repairing the roof and reopening the members' room.",
+      "updateNote": "Posted: the new roof timbers arrived on site."
+    }
+  },
+  "previewActivity": {
+    "sarahBellTee": {
+      "supporter": "Alex",
+      "action": "bought",
+      "target": "Sarah Bell a Tee"
+    },
+    "coachDanStudio": {
+      "supporter": "Jordan",
+      "action": "supported",
+      "target": "Coach Dan's studio"
+    },
+    "juniorProgramme": {
+      "supporter": "Anonymous",
+      "action": "backed",
+      "target": "the Junior golf programme"
+    },
+    "caddieLiveTee": {
+      "supporter": "Sam",
+      "action": "bought",
+      "target": "Caddie Live a Tee"
+    },
+    "jackMorrisonQSchool": {
+      "supporter": "Rory",
+      "action": "supported",
+      "target": "Jack Morrison's Q School run"
+    },
+    "scotlandLinksTrip": {
+      "supporter": "Emily",
+      "action": "backed",
+      "target": "the Scotland Links Trip"
+    }
+  },
+  "imageAlt": {
+    "heroJourney": "Three golfers carrying their bags along a coastal course at sunset",
+    "appConceptCreatorProfile": "Concept app screen of a fictional creator profile with a current goal and progress bar",
+    "appConceptSupporterCollection": "Concept app screen of a fictional supporter profile with collected courses and badges",
+    "heroLinksGolfer": "Golfer finishing a drive on a links course above the sea at sunset",
+    "groupDiverseGolfers": "Four golfers chatting together beside their bags on the course",
+    "womanReadingPutt": "Golfer crouching on the green to read the line of a putt",
+    "golferDriverSwing": "Golfer mid-swing with a driver against a bright sky",
+    "friendsWalkingFairway": "Three friends carrying their bags down the fairway at golden hour",
+    "linksCourseAerial": "Aerial view of a coastal links course winding along the shoreline",
+    "clubhouseEvening": "Stone clubhouse glowing with warm light in the evening",
+    "golfBallCloseup": "Close-up of a golf ball sitting in dew-covered grass",
+    "flagAtSunset": "Pin flag silhouetted against a golden sunset sky",
+    "womanFullSwing": "Golfer completing a full swing on the course",
+    "golfersFistBump": "Two golfers sharing a fist bump on the course by the sea",
+    "mountainCourseView": "Golf course set in a green mountain valley beside a lake",
+    "bunkerShotAction": "Golfer splashing sand while playing out of a bunker",
+    "womanSunriseView": "Golfer looking out over the course at sunrise",
+    "putterAndBall": "Putter and ball beside the hole on a practice green",
+    "friendsGolfCart": "Two golfers smiling together in a golf cart",
+    "coastalCliffHole": "Dramatic golf hole perched on coastal cliffs above the sea",
+    "tournamentCompetition": "Golfer driving off the tee in front of a tournament crowd",
+    "travelGolfTrip": "Golfer carrying a travel bag through an airport walkway",
+    "creatorVloggingGolf": "Golf creator filming herself with a camera gimbal on the course",
+    "juniorGolferSwing": "Junior golfer practising an iron swing",
+    "aerialGolfHole": "Aerial view of an island green surrounded by bunkers and water"
+  }
+}

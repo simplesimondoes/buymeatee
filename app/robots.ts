@@ -1,6 +1,6 @@
 import type { MetadataRoute } from "next";
 
-import { canonicalUrl } from "@/lib/seo/metadata";
+import { siteConfig } from "@/lib/site";
 
 export default function robots(): MetadataRoute.Robots {
   return {
@@ -9,6 +9,7 @@ export default function robots(): MetadataRoute.Robots {
       allow: "/",
       disallow: "/api/",
     },
-    sitemap: canonicalUrl("/sitemap.xml"),
+    // The sitemap route is locale-free; its entries carry per-locale URLs.
+    sitemap: `${siteConfig.url.replace(/\/$/, "")}/sitemap.xml`,
   };
 }

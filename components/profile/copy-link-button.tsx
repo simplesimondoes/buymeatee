@@ -1,10 +1,12 @@
 "use client";
 
 import { Check, Copy } from "lucide-react";
+import { useTranslations } from "next-intl";
 import { useState } from "react";
 
 /** Copies the creator's public page URL, announcing the result politely. */
 export function CopyLinkButton({ username }: { username: string }) {
+  const t = useTranslations("gifts.share");
   const [copied, setCopied] = useState(false);
   const [failed, setFailed] = useState(false);
 
@@ -34,15 +36,13 @@ export function CopyLinkButton({ username }: { username: string }) {
         ) : (
           <Copy aria-hidden="true" className="h-4 w-4" />
         )}
-        {copied ? "Copied" : "Copy your link"}
+        {copied ? t("copied") : t("copyYourLink")}
       </button>
       <span aria-live="polite" className="sr-only">
-        {copied ? "Link copied to clipboard" : ""}
+        {copied ? t("copiedAnnouncement") : ""}
       </span>
       {failed ? (
-        <span className="text-xs text-ink/60">
-          Copying isn&apos;t available — select the link text instead.
-        </span>
+        <span className="text-xs text-ink/60">{t("copyYourLinkFailed")}</span>
       ) : null}
     </span>
   );

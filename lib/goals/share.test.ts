@@ -1,12 +1,28 @@
 import { describe, expect, it } from "vitest";
 
+import giftsMessages from "@/messages/en/gifts.json";
 import {
   completedGoalShareText,
   GOAL_MILESTONES,
   goalShareText,
   pageShareText,
   reachedMilestone,
+  supportShareText,
+  trimShareTitle,
+  type ShareMessage,
 } from "@/lib/goals/share";
+
+const shareMessages = giftsMessages.share as Record<string, string>;
+
+/** Render a ShareMessage against the English catalog the way the UI does. */
+function renderShare(message: ShareMessage): string {
+  const template = shareMessages[message.key];
+  expect(template, `missing share message: ${message.key}`).toBeTypeOf("string");
+  return template.replace(/\{(\w+)\}/g, (match, name: string) => {
+    const value = message.params?.[name as "title" | "percent"];
+    return value === undefined ? match : String(value);
+  });
+}
 
 describe("reachedMilestone", () => {
   it("is null below the first threshold", () => {
@@ -34,8 +50,8 @@ describe("reachedMilestone", () => {
 });
 
 describe("pageShareText", () => {
-  it("is first-person, on-brand and X-length safe", () => {
-    const text = pageShareText();
+  it("selects on-brand, X-length-safe page copy", () => {
+    const text = renderShare(pageShareText());
     expect(text).toContain("BuyMeATee");
     expect(text).toContain("journey");
     // Leaves room for the appended URL within X's 280-char limit.
@@ -45,39 +61,52 @@ describe("pageShareText", () => {
 
 describe("goalShareText", () => {
   it("celebrates a funded goal", () => {
-    const text = goalShareText("Q-School entry fee", 42500, 42500);
+    const message = goalShareText("Q-School entry fee", 42500, 42500);
+    expect(message.key).toBe("goalFunded");
+    const text = renderShare(message);
     expect(text).toContain("funded");
     expect(text).toContain("Q-School entry fee");
   });
 
   it("reports honest progress at an in-progress milestone", () => {
-    const text = goalShareText("Scotland links trip", 500, 1000);
+    const message = goalShareText("Scotland links trip", 500, 1000);
+    expect(message.key).toBe("goalMilestone");
+    expect(message.params?.percent).toBe(50);
+    const text = renderShare(message);
     expect(text).toContain("50%");
     expect(text).toContain("Scotland links trip");
   });
 
   it("invites the first backers before any milestone", () => {
-    const text = goalShareText("New clubs", 0, 1000);
+    const message = goalShareText("New clubs", 0, 1000);
+    expect(message.key).toBe("goalStarting");
+    // No fabricated progress figure when there is none.
+    expect(message.params?.percent).toBeUndefined();
+    const text = renderShare(message);
     expect(text).toContain("New clubs");
     expect(text).toContain("Support the journey");
-    // No fabricated progress figure when there is none.
     expect(text).not.toMatch(/\d+%/);
   });
 
   it("truncates an over-long title", () => {
     const longTitle = "A".repeat(120);
-    const text = goalShareText(longTitle, 500, 1000);
-    expect(text).toContain("…");
-    expect(text).not.toContain("A".repeat(120));
+    const message = goalShareText(longTitle, 500, 1000);
+    expect(message.params?.title).toContain("…");
+    expect(message.params?.title).not.toContain("A".repeat(120));
+  });
+
+  it("keeps the goal title verbatim within the length limit", () => {
+    // User content must be quoted, never rewritten.
+    expect(trimShareTitle("Play the Old Course")).toBe("Play the Old Course");
   });
 
   it("never uses off-brand fundraising vocabulary", () => {
     const samples = [
-      pageShareText(),
-      goalShareText("Goal", 0, 1000),
-      goalShareText("Goal", 500, 1000),
-      goalShareText("Goal", 1000, 1000),
-      completedGoalShareText("Goal"),
+      renderShare(pageShareText()),
+      renderShare(goalShareText("Goal", 0, 1000)),
+      renderShare(goalShareText("Goal", 500, 1000)),
+      renderShare(goalShareText("Goal", 1000, 1000)),
+      renderShare(completedGoalShareText("Goal")),
     ];
     for (const text of samples) {
       expect(text.toLowerCase()).not.toContain("donat");
@@ -88,11 +117,61 @@ describe("goalShareText", () => {
 
 describe("completedGoalShareText", () => {
   it("celebrates completion without asserting a funding level", () => {
-    const text = completedGoalShareText("Regional qualifier travel");
+    const message = completedGoalShareText("Regional qualifier travel");
+    expect(message.key).toBe("goalCompleted");
+    const text = renderShare(message);
     expect(text).toContain("Regional qualifier travel");
     expect(text).toContain("reached");
     expect(text).not.toMatch(/\d+%/);
     expect(text).not.toContain("funded");
+  });
+});
+
+describe("supportShareText", () => {
+  it("celebrates a Tee toward a goal and links back to the goal", () => {
+    const message = supportShareText({ label: "Scotland links trip", toward: true });
+    expect(message.key).toBe("supportGoal");
+    const text = renderShare(message);
+    expect(text).toContain("Scotland links trip");
+    expect(text).toContain("BuyMeATee");
+    expect(text).toContain("Support the journey");
+  });
+
+  it("celebrates a funded wish-list item", () => {
+    const message = supportShareText({ label: "New rangefinder", toward: false });
+    expect(message.key).toBe("supportWishlist");
+    const text = renderShare(message);
+    expect(text).toContain("New rangefinder");
+    expect(text).toContain("wish list");
+  });
+
+  it("has an honest fallback for general support", () => {
+    const message = supportShareText(null);
+    expect(message.key).toBe("supportGeneral");
+    const text = renderShare(message);
+    expect(text).toContain("BuyMeATee");
+    expect(text).toContain("journey");
+  });
+
+  it("never invents amounts, counts or a supporter name", () => {
+    const samples = [
+      renderShare(supportShareText({ label: "Goal", toward: true })),
+      renderShare(supportShareText({ label: "Item", toward: false })),
+      renderShare(supportShareText(null)),
+    ];
+    for (const text of samples) {
+      expect(text.toLowerCase()).not.toContain("donat");
+      expect(text.toLowerCase()).not.toContain("crowdfund");
+      // No fabricated figures.
+      expect(text).not.toMatch(/\d/);
+      expect(text).not.toMatch(/[£$€]/);
+    }
+  });
+
+  it("truncates an over-long target title", () => {
+    const message = supportShareText({ label: "A".repeat(120), toward: true });
+    expect(message.params?.title).toContain("…");
+    expect(message.params?.title).not.toContain("A".repeat(120));
   });
 });
 

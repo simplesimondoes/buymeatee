@@ -1,0 +1,102 @@
+{
+  "meta": {
+    "title": "Découvrir",
+    "description": "Découvre des golfeurs, des créateurs, des associations et des projets qui méritent d'être soutenus. Explore les parcours mis en avant, les catégories et les objectifs — et soutiens ceux qui comptent pour toi."
+  },
+  "hero": {
+    "eyebrow": "Découvrir",
+    "heading": "Soutiens le golf.",
+    "intro": "Découvre des golfeurs, des créateurs, des associations et des projets formidables qui font avancer le golf — et soutiens les parcours qui valent le coup.",
+    "searchLabel": "Rechercher des créateurs, des projets et des objectifs",
+    "searchPlaceholder": "Rechercher créateurs, projets, objectifs…",
+    "searchButton": "Rechercher"
+  },
+  "sections": {
+    "featuredGoals": {
+      "eyebrow": "Objectifs en vedette",
+      "heading": "Soutiens une mission, pas seulement un nom",
+      "intro": "Les gens soutiennent des missions. Voici les objectifs que les supporters peuvent appuyer dès maintenant."
+    },
+    "trending": {
+      "eyebrow": "Tendances",
+      "heading": "Ça prend de l'élan",
+      "intro": "Des parcours qui gagnent du soutien en ce moment.",
+      "previewNote": "Classement Concept — un signal de rythme de soutien l'alimentera dans une prochaine mise à jour."
+    },
+    "nearCompletion": {
+      "eyebrow": "Presque au bout",
+      "heading": "Aide-les à franchir la ligne",
+      "intro": "Des objectifs financés entre 80 % et 95 % — un peu de soutien et le tour est joué."
+    },
+    "categories": {
+      "eyebrow": "Catégories",
+      "heading": "Trouve le golf qui te ressemble",
+      "intro": "Des pros en devenir aux projets de clubs et aux associations — explore les parcours qui comptent pour toi."
+    },
+    "activity": {
+      "eyebrow": "Financés récemment",
+      "heading": "La plateforme, animée par le soutien",
+      "intro": "Un aperçu de la façon dont l'activité des supporters fera vivre Découvrir.",
+      "conceptNote": "Activité illustrative — aucun vrai supporter ni cadeau n'est affiché.",
+      "line": "<name>{supporter}</name> {action} {target}"
+    }
+  },
+  "previewNoteDefault": "Illustratif pour l'instant — de vraies entrées apparaîtront ici à mesure que des créateurs nous rejoignent.",
+  "categories": {
+    "golf-apps": "Applis de golf",
+    "content-creators": "Créateurs de contenu",
+    "professional-golfers": "Golfeurs professionnels",
+    "amateurs": "Amateurs",
+    "junior-golf": "Golf junior",
+    "charities": "Associations caritatives",
+    "golf-trips": "Voyages de golf",
+    "golf-societies": "Amicales de golf",
+    "golf-coaches": "Coachs de golf",
+    "club-projects": "Projets de club",
+    "equipment-testing": "Tests de matériel",
+    "golf-photography": "Photographie de golf",
+    "golf-podcasts": "Podcasts de golf"
+  },
+  "browse": {
+    "eyebrow": "Recherche",
+    "heading": "Cherche parmi tous les parcours",
+    "intro": "Cherche par créateur, projet, objectif, lieu ou catégorie — puis trie selon ce qui compte pour toi.",
+    "searchLabel": "Rechercher des créateurs, des projets et des objectifs",
+    "searchPlaceholder": "Rechercher créateurs, projets, objectifs…",
+    "filter": "Filtrer",
+    "category": "Catégorie",
+    "allCategories": "Toutes les catégories",
+    "country": "Pays",
+    "allCountries": "Tous les pays",
+    "sortLabel": "Trier",
+    "sort": {
+      "newest": "Les plus récents",
+      "mostSupported": "Les plus soutenus",
+      "nearCompletion": "Presque au bout",
+      "trending": "Tendances"
+    },
+    "clear": "Effacer",
+    "resultCount": "{count, plural, one {# parcours} other {# parcours}}",
+    "showMore": "Afficher plus de parcours",
+    "empty": "Aucun parcours ne correspond à ta recherche pour l'instant. Essaie de retirer un filtre ou un autre terme."
+  },
+  "goalCard": {
+    "creatorFallback": "Un créateur",
+    "raisedOfTarget": "{raised} sur {target}",
+    "targetGoal": "Objectif : {target}",
+    "beTheFirst": "À toi l'honneur",
+    "support": "Soutenir",
+    "seeHowGoalsWork": "Voir comment fonctionnent les objectifs",
+    "progressLabel": "Progression vers {title} : {raised} sur {target}"
+  },
+  "creatorCard": {
+    "new": "Nouveau",
+    "support": "Soutenir",
+    "seeHowItWorks": "Voir comment ça marche",
+    "progressLabel": "{name} : progression vers {title}"
+  },
+  "cta": {
+    "heading": "Lance ton propre parcours",
+    "body": "Fixe un objectif, partage ta page et laisse les fans de golf soutenir le parcours avec toi."
+  }
+}

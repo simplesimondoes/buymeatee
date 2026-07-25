@@ -35,7 +35,8 @@ If the user explicitly instructs a commit, push or deploy as part of a particula
 - Next.js 16 App Router (Turbopack), server components by default — all public pages statically generated
 - TypeScript (strict), `@/` import alias
 - Tailwind CSS 4 — design tokens as CSS variables in `app/globals.css` (no raw hex in components)
-- Fonts via `next/font`: Fraunces (serif headings), Inter (sans body)
+- Fonts via `next/font`: Fraunces (serif headings), Inter (sans body); Noto Sans JP/KR via Google Fonts stylesheet on ja/ko pages only (documented exception, ADR-019)
+- **Internationalisation (ADR-019)** — 8 locales (`en` source/fallback, `de fr es it ja ko pt`) via next-intl; all pages under `app/[locale]/` with `localePrefix: "always"`; `proxy.ts` composes locale detection/redirects (URL > `NEXT_LOCALE` cookie > Accept-Language > en) with the path-gated Supabase session refresh; messages in `messages/<locale>/<namespace>.json` deep-merged over English (never raw keys); typed keys from the en catalog; per-locale SEO (self-canonicals, hreflang + x-default, locale sitemap); stable error codes (`lib/i18n/errors.ts` + `useErrorMessage`); locale-aware formatting (`lib/i18n/format.ts`, Intl-based); `profiles.preferred_locale` + `gifts.locale`; localized emails (delivery-time locale resolution) and Stripe Checkout `locale`; parity tooling `npm run i18n:check` + vitest parity suite; glossary `messages/GLOSSARY.md`; dev guide [docs/i18n.md](docs/i18n.md). Translations are AI-generated pending native review; legal translations carry a governing-language notice and require professional legal review
 - Lucide icons; no other UI framework
 - Typed local content (no CMS, no MDX): `lib/content/` — blog articles, FAQs, goals, support options, images
 - Vitest + React Testing Library (`*.test.ts(x)` co-located with source)
@@ -81,9 +82,10 @@ Full glossary: [arc42/12-glossary.md](arc42/12-glossary.md). Brand voice: [.ai/c
 
 ```bash
 npm install
-npm run lint    # ESLint — must pass clean
-npm run test    # Vitest unit + component tests
-npm run build   # production build (includes type check)
+npm run lint        # ESLint — must pass clean
+npm run test        # Vitest unit + component tests (includes i18n parity suite)
+npm run build       # production build (includes type check + typed message keys)
+npm run i18n:check  # translation parity: missing/extra keys, ICU mismatches, empties
 ```
 
 `npm run dev` serves http://localhost:3000 (launch config in `.claude/launch.json`).

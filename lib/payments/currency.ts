@@ -1,3 +1,5 @@
+import { formatMinorAmount as formatMinorAmountLocalized } from "@/lib/i18n/format";
+
 /**
  * Supported currencies and minor-unit helpers.
  *
@@ -37,35 +39,20 @@ export function isSupportedCurrency(
   );
 }
 
-const CURRENCY_SYMBOLS: Record<SupportedCurrency, string> = {
-  gbp: "£",
-  eur: "€",
-  usd: "$",
-  cad: "CA$",
-  aud: "A$",
-  nzd: "NZ$",
-  chf: "CHF ",
-  sek: "kr ",
-  nok: "kr ",
-  dkk: "kr ",
-};
-
 /** True only for a safe integer amount in minor units, e.g. from JSON input. */
 export function isValidMinorAmount(value: unknown): value is number {
   return typeof value === "number" && Number.isSafeInteger(value);
 }
 
-/** Format 500 → "£5.00". Display only — never parse this back into amounts. */
+/**
+ * @deprecated Display formatting is locale-aware now — use
+ * `formatMinorAmount(amount, currency, locale)` from lib/i18n/format.ts.
+ * This two-argument form renders with English (en-GB) conventions and exists
+ * only while call sites migrate.
+ */
 export function formatMinorAmount(
   amount: number,
   currency: SupportedCurrency,
 ): string {
-  if (!Number.isSafeInteger(amount)) {
-    throw new Error("Amounts must be integer minor units.");
-  }
-  const sign = amount < 0 ? "-" : "";
-  const absolute = Math.abs(amount);
-  const major = Math.floor(absolute / 100);
-  const minor = (absolute % 100).toString().padStart(2, "0");
-  return `${sign}${CURRENCY_SYMBOLS[currency]}${major}.${minor}`;
+  return formatMinorAmountLocalized(amount, currency, "en");
 }

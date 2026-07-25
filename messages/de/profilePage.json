@@ -1,0 +1,95 @@
+{
+  "metadata": {
+    "title": "Spendiere {name} ein Tee",
+    "description": "Unterstütze den Golf-Weg von {name} mit einem Tee.",
+    "descriptionWithGoal": "Unterstütze den Golf-Weg von {name} mit einem Tee — steh hinter einem echten Ziel und sieh zu, wie es wahr wird.",
+    "imageAlt": "Unterstütze {name} auf BuyMeATee"
+  },
+  "unavailable": {
+    "metaTitle": "Seite nicht verfügbar",
+    "heading": "Diese Seite ist gerade nicht verfügbar.",
+    "body": "Sie kann im Moment keine Tees empfangen. Wenn du das für einen Fehler hältst, schau später noch einmal vorbei."
+  },
+  "hero": {
+    "kicker": "Unterstütze den Weg",
+    "handicap": "Handicap {handicap}",
+    "websiteLabel": "Website"
+  },
+  "about": {
+    "heading": "Über",
+    "sectionLabel": "Über {name}"
+  },
+  "stats": {
+    "supporters": "{count, plural, one {Unterstützer:in} other {Unterstützer:innen}}",
+    "goalsReached": "{count, plural, one {Ziel erreicht} other {Ziele erreicht}}",
+    "updates": "{count, plural, one {Update} other {Updates}}",
+    "joinedLabel": "Dabei seit",
+    "joined": "Dabei seit {date}"
+  },
+  "cta": {
+    "supportGoal": "Dieses Ziel unterstützen",
+    "buyTee": "Spendiere {name} ein Tee"
+  },
+  "supportHero": {
+    "currentGoal": "Aktuelles Ziel",
+    "raisedOfTarget": "{raised} von {target}",
+    "goalOnly": "Ziel: {target}",
+    "beFirst": "Mach den Anfang",
+    "progressLabel": "Fortschritt bei {title}: {raised} von {target} erreicht"
+  },
+  "notAccepting": {
+    "heading": "{name} kann noch keine Tees empfangen.",
+    "body": "Schau bald wieder vorbei — die Zahlungseinrichtung ist noch nicht abgeschlossen.",
+    "finishSetup": "Zahlungseinrichtung abschließen"
+  },
+  "goals": {
+    "sectionLabel": "Ziele",
+    "heading": "Ziele von {name}",
+    "beyondGoal": "— über das Ziel hinaus!",
+    "justStarted": "Gerade erst gestartet — mach du den Anfang.",
+    "supportedBy": "{count, plural, one {Unterstützt von # Golfer} other {Unterstützt von # Golfern}}",
+    "completedHeading": "Möglich gemacht von Unterstützer:innen",
+    "completedRaised": "— {amount} erreicht",
+    "emptyOwnerBody": "Deine Seite hat noch keine Ziele. Ziele geben Unterstützer:innen etwas Echtes, hinter dem sie stehen können.",
+    "addFirstGoal": "Füge dein erstes Ziel hinzu",
+    "noActiveOwner": "Gerade keine aktiven Ziele — <link>veröffentliche eins</link>, damit Unterstützer:innen etwas zum Unterstützen haben."
+  },
+  "wishlist": {
+    "sectionLabel": "Wunschliste",
+    "heading": "Wunschliste von {name}",
+    "intro": "Konkrete Dinge, die du komplett finanzieren kannst — such dir eins aus, und es ist gedeckt.",
+    "fundThis": "Das finanzieren",
+    "fundedHeading": "Von Unterstützer:innen finanziert",
+    "emptyOwnerBody": "Deine Wunschliste ist leer. Füge konkrete Dinge hinzu, die Unterstützer:innen finanzieren können — eine Schachtel Bälle, ein Startgeld, eine Trainerstunde.",
+    "addFirstItem": "Füge deinen ersten Wunsch hinzu"
+  },
+  "updates": {
+    "sectionLabel": "Updates",
+    "heading": "Updates von {name}",
+    "emptyOwnerHeading": "Dieser Weg hat gerade erst begonnen.",
+    "emptyOwnerBody": "Poste Updates, um Unterstützer:innen zu zeigen, wohin ihr Rückhalt geht — Fortschritt ist es, was sie zurückkommen lässt.",
+    "writeFirst": "Schreib dein erstes Update"
+  },
+  "recentSupport": {
+    "sectionLabel": "Neueste Unterstützung",
+    "heading": "Neueste Unterstützung",
+    "empty": "Sei der erste Golfer, der hinter diesem Projekt steht.",
+    "supported": "<supporter>{name}</supporter> unterstützte mit <sum>{amount}</sum>",
+    "towardGoal": "für {title}",
+    "fundedItem": "finanzierte {title}"
+  },
+  "pinnedMedia": {
+    "sectionLabel": "Vorgestellte Medien",
+    "iframeTitle": "Vorgestellte Medien",
+    "featuredLink": "Vorgestellter Link",
+    "featuredLinkAria": "Vorgestellter Link: {host}"
+  },
+  "ogCard": {
+    "kicker": "Unterstütze den Weg",
+    "headline": "Unterstütze {name}",
+    "headlineFallback": "Unterstütze den Weg.",
+    "tagline": "Steh hinter einem echten Ziel und begleite den Weg eines Golfers.",
+    "goalLine": "{raised} von {target} · {percent}",
+    "goalLineFresh": "Ziel: {target} · mach den Anfang"
+  }
+}

@@ -1,0 +1,90 @@
+{
+  "meta": {
+    "title": "FAQ",
+    "description": "Respostas diretas sobre o BuyMeATee: o que é, quem pode criar uma página, para que contribuem os apoiantes e como funcionam os pagamentos."
+  },
+  "page": {
+    "breadcrumb": "FAQ",
+    "eyebrow": "FAQ",
+    "heading": "Perguntas justas, respostas diretas",
+    "intro": "Preferimos ser honestos a ser impressionantes. Aqui está tudo o que podes querer saber sobre como o BuyMeATee funciona."
+  },
+  "cta": {
+    "heading": "Ainda com curiosidade?",
+    "body": "Cria a tua página para começar, ou fala connosco e pergunta o que quiseres."
+  },
+  "groups": {
+    "general": { "heading": "Geral" },
+    "forCreators": { "heading": "Para criadores" },
+    "forSupporters": { "heading": "Para apoiantes" },
+    "payments": { "heading": "Pagamentos e taxas" },
+    "safety": { "heading": "Segurança e confiança" },
+    "gettingStarted": { "heading": "Primeiros passos" }
+  },
+  "items": {
+    "whatIsBuyMeATee": {
+      "question": "O que é o BuyMeATee?",
+      "answer": "O BuyMeATee é uma plataforma de apoio a criadores focada no golfe. Criadores de golfe, aspirantes a profissionais, competidores amadores, treinadores e autores de análises de campos partilham os seus objetivos — uma viagem, uma época, um desafio, uma série de conteúdos — e as pessoas que os seguem contribuem para tornar esses objetivos realidade, a começar por um simples tee."
+    },
+    "differentFromTipping": {
+      "question": "Em que é que o BuyMeATee é diferente de um site de gorjetas genérico?",
+      "answer": "Tudo é construído em torno de objetivos reais de golfe, e não de gorjetas avulsas. O apoio fala golfe — tees, buracos, voltas e green fees — e os criadores partilham progresso e novidades para os apoiantes verem o que ajudaram a tornar possível."
+    },
+    "onlyForInfluencers": {
+      "question": "O BuyMeATee é só para influencers?",
+      "answer": "Não. O BuyMeATee foi pensado tanto para golfistas pequenos e emergentes como para criadores estabelecidos — competidores amadores, treinadores, autores de análises de campos, criadores de viagens e de golfe feminino, golfistas adaptados e juniores (representados por um pai, mãe ou tutor) fazem todos parte do quadro."
+    },
+    "whoCanCreate": {
+      "question": "Quem pode criar uma página?",
+      "answer": "Qualquer golfista com um percurso que valha a pena seguir: criadores de conteúdos no YouTube, no TikTok ou no Instagram, jogadores amadores de torneios, aspirantes a profissionais, treinadores, autores de análises de campos e criadores de viagens de golfe. Contas que envolvam menores de 18 anos exigirão sempre um pai, mãe ou tutor adequado."
+    },
+    "whatGoals": {
+      "question": "Que tipo de objetivos posso partilhar?",
+      "answer": "Qualquer coisa concreta que os apoiantes possam abraçar: green fees, inscrições em torneios, viagens e alojamento, equipamento, aulas, produção de conteúdos, um desafio específico ou uma época competitiva completa."
+    },
+    "whatCost": {
+      "question": "Quanto é que me vai custar?",
+      "answer": "Criar uma página e partilhar objetivos é grátis. Quando um apoiante te oferece um tee, o BuyMeATee retém uma pequena taxa da plataforma e aplicam-se os custos normais de processamento de cartões; o resto é para ti. A discriminação completa é mostrada antes de alguém confirmar um contributo — sem surpresas escondidas em letras pequenas."
+    },
+    "whatContribute": {
+      "question": "Para que podem contribuir os apoiantes?",
+      "answer": "Objetivos específicos que os criadores partilham — de green fees e inscrições em torneios a viagens, equipamento, aulas e produção de conteúdos. Escolhes algo com significado: um tee, três tees, nove buracos, uma volta completa, um green fee ou um montante à tua escolha."
+    },
+    "whatDoIGet": {
+      "question": "O que ganho por apoiar alguém?",
+      "answer": "Passas a fazer parte do percurso. Os criadores partilham progresso, marcos e novidades com os seus apoiantes. Apoiar não é um investimento e não compra propriedade nem conteúdos garantidos — é uma forma de apoiar um golfista em quem acreditas."
+    },
+    "followWithoutContributing": {
+      "question": "Posso seguir um criador sem contribuir?",
+      "answer": "Sim — os percursos dos criadores estão lá para ser seguidos. Contribuir é sempre uma escolha, nunca uma condição."
+    },
+    "howPaymentsWork": {
+      "question": "Como funcionam os pagamentos?",
+      "answer": "Os apoiantes pagam em segurança com cartão através do checkout alojado da Stripe. O dinheiro vai para a conta Stripe associada do criador, menos uma pequena taxa da plataforma e os custos de processamento de cartões. Os criadores associam uma conta Stripe para receber as transferências, e o BuyMeATee nunca vê nem guarda dados de cartões."
+    },
+    "arePaymentsSecure": {
+      "question": "Os pagamentos são seguros?",
+      "answer": "Sim. Todos os pagamentos são processados pela Stripe, um fornecedor global de pagamentos. Os dados do cartão são introduzidos no checkout seguro da Stripe e nunca tocam nos servidores do BuyMeATee. O total de um objetivo só avança quando um pagamento é genuinamente concluído."
+    },
+    "honesty": {
+      "question": "Como é que o BuyMeATee lida com a honestidade nas páginas dos criadores?",
+      "answer": "A honestidade é um princípio fundador. As páginas reais de criadores mostram progresso real e verificado — o total de um objetivo só avança quando um pagamento é genuinamente concluído, nunca à mão. Qualquer exemplo ilustrativo usado para mostrar como o produto funciona está sempre claramente identificado como exemplo."
+    },
+    "juniors": {
+      "question": "E os golfistas juniores?",
+      "answer": "Os golfistas juniores só aparecerão no BuyMeATee representados por um pai, mãe ou tutor adequado. Os menores nunca poderão celebrar acordos financeiros de forma independente na plataforma."
+    },
+    "personalData": {
+      "question": "Que dados pessoais recolhem?",
+      "answer": "O mínimo possível. Criar uma conta guarda o teu email; os criadores adicionam os detalhes de perfil que escolhem mostrar e associam uma conta Stripe para receber as transferências. Os dados de cartão dos apoiantes são tratados inteiramente pela Stripe e nunca guardados por nós. Consulta a política de privacidade para o quadro completo."
+    },
+    "availableNow": {
+      "question": "O BuyMeATee já está disponível?",
+      "answer": "Sim — o BuyMeATee está no ar. Podes criar a tua página e partilhar um objetivo como criador, ou apoiar um golfista que segues como apoiante, hoje mesmo."
+    },
+    "howToStart": {
+      "question": "Como começo?",
+      "answer": "Inicia sessão com o teu email para criares a tua página e definires o teu primeiro objetivo, ou encontra um criador para apoiar. Não há palavras-passe — enviamos-te por email uma ligação segura de início de sessão de utilização única."
+    }
+  }
+}

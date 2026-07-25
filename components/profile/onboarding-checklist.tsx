@@ -1,5 +1,7 @@
 import { Circle, CircleCheck } from "lucide-react";
-import Link from "next/link";
+import { useTranslations } from "next-intl";
+
+import { Link } from "@/i18n/navigation";
 
 import type { CreatorSetupState } from "@/lib/profile/setup-state";
 
@@ -8,6 +10,9 @@ import type { CreatorSetupState } from "@/lib/profile/setup-state";
  * live data — never stored booleans — so completing a step anywhere in the
  * app is reflected here immediately. Renders nothing once the journey is
  * fully set up; sharing is the hub's job from then on.
+ *
+ * Server-renderable: useTranslations resolves from the request config, so it
+ * needs no client message namespace.
  */
 
 interface Step {
@@ -19,35 +24,36 @@ interface Step {
 }
 
 export function OnboardingChecklist({ state }: { state: CreatorSetupState }) {
+  const t = useTranslations("settings");
   const { steps } = state;
   const items: Step[] = [
     {
       done: steps.claimedLink,
-      title: "Claim your link",
-      detail: "Pick the buymeatee.com/t/ name supporters will visit.",
+      title: t("checklist.steps.claimLink.title"),
+      detail: t("checklist.steps.claimLink.detail"),
       href: "/settings/profile",
-      action: "Choose a link",
+      action: t("checklist.steps.claimLink.action"),
     },
     {
       done: steps.profileComplete,
-      title: "Complete your profile",
-      detail: "A name plus a bio or photo — who's behind the journey.",
+      title: t("checklist.steps.completeProfile.title"),
+      detail: t("checklist.steps.completeProfile.detail"),
       href: "/settings/profile",
-      action: "Edit profile",
+      action: t("checklist.steps.completeProfile.action"),
     },
     {
       done: steps.hasActiveGoal,
-      title: "Publish your first goal",
-      detail: "Give supporters something real to get behind.",
+      title: t("checklist.steps.firstGoal.title"),
+      detail: t("checklist.steps.firstGoal.detail"),
       href: "/dashboard/goals",
-      action: "Add a goal",
+      action: t("checklist.steps.firstGoal.action"),
     },
     {
       done: steps.paymentsReady,
-      title: "Connect payments",
-      detail: "Stripe handles the money — Tees go straight to you.",
+      title: t("checklist.steps.connectPayments.title"),
+      detail: t("checklist.steps.connectPayments.detail"),
       href: "/settings/payments",
-      action: "Set up payments",
+      action: t("checklist.steps.connectPayments.action"),
     },
   ];
 
@@ -59,19 +65,19 @@ export function OnboardingChecklist({ state }: { state: CreatorSetupState }) {
 
   return (
     <section
-      aria-label="Getting started"
+      aria-label={t("checklist.aria")}
       className="rounded-3xl border border-gold/40 bg-gold/5 p-6 sm:p-8"
     >
       <div className="flex flex-wrap items-baseline justify-between gap-2">
         <h2 className="font-serif text-xl font-semibold text-forest">
-          Set up your journey
+          {t("checklist.title")}
         </h2>
         <p className="text-sm text-ink/60">
-          {doneCount} of {items.length} done
+          {t("checklist.progress", { done: doneCount, total: items.length })}
         </p>
       </div>
       <p className="mt-1 text-sm leading-relaxed text-ink/70">
-        A few steps and supporters can buy you a tee.
+        {t("checklist.intro")}
       </p>
       <ol className="mt-5 space-y-4">
         {items.map((item) => (
@@ -95,7 +101,8 @@ export function OnboardingChecklist({ state }: { state: CreatorSetupState }) {
               >
                 {item.title}
                 <span className="sr-only">
-                  {item.done ? " — done" : " — to do"}
+                  {" "}
+                  {item.done ? t("checklist.stepDone") : t("checklist.stepTodo")}
                 </span>
               </p>
               {!item.done ? (

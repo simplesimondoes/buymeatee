@@ -2,7 +2,11 @@
 
 import { LoaderCircle } from "lucide-react";
 import { useRouter } from "next/navigation";
+import { useTranslations } from "next-intl";
 import { useState } from "react";
+
+import { useErrorMessage } from "@/components/intl/use-error-message";
+import type { ErrorDetail } from "@/lib/i18n/errors";
 
 type ModerationPayload =
   | { action: "goal_take_down" | "goal_restore"; goalId: string }
@@ -21,6 +25,8 @@ export function ModerationAction({
   label: string;
   destructive?: boolean;
 }) {
+  const t = useTranslations("admin");
+  const errorMessage = useErrorMessage();
   const router = useRouter();
   const [open, setOpen] = useState(false);
   const [reason, setReason] = useState("");
@@ -30,7 +36,7 @@ export function ModerationAction({
   async function submit() {
     setError(null);
     if (reason.trim().length === 0) {
-      setError("Add a reason — it goes in the audit log.");
+      setError(t("action.reasonRequired"));
       return;
     }
     setBusy(true);
@@ -46,12 +52,12 @@ export function ModerationAction({
         router.refresh();
       } else {
         const body = (await response.json().catch(() => ({}))) as {
-          error?: string;
+          error?: ErrorDetail;
         };
-        setError(body.error ?? "Something went wrong. Please try again.");
+        setError(errorMessage(body.error ?? null));
       }
     } catch {
-      setError("Something went wrong. Please try again.");
+      setError(errorMessage(null));
     }
     setBusy(false);
   }
@@ -75,7 +81,7 @@ export function ModerationAction({
   return (
     <span className="flex flex-wrap items-center gap-2">
       <label className="sr-only" htmlFor={`reason-${label}`}>
-        Reason for {label}
+        {t("action.reasonFor", { label })}
       </label>
       <input
         id={`reason-${label}`}
@@ -84,7 +90,7 @@ export function ModerationAction({
         value={reason}
         autoFocus
         onChange={(event) => setReason(event.target.value)}
-        placeholder="Reason (audit-logged)"
+        placeholder={t("action.reasonPlaceholder")}
         className="w-56 rounded-xl border border-stone bg-white px-3 py-1.5 text-xs text-ink placeholder:text-ink/40 focus:border-forest focus:outline-none"
       />
       <button
@@ -98,7 +104,7 @@ export function ModerationAction({
         {busy ? (
           <LoaderCircle aria-hidden="true" className="h-3.5 w-3.5 animate-spin" />
         ) : null}
-        Confirm
+        {t("action.confirm")}
       </button>
       <button
         type="button"
@@ -108,7 +114,7 @@ export function ModerationAction({
         }}
         className="text-xs font-medium text-ink/60 hover:text-ink"
       >
-        Cancel
+        {t("action.cancel")}
       </button>
       {error ? (
         <span role="alert" className="w-full text-xs text-red-800">

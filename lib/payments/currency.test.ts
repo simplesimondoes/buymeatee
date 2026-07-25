@@ -33,24 +33,24 @@ describe("isValidMinorAmount", () => {
   });
 });
 
-describe("formatMinorAmount", () => {
-  it("formats pence and cents", () => {
+describe("formatMinorAmount (deprecated en shim over lib/i18n/format)", () => {
+  it("formats pence and cents with en-GB conventions", () => {
     expect(formatMinorAmount(500, "gbp")).toBe("£5.00");
     expect(formatMinorAmount(554, "gbp")).toBe("£5.54");
     expect(formatMinorAmount(9, "eur")).toBe("€0.09");
-    expect(formatMinorAmount(123456, "eur")).toBe("€1234.56");
+    expect(formatMinorAmount(123456, "eur")).toBe("€1,234.56");
     expect(formatMinorAmount(-250, "gbp")).toBe("-£2.50");
   });
 
-  it("uses the per-currency symbol for the new currencies", () => {
-    expect(formatMinorAmount(500, "usd")).toBe("$5.00");
+  it("uses en-GB currency symbols for the other currencies", () => {
+    expect(formatMinorAmount(500, "usd")).toBe("US$5.00");
     expect(formatMinorAmount(500, "cad")).toBe("CA$5.00");
     expect(formatMinorAmount(500, "aud")).toBe("A$5.00");
     expect(formatMinorAmount(500, "nzd")).toBe("NZ$5.00");
-    expect(formatMinorAmount(500, "chf")).toBe("CHF 5.00");
-    expect(formatMinorAmount(2500, "sek")).toBe("kr 25.00");
-    expect(formatMinorAmount(2500, "nok")).toBe("kr 25.00");
-    expect(formatMinorAmount(2500, "dkk")).toBe("kr 25.00");
+    expect(formatMinorAmount(500, "chf")).toMatch(/^CHF\s5\.00$/);
+    expect(formatMinorAmount(2500, "sek")).toMatch(/^SEK\s25\.00$/);
+    expect(formatMinorAmount(2500, "nok")).toMatch(/^NOK\s25\.00$/);
+    expect(formatMinorAmount(2500, "dkk")).toMatch(/^DKK\s25\.00$/);
   });
 
   it("refuses non-integer amounts", () => {

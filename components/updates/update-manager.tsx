@@ -1,14 +1,19 @@
 "use client";
 
 import { Plus } from "lucide-react";
+import { useLocale, useTranslations } from "next-intl";
 import { useState } from "react";
 
+import { useErrorMessage } from "@/components/intl/use-error-message";
 import { CoverUploader } from "@/components/profile/cover-uploader";
 import { Markdown } from "@/components/markdown";
 import {
   UpdateForm,
   type UpdateFormErrors,
 } from "@/components/updates/update-form";
+import type { AppLocale } from "@/i18n/locales";
+import { errorDetail, type ErrorDetail } from "@/lib/i18n/errors";
+import { formatDate } from "@/lib/i18n/format";
 import type { UpdateInput } from "@/lib/updates/update-schema";
 import type { CreatorUpdateRow } from "@/lib/updates/types";
 
@@ -20,23 +25,14 @@ import type { CreatorUpdateRow } from "@/lib/updates/types";
 const secondaryButton =
   "inline-flex min-h-9 items-center justify-center rounded-full border border-stone px-3.5 text-xs font-medium text-ink/70 transition-colors hover:border-forest/40 hover:text-forest disabled:opacity-60";
 
-function formatDate(iso: string | null): string {
-  if (!iso) {
-    return "";
-  }
-  const date = new Date(iso);
-  return date.toLocaleDateString(undefined, {
-    year: "numeric",
-    month: "short",
-    day: "numeric",
-  });
-}
-
 export function UpdateManager({
   initialUpdates,
 }: {
   initialUpdates: CreatorUpdateRow[];
 }) {
+  const t = useTranslations("dashboard");
+  const locale = useLocale() as AppLocale;
+  const errorMessage = useErrorMessage();
   const [updates, setUpdates] = useState(initialUpdates);
   const [creating, setCreating] = useState(false);
   const [editingId, setEditingId] = useState<string | null>(null);
@@ -59,7 +55,7 @@ export function UpdateManager({
       const body = (await response.json().catch(() => ({}))) as {
         update?: CreatorUpdateRow;
         errors?: UpdateFormErrors;
-        error?: string;
+        error?: ErrorDetail | string;
       };
       if (response.ok && body.update) {
         setUpdates((current) => [body.update as CreatorUpdateRow, ...current]);
@@ -69,7 +65,7 @@ export function UpdateManager({
       }
       return { errors: body.errors, error: body.error };
     } catch {
-      return { error: "Something went wrong. Please try again." };
+      return { error: errorDetail("generic") };
     }
   }
 
@@ -79,7 +75,7 @@ export function UpdateManager({
   ): Promise<{
     update?: CreatorUpdateRow;
     errors?: UpdateFormErrors;
-    error?: string;
+    error?: ErrorDetail | string;
   }> {
     try {
       const response = await fetch(`/api/updates/${updateId}`, {
@@ -90,10 +86,10 @@ export function UpdateManager({
       return (await response.json().catch(() => ({}))) as {
         update?: CreatorUpdateRow;
         errors?: UpdateFormErrors;
-        error?: string;
+        error?: ErrorDetail | string;
       };
     } catch {
-      return { error: "Something went wrong. Please try again." };
+      return { error: errorDetail("generic") };
     }
   }
 
@@ -116,7 +112,7 @@ export function UpdateManager({
     if (body.update) {
       replaceUpdate(body.update);
     } else {
-      setActionError(body.error ?? "Something went wrong. Please try again.");
+      setActionError(errorMessage(body.error ?? null));
     }
   }
 
@@ -131,12 +127,12 @@ export function UpdateManager({
         setUpdates((current) => current.filter((u) => u.id !== updateId));
       } else {
         const body = (await response.json().catch(() => ({}))) as {
-          error?: string;
+          error?: ErrorDetail | string;
         };
-        setActionError(body.error ?? "Something went wrong. Please try again.");
+        setActionError(errorMessage(body.error ?? null));
       }
     } catch {
-      setActionError("Something went wrong. Please try again.");
+      setActionError(errorMessage(null));
     }
     setBusyId(null);
   }
@@ -154,7 +150,7 @@ export function UpdateManager({
             className="inline-flex min-h-11 items-center justify-center gap-2 rounded-full bg-forest px-5 text-sm font-medium text-white transition-colors hover:bg-forest-dark"
           >
             <Plus aria-hidden="true" className="h-4 w-4" />
-            New update
+            {t("updates.manager.newUpdate")}
           </button>
         </div>
       ) : null}
@@ -168,10 +164,10 @@ export function UpdateManager({
       {creating ? (
         <div className="rounded-3xl border border-stone bg-white p-6">
           <h2 className="mb-4 font-serif text-lg font-semibold text-forest">
-            New update
+            {t("updates.manager.newUpdate")}
           </h2>
           <UpdateForm
-            submitLabel="Save draft"
+            submitLabel={t("updates.manager.saveDraft")}
             onCancel={() => setCreating(false)}
             onSubmit={handleCreate}
           />
@@ -181,11 +177,10 @@ export function UpdateManager({
       {updates.length === 0 && !creating ? (
         <div className="rounded-3xl border border-stone bg-mist p-6 text-center sm:p-10">
           <h2 className="font-serif text-xl font-semibold text-forest">
-            Share your progress.
+            {t("updates.manager.emptyTitle")}
           </h2>
           <p className="mx-auto mt-2 max-w-md text-sm leading-relaxed text-ink/70">
-            Updates are how supporters see their backing turn into real progress
-            — new features, milestones, a round played. Post your first one.
+            {t("updates.manager.emptyBody")}
           </p>
           <button
             type="button"
@@ -193,7 +188,7 @@ export function UpdateManager({
             className="mt-5 inline-flex min-h-11 items-center justify-center gap-2 rounded-full bg-forest px-6 text-sm font-medium text-white transition-colors hover:bg-forest-dark"
           >
             <Plus aria-hidden="true" className="h-4 w-4" />
-            Write your first update
+            {t("updates.manager.writeFirstUpdate")}
           </button>
         </div>
       ) : null}
@@ -212,14 +207,14 @@ export function UpdateManager({
                   <CoverUploader
                     endpoint={`/api/updates/${update.id}/cover`}
                     initialUrl={update.image_url}
-                    label="Update image (optional)"
-                    helpText="JPEG, PNG or WebP up to 5 MB. Shown with this update on your page."
+                    label={t("updates.manager.imageLabel")}
+                    helpText={t("updates.manager.imageHelp")}
                     aspectClassName="aspect-[16/9]"
                   />
                   <UpdateForm
                     initialTitle={update.title}
                     initialBody={update.body}
-                    submitLabel="Save changes"
+                    submitLabel={t("actions.saveChanges")}
                     onCancel={() => setEditingId(null)}
                     onSubmit={(input) => handleEdit(update.id, input)}
                   />
@@ -232,9 +227,15 @@ export function UpdateManager({
                         {update.title}
                       </h3>
                       <p className="mt-0.5 text-xs text-ink/60">
-                        {published
-                          ? `Published ${formatDate(update.published_at)}`
-                          : "Draft"}
+                        {published && update.published_at
+                          ? t("updates.manager.publishedOn", {
+                              date: formatDate(update.published_at, locale, {
+                                year: "numeric",
+                                month: "short",
+                                day: "numeric",
+                              }),
+                            })
+                          : t("updates.manager.draft")}
                       </p>
                     </div>
                     <span
@@ -244,7 +245,9 @@ export function UpdateManager({
                           : "bg-mist text-ink/70"
                       }`}
                     >
-                      {published ? "Published" : "Draft"}
+                      {published
+                        ? t("updates.manager.published")
+                        : t("updates.manager.draft")}
                     </span>
                   </div>
 
@@ -263,7 +266,9 @@ export function UpdateManager({
                           : "inline-flex min-h-9 items-center justify-center rounded-full bg-forest px-4 text-xs font-medium text-white transition-colors hover:bg-forest-dark disabled:opacity-60"
                       }
                     >
-                      {published ? "Unpublish" : "Publish"}
+                      {published
+                        ? t("updates.manager.unpublish")
+                        : t("updates.manager.publish")}
                     </button>
                     <button
                       type="button"
@@ -274,7 +279,7 @@ export function UpdateManager({
                       }}
                       className={secondaryButton}
                     >
-                      Edit
+                      {t("actions.edit")}
                     </button>
                     <button
                       type="button"
@@ -282,7 +287,7 @@ export function UpdateManager({
                       onClick={() => handleDelete(update.id)}
                       className="inline-flex min-h-9 items-center justify-center rounded-full px-3.5 text-xs font-medium text-red-800/80 transition-colors hover:text-red-800 disabled:opacity-60"
                     >
-                      Delete
+                      {t("actions.delete")}
                     </button>
                   </div>
                 </>

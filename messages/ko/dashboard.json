@@ -1,0 +1,260 @@
+{
+  "meta": {
+    "overview": {
+      "title": "대시보드",
+      "description": "한눈에 보는 나의 여정."
+    },
+    "goals": {
+      "title": "내 목표",
+      "description": "서포터가 응원할 수 있는 목표를 페이지에 설정하세요."
+    },
+    "updates": {
+      "title": "내 소식",
+      "description": "서포터가 지켜볼 수 있는 진행 소식을 올리세요."
+    },
+    "wishlist": {
+      "title": "내 위시리스트",
+      "description": "여정에 필요한 구체적인 항목을 서포터가 후원할 수 있게 등록하세요."
+    },
+    "payments": {
+      "title": "받은 티",
+      "description": "내 BuyMeATee 페이지를 통해 받은 선물이에요."
+    }
+  },
+  "nav": {
+    "sections": "대시보드 섹션",
+    "overview": "개요",
+    "goals": "목표",
+    "wishlist": "위시리스트",
+    "updates": "소식",
+    "payments": "결제",
+    "profile": "프로필"
+  },
+  "eyebrow": "대시보드",
+  "actions": {
+    "cancel": "취소",
+    "edit": "수정",
+    "archive": "보관",
+    "delete": "삭제",
+    "saveChanges": "변경 사항 저장"
+  },
+  "paymentState": {
+    "not_started": "아직 설정되지 않음",
+    "onboarding_not_started": "Stripe 온보딩 시작 전",
+    "onboarding_incomplete": "Stripe 온보딩 미완료",
+    "information_required": "Stripe에 추가 정보 필요",
+    "verification_pending": "Stripe 확인 진행 중",
+    "ready": "티를 받을 준비 완료",
+    "payments_restricted": "제한됨 — Stripe에서 확인 필요",
+    "payouts_disabled": "정산이 현재 비활성화됨"
+  },
+  "overview": {
+    "title": "나의 여정",
+    "pageCard": {
+      "ariaLabel": "내 공개 페이지",
+      "title": "티는 내 페이지에서 시작돼요",
+      "sharePage": "페이지 공유",
+      "viewPage": "페이지 보기"
+    },
+    "profileCard": {
+      "title": "프로필",
+      "link": "프로필 수정",
+      "unavailable": "지금은 프로필 정보를 불러올 수 없어요.",
+      "fallbackName": "내 프로필",
+      "summaryWithBio": "<name>{displayName}</name>님의 주소는 <name>/t/{username}</name> — 소개글이 등록되어 있어요.",
+      "summaryNoBio": "<name>{displayName}</name>님의 주소는 <name>/t/{username}</name> — 아직 소개글이 없어요.",
+      "noLink": "아직 공개 링크가 없어요. 서포터가 찾아올 수 있도록 buymeatee.com/t/ 이름을 만들어 보세요."
+    },
+    "goalsCard": {
+      "title": "목표",
+      "link": "목표 관리",
+      "unavailable": "지금은 목표를 불러올 수 없어요.",
+      "activeCount": "페이지에 진행 중인 목표가 <strong>{count}</strong>{count, plural, other {개}} 있어요.",
+      "raised": "목표 전체 모금액: {amounts}.",
+      "noTees": "아직 목표로 들어온 티가 없어요.",
+      "empty": "아직 페이지에 목표가 없어요. 목표가 있으면 서포터가 응원할 실질적인 대상이 생겨요."
+    },
+    "wishlistCard": {
+      "title": "위시리스트",
+      "link": "위시리스트 관리",
+      "body": "서포터가 통째로 후원할 수 있는 구체적인 항목을 등록하세요 — 볼 한 박스, 참가비, 코칭 한 회, 라운드 후 맥주 한 잔까지. 목표와 나란히 표시돼요."
+    },
+    "paymentsCard": {
+      "title": "결제",
+      "linkReady": "받은 티 보기",
+      "linkSetup": "결제 설정",
+      "unavailable": "지금은 결제 상태를 불러올 수 없어요.",
+      "ready": "<strong>{state}</strong> — 티가 내 Stripe 계정으로 바로 들어와요.",
+      "notReady": "<strong>{state}</strong> — 이 설정이 끝나야 서포터가 티를 보낼 수 있어요."
+    },
+    "updatesCard": {
+      "title": "소식",
+      "link": "소식 올리기",
+      "body": "서포터에게 진행 상황을 공유하세요 — 새로운 기능, 이정표, 플레이한 라운드까지. 게시한 소식은 내 페이지에 표시돼요."
+    }
+  },
+  "goals": {
+    "page": {
+      "title": "목표",
+      "intro": "목표는 응원을 여정으로 만들어 줘요. 한 번에 최대 3개까지 게시할 수 있고 — 진행률은 실제 티로만 채워져요. 직접 입력하는 숫자는 없어요.",
+      "unavailable": "지금은 목표를 이용할 수 없어요. 잠시 후 다시 시도해 주세요."
+    },
+    "supportButton": "이 목표 응원하기",
+    "manager": {
+      "activeCount": "페이지의 진행 중인 목표: {max, plural, other {#개}} 중 {count}개",
+      "newGoal": "새 목표",
+      "emptyTitle": "지금 어떤 목표를 향해 가고 있나요?",
+      "emptyBody": "좋은 목표는 구체적이고 현실적이에요: 한 시즌의 그린피, 예선전 원정 경비, 대회 참가비, 코칭 패키지 같은 것들요. 예를 들면 “Q스쿨 참가비 — £425” <example>(예시)</example>처럼요. 게시한 목표는 정직한 진행률과 함께 페이지에 표시돼요.",
+      "addFirstGoal": "첫 목표 추가하기",
+      "saveGoal": "목표 저장",
+      "coverLabel": "목표 커버 이미지",
+      "coverHelp": "JPEG, PNG 또는 WebP, 최대 5 MB. 페이지에서 이 목표 카드 상단에 표시돼요.",
+      "status": {
+        "draft": "임시 저장",
+        "active": "페이지에 공개됨",
+        "completed": "달성 완료",
+        "archived": "보관됨"
+      },
+      "transitions": {
+        "publish": "페이지에 게시",
+        "markCompleted": "달성 완료로 표시",
+        "takeOff": "페이지에서 내리기",
+        "reopen": "다시 열기",
+        "restore": "임시 저장으로 복원"
+      },
+      "raised": "{target} 중 {raised} <muted>모임</muted>",
+      "progressLabel": "{title} 진행 상황",
+      "milestoneReached": "🎉 목표 달성! 서포터들과 이 순간을 나눠 보세요.",
+      "milestoneProgress": "🏌️ 목표까지 {percent}% 왔어요 — 지금이 공유하기 좋은 순간이에요.",
+      "shareProgress": "진행 상황 공유",
+      "takenDown": "이 목표는 BuyMeATee에 의해 게시가 중단되어 다시 게시할 수 없어요. 오류라고 생각되시면 지원팀에 문의해 주세요.",
+      "moveUp": "{title} 위로 이동",
+      "moveDown": "{title} 아래로 이동"
+    },
+    "form": {
+      "titleLabel": "어떤 목표를 향해 가고 있나요?",
+      "titlePlaceholder": "한 시즌의 대회 참가",
+      "descriptionLabel": "이 목표가 중요한 이유",
+      "optional": "(선택)",
+      "descriptionPlaceholder": "이 목표로 무엇이 가능해지는지 서포터에게 알려 주세요 — 그린피, 원정 경비, 참가비, 코칭 등.",
+      "targetLabel": "목표 금액",
+      "targetPlaceholder": "500",
+      "currencyLabel": "통화",
+      "currencyLockedHelp": "이미 응원을 받은 목표라 통화를 변경할 수 없어요.",
+      "currencyPayoutHelp": "서포터가 후원할 수 있도록 목표는 정산 통화를 사용해요."
+    }
+  },
+  "updates": {
+    "page": {
+      "title": "소식",
+      "intro": "응원이 어디에 쓰이는지 서포터에게 보여 주세요 — 새로운 기능, 이정표, 플레이한 라운드까지. 임시 저장 글은 게시 전까지 비공개예요.",
+      "unavailable": "지금은 소식을 이용할 수 없어요. 잠시 후 다시 시도해 주세요."
+    },
+    "manager": {
+      "newUpdate": "새 소식",
+      "emptyTitle": "진행 상황을 공유해 보세요.",
+      "emptyBody": "소식은 서포터가 자신의 응원이 실제 진전으로 이어지는 걸 확인하는 방법이에요 — 새로운 기능, 이정표, 플레이한 라운드까지. 첫 소식을 올려 보세요.",
+      "writeFirstUpdate": "첫 소식 쓰기",
+      "saveDraft": "임시 저장",
+      "imageLabel": "소식 이미지 (선택)",
+      "imageHelp": "JPEG, PNG 또는 WebP, 최대 5 MB. 페이지에서 이 소식과 함께 표시돼요.",
+      "draft": "임시 저장",
+      "published": "게시됨",
+      "publishedOn": "{date} 게시",
+      "publish": "게시",
+      "unpublish": "게시 취소"
+    },
+    "form": {
+      "titleLabel": "제목",
+      "titlePlaceholder": "7월 소식 — 새 코스 1,200곳",
+      "bodyLabel": "내용",
+      "bodyPlaceholder": "어떤 소식이 있나요? 서포터는 진행 상황을 보는 걸 좋아해요.\n\n마크다운을 쓸 수 있어요: **굵게**, - 목록, [링크](https://…)."
+    }
+  },
+  "wishlist": {
+    "page": {
+      "title": "위시리스트",
+      "intro": "서포터가 한 번에 통째로 후원할 수 있는 구체적인 항목을 등록하세요 — 볼 한 박스, 대회 참가비, 코칭 한 회, 라운드 후 맥주 한 잔까지. 더 큰 목표와 나란히 표시돼요. 항목은 실제 티로 결제가 완료된 뒤에만 후원 완료로 표시돼요.",
+      "unavailable": "지금은 위시리스트를 이용할 수 없어요. 잠시 후 다시 시도해 주세요."
+    },
+    "manager": {
+      "itemCount": "{count, plural, other {페이지에 등록된 항목 #개}}",
+      "newItem": "새 항목",
+      "emptyTitle": "여정에 무엇이 필요하세요?",
+      "emptyBody": "위시리스트 항목은 구체적이고 손에 잡히는 것들이에요: 볼 한 박스, 대회 참가비, 코칭 한 회, 예선전 원정 경비, 좋은 라운드 뒤 맥주 한 잔까지. 예를 들면 “투어 볼 한 더즌 — £45” <example>(예시)</example>처럼요. 서포터 한 명이 티 한 번으로 항목 전체를 후원해요.",
+      "addFirstItem": "첫 항목 추가하기",
+      "saveItem": "항목 저장",
+      "imageLabel": "항목 이미지",
+      "imageHelp": "JPEG, PNG 또는 WebP, 최대 5 MB. 선명한 사진이 있으면 서포터가 무엇을 후원하는지 그려 볼 수 있어요.",
+      "status": {
+        "draft": "임시 저장",
+        "active": "페이지에 공개됨",
+        "funded": "후원 완료",
+        "archived": "보관됨"
+      },
+      "transitions": {
+        "publish": "페이지에 게시",
+        "takeOff": "페이지에서 내리기",
+        "restore": "임시 저장으로 복원"
+      },
+      "fundedNote": "서포터가 이 항목을 후원했어요 — 다음 소식에서 감사 인사를 전해 보세요!",
+      "moveUp": "{title} 위로 이동",
+      "moveDown": "{title} 아래로 이동"
+    },
+    "form": {
+      "titleLabel": "여정에 무엇이 필요하세요?",
+      "titlePlaceholder": "투어 볼 한 더즌",
+      "descriptionLabel": "조금 더 자세히",
+      "optional": "(선택)",
+      "descriptionPlaceholder": "무엇이고 왜 도움이 되는지 알려 주세요 — 모델명, 대회, 여행 같은 것들요.",
+      "priceLabel": "가격",
+      "pricePlaceholder": "45",
+      "priceHelp": "서포터 한 명이 항목 전체를 후원하니, 티 한 번으로 감당할 수 있는 금액으로 정해 주세요.",
+      "priceLockedHelp": "이미 후원이 완료된 항목이라 가격을 변경할 수 없어요.",
+      "currencyLabel": "통화",
+      "currencyLockedHelp": "이미 후원이 완료된 항목이라 통화를 변경할 수 없어요.",
+      "currencyPayoutHelp": "서포터가 후원할 수 있도록 항목은 정산 통화를 사용해요."
+    }
+  },
+  "payments": {
+    "title": "받은 티",
+    "statusAria": "결제 상태",
+    "receiving": "티 받는 중",
+    "notReceiving": "아직 티를 받을 수 없음",
+    "readyBody": "결제가 활성화되어 있어요. Stripe가 내 Stripe 정산 일정에 따라 은행 계좌로 입금해요.",
+    "setupBody": "결제를 설정하고 티를 받기 시작하세요.",
+    "attentionBody": "결제 설정에 확인이 필요해요.",
+    "paymentSettings": "결제 설정",
+    "grossLabel": "티 총액 ({currency})",
+    "payoutNote": "선물 금액은 보낸 분이 나를 위해 선택한 금액이에요. 정산은 Stripe가 처리해요 — 결제 완료된 티는 내 Stripe 계정에 들어온 것이지, 아직 은행 계좌에 입금된 건 아닐 수 있어요.",
+    "giftsAria": "받은 선물",
+    "latestTees": "최근 받은 티",
+    "attribution": {
+      "towardGoals": "목표로 {count}건",
+      "towardWishlist": "위시리스트로 {count}건",
+      "general": "일반 응원 {count}건"
+    },
+    "empty": "아직 받은 티가 없어요. 페이지를 공유해서 서포터가 여정에 함께하게 해 보세요.",
+    "anonymous": "익명",
+    "toward": "{title}에 보탬",
+    "funded": "{title} 후원 완료",
+    "fallbackGoal": "목표",
+    "fallbackItem": "항목",
+    "refundedNote": "결제 금액 중 환불된 금액: {amount}.",
+    "shareNews": "이 소식을 팔로워들과 나눠 보세요",
+    "share": "공유",
+    "giftStatus": {
+      "paid": "결제 완료",
+      "partially_refunded": "부분 환불",
+      "refunded": "환불됨",
+      "disputed": "이의 제기됨",
+      "dispute_won": "이의 제기 승소",
+      "dispute_lost": "이의 제기 패소",
+      "processing": "처리 중",
+      "payment_failed": "결제 실패",
+      "expired": "만료됨",
+      "checkout_created": "결제 대기 중",
+      "cancelled": "취소됨"
+    }
+  }
+}

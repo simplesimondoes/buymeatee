@@ -1,0 +1,95 @@
+{
+  "metadata": {
+    "title": "Buy {name} a Tee",
+    "description": "Support {name}'s golf journey with a Tee.",
+    "descriptionWithGoal": "Support {name}'s golf journey with a Tee — back a real goal and watch it happen.",
+    "imageAlt": "Support {name} on BuyMeATee"
+  },
+  "unavailable": {
+    "metaTitle": "Page unavailable",
+    "heading": "This page isn't available right now.",
+    "body": "It can't receive Tees at the moment. If you think this is a mistake, please check back later."
+  },
+  "hero": {
+    "kicker": "Support the journey",
+    "handicap": "{handicap} handicap",
+    "websiteLabel": "Website"
+  },
+  "about": {
+    "heading": "About",
+    "sectionLabel": "About {name}"
+  },
+  "stats": {
+    "supporters": "{count, plural, one {supporter} other {supporters}}",
+    "goalsReached": "{count, plural, one {goal reached} other {goals reached}}",
+    "updates": "{count, plural, one {update} other {updates}}",
+    "joinedLabel": "Joined",
+    "joined": "Joined {date}"
+  },
+  "cta": {
+    "supportGoal": "Support this goal",
+    "buyTee": "Buy {name} a tee"
+  },
+  "supportHero": {
+    "currentGoal": "Current goal",
+    "raisedOfTarget": "{raised} of {target}",
+    "goalOnly": "{target} goal",
+    "beFirst": "Be the first",
+    "progressLabel": "Progress towards {title}: {raised} of {target} raised"
+  },
+  "notAccepting": {
+    "heading": "{name} isn't accepting Tees yet.",
+    "body": "Check back soon — their payment setup isn't finished.",
+    "finishSetup": "Finish your payment setup"
+  },
+  "goals": {
+    "sectionLabel": "Goals",
+    "heading": "{name}'s goals",
+    "beyondGoal": "— beyond the goal!",
+    "justStarted": "Just getting started — be the first to back it.",
+    "supportedBy": "{count, plural, one {Supported by # golfer} other {Supported by # golfers}}",
+    "completedHeading": "Made possible by supporters",
+    "completedRaised": "— {amount} raised",
+    "emptyOwnerBody": "Your page has no goals yet. Goals give supporters something real to get behind.",
+    "addFirstGoal": "Add your first goal",
+    "noActiveOwner": "No active goals right now — <link>publish one</link> to give supporters something to back."
+  },
+  "wishlist": {
+    "sectionLabel": "Wish list",
+    "heading": "{name}'s wish list",
+    "intro": "Specific things you can fund outright — pick one and it's covered.",
+    "fundThis": "Fund this",
+    "fundedHeading": "Funded by supporters",
+    "emptyOwnerBody": "Your wish list is empty. Add specific things supporters can fund — a box of balls, an entry fee, a coaching session.",
+    "addFirstItem": "Add your first item"
+  },
+  "updates": {
+    "sectionLabel": "Updates",
+    "heading": "{name}'s updates",
+    "emptyOwnerHeading": "This journey has only just begun.",
+    "emptyOwnerBody": "Post updates to show supporters where their backing goes — progress is what keeps them coming back.",
+    "writeFirst": "Write your first update"
+  },
+  "recentSupport": {
+    "sectionLabel": "Recent support",
+    "heading": "Recent support",
+    "empty": "Be the first golfer to back this project.",
+    "supported": "<supporter>{name}</supporter> supported with <sum>{amount}</sum>",
+    "towardGoal": "toward {title}",
+    "fundedItem": "funded {title}"
+  },
+  "pinnedMedia": {
+    "sectionLabel": "Featured media",
+    "iframeTitle": "Featured media",
+    "featuredLink": "Featured link",
+    "featuredLinkAria": "Featured link: {host}"
+  },
+  "ogCard": {
+    "kicker": "Support the journey",
+    "headline": "Support {name}",
+    "headlineFallback": "Support the journey.",
+    "tagline": "Back a real goal and follow a golfer's journey.",
+    "goalLine": "{raised} of {target} · {percent}",
+    "goalLineFresh": "{target} goal · be the first to back it"
+  }
+}
