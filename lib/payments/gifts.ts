@@ -55,6 +55,8 @@ export type CreateCheckoutError =
   | { kind: "recipient-not-ready" }
   | { kind: "currency-mismatch" }
   | { kind: "goal-not-available" }
+  | { kind: "wishlist-item-not-available" }
+  | { kind: "wishlist-amount-mismatch"; priceAmount: number }
   | { kind: "amount"; error: FeeCalculationError }
   | { kind: "unavailable" };
 
@@ -136,6 +138,40 @@ export async function createGiftCheckout(
     }
   }
 
+  // 4b. A chosen wish-list item must be an ACTIVE item of this recipient in
+  //     the gift's currency, and (outright funding) the gift must equal its
+  //     price — the item id itself is never trusted from the browser.
+  if (input.wishlistItemId) {
+    const { data: item, error: itemError } = await supabase
+      .from("wishlist_items")
+      .select("id, creator_id, status, currency, price_amount")
+      .eq("id", input.wishlistItemId)
+      .maybeSingle();
+    if (itemError) {
+      logPaymentEvent("error", "checkout.wishlist_lookup_failed", {
+        reason: itemError.message,
+      });
+      return { ok: false, error: { kind: "unavailable" } };
+    }
+    if (
+      !item ||
+      item.creator_id !== profile.id ||
+      item.status !== "active" ||
+      item.currency !== input.currency
+    ) {
+      return { ok: false, error: { kind: "wishlist-item-not-available" } };
+    }
+    if (item.price_amount !== input.giftAmount) {
+      return {
+        ok: false,
+        error: {
+          kind: "wishlist-amount-mismatch",
+          priceAmount: item.price_amount as number,
+        },
+      };
+    }
+  }
+
   // 5. Authoritative fee calculation.
   const fees = calculateFees(input.giftAmount, input.currency, getFeeConfig());
   if (!fees.ok) {
@@ -151,6 +187,7 @@ export async function createGiftCheckout(
       recipient_user_id: profile.id,
       recipient_connected_account_id: account.id,
       goal_id: input.goalId ?? null,
+      wishlist_item_id: input.wishlistItemId ?? null,
       sender_name: input.senderName,
       sender_email: input.senderEmail ?? null,
       message: input.message ?? null,
@@ -213,6 +250,9 @@ export async function createGiftCheckout(
             environment: isLivemode() ? "live" : "test",
             fee_model_version: b.feeModelVersion,
             ...(giftRow.goal_id ? { goal_id: giftRow.goal_id } : {}),
+            ...(giftRow.wishlist_item_id
+              ? { wishlist_item_id: giftRow.wishlist_item_id }
+              : {}),
           },
         },
         metadata: {
@@ -222,6 +262,9 @@ export async function createGiftCheckout(
           environment: isLivemode() ? "live" : "test",
           fee_model_version: b.feeModelVersion,
           ...(giftRow.goal_id ? { goal_id: giftRow.goal_id } : {}),
+          ...(giftRow.wishlist_item_id
+            ? { wishlist_item_id: giftRow.wishlist_item_id }
+            : {}),
         },
         customer_email: input.senderEmail,
         success_url: urls.checkoutSuccessUrl.replace(

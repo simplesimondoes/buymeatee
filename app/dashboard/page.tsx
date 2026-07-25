@@ -191,6 +191,14 @@ export default async function DashboardPage() {
             )}
           </CardShell>
 
+          <CardShell title="Wish list" href="/dashboard/wishlist" linkLabel="Manage wish list">
+            <p>
+              List specific things supporters can fund outright — a box of
+              balls, an entry fee, a coaching session, a beer after a round.
+              They sit alongside your goals.
+            </p>
+          </CardShell>
+
           <CardShell
             title="Payments"
             href={state.steps.paymentsReady ? "/dashboard/payments" : "/settings/payments"}

@@ -27,6 +27,12 @@ export interface GiftInput {
    * in the same currency — verified server-side at checkout, never trusted.
    */
   goalId?: string;
+  /**
+   * Optional wish-list item this Tee funds outright (ADR-018). Must be an
+   * ACTIVE item of the recipient, and the gift amount must equal its price —
+   * verified server-side at checkout. Mutually exclusive with goalId.
+   */
+  wishlistItemId?: string;
 }
 
 export type GiftFieldName =
@@ -37,7 +43,8 @@ export type GiftFieldName =
   | "senderEmail"
   | "message"
   | "isAnonymous"
-  | "goalId";
+  | "goalId"
+  | "wishlistItemId";
 
 export type GiftValidationResult =
   | { ok: true; data: GiftInput }
@@ -102,6 +109,22 @@ export function validateGiftInput(payload: unknown): GiftValidationResult {
     }
   }
 
+  let wishlistItemId: string | undefined;
+  if (
+    typeof input.wishlistItemId === "string" &&
+    input.wishlistItemId.trim() !== ""
+  ) {
+    wishlistItemId = input.wishlistItemId.trim();
+    if (!UUID_PATTERN.test(wishlistItemId)) {
+      errors.wishlistItemId = "That item reference doesn't look right.";
+    }
+  }
+
+  // A Tee funds at most one thing: a goal OR a wish-list item, never both.
+  if (goalId && wishlistItemId) {
+    errors.wishlistItemId = "Choose either a goal or a wish-list item.";
+  }
+
   if (Object.keys(errors).length > 0) {
     return { ok: false, errors };
   }
@@ -117,6 +140,7 @@ export function validateGiftInput(payload: unknown): GiftValidationResult {
       message,
       isAnonymous: input.isAnonymous === true,
       goalId,
+      wishlistItemId,
     },
   };
 }

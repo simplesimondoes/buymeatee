@@ -56,3 +56,11 @@ export function goalCoverObjectPath(userId: string, goalId: string): string {
 export function updateImageObjectPath(userId: string, updateId: string): string {
   return `${userId}/update-${updateId}`;
 }
+
+/** Storage object path for a single wish-list item's image (ADR-018). */
+export function wishlistItemImageObjectPath(
+  userId: string,
+  itemId: string,
+): string {
+  return `${userId}/wishitem-${itemId}`;
+}

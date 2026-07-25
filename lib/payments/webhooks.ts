@@ -23,6 +23,10 @@ import {
 } from "@/lib/payments/types";
 import { getStripeClient } from "@/lib/stripe/server";
 import { getSupabaseAdminClient } from "@/lib/supabase/admin";
+import {
+  markWishlistItemFunded,
+  revertWishlistItemFunding,
+} from "@/lib/wishlist/funding";
 
 /**
  * Stripe event processing (ADR-009). Pure of HTTP concerns — the route
@@ -243,6 +247,16 @@ export async function markGiftPaidVerified(
       if (credited) {
         await enqueueGoalReachedNotification(gift);
       }
+    }
+    // A wish-list item is funded HERE and only here — behind the exactly-once
+    // paid transition, so webhook replays can't re-fund. Guarded on the item
+    // still being 'active', so a race between two funders resolves cleanly
+    // (ADR-018).
+    if (gift.wishlist_item_id) {
+      await markWishlistItemFunded(gift.wishlist_item_id, {
+        giftId: gift.id,
+        stripeEventId,
+      });
     }
     // Receipt to the Supporter (best-effort, never fails the payment). Not
     // queued: the Supporter may be anonymous with no profile row, and their
@@ -479,6 +493,17 @@ async function handleChargeRefunded(
     }
   }
 
+  // Outright wish-list funding is all-or-nothing: only a FULL refund reopens
+  // the item (a partial refund leaves the item funded — the supporter still
+  // paid the bulk of its price). Guarded on this gift being the funder.
+  if (gift.wishlist_item_id && fullyRefunded) {
+    await revertWishlistItemFunding(gift.wishlist_item_id, {
+      giftId: gift.id,
+      stripeEventId: event.id,
+      reason: "gift_refunded",
+    });
+  }
+
   logPaymentEvent("info", "webhook.gift_refunded", {
     gift_id: gift.id,
     amount_refunded: charge.amount_refunded,
@@ -545,6 +570,15 @@ async function handleDisputeEvent(event: Stripe.Event): Promise<ProcessOutcome> 
         reason: "dispute_lost",
       });
     }
+  }
+
+  // A lost dispute withdraws the funds — reopen the wish-list item it funded.
+  if (transitioned && to === "dispute_lost" && gift.wishlist_item_id) {
+    await revertWishlistItemFunding(gift.wishlist_item_id, {
+      giftId: gift.id,
+      stripeEventId: event.id,
+      reason: "dispute_lost",
+    });
   }
   await recordGiftEvent(
     gift.id,

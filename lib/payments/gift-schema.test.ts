@@ -136,3 +136,45 @@ describe("goalId", () => {
     }
   });
 });
+
+describe("wishlistItemId", () => {
+  const itemId = "55555555-5555-4555-8555-555555555555";
+
+  it("is optional and omitted when blank", () => {
+    const result = validateGiftInput({ ...valid, wishlistItemId: "" });
+    expect(result.ok).toBe(true);
+    if (result.ok) {
+      expect(result.data.wishlistItemId).toBeUndefined();
+    }
+  });
+
+  it("accepts a well-formed item id", () => {
+    const result = validateGiftInput({ ...valid, wishlistItemId: itemId });
+    expect(result.ok).toBe(true);
+    if (result.ok) {
+      expect(result.data.wishlistItemId).toBe(itemId);
+    }
+  });
+
+  it("rejects malformed item references", () => {
+    for (const wishlistItemId of ["nope", "123", "5555"]) {
+      const result = validateGiftInput({ ...valid, wishlistItemId });
+      expect(result.ok).toBe(false);
+      if (!result.ok) {
+        expect(result.errors.wishlistItemId).toBeDefined();
+      }
+    }
+  });
+
+  it("refuses a Tee that targets both a goal AND a wish-list item", () => {
+    const result = validateGiftInput({
+      ...valid,
+      goalId: "44444444-4444-4444-8444-444444444444",
+      wishlistItemId: itemId,
+    });
+    expect(result.ok).toBe(false);
+    if (!result.ok) {
+      expect(result.errors.wishlistItemId).toBeDefined();
+    }
+  });
+});

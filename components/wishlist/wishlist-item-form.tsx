@@ -1,0 +1,288 @@
+"use client";
+
+import { LoaderCircle } from "lucide-react";
+import { useId, useState } from "react";
+
+import { parseMajorAmountToMinor } from "@/lib/payments/gift-schema";
+import {
+  SUPPORTED_CURRENCIES,
+  type SupportedCurrency,
+} from "@/lib/payments/currency";
+import {
+  validateWishlistItemInput,
+  type WishlistFieldName,
+  type WishlistItemInput,
+} from "@/lib/wishlist/item-schema";
+import { WISHLIST_DESCRIPTION_MAX_LENGTH } from "@/lib/wishlist/types";
+
+export type WishlistFormErrors = Partial<Record<WishlistFieldName, string>>;
+
+interface WishlistItemFormProps {
+  initialTitle?: string;
+  initialDescription?: string;
+  initialCurrency?: SupportedCurrency;
+  /** Minor units; rendered back as a major-unit string for editing. */
+  initialPriceAmount?: number | null;
+  /** Funded items keep their price and currency (ADR-018). */
+  priceLocked?: boolean;
+  /** When set, items are locked to the creator's payout currency. */
+  payoutCurrency?: SupportedCurrency;
+  submitLabel: string;
+  onCancel: () => void;
+  /** Resolves to server-side field errors, a form error, or null on success. */
+  onSubmit: (
+    input: WishlistItemInput,
+  ) => Promise<{ errors?: WishlistFormErrors; error?: string } | null>;
+}
+
+const currencyLabels: Record<SupportedCurrency, string> = {
+  gbp: "£ GBP",
+  eur: "€ EUR",
+  usd: "$ USD",
+  cad: "CA$ CAD",
+  aud: "A$ AUD",
+  nzd: "NZ$ NZD",
+  chf: "CHF",
+  sek: "kr SEK",
+  nok: "kr NOK",
+  dkk: "kr DKK",
+};
+
+const inputClasses =
+  "mt-1.5 w-full rounded-xl border border-stone bg-white px-4 py-2.5 text-base text-ink placeholder:text-ink/40 focus:border-forest focus:outline-none focus:ring-2 focus:ring-forest/20 aria-[invalid=true]:border-red-700";
+
+function minorToMajorString(minor: number | null | undefined): string {
+  if (!minor || minor <= 0) {
+    return "";
+  }
+  const major = Math.floor(minor / 100);
+  const rest = minor % 100;
+  return rest === 0 ? String(major) : `${major}.${String(rest).padStart(2, "0")}`;
+}
+
+function FieldError({ id, message }: { id: string; message?: string }) {
+  if (!message) {
+    return null;
+  }
+  return (
+    <p id={id} className="mt-1.5 text-sm text-red-800">
+      {message}
+    </p>
+  );
+}
+
+export function WishlistItemForm({
+  initialTitle = "",
+  initialDescription = "",
+  initialCurrency = "gbp",
+  initialPriceAmount = null,
+  priceLocked = false,
+  payoutCurrency,
+  submitLabel,
+  onCancel,
+  onSubmit,
+}: WishlistItemFormProps) {
+  const fieldId = useId();
+  const [title, setTitle] = useState(initialTitle);
+  const [description, setDescription] = useState(initialDescription);
+  // A funded item keeps its own currency; otherwise lock to the payout
+  // currency when we know it (so no one can create an unfundable item).
+  const [currency, setCurrency] = useState<SupportedCurrency>(
+    priceLocked ? initialCurrency : payoutCurrency ?? initialCurrency,
+  );
+  const currencyDisabled = priceLocked || payoutCurrency !== undefined;
+  const [price, setPrice] = useState(minorToMajorString(initialPriceAmount));
+  const [errors, setErrors] = useState<WishlistFormErrors>({});
+  const [formError, setFormError] = useState<string | null>(null);
+  const [saving, setSaving] = useState(false);
+
+  async function handleSubmit(event: React.FormEvent<HTMLFormElement>) {
+    event.preventDefault();
+    setFormError(null);
+
+    const priceAmount = parseMajorAmountToMinor(price);
+    const validation = validateWishlistItemInput({
+      title,
+      description,
+      currency,
+      priceAmount,
+    });
+    if (!validation.ok) {
+      setErrors(validation.errors);
+      return;
+    }
+    setErrors({});
+    setSaving(true);
+    const failure = await onSubmit(validation.data);
+    setSaving(false);
+    if (failure?.errors) {
+      setErrors(failure.errors);
+    } else if (failure?.error) {
+      setFormError(failure.error);
+    }
+  }
+
+  return (
+    <form onSubmit={handleSubmit} noValidate className="space-y-5">
+      <div>
+        <label
+          htmlFor={`${fieldId}-title`}
+          className="block text-sm font-medium text-ink/80"
+        >
+          What would help your journey?
+        </label>
+        <input
+          id={`${fieldId}-title`}
+          type="text"
+          value={title}
+          onChange={(event) => setTitle(event.target.value)}
+          placeholder="A dozen tour balls"
+          className={inputClasses}
+          aria-invalid={errors.title ? true : undefined}
+          aria-describedby={errors.title ? `${fieldId}-title-error` : undefined}
+        />
+        <FieldError id={`${fieldId}-title-error`} message={errors.title} />
+      </div>
+
+      <div>
+        <div className="flex items-baseline justify-between">
+          <label
+            htmlFor={`${fieldId}-description`}
+            className="block text-sm font-medium text-ink/80"
+          >
+            A little more{" "}
+            <span className="font-normal text-ink/50">(optional)</span>
+          </label>
+          <span
+            className={`text-xs tabular-nums ${
+              description.length > WISHLIST_DESCRIPTION_MAX_LENGTH
+                ? "text-red-800"
+                : "text-ink/50"
+            }`}
+          >
+            {description.length}/{WISHLIST_DESCRIPTION_MAX_LENGTH}
+          </span>
+        </div>
+        <textarea
+          id={`${fieldId}-description`}
+          rows={3}
+          value={description}
+          onChange={(event) => setDescription(event.target.value)}
+          placeholder="What it is and why it would make a difference — the model, the event, the trip."
+          className={inputClasses}
+          aria-invalid={errors.description ? true : undefined}
+          aria-describedby={
+            errors.description ? `${fieldId}-description-error` : undefined
+          }
+        />
+        <FieldError
+          id={`${fieldId}-description-error`}
+          message={errors.description}
+        />
+      </div>
+
+      <div className="grid gap-5 sm:grid-cols-2">
+        <div>
+          <label
+            htmlFor={`${fieldId}-price`}
+            className="block text-sm font-medium text-ink/80"
+          >
+            Price
+          </label>
+          <input
+            id={`${fieldId}-price`}
+            type="text"
+            inputMode="decimal"
+            value={price}
+            onChange={(event) => setPrice(event.target.value)}
+            placeholder="45"
+            className={inputClasses}
+            disabled={priceLocked}
+            aria-invalid={errors.priceAmount ? true : undefined}
+            aria-describedby={
+              errors.priceAmount
+                ? `${fieldId}-price-error`
+                : priceLocked
+                  ? `${fieldId}-price-locked`
+                  : undefined
+            }
+          />
+          <FieldError
+            id={`${fieldId}-price-error`}
+            message={errors.priceAmount}
+          />
+          {priceLocked ? (
+            <p id={`${fieldId}-price-locked`} className="mt-1.5 text-xs text-ink/60">
+              This item has been funded, so its price can&apos;t change.
+            </p>
+          ) : (
+            <p className="mt-1.5 text-xs text-ink/60">
+              One supporter funds the whole item, so keep it to what a single
+              Tee can cover.
+            </p>
+          )}
+        </div>
+        <div>
+          <label
+            htmlFor={`${fieldId}-currency`}
+            className="block text-sm font-medium text-ink/80"
+          >
+            Currency
+          </label>
+          <select
+            id={`${fieldId}-currency`}
+            value={currency}
+            disabled={currencyDisabled}
+            onChange={(event) =>
+              setCurrency(event.target.value as SupportedCurrency)
+            }
+            className={`${inputClasses} disabled:bg-mist disabled:text-ink/60`}
+            aria-describedby={
+              currencyDisabled ? `${fieldId}-currency-locked` : undefined
+            }
+          >
+            {SUPPORTED_CURRENCIES.map((code) => (
+              <option key={code} value={code}>
+                {currencyLabels[code]}
+              </option>
+            ))}
+          </select>
+          {priceLocked ? (
+            <p id={`${fieldId}-currency-locked`} className="mt-1.5 text-xs text-ink/60">
+              This item has been funded, so its currency can&apos;t change.
+            </p>
+          ) : payoutCurrency ? (
+            <p id={`${fieldId}-currency-locked`} className="mt-1.5 text-xs text-ink/60">
+              Items use your payout currency so supporters can fund them.
+            </p>
+          ) : null}
+        </div>
+      </div>
+
+      <div className="flex flex-wrap items-center gap-3">
+        <button
+          type="submit"
+          disabled={saving}
+          className="inline-flex min-h-11 items-center justify-center gap-2 rounded-full bg-forest px-6 py-2.5 text-sm font-medium text-white transition-colors hover:bg-forest-dark disabled:opacity-70"
+        >
+          {saving ? (
+            <LoaderCircle aria-hidden="true" className="h-4 w-4 animate-spin" />
+          ) : null}
+          {submitLabel}
+        </button>
+        <button
+          type="button"
+          onClick={onCancel}
+          className="inline-flex min-h-11 items-center justify-center rounded-full px-4 text-sm font-medium text-ink/60 transition-colors hover:text-ink"
+        >
+          Cancel
+        </button>
+        {formError ? (
+          <p role="alert" className="w-full text-sm text-red-800">
+            {formError}
+          </p>
+        ) : null}
+      </div>
+    </form>
+  );
+}

@@ -10,6 +10,7 @@ import {
   parseMajorAmountToMinor,
   validateGiftInput,
 } from "@/lib/payments/gift-schema";
+import { useFund } from "@/components/wishlist/fund-context";
 
 const inputClasses =
   "mt-1.5 w-full rounded-xl border border-stone bg-white px-4 py-3 text-base text-ink placeholder:text-ink/40 focus:border-forest";
@@ -52,8 +53,13 @@ export function GiftComposer({
   const [submitting, setSubmitting] = useState(false);
   const [error, setError] = useState<string | null>(null);
 
+  // When a wish-list item is chosen (ADR-018) the amount is fixed to its price
+  // and the Tee funds that item outright — the amount and goal pickers step
+  // aside until the supporter clears the selection.
+  const { selected: fundingItem, clear: clearFunding } = useFund();
+
   const customMinor = customRaw.trim() === "" ? null : parseMajorAmountToMinor(customRaw);
-  const giftAmount = selectedPreset ?? customMinor;
+  const giftAmount = fundingItem ? fundingItem.priceAmount : selectedPreset ?? customMinor;
 
   const fees = useMemo(
     () =>
@@ -86,7 +92,9 @@ export function GiftComposer({
       senderEmail,
       message,
       isAnonymous,
-      goalId: goalId || undefined,
+      // Funding a wish-list item is mutually exclusive with a goal.
+      goalId: fundingItem ? undefined : goalId || undefined,
+      wishlistItemId: fundingItem ? fundingItem.id : undefined,
     };
     const validation = validateGiftInput(payload);
     if (!validation.ok || !fees?.ok) {
@@ -115,6 +123,31 @@ export function GiftComposer({
 
   return (
     <form onSubmit={handleSubmit} noValidate className="space-y-5">
+      {fundingItem ? (
+        <div className="rounded-2xl border border-forest/30 bg-forest/5 p-5">
+          <p className="text-sm font-medium text-forest">You&apos;re funding</p>
+          <div className="mt-1 flex items-baseline justify-between gap-3">
+            <p className="font-serif text-lg font-semibold text-forest">
+              {fundingItem.title}
+            </p>
+            <p className="shrink-0 text-lg font-semibold text-forest">
+              {formatMinorAmount(fundingItem.priceAmount, currency)}
+            </p>
+          </div>
+          <p className="mt-1 text-xs text-ink/65">
+            One Tee covers this item in full. It shows as funded once your
+            payment is verified.
+          </p>
+          <button
+            type="button"
+            onClick={clearFunding}
+            className="mt-3 text-sm font-medium text-forest underline underline-offset-2 hover:text-forest-dark"
+          >
+            Choose a different amount instead
+          </button>
+        </div>
+      ) : (
+        <>
       <fieldset>
         <legend className="text-sm font-medium text-forest">
           Choose your Tee
@@ -194,6 +227,8 @@ export function GiftComposer({
           </p>
         </div>
       ) : null}
+        </>
+      )}
 
       <div>
         <label htmlFor="gift-sender" className="text-sm font-medium text-forest">

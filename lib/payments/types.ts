@@ -59,6 +59,8 @@ export interface GiftRow {
   recipient_connected_account_id: string;
   /** Optional goal this gift supports (ADR-011). */
   goal_id: string | null;
+  /** Optional wish-list item this gift funds outright (ADR-018). */
+  wishlist_item_id: string | null;
   sender_name: string;
   sender_email: string | null;
   message: string | null;

@@ -6,6 +6,8 @@ import { Globe } from "lucide-react";
 
 import { GiftComposer } from "@/components/payments/gift-composer";
 import { PublicGoals } from "@/components/goals/public-goals";
+import { FundProvider } from "@/components/wishlist/fund-context";
+import { PublicWishlist } from "@/components/wishlist/public-wishlist";
 import { Markdown } from "@/components/markdown";
 import { Avatar } from "@/components/profile/avatar";
 import { PinnedMedia } from "@/components/profile/pinned-media";
@@ -15,6 +17,7 @@ import { PublicUpdates } from "@/components/updates/public-updates";
 import { CreatorStats } from "@/components/support/creator-stats";
 import { RecentSupport } from "@/components/support/recent-support";
 import { getPublicGoalsForCreator, type PublicGoals as PublicGoalsData } from "@/lib/goals/public";
+import { getPublicWishlistForCreator, type PublicWishlist as PublicWishlistData } from "@/lib/wishlist/public";
 import { getPublishedUpdatesForCreator } from "@/lib/updates/public";
 import type { CreatorUpdateRow } from "@/lib/updates/types";
 import { getCreatorSupport, type CreatorSupport } from "@/lib/support/public";
@@ -83,6 +86,17 @@ const loadPublicGoals = cache(
     } catch {
       // Goals unavailable: the page still works as general support.
       return { active: [], completed: [] };
+    }
+  },
+);
+
+const loadPublicWishlist = cache(
+  async (creatorId: string): Promise<PublicWishlistData> => {
+    try {
+      return await getPublicWishlistForCreator(creatorId);
+    } catch {
+      // Wish list unavailable: the page still works as general support.
+      return { available: [], funded: [] };
     }
   },
 );
@@ -341,6 +355,7 @@ export default async function RecipientProfilePage({
   const name = profile.display_name || profile.username;
 
   const goals = await loadPublicGoals(profile.id);
+  const wishlist = await loadPublicWishlist(profile.id);
   const updates = await loadPublicUpdates(profile.id);
   const support = await loadSupport(profile.id);
   const joined = profile.created_at
@@ -450,39 +465,54 @@ export default async function RecipientProfilePage({
         />
       </div>
 
-      <div className="mt-8">
-        {ready ? (
-          <div className="rounded-3xl border border-stone bg-white p-6 sm:p-8">
-            <GiftComposer
-              recipientUsername={profile.username}
-              recipientName={name}
-              currency={currency}
-              presetAmounts={PRESET_GIFT_AMOUNTS[currency]}
-              feeConfig={getFeeConfig()}
-              goals={goals.active
-                .filter((goal) => goal.currency === currency)
-                .map((goal) => ({ id: goal.id, title: goal.title }))}
-            />
-          </div>
-        ) : (
-          <div className="rounded-3xl border border-stone bg-mist p-6 text-center sm:p-8">
-            <h2 className="font-serif text-xl font-semibold text-forest">
-              {name} isn&apos;t accepting Tees yet.
-            </h2>
-            <p className="mx-auto mt-2 max-w-md text-sm leading-relaxed text-ink/70">
-              Check back soon — their payment setup isn&apos;t finished.
-            </p>
-            {isOwner ? (
-              <Link
-                href="/settings/payments"
-                className="mt-5 inline-flex min-h-11 items-center justify-center rounded-full bg-forest px-6 text-sm font-medium text-white transition-colors hover:bg-forest-dark"
-              >
-                Finish your payment setup
-              </Link>
-            ) : null}
-          </div>
-        )}
-      </div>
+      {/* Wish list + composer share a provider so "Fund this" on an item
+          drives the composer below (ADR-018). */}
+      <FundProvider>
+        <div className="mt-8">
+          <PublicWishlist
+            available={wishlist.available}
+            funded={wishlist.funded}
+            creatorName={name}
+            ready={ready}
+            currency={currency}
+            isOwner={isOwner}
+          />
+        </div>
+
+        <div id="support-composer" className="mt-8 scroll-mt-6">
+          {ready ? (
+            <div className="rounded-3xl border border-stone bg-white p-6 sm:p-8">
+              <GiftComposer
+                recipientUsername={profile.username}
+                recipientName={name}
+                currency={currency}
+                presetAmounts={PRESET_GIFT_AMOUNTS[currency]}
+                feeConfig={getFeeConfig()}
+                goals={goals.active
+                  .filter((goal) => goal.currency === currency)
+                  .map((goal) => ({ id: goal.id, title: goal.title }))}
+              />
+            </div>
+          ) : (
+            <div className="rounded-3xl border border-stone bg-mist p-6 text-center sm:p-8">
+              <h2 className="font-serif text-xl font-semibold text-forest">
+                {name} isn&apos;t accepting Tees yet.
+              </h2>
+              <p className="mx-auto mt-2 max-w-md text-sm leading-relaxed text-ink/70">
+                Check back soon — their payment setup isn&apos;t finished.
+              </p>
+              {isOwner ? (
+                <Link
+                  href="/settings/payments"
+                  className="mt-5 inline-flex min-h-11 items-center justify-center rounded-full bg-forest px-6 text-sm font-medium text-white transition-colors hover:bg-forest-dark"
+                >
+                  Finish your payment setup
+                </Link>
+              ) : null}
+            </div>
+          )}
+        </div>
+      </FundProvider>
 
       <div className="mt-10">
         <RecentSupport items={support.recent} />

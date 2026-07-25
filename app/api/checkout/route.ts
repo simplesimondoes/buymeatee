@@ -69,6 +69,22 @@ export async function POST(request: Request) {
         },
         { status: 409 },
       );
+    case "wishlist-item-not-available":
+      return NextResponse.json(
+        {
+          error:
+            "That wish-list item isn't available right now. It may have just been funded — refresh the page.",
+        },
+        { status: 409 },
+      );
+    case "wishlist-amount-mismatch":
+      return NextResponse.json(
+        {
+          error:
+            "That item's price has changed. Refresh the page and try again.",
+        },
+        { status: 409 },
+      );
     case "amount":
       return NextResponse.json(
         {

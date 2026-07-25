@@ -11,6 +11,7 @@ import { usePathname } from "next/navigation";
 const links = [
   { href: "/dashboard", label: "Overview", exact: true },
   { href: "/dashboard/goals", label: "Goals" },
+  { href: "/dashboard/wishlist", label: "Wish list" },
   { href: "/dashboard/updates", label: "Updates" },
   { href: "/dashboard/payments", label: "Payments" },
   { href: "/settings/profile", label: "Profile" },
