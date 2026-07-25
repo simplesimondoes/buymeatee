@@ -3,7 +3,8 @@
     "label": "Sections d'administration",
     "payments": "Paiements",
     "users": "Utilisateurs",
-    "moderation": "Modération"
+    "moderation": "Modération",
+    "analytics": "Statistiques"
   },
   "meta": {
     "payments": {
@@ -17,6 +18,9 @@
     },
     "moderation": {
       "title": "Administration de la modération"
+    },
+    "analytics": {
+      "title": "Statistiques"
     }
   },
   "common": {
@@ -171,6 +175,98 @@
     "deactivatePlaceholder": "p. ex. Violation des conditions : objectifs trompeurs",
     "reinstateButton": "Réactiver le profil",
     "deactivateButton": "Désactiver le profil"
+  },
+  "analytics": {
+    "title": "Statistiques",
+    "intro": "Performance de la plateforme : inscriptions, onboarding Stripe et soutien. Chaque devise est présentée séparément — les montants ne sont jamais additionnés entre devises et ne couvrent que les tees payés en mode réel. Toutes les périodes sont en UTC.",
+    "generatedAt": "Données au {date}",
+    "unavailable": "Les statistiques ne sont pas disponibles pour le moment.",
+    "noPriorData": "Aucune donnée sur la période précédente",
+    "testGiftsNote": "{count, plural, one {# tee en mode test est exclu} other {# tees en mode test sont exclus}} de tous les montants",
+    "kpis": {
+      "signups7": "Inscriptions, 7 derniers jours",
+      "paidTees7": "Tees payés, 7 derniers jours",
+      "creators": "Créateurs",
+      "supporters": "Supporters",
+      "earlyAccess": "Inscriptions early access",
+      "activeCreators": "Créateurs soutenus, 30 derniers jours",
+      "repeatRate": "Taux de supporters récurrents",
+      "repeatRateHint": "Part des {total} supporters identifiés ayant soutenu plus d'une fois",
+      "deactivated": "Comptes désactivés"
+    },
+    "periods": {
+      "vsPrev7": "vs les 7 jours précédents"
+    },
+    "signups": {
+      "heading": "Inscriptions",
+      "dailyChart": "Inscriptions quotidiennes — 30 derniers jours",
+      "seriesCreators": "Créateurs",
+      "seriesSupporters": "Supporters",
+      "weeklyHeading": "Hebdomadaire — 12 dernières semaines",
+      "monthlyHeading": "Mensuel — 12 derniers mois",
+      "table": {
+        "period": "Période",
+        "creators": "Créateurs",
+        "supporters": "Supporters",
+        "total": "Total",
+        "earlyAccess": "Early access"
+      }
+    },
+    "growth": {
+      "heading": "Croissance",
+      "description": "Fenêtres glissantes comparées à la fenêtre immédiatement précédente, pour que les semaines et mois incomplets ne déforment jamais la tendance.",
+      "metric": "Indicateur",
+      "last7": "7 derniers jours",
+      "prev7": "7 préc.",
+      "wow": "vs S-1",
+      "last30": "30 derniers jours",
+      "prev30": "30 préc.",
+      "mom": "vs M-1",
+      "last365": "365 derniers jours",
+      "prev365": "365 préc.",
+      "yoy": "vs A-1",
+      "rows": {
+        "signups": "Inscriptions",
+        "paidTees": "Tees payés",
+        "volume": "Volume de soutien ({currency})",
+        "commission": "Commission ({currency})"
+      }
+    },
+    "funnel": {
+      "heading": "Onboarding Stripe",
+      "description": "Combien de créateurs vont jusqu'à connecter Stripe et peuvent recevoir des tees.",
+      "stages": {
+        "creators": "Créateurs inscrits",
+        "started": "Onboarding Stripe commencé",
+        "submitted": "Informations transmises",
+        "ready": "Prêts à recevoir des tees"
+      },
+      "completionNote": "{rate} des créateurs qui commencent l'onboarding le terminent."
+    },
+    "giving": {
+      "heading": "Soutien",
+      "currencyHeading": "Soutien en {currency}",
+      "grossGifts": "Offert aux créateurs (brut)",
+      "commission": "Notre commission",
+      "refunded": "Remboursé (totaux supporters)",
+      "paidTees": "Tees payés",
+      "monthlyChart": "Soutien mensuel — 12 derniers mois",
+      "seriesGifts": "Aux créateurs",
+      "seriesCommission": "Commission",
+      "empty": "Pas encore de tee payé. Le soutien apparaîtra ici dès le premier paiement en mode réel.",
+      "volumeGrowthLabel": "Volume de soutien",
+      "commissionGrowthLabel": "Commission"
+    },
+    "churn": {
+      "heading": "Fidélisation & attrition",
+      "description": "L'attrition compte les désactivations de compte — le seul signal de départ que la plateforme enregistre aujourd'hui (il n'y a pas d'abonnement à résilier). Une attrition fondée sur l'inactivité demandera plus d'historique pour être pertinente.",
+      "table": {
+        "month": "Mois",
+        "deactivated": "Désactivés",
+        "activeAtStart": "Actifs en début de mois",
+        "rate": "Taux d'attrition"
+      }
+    }
   },
   "tools": {
     "refund": {

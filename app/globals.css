@@ -13,6 +13,12 @@
   --color-gold-deep: #776027;
   --color-ink: #15201b;
 
+  /* Chart series hues (admin analytics) — the brand green/gold families
+     snapped to steps that pass the dataviz palette checks (CVD ΔE 32,
+     mark contrast ≥ 3:1 on white). Marks only, never text. */
+  --color-chart-green: #0e8054;
+  --color-chart-gold: #96700d;
+
   /* Social brand colours — used only for the coloured icon badges on creator
      profiles. Not part of the brand palette; kept here so components stay
      free of raw hex. */

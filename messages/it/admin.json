@@ -3,7 +3,8 @@
     "label": "Sezioni admin",
     "payments": "Pagamenti",
     "users": "Utenti",
-    "moderation": "Moderazione"
+    "moderation": "Moderazione",
+    "analytics": "Statistiche"
   },
   "meta": {
     "payments": {
@@ -17,6 +18,9 @@
     },
     "moderation": {
       "title": "Admin moderazione"
+    },
+    "analytics": {
+      "title": "Statistiche"
     }
   },
   "common": {
@@ -171,6 +175,98 @@
     "deactivatePlaceholder": "es. Violazione dei termini: dichiarazioni fuorvianti sull'obiettivo",
     "reinstateButton": "Riattiva il profilo",
     "deactivateButton": "Disattiva il profilo"
+  },
+  "analytics": {
+    "title": "Statistiche",
+    "intro": "Andamento della piattaforma: registrazioni, onboarding Stripe e sostegno. Ogni valuta è riportata separatamente — gli importi non vengono mai sommati tra valute e includono solo i tee pagati in modalità reale. Tutti i periodi sono in UTC.",
+    "generatedAt": "Dati al {date}",
+    "unavailable": "Le statistiche non sono disponibili al momento.",
+    "noPriorData": "Nessun dato nel periodo precedente",
+    "testGiftsNote": "{count, plural, one {# tee in modalità test è escluso} other {# tee in modalità test sono esclusi}} da tutti gli importi",
+    "kpis": {
+      "signups7": "Registrazioni, ultimi 7 giorni",
+      "paidTees7": "Tee pagati, ultimi 7 giorni",
+      "creators": "Creator",
+      "supporters": "Sostenitori",
+      "earlyAccess": "Registrazioni early access",
+      "activeCreators": "Creator sostenuti, ultimi 30 giorni",
+      "repeatRate": "Tasso di sostenitori ricorrenti",
+      "repeatRateHint": "Quota dei {total} sostenitori identificati che hanno sostenuto più di una volta",
+      "deactivated": "Account disattivati"
+    },
+    "periods": {
+      "vsPrev7": "vs i 7 giorni precedenti"
+    },
+    "signups": {
+      "heading": "Registrazioni",
+      "dailyChart": "Registrazioni giornaliere — ultimi 30 giorni",
+      "seriesCreators": "Creator",
+      "seriesSupporters": "Sostenitori",
+      "weeklyHeading": "Settimanale — ultime 12 settimane",
+      "monthlyHeading": "Mensile — ultimi 12 mesi",
+      "table": {
+        "period": "Periodo",
+        "creators": "Creator",
+        "supporters": "Sostenitori",
+        "total": "Totale",
+        "earlyAccess": "Early access"
+      }
+    },
+    "growth": {
+      "heading": "Crescita",
+      "description": "Finestre mobili confrontate con la finestra immediatamente precedente, così settimane e mesi parziali non distorcono mai il trend.",
+      "metric": "Metrica",
+      "last7": "Ultimi 7 giorni",
+      "prev7": "7 prec.",
+      "wow": "Sett. su sett.",
+      "last30": "Ultimi 30 giorni",
+      "prev30": "30 prec.",
+      "mom": "Mese su mese",
+      "last365": "Ultimi 365 giorni",
+      "prev365": "365 prec.",
+      "yoy": "Anno su anno",
+      "rows": {
+        "signups": "Registrazioni",
+        "paidTees": "Tee pagati",
+        "volume": "Volume di sostegno ({currency})",
+        "commission": "Commissione ({currency})"
+      }
+    },
+    "funnel": {
+      "heading": "Onboarding Stripe",
+      "description": "Quanti creator arrivano a collegare Stripe e possono ricevere tee.",
+      "stages": {
+        "creators": "Creator registrati",
+        "started": "Onboarding Stripe avviato",
+        "submitted": "Dati inviati",
+        "ready": "Pronti a ricevere tee"
+      },
+      "completionNote": "Il {rate} dei creator che avviano l'onboarding lo completa."
+    },
+    "giving": {
+      "heading": "Sostegno",
+      "currencyHeading": "Sostegno in {currency}",
+      "grossGifts": "Regali ai creator (lordo)",
+      "commission": "La nostra commissione",
+      "refunded": "Rimborsato (totali dei sostenitori)",
+      "paidTees": "Tee pagati",
+      "monthlyChart": "Sostegno mensile — ultimi 12 mesi",
+      "seriesGifts": "Ai creator",
+      "seriesCommission": "Commissione",
+      "empty": "Ancora nessun tee pagato. Il sostegno comparirà qui non appena arriva il primo pagamento in modalità reale.",
+      "volumeGrowthLabel": "Volume di sostegno",
+      "commissionGrowthLabel": "Commissione"
+    },
+    "churn": {
+      "heading": "Fidelizzazione e abbandono",
+      "description": "L'abbandono conta le disattivazioni degli account — l'unico segnale di uscita che la piattaforma registra oggi (non ci sono abbonamenti da disdire). Un tasso di abbandono basato sull'inattività richiede più storico per essere significativo.",
+      "table": {
+        "month": "Mese",
+        "deactivated": "Disattivati",
+        "activeAtStart": "Attivi a inizio mese",
+        "rate": "Tasso di abbandono"
+      }
+    }
   },
   "tools": {
     "refund": {

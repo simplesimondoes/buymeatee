@@ -5,13 +5,21 @@ import { useTranslations } from "next-intl";
 import { Link, usePathname } from "@/i18n/navigation";
 
 /** Tab-style navigation shared by every /admin page. */
-export function AdminNav() {
+export function AdminNav({
+  showAnalytics = false,
+}: {
+  /** Owner-only tab (server-decided) — the analytics page 404s everyone else. */
+  showAnalytics?: boolean;
+}) {
   const t = useTranslations("admin");
   const pathname = usePathname();
   const links = [
     { href: "/admin/payments", label: t("nav.payments") },
     { href: "/admin/users", label: t("nav.users") },
     { href: "/admin/moderation", label: t("nav.moderation") },
+    ...(showAnalytics
+      ? [{ href: "/admin/analytics", label: t("nav.analytics") }]
+      : []),
   ];
   return (
     <nav aria-label={t("nav.label")} className="border-b border-stone">

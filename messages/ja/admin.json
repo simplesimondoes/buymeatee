@@ -3,7 +3,8 @@
     "label": "管理セクション",
     "payments": "決済",
     "users": "ユーザー",
-    "moderation": "モデレーション"
+    "moderation": "モデレーション",
+    "analytics": "アナリティクス"
   },
   "meta": {
     "payments": {
@@ -17,6 +18,9 @@
     },
     "moderation": {
       "title": "モデレーション管理"
+    },
+    "analytics": {
+      "title": "アナリティクス"
     }
   },
   "common": {
@@ -171,6 +175,98 @@
     "deactivatePlaceholder": "例：規約違反 — 誤解を招く目標の記載",
     "reinstateButton": "プロフィールを再有効化",
     "deactivateButton": "プロフィールを無効化"
+  },
+  "analytics": {
+    "title": "アナリティクス",
+    "intro": "登録、Stripeオンボーディング、応援の状況を横断して確認できます。通貨ごとに個別に集計され、通貨をまたいだ合算は行いません。金額は本番モードで支払われたティーのみが対象です。期間はすべてUTCです。",
+    "generatedAt": "{date}時点のデータ",
+    "unavailable": "アナリティクスは現在ご利用いただけません。",
+    "noPriorData": "前の期間にデータがありません",
+    "testGiftsNote": "{count, plural, other {テストモードのティー#件}}はすべての金額から除外されています",
+    "kpis": {
+      "signups7": "登録数（直近7日間）",
+      "paidTees7": "支払い済みティー（直近7日間）",
+      "creators": "クリエイター",
+      "supporters": "サポーター",
+      "earlyAccess": "先行アクセス登録",
+      "activeCreators": "応援を受けたクリエイター（直近30日間）",
+      "repeatRate": "リピートサポーター率",
+      "repeatRateHint": "特定できたサポーター{total}人のうち、2回以上応援した人の割合",
+      "deactivated": "無効化されたアカウント"
+    },
+    "periods": {
+      "vsPrev7": "前の7日間との比較"
+    },
+    "signups": {
+      "heading": "登録",
+      "dailyChart": "日次登録数 — 直近30日間",
+      "seriesCreators": "クリエイター",
+      "seriesSupporters": "サポーター",
+      "weeklyHeading": "週次 — 直近12週間",
+      "monthlyHeading": "月次 — 直近12か月",
+      "table": {
+        "period": "期間",
+        "creators": "クリエイター",
+        "supporters": "サポーター",
+        "total": "合計",
+        "earlyAccess": "先行アクセス"
+      }
+    },
+    "growth": {
+      "heading": "成長",
+      "description": "直前の同じ長さの期間と比較するローリング集計のため、途中経過の週や月がトレンドを歪めることはありません。",
+      "metric": "指標",
+      "last7": "直近7日間",
+      "prev7": "前の7日間",
+      "wow": "前週比",
+      "last30": "直近30日間",
+      "prev30": "前の30日間",
+      "mom": "前月比",
+      "last365": "直近365日間",
+      "prev365": "前の365日間",
+      "yoy": "前年比",
+      "rows": {
+        "signups": "登録数",
+        "paidTees": "支払い済みティー",
+        "volume": "ギフト総額（{currency}）",
+        "commission": "手数料収入（{currency}）"
+      }
+    },
+    "funnel": {
+      "heading": "Stripeオンボーディング",
+      "description": "クリエイターのうち、どれだけがStripe連携を完了してティーを受け取れる状態になったかを示します。",
+      "stages": {
+        "creators": "登録したクリエイター",
+        "started": "Stripeオンボーディングを開始",
+        "submitted": "情報を提出",
+        "ready": "ティーを受け取れる状態"
+      },
+      "completionNote": "オンボーディングを開始したクリエイターのうち{rate}が完了しています。"
+    },
+    "giving": {
+      "heading": "応援",
+      "currencyHeading": "{currency}での応援",
+      "grossGifts": "クリエイターへのギフト（総額）",
+      "commission": "当社の手数料収入",
+      "refunded": "返金（サポーター支払い総額ベース）",
+      "paidTees": "支払い済みティー",
+      "monthlyChart": "月次の応援 — 直近12か月",
+      "seriesGifts": "クリエイターへ",
+      "seriesCommission": "手数料",
+      "empty": "まだ支払い済みのティーはありません。本番モードで最初の支払いが行われると、ここに表示されます。",
+      "volumeGrowthLabel": "ギフト総額",
+      "commissionGrowthLabel": "手数料収入"
+    },
+    "churn": {
+      "heading": "継続とチャーン",
+      "description": "チャーンはアカウントの無効化を数えます。現在プラットフォームが記録している唯一の離脱シグナルです（解約すべきサブスクリプションはありません）。休眠ベースのチャーンは、意味のある数値にするにはより長い履歴が必要です。",
+      "table": {
+        "month": "月",
+        "deactivated": "無効化",
+        "activeAtStart": "月初時点のアクティブ数",
+        "rate": "チャーン率"
+      }
+    }
   },
   "tools": {
     "refund": {

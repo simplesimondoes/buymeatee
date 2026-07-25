@@ -3,7 +3,8 @@
     "label": "Admin sections",
     "payments": "Payments",
     "users": "Users",
-    "moderation": "Moderation"
+    "moderation": "Moderation",
+    "analytics": "Analytics"
   },
   "meta": {
     "payments": {
@@ -17,6 +18,9 @@
     },
     "moderation": {
       "title": "Moderation admin"
+    },
+    "analytics": {
+      "title": "Analytics"
     }
   },
   "common": {
@@ -171,6 +175,98 @@
     "deactivatePlaceholder": "e.g. Terms breach: misleading goal claims",
     "reinstateButton": "Reinstate profile",
     "deactivateButton": "Deactivate profile"
+  },
+  "analytics": {
+    "title": "Analytics",
+    "intro": "Platform performance across sign-ups, Stripe onboarding and giving. Each currency is reported separately — money figures are never summed across currencies and cover live paid Tees only. All periods are UTC.",
+    "generatedAt": "Data as of {date}",
+    "unavailable": "Analytics aren't available right now.",
+    "noPriorData": "No data in the previous period",
+    "testGiftsNote": "{count, plural, one {# test-mode Tee is} other {# test-mode Tees are}} excluded from all money figures",
+    "kpis": {
+      "signups7": "Sign-ups, last 7 days",
+      "paidTees7": "Paid Tees, last 7 days",
+      "creators": "Creators",
+      "supporters": "Supporters",
+      "earlyAccess": "Early-access sign-ups",
+      "activeCreators": "Creators supported, last 30 days",
+      "repeatRate": "Repeat supporter rate",
+      "repeatRateHint": "Share of {total} identified supporters who gave more than once",
+      "deactivated": "Deactivated accounts"
+    },
+    "periods": {
+      "vsPrev7": "vs previous 7 days"
+    },
+    "signups": {
+      "heading": "Sign-ups",
+      "dailyChart": "Daily sign-ups — last 30 days",
+      "seriesCreators": "Creators",
+      "seriesSupporters": "Supporters",
+      "weeklyHeading": "Weekly — last 12 weeks",
+      "monthlyHeading": "Monthly — last 12 months",
+      "table": {
+        "period": "Period",
+        "creators": "Creators",
+        "supporters": "Supporters",
+        "total": "Total",
+        "earlyAccess": "Early access"
+      }
+    },
+    "growth": {
+      "heading": "Growth",
+      "description": "Rolling windows compared with the window immediately before them, so partial weeks and months never distort the trend.",
+      "metric": "Metric",
+      "last7": "Last 7 days",
+      "prev7": "Prev. 7",
+      "wow": "WoW",
+      "last30": "Last 30 days",
+      "prev30": "Prev. 30",
+      "mom": "MoM",
+      "last365": "Last 365 days",
+      "prev365": "Prev. 365",
+      "yoy": "YoY",
+      "rows": {
+        "signups": "Sign-ups",
+        "paidTees": "Paid Tees",
+        "volume": "Gift volume ({currency})",
+        "commission": "Commission ({currency})"
+      }
+    },
+    "funnel": {
+      "heading": "Stripe onboarding",
+      "description": "How many creators go on to connect Stripe and can receive Tees.",
+      "stages": {
+        "creators": "Creators signed up",
+        "started": "Started Stripe onboarding",
+        "submitted": "Submitted their details",
+        "ready": "Ready to receive Tees"
+      },
+      "completionNote": "{rate} of creators who start onboarding finish it."
+    },
+    "giving": {
+      "heading": "Giving",
+      "currencyHeading": "Giving in {currency}",
+      "grossGifts": "Gifts to creators (gross)",
+      "commission": "Our commission",
+      "refunded": "Refunded (supporter totals)",
+      "paidTees": "Paid Tees",
+      "monthlyChart": "Monthly giving — last 12 months",
+      "seriesGifts": "To creators",
+      "seriesCommission": "Commission",
+      "empty": "No paid Tees yet. Giving appears here as soon as the first live payment lands.",
+      "volumeGrowthLabel": "Gift volume",
+      "commissionGrowthLabel": "Commission"
+    },
+    "churn": {
+      "heading": "Retention & churn",
+      "description": "Churn counts account deactivations — the only exit signal the platform records today (there are no subscriptions to cancel). Dormancy-based churn needs more trading history to be meaningful.",
+      "table": {
+        "month": "Month",
+        "deactivated": "Deactivated",
+        "activeAtStart": "Active at month start",
+        "rate": "Churn rate"
+      }
+    }
   },
   "tools": {
     "refund": {

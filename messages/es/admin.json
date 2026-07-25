@@ -3,7 +3,8 @@
     "label": "Secciones de administración",
     "payments": "Pagos",
     "users": "Usuarios",
-    "moderation": "Moderación"
+    "moderation": "Moderación",
+    "analytics": "Estadísticas"
   },
   "meta": {
     "payments": {
@@ -17,6 +18,9 @@
     },
     "moderation": {
       "title": "Administración de moderación"
+    },
+    "analytics": {
+      "title": "Estadísticas"
     }
   },
   "common": {
@@ -171,6 +175,98 @@
     "deactivatePlaceholder": "p. ej. Incumplimiento de los términos: afirmaciones engañosas en un objetivo",
     "reinstateButton": "Reactivar perfil",
     "deactivateButton": "Desactivar perfil"
+  },
+  "analytics": {
+    "title": "Estadísticas",
+    "intro": "Rendimiento de la plataforma: registros, onboarding de Stripe y apoyo. Cada moneda se muestra por separado — los importes nunca se suman entre monedas y solo incluyen tees pagados en modo real. Todos los periodos están en UTC.",
+    "generatedAt": "Datos a {date}",
+    "unavailable": "Las estadísticas no están disponibles ahora mismo.",
+    "noPriorData": "Sin datos en el periodo anterior",
+    "testGiftsNote": "{count, plural, one {# tee en modo de prueba queda excluido} other {# tees en modo de prueba quedan excluidos}} de todos los importes",
+    "kpis": {
+      "signups7": "Registros, últimos 7 días",
+      "paidTees7": "Tees pagados, últimos 7 días",
+      "creators": "Creadores",
+      "supporters": "Apoyos",
+      "earlyAccess": "Registros de acceso anticipado",
+      "activeCreators": "Creadores apoyados, últimos 30 días",
+      "repeatRate": "Tasa de apoyo recurrente",
+      "repeatRateHint": "Proporción de los {total} apoyos identificados que apoyaron más de una vez",
+      "deactivated": "Cuentas desactivadas"
+    },
+    "periods": {
+      "vsPrev7": "vs los 7 días anteriores"
+    },
+    "signups": {
+      "heading": "Registros",
+      "dailyChart": "Registros diarios — últimos 30 días",
+      "seriesCreators": "Creadores",
+      "seriesSupporters": "Apoyos",
+      "weeklyHeading": "Semanal — últimas 12 semanas",
+      "monthlyHeading": "Mensual — últimos 12 meses",
+      "table": {
+        "period": "Periodo",
+        "creators": "Creadores",
+        "supporters": "Apoyos",
+        "total": "Total",
+        "earlyAccess": "Acceso anticipado"
+      }
+    },
+    "growth": {
+      "heading": "Crecimiento",
+      "description": "Ventanas móviles comparadas con la ventana inmediatamente anterior, para que las semanas y meses incompletos nunca distorsionen la tendencia.",
+      "metric": "Métrica",
+      "last7": "Últimos 7 días",
+      "prev7": "7 ant.",
+      "wow": "Intersemanal",
+      "last30": "Últimos 30 días",
+      "prev30": "30 ant.",
+      "mom": "Intermensual",
+      "last365": "Últimos 365 días",
+      "prev365": "365 ant.",
+      "yoy": "Interanual",
+      "rows": {
+        "signups": "Registros",
+        "paidTees": "Tees pagados",
+        "volume": "Volumen de apoyo ({currency})",
+        "commission": "Comisión ({currency})"
+      }
+    },
+    "funnel": {
+      "heading": "Onboarding de Stripe",
+      "description": "Cuántos creadores llegan a conectar Stripe y pueden recibir tees.",
+      "stages": {
+        "creators": "Creadores registrados",
+        "started": "Onboarding de Stripe iniciado",
+        "submitted": "Datos enviados",
+        "ready": "Listos para recibir tees"
+      },
+      "completionNote": "El {rate} de los creadores que inician el onboarding lo completan."
+    },
+    "giving": {
+      "heading": "Apoyo",
+      "currencyHeading": "Apoyo en {currency}",
+      "grossGifts": "Regalos a creadores (bruto)",
+      "commission": "Nuestra comisión",
+      "refunded": "Reembolsado (totales de apoyos)",
+      "paidTees": "Tees pagados",
+      "monthlyChart": "Apoyo mensual — últimos 12 meses",
+      "seriesGifts": "A creadores",
+      "seriesCommission": "Comisión",
+      "empty": "Aún no hay tees pagados. El apoyo aparecerá aquí en cuanto llegue el primer pago en modo real.",
+      "volumeGrowthLabel": "Volumen de apoyo",
+      "commissionGrowthLabel": "Comisión"
+    },
+    "churn": {
+      "heading": "Retención y bajas",
+      "description": "Las bajas cuentan las desactivaciones de cuenta — la única señal de salida que la plataforma registra hoy (no hay suscripciones que cancelar). Una tasa de bajas basada en inactividad necesita más historial para ser significativa.",
+      "table": {
+        "month": "Mes",
+        "deactivated": "Desactivadas",
+        "activeAtStart": "Activas al inicio del mes",
+        "rate": "Tasa de bajas"
+      }
+    }
   },
   "tools": {
     "refund": {

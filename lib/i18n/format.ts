@@ -104,3 +104,15 @@ export function formatPercent(value: number, locale: AppLocale): string {
     maximumFractionDigits: 0,
   }).format(value / 100);
 }
+
+/**
+ * Signed percentage for period-on-period deltas: 8.34 → "+8.3%", -50 → "-50%".
+ * One decimal keeps small movements visible without false precision.
+ */
+export function formatSignedPercent(value: number, locale: AppLocale): string {
+  return new Intl.NumberFormat(intlLocale[locale], {
+    style: "percent",
+    signDisplay: "exceptZero",
+    maximumFractionDigits: 1,
+  }).format(value / 100);
+}

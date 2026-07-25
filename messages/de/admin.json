@@ -3,7 +3,8 @@
     "label": "Admin-Bereiche",
     "payments": "Zahlungen",
     "users": "Nutzer:innen",
-    "moderation": "Moderation"
+    "moderation": "Moderation",
+    "analytics": "Statistiken"
   },
   "meta": {
     "payments": {
@@ -17,6 +18,9 @@
     },
     "moderation": {
       "title": "Moderation (Admin)"
+    },
+    "analytics": {
+      "title": "Statistiken"
     }
   },
   "common": {
@@ -171,6 +175,98 @@
     "deactivatePlaceholder": "z. B. Verstoß gegen die Nutzungsbedingungen: irreführende Zielangaben",
     "reinstateButton": "Profil reaktivieren",
     "deactivateButton": "Profil deaktivieren"
+  },
+  "analytics": {
+    "title": "Statistiken",
+    "intro": "Plattform-Performance über Anmeldungen, Stripe-Onboarding und Unterstützung hinweg. Jede Währung wird separat ausgewiesen — Geldbeträge werden nie über Währungen hinweg summiert und umfassen nur bezahlte Live-Tees. Alle Zeiträume in UTC.",
+    "generatedAt": "Stand: {date}",
+    "unavailable": "Die Statistiken sind gerade nicht verfügbar.",
+    "noPriorData": "Keine Daten im Vorzeitraum",
+    "testGiftsNote": "{count, plural, one {# Tee im Testmodus ist} other {# Tees im Testmodus sind}} von allen Geldbeträgen ausgeschlossen",
+    "kpis": {
+      "signups7": "Anmeldungen, letzte 7 Tage",
+      "paidTees7": "Bezahlte Tees, letzte 7 Tage",
+      "creators": "Creator",
+      "supporters": "Unterstützer:innen",
+      "earlyAccess": "Early-Access-Anmeldungen",
+      "activeCreators": "Unterstützte Creator, letzte 30 Tage",
+      "repeatRate": "Quote wiederkehrender Unterstützer:innen",
+      "repeatRateHint": "Anteil der {total} identifizierten Unterstützer:innen, die mehr als einmal unterstützt haben",
+      "deactivated": "Deaktivierte Konten"
+    },
+    "periods": {
+      "vsPrev7": "ggü. den 7 Tagen davor"
+    },
+    "signups": {
+      "heading": "Anmeldungen",
+      "dailyChart": "Tägliche Anmeldungen — letzte 30 Tage",
+      "seriesCreators": "Creator",
+      "seriesSupporters": "Unterstützer:innen",
+      "weeklyHeading": "Wöchentlich — letzte 12 Wochen",
+      "monthlyHeading": "Monatlich — letzte 12 Monate",
+      "table": {
+        "period": "Zeitraum",
+        "creators": "Creator",
+        "supporters": "Unterstützer:innen",
+        "total": "Gesamt",
+        "earlyAccess": "Early Access"
+      }
+    },
+    "growth": {
+      "heading": "Wachstum",
+      "description": "Rollierende Zeitfenster im Vergleich zum unmittelbar vorangehenden Fenster, damit angebrochene Wochen und Monate den Trend nicht verzerren.",
+      "metric": "Kennzahl",
+      "last7": "Letzte 7 Tage",
+      "prev7": "Vorherige 7",
+      "wow": "WoW",
+      "last30": "Letzte 30 Tage",
+      "prev30": "Vorherige 30",
+      "mom": "MoM",
+      "last365": "Letzte 365 Tage",
+      "prev365": "Vorherige 365",
+      "yoy": "YoY",
+      "rows": {
+        "signups": "Anmeldungen",
+        "paidTees": "Bezahlte Tees",
+        "volume": "Geschenkvolumen ({currency})",
+        "commission": "Provision ({currency})"
+      }
+    },
+    "funnel": {
+      "heading": "Stripe-Onboarding",
+      "description": "Wie viele Creator anschließend Stripe verbinden und Tees empfangen können.",
+      "stages": {
+        "creators": "Creator angemeldet",
+        "started": "Stripe-Onboarding gestartet",
+        "submitted": "Angaben übermittelt",
+        "ready": "Bereit, Tees zu empfangen"
+      },
+      "completionNote": "{rate} der Creator, die das Onboarding starten, schließen es ab."
+    },
+    "giving": {
+      "heading": "Unterstützung",
+      "currencyHeading": "Unterstützung in {currency}",
+      "grossGifts": "Geschenke an Creator (brutto)",
+      "commission": "Unsere Provision",
+      "refunded": "Erstattet (Gesamtbeträge der Unterstützer:innen)",
+      "paidTees": "Bezahlte Tees",
+      "monthlyChart": "Monatliche Unterstützung — letzte 12 Monate",
+      "seriesGifts": "An Creator",
+      "seriesCommission": "Provision",
+      "empty": "Noch keine bezahlten Tees. Sobald die erste Live-Zahlung eingeht, erscheint die Unterstützung hier.",
+      "volumeGrowthLabel": "Geschenkvolumen",
+      "commissionGrowthLabel": "Provision"
+    },
+    "churn": {
+      "heading": "Bindung & Abwanderung",
+      "description": "Abwanderung zählt Kontodeaktivierungen — das einzige Austrittssignal, das die Plattform heute erfasst (es gibt keine Abos zu kündigen). Inaktivitätsbasierte Abwanderung braucht mehr Historie, um aussagekräftig zu sein.",
+      "table": {
+        "month": "Monat",
+        "deactivated": "Deaktiviert",
+        "activeAtStart": "Aktiv zu Monatsbeginn",
+        "rate": "Abwanderungsquote"
+      }
+    }
   },
   "tools": {
     "refund": {

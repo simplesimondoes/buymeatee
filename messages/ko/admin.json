@@ -3,7 +3,8 @@
     "label": "관리자 섹션",
     "payments": "결제",
     "users": "사용자",
-    "moderation": "운영 관리"
+    "moderation": "운영 관리",
+    "analytics": "애널리틱스"
   },
   "meta": {
     "payments": {
@@ -17,6 +18,9 @@
     },
     "moderation": {
       "title": "운영 관리"
+    },
+    "analytics": {
+      "title": "애널리틱스"
     }
   },
   "common": {
@@ -171,6 +175,98 @@
     "deactivatePlaceholder": "예: 약관 위반 — 오해를 부르는 목표 주장",
     "reinstateButton": "프로필 복구",
     "deactivateButton": "프로필 비활성화"
+  },
+  "analytics": {
+    "title": "애널리틱스",
+    "intro": "가입, Stripe 온보딩, 응원 현황을 한눈에 확인하세요. 통화별로 따로 집계되며 통화 간 합산은 하지 않습니다. 금액은 실결제 모드에서 결제된 티만 포함합니다. 모든 기간은 UTC 기준입니다.",
+    "generatedAt": "{date} 기준 데이터",
+    "unavailable": "지금은 애널리틱스를 이용할 수 없어요.",
+    "noPriorData": "이전 기간에 데이터가 없어요",
+    "testGiftsNote": "{count, plural, other {테스트 모드 티 #개}}는 모든 금액에서 제외됩니다",
+    "kpis": {
+      "signups7": "가입, 최근 7일",
+      "paidTees7": "결제된 티, 최근 7일",
+      "creators": "크리에이터",
+      "supporters": "서포터",
+      "earlyAccess": "얼리 액세스 신청",
+      "activeCreators": "응원받은 크리에이터, 최근 30일",
+      "repeatRate": "재응원 서포터 비율",
+      "repeatRateHint": "확인된 서포터 {total}명 중 두 번 이상 응원한 비율",
+      "deactivated": "비활성화된 계정"
+    },
+    "periods": {
+      "vsPrev7": "직전 7일 대비"
+    },
+    "signups": {
+      "heading": "가입",
+      "dailyChart": "일별 가입 — 최근 30일",
+      "seriesCreators": "크리에이터",
+      "seriesSupporters": "서포터",
+      "weeklyHeading": "주별 — 최근 12주",
+      "monthlyHeading": "월별 — 최근 12개월",
+      "table": {
+        "period": "기간",
+        "creators": "크리에이터",
+        "supporters": "서포터",
+        "total": "합계",
+        "earlyAccess": "얼리 액세스"
+      }
+    },
+    "growth": {
+      "heading": "성장",
+      "description": "직전의 같은 길이 기간과 비교하는 롤링 집계라서, 진행 중인 주나 달이 추세를 왜곡하지 않아요.",
+      "metric": "지표",
+      "last7": "최근 7일",
+      "prev7": "직전 7일",
+      "wow": "주간 대비",
+      "last30": "최근 30일",
+      "prev30": "직전 30일",
+      "mom": "월간 대비",
+      "last365": "최근 365일",
+      "prev365": "직전 365일",
+      "yoy": "연간 대비",
+      "rows": {
+        "signups": "가입",
+        "paidTees": "결제된 티",
+        "volume": "선물 금액({currency})",
+        "commission": "수수료 수익({currency})"
+      }
+    },
+    "funnel": {
+      "heading": "Stripe 온보딩",
+      "description": "크리에이터 중 몇 명이 Stripe 연결을 마치고 티를 받을 수 있는 상태가 되는지 보여줍니다.",
+      "stages": {
+        "creators": "가입한 크리에이터",
+        "started": "Stripe 온보딩 시작",
+        "submitted": "정보 제출 완료",
+        "ready": "티 수령 가능"
+      },
+      "completionNote": "온보딩을 시작한 크리에이터 중 {rate}가 완료합니다."
+    },
+    "giving": {
+      "heading": "응원",
+      "currencyHeading": "{currency} 응원",
+      "grossGifts": "크리에이터에게 간 선물(총액)",
+      "commission": "우리 수수료 수익",
+      "refunded": "환불(서포터 결제 총액 기준)",
+      "paidTees": "결제된 티",
+      "monthlyChart": "월별 응원 — 최근 12개월",
+      "seriesGifts": "크리에이터에게",
+      "seriesCommission": "수수료",
+      "empty": "아직 결제된 티가 없어요. 첫 실결제가 들어오면 여기에 표시됩니다.",
+      "volumeGrowthLabel": "선물 금액",
+      "commissionGrowthLabel": "수수료 수익"
+    },
+    "churn": {
+      "heading": "유지와 이탈",
+      "description": "이탈은 계정 비활성화를 셉니다. 현재 플랫폼이 기록하는 유일한 이탈 신호예요(해지할 구독이 없기 때문). 휴면 기준 이탈률은 의미 있는 수치가 되려면 더 긴 기록이 필요합니다.",
+      "table": {
+        "month": "월",
+        "deactivated": "비활성화",
+        "activeAtStart": "월초 활성 계정",
+        "rate": "이탈률"
+      }
+    }
   },
   "tools": {
     "refund": {

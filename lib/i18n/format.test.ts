@@ -5,6 +5,7 @@ import {
   formatMinorAmount,
   formatNumber,
   formatPercent,
+  formatSignedPercent,
   formatRelativeTime,
 } from "./format";
 
@@ -76,5 +77,10 @@ describe("formatNumber / formatPercent", () => {
   it("formats percentages", () => {
     expect(formatPercent(45, "en")).toBe("45%");
     expect(formatPercent(45, "de")).toMatch(/^45\s?%$/);
+  });
+  it("formats signed delta percentages", () => {
+    expect(formatSignedPercent(8.34, "en")).toBe("+8.3%");
+    expect(formatSignedPercent(-50, "en")).toBe("-50%");
+    expect(formatSignedPercent(0, "en")).toBe("0%");
   });
 });
