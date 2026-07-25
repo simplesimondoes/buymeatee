@@ -25,12 +25,12 @@ export default async function HomePage({
   return (
     <>
       <Hero />
-      <AudienceGrid />
-      <HowItWorksSection />
-      <FeaturedGolfersSection />
       <WhySupportersSection />
       <ExampleGoalsSection />
+      <FeaturedGolfersSection />
       <PricingSection />
+      <AudienceGrid />
+      <HowItWorksSection />
       <FaqPreviewSection />
       <CallToAction />
     </>

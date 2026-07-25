@@ -1,7 +1,7 @@
 {
   "hero": {
-    "eyebrow": "목표가 있는 골퍼를 위해.",
-    "heading": "골프 여정을 위한 응원을 모아 보세요.",
+    "heading": "목표가 있는 골퍼를 위해.",
+    "tagline": "골프 여정을 위한 응원을 모아 보세요.",
     "intro": "대회에 나가든, 코칭을 하든, 콘텐츠를 만들든, 다음 골프 이정표를 향해 가든 — BuyMeATee는 서포터가 당신의 여정의 일부가 되도록 도와요.",
     "startCta": "내 페이지 만들기",
     "exploreCta": "골퍼 둘러보기",
@@ -11,28 +11,6 @@
       "supporters": "내 서포터는 언제나 내 것",
       "payouts": "빠른 정산"
     }
-  },
-  "supportWays": {
-    "eyebrow": "응원하는 방법",
-    "items": {
-      "greenFee": {
-        "name": "그린피 선물하기",
-        "description": "특별한 곳에서의 라운드를 후원해요."
-      },
-      "balls": {
-        "name": "볼 한 박스",
-        "description": "연습 날의 필수품이에요."
-      },
-      "goal": {
-        "name": "목표에 후원하기",
-        "description": "시즌 전체의 여정을 응원해요."
-      },
-      "eventEntry": {
-        "name": "대회 참가비",
-        "description": "첫 티까지 데려다주세요."
-      }
-    },
-    "note": "응원 옵션은 크리에이터가 직접 정해요 — 모든 후원은 그들의 여정에 쓰여요."
   },
   "audienceGrid": {
     "eyebrow": "누구를 위한 서비스인가요",

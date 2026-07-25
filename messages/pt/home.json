@@ -1,7 +1,7 @@
 {
   "hero": {
-    "eyebrow": "Para golfistas com um objetivo.",
-    "heading": "Angaria apoio para o teu percurso no golfe.",
+    "heading": "Para golfistas com um objetivo.",
+    "tagline": "Angaria apoio para o teu percurso no golfe.",
     "intro": "Quer estejas a competir, a treinar outros, a criar conteúdos ou a perseguir o teu próximo marco no golfe, o BuyMeATee ajuda os teus apoiantes a fazerem parte do teu percurso.",
     "startCta": "Cria a tua página",
     "exploreCta": "Explorar golfistas",
@@ -11,28 +11,6 @@
       "supporters": "Os teus apoiantes continuam teus",
       "payouts": "Transferências rápidas"
     }
-  },
-  "supportWays": {
-    "eyebrow": "Formas de apoiar",
-    "items": {
-      "greenFee": {
-        "name": "Oferece um green fee",
-        "description": "Cobre uma volta num sítio especial."
-      },
-      "balls": {
-        "name": "Uma caixa de bolas",
-        "description": "Os essenciais do dia de treino."
-      },
-      "goal": {
-        "name": "Contribui para um objetivo",
-        "description": "Apoia um percurso de uma época inteira."
-      },
-      "eventEntry": {
-        "name": "Inscrição numa prova",
-        "description": "Leva-os até ao primeiro tee."
-      }
-    },
-    "note": "Os criadores escolhem as suas próprias opções de apoio — cada contributo vai para o percurso deles."
   },
   "audienceGrid": {
     "eyebrow": "Para quem é",

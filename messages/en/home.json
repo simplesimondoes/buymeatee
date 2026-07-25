@@ -1,7 +1,7 @@
 {
   "hero": {
-    "eyebrow": "For Golfers With a Goal.",
-    "heading": "Raise support for your golf journey.",
+    "heading": "For Golfers With a Goal.",
+    "tagline": "Raise support for your golf journey.",
     "intro": "Whether you're competing, coaching, creating content or chasing your next golfing milestone, BuyMeATee helps your supporters become part of your journey.",
     "startCta": "Create your page",
     "exploreCta": "Explore golfers",
@@ -11,28 +11,6 @@
       "supporters": "Your supporters stay yours",
       "payouts": "Fast payouts"
     }
-  },
-  "supportWays": {
-    "eyebrow": "Ways to support",
-    "items": {
-      "greenFee": {
-        "name": "Buy a green fee",
-        "description": "Cover a round somewhere special."
-      },
-      "balls": {
-        "name": "A box of balls",
-        "description": "The practice-day essentials."
-      },
-      "goal": {
-        "name": "Contribute to a goal",
-        "description": "Back a season-long journey."
-      },
-      "eventEntry": {
-        "name": "Event entry",
-        "description": "Get them to the first tee."
-      }
-    },
-    "note": "Creators choose their own support options — every contribution goes to their journey."
   },
   "audienceGrid": {
     "eyebrow": "Who it's for",

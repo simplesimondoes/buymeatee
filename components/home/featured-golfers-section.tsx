@@ -14,7 +14,7 @@ export async function FeaturedGolfersSection() {
   const t = await getTranslations("home");
   const featured = await getFeaturedGoals(3);
   return (
-    <section className="bg-white">
+    <section className="bg-mist">
       <div className="mx-auto max-w-6xl px-4 py-16 sm:px-6 lg:px-8 lg:py-24">
         <SectionHeading
           eyebrow={t("featuredGolfers.eyebrow")}
