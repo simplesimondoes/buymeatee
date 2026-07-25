@@ -1,7 +1,7 @@
 {
   "brand": {
     "homeAria": "BuyMeATee — home",
-    "tagline": "Sostieni il percorso."
+    "tagline": "Per golfisti con un obiettivo."
   },
   "nav": {
     "discover": "Scopri",
@@ -10,6 +10,17 @@
     "forSupporters": "Per i sostenitori",
     "blog": "Blog",
     "faq": "FAQ",
+    "audiences": {
+      "contentCreators": "Creator di contenuti",
+      "tournamentPlayers": "Giocatori di torneo",
+      "juniorGolfers": "Giovani golfisti",
+      "collegeGolfers": "Golfisti universitari",
+      "travellingPlayers": "Giocatori in trasferta",
+      "charityGolfers": "Golfisti per beneficenza",
+      "clubProfessionals": "Professionisti di circolo",
+      "coaches": "Maestri di golf",
+      "podcasters": "Podcaster"
+    },
     "primaryLabel": "Principale",
     "siteNavigation": "Navigazione del sito",
     "home": "Home",
@@ -34,6 +45,7 @@
   },
   "footer": {
     "productHeading": "Prodotto",
+    "forGolfersHeading": "Per i golfisti",
     "companyHeading": "Azienda",
     "legalHeading": "Note legali",
     "about": "Chi siamo",
@@ -41,7 +53,7 @@
     "terms": "Termini",
     "impressum": "Impressum",
     "accessibility": "Accessibilità",
-    "description": "BuyMeATee è il posto dove gli appassionati di golf aiutano i creator a giocare di più, ottenere di più e inseguire i propri obiettivi. Segui il percorso. Sostieni un obiettivo. Offri loro un tee.",
+    "description": "Ogni golfista ha un obiettivo. BuyMeATee lo aiuta a raggiungerlo — con sostenitori che seguono il percorso, appoggiano l'obiettivo e gli offrono un tee.",
     "copyright": "© {year} BuyMeATee. Tutti i diritti riservati.",
     "productLine": "Un prodotto <brand>Caddie Live</brand> · Creato per i golfisti"
   },

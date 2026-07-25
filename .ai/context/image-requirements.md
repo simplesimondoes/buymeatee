@@ -51,13 +51,31 @@ same problem.
 | Blog: fund content | `22_travel_golf_trip` | ~672 px wide | ≥ 1400 px wide | ~2:1 | Golfer travelling with clubs |
 | Blog: amateur sponsorship | `21_tournament_competition` | ~672 px wide | ≥ 1400 px wide | ~2:1 | (shared with goal card) |
 | Blog: cost of golf content | `10_golf_ball_closeup` | ~672 px wide | ≥ 1400 px wide | ~2:1 | Ball in grass close-up |
+| Goal: Charity Challenge Round | `13_golfers_fist_bump` | ~360 px wide | ≥ 800 px wide | ~16:9 | (shared with supporter panel) — celebration for a cause |
+| Goal: Junior Season Fund | `24_junior_golfer_swing` | ~360 px wide | ≥ 800 px wide | ~16:9 | Junior practising — only ever in guardian-framed context |
+| Goal: Short-Game Clinic Series | `17_putter_and_ball_closeup` | ~360 px wide | ≥ 800 px wide | ~16:9 | Practice-green detail |
+| Goal: Golf Podcast Season One | `10_golf_ball_closeup` | ~360 px wide | ≥ 800 px wide | ~16:9 | (shared with blog: cost of golf content) |
+| Audience: content creators (`/for/content-creators`) | `23_creator_vlogging_golf` | ~640 px wide | ≥ 1300 px wide | ~2:1 | (shared with creator panel) |
+| Audience: tournament players (`/for/tournament-players`) | `21_tournament_competition` | ~640 px wide | ≥ 1300 px wide | ~2:1 | (shared with goal card) |
+| Audience: junior golfers (`/for/junior-golfers`) | `24_junior_golfer_swing` | ~640 px wide | ≥ 1300 px wide | ~2:1 | Junior golfer — page is guardian-addressed (parent/guardian rule) |
+| Audience: college golfers (`/for/college-golfers`) | `02_group_diverse_golfers` | ~640 px wide | ≥ 1300 px wide | ~2:1 | Team-aged group together on course |
+| Audience: travelling players (`/for/travelling-players`) | `22_travel_golf_trip` | ~640 px wide | ≥ 1300 px wide | ~2:1 | (shared with blog: fund content) |
+| Audience: charity golfers (`/for/charity-golfers`) | `06_friends_walking_fairway` | ~640 px wide | ≥ 1300 px wide | ~2:1 | (shared with how-it-works) |
+| Audience: club professionals (`/for/club-professionals`) | `08_clubhouse_evening` | ~640 px wide | ≥ 1300 px wide | ~2:1 | Clubhouse at evening — the club community |
+| Audience: coaches (`/for/coaches`) | `17_putter_and_ball_closeup` | ~640 px wide | ≥ 1300 px wide | ~2:1 | Practice-green detail — coaching craft |
+| Audience: podcasters (`/for/podcasters`) | `19_friends_golf_cart` | ~640 px wide | ≥ 1300 px wide | ~2:1 | Two golfers talking/laughing — conversational energy |
+| Blog: golf crowdfunding alternative | `11_flag_at_sunset` | ~672 px wide | ≥ 1400 px wide | ~2:1 | (shared with About page) |
 | Social sharing default | *generated* (`app/opengraph-image.tsx`) | 1200 × 630 | — | 1.91:1 | Branded card from design tokens — no photo needed |
 | Favicon / app icon | *generated* (`app/icon.svg`, `app/apple-icon.tsx`) | — | — | 1:1 | Tee-and-ball brand mark |
 
-Unused-but-extracted frames (01, 02, 08, 14, 16, 17, 19, 24, 25) remain in
+Frames 02, 08, 17, 19 and 24 entered use with the audience landing pages
+(Jul 2026, ADR-021) — they need the same hi-res replacement as the other
+placeholder slots. Unused-but-extracted frames (01, 14, 16, 25) remain in
 `public/images/` as options for future sections; the same replacement and
 licensing rules apply if they are put into use. Frame 24 (junior golfer)
-must only ever appear in a context that reflects the parent/guardian rule.
+must only ever appear in a context that reflects the parent/guardian rule —
+currently the guardian-addressed junior page and the guardian-run example
+goal card.
 
 ## Alt text rules
 

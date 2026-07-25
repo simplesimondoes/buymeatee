@@ -13,10 +13,11 @@ const expectedSlugs = [
   "how-golf-creators-can-fund-their-content",
   "golf-sponsorship-for-amateur-players",
   "what-does-it-cost-to-create-golf-content",
+  "looking-for-golf-crowdfunding",
 ];
 
 describe("blog content", () => {
-  it("publishes exactly the four launch articles", () => {
+  it("publishes exactly the registered articles", () => {
     expect(articles.map((a) => a.slug).sort()).toEqual(
       [...expectedSlugs].sort(),
     );

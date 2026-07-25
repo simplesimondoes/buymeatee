@@ -1,7 +1,7 @@
 {
   "brand": {
     "homeAria": "BuyMeATee — 홈",
-    "tagline": "여정을 응원하세요."
+    "tagline": "목표가 있는 골퍼를 위해."
   },
   "nav": {
     "discover": "둘러보기",
@@ -10,6 +10,17 @@
     "forSupporters": "서포터 안내",
     "blog": "블로그",
     "faq": "자주 묻는 질문",
+    "audiences": {
+      "contentCreators": "콘텐츠 크리에이터",
+      "tournamentPlayers": "대회 출전 골퍼",
+      "juniorGolfers": "주니어 골퍼",
+      "collegeGolfers": "대학 골퍼",
+      "travellingPlayers": "원정 골퍼",
+      "charityGolfers": "자선 골퍼",
+      "clubProfessionals": "클럽 프로",
+      "coaches": "코치",
+      "podcasters": "팟캐스터"
+    },
     "primaryLabel": "주 메뉴",
     "siteNavigation": "사이트 탐색",
     "home": "홈",
@@ -34,6 +45,7 @@
   },
   "footer": {
     "productHeading": "서비스",
+    "forGolfersHeading": "골퍼별 안내",
     "companyHeading": "회사",
     "legalHeading": "법적 고지",
     "about": "소개",
@@ -41,7 +53,7 @@
     "terms": "이용약관",
     "impressum": "Impressum",
     "accessibility": "접근성",
-    "description": "BuyMeATee는 골프 팬들이 크리에이터가 더 많이 플레이하고, 더 많이 이루고, 목표를 향해 나아가도록 돕는 곳이에요. 여정을 지켜보고, 목표를 응원하고, 티를 선물해 보세요.",
+    "description": "모든 골퍼에게는 목표가 있어요. BuyMeATee는 여정을 지켜보고, 목표를 응원하고, 티를 선물하는 서포터와 함께 그 목표를 이루도록 도와요.",
     "copyright": "© {year} BuyMeATee. 모든 권리 보유.",
     "productLine": "<brand>Caddie Live</brand>가 만든 서비스 · 골퍼를 위해 만들었어요"
   },

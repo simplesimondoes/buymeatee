@@ -1,6 +1,7 @@
 import type { MetadataRoute } from "next";
 
 import { locales } from "@/i18n/locales";
+import { audiences } from "@/lib/content/audiences";
 import { articles } from "@/lib/content/blog";
 import { canonicalUrl, hreflangAlternates } from "@/lib/seo/metadata";
 
@@ -53,5 +54,19 @@ export default function sitemap(): MetadataRoute.Sitemap {
     })),
   );
 
-  return [...pages, ...blogEntries];
+  // Audience landing pages (ADR-021) come from the registry, not
+  // staticRoutes — the registry is their single source of truth.
+  const audienceEntries: MetadataRoute.Sitemap = audiences.flatMap(
+    (audience) =>
+      locales.map((locale) => ({
+        url: canonicalUrl(`/for/${audience.slug}`, locale),
+        changeFrequency: "monthly" as const,
+        priority: 0.7,
+        alternates: {
+          languages: hreflangAlternates(`/for/${audience.slug}`),
+        },
+      })),
+  );
+
+  return [...pages, ...audienceEntries, ...blogEntries];
 }

@@ -8,9 +8,13 @@ Never: BuyMeaTee, Buy Me A Tee, BuyMea Tee, or inconsistent casing. Note: the ap
 
 ## Proposition
 
-Primary line: **Support the journey.**
+> **Jul 2026 (founder repositioning, ADR-021):** the brand leads with the golfer's ambition, not the payment. BuyMeATee is the platform where golfers fund their ambitions — never a tipping platform.
 
-Primary explanation: *BuyMeATee is where golf fans help creators play more, achieve more and chase their goals.*
+Primary line: **For Golfers With a Goal.**
+
+Primary explanation: *Every golfer has a goal. BuyMeATee helps them achieve it.*
+
+Supporter-facing line (used where the audience is supporters, e.g. share texts, profile/OG copy, emails): *Support the journey.*
 
 Supporting line: *Follow the journey. Support a goal. Buy them a tee.*
 
@@ -42,7 +46,9 @@ Adjust where needed for contrast and cohesion. The design tokens in code are the
 
 ## Approved CTA language
 
+- Create your page (primary since the Jul 2026 repositioning)
 - Start your page
+- Explore golfers
 - Join early access
 - Find golf creators
 - Join as a supporter
@@ -53,7 +59,7 @@ Adjust where needed for contrast and cohesion. The design tokens in code are the
 
 - Donate now / beg for support / crowdfunding platform / give us money / influencer-only language.
 - No fake reviews, ratings, user counts, supporter avatars, partner logos, press logos or transaction totals. **The approved concept image contains these ("4.9/5 from 1,200+ reviews", "+2.5K" avatars) — do not reproduce them.**
-- No claims that payments are live or protected by a named provider. Phrase security as a design principle, e.g. "Designed around transparent goals and responsible payments."
+- Payment claims must match reality. Since Jul 2026 payments are live (Stripe Connect, ADR-009) and may be described plainly ("Payments secured by Stripe", real fee percentages from `getFeeConfig()`); never invent fees, payout times or guarantees beyond what is implemented.
 - Fictional creators, goals and previews must be labelled `Example`, `Preview` or `Concept`.
 
 ## Logo guidance

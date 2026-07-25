@@ -23,8 +23,8 @@
     "concept": "Concept"
   },
   "cta": {
-    "defaultHeading": "Ready to support the journey?",
-    "defaultBody": "Create your page and start sharing your golf goals from the first tee.",
+    "defaultHeading": "Ready to chase your goal?",
+    "defaultBody": "Create your page, share your goal and let supporters become part of your journey.",
     "start": "Start your page",
     "how": "See how it works"
   },
@@ -129,17 +129,6 @@
       "eyebrow": "Who it's for",
       "heading": "Made for emerging golfers, not just famous ones",
       "intro": "If you have a journey worth following, you belong here — whatever the size of your audience.",
-      "audiences": {
-        "youtube": "YouTube golf creators",
-        "shortForm": "TikTok and Instagram golf creators",
-        "amateur": "Amateur tournament golfers",
-        "aspiringPro": "Aspiring professionals",
-        "coaches": "Golf coaches",
-        "reviewers": "Course reviewers",
-        "travel": "Golf travel creators",
-        "womens": "Women's golf creators",
-        "adaptive": "Adaptive golf creators"
-      },
       "juniorsNote": "Junior golfers are welcome through a parent or guardian. Accounts involving anyone under 18 will always require an appropriate parent or guardian — minors will never enter financial agreements independently on BuyMeATee."
     },
     "goals": {

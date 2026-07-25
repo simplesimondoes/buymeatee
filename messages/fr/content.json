@@ -56,6 +56,26 @@
       "title": "Série de contenus sur le golf féminin",
       "creator": "Lauren Park",
       "description": "Une série vidéo pour amener plus de femmes au golf, une partie à la fois."
+    },
+    "charityChallengeRound": {
+      "title": "72 trous en un jour pour une bonne cause",
+      "creator": "Ravi Patel",
+      "description": "Quatre parties en une seule journée, chaque tee comptant pour un centre de soins palliatifs local."
+    },
+    "juniorSeasonFund": {
+      "title": "La première saison junior d'Ellie",
+      "creator": "Mark Donnelly, le papa d'Ellie",
+      "description": "Cycles de coaching et compétitions juniors régionales pour notre fille de 12 ans — page gérée par papa."
+    },
+    "clubProTeachingSeries": {
+      "title": "Série de stages petit jeu",
+      "creator": "Jamie McAllister, professionnel PGA",
+      "description": "Six stages de petit jeu ouverts à tous au club, filmés pour que les membres puissent revoir chaque exercice."
+    },
+    "podcastLaunch": {
+      "title": "Saison 1 du podcast de golf",
+      "creator": "Sam Okafor",
+      "description": "Matériel d'enregistrement et hébergement pour dix épisodes qui racontent les histoires de golfeurs ordinaires."
     }
   },
   "previewCreators": {

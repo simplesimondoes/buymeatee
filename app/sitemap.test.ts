@@ -2,6 +2,7 @@ import { describe, expect, it } from "vitest";
 
 import sitemap, { staticRoutes } from "@/app/sitemap";
 import { defaultLocale, locales } from "@/i18n/locales";
+import { audiences } from "@/lib/content/audiences";
 import { articles } from "@/lib/content/blog";
 
 describe("sitemap", () => {
@@ -13,6 +14,16 @@ describe("sitemap", () => {
       for (const locale of locales) {
         const path = route === "/" ? `/${locale}` : `/${locale}${route}`;
         expect(urls).toContain(`https://buymeatee.com${path}`);
+      }
+    }
+  });
+
+  it("covers every audience landing page in every locale", () => {
+    for (const audience of audiences) {
+      for (const locale of locales) {
+        expect(urls).toContain(
+          `https://buymeatee.com/${locale}/for/${audience.slug}`,
+        );
       }
     }
   });

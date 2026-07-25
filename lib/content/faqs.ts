@@ -69,5 +69,5 @@ export const homepageFaqs: FaqItem[] = [
   faqItem("onlyForInfluencers"),
   faqItem("whatContribute"),
   faqItem("howPaymentsWork"),
-  faqItem("availableNow"),
+  faqItem("whatCost"),
 ];

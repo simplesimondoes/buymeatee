@@ -3,6 +3,14 @@ import type { Article } from "@/lib/content/blog";
 import { costOfGolfContent } from "@/lib/content/articles/what-does-it-cost-to-create-golf-content";
 import { fundGolfContent } from "@/lib/content/articles/how-golf-creators-can-fund-their-content";
 import { golfSponsorshipAmateurs } from "@/lib/content/articles/golf-sponsorship-for-amateur-players";
+import { golfCrowdfundingAlternative } from "@/lib/content/articles/looking-for-golf-crowdfunding";
+import { golfCrowdfundingAlternativeDe } from "@/lib/content/articles/looking-for-golf-crowdfunding.de";
+import { golfCrowdfundingAlternativeFr } from "@/lib/content/articles/looking-for-golf-crowdfunding.fr";
+import { golfCrowdfundingAlternativeEs } from "@/lib/content/articles/looking-for-golf-crowdfunding.es";
+import { golfCrowdfundingAlternativeIt } from "@/lib/content/articles/looking-for-golf-crowdfunding.it";
+import { golfCrowdfundingAlternativeJa } from "@/lib/content/articles/looking-for-golf-crowdfunding.ja";
+import { golfCrowdfundingAlternativeKo } from "@/lib/content/articles/looking-for-golf-crowdfunding.ko";
+import { golfCrowdfundingAlternativePt } from "@/lib/content/articles/looking-for-golf-crowdfunding.pt";
 import { supportGolfCreator } from "@/lib/content/articles/how-to-support-a-golf-content-creator";
 import { costOfGolfContentDe } from "@/lib/content/articles/what-does-it-cost-to-create-golf-content.de";
 import { costOfGolfContentFr } from "@/lib/content/articles/what-does-it-cost-to-create-golf-content.fr";
@@ -104,6 +112,16 @@ const articleRegistry: Record<string, LocalizedArticle> = {
     ja: costOfGolfContentJa,
     ko: costOfGolfContentKo,
     pt: costOfGolfContentPt,
+  },
+  [golfCrowdfundingAlternative.slug]: {
+    en: golfCrowdfundingAlternative,
+    de: golfCrowdfundingAlternativeDe,
+    fr: golfCrowdfundingAlternativeFr,
+    es: golfCrowdfundingAlternativeEs,
+    it: golfCrowdfundingAlternativeIt,
+    ja: golfCrowdfundingAlternativeJa,
+    ko: golfCrowdfundingAlternativeKo,
+    pt: golfCrowdfundingAlternativePt,
   },
 };
 

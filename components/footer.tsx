@@ -14,8 +14,8 @@ export function Footer() {
   return (
     <footer className="on-dark bg-forest-dark text-white">
       <div className="mx-auto max-w-6xl px-4 py-14 sm:px-6 lg:px-8">
-        <div className="grid gap-10 md:grid-cols-[1.5fr_repeat(3,1fr)]">
-          <div>
+        <div className="grid grid-cols-2 gap-10 sm:grid-cols-2 md:grid-cols-[1.5fr_repeat(4,1fr)]">
+          <div className="col-span-2 md:col-span-1">
             <Logo variant="light" />
             <p className="mt-4 max-w-xs text-sm leading-relaxed text-white/70">
               {t("footer.description")}

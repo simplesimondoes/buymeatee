@@ -56,10 +56,10 @@ export function Hero() {
                 {t("hero.startCta")}
               </ButtonLink>
               <Link
-                href="/how-it-works"
+                href="/discover"
                 className="inline-flex min-h-11 items-center justify-center px-2 font-medium text-forest underline-offset-4 hover:underline"
               >
-                {t("hero.howCta")}
+                {t("hero.exploreCta")}
               </Link>
             </div>
             <p className="mt-6 text-sm text-ink/70">{t("hero.reassurance")}</p>

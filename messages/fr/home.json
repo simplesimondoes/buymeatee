@@ -1,10 +1,10 @@
 {
   "hero": {
-    "eyebrow": "Soutiens le parcours",
-    "heading": "Fais-toi financer pour poursuivre tes objectifs de golf.",
-    "intro": "Transforme les fans qui suivent ton golf en supporters qui aident à financer ta prochaine partie, ta prochaine leçon et ta prochaine compétition.",
+    "eyebrow": "Pour les golfeurs qui ont un objectif.",
+    "heading": "Récolte du soutien pour ton parcours de golf.",
+    "intro": "Que tu joues en compétition, que tu coaches, que tu crées du contenu ou que tu vises ton prochain jalon golfique, BuyMeATee aide tes supporters à faire partie de ton parcours.",
     "startCta": "Crée ta page",
-    "howCta": "Voir comment ça marche",
+    "exploreCta": "Découvrir les golfeurs",
     "reassurance": "Gratuit à créer · Moins d'une minute · Conçu pour les golfeurs",
     "trust": {
       "stripe": "Paiements sécurisés par <strong>Stripe</strong>",
@@ -34,27 +34,11 @@
     },
     "note": "Les créateurs choisissent leurs propres options de soutien — chaque contribution va à leur parcours."
   },
-  "tipJar": {
-    "heading": "Bien plus qu'un pot à pourboires.",
-    "intro": "BuyMeATee est conçu autour de vrais objectifs golfiques, d'une progression visible et d'un lien durable entre les créateurs et les personnes qui les soutiennent.",
-    "features": {
-      "goalBased": {
-        "title": "Basé sur des objectifs",
-        "body": "Le soutien va vers de vrais objectifs de golf, avec une progression visible."
-      },
-      "secure": {
-        "title": "Sécurisé et transparent",
-        "body": "Conçu autour d'objectifs transparents et de paiements responsables."
-      },
-      "community": {
-        "title": "La communauté d'abord",
-        "body": "Pensé pour créer du lien entre les créateurs et leurs supporters."
-      },
-      "golf": {
-        "title": "Conçu spécifiquement pour le golf",
-        "body": "Des tees, des trous, des parties et des green fees — par des golfeurs, pour des golfeurs."
-      }
-    }
+  "audienceGrid": {
+    "eyebrow": "Pour qui c'est fait",
+    "heading": "Chaque golfeur a un objectif.",
+    "intro": "Créateur, compétiteur, coach ou parent — BuyMeATee, c'est là où les personnes qui suivent ton golf se rangent derrière ton objectif.",
+    "cardCta": "Voir comment"
   },
   "howItWorks": {
     "eyebrow": "Comment ça marche",
@@ -62,71 +46,78 @@
     "stepLabel": "Étape {number}",
     "steps": {
       "share": {
-        "title": "Les créateurs partagent leurs objectifs",
-        "body": "Les golfeurs créent une page, racontent leur histoire et montrent aux supporters ce vers quoi ils travaillent."
+        "title": "Fixe ton objectif",
+        "body": "Crée ta page, raconte ton histoire et montre précisément ce vers quoi tu travailles."
       },
       "buy": {
-        "title": "Les fans offrent un tee",
-        "body": "Les supporters choisissent une contribution qui a du sens, d'un simple tee à neuf trous, une partie complète ou un montant libre."
+        "title": "Les supporters se mobilisent",
+        "body": "Ils offrent un tee, soutiennent un objectif ou financent un article précis — un soutien qui a du sens, du simple tee au green fee."
       },
       "journey": {
-        "title": "Le parcours continue",
-        "body": "Les créateurs partagent progression, jalons et actualités pour que les supporters voient ce qu'ils ont aidé à rendre possible."
+        "title": "Vous y arrivez — ensemble",
+        "body": "Partage progression, jalons et actualités pour que chaque supporter voie l'objectif se rapprocher."
       }
     },
     "cta": "Voir comment ça marche"
   },
-  "audiences": {
-    "eyebrow": "Pour qui c'est fait",
-    "heading": "Les deux faces d'une même partie",
-    "intro": "Les créateurs partagent le parcours. Les supporters le rendent encore plus possible.",
-    "creators": {
-      "eyebrow": "Pour les créateurs de golf",
-      "heading": "Transforme tes abonnés en compagnons de parcours.",
-      "cta": "Crée ta page",
-      "points": {
-        "story": "Partage ton histoire et tes objectifs",
-        "support": "Reçois un soutien direct de ta communauté",
-        "updates": "Tiens tes supporters informés",
-        "milestones": "Célèbre la progression et les jalons",
-        "time": "Passe plus de temps à créer et à jouer"
-      }
-    },
-    "supporters": {
-      "eyebrow": "Pour les fans de golf",
-      "heading": "Soutiens les golfeurs auxquels tu crois.",
-      "cta": "Devenir supporter",
-      "points": {
-        "buy": "Offre un tee ou soutiens un objectif précis",
-        "follow": "Suis la progression et les actualités",
-        "story": "Fais partie de l'histoire du golfeur",
-        "discover": "Découvre des créateurs de golf émergents",
-        "celebrate": "Célébrez les réussites ensemble"
+  "featuredGolfers": {
+    "eyebrow": "Golfeurs à la une",
+    "heading": "Des parcours déjà en route",
+    "intro": "De vrais objectifs de créateurs sur BuyMeATee — et où ils en sont pour l'instant.",
+    "previewNote": "Affichés comme exemples étiquetés « Aperçu » le temps que la plateforme se remplisse — les vrais objectifs apparaîtront ici à mesure que les créateurs les publieront.",
+    "cta": "Découvrir les golfeurs"
+  },
+  "whySupporters": {
+    "eyebrow": "Ce qui motive les supporters",
+    "heading": "On soutient des personnes, pas des transactions.",
+    "intro": "Les supporters n'achètent rien — ils aident quelqu'un en qui ils croient à atteindre ce qu'il s'est promis d'accomplir.",
+    "features": {
+      "partOfIt": {
+        "title": "Faire partie du parcours",
+        "body": "Soutiens un golfeur et un objectif, puis regarde tout se jouer — la progression, les coups durs, les jalons."
+      },
+      "realGoals": {
+        "title": "De vrais objectifs, une vraie progression",
+        "body": "Chaque contribution va vers un objectif visible, avec une progression honnête et en direct."
+      },
+      "golfNative": {
+        "title": "Un soutien qui parle golf",
+        "body": "Des tees, des trous, des parties et des green fees — ni cafés ni pourboires."
+      },
+      "trust": {
+        "title": "Clair et sécurisé",
+        "body": "Le détail complet est affiché avant toute confirmation, et les paiements passent par la page de paiement hébergée de Stripe."
       }
     }
-  },
-  "supportOptions": {
-    "eyebrow": "Options de soutien",
-    "heading": "Des façons d'aider 100 % golf",
-    "intro": "Ni cafés ni pourboires — des tees, des trous, des parties et des green fees."
   },
   "exampleGoals": {
     "eyebrow": "Exemples d'objectifs",
     "heading": "Les parcours que les supporters soutiennent",
-    "intro": "Des illustrations du genre d'objectifs que partagent les créateurs — chaque carte ici est un exemple, étiqueté comme tel."
+    "intro": "Des illustrations du genre d'objectifs que partagent les golfeurs — chaque carte ici est un exemple, étiqueté comme tel."
+  },
+  "pricing": {
+    "eyebrow": "Tarifs",
+    "heading": "Des tarifs simples et honnêtes.",
+    "intro": "Pas d'abonnement, pas de frais mensuels — BuyMeATee ne gagne quelque chose que lorsque tes supporters te soutiennent.",
+    "items": {
+      "free": {
+        "title": "Gratuit à créer",
+        "body": "Créer ta page, partager des objectifs et publier des actualités ne coûte rien."
+      },
+      "fees": {
+        "title": "De petits frais par contribution",
+        "body": "BuyMeATee prélève des frais de plateforme de {platformPercent}, plus des frais de traitement du paiement de {paymentPercent} et de petits frais fixes de traitement."
+      },
+      "onTop": {
+        "title": "Les créateurs reçoivent l'intégralité du montant",
+        "body": "Les frais s'ajoutent à chaque contribution au lieu d'en être déduits — et les supporters voient le total exact avant de confirmer."
+      }
+    },
+    "cta": "En savoir plus sur les paiements et les frais"
   },
   "faqPreview": {
     "eyebrow": "FAQ",
     "heading": "Questions légitimes, réponses franches",
     "cta": "Lire la FAQ complète"
-  },
-  "creatorPreview": {
-    "name": "Alex Morgan",
-    "handicap": "Index 7,8",
-    "currentGoalLabel": "Objectif en cours",
-    "goalTitle": "En route vers le scratch",
-    "amounts": "640 £ sur 1 200 £",
-    "percent": "53 %",
-    "progressLabel": "Progression vers « En route vers le scratch » (exemple)"
   }
 }

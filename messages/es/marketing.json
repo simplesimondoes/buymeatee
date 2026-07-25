@@ -23,8 +23,8 @@
     "concept": "Concepto"
   },
   "cta": {
-    "defaultHeading": "¿Listo para apoyar el camino?",
-    "defaultBody": "Crea tu página y empieza a compartir tus objetivos de golf desde el primer tee.",
+    "defaultHeading": "¿Listo para perseguir tu objetivo?",
+    "defaultBody": "Crea tu página, comparte tu objetivo y deja que quienes te apoyan formen parte de tu camino.",
     "start": "Crea tu página",
     "how": "Descubre cómo funciona"
   },
@@ -129,17 +129,6 @@
       "eyebrow": "Para quién es",
       "heading": "Hecha para golfistas emergentes, no solo para los famosos",
       "intro": "Si tienes un camino que merece seguirse, este es tu sitio — sea cual sea el tamaño de tu audiencia.",
-      "audiences": {
-        "youtube": "Creadores de golf en YouTube",
-        "shortForm": "Creadores de golf en TikTok e Instagram",
-        "amateur": "Golfistas amateurs de torneos",
-        "aspiringPro": "Aspirantes a profesional",
-        "coaches": "Entrenadores de golf",
-        "reviewers": "Reseñadores de campos",
-        "travel": "Creadores de viajes de golf",
-        "womens": "Creadoras de golf femenino",
-        "adaptive": "Creadores de golf adaptado"
-      },
       "juniorsNote": "Los golfistas júnior son bienvenidos a través de su padre, madre o tutor. Las cuentas que involucren a menores de 18 años requerirán siempre un padre, madre o tutor apropiado — los menores nunca suscribirán acuerdos financieros de forma independiente en BuyMeATee."
     },
     "goals": {

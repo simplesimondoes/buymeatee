@@ -1,7 +1,7 @@
 {
   "brand": {
     "homeAria": "BuyMeATee — ホーム",
-    "tagline": "その歩みを、応援しよう。"
+    "tagline": "目標を持つすべてのゴルファーへ。"
   },
   "nav": {
     "discover": "見つける",
@@ -10,6 +10,17 @@
     "forSupporters": "サポーター向け",
     "blog": "ブログ",
     "faq": "よくある質問",
+    "audiences": {
+      "contentCreators": "コンテンツクリエイター",
+      "tournamentPlayers": "競技ゴルファー",
+      "juniorGolfers": "ジュニアゴルファー",
+      "collegeGolfers": "大学ゴルファー",
+      "travellingPlayers": "遠征プレーヤー",
+      "charityGolfers": "チャリティゴルファー",
+      "clubProfessionals": "クラブプロ",
+      "coaches": "コーチ",
+      "podcasters": "ポッドキャスター"
+    },
     "primaryLabel": "メイン",
     "siteNavigation": "サイトナビゲーション",
     "home": "ホーム",
@@ -34,6 +45,7 @@
   },
   "footer": {
     "productHeading": "プロダクト",
+    "forGolfersHeading": "ゴルファー向け",
     "companyHeading": "会社情報",
     "legalHeading": "法的情報",
     "about": "BuyMeATeeとは",
@@ -41,7 +53,7 @@
     "terms": "利用規約",
     "impressum": "Impressum",
     "accessibility": "アクセシビリティ",
-    "description": "BuyMeATeeは、ゴルフファンがクリエイターを応援し、もっとプレーし、もっと成し遂げ、目標に挑む後押しをする場所です。ジャーニーを追いかけて、目標を応援して、ティーを贈りましょう。",
+    "description": "すべてのゴルファーには目標があります。BuyMeATeeは、その実現を後押しします — ジャーニーを追いかけ、目標を応援し、ティーを贈るサポーターとともに。",
     "copyright": "© {year} BuyMeATee. 無断転載を禁じます。",
     "productLine": "<brand>Caddie Live</brand>のプロダクト · ゴルファーのための設計"
   },

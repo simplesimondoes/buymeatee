@@ -161,7 +161,7 @@ describe("rootMetadata", () => {
   it("uses the brand default title and template", () => {
     const metadata = rootMetadata("en");
     expect(metadata.title).toEqual({
-      default: "BuyMeATee — Support the Golf Journey",
+      default: "BuyMeATee — For Golfers With a Goal",
       template: "%s | BuyMeATee",
     });
     const base = metadata.metadataBase;

@@ -1,0 +1,491 @@
+{
+  "shared": {
+    "eyebrow": "Für Golfer mit einem Ziel.",
+    "hubBreadcrumb": "Für Creator",
+    "valueEyebrow": "Gemacht für dich",
+    "howEyebrow": "So funktioniert's",
+    "howHeading": "So funktioniert's für dich",
+    "stepLabel": "Schritt {number}",
+    "goalsEyebrow": "Beispiel-Ziele",
+    "goalsHeading": "Ziele wie deine",
+    "faqEyebrow": "Faire Fragen",
+    "faqHeading": "Deine Fragen, beantwortet",
+    "relatedEyebrow": "Auch auf BuyMeATee",
+    "relatedHeading": "Mehr Golfer mit einem Ziel",
+    "hubLink": "Sieh, für wen BuyMeATee alles ist"
+  },
+  "meta": {
+    "contentCreators": {
+      "title": "Unterstützung für Golf-Creator — finanzier dein nächstes Video",
+      "description": "Baue eine Community rund um deinen Golf-Content auf und lass Unterstützer:innen dein nächstes Video, deinen Platz-Review oder Equipment-Test auf BuyMeATee mitfinanzieren."
+    },
+    "tournamentPlayers": {
+      "title": "Amateurgolf-Sponsoring — finanziere deine Turniersaison",
+      "description": "Reisen, Startgelder und Training summieren sich. Lass Unterstützer:innen mit einer zielbasierten BuyMeATee-Seite Teil deines Turnierwegs werden."
+    },
+    "juniorGolfers": {
+      "title": "Jugendgolf finanzieren — unterstütze den Weg junger Golfer",
+      "description": "Mach es Familie, Freunden und Unterstützer:innen leicht, zu Training, Turnieren und Ausrüstung eines jungen Golfers beizutragen — von Eltern verwaltet auf BuyMeATee."
+    },
+    "collegeGolfers": {
+      "title": "College-Golf finanzieren — Unterstützung für deine Saison",
+      "description": "Von Trainingslagern bis zu Wettkämpfen: College-Golf ist ein Weg. Teile deinen Fortschritt und nimm Unterstützer:innen auf BuyMeATee mit auf die Reise."
+    },
+    "travellingPlayers": {
+      "title": "Reisekosten für Golfturniere — finanzier den nächsten Stopp",
+      "description": "Du spielst nationale Turniere oder reist quer durch Europa? Lass Unterstützer:innen den nächsten Stopp auf deinem Golf-Weg mit BuyMeATee mitfinanzieren."
+    },
+    "charityGolfers": {
+      "title": "Charity-Golf-Challenge — Unterstützung für deinen guten Zweck",
+      "description": "Sammle Geld und schaffe Aufmerksamkeit. Teile deine Charity-Golf-Challenge auf BuyMeATee und lass jedes Tee für den guten Zweck zählen."
+    },
+    "clubProfessionals": {
+      "title": "Unterstützung für Club-Pros — Mitglieder hinter deiner Arbeit",
+      "description": "Unterrichten, Turniere spielen und den Club vertreten kostet Einsatz. Bau dir eine BuyMeATee-Seite, auf der Mitglieder deine Arbeit unterstützen und deine Erfolge verfolgen."
+    },
+    "coaches": {
+      "title": "Unterstützung für Golftrainer — bau deine Community aus",
+      "description": "Erstelle Coaching-Content, lass deine Community wachsen und gib Golfern einen einfachen Weg, deine Trainerziele auf BuyMeATee zu unterstützen."
+    },
+    "podcasters": {
+      "title": "Golf-Podcast unterstützen — Hörer:innen hinter der Show",
+      "description": "Golf-Podcasts leben von leidenschaftlichen Communitys. Lass Hörer:innen künftige Folgen unterstützen und mit BuyMeATee Teil der Show werden."
+    }
+  },
+  "contentCreators": {
+    "label": "Content-Creator",
+    "tagline": "Finanziere Videos, Reviews und Podcasts.",
+    "heading": "Mach den Golf-Content, den du schon lange planst",
+    "intro": "Baue eine Community rund um deinen Golf-Content auf und lass Unterstützer:innen dein nächstes Video, deinen Platz-Review oder Equipment-Test mitfinanzieren.",
+    "value": {
+      "heading": "Dein Content, getragen von den Menschen, die ihn schauen",
+      "items": {
+        "one": "Setz dir ein Ziel für deine nächste Serie, deine Review-Reise oder dein Equipment-Upgrade — Unterstützer:innen sehen genau, was sie mit möglich machen.",
+        "two": "Setz konkrete Dinge auf deine Wunschliste, vom Mikrofon bis zum Kamera-Gimbal, und lass eine:n Unterstützer:in das Ganze komplett finanzieren.",
+        "three": "Poste Updates, während du drehst und veröffentlichst — so fühlt sich jede:r Unterstützer:in wie ein Teil des Abspanns."
+      }
+    },
+    "how": {
+      "steps": {
+        "createPage": {
+          "title": "Erstelle deine Seite",
+          "body": "Richte deine BuyMeATee-Seite in Minuten ein und erzähl deinen Zuschauern, was du als Nächstes machst."
+        },
+        "shareGoal": {
+          "title": "Teile dein Ziel",
+          "body": "Pack es in Videobeschreibungen, angepinnte Kommentare und deine Socials — überall dort, wo dein Publikum schon ist."
+        },
+        "momentum": {
+          "title": "Erstell weiter",
+          "body": "Unterstützung kommt laufend rein, und deine Updates halten alle als Teil der Geschichte dabei."
+        }
+      }
+    },
+    "faqs": {
+      "q1": {
+        "question": "Brauche ich ein großes Publikum, um zu starten?",
+        "answer": "Nein. Seiten funktionieren in jeder Größe — eine Handvoll treuer Zuschauer, denen dein Golf am Herzen liegt, reicht für den Anfang."
+      },
+      "q2": {
+        "question": "Was können Unterstützer:innen finanzieren?",
+        "answer": "Alles, was dein Content braucht: Greenfees für einen Platz-Review, Zeit für den Schnitt, die Anreise zum Dreh oder einen konkreten Wunsch auf deiner Wunschliste."
+      },
+      "q3": {
+        "question": "Ersetzt BuyMeATee meine anderen Plattformen?",
+        "answer": "Nein — es steht neben YouTube, Instagram oder wo auch immer du veröffentlichst und gibt deinem Publikum einen klaren Ort, um hinter deinen Zielen zu stehen."
+      }
+    },
+    "cta": {
+      "heading": "Dein nächstes Video verdient Rückhalt.",
+      "body": "Erstelle deine Seite und lass die Golfer, die dir zuschauen, Teil dessen werden, was du machst."
+    }
+  },
+  "tournamentPlayers": {
+    "label": "Turnierspieler",
+    "tagline": "Startgelder, Reisen und Training — mit Rückhalt.",
+    "heading": "Bring dein Spiel zu den Turnieren, die zählen",
+    "intro": "Wettkämpfe kosten Geld. Reisen, Startgelder und Training summieren sich — lass deine Unterstützer:innen Teil deines Turnierwegs werden.",
+    "value": {
+      "heading": "Eine Saison, hinter der deine Unterstützer:innen stehen können",
+      "items": {
+        "one": "Setz dir ein Saisonziel — Startgelder, Reisen und Training — und zeig Unterstützer:innen genau, wohin ihr Rückhalt fließt.",
+        "two": "Teile ehrliche Updates von Qualifikationen und Turniertagen — egal, ob du vorne dabei bist oder den Cut verpasst.",
+        "three": "Feiere die Meilensteine mit den Menschen, die dir geholfen haben, sie zu erreichen."
+      }
+    },
+    "how": {
+      "steps": {
+        "createPage": {
+          "title": "Erstelle deine Seite",
+          "body": "Erzähl deine Geschichte: wo du spielst, was du diese Saison jagst und warum es zählt."
+        },
+        "shareGoal": {
+          "title": "Teile dein Saisonziel",
+          "body": "Bring deine Seite vor Clubkolleg:innen, Freunde, Familie und die Golfer, die deine Ergebnisse verfolgen."
+        },
+        "momentum": {
+          "title": "Spiel deine Saison",
+          "body": "Rückhalt kommt, während die Saison läuft, und deine Updates nehmen Unterstützer:innen mit auf den Weg."
+        }
+      }
+    },
+    "faqs": {
+      "q1": {
+        "question": "Dürfen Amateurgolfer Unterstützung annehmen?",
+        "answer": "Die Regeln zum Amateurstatus unterscheiden sich je nach Verband und ändern sich mit der Zeit. Prüfe die Regeln, die für deine Wettbewerbe gelten, bevor du Unterstützung annimmst — unser Blog-Leitfaden zum Golf-Sponsoring für Amateure ist ein guter Startpunkt."
+      },
+      "q2": {
+        "question": "Welche Ziele funktionieren am besten?",
+        "answer": "Konkrete, ehrliche: eine Serie regionaler Turniere, ein Meisterschaftsstart, ein Winter voller Trainerstunden. Hinter klaren Zielen steht man leichter als hinter offenen Bitten."
+      },
+      "q3": {
+        "question": "Bekommen Unterstützer:innen etwas zurück?",
+        "answer": "Unterstützung ist ein Geschenk für dein Ziel, keine Geldanlage — was Unterstützer:innen bekommen, ist der Weg: deine Updates, dein Fortschritt und eine echte Rolle in der Geschichte."
+      }
+    },
+    "cta": {
+      "heading": "Deine Saison verdient Unterstützer:innen.",
+      "body": "Erstelle deine Seite und mach aus den Menschen, die deinem Golf folgen, die Menschen dahinter."
+    }
+  },
+  "juniorGolfers": {
+    "label": "Junior-Golfer",
+    "tagline": "Familie und Freunde hinter jedem Junior.",
+    "heading": "Hilf einem jungen Golfer, seinen Traum zu jagen",
+    "intro": "Training, Turniere und Ausrüstung summieren sich schnell. BuyMeATee macht es Familie, Freunden und Unterstützer:innen leicht, zum Golf eines Juniors beizutragen — mit einem Elternteil oder einer erziehungsberechtigten Person, die die Seite führt.",
+    "guardian": {
+      "heading": "Geführt von Eltern und Erziehungsberechtigten",
+      "body": "Seiten für Junior-Golfer werden immer von einem Elternteil oder einer erziehungsberechtigten Person erstellt und verwaltet. Du setzt die Ziele, schreibst die Updates und erhältst die Unterstützung im Namen deines Kindes."
+    },
+    "value": {
+      "heading": "Alles, was eine Junior-Saison braucht",
+      "items": {
+        "one": "Setz Ziele für Trainingsblöcke, regionale Turniere und die Ausrüstung, aus der sie jedes Jahr herauswachsen.",
+        "two": "Halte Großeltern, Familie und Freunde mit Updates aus Trainerstunden und Wettkämpfen auf dem Laufenden.",
+        "three": "Bedank dich bei allen Unterstützer:innen und zeig ihnen den Fortschritt, den sie möglich gemacht haben."
+      }
+    },
+    "how": {
+      "steps": {
+        "createPage": {
+          "title": "Erstelle die Seite",
+          "body": "Ein Elternteil oder eine erziehungsberechtigte Person richtet die Seite ein und erzählt die Golf-Geschichte des Juniors."
+        },
+        "shareGoal": {
+          "title": "Teile sie in deinem Umfeld",
+          "body": "Familie, Freunde und Clubkolleg:innen stehen hinter den Zielen, die zählen — ganz ohne unangenehmes Bitten."
+        },
+        "momentum": {
+          "title": "Sieh sie wachsen",
+          "body": "Updates aus Trainerstunden und Turnieren zeigen allen, wohin ihre Unterstützung fließt."
+        }
+      }
+    },
+    "faqs": {
+      "q1": {
+        "question": "Wer verwaltet die Seite eines Junior-Golfers?",
+        "answer": "Immer ein Elternteil oder eine erziehungsberechtigte Person. Sie erstellt die Seite, verwaltet die Ziele und erhält die Unterstützung im Namen des Juniors."
+      },
+      "q2": {
+        "question": "Wozu können Unterstützer:innen beitragen?",
+        "answer": "Zu allem, was das Golf des Juniors als Nächstes braucht: Trainingsblöcke, Turnierstarts, Anreisen zu Turnieren oder Schläger, die wirklich passen."
+      },
+      "q3": {
+        "question": "Funktioniert das auch für Jugendprogramme im Club?",
+        "answer": "Ja — ein Trainer oder Organisator kann eine Seite für ein Jugendprogramm führen, mit Zielen, hinter denen der ganze Club stehen kann."
+      }
+    },
+    "cta": {
+      "heading": "Ihr Traum — mit deinem Umfeld dahinter.",
+      "body": "Erstelle eine von Eltern verwaltete Seite und lass die Menschen, denen es wichtig ist, zu dem Golf beitragen, das sie lieben."
+    }
+  },
+  "collegeGolfers": {
+    "label": "College-Golfer",
+    "tagline": "Nimm die Heimat mit durch die Saison.",
+    "heading": "Rückhalt für deinen College-Golf-Weg",
+    "intro": "Von Trainingslagern bis zu Wettkämpfen: College-Golf ist ein unglaublicher Weg. Teile deinen Fortschritt und nimm Unterstützer:innen mit auf die Reise.",
+    "value": {
+      "heading": "Deine Saison, unterstützt von zu Hause",
+      "items": {
+        "one": "Setz Ziele für Qualifikationswochenenden, Trainingslager und die Reisen dazwischen.",
+        "two": "Lass Familie, deinen Heimatclub und alte Teamkolleg:innen die Saison unterstützen — ohne ein einziges unangenehmes Bitten.",
+        "three": "Poste Updates zwischen den Semestern, damit alle die Ergebnisse, Rückschläge und Durchbrüche verfolgen."
+      }
+    },
+    "how": {
+      "steps": {
+        "createPage": {
+          "title": "Erstelle deine Seite",
+          "body": "Erzähl die Geschichte deines College-Golfs: das Team, der Kalender und worauf diese Saison hinausläuft."
+        },
+        "shareGoal": {
+          "title": "Teile dein Ziel",
+          "body": "Schick deine Seite nach Hause — Familie, Freunde und dein Heimatclub wollen dabei sein."
+        },
+        "momentum": {
+          "title": "Spiel die Saison",
+          "body": "Unterstützung kommt, während du dich aufs Golf konzentrierst, und deine Updates nehmen alle mit auf die Tour."
+        }
+      }
+    },
+    "faqs": {
+      "q1": {
+        "question": "Darf ich als College-Golfer Unterstützung annehmen?",
+        "answer": "Die Regeln zu externer Unterstützung unterscheiden sich zwischen Ländern, Colleges und Verbänden — und sie ändern sich. Prüfe die Vorschriften, die für dich gelten, bevor du Unterstützung annimmst."
+      },
+      "q2": {
+        "question": "Welche Ziele passen zum College-Golf?",
+        "answer": "Anreisen zu Qualifikationen, Trainingslager, ein Sommer voller Amateurturniere zu Hause — alles Konkrete, was deine Saison wirklich braucht."
+      },
+      "q3": {
+        "question": "Kann unser Team sich eine Seite teilen?",
+        "answer": "Ja — eine Seite kann genauso gut die Geschichte eines Teams erzählen, mit einem gemeinsamen Ziel für Reise- oder Turnierkosten, hinter dem die Unterstützer:innen aller stehen."
+      }
+    },
+    "cta": {
+      "heading": "Deine College-Saison verdient ein Publikum.",
+      "body": "Erstelle deine Seite und nimm die Menschen zu Hause mit auf die Reise."
+    }
+  },
+  "travellingPlayers": {
+    "label": "Reisende Spieler",
+    "tagline": "Finanzier den nächsten Stopp auf dem Weg.",
+    "heading": "Finanzier den nächsten Stopp auf deinem Weg",
+    "intro": "Golf bringt dich herum. Ob du nationale Turniere spielst oder quer durch Europa reist — lass Unterstützer:innen die nächste Etappe deines Wegs mitfinanzieren.",
+    "value": {
+      "heading": "Jeder Kilometer wird Teil der Geschichte",
+      "items": {
+        "one": "Setz Ziele für Flüge, Züge und Startgelder, damit Unterstützer:innen genau wissen, welchen Stopp sie finanzieren.",
+        "two": "Poste Updates von unterwegs — die Plätze, die Ergebnisse und alles dazwischen.",
+        "three": "Lass Unterstützer:innen den ganzen Weg verfolgen, nicht nur das Leaderboard."
+      }
+    },
+    "how": {
+      "steps": {
+        "createPage": {
+          "title": "Erstelle deine Seite",
+          "body": "Zeig, wohin dich die Saison führt und was es kostet, dorthin zu kommen."
+        },
+        "shareGoal": {
+          "title": "Teile dein Ziel für die Reise",
+          "body": "Die Golfer, die deine Ergebnisse verfolgen, wollen dir helfen, die nächste Startlinie zu erreichen."
+        },
+        "momentum": {
+          "title": "Bleib unterwegs",
+          "body": "Unterstützung wächst, während du reist, und jedes Update nimmt deine Unterstützer:innen mit."
+        }
+      }
+    },
+    "faqs": {
+      "q1": {
+        "question": "Welche Ziele rund ums Reisen funktionieren am besten?",
+        "answer": "Konkrete Etappen: eine Meisterschaft im Ausland, ein Swing über drei Turniere, das Fähr-und-Sprit-Budget für eine nationale Saison. Unterstützer:innen lieben es zu wissen, welchen Stopp sie möglich gemacht haben."
+      },
+      "q2": {
+        "question": "Kann ich mehrere Ziele gleichzeitig laufen lassen?",
+        "answer": "Ja — bis zu drei Ziele können gleichzeitig live sein. Ein Reiseziel kann also neben einem Saison- oder Ausrüstungsziel stehen."
+      },
+      "q3": {
+        "question": "Welche Länder und Währungen unterstützt BuyMeATee?",
+        "answer": "Creator können Auszahlungen aus einer wachsenden Liste von Ländern in zehn Währungen einrichten — dein Land wählst du beim Einrichten der Zahlungen."
+      }
+    },
+    "cta": {
+      "heading": "Der nächste Stopp ist näher, als du denkst.",
+      "body": "Erstelle deine Seite und lass Unterstützer:innen mithelfen, deine Schläger zum nächsten Turnier zu tragen."
+    }
+  },
+  "charityGolfers": {
+    "label": "Charity-Golfer",
+    "tagline": "Lass jedes Tee für den guten Zweck zählen.",
+    "heading": "Lass jedes Tee für etwas Größeres zählen",
+    "intro": "Sammle Geld und schaffe zugleich Aufmerksamkeit. Teile deine Charity-Golf-Challenge und mach mit deinen Unterstützer:innen jedes Loch zu einem Beitrag für etwas Größeres.",
+    "value": {
+      "heading": "Eine Challenge, bei der Menschen dabei sein wollen",
+      "items": {
+        "one": "Setz ein Ziel für deine Challenge — 72 Löcher an einem Tag, der längste Tag des Jahres, ein Platz in jeder Region.",
+        "two": "Poste Updates, während die Challenge läuft — von den Trainingsrunden bis zum letzten Putt.",
+        "three": "Feiere die Endsumme mit allen, die dir geholfen haben, sie zu erreichen."
+      }
+    },
+    "how": {
+      "steps": {
+        "createPage": {
+          "title": "Erstelle deine Seite",
+          "body": "Erklär die Challenge, den guten Zweck und warum er dir wichtig ist."
+        },
+        "shareGoal": {
+          "title": "Teile die Challenge",
+          "body": "Dein Club, deine Freunde und deine Community versammeln sich hinter einer klaren Sache mit einem klaren Ziel."
+        },
+        "momentum": {
+          "title": "Spiel die Challenge",
+          "body": "Unterstützung kommt, während du spielst, und deine Updates zeigen, wie jedes Loch für den guten Zweck zählt."
+        }
+      }
+    },
+    "faqs": {
+      "q1": {
+        "question": "Was macht eine gute Charity-Golf-Challenge aus?",
+        "answer": "Etwas Konkretes mit einem Hauch Wahnsinn: vier Runden an einem Tag, hundert Löcher an einem Wochenende, zu Fuß von Platz zu Platz. Hinter einer lebendigen Challenge mit klarem Ziel steht man gern."
+      },
+      "q2": {
+        "question": "Wie kommt das Geld bei der gemeinnützigen Organisation an?",
+        "answer": "Die Unterstützung wird an dich als Inhaber:in der Seite ausgezahlt, und du gibst sie an die gemeinnützige Organisation deiner Wahl weiter. Sag auf deiner Seite klar, wohin das Geld geht — Unterstützer:innen stehen hinter deiner Challenge, weil sie dir vertrauen."
+      },
+      "q3": {
+        "question": "Kann ein Club oder eine Golfgruppe eine Charity-Challenge-Seite führen?",
+        "answer": "Ja — Kapitänsprojekte für den guten Zweck, Benefiz-Aktionen von Golfgruppen und Challenge-Tage im Club passen alle. Eine Person organisiert die Seite und teilt die Geschichte."
+      }
+    },
+    "cta": {
+      "heading": "Spiel für etwas Größeres.",
+      "body": "Erstelle deine Seite und mach aus einer Runde Golf echte Unterstützung für deinen guten Zweck."
+    }
+  },
+  "clubProfessionals": {
+    "label": "Club-Professionals",
+    "tagline": "Mitglieder hinter ihrem Professional.",
+    "heading": "Lass deine Mitglieder hinter deiner Arbeit stehen",
+    "intro": "Unterrichten, Turniere spielen und deinen Club vertreten — all das kostet Einsatz. Bau dir eine Seite, auf der Mitglieder deine Arbeit unterstützen und deine Erfolge verfolgen können.",
+    "value": {
+      "heading": "Der Club hinter seinem Professional",
+      "items": {
+        "one": "Setz Ziele, die deine Mitglieder wiedererkennen — Pro-Am-Starts, Unterrichts-Equipment, kostenlose Jugend-Clinics im Club.",
+        "two": "Teile Updates von deinen Turnierstarts und Coaching-Projekten, damit Mitglieder die Arbeit verfolgen, hinter der sie stehen.",
+        "three": "Gib dem Club eine Möglichkeit, deine Erfolge als seine eigenen zu feiern."
+      }
+    },
+    "how": {
+      "steps": {
+        "createPage": {
+          "title": "Erstelle deine Seite",
+          "body": "Erzähl die Geschichte, die Mitglieder schon halb kennen: dein Unterrichten, deine Turniere und was du im Club aufbaust."
+        },
+        "shareGoal": {
+          "title": "Teile sie im Club",
+          "body": "Das Schwarze Brett, der Newsletter, die WhatsApp-Gruppe — deine Mitglieder sind die Community."
+        },
+        "momentum": {
+          "title": "Vertritt deinen Club weiter",
+          "body": "Der Rückhalt für deine Saison wächst, und jedes Update gibt dem Club etwas zu feiern."
+        }
+      }
+    },
+    "faqs": {
+      "q1": {
+        "question": "Worin unterscheidet sich das von Stundenhonoraren?",
+        "answer": "Es ist kein Buchungssystem. Unterstützung fließt in die Ziele rund um deine Arbeit — Pro-Am-Starts, neue Unterrichtstechnologie, kostenlose Jugend-Clinics — nicht in die Stunden selbst."
+      },
+      "q2": {
+        "question": "Welche Ziele kommen bei Mitgliedern an?",
+        "answer": "Solche, von denen der Club profitiert oder auf die er stolz sein kann: den Club bei regionalen Turnieren vertreten, eine überdachte Teaching-Box, ein Jugendförderprogramm."
+      },
+      "q3": {
+        "question": "Können Assistants und PGA-Auszubildende BuyMeATee nutzen?",
+        "answer": "Ja — Prüfungskosten, Playing-Ability-Tests und Turnierstarts sind genau die Ziele, hinter die sich eine wohlwollende Mitgliedschaft gern stellt."
+      }
+    },
+    "cta": {
+      "heading": "Dein Club will dich erfolgreich sehen.",
+      "body": "Erstelle deine Seite und gib deinen Mitgliedern einen einfachen Weg, den Professional zu unterstützen, an den sie ohnehin schon glauben."
+    }
+  },
+  "coaches": {
+    "label": "Trainer",
+    "tagline": "Lass die Community wachsen, die du coachst.",
+    "heading": "Lass die Coaching-Community um dich herum wachsen",
+    "intro": "Erstelle Coaching-Content, lass deine Community wachsen und gib Golfern einen einfachen Weg, deine Arbeit zu unterstützen.",
+    "value": {
+      "heading": "Coaching, das über die Trainerstunde hinausreicht",
+      "items": {
+        "one": "Setz Ziele für die Projekte, die Trainerstunden allein nicht finanzieren — Drills filmen, offene Clinics, bessere Unterrichtstechnologie.",
+        "two": "Teile, was du lernst, mit den Golfern, die deinem Coaching folgen — nicht nur mit denen in deinem Terminkalender.",
+        "three": "Lass Unterstützer:innen sehen, wie ihr Rückhalt zu Content und Clinics wird, die dem ganzen Spiel helfen."
+      }
+    },
+    "how": {
+      "steps": {
+        "createPage": {
+          "title": "Erstelle deine Seite",
+          "body": "Stell deine Coaching-Philosophie vor und das Projekt, hinter dem du Unterstützer:innen haben willst."
+        },
+        "shareGoal": {
+          "title": "Teile dein Ziel",
+          "body": "Frühere und aktuelle Schüler:innen, deine Socials, die Stammgäste auf der Range — deine Community ist größer als dein Terminkalender."
+        },
+        "momentum": {
+          "title": "Coach weiter",
+          "body": "Unterstützung kommt, während du unterrichtest, und Updates zeigen allen, was ihr Rückhalt aufgebaut hat."
+        }
+      }
+    },
+    "faqs": {
+      "q1": {
+        "question": "Muss ich Videos machen, um BuyMeATee zu nutzen?",
+        "answer": "Nein. Jedes Coaching-Ziel funktioniert — eine überdachte Abschlagbox, ein Jugendprogramm, eine Sammlung von Trainingshilfen. Content ist ein Weg, nicht die Eintrittskarte."
+      },
+      "q2": {
+        "question": "Was bekommen Unterstützer:innen, wenn sie einen Trainer unterstützen?",
+        "answer": "Einen Platz in der ersten Reihe: deine Updates, deinen Fortschritt und das Wissen, dass es die Clinics und den Content, die sie genießen, nur gibt, weil sie dahinterstanden."
+      },
+      "q3": {
+        "question": "Konkurriert das mit meinen Einnahmen aus Trainerstunden?",
+        "answer": "Nein — es finanziert das, was Trainerstunden nicht abdecken: die Ausrüstung, Projekte und kostenlosen Einheiten, die deinen Ruf und deine Community wachsen lassen."
+      }
+    },
+    "cta": {
+      "heading": "Coache mehr als die Golfer direkt vor dir.",
+      "body": "Erstelle deine Seite und lass die großzügigste Community dieses Spiels hinter deinem nächsten Projekt stehen."
+    }
+  },
+  "podcasters": {
+    "label": "Podcaster",
+    "tagline": "Hörer:innen werden Teil der Show.",
+    "heading": "Lass Hörer:innen Teil der Show werden",
+    "intro": "Golf-Podcasts leben von leidenschaftlichen Communitys. Lass Hörer:innen künftige Folgen unterstützen und Teil der Show werden.",
+    "value": {
+      "heading": "Eine Show, die deine Hörer:innen mit möglich machen",
+      "items": {
+        "one": "Setz Ziele für die nächste Staffel — bessere Mikrofone, Hosting-Kosten, Reisen für Aufnahmen vor Ort.",
+        "two": "Setz konkretes Equipment auf deine Wunschliste und lass eine:n Hörer:in das Upgrade finanzieren, das alle hören werden.",
+        "three": "Halte Unterstützer:innen mit Updates aus dem Studio zwischen den Folgen nah dran."
+      }
+    },
+    "how": {
+      "steps": {
+        "createPage": {
+          "title": "Erstelle deine Seite",
+          "body": "Erzähl deinen Hörer:innen, was die Show als Nächstes braucht und wohin du sie führen willst."
+        },
+        "shareGoal": {
+          "title": "Erwähn es in der Folge",
+          "body": "Ein Satz am Ende einer Folge erreicht genau die Menschen, die wollen, dass es weitergeht."
+        },
+        "momentum": {
+          "title": "Nimm weiter auf",
+          "body": "Unterstützung kommt zwischen den Folgen rein, und deine Updates machen Unterstützer:innen zu einem Teil der Produktion."
+        }
+      }
+    },
+    "faqs": {
+      "q1": {
+        "question": "Unser Podcast ist klein. Lohnt sich das?",
+        "answer": "Ja. Podcast-Publikum ist treuer, als seine Größe vermuten lässt — ein paar Dutzend Stammhörer:innen können Hosting und Equipment einer ganzen Staffel tragen."
+      },
+      "q2": {
+        "question": "Was sollte ein Podcast-Ziel finanzieren?",
+        "answer": "Alles, was die Show wirklich braucht: Mikrofone und Akustik, Schnitt, Hosting-Gebühren oder Reisen, um bei den Events aufzunehmen, über die ihr sprecht."
+      },
+      "q3": {
+        "question": "Wie bedanken wir uns bei Unterstützer:innen?",
+        "answer": "So, wie es zu eurer Show passt — mit Updates auf eurer Seite, einem Dankeschön in der Folge oder einfach mit den besseren Episoden, die ihr Rückhalt bezahlt hat."
+      }
+    },
+    "cta": {
+      "heading": "Die besten Shows entstehen gemeinsam mit ihren Hörer:innen.",
+      "body": "Erstelle deine Seite und gib deinem Publikum eine echte Rolle in Staffel zwei."
+    }
+  }
+}

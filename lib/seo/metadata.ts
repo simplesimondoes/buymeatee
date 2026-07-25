@@ -55,7 +55,7 @@ const defaultOgImage = {
   url: "/opengraph-image",
   width: 1200,
   height: 630,
-  alt: "BuyMeATee — Support the journey. Where golf fans help creators chase their goals.",
+  alt: "BuyMeATee — For Golfers With a Goal. Where golfers raise support for their journey.",
 };
 
 /**

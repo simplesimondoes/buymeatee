@@ -2,7 +2,7 @@
 
 ## Purpose
 
-BuyMeATee (`buymeatee.com`) is a golf-focused creator-support platform: golf fans support creators, aspiring professionals, amateur competitors, coaches and course reviewers as they pursue meaningful goals. Proposition: **Support the journey.** It must feel like participation in a golfer's journey, never a generic donation or tipping site.
+BuyMeATee (`buymeatee.com`) is a golf-focused creator-support platform: golf fans support creators, aspiring professionals, amateur competitors, coaches and course reviewers as they pursue meaningful goals. Proposition: **For Golfers With a Goal.** — every golfer has a goal; BuyMeATee helps them achieve it (ADR-021). It must feel like a platform where golfers fund their ambitions, never a generic donation or tipping site; supporter-facing copy keeps "Support the journey".
 
 ## Audiences
 

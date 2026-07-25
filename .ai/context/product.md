@@ -2,9 +2,9 @@
 
 ## Vision
 
-BuyMeATee is where golf fans help creators play more, achieve more and chase their goals. It is a golf-native creator-support platform built around real golfing goals, visible progress and an ongoing connection between creators and supporters.
+Every golfer has a goal. BuyMeATee helps them achieve it. It is the platform where golfers fund their ambitions — a golf-native, goal-based support platform built around real golfing goals, visible progress and an ongoing connection between creators and supporters.
 
-It must never feel like a generic tipping site with golf styling, a charity, or a crowdfunding campaign. The emotional proposition is **Support the journey** — supporters are invited to follow and participate in a real golfing journey, not asked for money.
+It must never feel like a generic tipping site with golf styling, a charity, or a crowdfunding campaign. The brand proposition is **For Golfers With a Goal.** (ADR-021, Jul 2026): the emotional hook is the golfer's ambition, not the payment. Supporter-facing copy keeps the phrase **Support the journey** — supporters are invited to follow and participate in a real golfing journey, not asked for money.
 
 ## Audiences
 

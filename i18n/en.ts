@@ -7,6 +7,7 @@
  * place that defines which namespaces exist.
  */
 import admin from "@/messages/en/admin.json";
+import audiences from "@/messages/en/audiences.json";
 import auth from "@/messages/en/auth.json";
 import blog from "@/messages/en/blog.json";
 import common from "@/messages/en/common.json";
@@ -26,6 +27,7 @@ import settings from "@/messages/en/settings.json";
 
 export const enMessages = {
   admin,
+  audiences,
   auth,
   blog,
   common,

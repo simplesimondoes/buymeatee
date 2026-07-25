@@ -56,6 +56,26 @@
       "title": "女子ゴルフコンテンツシリーズ",
       "creator": "Lauren Park",
       "description": "1ラウンドずつ、より多くの女性にゴルフを楽しんでもらうための動画シリーズ。"
+    },
+    "charityChallengeRound": {
+      "title": "チャリティのための1日72ホール",
+      "creator": "Ravi Patel",
+      "description": "1日で4ラウンド — すべてのティーが地元ホスピスへの支援になります。"
+    },
+    "juniorSeasonFund": {
+      "title": "エリー、初めてのジュニアシーズン",
+      "creator": "Mark Donnelly（エリーの父）",
+      "description": "12歳の娘のためのコーチングと地域ジュニア大会 — ページは父が運営します。"
+    },
+    "clubProTeachingSeries": {
+      "title": "ショートゲーム・クリニックシリーズ",
+      "creator": "Jamie McAllister（PGAプロフェッショナル）",
+      "description": "クラブで開く6回のショートゲーム公開クリニック。全ドリルをメンバーが見返せるよう撮影します。"
+    },
+    "podcastLaunch": {
+      "title": "ゴルフポッドキャスト シーズン1",
+      "creator": "Sam Okafor",
+      "description": "ごく普通のゴルファーたちのストーリーを届ける、全10話分の収録機材とホスティング費用。"
     }
   },
   "previewCreators": {

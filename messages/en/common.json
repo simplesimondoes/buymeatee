@@ -1,7 +1,7 @@
 {
   "brand": {
     "homeAria": "BuyMeATee — home",
-    "tagline": "Support the journey."
+    "tagline": "For Golfers With a Goal."
   },
   "nav": {
     "discover": "Discover",
@@ -10,6 +10,17 @@
     "forSupporters": "For supporters",
     "blog": "Blog",
     "faq": "FAQ",
+    "audiences": {
+      "contentCreators": "Content creators",
+      "tournamentPlayers": "Tournament players",
+      "juniorGolfers": "Junior golfers",
+      "collegeGolfers": "College golfers",
+      "travellingPlayers": "Travelling players",
+      "charityGolfers": "Charity golfers",
+      "clubProfessionals": "Club professionals",
+      "coaches": "Coaches",
+      "podcasters": "Podcasters"
+    },
     "primaryLabel": "Primary",
     "siteNavigation": "Site navigation",
     "home": "Home",
@@ -34,6 +45,7 @@
   },
   "footer": {
     "productHeading": "Product",
+    "forGolfersHeading": "For golfers",
     "companyHeading": "Company",
     "legalHeading": "Legal",
     "about": "About",
@@ -41,7 +53,7 @@
     "terms": "Terms",
     "impressum": "Impressum",
     "accessibility": "Accessibility",
-    "description": "BuyMeATee is where golf fans help creators play more, achieve more and chase their goals. Follow the journey. Support a goal. Buy them a tee.",
+    "description": "Every golfer has a goal. BuyMeATee helps them achieve it — with supporters who follow the journey, back the goal and buy them a tee.",
     "copyright": "© {year} BuyMeATee. All rights reserved.",
     "productLine": "A <brand>Caddie Live</brand> product · Built for golfers"
   },

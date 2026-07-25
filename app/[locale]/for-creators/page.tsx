@@ -1,19 +1,7 @@
-import {
-  Camera,
-  CircleCheck,
-  Compass,
-  GraduationCap,
-  Map,
-  Medal,
-  Star,
-  Trophy,
-  Users,
-  Video,
-} from "lucide-react";
+import { ArrowRight, CircleCheck } from "lucide-react";
 import type { Metadata } from "next";
 import Image from "next/image";
 import { getTranslations, setRequestLocale } from "next-intl/server";
-import type { ComponentType } from "react";
 
 import { ButtonLink } from "@/components/button-link";
 import { CallToAction } from "@/components/call-to-action";
@@ -22,6 +10,7 @@ import { PageHeader } from "@/components/page-header";
 import { SectionHeading } from "@/components/section-heading";
 import type { AppLocale } from "@/i18n/locales";
 import { Link } from "@/i18n/navigation";
+import { audiences } from "@/lib/content/audiences";
 import { exampleGoalItems } from "@/lib/content/example-goals";
 import { images } from "@/lib/content/images";
 import { pageMetadata } from "@/lib/seo/metadata";
@@ -43,22 +32,6 @@ export async function generateMetadata({
     locale: locale as AppLocale,
   });
 }
-
-/** Ids under `marketing.forCreators.who.audiences`. */
-const audiences: {
-  id: string;
-  icon: ComponentType<{ className?: string }>;
-}[] = [
-  { id: "youtube", icon: Video },
-  { id: "shortForm", icon: Camera },
-  { id: "amateur", icon: Trophy },
-  { id: "aspiringPro", icon: Medal },
-  { id: "coaches", icon: GraduationCap },
-  { id: "reviewers", icon: Star },
-  { id: "travel", icon: Map },
-  { id: "womens", icon: Users },
-  { id: "adaptive", icon: Compass },
-];
 
 /** Ids under `marketing.forCreators.benefits.items`. */
 const benefitIds = ["story", "support", "updates", "celebrate", "time"] as const;
@@ -88,6 +61,10 @@ export default async function ForCreatorsPage({
     locale: locale as AppLocale,
     namespace: "content",
   });
+  const tAudiences = await getTranslations({
+    locale: locale as AppLocale,
+    namespace: "audiences",
+  });
   const photo = images.creatorVloggingGolf;
   const photoAlt = photo.altKey ? tContent(photo.altKey as never) : photo.alt;
   return (
@@ -113,17 +90,28 @@ export default async function ForCreatorsPage({
                 align="left"
               />
               <ul className="mt-8 grid gap-3 sm:grid-cols-2">
-                {audiences.map(({ id, icon: Icon }) => (
-                  <li
-                    key={id}
-                    className="flex items-center gap-3 rounded-2xl border border-stone bg-white px-4 py-3 text-sm text-ink/80"
-                  >
-                    <span className="text-gold-deep">
-                      <Icon aria-hidden="true" className="h-5 w-5" />
-                    </span>
-                    {t(`forCreators.who.audiences.${id}` as never)}
-                  </li>
-                ))}
+                {audiences.map((audience) => {
+                  const Icon = audience.icon;
+                  return (
+                    <li key={audience.slug}>
+                      <Link
+                        href={`/for/${audience.slug}`}
+                        className="group flex items-center gap-3 rounded-2xl border border-stone bg-white px-4 py-3 text-sm text-ink/80 transition hover:border-gold hover:text-forest"
+                      >
+                        <span className="text-gold-deep">
+                          <Icon aria-hidden="true" className="h-5 w-5" />
+                        </span>
+                        <span className="flex-1">
+                          {tAudiences(`${audience.id}.label` as never)}
+                        </span>
+                        <ArrowRight
+                          aria-hidden="true"
+                          className="h-4 w-4 shrink-0 text-gold-deep opacity-0 transition group-hover:opacity-100"
+                        />
+                      </Link>
+                    </li>
+                  );
+                })}
               </ul>
               <p className="mt-6 text-sm leading-relaxed text-ink/70">
                 {t("forCreators.who.juniorsNote")}

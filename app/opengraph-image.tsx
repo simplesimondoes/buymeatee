@@ -5,7 +5,7 @@ import { siteConfig } from "@/lib/site";
 export const size = { width: 1200, height: 630 };
 export const contentType = "image/png";
 export const alt =
-  "BuyMeATee — Support the journey. Where golf fans help creators chase their goals.";
+  "BuyMeATee — For Golfers With a Goal. Where golfers raise support for their journey.";
 
 /** Default social-sharing image, generated from brand tokens. */
 export default function OpenGraphImage() {
@@ -41,7 +41,7 @@ export default function OpenGraphImage() {
               lineHeight: 1.05,
             }}
           >
-            Support the journey.
+            For Golfers With a Goal.
           </div>
           <div
             style={{
@@ -51,8 +51,7 @@ export default function OpenGraphImage() {
               lineHeight: 1.4,
             }}
           >
-            Where golf fans help creators play more, achieve more and chase
-            their goals.
+            Every golfer has a goal. BuyMeATee helps them achieve it.
           </div>
         </div>
         <div

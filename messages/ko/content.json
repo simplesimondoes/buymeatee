@@ -56,6 +56,26 @@
       "title": "여성 골프 콘텐츠 시리즈",
       "creator": "Lauren Park",
       "description": "한 라운드씩, 더 많은 여성이 골프를 시작하도록 돕는 영상 시리즈예요."
+    },
+    "charityChallengeRound": {
+      "title": "자선을 위한 하루 72홀",
+      "creator": "Ravi Patel",
+      "description": "하루에 네 라운드 — 모든 티가 지역 호스피스를 위해 쓰여요."
+    },
+    "juniorSeasonFund": {
+      "title": "엘리의 첫 주니어 시즌",
+      "creator": "Mark Donnelly (엘리 아빠)",
+      "description": "12살 아이의 코칭 수업과 카운티 주니어 대회 — 아빠가 운영하는 페이지예요."
+    },
+    "clubProTeachingSeries": {
+      "title": "숏게임 클리닉 시리즈",
+      "creator": "Jamie McAllister (PGA 프로페셔널)",
+      "description": "클럽에서 여는 공개 숏게임 클리닉 여섯 번 — 회원들이 모든 드릴을 다시 볼 수 있게 촬영해요."
+    },
+    "podcastLaunch": {
+      "title": "골프 팟캐스트 시즌 1",
+      "creator": "Sam Okafor",
+      "description": "평범한 골퍼들의 이야기를 담은 열 편의 에피소드를 위한 녹음 장비와 호스팅 비용이에요."
     }
   },
   "previewCreators": {

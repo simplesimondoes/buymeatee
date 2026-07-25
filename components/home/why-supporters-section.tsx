@@ -7,16 +7,16 @@ import { ExampleBadge } from "@/components/example-badge";
 import { SectionHeading } from "@/components/section-heading";
 import { images } from "@/lib/content/images";
 
-/** Display strings live in the `home` namespace under `tipJar.features.<id>`. */
+/** Display strings live in the `home` namespace under `whySupporters.features.<id>`. */
 const features: { id: string; icon: ComponentType<{ className?: string }> }[] =
   [
-    { id: "goalBased", icon: Target },
-    { id: "secure", icon: ShieldCheck },
-    { id: "community", icon: HeartHandshake },
-    { id: "golf", icon: Flag },
+    { id: "partOfIt", icon: HeartHandshake },
+    { id: "realGoals", icon: Target },
+    { id: "golfNative", icon: Flag },
+    { id: "trust", icon: ShieldCheck },
   ];
 
-export function TipJarSection() {
+export function WhySupportersSection() {
   const t = useTranslations("home");
   const tContent = useTranslations("content");
   const screen = images.appConceptCreatorProfile;
@@ -30,8 +30,9 @@ export function TipJarSection() {
           <div>
             <SectionHeading
               align="left"
-              heading={t("tipJar.heading")}
-              intro={t("tipJar.intro")}
+              eyebrow={t("whySupporters.eyebrow")}
+              heading={t("whySupporters.heading")}
+              intro={t("whySupporters.intro")}
             />
             <ul className="mt-10 grid gap-8 sm:grid-cols-2">
               {features.map(({ id, icon: Icon }) => (
@@ -41,10 +42,10 @@ export function TipJarSection() {
                   </div>
                   <div>
                     <h3 className="font-serif text-lg font-semibold text-forest">
-                      {t(`tipJar.features.${id}.title` as never)}
+                      {t(`whySupporters.features.${id}.title` as never)}
                     </h3>
                     <p className="mt-1.5 text-sm leading-relaxed text-ink/70">
-                      {t(`tipJar.features.${id}.body` as never)}
+                      {t(`whySupporters.features.${id}.body` as never)}
                     </p>
                   </div>
                 </li>

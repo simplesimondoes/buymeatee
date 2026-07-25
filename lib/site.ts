@@ -11,10 +11,10 @@ export const siteConfig = {
   name: "BuyMeATee",
   domain: "buymeatee.com",
   url: process.env.NEXT_PUBLIC_SITE_URL ?? "https://buymeatee.com",
-  defaultTitle: "BuyMeATee — Support the Golf Journey",
+  defaultTitle: "BuyMeATee — For Golfers With a Goal",
   titleTemplate: "%s | BuyMeATee",
   description:
-    "Support golf creators, aspiring players and independent voices as they chase meaningful goals. Follow the journey and buy them a tee.",
+    "Every golfer has a goal. BuyMeATee helps golfers raise support for their journey — competing, coaching, creating content or chasing the next milestone.",
   /**
    * Only add entries with real, configured destinations.
    * Empty by design — no dead social icons (see CLAUDE.md hard rules).
@@ -62,6 +62,20 @@ export const footerNavigation: { headingKey: string; items: NavItem[] }[] = [
       { labelKey: "nav.forCreators", href: "/for-creators" },
       { labelKey: "nav.forSupporters", href: "/for-supporters" },
       { labelKey: "actions.signIn", href: "/sign-in" },
+    ],
+  },
+  {
+    headingKey: "footer.forGolfersHeading",
+    items: [
+      { labelKey: "nav.audiences.contentCreators", href: "/for/content-creators" },
+      { labelKey: "nav.audiences.tournamentPlayers", href: "/for/tournament-players" },
+      { labelKey: "nav.audiences.juniorGolfers", href: "/for/junior-golfers" },
+      { labelKey: "nav.audiences.collegeGolfers", href: "/for/college-golfers" },
+      { labelKey: "nav.audiences.travellingPlayers", href: "/for/travelling-players" },
+      { labelKey: "nav.audiences.charityGolfers", href: "/for/charity-golfers" },
+      { labelKey: "nav.audiences.clubProfessionals", href: "/for/club-professionals" },
+      { labelKey: "nav.audiences.coaches", href: "/for/coaches" },
+      { labelKey: "nav.audiences.podcasters", href: "/for/podcasters" },
     ],
   },
   {

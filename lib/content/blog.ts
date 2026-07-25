@@ -1,6 +1,7 @@
 import { costOfGolfContent } from "@/lib/content/articles/what-does-it-cost-to-create-golf-content";
 import { fundGolfContent } from "@/lib/content/articles/how-golf-creators-can-fund-their-content";
 import { golfSponsorshipAmateurs } from "@/lib/content/articles/golf-sponsorship-for-amateur-players";
+import { golfCrowdfundingAlternative } from "@/lib/content/articles/looking-for-golf-crowdfunding";
 import { supportGolfCreator } from "@/lib/content/articles/how-to-support-a-golf-content-creator";
 import { defaultLocale, type AppLocale } from "@/i18n/locales";
 import { formatDate } from "@/lib/i18n/format";
@@ -44,6 +45,7 @@ export const articles: Article[] = [
   fundGolfContent,
   golfSponsorshipAmateurs,
   costOfGolfContent,
+  golfCrowdfundingAlternative,
 ].sort((a, b) => b.publishedAt.localeCompare(a.publishedAt));
 
 /**

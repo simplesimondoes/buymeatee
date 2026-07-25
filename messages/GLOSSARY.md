@@ -13,6 +13,7 @@ golf-aware, never childish, never "donation/charity" framing.
 
 | Term (en) | de | fr | es | it | ja | ko | pt |
 |---|---|---|---|---|---|---|---|
+| For Golfers With a Goal. (brand strapline, ADR-021 — use this exact rendering everywhere it appears) | Für Golfer mit einem Ziel. | Pour les golfeurs qui ont un objectif. | Para golfistas con un objetivo. | Per golfisti con un obiettivo. | 目標を持つすべてのゴルファーへ。 | 목표가 있는 골퍼를 위해. | Para golfistas com um objetivo. |
 | Creator | Creator | créateur / créatrice | creador / creadora | creator | クリエイター | 크리에이터 | criador / criadora |
 | Supporter | Unterstützer:in | supporter / soutien | seguidor / patrocinador → use "apoyo": quien apoya | sostenitore / sostenitrice | サポーター | 서포터 | apoiante |
 | Support (verb) | unterstützen | soutenir | apoyar | sostenere | 応援する | 응원하다 | apoiar |

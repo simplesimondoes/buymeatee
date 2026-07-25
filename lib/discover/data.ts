@@ -123,6 +123,25 @@ const previewCreatorCards: DiscoverCreatorCard[] = previewCreatorItems.map(
   },
 );
 
+/**
+ * Featured goals for the homepage (ADR-021): the same hybrid rule as
+ * Discover — real published goals (most-backed first, then newest) when any
+ * exist, otherwise clearly-labelled Preview examples. Fails safely to Preview
+ * when Supabase is unconfigured.
+ */
+export async function getFeaturedGoals(
+  take = 3,
+): Promise<DiscoverSection<DiscoverGoalCard>> {
+  const goals = await listPublicGoals().catch(() => []);
+  const real = goals
+    .map(realGoalCard)
+    .sort(
+      (a, b) =>
+        b.raisedMinor - a.raisedMinor || b.createdAt.localeCompare(a.createdAt),
+    );
+  return section(real, previewGoalCards, take);
+}
+
 export async function getDiscoverData(): Promise<DiscoverData> {
   const [creators, goals, updates] = await Promise.all([
     listPublicCreators().catch(() => []),

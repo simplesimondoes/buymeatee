@@ -6,7 +6,7 @@
 
 - Site name: `BuyMeATee`
 - Canonical origin: `https://buymeatee.com`
-- Default title: `BuyMeATee — Support the Golf Journey`
+- Default title: `BuyMeATee — For Golfers With a Goal`
 - Title template: `%s | BuyMeATee`
 
 ## Metadata

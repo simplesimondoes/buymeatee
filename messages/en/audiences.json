@@ -1,0 +1,491 @@
+{
+  "shared": {
+    "eyebrow": "For Golfers With a Goal.",
+    "hubBreadcrumb": "For creators",
+    "valueEyebrow": "Made for you",
+    "howEyebrow": "How it works",
+    "howHeading": "How it works for you",
+    "stepLabel": "Step {number}",
+    "goalsEyebrow": "Example goals",
+    "goalsHeading": "Goals like yours",
+    "faqEyebrow": "Fair questions",
+    "faqHeading": "Your questions, answered",
+    "relatedEyebrow": "Also on BuyMeATee",
+    "relatedHeading": "More golfers with a goal",
+    "hubLink": "See everyone BuyMeATee is for"
+  },
+  "meta": {
+    "contentCreators": {
+      "title": "Golf Creator Support — Fund Your Next Video or Review",
+      "description": "Build a community around your golf content and let supporters help fund your next video, course review or equipment test on BuyMeATee."
+    },
+    "tournamentPlayers": {
+      "title": "Amateur Golf Sponsorship — Fund Your Tournament Season",
+      "description": "Travel, entry fees and practice all add up. Let supporters become part of your tournament journey with a goal-based BuyMeATee page."
+    },
+    "juniorGolfers": {
+      "title": "Junior Golf Funding — Support a Young Golfer's Journey",
+      "description": "Make it easy for family, friends and supporters to contribute towards a junior golfer's coaching, tournaments and equipment — guardian-managed on BuyMeATee."
+    },
+    "collegeGolfers": {
+      "title": "College Golf Fundraising — Back Your Season",
+      "description": "From training camps to competitions, college golf is a journey. Share your progress and invite supporters along for the ride on BuyMeATee."
+    },
+    "travellingPlayers": {
+      "title": "Golf Tournament Travel Support — Fund the Next Stop",
+      "description": "Playing national tournaments or travelling across Europe? Let supporters help fund the next stop on your golf journey with BuyMeATee."
+    },
+    "charityGolfers": {
+      "title": "Charity Golf Challenge — Raise Support for Your Cause",
+      "description": "Raise money while raising awareness. Share your charity golf challenge on BuyMeATee and make every tee count for a greater cause."
+    },
+    "clubProfessionals": {
+      "title": "Club Professional Support — Let Members Back Your Work",
+      "description": "Teaching, competing and representing your club all take investment. Build a BuyMeATee page where members support your work and follow your achievements."
+    },
+    "coaches": {
+      "title": "Golf Coaching Support — Grow Your Coaching Community",
+      "description": "Create coaching content, grow your community and give golfers a simple way to support your coaching goals on BuyMeATee."
+    },
+    "podcasters": {
+      "title": "Golf Podcast Support — Let Listeners Back the Show",
+      "description": "Golf podcasts thrive on passionate communities. Let listeners support future episodes and become part of the show with BuyMeATee."
+    }
+  },
+  "contentCreators": {
+    "label": "Content creators",
+    "tagline": "Fund videos, reviews and podcasts.",
+    "heading": "Make the golf content you've been planning",
+    "intro": "Build a community around your golf content and let supporters help fund your next video, course review or equipment test.",
+    "value": {
+      "heading": "Your content, backed by the people who watch it",
+      "items": {
+        "one": "Set a goal for your next series, review trip or kit upgrade — supporters see exactly what they're helping to make.",
+        "two": "Add specific items to your wish list, from a microphone to a camera gimbal, and let one supporter fund the whole thing.",
+        "three": "Post updates as you film and publish, so every supporter feels part of the credits."
+      }
+    },
+    "how": {
+      "steps": {
+        "createPage": {
+          "title": "Create your page",
+          "body": "Set up your BuyMeATee page in minutes and tell viewers what you're making next."
+        },
+        "shareGoal": {
+          "title": "Share your goal",
+          "body": "Add it to video descriptions, pinned comments and your socials — wherever your audience already is."
+        },
+        "momentum": {
+          "title": "Keep creating",
+          "body": "Support arrives as you go, and your updates keep everyone part of the story."
+        }
+      }
+    },
+    "faqs": {
+      "q1": {
+        "question": "Do I need a big audience to start?",
+        "answer": "No. Pages work at every size — a handful of regular viewers who care about your golf is enough to begin."
+      },
+      "q2": {
+        "question": "What can supporters fund?",
+        "answer": "Anything your content needs: green fees for a course review, editing time, travel to a shoot, or a specific item on your wish list."
+      },
+      "q3": {
+        "question": "Does BuyMeATee replace my other platforms?",
+        "answer": "No — it sits alongside YouTube, Instagram or wherever you publish, giving your audience one clear place to get behind your goals."
+      }
+    },
+    "cta": {
+      "heading": "Your next video deserves backing.",
+      "body": "Create your page and let the golfers who watch you become part of what you make."
+    }
+  },
+  "tournamentPlayers": {
+    "label": "Tournament players",
+    "tagline": "Entries, travel and practice — backed.",
+    "heading": "Take your game to the events that matter",
+    "intro": "Competing costs money. Travel, entry fees and practice all add up — let your supporters become part of your tournament journey.",
+    "value": {
+      "heading": "A season your supporters can get behind",
+      "items": {
+        "one": "Set a season goal — entries, travel and practice — and show supporters exactly where their backing goes.",
+        "two": "Share honest updates from qualifiers and medal days, whether you make the board or miss the cut.",
+        "three": "Celebrate the milestones with the people who helped you reach them."
+      }
+    },
+    "how": {
+      "steps": {
+        "createPage": {
+          "title": "Create your page",
+          "body": "Tell your story: where you play, what you're chasing this season and why it matters."
+        },
+        "shareGoal": {
+          "title": "Share your season goal",
+          "body": "Put your page in front of clubmates, friends, family and the golfers who follow your scores."
+        },
+        "momentum": {
+          "title": "Play your schedule",
+          "body": "Backing arrives as the season unfolds, and your updates keep supporters on the journey with you."
+        }
+      }
+    },
+    "faqs": {
+      "q1": {
+        "question": "Can amateur golfers accept support?",
+        "answer": "Amateur status rules vary by governing body and change over time. Check the rules that apply to your competitions before accepting support — our blog guide to golf sponsorship for amateur players is a good place to start."
+      },
+      "q2": {
+        "question": "What kinds of goals work best?",
+        "answer": "Specific, honest ones: a run of county events, a championship entry, a winter of coaching. Clear goals are easier to get behind than open-ended asks."
+      },
+      "q3": {
+        "question": "Do supporters get anything back?",
+        "answer": "Support is a gift towards your goal, not an investment — what supporters get is the journey: your updates, your progress and a real part in the story."
+      }
+    },
+    "cta": {
+      "heading": "Your season deserves supporters.",
+      "body": "Create your page and turn the people who follow your golf into the people behind it."
+    }
+  },
+  "juniorGolfers": {
+    "label": "Junior golfers",
+    "tagline": "Family and friends behind every junior.",
+    "heading": "Help a young golfer chase their dream",
+    "intro": "Coaching, tournaments and equipment add up quickly. BuyMeATee makes it easy for family, friends and supporters to contribute towards a junior's golf — with a parent or guardian running the page.",
+    "guardian": {
+      "heading": "Run by parents and guardians",
+      "body": "Pages for junior golfers are always created and managed by a parent or legal guardian. You set the goals, write the updates and receive the support on your child's behalf."
+    },
+    "value": {
+      "heading": "Everything a junior season needs",
+      "items": {
+        "one": "Set goals for coaching blocks, county events and the equipment they grow out of every year.",
+        "two": "Keep grandparents, family and friends in the loop with updates from lessons and competitions.",
+        "three": "Thank every supporter and show them the progress they've made possible."
+      }
+    },
+    "how": {
+      "steps": {
+        "createPage": {
+          "title": "Create the page",
+          "body": "A parent or guardian sets up the page and tells the story of the junior's golf."
+        },
+        "shareGoal": {
+          "title": "Share with your circle",
+          "body": "Family, friends and clubmates back the goals that matter — no awkward asks required."
+        },
+        "momentum": {
+          "title": "Watch them grow",
+          "body": "Updates from lessons and events let everyone see where their support is going."
+        }
+      }
+    },
+    "faqs": {
+      "q1": {
+        "question": "Who manages a junior golfer's page?",
+        "answer": "A parent or legal guardian, always. They create the page, manage the goals and receive the support on the junior's behalf."
+      },
+      "q2": {
+        "question": "What can supporters contribute towards?",
+        "answer": "Whatever the junior's golf needs next: coaching blocks, tournament entries, travel to events, or clubs that actually fit."
+      },
+      "q3": {
+        "question": "Does this work for club junior programmes?",
+        "answer": "Yes — a coach or organiser can run a page for a junior programme, with goals the whole club can get behind."
+      }
+    },
+    "cta": {
+      "heading": "Their dream, with your circle behind it.",
+      "body": "Create a guardian-managed page and let the people who care contribute to the golf they love."
+    }
+  },
+  "collegeGolfers": {
+    "label": "College golfers",
+    "tagline": "Bring home along for the season.",
+    "heading": "Back your college golf journey",
+    "intro": "From training camps to competitions, college golf is an incredible journey. Share your progress and invite supporters along for the ride.",
+    "value": {
+      "heading": "Your season, supported from home",
+      "items": {
+        "one": "Set goals for qualifying weekends, training camps and the travel between them.",
+        "two": "Let family, your home club and old teammates back the season without a single awkward ask.",
+        "three": "Post updates between terms so everyone follows the scores, the setbacks and the breakthroughs."
+      }
+    },
+    "how": {
+      "steps": {
+        "createPage": {
+          "title": "Create your page",
+          "body": "Tell the story of your college golf: the team, the schedule and what this season is building towards."
+        },
+        "shareGoal": {
+          "title": "Share your goal",
+          "body": "Send your page home — family, friends and your home club want to be part of this."
+        },
+        "momentum": {
+          "title": "Play the season",
+          "body": "Support arrives while you focus on golf, and your updates keep everyone on the road with you."
+        }
+      }
+    },
+    "faqs": {
+      "q1": {
+        "question": "Am I allowed to accept support as a college golfer?",
+        "answer": "Rules on outside support differ between countries, colleges and governing bodies, and they change. Check the regulations that apply to you before accepting support."
+      },
+      "q2": {
+        "question": "What goals make sense for college golf?",
+        "answer": "Travel to qualifiers, training camps, a summer of amateur events back home — anything specific your season genuinely needs."
+      },
+      "q3": {
+        "question": "Can our team share a page?",
+        "answer": "Yes — a page can tell a team's story just as well, with a shared goal for travel or event costs that everyone's supporters get behind."
+      }
+    },
+    "cta": {
+      "heading": "Your college season deserves a crowd.",
+      "body": "Create your page and bring the people back home along for the ride."
+    }
+  },
+  "travellingPlayers": {
+    "label": "Travelling players",
+    "tagline": "Fund the next stop on the journey.",
+    "heading": "Fund the next stop on your journey",
+    "intro": "Golf takes you places. Whether you're playing national tournaments or travelling across Europe, let supporters help fund the next leg of your journey.",
+    "value": {
+      "heading": "Every mile becomes part of the story",
+      "items": {
+        "one": "Set goals for flights, trains and entry fees, so supporters know exactly which stop they're funding.",
+        "two": "Post updates from the road — the courses, the results and everything in between.",
+        "three": "Let supporters follow the whole journey, not just the leaderboard."
+      }
+    },
+    "how": {
+      "steps": {
+        "createPage": {
+          "title": "Create your page",
+          "body": "Map out where the season is taking you and what it costs to get there."
+        },
+        "shareGoal": {
+          "title": "Share your travel goal",
+          "body": "The golfers who follow your results want to help you reach the next start line."
+        },
+        "momentum": {
+          "title": "Keep moving",
+          "body": "Support builds as you travel, and every update brings your backers along with you."
+        }
+      }
+    },
+    "faqs": {
+      "q1": {
+        "question": "What travel goals work best?",
+        "answer": "Specific legs of the journey: one championship abroad, a three-event swing, the ferry-and-fuel budget for a national season. Supporters love knowing which stop they made possible."
+      },
+      "q2": {
+        "question": "Can I run more than one goal at a time?",
+        "answer": "Yes — you can have up to three goals live at once, so a travel goal can sit alongside a season or equipment goal."
+      },
+      "q3": {
+        "question": "Which countries and currencies does BuyMeATee support?",
+        "answer": "Creators can set up payouts from a growing list of countries across ten currencies — you choose your country when you set up payments."
+      }
+    },
+    "cta": {
+      "heading": "The next stop is closer than you think.",
+      "body": "Create your page and let supporters help carry your clubs to the next event."
+    }
+  },
+  "charityGolfers": {
+    "label": "Charity golfers",
+    "tagline": "Make every tee count for a cause.",
+    "heading": "Make every tee count for a greater cause",
+    "intro": "Raise money while raising awareness. Share your charity golf challenge and let supporters make every hole count for something bigger.",
+    "value": {
+      "heading": "A challenge people want to be part of",
+      "items": {
+        "one": "Set a goal for your challenge — 72 holes in a day, the longest day of the year, a course in every county.",
+        "two": "Post updates as the challenge unfolds, from training rounds to the final putt.",
+        "three": "Celebrate the total with everyone who helped you reach it."
+      }
+    },
+    "how": {
+      "steps": {
+        "createPage": {
+          "title": "Create your page",
+          "body": "Explain the challenge, the cause and why it matters to you."
+        },
+        "shareGoal": {
+          "title": "Share the challenge",
+          "body": "Your club, your friends and your community rally behind a clear cause with a clear goal."
+        },
+        "momentum": {
+          "title": "Play the challenge",
+          "body": "Support lands as you play, and your updates show every hole counting for the cause."
+        }
+      }
+    },
+    "faqs": {
+      "q1": {
+        "question": "What makes a good charity golf challenge?",
+        "answer": "Something concrete and a little bit mad: four rounds in a day, a hundred holes in a weekend, walking between courses. A vivid challenge with a clear goal is easy to get behind."
+      },
+      "q2": {
+        "question": "How does the money reach the charity?",
+        "answer": "Support is paid to you as the page owner, and you pass it on to your chosen charity. Be clear on your page about where the money is going — supporters back your challenge because they trust you."
+      },
+      "q3": {
+        "question": "Can a club or society run a charity challenge page?",
+        "answer": "Yes — captains' charities, society fundraisers and club challenge days all fit. One organiser runs the page and shares the story."
+      }
+    },
+    "cta": {
+      "heading": "Play for something bigger.",
+      "body": "Create your page and turn a round of golf into real support for your cause."
+    }
+  },
+  "clubProfessionals": {
+    "label": "Club professionals",
+    "tagline": "Members backing their professional.",
+    "heading": "Let your members back your work",
+    "intro": "Teaching, competing and representing your club all take investment. Build a page where members can support your work and follow your achievements.",
+    "value": {
+      "heading": "The club behind their professional",
+      "items": {
+        "one": "Set goals your members recognise — pro-am entries, teaching kit, free junior clinics at the club.",
+        "two": "Share updates from your competitive starts and coaching projects, so members follow the work they've backed.",
+        "three": "Give the club a way to celebrate your achievements as their own."
+      }
+    },
+    "how": {
+      "steps": {
+        "createPage": {
+          "title": "Create your page",
+          "body": "Tell the story members already half-know: your teaching, your competing and what you're building at the club."
+        },
+        "shareGoal": {
+          "title": "Share it with the club",
+          "body": "The noticeboard, the newsletter, the WhatsApp group — your members are the community."
+        },
+        "momentum": {
+          "title": "Keep representing",
+          "body": "Backing builds behind your season, and every update gives the club something to cheer."
+        }
+      }
+    },
+    "faqs": {
+      "q1": {
+        "question": "How is this different from lesson fees?",
+        "answer": "It isn't a booking system. Support backs the goals that sit around your work — competing in pro-ams, new teaching technology, free junior clinics — not the lessons themselves."
+      },
+      "q2": {
+        "question": "What goals resonate with members?",
+        "answer": "Ones the club benefits from or can be proud of: representing the club in regional events, a covered teaching bay, a junior development programme."
+      },
+      "q3": {
+        "question": "Can assistants and PGA trainees use BuyMeATee?",
+        "answer": "Yes — exam costs, playing-ability tests and tournament starts are exactly the kind of goals a supportive membership loves to get behind."
+      }
+    },
+    "cta": {
+      "heading": "Your club wants to see you succeed.",
+      "body": "Create your page and give your members a simple way to back the professional they already believe in."
+    }
+  },
+  "coaches": {
+    "label": "Coaches",
+    "tagline": "Grow the community you coach.",
+    "heading": "Grow the coaching community around you",
+    "intro": "Create coaching content, grow your community and give golfers a simple way to support your work.",
+    "value": {
+      "heading": "Coaching that reaches beyond the lesson tee",
+      "items": {
+        "one": "Set goals for the projects lessons alone can't fund — filming drills, open clinics, better teaching technology.",
+        "two": "Share what you're learning with the golfers who follow your coaching, not just the ones on your books.",
+        "three": "Let supporters see their backing turn into content and clinics that help the whole game."
+      }
+    },
+    "how": {
+      "steps": {
+        "createPage": {
+          "title": "Create your page",
+          "body": "Set out your coaching philosophy and the project you want supporters behind."
+        },
+        "shareGoal": {
+          "title": "Share your goal",
+          "body": "Pupils past and present, your socials, the range regulars — your community is bigger than your diary."
+        },
+        "momentum": {
+          "title": "Keep coaching",
+          "body": "Support arrives while you teach, and updates show everyone what their backing built."
+        }
+      }
+    },
+    "faqs": {
+      "q1": {
+        "question": "Do I need to make videos to use BuyMeATee?",
+        "answer": "No. Any coaching goal works — a covered bay, a junior programme, a training aid library. Content is one path, not the price of entry."
+      },
+      "q2": {
+        "question": "What do supporters get for backing a coach?",
+        "answer": "A front-row seat: your updates, your progress and the knowledge that the clinics and content they enjoy exist because they backed them."
+      },
+      "q3": {
+        "question": "Does this compete with my lesson income?",
+        "answer": "No — it funds the things lessons don't: the equipment, projects and free sessions that grow your reputation and your community."
+      }
+    },
+    "cta": {
+      "heading": "Coach more than the golfers in front of you.",
+      "body": "Create your page and let the game's most generous community back your next project."
+    }
+  },
+  "podcasters": {
+    "label": "Podcasters",
+    "tagline": "Listeners become part of the show.",
+    "heading": "Let listeners become part of the show",
+    "intro": "Golf podcasts thrive because of passionate communities. Let listeners support future episodes and become part of the show.",
+    "value": {
+      "heading": "A show your listeners help make",
+      "items": {
+        "one": "Set goals for the next season — better microphones, hosting costs, travel to record on location.",
+        "two": "Add specific kit to your wish list and let one listener fund the upgrade everyone will hear.",
+        "three": "Keep supporters close with updates from the studio between episodes."
+      }
+    },
+    "how": {
+      "steps": {
+        "createPage": {
+          "title": "Create your page",
+          "body": "Tell listeners what the show needs next and where you want to take it."
+        },
+        "shareGoal": {
+          "title": "Mention it on air",
+          "body": "One line at the end of an episode reaches the exact people who want the show to keep going."
+        },
+        "momentum": {
+          "title": "Keep recording",
+          "body": "Support comes in between episodes, and your updates make backers part of the production."
+        }
+      }
+    },
+    "faqs": {
+      "q1": {
+        "question": "Our podcast is small. Is it worth it?",
+        "answer": "Yes. Podcast audiences are loyal out of all proportion to their size — a few dozen regular listeners can carry a season's hosting and kit."
+      },
+      "q2": {
+        "question": "What should a podcast goal fund?",
+        "answer": "Whatever the show genuinely needs: microphones and acoustic treatment, editing, hosting fees, or travel to record at the events you cover."
+      },
+      "q3": {
+        "question": "How do we thank supporters?",
+        "answer": "However fits your show — updates on your page, a word of thanks on air, or simply making the better episodes their backing paid for."
+      }
+    },
+    "cta": {
+      "heading": "The best shows are made with their listeners.",
+      "body": "Create your page and give your audience a real part in season two."
+    }
+  }
+}
