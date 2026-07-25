@@ -42,6 +42,7 @@ export type PublicGoalRow = {
     username: string | null;
     display_name: string;
     avatar_url: string | null;
+    cover_image_url: string | null;
     location: string | null;
     country: string | null;
   } | null;
@@ -51,7 +52,7 @@ const CREATOR_COLUMNS =
   "id, username, display_name, avatar_url, cover_image_url, bio, location, country, created_at";
 
 const GOAL_COLUMNS =
-  "id, creator_id, title, description, cover_image_url, currency, target_amount, raised_amount, status, created_at, updated_at, creator:profiles!inner(username, display_name, avatar_url, location, country)";
+  "id, creator_id, title, description, cover_image_url, currency, target_amount, raised_amount, status, created_at, updated_at, creator:profiles!inner(username, display_name, avatar_url, cover_image_url, location, country)";
 
 /** Public creators with a claimed page, newest first. */
 export async function listPublicCreators(): Promise<PublicCreatorRow[]> {

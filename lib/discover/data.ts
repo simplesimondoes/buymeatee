@@ -43,7 +43,7 @@ function realGoalCard(row: PublicGoalRow): DiscoverGoalCard {
     key: `goal-${row.id}`,
     title: row.title,
     description: row.description,
-    imageSrc: row.cover_image_url,
+    imageSrc: row.cover_image_url ?? row.creator?.cover_image_url ?? null,
     imageAlt: "",
     creatorName: name,
     creatorHref: row.creator?.username ? `/t/${row.creator.username}` : null,
@@ -152,13 +152,13 @@ export async function getDiscoverData(): Promise<DiscoverData> {
   }
   for (const row of goals) {
     if (!row.creator?.username || creatorInfoById.has(row.creator_id)) continue;
-    // Derived from the goal's creator join — less rich (no bio/cover), but real.
+    // Derived from the goal's creator join — less rich (no bio), but real.
     creatorInfoById.set(row.creator_id, {
       id: row.creator_id,
       username: row.creator.username,
       display_name: row.creator.display_name,
       avatar_url: row.creator.avatar_url,
-      cover_image_url: null,
+      cover_image_url: row.creator.cover_image_url,
       bio: null,
       location: row.creator.location,
       country: row.creator.country,

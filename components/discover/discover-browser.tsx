@@ -1,7 +1,7 @@
 "use client";
 
 import { Search, SlidersHorizontal } from "lucide-react";
-import { useMemo } from "react";
+import { useMemo, useState } from "react";
 
 import { GoalCardView } from "@/components/discover/goal-card-view";
 import {
@@ -11,6 +11,9 @@ import {
 import { SectionHeading } from "@/components/section-heading";
 import { categoryLabel, discoverCategories } from "@/lib/discover/categories";
 import type { DiscoverGoalCard } from "@/lib/discover/types";
+
+/** How many journeys to show before the supporter asks for more. */
+const PAGE_SIZE = 6;
 
 const SORT_OPTIONS: { value: DiscoverSort; label: string }[] = [
   { value: "newest", label: "Newest" },
@@ -94,6 +97,17 @@ export function DiscoverBrowser({ goals }: { goals: DiscoverGoalCard[] }) {
 
   const hasFilters = Boolean(query || category || country);
 
+  // Show a first page, then reveal more on request; reset when the search or
+  // filters change so a new result set always starts from the top of its list.
+  const signature = `${query}|${category}|${country}|${sort}`;
+  const [visible, setVisible] = useState(PAGE_SIZE);
+  const [prevSignature, setPrevSignature] = useState(signature);
+  if (signature !== prevSignature) {
+    setPrevSignature(signature);
+    setVisible(PAGE_SIZE);
+  }
+  const shown = results.slice(0, visible);
+
   return (
     <section id="browse" className="scroll-mt-20 bg-white">
       <div className="mx-auto max-w-6xl px-4 py-14 sm:px-6 lg:px-8 lg:py-20">
@@ -168,11 +182,24 @@ export function DiscoverBrowser({ goals }: { goals: DiscoverGoalCard[] }) {
         </p>
 
         {results.length > 0 ? (
-          <div className="mt-4 grid gap-6 sm:grid-cols-2 lg:grid-cols-3">
-            {results.map((goal) => (
-              <GoalCardView key={goal.key} goal={goal} />
-            ))}
-          </div>
+          <>
+            <div className="mt-4 grid gap-6 sm:grid-cols-2 lg:grid-cols-3">
+              {shown.map((goal) => (
+                <GoalCardView key={goal.key} goal={goal} />
+              ))}
+            </div>
+            {results.length > visible ? (
+              <div className="mt-8 flex justify-center">
+                <button
+                  type="button"
+                  onClick={() => setVisible((v) => v + PAGE_SIZE)}
+                  className="inline-flex min-h-11 items-center justify-center rounded-full border border-stone bg-white px-6 text-sm font-medium text-forest transition-colors hover:bg-mist"
+                >
+                  Show more journeys
+                </button>
+              </div>
+            ) : null}
+          </>
         ) : (
           <div className="mt-4 rounded-3xl border border-dashed border-stone bg-white p-10 text-center">
             <p className="text-sm leading-relaxed text-ink/70">

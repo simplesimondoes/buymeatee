@@ -52,7 +52,7 @@ export function GoalCardView({ goal }: { goal: DiscoverGoalCard }) {
           ) : null}
         </p>
         {goal.description ? (
-          <p className="mt-2 flex-1 text-sm leading-relaxed text-ink/75">
+          <p className="mt-2 line-clamp-3 flex-1 text-sm leading-relaxed text-ink/75">
             {goal.description}
           </p>
         ) : (
