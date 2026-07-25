@@ -3,6 +3,7 @@ import { useTranslations } from "next-intl";
 import { CookieSettingsButton } from "@/components/cookie-settings-button";
 import { LanguageSwitcher } from "@/components/language-switcher";
 import { Logo } from "@/components/logo";
+import { SocialLinks } from "@/components/social-links";
 import { Link } from "@/i18n/navigation";
 import { footerNavigation } from "@/lib/site";
 
@@ -20,6 +21,7 @@ export function Footer() {
             <p className="mt-4 max-w-xs text-sm leading-relaxed text-white/70">
               {t("footer.description")}
             </p>
+            <SocialLinks className="mt-5 -ml-2" />
           </div>
           {footerNavigation.map((group) => (
             <nav key={group.headingKey} aria-label={label(group.headingKey)}>

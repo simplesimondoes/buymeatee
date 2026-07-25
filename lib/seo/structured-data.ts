@@ -21,6 +21,22 @@ export function webSiteJsonLd(locale: AppLocale, description?: string) {
   };
 }
 
+/**
+ * The BuyMeATee organisation. `sameAs` lists exactly the profiles from
+ * siteConfig.socialLinks — the ones visitors can see in the footer.
+ */
+export function organizationJsonLd(locale: AppLocale) {
+  return {
+    "@context": "https://schema.org",
+    "@type": "Organization",
+    name: siteConfig.name,
+    url: canonicalUrl("/", locale),
+    ...(siteConfig.socialLinks.length > 0
+      ? { sameAs: siteConfig.socialLinks.map((link) => link.href) }
+      : {}),
+  };
+}
+
 export type BreadcrumbItem = {
   label: string;
   href: string;
@@ -88,6 +104,9 @@ export function articleJsonLd(
       "@type": "Organization",
       name: siteConfig.name,
       url: canonicalUrl("/", locale),
+      ...(siteConfig.socialLinks.length > 0
+        ? { sameAs: siteConfig.socialLinks.map((link) => link.href) }
+        : {}),
     },
     mainEntityOfPage: canonicalUrl(`/blog/${input.slug}`, locale),
     ...(input.image

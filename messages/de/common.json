@@ -55,7 +55,9 @@
     "accessibility": "Barrierefreiheit",
     "description": "Jeder Golfer hat ein Ziel. BuyMeATee hilft, es zu erreichen — mit Unterstützer:innen, die den Weg begleiten, hinter dem Ziel stehen und ein Tee spendieren.",
     "copyright": "© {year} BuyMeATee. Alle Rechte vorbehalten.",
-    "productLine": "Ein Produkt von <brand>Caddie Live</brand> · Gemacht für Golfer"
+    "productLine": "Ein Produkt von <brand>Caddie Live</brand> · Gemacht für Golfer",
+    "followUs": "BuyMeATee folgen",
+    "followOn": "BuyMeATee auf {network} folgen"
   },
   "cookies": {
     "regionLabel": "Cookie-Einwilligung",

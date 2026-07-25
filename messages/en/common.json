@@ -55,7 +55,9 @@
     "accessibility": "Accessibility",
     "description": "Every golfer has a goal. BuyMeATee helps them achieve it — with supporters who follow the journey, back the goal and buy them a tee.",
     "copyright": "© {year} BuyMeATee. All rights reserved.",
-    "productLine": "A <brand>Caddie Live</brand> product · Built for golfers"
+    "productLine": "A <brand>Caddie Live</brand> product · Built for golfers",
+    "followUs": "Follow BuyMeATee",
+    "followOn": "Follow BuyMeATee on {network}"
   },
   "cookies": {
     "regionLabel": "Cookie consent",

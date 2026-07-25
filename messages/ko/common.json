@@ -55,7 +55,9 @@
     "accessibility": "접근성",
     "description": "모든 골퍼에게는 목표가 있어요. BuyMeATee는 여정을 지켜보고, 목표를 응원하고, 티를 선물하는 서포터와 함께 그 목표를 이루도록 도와요.",
     "copyright": "© {year} BuyMeATee. 모든 권리 보유.",
-    "productLine": "<brand>Caddie Live</brand>가 만든 서비스 · 골퍼를 위해 만들었어요"
+    "productLine": "<brand>Caddie Live</brand>가 만든 서비스 · 골퍼를 위해 만들었어요",
+    "followUs": "BuyMeATee 팔로우",
+    "followOn": "{network}에서 BuyMeATee 팔로우"
   },
   "cookies": {
     "regionLabel": "쿠키 동의",

@@ -7,6 +7,14 @@
  * adds the active locale prefix at render time.
  */
 
+export type SocialLink = {
+  /** Icon key — must have a matching glyph in components/social-links.tsx. */
+  id: "bluesky" | "x" | "instagram";
+  /** Network name, shown to assistive tech; brand names are not translated. */
+  label: string;
+  href: string;
+};
+
 export const siteConfig = {
   name: "BuyMeATee",
   domain: "buymeatee.com",
@@ -16,10 +24,22 @@ export const siteConfig = {
   description:
     "Every golfer has a goal. BuyMeATee helps golfers raise support for their journey — competing, coaching, creating content or chasing the next milestone.",
   /**
-   * Only add entries with real, configured destinations.
-   * Empty by design — no dead social icons (see CLAUDE.md hard rules).
+   * Only add entries with real, configured destinations —
+   * no dead social icons (see CLAUDE.md hard rules).
    */
-  socialLinks: [] as { label: string; href: string }[],
+  socialLinks: [
+    {
+      id: "bluesky",
+      label: "Bluesky",
+      href: "https://bsky.app/profile/buymeatee.bsky.social",
+    },
+    { id: "x", label: "X", href: "https://x.com/BuyMeaTee" },
+    {
+      id: "instagram",
+      label: "Instagram",
+      href: "https://www.instagram.com/BuyMeaTee",
+    },
+  ] as SocialLink[],
 } as const;
 
 export type NavItem = {

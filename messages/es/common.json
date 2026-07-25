@@ -55,7 +55,9 @@
     "accessibility": "Accesibilidad",
     "description": "Todo golfista tiene un objetivo. BuyMeATee le ayuda a conseguirlo — con apoyos que siguen el camino, respaldan el objetivo y le invitan a un tee.",
     "copyright": "© {year} BuyMeATee. Todos los derechos reservados.",
-    "productLine": "Un producto de <brand>Caddie Live</brand> · Hecho para golfistas"
+    "productLine": "Un producto de <brand>Caddie Live</brand> · Hecho para golfistas",
+    "followUs": "Sigue a BuyMeATee",
+    "followOn": "Sigue a BuyMeATee en {network}"
   },
   "cookies": {
     "regionLabel": "Consentimiento de cookies",

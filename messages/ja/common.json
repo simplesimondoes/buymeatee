@@ -55,7 +55,9 @@
     "accessibility": "アクセシビリティ",
     "description": "すべてのゴルファーには目標があります。BuyMeATeeは、その実現を後押しします — ジャーニーを追いかけ、目標を応援し、ティーを贈るサポーターとともに。",
     "copyright": "© {year} BuyMeATee. 無断転載を禁じます。",
-    "productLine": "<brand>Caddie Live</brand>のプロダクト · ゴルファーのための設計"
+    "productLine": "<brand>Caddie Live</brand>のプロダクト · ゴルファーのための設計",
+    "followUs": "BuyMeATeeをフォロー",
+    "followOn": "{network}でBuyMeATeeをフォロー"
   },
   "cookies": {
     "regionLabel": "Cookieの同意",

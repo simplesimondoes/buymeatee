@@ -12,7 +12,7 @@ import { htmlLang, locales, type AppLocale } from "@/i18n/locales";
 import { loadMessages } from "@/i18n/load-messages";
 import { CJK_FONT_STYLESHEETS, fontClasses } from "@/lib/fonts";
 import { rootMetadata } from "@/lib/seo/metadata";
-import { webSiteJsonLd } from "@/lib/seo/structured-data";
+import { organizationJsonLd, webSiteJsonLd } from "@/lib/seo/structured-data";
 
 import "../globals.css";
 
@@ -91,7 +91,12 @@ export default async function LocaleLayout({ children, params }: LayoutProps) {
           <Footer />
           <CookieConsent />
         </NextIntlClientProvider>
-        <StructuredData data={webSiteJsonLd(locale as AppLocale)} />
+        <StructuredData
+          data={[
+            webSiteJsonLd(locale as AppLocale),
+            organizationJsonLd(locale as AppLocale),
+          ]}
+        />
       </body>
     </html>
   );
