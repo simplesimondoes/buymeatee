@@ -2,7 +2,6 @@ import type { Metadata } from "next";
 
 import { ActivityFeed } from "@/components/discover/activity-feed";
 import { CategoryGrid } from "@/components/discover/category-grid";
-import { CreatorCardView } from "@/components/discover/creator-card-view";
 import { DiscoverBrowser } from "@/components/discover/discover-browser";
 import { DiscoverHero } from "@/components/discover/discover-hero";
 import { DiscoverProvider } from "@/components/discover/discover-context";
@@ -31,20 +30,6 @@ export default async function DiscoverPage() {
   return (
     <DiscoverProvider>
       <DiscoverHero />
-
-      <DiscoverRow
-        eyebrow="Featured creators"
-        heading="Golfers worth following"
-        intro="The people behind the journeys — from aspiring pros to coaches, charities and creators."
-        preview={data.featuredCreators.preview}
-        background="white"
-      >
-        {data.featuredCreators.items.map((creator) => (
-          <DiscoverSlide key={creator.key}>
-            <CreatorCardView creator={creator} />
-          </DiscoverSlide>
-        ))}
-      </DiscoverRow>
 
       <DiscoverRow
         eyebrow="Featured goals"
@@ -86,34 +71,6 @@ export default async function DiscoverPage() {
         {data.nearCompletion.items.map((goal) => (
           <DiscoverSlide key={goal.key}>
             <GoalCardView goal={goal} />
-          </DiscoverSlide>
-        ))}
-      </DiscoverRow>
-
-      <DiscoverRow
-        eyebrow="Recently updated"
-        heading="Fresh from the journey"
-        intro="Creators who just shared an update — the platform stays alive with progress."
-        preview={data.recentlyUpdated.preview}
-        background="mist"
-      >
-        {data.recentlyUpdated.items.map((creator) => (
-          <DiscoverSlide key={creator.key}>
-            <CreatorCardView creator={creator} />
-          </DiscoverSlide>
-        ))}
-      </DiscoverRow>
-
-      <DiscoverRow
-        eyebrow="New creators"
-        heading="Just getting started"
-        intro="Recently joined golfers who could use a first supporter."
-        preview={data.newCreators.preview}
-        background="white"
-      >
-        {data.newCreators.items.map((creator) => (
-          <DiscoverSlide key={creator.key}>
-            <CreatorCardView creator={creator} />
           </DiscoverSlide>
         ))}
       </DiscoverRow>
