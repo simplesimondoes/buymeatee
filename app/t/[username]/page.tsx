@@ -376,16 +376,16 @@ export default async function RecipientProfilePage({
       {/* Identity — on mobile this is a white card with a rounded top that
           overlaps the cover for depth; on larger screens it's a plain column. */}
       <header className="relative z-10 -mx-4 -mt-8 rounded-t-3xl bg-white px-4 shadow-[0_-16px_32px_-24px_rgba(7,62,46,0.35)] sm:mx-0 sm:mt-0 sm:rounded-none sm:bg-transparent sm:px-0 sm:shadow-none">
-        {/* On phones the name sits beside the avatar so the top row reads as
-            one unit (no dead space); on larger screens it stacks below. */}
-        <div className="flex items-end gap-4 sm:block">
-          <div className="-mt-10 shrink-0 sm:-mt-12">
+        {/* The avatar overlaps the cover, with the name stacked cleanly below
+            it on every screen size. */}
+        <div>
+          <div className="-mt-12 shrink-0">
             <div className="inline-flex rounded-full ring-4 ring-white">
               <Avatar src={profile.avatar_url} name={name} size="lg" />
             </div>
           </div>
-          <div className="min-w-0 pb-1 sm:pb-0">
-            <p className="text-sm font-medium uppercase tracking-wide text-gold-deep sm:mt-4">
+          <div className="min-w-0">
+            <p className="mt-3 text-sm font-medium uppercase tracking-wide text-gold-deep sm:mt-4">
               Support the journey
             </p>
             <h1 className="mt-1 font-serif text-3xl font-semibold text-forest sm:text-4xl">

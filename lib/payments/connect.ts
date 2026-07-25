@@ -92,10 +92,16 @@ export async function getOrCreateConnectedAccount(
       },
       metadata: { buymeatee_user_id: userId },
     },
-    // One account per user: retries of the same creation are deduplicated.
-    // The -v2 suffix is tied to the capability set above — bump it whenever the
-    // create parameters change so a cached idempotent result can't collide.
-    { idempotencyKey: `bmat-account-create-v2-${userId}` },
+    // Retries of the same creation are deduplicated. The key includes the
+    // country because Stripe fixes an account's country at creation and rejects
+    // a reused idempotency key with different parameters: a user who onboarded
+    // in the wrong country (and whose row was reset) must be able to re-create
+    // in the right one. The -v2 suffix is tied to the capability set above —
+    // bump it whenever the create parameters change so a cached idempotent
+    // result can't collide.
+    {
+      idempotencyKey: `bmat-account-create-v2-${userId}-${country.toLowerCase()}`,
+    },
   );
 
   const supabase = getSupabaseAdminClient();

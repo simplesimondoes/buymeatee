@@ -23,6 +23,18 @@ export function Hero() {
         />
         <div className="absolute inset-0 bg-gradient-to-r from-white via-white/90 via-45% to-white/30" />
       </div>
+      {/* Mobile: a full-width hero visual leads the page */}
+      <div className="sm:hidden">
+        <Image
+          src={hero.src}
+          alt={hero.alt}
+          width={hero.width}
+          height={hero.height}
+          priority
+          sizes="100vw"
+          className="h-64 w-full object-cover object-[70%_center]"
+        />
+      </div>
       <div className="relative mx-auto max-w-6xl px-4 sm:px-6 lg:px-8">
         <div className="grid items-center gap-10 pb-10 pt-12 sm:min-h-[560px] sm:py-20 lg:min-h-[640px] lg:grid-cols-[1.05fr_0.95fr]">
           <div className="flex max-w-xl flex-col justify-center">
@@ -70,18 +82,6 @@ export function Hero() {
             <BuyATeeCard />
           </div>
         </div>
-      </div>
-      {/* Mobile: image below the copy, full width */}
-      <div className="sm:hidden">
-        <Image
-          src={hero.src}
-          alt={hero.alt}
-          width={hero.width}
-          height={hero.height}
-          priority
-          sizes="100vw"
-          className="h-56 w-full object-cover object-[70%_center]"
-        />
       </div>
     </section>
   );
