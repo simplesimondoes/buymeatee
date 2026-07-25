@@ -10,6 +10,7 @@ import {
 import { isSupportedCurrency } from "@/lib/payments/currency";
 import { logPaymentEvent } from "@/lib/payments/log";
 import type { ConnectedAccountRow } from "@/lib/payments/types";
+import { markProfileAsCreator } from "@/lib/profile/role";
 import { getStripeClient, isLivemode } from "@/lib/stripe/server";
 import { getSupabaseAdminClient } from "@/lib/supabase/admin";
 
@@ -131,6 +132,8 @@ export async function getOrCreateConnectedAccount(
     country,
     livemode: isLivemode(),
   });
+  // Starting Stripe onboarding is a creator-defining action.
+  await markProfileAsCreator(userId);
   return data as ConnectedAccountRow;
 }
 

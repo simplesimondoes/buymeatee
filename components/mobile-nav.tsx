@@ -142,6 +142,15 @@ export function MobileNav() {
                   >
                     {t("actions.settings")}
                   </Link>
+                  {session.isAdmin ? (
+                    <Link
+                      href="/admin/payments"
+                      onClick={() => setOpen(false)}
+                      className="inline-flex min-h-12 items-center justify-center rounded-full border border-forest/30 px-6 text-base font-medium text-forest hover:border-forest"
+                    >
+                      {t("actions.admin")}
+                    </Link>
+                  ) : null}
                   <form action={authActions.signOut.href} method="post">
                     <button
                       type="submit"

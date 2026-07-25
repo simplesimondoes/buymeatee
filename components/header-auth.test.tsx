@@ -40,6 +40,7 @@ describe("HeaderAuth", () => {
       username: "caddielive",
       displayName: "Caddie Live",
       avatarUrl: null,
+      isAdmin: false,
     });
     renderWithIntl(<HeaderAuth />);
 

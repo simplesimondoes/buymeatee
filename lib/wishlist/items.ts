@@ -3,6 +3,7 @@ import "server-only";
 import { getFeeConfig } from "@/lib/payments/config";
 import { getConnectedAccountForUser } from "@/lib/payments/connect";
 import { calculateFees } from "@/lib/payments/fees";
+import { markProfileAsCreator } from "@/lib/profile/role";
 import { getSupabaseServerClient } from "@/lib/supabase/server";
 import type { WishlistItemInput } from "@/lib/wishlist/item-schema";
 import {
@@ -132,6 +133,7 @@ export async function createItem(
     if (error || !data) {
       return { ok: false, reason: "unavailable" };
     }
+    await markProfileAsCreator(userId);
     return { ok: true, item: data as WishlistItemRow };
   } catch {
     return { ok: false, reason: "unavailable" };

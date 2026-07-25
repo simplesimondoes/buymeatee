@@ -78,4 +78,21 @@ describe("AccountMenu", () => {
       screen.getByRole("menuitem", { name: "Dashboard" }),
     ).toBeInTheDocument();
   });
+
+  it("shows the Admin shortcut only for admins", async () => {
+    const user = userEvent.setup();
+    const { unmount } = renderWithIntl(<AccountMenu {...authed} />);
+    await user.click(screen.getByRole("button", { name: /Caddie Live/ }));
+    expect(
+      screen.queryByRole("menuitem", { name: "Admin" }),
+    ).not.toBeInTheDocument();
+    unmount();
+
+    renderWithIntl(<AccountMenu {...authed} isAdmin />);
+    await user.click(screen.getByRole("button", { name: /Caddie Live/ }));
+    expect(screen.getByRole("menuitem", { name: "Admin" })).toHaveAttribute(
+      "href",
+      "/en/admin/payments",
+    );
+  });
 });

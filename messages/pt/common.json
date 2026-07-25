@@ -24,7 +24,8 @@
     "signIn": "Iniciar sessão",
     "dashboard": "Painel",
     "myPage": "A minha página",
-    "settings": "Definições"
+    "settings": "Definições",
+    "admin": "Administração"
   },
   "account": {
     "menuLabel": "Conta",

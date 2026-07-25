@@ -19,6 +19,8 @@ type AccountMenuProps = {
   username: string | null;
   displayName: string | null;
   avatarUrl: string | null;
+  /** Shows the Admin shortcut. Visibility only — /admin re-checks server-side. */
+  isAdmin?: boolean;
 };
 
 /**
@@ -31,6 +33,7 @@ export function AccountMenu({
   username,
   displayName,
   avatarUrl,
+  isAdmin = false,
 }: AccountMenuProps) {
   const t = useTranslations("common");
   const [open, setOpen] = useState(false);
@@ -152,6 +155,15 @@ export function AccountMenu({
           >
             {t("actions.settings")}
           </MenuLink>
+          {isAdmin ? (
+            <MenuLink
+              href="/admin/payments"
+              onClick={() => close(false)}
+              onKeyDown={onItemKeyDown}
+            >
+              {t("actions.admin")}
+            </MenuLink>
+          ) : null}
           <form action={authActions.signOut.href} method="post" className="mt-1 border-t border-stone pt-1">
             <button
               type="submit"

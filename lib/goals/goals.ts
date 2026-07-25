@@ -8,6 +8,7 @@ import {
   type GoalStatus,
 } from "@/lib/goals/types";
 import { getConnectedAccountForUser } from "@/lib/payments/connect";
+import { markProfileAsCreator } from "@/lib/profile/role";
 import { getSupabaseServerClient } from "@/lib/supabase/server";
 
 /**
@@ -129,6 +130,7 @@ export async function createGoal(
     if (error || !data) {
       return { ok: false, reason: "unavailable" };
     }
+    await markProfileAsCreator(userId);
     return { ok: true, goal: data as CreatorGoalRow };
   } catch {
     return { ok: false, reason: "unavailable" };

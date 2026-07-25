@@ -22,6 +22,9 @@ export type SessionState =
       username: string | null;
       displayName: string | null;
       avatarUrl: string | null;
+      /** True when the user is in admin_users (self-read RLS policy). Link
+       *  visibility only — every /admin route re-checks server-side. */
+      isAdmin: boolean;
     };
 
 // Deterministic on both server and client — NEXT_PUBLIC_* values are inlined at
@@ -44,18 +47,27 @@ export function useSession(): SessionState {
     let active = true;
 
     async function resolveProfile(userId: string) {
-      // RLS lets a signed-in user read their own profile row.
-      const { data } = await supabase!
-        .from("profiles")
-        .select("username, display_name, avatar_url")
-        .eq("id", userId)
-        .maybeSingle();
+      // RLS lets a signed-in user read their own profile row and check their
+      // own admin_users membership — nothing about anyone else.
+      const [profileResult, adminResult] = await Promise.all([
+        supabase!
+          .from("profiles")
+          .select("username, display_name, avatar_url")
+          .eq("id", userId)
+          .maybeSingle(),
+        supabase!
+          .from("admin_users")
+          .select("user_id")
+          .eq("user_id", userId)
+          .maybeSingle(),
+      ]);
       if (active) {
         setState({
           status: "authed",
-          username: data?.username ?? null,
-          displayName: data?.display_name ?? null,
-          avatarUrl: data?.avatar_url ?? null,
+          username: profileResult.data?.username ?? null,
+          displayName: profileResult.data?.display_name ?? null,
+          avatarUrl: profileResult.data?.avatar_url ?? null,
+          isAdmin: Boolean(adminResult.data),
         });
       }
     }
@@ -65,6 +77,7 @@ export function useSession(): SessionState {
       username: null,
       displayName: null,
       avatarUrl: null,
+      isAdmin: false,
     };
 
     supabase.auth.getUser().then(({ data }) => {

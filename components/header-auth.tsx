@@ -24,6 +24,7 @@ export function HeaderAuth() {
           username={session.username}
           displayName={session.displayName}
           avatarUrl={session.avatarUrl}
+          isAdmin={session.isAdmin}
         />
       </div>
     );

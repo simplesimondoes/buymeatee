@@ -24,7 +24,8 @@
     "signIn": "Se connecter",
     "dashboard": "Tableau de bord",
     "myPage": "Ma page",
-    "settings": "Paramètres"
+    "settings": "Paramètres",
+    "admin": "Administration"
   },
   "account": {
     "menuLabel": "Compte",

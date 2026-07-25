@@ -24,7 +24,8 @@
     "signIn": "로그인",
     "dashboard": "대시보드",
     "myPage": "내 페이지",
-    "settings": "설정"
+    "settings": "설정",
+    "admin": "관리자"
   },
   "account": {
     "menuLabel": "계정",

@@ -24,7 +24,8 @@
     "signIn": "Accedi",
     "dashboard": "Dashboard",
     "myPage": "La mia pagina",
-    "settings": "Impostazioni"
+    "settings": "Impostazioni",
+    "admin": "Amministrazione"
   },
   "account": {
     "menuLabel": "Account",
