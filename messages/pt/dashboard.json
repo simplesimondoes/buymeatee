@@ -162,7 +162,9 @@
       "published": "Publicada",
       "publishedOn": "Publicada a {date}",
       "publish": "Publicar",
-      "unpublish": "Anular publicação"
+      "unpublish": "Anular publicação",
+      "shareUpdate": "Partilhar esta novidade",
+      "shareTitle": "Novidade publicada — partilha-a com os teus apoiantes."
     },
     "form": {
       "titleLabel": "Título",
@@ -199,7 +201,8 @@
       },
       "fundedNote": "Um apoiante financiou isto — agradece-lhe na tua próxima novidade!",
       "moveUp": "Mover {title} para cima",
-      "moveDown": "Mover {title} para baixo"
+      "moveDown": "Mover {title} para baixo",
+      "fundedShare": "Partilhar a notícia"
     },
     "form": {
       "titleLabel": "O que ajudaria o teu percurso?",

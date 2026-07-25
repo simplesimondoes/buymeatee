@@ -162,7 +162,9 @@
       "published": "Publiée",
       "publishedOn": "Publiée le {date}",
       "publish": "Publier",
-      "unpublish": "Dépublier"
+      "unpublish": "Dépublier",
+      "shareUpdate": "Partager cette actualité",
+      "shareTitle": "Actualité publiée — partage-la avec tes supporters."
     },
     "form": {
       "titleLabel": "Titre",
@@ -199,7 +201,8 @@
       },
       "fundedNote": "Un supporter a financé cet article — remercie-le dans ta prochaine actualité !",
       "moveUp": "Monter {title}",
-      "moveDown": "Descendre {title}"
+      "moveDown": "Descendre {title}",
+      "fundedShare": "Partager la nouvelle"
     },
     "form": {
       "titleLabel": "Qu'est-ce qui aiderait ton parcours ?",

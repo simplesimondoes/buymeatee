@@ -95,7 +95,9 @@
       "save": "Profil speichern",
       "saved": "Profil gespeichert. Deine Seite ist live unter:",
       "copyLink": "Link kopieren",
-      "copied": "Kopiert"
+      "copied": "Kopiert",
+      "shareYourPage": "Deine Seite teilen",
+      "liveShareNote": "🎉 Hilf anderen, deinen Weg zu entdecken — ein kurzer Beitrag bewirkt viel."
     }
   },
   "payments": {

@@ -18,7 +18,7 @@ import type { ShareMessage } from "@/lib/goals/share";
  * here in the creator's language; goal/item titles stay verbatim.
  */
 
-function XLogo({ className }: { className?: string }) {
+export function XLogo({ className }: { className?: string }) {
   return (
     <svg viewBox="0 0 24 24" fill="currentColor" aria-hidden="true" className={className}>
       <path d="M18.244 2.25h3.308l-7.227 8.26 8.502 11.24H16.17l-5.214-6.817L4.99 21.75H1.68l7.73-8.835L1.254 2.25H8.08l4.713 6.231zm-1.161 17.52h1.833L7.084 4.126H5.117z" />
@@ -26,7 +26,7 @@ function XLogo({ className }: { className?: string }) {
   );
 }
 
-function BlueskyLogo({ className }: { className?: string }) {
+export function BlueskyLogo({ className }: { className?: string }) {
   return (
     <svg viewBox="0 0 24 24" fill="currentColor" aria-hidden="true" className={className}>
       <path d="M12 10.8C10.9 8.6 7.9 4.5 5.1 2.6 2.4.8 1.4 1.1.7 1.4 0 1.7 0 2.9 0 3.6c0 .7.4 5.5.6 6.3.8 2.6 3.5 3.5 6 3.2-3.7.5-7 1.9-2.7 6.7 4.8 4.9 6.6-1 7.5-3.9.9 2.9 2 8.6 7.4 3.9 4-3.9.8-6.2-2.9-6.7 2.5.3 5.2-.6 6-3.2.2-.8.6-5.6.6-6.3 0-.7 0-1.9-.7-2.2-.7-.3-1.7-.6-4.4 1.2C16.1 4.5 13.1 8.6 12 10.8z" />

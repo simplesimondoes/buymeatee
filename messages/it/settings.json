@@ -95,7 +95,9 @@
       "save": "Salva il profilo",
       "saved": "Profilo salvato. La tua pagina è online su:",
       "copyLink": "Copia il link",
-      "copied": "Copiato"
+      "copied": "Copiato",
+      "shareYourPage": "Condividi la tua pagina",
+      "liveShareNote": "🎉 Aiuta gli altri a scoprire il tuo percorso — un breve post fa molto."
     }
   },
   "payments": {

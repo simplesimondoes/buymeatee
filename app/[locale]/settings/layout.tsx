@@ -16,9 +16,10 @@ export default async function SettingsLayout({
 
   // One client-message boundary for the whole settings area: the nav and
   // every client island beneath the pages read "settings" (+ "errors" for
-  // useErrorMessage; "common" is always included).
+  // useErrorMessage, "gifts" for the share controls on the page-live moment;
+  // "common" is always included).
   return (
-    <ClientMessages namespaces={["settings", "errors"]}>
+    <ClientMessages namespaces={["settings", "errors", "gifts"]}>
       <SettingsNav />
       {children}
     </ClientMessages>

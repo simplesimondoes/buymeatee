@@ -5,21 +5,27 @@ import {
   completedGoalShareText,
   GOAL_MILESTONES,
   goalShareText,
+  pageLiveShareText,
   pageShareText,
   reachedMilestone,
+  supporterShareText,
   supportShareText,
   trimShareTitle,
+  updateShareText,
+  wishlistFundedShareText,
   type ShareMessage,
 } from "@/lib/goals/share";
 
-const shareMessages = giftsMessages.share as Record<string, string>;
+// The share block also holds the nested `moment` UI labels; message keys are
+// the flat string entries.
+const shareMessages = giftsMessages.share as unknown as Record<string, string>;
 
 /** Render a ShareMessage against the English catalog the way the UI does. */
 function renderShare(message: ShareMessage): string {
   const template = shareMessages[message.key];
   expect(template, `missing share message: ${message.key}`).toBeTypeOf("string");
   return template.replace(/\{(\w+)\}/g, (match, name: string) => {
-    const value = message.params?.[name as "title" | "percent"];
+    const value = message.params?.[name as "title" | "percent" | "name"];
     return value === undefined ? match : String(value);
   });
 }
@@ -172,6 +178,89 @@ describe("supportShareText", () => {
     const message = supportShareText({ label: "A".repeat(120), toward: true });
     expect(message.params?.title).toContain("…");
     expect(message.params?.title).not.toContain("A".repeat(120));
+  });
+});
+
+describe("pageLiveShareText", () => {
+  it("celebrates the launch on-brand and X-length-safe", () => {
+    const message = pageLiveShareText();
+    expect(message.key).toBe("pageLive");
+    const text = renderShare(message);
+    expect(text).toContain("BuyMeATee");
+    expect(text).toContain("live");
+    expect(text.length).toBeLessThanOrEqual(200);
+  });
+});
+
+describe("updateShareText", () => {
+  it("quotes the update title verbatim", () => {
+    const message = updateShareText("Broke 80 at the county open");
+    expect(message.key).toBe("updatePublished");
+    const text = renderShare(message);
+    expect(text).toContain("Broke 80 at the county open");
+    expect(text).toContain("BuyMeATee");
+  });
+
+  it("truncates an over-long title", () => {
+    const message = updateShareText("A".repeat(120));
+    expect(message.params?.title).toContain("…");
+  });
+});
+
+describe("wishlistFundedShareText", () => {
+  it("celebrates the funded item with thanks, no invented figures", () => {
+    const message = wishlistFundedShareText("A dozen tour balls");
+    expect(message.key).toBe("wishlistFunded");
+    const text = renderShare(message);
+    expect(text).toContain("A dozen tour balls");
+    expect(text.toLowerCase()).toContain("thank");
+    expect(text).not.toMatch(/\d/);
+    expect(text).not.toMatch(/[£$€]/);
+  });
+});
+
+describe("supporterShareText", () => {
+  it("speaks in the supporter's first person about a goal", () => {
+    const message = supporterShareText("Alex Fairway", {
+      kind: "goal",
+      title: "Q-School entry fee",
+    });
+    expect(message.key).toBe("supporterGoal");
+    const text = renderShare(message);
+    expect(text).toContain("Alex Fairway");
+    expect(text).toContain("Q-School entry fee");
+    expect(text).toContain("I've");
+  });
+
+  it("covers wish-list items and general support", () => {
+    const item = supporterShareText("Alex", { kind: "wishlist", title: "Balls" });
+    expect(item.key).toBe("supporterWishlist");
+    const general = supporterShareText("Alex", null);
+    expect(general.key).toBe("supporterGeneral");
+    expect(renderShare(general)).toContain("Alex");
+  });
+
+  it("never reveals amounts or off-brand vocabulary", () => {
+    const samples = [
+      renderShare(supporterShareText("Alex", { kind: "goal", title: "Goal" })),
+      renderShare(supporterShareText("Alex", { kind: "wishlist", title: "Item" })),
+      renderShare(supporterShareText("Alex", null)),
+    ];
+    for (const text of samples) {
+      expect(text.toLowerCase()).not.toContain("donat");
+      expect(text.toLowerCase()).not.toContain("crowdfund");
+      expect(text).not.toMatch(/\d/);
+      expect(text).not.toMatch(/[£$€]/);
+    }
+  });
+
+  it("truncates over-long names and titles", () => {
+    const message = supporterShareText("N".repeat(120), {
+      kind: "goal",
+      title: "T".repeat(120),
+    });
+    expect(message.params?.name).toContain("…");
+    expect(message.params?.title).toContain("…");
   });
 });
 

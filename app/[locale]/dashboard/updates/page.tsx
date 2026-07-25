@@ -5,6 +5,8 @@ import { getTranslations, setRequestLocale } from "next-intl/server";
 import { redirect } from "@/i18n/navigation";
 
 import { UpdateManager } from "@/components/updates/update-manager";
+import { getOwnProfile } from "@/lib/profile/profile";
+import { siteConfig } from "@/lib/site";
 import { getOwnUpdates } from "@/lib/updates/updates";
 import type { CreatorUpdateRow } from "@/lib/updates/types";
 import { getAuthenticatedUser } from "@/lib/supabase/server";
@@ -54,6 +56,18 @@ export default async function UpdatesPage({
     unavailable = true;
   }
 
+  // Sharing links to the creator's public page — only once they've claimed a
+  // username, so the share targets a real, reachable URL.
+  let pageUrl: string | undefined;
+  try {
+    const profile = await getOwnProfile(user.id);
+    pageUrl = profile?.username
+      ? `${siteConfig.url.replace(/\/$/, "")}/t/${profile.username}`
+      : undefined;
+  } catch {
+    pageUrl = undefined;
+  }
+
   return (
     <main className="mx-auto w-full max-w-2xl px-4 py-16 sm:px-6 sm:py-24">
       <p className="text-sm font-medium uppercase tracking-wide text-gold-deep">
@@ -75,7 +89,7 @@ export default async function UpdatesPage({
             {t("updates.page.unavailable")}
           </div>
         ) : (
-          <UpdateManager initialUpdates={updates} />
+          <UpdateManager initialUpdates={updates} pageUrl={pageUrl} />
         )}
       </div>
     </main>

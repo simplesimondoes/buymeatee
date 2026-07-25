@@ -71,7 +71,9 @@
     "cancelledPageBody": "Aucun paiement n'a été prélevé. {name} n'a rien reçu — tu peux envoyer un Tee à tout moment.",
     "failedHeading": "Paiement non abouti",
     "failedBody": "Ton paiement n'est pas passé et rien n'a été débité. Tu peux réessayer avec une autre carte.",
-    "tryAgain": "Réessayer"
+    "tryAgain": "Réessayer",
+    "shareHeading": "Envie de le faire savoir ?",
+    "shareBody": "Partager aide {name} à atteindre son objectif — et cela reste toujours ton choix. Ton Tee reste entre vous, sauf si tu décides d'en parler."
   },
   "share": {
     "button": "Partager",
@@ -95,6 +97,25 @@
     "goalCompleted": "« {title} » — encore un objectif atteint sur mon parcours BuyMeATee. Merci à tous ceux qui l'ont soutenu. ⛳️",
     "supportGoal": "Quelqu'un vient de soutenir « {title} » sur ma page BuyMeATee 🙌 Soutenez le parcours et aidez-moi à y arriver. ⛳️",
     "supportWishlist": "Quelqu'un vient de financer « {title} » depuis ma liste de souhaits BuyMeATee 🙌 Merci — soutenez le parcours vous aussi. ⛳️",
-    "supportGeneral": "Quelqu'un vient de soutenir mon parcours de golf sur BuyMeATee 🙌 Merci — vous aussi, vous pouvez soutenir le parcours. ⛳️"
+    "supportGeneral": "Quelqu'un vient de soutenir mon parcours de golf sur BuyMeATee 🙌 Merci — vous aussi, vous pouvez soutenir le parcours. ⛳️",
+    "pageLive": "Ma page BuyMeATee est en ligne ! 🎉 Je travaille sur mes objectifs golf cette saison — suivez le parcours avec moi. ⛳️",
+    "updatePublished": "Nouvelle actualité de mon parcours de golf : « {title} » — à lire sur ma page BuyMeATee. ⛳️",
+    "wishlistFunded": "« {title} » de ma liste de souhaits BuyMeATee vient d'être financé 🙌 Merci — un pas de plus sur le parcours. ⛳️",
+    "supporterGoal": "Je viens de soutenir l'objectif « {title} » de {name} sur BuyMeATee — hâte de suivre le parcours. ⛳️",
+    "supporterWishlist": "Je viens de financer « {title} » pour {name} sur BuyMeATee — c'est un plaisir de faire partie du parcours. ⛳️",
+    "supporterGeneral": "Je viens de soutenir {name} sur son parcours de golf, sur BuyMeATee. Plein succès pour cette saison ! ⛳️",
+    "moment": {
+      "suggestedLabel": "Publication suggérée — modifie-la à ta façon",
+      "copyCaption": "Copier le texte",
+      "captionCopied": "Texte copié",
+      "copyCaptionFailed": "La copie n'est pas disponible — sélectionne le texte à la main.",
+      "captionCopiedAnnouncement": "Texte copié dans le presse-papiers",
+      "downloadImage": "Télécharger l'image de partage",
+      "personalise": "Personnaliser avec l'IA",
+      "personalising": "Personnalisation…",
+      "personaliseFailed": "La personnalisation n'a pas fonctionné — la suggestion reste valable.",
+      "personaliseUnavailable": "Les suggestions IA ne sont pas encore disponibles.",
+      "dismiss": "Fermer"
+    }
   }
 }

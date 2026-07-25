@@ -95,7 +95,9 @@
       "save": "Guardar perfil",
       "saved": "Perfil guardado. A tua página está no ar em:",
       "copyLink": "Copiar ligação",
-      "copied": "Copiado"
+      "copied": "Copiado",
+      "shareYourPage": "Partilha a tua página",
+      "liveShareNote": "🎉 Ajuda os outros a descobrir o teu percurso — uma publicação breve vale muito."
     }
   },
   "payments": {

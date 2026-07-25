@@ -162,7 +162,9 @@
       "published": "公開済み",
       "publishedOn": "{date}に公開",
       "publish": "公開する",
-      "unpublish": "非公開にする"
+      "unpublish": "非公開にする",
+      "shareUpdate": "この近況をシェア",
+      "shareTitle": "近況を公開しました — サポーターにシェアしましょう。"
     },
     "form": {
       "titleLabel": "タイトル",
@@ -199,7 +201,8 @@
       },
       "fundedNote": "サポーターがこのアイテムを支援してくれました — 次の近況でお礼を伝えましょう！",
       "moveUp": "{title}を上へ移動",
-      "moveDown": "{title}を下へ移動"
+      "moveDown": "{title}を下へ移動",
+      "fundedShare": "ニュースをシェア"
     },
     "form": {
       "titleLabel": "ジャーニーの助けになるものは何ですか？",

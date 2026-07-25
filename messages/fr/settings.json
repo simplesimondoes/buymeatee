@@ -95,7 +95,9 @@
       "save": "Enregistrer le profil",
       "saved": "Profil enregistré. Ta page est en ligne à l'adresse :",
       "copyLink": "Copier le lien",
-      "copied": "Copié"
+      "copied": "Copié",
+      "shareYourPage": "Partager ta page",
+      "liveShareNote": "🎉 Aide les autres à découvrir ton parcours — une petite publication fait beaucoup."
     }
   },
   "payments": {

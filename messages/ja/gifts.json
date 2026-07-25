@@ -71,7 +71,9 @@
     "cancelledPageBody": "お支払いは発生していません。{name}さんには何も届いていません — ティーはいつでも贈れます。",
     "failedHeading": "お支払いが完了しませんでした",
     "failedBody": "お支払いが通らず、請求は発生していません。別のカードでもう一度お試しください。",
-    "tryAgain": "もう一度試す"
+    "tryAgain": "もう一度試す",
+    "shareHeading": "まわりに知らせますか？",
+    "shareBody": "シェアは{name}さんの目標達成の後押しになります — もちろん、するかどうかはあなた次第です。投稿しない限り、あなたのティーが公開されることはありません。"
   },
   "share": {
     "button": "共有",
@@ -95,6 +97,25 @@
     "goalCompleted": "「{title}」 — BuyMeATeeのジャーニーで、またひとつ目標を達成しました。応援してくれたみなさん、ありがとうございます。⛳️",
     "supportGoal": "BuyMeATeeのページで「{title}」に応援が届きました 🙌 あなたもジャーニーを後押ししてください。⛳️",
     "supportWishlist": "BuyMeATeeのウィッシュリストから「{title}」を支援していただきました 🙌 ありがとうございます — あなたもジャーニーを応援してください。⛳️",
-    "supportGeneral": "BuyMeATeeで私のゴルフのジャーニーに応援が届きました 🙌 ありがとうございます — あなたも応援できます。⛳️"
+    "supportGeneral": "BuyMeATeeで私のゴルフのジャーニーに応援が届きました 🙌 ありがとうございます — あなたも応援できます。⛳️",
+    "pageLive": "BuyMeATeeのページを公開しました！🎉 今シーズンはゴルフの目標に向かって取り組みます — ジャーニーをぜひ見守ってください。⛳️",
+    "updatePublished": "ゴルフのジャーニーの新しい近況「{title}」を投稿しました — BuyMeATeeのページでぜひ読んでください。⛳️",
+    "wishlistFunded": "BuyMeATeeのウィッシュリストから「{title}」を支援していただきました 🙌 ありがとうございます — ジャーニーがまた一歩前へ。⛳️",
+    "supporterGoal": "BuyMeATeeで{name}さんの目標「{title}」を応援しました — ジャーニーの続きが楽しみです。⛳️",
+    "supporterWishlist": "BuyMeATeeで{name}さんの「{title}」を支援しました。ジャーニーの一員になれてうれしいです。⛳️",
+    "supporterGeneral": "BuyMeATeeで{name}さんのゴルフのジャーニーを応援しました。今シーズンの活躍を楽しみにしています。⛳️",
+    "moment": {
+      "suggestedLabel": "投稿の下書き — 自由に編集してください",
+      "copyCaption": "キャプションをコピー",
+      "captionCopied": "コピーしました",
+      "copyCaptionFailed": "コピーできません — テキストを手動で選択してください。",
+      "captionCopiedAnnouncement": "キャプションをクリップボードにコピーしました",
+      "downloadImage": "シェア画像をダウンロード",
+      "personalise": "AIでパーソナライズ",
+      "personalising": "作成中…",
+      "personaliseFailed": "パーソナライズできませんでした — 下書きはそのまま使えます。",
+      "personaliseUnavailable": "AIによる提案はまだ利用できません。",
+      "dismiss": "閉じる"
+    }
   }
 }

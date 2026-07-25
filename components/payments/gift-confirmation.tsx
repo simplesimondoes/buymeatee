@@ -6,8 +6,11 @@ import { Link } from "@/i18n/navigation";
 import { useEffect, useState } from "react";
 
 import type { AppLocale } from "@/i18n/locales";
+import { ShareMoment } from "@/components/share-moment";
+import { supporterShareText } from "@/lib/goals/share";
 import { formatMinorAmount } from "@/lib/i18n/format";
 import type { SupportedCurrency } from "@/lib/payments/currency";
+import { siteConfig } from "@/lib/site";
 
 export interface GiftConfirmationStatus {
   phase: "confirming" | "paid" | "pending" | "failed" | "expired" | "cancelled";
@@ -137,6 +140,17 @@ export function GiftConfirmation({
               : t("backToHome")}
           </Link>
         </div>
+        {status.recipientUsername ? (
+          <div className="mt-6 text-left">
+            <ShareMoment
+              heading={t("shareHeading")}
+              body={t("shareBody", { name: status.recipientName })}
+              message={supporterShareText(status.recipientName, status.target)}
+              url={`${siteConfig.url.replace(/\/$/, "")}/t/${status.recipientUsername}`}
+              downloadImageHref={`/${locale}/t/${status.recipientUsername}/opengraph-image`}
+            />
+          </div>
+        ) : null}
       </div>
     );
   }

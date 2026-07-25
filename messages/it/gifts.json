@@ -71,7 +71,9 @@
     "cancelledPageBody": "Non è stato addebitato nulla. {name} non ha ricevuto niente — puoi inviare un Tee in qualsiasi momento.",
     "failedHeading": "Pagamento non riuscito",
     "failedBody": "Il tuo pagamento non è andato a buon fine e non è stato addebitato nulla. Puoi riprovare con un'altra carta.",
-    "tryAgain": "Riprova"
+    "tryAgain": "Riprova",
+    "shareHeading": "Vuoi farlo sapere ad altri?",
+    "shareBody": "Condividere aiuta {name} a raggiungere l'obiettivo — e la scelta è sempre tua. Il tuo Tee resta tra voi, a meno che tu non decida di parlarne."
   },
   "share": {
     "button": "Condividi",
@@ -95,6 +97,25 @@
     "goalCompleted": "“{title}” — un altro obiettivo raggiunto nel mio percorso su BuyMeATee. Grazie a tutti quelli che lo hanno appoggiato. ⛳️",
     "supportGoal": "Qualcuno ha appena appoggiato “{title}” sulla mia pagina BuyMeATee 🙌 Sostieni il percorso e aiutami ad arrivarci. ⛳️",
     "supportWishlist": "Qualcuno ha appena finanziato “{title}” dalla mia lista dei desideri su BuyMeATee 🙌 Grazie — appoggia anche tu il percorso. ⛳️",
-    "supportGeneral": "Qualcuno ha appena appoggiato il mio percorso nel golf su BuyMeATee 🙌 Grazie — puoi sostenere il percorso anche tu. ⛳️"
+    "supportGeneral": "Qualcuno ha appena appoggiato il mio percorso nel golf su BuyMeATee 🙌 Grazie — puoi sostenere il percorso anche tu. ⛳️",
+    "pageLive": "La mia pagina BuyMeATee è online! 🎉 Questa stagione lavoro ai miei obiettivi nel golf — segui il percorso con me. ⛳️",
+    "updatePublished": "Nuovo aggiornamento dal mio percorso nel golf: “{title}” — leggilo sulla mia pagina BuyMeATee. ⛳️",
+    "wishlistFunded": "“{title}” della mia lista dei desideri su BuyMeATee è appena stato finanziato 🙌 Grazie — un passo avanti nel percorso. ⛳️",
+    "supporterGoal": "Ho appena appoggiato l'obiettivo “{title}” di {name} su BuyMeATee — non vedo l'ora di seguire il percorso. ⛳️",
+    "supporterWishlist": "Ho appena finanziato “{title}” per {name} su BuyMeATee. Che bello far parte del percorso. ⛳️",
+    "supporterGeneral": "Ho appena sostenuto {name} nel suo percorso nel golf su BuyMeATee. In bocca al lupo per la stagione! ⛳️",
+    "moment": {
+      "suggestedLabel": "Post suggerito — modificalo a modo tuo",
+      "copyCaption": "Copia testo",
+      "captionCopied": "Testo copiato",
+      "copyCaptionFailed": "La copia non è disponibile — seleziona il testo a mano.",
+      "captionCopiedAnnouncement": "Testo copiato negli appunti",
+      "downloadImage": "Scarica l'immagine da condividere",
+      "personalise": "Personalizza con l'IA",
+      "personalising": "Personalizzazione in corso…",
+      "personaliseFailed": "La personalizzazione non è riuscita — il suggerimento resta valido.",
+      "personaliseUnavailable": "I suggerimenti IA non sono ancora disponibili.",
+      "dismiss": "Chiudi"
+    }
   }
 }

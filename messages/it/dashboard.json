@@ -162,7 +162,9 @@
       "published": "Pubblicato",
       "publishedOn": "Pubblicato il {date}",
       "publish": "Pubblica",
-      "unpublish": "Ritira la pubblicazione"
+      "unpublish": "Ritira la pubblicazione",
+      "shareUpdate": "Condividi questo aggiornamento",
+      "shareTitle": "Aggiornamento pubblicato — condividilo con i tuoi sostenitori."
     },
     "form": {
       "titleLabel": "Titolo",
@@ -199,7 +201,8 @@
       },
       "fundedNote": "Un sostenitore lo ha finanziato — ringrazialo nel tuo prossimo aggiornamento!",
       "moveUp": "Sposta {title} in su",
-      "moveDown": "Sposta {title} in giù"
+      "moveDown": "Sposta {title} in giù",
+      "fundedShare": "Condividi la notizia"
     },
     "form": {
       "titleLabel": "Cosa aiuterebbe il tuo percorso?",

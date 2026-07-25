@@ -54,19 +54,33 @@ export function trimShareTitle(title: string): string {
 export type ShareMessage = {
   key:
     | "page"
+    | "pageLive"
     | "goalFunded"
     | "goalMilestone"
     | "goalStarting"
     | "goalCompleted"
     | "supportGoal"
     | "supportWishlist"
-    | "supportGeneral";
-  params?: { title?: string; percent?: number };
+    | "supportGeneral"
+    | "updatePublished"
+    | "wishlistFunded"
+    | "supporterGoal"
+    | "supporterWishlist"
+    | "supporterGeneral";
+  params?: { title?: string; percent?: number; name?: string };
 };
 
 /** Share copy for a creator's whole page (no single goal in focus). */
 export function pageShareText(): ShareMessage {
   return { key: "page" };
+}
+
+/**
+ * Launch-flavoured share copy for the moment a creator's page first goes
+ * live (username claimed). Same honest content as `page`, more celebration.
+ */
+export function pageLiveShareText(): ShareMessage {
+  return { key: "pageLive" };
 }
 
 /**
@@ -119,4 +133,55 @@ export function supportShareText(
     };
   }
   return { key: "supportGeneral" };
+}
+
+/**
+ * Share copy for a progress update the creator just published. The update
+ * title is quoted verbatim (user content); the body is deliberately not
+ * summarised here — anything beyond the title is the creator's own edit.
+ */
+export function updateShareText(updateTitle: string): ShareMessage {
+  return {
+    key: "updatePublished",
+    params: { title: trimShareTitle(updateTitle) },
+  };
+}
+
+/**
+ * Share copy for a wish-list item a supporter fully funded (ADR-018). Only
+ * ever selected for the webhook-verified `funded` state, so the celebration
+ * is honest by construction. Amount- and name-free like the other messages.
+ */
+export function wishlistFundedShareText(itemTitle: string): ShareMessage {
+  return {
+    key: "wishlistFunded",
+    params: { title: trimShareTitle(itemTitle) },
+  };
+}
+
+/**
+ * Share copy for the SUPPORTER after a webhook-verified payment — the one
+ * voice in this module that isn't the creator's. First-person from the
+ * supporter, names the creator by their public display name, and never
+ * mentions the amount, so posting it reveals nothing a public page doesn't.
+ * Sharing is always the supporter's explicit choice (never automatic).
+ */
+export function supporterShareText(
+  recipientName: string,
+  target: { kind: "goal" | "wishlist"; title: string } | null,
+): ShareMessage {
+  const name = trimShareTitle(recipientName);
+  if (target?.kind === "goal") {
+    return {
+      key: "supporterGoal",
+      params: { name, title: trimShareTitle(target.title) },
+    };
+  }
+  if (target) {
+    return {
+      key: "supporterWishlist",
+      params: { name, title: trimShareTitle(target.title) },
+    };
+  }
+  return { key: "supporterGeneral", params: { name } };
 }

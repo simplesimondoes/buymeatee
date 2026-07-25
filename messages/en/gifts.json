@@ -62,6 +62,8 @@
     "paidBodyToward": "{amount} from {sender} was paid successfully toward <target>{title}</target>.",
     "backToPage": "Back to {name}'s page",
     "backToHome": "Back to BuyMeATee",
+    "shareHeading": "Would you like to let others know?",
+    "shareBody": "Sharing helps {name} reach their goal — and it's always your choice. Your Tee stays between you unless you post about it.",
     "pendingHeading": "Payment pending",
     "pendingBody": "Your payment is being processed. We'll record the Tee as soon as it completes.",
     "expiredHeading": "This checkout expired",
@@ -95,6 +97,25 @@
     "goalCompleted": "“{title}” — another goal reached on my BuyMeATee journey. Thank you to everyone who backed it. ⛳️",
     "supportGoal": "Someone just backed “{title}” on my BuyMeATee page 🙌 Support the journey and help me get there. ⛳️",
     "supportWishlist": "Someone just funded “{title}” from my BuyMeATee wish list 🙌 Thank you — back the journey too. ⛳️",
-    "supportGeneral": "Someone just backed my golf journey on BuyMeATee 🙌 Thank you — you can support the journey too. ⛳️"
+    "supportGeneral": "Someone just backed my golf journey on BuyMeATee 🙌 Thank you — you can support the journey too. ⛳️",
+    "pageLive": "My BuyMeATee page is live! 🎉 I'm working towards my golf goals this season and I'd love for you to follow the journey. ⛳️",
+    "updatePublished": "New update from my golf journey: “{title}” — read it on my BuyMeATee page and follow along. ⛳️",
+    "wishlistFunded": "“{title}” from my BuyMeATee wish list just got funded 🙌 Thank you — one step closer on the journey. ⛳️",
+    "supporterGoal": "I've just backed {name}'s goal “{title}” on BuyMeATee — looking forward to watching the journey. ⛳️",
+    "supporterWishlist": "I've just funded “{title}” for {name} on BuyMeATee. Happy to be part of the journey. ⛳️",
+    "supporterGeneral": "I've just supported {name} on their golf journey on BuyMeATee. Wishing them every success this season. ⛳️",
+    "moment": {
+      "suggestedLabel": "Suggested post — edit it to make it yours",
+      "copyCaption": "Copy caption",
+      "captionCopied": "Caption copied",
+      "copyCaptionFailed": "Copying isn't available — select the text by hand.",
+      "captionCopiedAnnouncement": "Caption copied to clipboard",
+      "downloadImage": "Download share image",
+      "personalise": "Personalise with AI",
+      "personalising": "Personalising…",
+      "personaliseFailed": "Couldn't personalise right now — the suggested post still works.",
+      "personaliseUnavailable": "AI suggestions aren't available yet.",
+      "dismiss": "Dismiss"
+    }
   }
 }

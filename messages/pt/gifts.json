@@ -71,7 +71,9 @@
     "cancelledPageBody": "Não foi cobrado nenhum pagamento. {name} não recebeu nada — podes enviar um Tee a qualquer momento.",
     "failedHeading": "Pagamento sem sucesso",
     "failedBody": "O teu pagamento não foi concluído e nada foi cobrado. Podes tentar de novo com outro cartão.",
-    "tryAgain": "Tentar novamente"
+    "tryAgain": "Tentar novamente",
+    "shareHeading": "Queres contar aos outros?",
+    "shareBody": "Partilhar ajuda {name} a chegar ao objetivo — e é sempre uma escolha tua. O teu Tee fica entre vocês, a menos que decidas publicá-lo."
   },
   "share": {
     "button": "Partilhar",
@@ -95,6 +97,25 @@
     "goalCompleted": "“{title}” — mais um objetivo alcançado no meu percurso BuyMeATee. Obrigado a todos os que o apoiaram. ⛳️",
     "supportGoal": "Alguém acabou de apoiar “{title}” na minha página BuyMeATee 🙌 Apoia o percurso e ajuda-me a lá chegar. ⛳️",
     "supportWishlist": "Alguém acabou de financiar “{title}” da minha lista de desejos no BuyMeATee 🙌 Obrigado — apoia tu também o percurso. ⛳️",
-    "supportGeneral": "Alguém acabou de apoiar o meu percurso no golfe no BuyMeATee 🙌 Obrigado — também podes apoiar o percurso. ⛳️"
+    "supportGeneral": "Alguém acabou de apoiar o meu percurso no golfe no BuyMeATee 🙌 Obrigado — também podes apoiar o percurso. ⛳️",
+    "pageLive": "A minha página BuyMeATee está no ar! 🎉 Esta época estou a trabalhar nos meus objetivos no golfe — acompanha o percurso comigo. ⛳️",
+    "updatePublished": "Nova novidade do meu percurso no golfe: “{title}” — lê na minha página BuyMeATee. ⛳️",
+    "wishlistFunded": "“{title}” da minha lista de desejos no BuyMeATee acabou de ser financiado 🙌 Obrigado — mais um passo no percurso. ⛳️",
+    "supporterGoal": "Acabei de apoiar o objetivo “{title}” de {name} no BuyMeATee — com vontade de acompanhar o percurso. ⛳️",
+    "supporterWishlist": "Acabei de financiar “{title}” para {name} no BuyMeATee. É bom fazer parte do percurso. ⛳️",
+    "supporterGeneral": "Acabei de apoiar {name} no seu percurso no golfe, no BuyMeATee. Votos de muito sucesso esta época! ⛳️",
+    "moment": {
+      "suggestedLabel": "Publicação sugerida — edita-a à tua maneira",
+      "copyCaption": "Copiar texto",
+      "captionCopied": "Texto copiado",
+      "copyCaptionFailed": "Não é possível copiar — seleciona o texto manualmente.",
+      "captionCopiedAnnouncement": "Texto copiado para a área de transferência",
+      "downloadImage": "Transferir imagem de partilha",
+      "personalise": "Personalizar com IA",
+      "personalising": "A personalizar…",
+      "personaliseFailed": "Não foi possível personalizar agora — a sugestão continua a servir.",
+      "personaliseUnavailable": "As sugestões com IA ainda não estão disponíveis.",
+      "dismiss": "Fechar"
+    }
   }
 }

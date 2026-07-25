@@ -7,11 +7,14 @@ import { useState } from "react";
 import { useErrorMessage } from "@/components/intl/use-error-message";
 import { CoverUploader } from "@/components/profile/cover-uploader";
 import { Markdown } from "@/components/markdown";
+import { ShareControls } from "@/components/share-controls";
+import { ShareMoment } from "@/components/share-moment";
 import {
   UpdateForm,
   type UpdateFormErrors,
 } from "@/components/updates/update-form";
 import type { AppLocale } from "@/i18n/locales";
+import { updateShareText } from "@/lib/goals/share";
 import { errorDetail, type ErrorDetail } from "@/lib/i18n/errors";
 import { formatDate } from "@/lib/i18n/format";
 import type { UpdateInput } from "@/lib/updates/update-schema";
@@ -27,8 +30,11 @@ const secondaryButton =
 
 export function UpdateManager({
   initialUpdates,
+  pageUrl,
 }: {
   initialUpdates: CreatorUpdateRow[];
+  /** Absolute public page URL; undefined until a username is claimed. */
+  pageUrl?: string;
 }) {
   const t = useTranslations("dashboard");
   const locale = useLocale() as AppLocale;
@@ -38,6 +44,8 @@ export function UpdateManager({
   const [editingId, setEditingId] = useState<string | null>(null);
   const [actionError, setActionError] = useState<string | null>(null);
   const [busyId, setBusyId] = useState<string | null>(null);
+  // The update whose just-published share moment is showing, if any.
+  const [sharePromptId, setSharePromptId] = useState<string | null>(null);
 
   function replaceUpdate(updated: CreatorUpdateRow) {
     setUpdates((current) =>
@@ -111,6 +119,8 @@ export function UpdateManager({
     setBusyId(null);
     if (body.update) {
       replaceUpdate(body.update);
+      // Publishing is a share moment; unpublishing clears any stale prompt.
+      setSharePromptId(action === "publish" && pageUrl ? update.id : null);
     } else {
       setActionError(errorMessage(body.error ?? null));
     }
@@ -255,6 +265,27 @@ export function UpdateManager({
                     <Markdown source={update.body} />
                   </div>
 
+                  {published && pageUrl && sharePromptId === update.id ? (
+                    <div className="mt-4">
+                      <ShareMoment
+                        key={update.id}
+                        heading={t("updates.manager.shareTitle")}
+                        message={updateShareText(update.title)}
+                        url={pageUrl}
+                        personalise={{
+                          endpoint: "/api/share/personalise",
+                          payload: {
+                            kind: "update",
+                            title: update.title,
+                            body: update.body,
+                            locale,
+                          },
+                        }}
+                        onDismiss={() => setSharePromptId(null)}
+                      />
+                    </div>
+                  ) : null}
+
                   <div className="mt-4 flex flex-wrap items-center gap-2">
                     <button
                       type="button"
@@ -270,6 +301,13 @@ export function UpdateManager({
                         ? t("updates.manager.unpublish")
                         : t("updates.manager.publish")}
                     </button>
+                    {published && pageUrl && sharePromptId !== update.id ? (
+                      <ShareControls
+                        url={pageUrl}
+                        text={updateShareText(update.title)}
+                        buttonLabel={t("updates.manager.shareUpdate")}
+                      />
+                    ) : null}
                     <button
                       type="button"
                       disabled={busy}

@@ -162,7 +162,9 @@
       "published": "게시됨",
       "publishedOn": "{date} 게시",
       "publish": "게시",
-      "unpublish": "게시 취소"
+      "unpublish": "게시 취소",
+      "shareUpdate": "이 소식 공유하기",
+      "shareTitle": "소식을 게시했어요 — 서포터들과 공유해 보세요."
     },
     "form": {
       "titleLabel": "제목",
@@ -199,7 +201,8 @@
       },
       "fundedNote": "서포터가 이 항목을 후원했어요 — 다음 소식에서 감사 인사를 전해 보세요!",
       "moveUp": "{title} 위로 이동",
-      "moveDown": "{title} 아래로 이동"
+      "moveDown": "{title} 아래로 이동",
+      "fundedShare": "기쁜 소식 공유하기"
     },
     "form": {
       "titleLabel": "여정에 무엇이 필요하세요?",

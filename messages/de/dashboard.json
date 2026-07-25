@@ -162,7 +162,9 @@
       "published": "Veröffentlicht",
       "publishedOn": "Veröffentlicht am {date}",
       "publish": "Veröffentlichen",
-      "unpublish": "Veröffentlichung zurückziehen"
+      "unpublish": "Veröffentlichung zurückziehen",
+      "shareUpdate": "Dieses Update teilen",
+      "shareTitle": "Update veröffentlicht — teile es mit deinen Unterstützer:innen."
     },
     "form": {
       "titleLabel": "Titel",
@@ -199,7 +201,8 @@
       },
       "fundedNote": "Ein:e Unterstützer:in hat das finanziert — bedank dich im nächsten Update!",
       "moveUp": "{title} nach oben verschieben",
-      "moveDown": "{title} nach unten verschieben"
+      "moveDown": "{title} nach unten verschieben",
+      "fundedShare": "Neuigkeit teilen"
     },
     "form": {
       "titleLabel": "Was würde deinem Weg helfen?",

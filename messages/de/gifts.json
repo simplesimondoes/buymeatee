@@ -71,7 +71,9 @@
     "cancelledPageBody": "Es wurde nichts abgebucht. {name} hat nichts erhalten — du kannst jederzeit ein Tee senden.",
     "failedHeading": "Zahlung nicht erfolgreich",
     "failedBody": "Deine Zahlung ist nicht durchgegangen, und es wurde nichts abgebucht. Du kannst es mit einer anderen Karte noch einmal versuchen.",
-    "tryAgain": "Noch einmal versuchen"
+    "tryAgain": "Noch einmal versuchen",
+    "shareHeading": "Möchtest du es weitersagen?",
+    "shareBody": "Teilen hilft {name}, das Ziel zu erreichen — und bleibt ganz deine Entscheidung. Dein Tee bleibt privat, solange du nichts darüber postest."
   },
   "share": {
     "button": "Teilen",
@@ -95,6 +97,25 @@
     "goalCompleted": "„{title}“ — wieder ein Ziel auf meinem BuyMeATee-Weg erreicht. Danke an alle, die dahinterstanden. ⛳️",
     "supportGoal": "Gerade hat jemand „{title}“ auf meiner BuyMeATee-Seite unterstützt 🙌 Unterstütze den Weg und hilf mir, es zu erreichen. ⛳️",
     "supportWishlist": "Gerade hat jemand „{title}“ von meiner BuyMeATee-Wunschliste finanziert 🙌 Danke — steh auch du hinter dem Weg. ⛳️",
-    "supportGeneral": "Gerade hat jemand meinen Golf-Weg auf BuyMeATee unterstützt 🙌 Danke — du kannst den Weg auch unterstützen. ⛳️"
+    "supportGeneral": "Gerade hat jemand meinen Golf-Weg auf BuyMeATee unterstützt 🙌 Danke — du kannst den Weg auch unterstützen. ⛳️",
+    "pageLive": "Meine BuyMeATee-Seite ist live! 🎉 Ich arbeite diese Saison an meinen Golf-Zielen — begleite mich gern auf dem Weg. ⛳️",
+    "updatePublished": "Neues Update von meinem Golf-Weg: „{title}“ — lies es auf meiner BuyMeATee-Seite und bleib dabei. ⛳️",
+    "wishlistFunded": "„{title}“ von meiner BuyMeATee-Wunschliste wurde gerade finanziert 🙌 Danke — ein Schritt weiter auf dem Weg. ⛳️",
+    "supporterGoal": "Ich habe gerade {name}s Ziel „{title}“ auf BuyMeATee unterstützt — ich bin gespannt auf den Weg. ⛳️",
+    "supporterWishlist": "Ich habe gerade „{title}“ für {name} auf BuyMeATee finanziert. Schön, Teil des Weges zu sein. ⛳️",
+    "supporterGeneral": "Ich habe gerade {name} auf dem Golf-Weg auf BuyMeATee unterstützt. Viel Erfolg diese Saison! ⛳️",
+    "moment": {
+      "suggestedLabel": "Vorgeschlagener Beitrag — mach ihn zu deinem eigenen",
+      "copyCaption": "Text kopieren",
+      "captionCopied": "Text kopiert",
+      "copyCaptionFailed": "Kopieren ist nicht verfügbar — markiere den Text von Hand.",
+      "captionCopiedAnnouncement": "Text in die Zwischenablage kopiert",
+      "downloadImage": "Share-Bild herunterladen",
+      "personalise": "Mit KI personalisieren",
+      "personalising": "Wird personalisiert…",
+      "personaliseFailed": "Personalisieren hat gerade nicht geklappt — der Vorschlag funktioniert trotzdem.",
+      "personaliseUnavailable": "KI-Vorschläge sind noch nicht verfügbar.",
+      "dismiss": "Ausblenden"
+    }
   }
 }

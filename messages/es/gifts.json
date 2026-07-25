@@ -71,7 +71,9 @@
     "cancelledPageBody": "No se realizó ningún cargo. {name} no recibió nada — puedes enviar un Tee en cualquier momento.",
     "failedHeading": "Pago no completado",
     "failedBody": "Tu pago no se procesó y no se realizó ningún cargo. Puedes intentarlo con otra tarjeta.",
-    "tryAgain": "Volver a intentarlo"
+    "tryAgain": "Volver a intentarlo",
+    "shareHeading": "¿Quieres contárselo a otros?",
+    "shareBody": "Compartir ayuda a {name} a alcanzar su objetivo — y siempre es decisión tuya. Tu Tee queda entre vosotros, salvo que decidas publicarlo."
   },
   "share": {
     "button": "Compartir",
@@ -95,6 +97,25 @@
     "goalCompleted": "«{title}» — otro objetivo alcanzado en mi camino en BuyMeATee. Gracias a todos los que lo respaldasteis. ⛳️",
     "supportGoal": "Alguien acaba de respaldar «{title}» en mi página de BuyMeATee 🙌 Apoya el camino y ayúdame a llegar. ⛳️",
     "supportWishlist": "Alguien acaba de financiar «{title}» de mi lista de deseos en BuyMeATee 🙌 Gracias — respalda tú también el camino. ⛳️",
-    "supportGeneral": "Alguien acaba de respaldar mi camino en el golf en BuyMeATee 🙌 Gracias — tú también puedes apoyar el camino. ⛳️"
+    "supportGeneral": "Alguien acaba de respaldar mi camino en el golf en BuyMeATee 🙌 Gracias — tú también puedes apoyar el camino. ⛳️",
+    "pageLive": "¡Mi página de BuyMeATee ya está en marcha! 🎉 Esta temporada trabajo en mis objetivos de golf — acompáñame en el camino. ⛳️",
+    "updatePublished": "Nueva novedad de mi camino en el golf: «{title}» — léela en mi página de BuyMeATee. ⛳️",
+    "wishlistFunded": "«{title}» de mi lista de deseos en BuyMeATee acaba de financiarse 🙌 Gracias — un paso más en el camino. ⛳️",
+    "supporterGoal": "Acabo de respaldar el objetivo «{title}» de {name} en BuyMeATee — con ganas de seguir el camino. ⛳️",
+    "supporterWishlist": "Acabo de financiar «{title}» para {name} en BuyMeATee. Me alegra formar parte del camino. ⛳️",
+    "supporterGeneral": "Acabo de apoyar a {name} en su camino en el golf en BuyMeATee. ¡Mucho éxito esta temporada! ⛳️",
+    "moment": {
+      "suggestedLabel": "Publicación sugerida — edítala a tu manera",
+      "copyCaption": "Copiar texto",
+      "captionCopied": "Texto copiado",
+      "copyCaptionFailed": "No se puede copiar — selecciona el texto a mano.",
+      "captionCopiedAnnouncement": "Texto copiado al portapapeles",
+      "downloadImage": "Descargar imagen para compartir",
+      "personalise": "Personalizar con IA",
+      "personalising": "Personalizando…",
+      "personaliseFailed": "No se pudo personalizar ahora mismo — la sugerencia sigue sirviendo.",
+      "personaliseUnavailable": "Las sugerencias con IA aún no están disponibles.",
+      "dismiss": "Cerrar"
+    }
   }
 }

@@ -95,7 +95,9 @@
       "save": "Save profile",
       "saved": "Profile saved. Your page is live at:",
       "copyLink": "Copy link",
-      "copied": "Copied"
+      "copied": "Copied",
+      "shareYourPage": "Share your page",
+      "liveShareNote": "🎉 Help people discover your journey — a quick post goes a long way."
     }
   },
   "payments": {

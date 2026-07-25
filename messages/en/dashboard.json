@@ -162,7 +162,9 @@
       "published": "Published",
       "publishedOn": "Published {date}",
       "publish": "Publish",
-      "unpublish": "Unpublish"
+      "unpublish": "Unpublish",
+      "shareUpdate": "Share this update",
+      "shareTitle": "Update published — share it with your supporters."
     },
     "form": {
       "titleLabel": "Title",
@@ -199,7 +201,8 @@
       },
       "fundedNote": "A supporter funded this — thank them on your next update!",
       "moveUp": "Move {title} up",
-      "moveDown": "Move {title} down"
+      "moveDown": "Move {title} down",
+      "fundedShare": "Share the news"
     },
     "form": {
       "titleLabel": "What would help your journey?",

@@ -5,7 +5,10 @@ import { useTranslations } from "next-intl";
 import { useId, useState } from "react";
 
 import { useErrorMessage } from "@/components/intl/use-error-message";
+import { ShareControls } from "@/components/share-controls";
+import { pageLiveShareText } from "@/lib/goals/share";
 import { errorDetail, type ErrorDetail } from "@/lib/i18n/errors";
+import { siteConfig } from "@/lib/site";
 import {
   ABOUT_MAX_LENGTH,
   BIO_MAX_LENGTH,
@@ -567,7 +570,15 @@ export function ProfileForm({
                 )}
                 {copied ? t("profile.form.copied") : t("profile.form.copyLink")}
               </button>
+              <ShareControls
+                url={`${siteConfig.url.replace(/\/$/, "")}/t/${savedUsername}`}
+                text={pageLiveShareText()}
+                buttonLabel={t("profile.form.shareYourPage")}
+              />
             </div>
+            <p className="mt-2 text-xs text-ink/60">
+              {t("profile.form.liveShareNote")}
+            </p>
           </div>
         ) : null}
       </div>

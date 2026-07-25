@@ -6,11 +6,13 @@ import { useState } from "react";
 
 import { useErrorMessage } from "@/components/intl/use-error-message";
 import { CoverUploader } from "@/components/profile/cover-uploader";
+import { ShareControls } from "@/components/share-controls";
 import {
   WishlistItemForm,
   type WishlistFormErrors,
 } from "@/components/wishlist/wishlist-item-form";
 import type { AppLocale } from "@/i18n/locales";
+import { wishlistFundedShareText } from "@/lib/goals/share";
 import { errorDetail, type ErrorDetail } from "@/lib/i18n/errors";
 import { formatMinorAmount } from "@/lib/i18n/format";
 import type { SupportedCurrency } from "@/lib/payments/currency";
@@ -77,9 +79,12 @@ async function postItemAction(
 export function WishlistManager({
   initialItems,
   payoutCurrency,
+  pageUrl,
 }: {
   initialItems: WishlistItemRow[];
   payoutCurrency?: SupportedCurrency;
+  /** Absolute public page URL; undefined until a username is claimed. */
+  pageUrl?: string;
 }) {
   const t = useTranslations("dashboard");
   const locale = useLocale() as AppLocale;
@@ -300,10 +305,20 @@ export function WishlistManager({
                   </p>
 
                   {funded ? (
-                    <p className="mt-4 flex items-center gap-2 rounded-2xl bg-gold/10 p-3 text-sm text-gold-deep">
-                      <CircleCheck aria-hidden="true" className="h-4 w-4 shrink-0" />
-                      {t("wishlist.manager.fundedNote")}
-                    </p>
+                    <div className="mt-4 flex flex-wrap items-center justify-between gap-2 rounded-2xl bg-gold/10 p-3">
+                      <p className="flex items-center gap-2 text-sm text-gold-deep">
+                        <CircleCheck aria-hidden="true" className="h-4 w-4 shrink-0" />
+                        {t("wishlist.manager.fundedNote")}
+                      </p>
+                      {pageUrl ? (
+                        <ShareControls
+                          url={pageUrl}
+                          text={wishlistFundedShareText(item.title)}
+                          buttonLabel={t("wishlist.manager.fundedShare")}
+                          align="right"
+                        />
+                      ) : null}
+                    </div>
                   ) : null}
 
                   <div className="mt-4 flex flex-wrap items-center gap-2">
