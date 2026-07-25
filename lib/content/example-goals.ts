@@ -99,42 +99,6 @@ export const exampleGoalItems = [
     target: 900,
     image: images.womanFullSwing,
   },
-  {
-    id: "charityChallengeRound",
-    titleKey: "exampleGoals.charityChallengeRound.title",
-    creatorKey: "exampleGoals.charityChallengeRound.creator",
-    descriptionKey: "exampleGoals.charityChallengeRound.description",
-    raised: 820,
-    target: 1500,
-    image: images.golfersFistBump,
-  },
-  {
-    id: "juniorSeasonFund",
-    titleKey: "exampleGoals.juniorSeasonFund.title",
-    creatorKey: "exampleGoals.juniorSeasonFund.creator",
-    descriptionKey: "exampleGoals.juniorSeasonFund.description",
-    raised: 350,
-    target: 750,
-    image: images.juniorGolferSwing,
-  },
-  {
-    id: "clubProTeachingSeries",
-    titleKey: "exampleGoals.clubProTeachingSeries.title",
-    creatorKey: "exampleGoals.clubProTeachingSeries.creator",
-    descriptionKey: "exampleGoals.clubProTeachingSeries.description",
-    raised: 290,
-    target: 650,
-    image: images.putterAndBall,
-  },
-  {
-    id: "podcastLaunch",
-    titleKey: "exampleGoals.podcastLaunch.title",
-    creatorKey: "exampleGoals.podcastLaunch.creator",
-    descriptionKey: "exampleGoals.podcastLaunch.description",
-    raised: 240,
-    target: 600,
-    image: images.golfBallCloseup,
-  },
 ] as const satisfies readonly ExampleGoalItem[];
 
 /**
