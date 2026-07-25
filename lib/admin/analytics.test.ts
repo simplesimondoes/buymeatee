@@ -61,15 +61,45 @@ describe("changePercent", () => {
 });
 
 describe("buildAnalyticsSnapshot", () => {
-  it("returns a safe empty snapshot with no data", () => {
+  it("returns a safe empty snapshot with no data (just the current period)", () => {
     const snapshot = buildAnalyticsSnapshot(emptyRows(), NOW);
     expect(snapshot.totals.creators).toBe(0);
     expect(snapshot.totals.repeatSupporterRatePercent).toBeNull();
     expect(snapshot.currencies).toEqual([]);
-    expect(snapshot.signups.daily).toHaveLength(30);
-    expect(snapshot.signups.weekly).toHaveLength(12);
-    expect(snapshot.signups.monthly).toHaveLength(12);
-    expect(snapshot.churnMonthly).toHaveLength(6);
+    expect(snapshot.signups.daily).toEqual([
+      { key: "2026-07-25", creators: 0, supporters: 0 },
+    ]);
+    expect(snapshot.signups.weekly.map((p) => p.key)).toEqual(["2026-W30"]);
+    expect(snapshot.signups.monthly.map((p) => p.key)).toEqual(["2026-07"]);
+    expect(snapshot.churnMonthly.map((p) => p.key)).toEqual(["2026-07"]);
+  });
+
+  it("starts every series at the earliest recorded event and expands to the cap", () => {
+    const rows = emptyRows();
+    rows.profiles = [
+      { role: "supporter", created_at: "2026-07-23T09:00:00.000Z", deactivated_at: null },
+    ];
+    const snapshot = buildAnalyticsSnapshot(rows, NOW);
+    // Launch on 23 Jul → 3 daily points (23rd–25th), no empty pre-launch history.
+    expect(snapshot.signups.daily.map((p) => p.key)).toEqual([
+      "2026-07-23",
+      "2026-07-24",
+      "2026-07-25",
+    ]);
+    expect(snapshot.signups.weekly.map((p) => p.key)).toEqual(["2026-W30"]);
+    expect(snapshot.signups.monthly.map((p) => p.key)).toEqual(["2026-07"]);
+
+    // A year of history still caps at the window sizes.
+    rows.profiles.push({
+      role: "creator",
+      created_at: "2025-05-01T00:00:00.000Z",
+      deactivated_at: null,
+    });
+    const old = buildAnalyticsSnapshot(rows, NOW);
+    expect(old.signups.daily).toHaveLength(30);
+    expect(old.signups.weekly).toHaveLength(12);
+    expect(old.signups.monthly).toHaveLength(12);
+    expect(old.churnMonthly).toHaveLength(6);
   });
 
   it("buckets sign-ups by role into daily, weekly and monthly series", () => {

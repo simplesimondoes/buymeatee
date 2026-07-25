@@ -199,11 +199,11 @@
     },
     "signups": {
       "heading": "가입",
-      "dailyChart": "일별 가입 — 최근 30일",
+      "dailyChart": "일별 가입",
       "seriesCreators": "크리에이터",
       "seriesSupporters": "서포터",
-      "weeklyHeading": "주별 — 최근 12주",
-      "monthlyHeading": "월별 — 최근 12개월",
+      "weeklyHeading": "주별",
+      "monthlyHeading": "월별",
       "table": {
         "period": "기간",
         "creators": "크리에이터",
@@ -250,7 +250,7 @@
       "commission": "우리 수수료 수익",
       "refunded": "환불(서포터 결제 총액 기준)",
       "paidTees": "결제된 티",
-      "monthlyChart": "월별 응원 — 최근 12개월",
+      "monthlyChart": "월별 응원",
       "seriesGifts": "크리에이터에게",
       "seriesCommission": "수수료",
       "empty": "아직 결제된 티가 없어요. 첫 실결제가 들어오면 여기에 표시됩니다.",

@@ -5,9 +5,9 @@ import { getTranslations, setRequestLocale } from "next-intl/server";
 
 import { redirect } from "@/i18n/navigation";
 
-import { BarChart } from "@/components/admin/analytics/bar-chart";
 import { DeltaBadge } from "@/components/admin/analytics/delta-badge";
 import { FunnelBars } from "@/components/admin/analytics/funnel-bars";
+import { LineChart } from "@/components/admin/analytics/line-chart";
 import { StatTile } from "@/components/admin/analytics/stat-tile";
 import {
   getAnalyticsSnapshot,
@@ -243,7 +243,7 @@ export default async function AdminAnalyticsPage({
             {t("analytics.signups.dailyChart")}
           </h3>
           <div className="mt-4">
-            <BarChart
+            <LineChart
               title={t("analytics.signups.dailyChart")}
               points={snapshot.signups.daily.map((point) => ({
                 key: point.key,
@@ -261,7 +261,7 @@ export default async function AdminAnalyticsPage({
                 },
               ]}
               formatValue={count}
-              labelEvery={5}
+              labelEvery={snapshot.signups.daily.length > 14 ? 5 : 1}
             />
           </div>
         </div>
@@ -591,7 +591,7 @@ export default async function AdminAnalyticsPage({
                   {t("analytics.giving.monthlyChart")}
                 </h4>
                 <div className="mt-4">
-                  <BarChart
+                  <LineChart
                     title={t("analytics.giving.monthlyChart")}
                     points={currency.monthly.map((point) => ({
                       key: point.key,

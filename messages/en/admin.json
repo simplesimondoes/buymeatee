@@ -199,11 +199,11 @@
     },
     "signups": {
       "heading": "Sign-ups",
-      "dailyChart": "Daily sign-ups — last 30 days",
+      "dailyChart": "Daily sign-ups",
       "seriesCreators": "Creators",
       "seriesSupporters": "Supporters",
-      "weeklyHeading": "Weekly — last 12 weeks",
-      "monthlyHeading": "Monthly — last 12 months",
+      "weeklyHeading": "Weekly",
+      "monthlyHeading": "Monthly",
       "table": {
         "period": "Period",
         "creators": "Creators",
@@ -250,7 +250,7 @@
       "commission": "Our commission",
       "refunded": "Refunded (supporter totals)",
       "paidTees": "Paid Tees",
-      "monthlyChart": "Monthly giving — last 12 months",
+      "monthlyChart": "Monthly giving",
       "seriesGifts": "To creators",
       "seriesCommission": "Commission",
       "empty": "No paid Tees yet. Giving appears here as soon as the first live payment lands.",

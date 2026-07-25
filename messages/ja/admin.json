@@ -199,11 +199,11 @@
     },
     "signups": {
       "heading": "登録",
-      "dailyChart": "日次登録数 — 直近30日間",
+      "dailyChart": "日次登録数",
       "seriesCreators": "クリエイター",
       "seriesSupporters": "サポーター",
-      "weeklyHeading": "週次 — 直近12週間",
-      "monthlyHeading": "月次 — 直近12か月",
+      "weeklyHeading": "週次",
+      "monthlyHeading": "月次",
       "table": {
         "period": "期間",
         "creators": "クリエイター",
@@ -250,7 +250,7 @@
       "commission": "当社の手数料収入",
       "refunded": "返金（サポーター支払い総額ベース）",
       "paidTees": "支払い済みティー",
-      "monthlyChart": "月次の応援 — 直近12か月",
+      "monthlyChart": "月次の応援",
       "seriesGifts": "クリエイターへ",
       "seriesCommission": "手数料",
       "empty": "まだ支払い済みのティーはありません。本番モードで最初の支払いが行われると、ここに表示されます。",

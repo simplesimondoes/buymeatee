@@ -199,11 +199,11 @@
     },
     "signups": {
       "heading": "Registos",
-      "dailyChart": "Registos diários — últimos 30 dias",
+      "dailyChart": "Registos diários",
       "seriesCreators": "Criadores",
       "seriesSupporters": "Apoiantes",
-      "weeklyHeading": "Semanal — últimas 12 semanas",
-      "monthlyHeading": "Mensal — últimos 12 meses",
+      "weeklyHeading": "Semanal",
+      "monthlyHeading": "Mensal",
       "table": {
         "period": "Período",
         "creators": "Criadores",
@@ -250,7 +250,7 @@
       "commission": "A nossa comissão",
       "refunded": "Reembolsado (totais dos apoiantes)",
       "paidTees": "Tees pagos",
-      "monthlyChart": "Apoio mensal — últimos 12 meses",
+      "monthlyChart": "Apoio mensal",
       "seriesGifts": "Aos criadores",
       "seriesCommission": "Comissão",
       "empty": "Ainda não há tees pagos. O apoio aparece aqui assim que chegar o primeiro pagamento em modo real.",

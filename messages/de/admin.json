@@ -199,11 +199,11 @@
     },
     "signups": {
       "heading": "Anmeldungen",
-      "dailyChart": "Tägliche Anmeldungen — letzte 30 Tage",
+      "dailyChart": "Tägliche Anmeldungen",
       "seriesCreators": "Creator",
       "seriesSupporters": "Unterstützer:innen",
-      "weeklyHeading": "Wöchentlich — letzte 12 Wochen",
-      "monthlyHeading": "Monatlich — letzte 12 Monate",
+      "weeklyHeading": "Wöchentlich",
+      "monthlyHeading": "Monatlich",
       "table": {
         "period": "Zeitraum",
         "creators": "Creator",
@@ -250,7 +250,7 @@
       "commission": "Unsere Provision",
       "refunded": "Erstattet (Gesamtbeträge der Unterstützer:innen)",
       "paidTees": "Bezahlte Tees",
-      "monthlyChart": "Monatliche Unterstützung — letzte 12 Monate",
+      "monthlyChart": "Monatliche Unterstützung",
       "seriesGifts": "An Creator",
       "seriesCommission": "Provision",
       "empty": "Noch keine bezahlten Tees. Sobald die erste Live-Zahlung eingeht, erscheint die Unterstützung hier.",

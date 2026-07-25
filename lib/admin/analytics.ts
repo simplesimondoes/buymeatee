@@ -194,6 +194,33 @@ function lastNMonthKeys(now: Date, n: number): string[] {
   return keys;
 }
 
+/**
+ * Earliest recorded event across all sources — the platform's effective
+ * launch moment. Series start here instead of padding empty history, and
+ * expand naturally until they hit their 30-day/12-week/12-month caps.
+ */
+function earliestEventTime(rows: AnalyticsSourceRows): number | null {
+  let earliest: number | null = null;
+  const consider = (value: string) => {
+    const t = new Date(value).getTime();
+    if (Number.isFinite(t) && (earliest === null || t < earliest)) {
+      earliest = t;
+    }
+  };
+  for (const p of rows.profiles) consider(p.created_at);
+  for (const e of rows.earlyAccess) consider(e.created_at);
+  for (const a of rows.accounts) consider(a.created_at);
+  for (const g of rows.gifts) consider(g.created_at);
+  return earliest;
+}
+
+/** Drop leading pre-launch keys. Keys are zero-padded, so >= is chronological. */
+function clampKeys(keys: string[], sinceKey: string): string[] {
+  const clamped = keys.filter((key) => key >= sinceKey);
+  // Always keep the current period so every series has at least one point.
+  return clamped.length > 0 ? clamped : keys.slice(-1);
+}
+
 function compareWindows(
   items: Array<{ t: number; v: number }>,
   now: Date,
@@ -240,9 +267,11 @@ export function buildAnalyticsSnapshot(
   const { profiles, earlyAccess, accounts, gifts } = rows;
 
   // --- Sign-ups -----------------------------------------------------------
-  const dayKeys = lastNDayKeys(now, 30);
-  const weekKeys = lastNWeekKeys(now, 12);
-  const monthKeys = lastNMonthKeys(now, 12);
+  const launch = earliestEventTime(rows);
+  const launchDate = launch === null ? now : new Date(launch);
+  const dayKeys = clampKeys(lastNDayKeys(now, 30), utcDayKey(launchDate));
+  const weekKeys = clampKeys(lastNWeekKeys(now, 12), isoWeekKey(launchDate));
+  const monthKeys = clampKeys(lastNMonthKeys(now, 12), utcMonthKey(launchDate));
 
   const emptySignups = (keys: string[]) =>
     new Map(keys.map((key) => [key, { creators: 0, supporters: 0 }]));
@@ -375,7 +404,10 @@ export function buildAnalyticsSnapshot(
     (count) => count >= 2,
   ).length;
 
-  const churnMonthly: ChurnPoint[] = lastNMonthKeys(now, 6).map((key) => {
+  const churnMonthly: ChurnPoint[] = clampKeys(
+    lastNMonthKeys(now, 6),
+    utcMonthKey(launchDate),
+  ).map((key) => {
     const [year, month] = key.split("-").map(Number);
     const start = Date.UTC(year, month - 1, 1);
     const end = Date.UTC(year, month, 1);
