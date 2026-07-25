@@ -24,46 +24,61 @@ function makeGoal(overrides: Partial<CreatorGoalRow> = {}): CreatorGoalRow {
 }
 
 describe("SupportHero", () => {
-  it("shows the goal's real progress and the CTA when the creator is ready", () => {
-    render(<SupportHero name="James" goal={makeGoal()} ready />);
+  it("shows the goal's real progress and a goal-scoped CTA when ready", () => {
+    render(<SupportHero name="James" goal={makeGoal()} ready currency="gbp" />);
 
     expect(screen.getByText("Current goal")).toBeInTheDocument();
     expect(screen.getByText("Play every Open venue")).toBeInTheDocument();
     expect(screen.getByText("£620.00 of £1000.00")).toBeInTheDocument();
     expect(screen.getByText("62%")).toBeInTheDocument();
 
-    const cta = screen.getByRole("link", { name: "Buy James a Tee" });
-    expect(cta).toHaveAttribute("href", "#support");
+    const cta = screen.getByRole("button", { name: "Support this goal" });
     expect(cta).toHaveAttribute("id", "support-cta-inline"); // sticky-bar sentinel
   });
 
+  it("uses the general CTA when the goal is in a different currency", () => {
+    render(<SupportHero name="James" goal={makeGoal()} ready currency="eur" />);
+
+    expect(
+      screen.getByRole("button", { name: "Buy James a tee" }),
+    ).toHaveAttribute("id", "support-cta-inline");
+  });
+
   it("shows goal progress but no CTA when the creator can't receive Tees", () => {
-    render(<SupportHero name="James" goal={makeGoal()} ready={false} />);
+    render(
+      <SupportHero name="James" goal={makeGoal()} ready={false} currency="gbp" />,
+    );
 
     expect(screen.getByText("Play every Open venue")).toBeInTheDocument();
-    expect(screen.queryByRole("link", { name: /Buy James a Tee/ })).not.toBeInTheDocument();
+    expect(screen.queryByRole("button")).not.toBeInTheDocument();
   });
 
   it("invites the first backer on a goal with no Tees yet", () => {
-    render(<SupportHero name="James" goal={makeGoal({ raised_amount: 0 })} ready />);
+    render(
+      <SupportHero
+        name="James"
+        goal={makeGoal({ raised_amount: 0 })}
+        ready
+        currency="gbp"
+      />,
+    );
 
     expect(screen.getByText("£1000.00 goal")).toBeInTheDocument();
     expect(screen.getByText("Be the first")).toBeInTheDocument();
   });
 
-  it("falls back to a plain CTA when ready with no active goal", () => {
-    render(<SupportHero name="James" goal={null} ready />);
+  it("falls back to a general CTA when ready with no active goal", () => {
+    render(<SupportHero name="James" goal={null} ready currency="gbp" />);
 
     expect(screen.queryByText("Current goal")).not.toBeInTheDocument();
-    expect(screen.getByRole("link", { name: "Buy James a Tee" })).toHaveAttribute(
-      "id",
-      "support-cta-inline",
-    );
+    expect(
+      screen.getByRole("button", { name: "Buy James a tee" }),
+    ).toHaveAttribute("id", "support-cta-inline");
   });
 
   it("renders nothing when there's no goal and the creator isn't ready", () => {
     const { container } = render(
-      <SupportHero name="James" goal={null} ready={false} />,
+      <SupportHero name="James" goal={null} ready={false} currency="gbp" />,
     );
     expect(container).toBeEmptyDOMElement();
   });

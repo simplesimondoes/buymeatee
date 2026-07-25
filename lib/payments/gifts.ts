@@ -343,6 +343,8 @@ export interface GiftPublicStatus {
   message: string | null;
   senderName: string;
   isAnonymous: boolean;
+  /** What the Tee was put toward — null means general support. */
+  target: { kind: "goal" | "wishlist"; title: string } | null;
 }
 
 function toPublicPhase(status: GiftStatus): GiftPublicPhase {
@@ -381,7 +383,7 @@ export async function getGiftPublicStatus(
   const { data, error } = await supabase
     .from("gifts")
     .select(
-      "status, sender_name, is_anonymous, message, gift_amount, currency, recipient_user_id, profiles!gifts_recipient_user_id_fkey(username, display_name)",
+      "status, sender_name, is_anonymous, message, gift_amount, currency, recipient_user_id, goal_id, wishlist_item_id, profiles!gifts_recipient_user_id_fkey(username, display_name)",
     )
     .eq("public_id", publicId)
     .maybeSingle();
@@ -401,5 +403,35 @@ export async function getGiftPublicStatus(
     message: (data.message as string | null) ?? null,
     senderName: data.sender_name as string,
     isAnonymous: data.is_anonymous as boolean,
+    target: await loadGiftTarget(
+      supabase,
+      data.goal_id as string | null,
+      data.wishlist_item_id as string | null,
+    ),
   };
+}
+
+/** Resolve the title of the goal / wish-list item a gift was put toward. */
+async function loadGiftTarget(
+  supabase: ReturnType<typeof getSupabaseAdminClient>,
+  goalId: string | null,
+  wishlistItemId: string | null,
+): Promise<{ kind: "goal" | "wishlist"; title: string } | null> {
+  if (goalId) {
+    const { data } = await supabase
+      .from("creator_goals")
+      .select("title")
+      .eq("id", goalId)
+      .maybeSingle();
+    return data ? { kind: "goal", title: data.title as string } : null;
+  }
+  if (wishlistItemId) {
+    const { data } = await supabase
+      .from("wishlist_items")
+      .select("title")
+      .eq("id", wishlistItemId)
+      .maybeSingle();
+    return data ? { kind: "wishlist", title: data.title as string } : null;
+  }
+  return null;
 }

@@ -268,6 +268,8 @@ export async function markGiftPaidVerified(
         amount: gift.gift_amount,
         currency: gift.currency,
         toEmail: receiptEmail,
+        goalId: gift.goal_id,
+        wishlistItemId: gift.wishlist_item_id,
       });
     }
     logPaymentEvent("info", "webhook.gift_paid", {

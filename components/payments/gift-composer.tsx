@@ -1,8 +1,10 @@
 "use client";
 
-import { CircleAlert, LoaderCircle } from "lucide-react";
+import { CircleAlert, Flag, LoaderCircle } from "lucide-react";
 import { useMemo, useState } from "react";
 
+import { useSupportTarget } from "@/components/payments/support-target-context";
+import { goalProgressPercent } from "@/lib/goals/types";
 import { formatMinorAmount, type SupportedCurrency } from "@/lib/payments/currency";
 import { calculateFees, type FeeConfig } from "@/lib/payments/fees";
 import {
@@ -10,7 +12,6 @@ import {
   parseMajorAmountToMinor,
   validateGiftInput,
 } from "@/lib/payments/gift-schema";
-import { useFund } from "@/components/wishlist/fund-context";
 
 const inputClasses =
   "mt-1.5 w-full rounded-xl border border-stone bg-white px-4 py-3 text-base text-ink placeholder:text-ink/40 focus:border-forest";
@@ -19,10 +20,18 @@ const inputClasses =
  * Donor-side gift composer. The breakdown shown here is an estimate rendered
  * from the same fee module the server uses; the server recalculates and
  * validates everything before creating the Checkout Session.
+ *
+ * The composer is always *scoped*: it reads the support target chosen upstream
+ * (a goal card, a wish-list "Fund this", or the general CTA) and shows it as a
+ * header the supporter can change — never a hidden dropdown defaulting to
+ * general. The target decides `goalId` / `wishlistItemId` on the payload.
  */
 export interface ComposerGoalOption {
   id: string;
   title: string;
+  /** Minor units — current progress, so the header can show it. */
+  raised: number;
+  target: number;
 }
 
 export function GiftComposer({
@@ -49,17 +58,20 @@ export function GiftComposer({
   const [senderEmail, setSenderEmail] = useState("");
   const [message, setMessage] = useState("");
   const [isAnonymous, setIsAnonymous] = useState(false);
-  const [goalId, setGoalId] = useState("");
+  const [changingTarget, setChangingTarget] = useState(false);
   const [submitting, setSubmitting] = useState(false);
   const [error, setError] = useState<string | null>(null);
 
-  // When a wish-list item is chosen (ADR-018) the amount is fixed to its price
-  // and the Tee funds that item outright — the amount and goal pickers step
-  // aside until the supporter clears the selection.
-  const { selected: fundingItem, clear: clearFunding } = useFund();
+  const { target, select, clear } = useSupportTarget();
+  const goalTarget = target?.kind === "goal" ? target : null;
+  const wishlistTarget = target?.kind === "wishlist" ? target : null;
 
   const customMinor = customRaw.trim() === "" ? null : parseMajorAmountToMinor(customRaw);
-  const giftAmount = fundingItem ? fundingItem.priceAmount : selectedPreset ?? customMinor;
+  // A wish-list item is funded outright at its exact price; otherwise the
+  // supporter picks the amount.
+  const giftAmount = wishlistTarget
+    ? wishlistTarget.priceAmount
+    : selectedPreset ?? customMinor;
 
   const fees = useMemo(
     () =>
@@ -80,6 +92,18 @@ export function GiftComposer({
             : "Enter a valid amount."
         : null;
 
+  // Live "brings this goal to X%" once an amount is valid.
+  const projectedGoalPercent =
+    goalTarget && fees?.ok
+      ? goalProgressPercent(goalTarget.raised + fees.breakdown.giftAmount, goalTarget.target)
+      : null;
+
+  const submitLabel = goalTarget
+    ? "Support this goal"
+    : wishlistTarget
+      ? "Fund this item"
+      : `Send a Tee`;
+
   async function handleSubmit(event: React.FormEvent<HTMLFormElement>) {
     event.preventDefault();
     setError(null);
@@ -92,9 +116,9 @@ export function GiftComposer({
       senderEmail,
       message,
       isAnonymous,
-      // Funding a wish-list item is mutually exclusive with a goal.
-      goalId: fundingItem ? undefined : goalId || undefined,
-      wishlistItemId: fundingItem ? fundingItem.id : undefined,
+      // Exactly one of these is set, decided by the chosen target.
+      goalId: goalTarget?.id,
+      wishlistItemId: wishlistTarget?.id,
     };
     const validation = validateGiftInput(payload);
     if (!validation.ok || !fees?.ok) {
@@ -123,15 +147,15 @@ export function GiftComposer({
 
   return (
     <form onSubmit={handleSubmit} noValidate className="space-y-5">
-      {fundingItem ? (
+      {wishlistTarget ? (
         <div className="rounded-2xl border border-forest/30 bg-forest/5 p-5">
           <p className="text-sm font-medium text-forest">You&apos;re funding</p>
           <div className="mt-1 flex items-baseline justify-between gap-3">
             <p className="font-serif text-lg font-semibold text-forest">
-              {fundingItem.title}
+              {wishlistTarget.title}
             </p>
             <p className="shrink-0 text-lg font-semibold text-forest">
-              {formatMinorAmount(fundingItem.priceAmount, currency)}
+              {formatMinorAmount(wishlistTarget.priceAmount, currency)}
             </p>
           </div>
           <p className="mt-1 text-xs text-ink/65">
@@ -140,7 +164,7 @@ export function GiftComposer({
           </p>
           <button
             type="button"
-            onClick={clearFunding}
+            onClick={clear}
             className="mt-3 text-sm font-medium text-forest underline underline-offset-2 hover:text-forest-dark"
           >
             Choose a different amount instead
@@ -148,85 +172,130 @@ export function GiftComposer({
         </div>
       ) : (
         <>
-      <fieldset>
-        <legend className="text-sm font-medium text-forest">
-          Choose your Tee
-        </legend>
-        <div className="mt-2 flex flex-wrap gap-2">
-          {presetAmounts.map((amount) => (
-            <button
-              key={amount}
-              type="button"
-              aria-pressed={selectedPreset === amount}
-              onClick={() => {
-                setSelectedPreset(amount);
-                setCustomRaw("");
-              }}
-              className={`min-h-11 rounded-full border px-5 text-sm font-medium transition-colors ${
-                selectedPreset === amount
-                  ? "border-forest bg-forest text-white"
-                  : "border-stone bg-white text-ink hover:border-forest/40"
-              }`}
-            >
-              {formatMinorAmount(amount, currency)}
-            </button>
-          ))}
-        </div>
-        <div className="mt-3">
-          <label htmlFor="gift-custom" className="text-sm font-medium text-forest">
-            Or a custom amount ({currency === "gbp" ? "£" : "€"})
-          </label>
-          <input
-            id="gift-custom"
-            type="text"
-            inputMode="decimal"
-            placeholder="7.50"
-            value={customRaw}
-            onChange={(event) => {
-              setCustomRaw(event.target.value);
-              setSelectedPreset(null);
-            }}
-            aria-invalid={Boolean(amountError)}
-            aria-describedby={amountError ? "gift-amount-error" : undefined}
-            className={inputClasses}
-          />
-          {amountError ? (
-            <p
-              id="gift-amount-error"
-              className="mt-1.5 flex items-center gap-1.5 text-sm text-red-800"
-            >
-              <CircleAlert aria-hidden="true" className="h-4 w-4 shrink-0" />
-              {amountError}
-            </p>
-          ) : null}
-        </div>
-      </fieldset>
+          {goals.length > 0 || goalTarget ? (
+            <div className="rounded-2xl border border-forest/25 bg-forest/5 p-4">
+              <div className="flex items-start gap-3">
+                <Flag aria-hidden="true" className="mt-0.5 h-5 w-5 shrink-0 text-forest" />
+                <div className="min-w-0 flex-1">
+                  <p className="text-xs font-medium uppercase tracking-wide text-forest/80">
+                    Supporting
+                  </p>
+                  <p className="truncate font-medium text-forest">
+                    {goalTarget ? goalTarget.title : `General support for ${recipientName}`}
+                  </p>
+                  {goalTarget ? (
+                    <p className="mt-0.5 text-xs text-forest/80">
+                      {formatMinorAmount(goalTarget.raised, currency)} of{" "}
+                      {formatMinorAmount(goalTarget.target, currency)} ·{" "}
+                      {goalProgressPercent(goalTarget.raised, goalTarget.target)}%
+                    </p>
+                  ) : null}
+                </div>
+                <button
+                  type="button"
+                  aria-expanded={changingTarget}
+                  onClick={() => setChangingTarget((open) => !open)}
+                  className="shrink-0 text-sm font-medium text-forest underline underline-offset-2 hover:text-forest-dark"
+                >
+                  Change
+                </button>
+              </div>
 
-      {goals.length > 0 ? (
-        <div>
-          <label htmlFor="gift-goal" className="text-sm font-medium text-forest">
-            Put this Tee toward{" "}
-            <span className="font-normal text-ink/70">(optional)</span>
-          </label>
-          <select
-            id="gift-goal"
-            value={goalId}
-            onChange={(event) => setGoalId(event.target.value)}
-            className={inputClasses}
-          >
-            <option value="">General support for {recipientName}</option>
-            {goals.map((goal) => (
-              <option key={goal.id} value={goal.id}>
-                {goal.title}
-              </option>
-            ))}
-          </select>
-          <p className="mt-1.5 text-xs text-ink/60">
-            Goal progress only counts confirmed payments — your Tee shows up
-            once it&apos;s verified.
-          </p>
-        </div>
-      ) : null}
+              {changingTarget ? (
+                <div
+                  role="radiogroup"
+                  aria-label="Choose what to support"
+                  className="mt-3 space-y-1 border-t border-forest/15 pt-3"
+                >
+                  <TargetOption
+                    label={`General support for ${recipientName}`}
+                    checked={!goalTarget}
+                    onSelect={() => {
+                      clear();
+                      setChangingTarget(false);
+                    }}
+                  />
+                  {goals.map((goal) => (
+                    <TargetOption
+                      key={goal.id}
+                      label={goal.title}
+                      checked={goalTarget?.id === goal.id}
+                      onSelect={() => {
+                        select({ kind: "goal", ...goal });
+                        setChangingTarget(false);
+                      }}
+                    />
+                  ))}
+                </div>
+              ) : null}
+            </div>
+          ) : null}
+
+          <fieldset>
+            <legend className="text-sm font-medium text-forest">
+              Choose your Tee
+            </legend>
+            <div className="mt-2 flex flex-wrap gap-2">
+              {presetAmounts.map((amount) => (
+                <button
+                  key={amount}
+                  type="button"
+                  aria-pressed={selectedPreset === amount}
+                  onClick={() => {
+                    setSelectedPreset(amount);
+                    setCustomRaw("");
+                  }}
+                  className={`min-h-11 rounded-full border px-5 text-sm font-medium transition-colors ${
+                    selectedPreset === amount
+                      ? "border-forest bg-forest text-white"
+                      : "border-stone bg-white text-ink hover:border-forest/40"
+                  }`}
+                >
+                  {formatMinorAmount(amount, currency)}
+                </button>
+              ))}
+            </div>
+            <div className="mt-3">
+              <label htmlFor="gift-custom" className="text-sm font-medium text-forest">
+                Or a custom amount ({currency === "gbp" ? "£" : "€"})
+              </label>
+              <input
+                id="gift-custom"
+                type="text"
+                inputMode="decimal"
+                placeholder="7.50"
+                value={customRaw}
+                onChange={(event) => {
+                  setCustomRaw(event.target.value);
+                  setSelectedPreset(null);
+                }}
+                aria-invalid={Boolean(amountError)}
+                aria-describedby={amountError ? "gift-amount-error" : undefined}
+                className={inputClasses}
+              />
+              {amountError ? (
+                <p
+                  id="gift-amount-error"
+                  className="mt-1.5 flex items-center gap-1.5 text-sm text-red-800"
+                >
+                  <CircleAlert aria-hidden="true" className="h-4 w-4 shrink-0" />
+                  {amountError}
+                </p>
+              ) : null}
+            </div>
+            {goalTarget ? (
+              <p className="mt-3 text-xs text-ink/70">
+                {projectedGoalPercent !== null && projectedGoalPercent >= 1 ? (
+                  <>
+                    Your Tee brings this goal to{" "}
+                    <span className="font-medium text-forest">{projectedGoalPercent}%</span>.{" "}
+                  </>
+                ) : null}
+                Goal progress only counts confirmed payments — your Tee shows up
+                once it&apos;s verified.
+              </p>
+            ) : null}
+          </fieldset>
         </>
       )}
 
@@ -336,7 +405,7 @@ export function GiftComposer({
             Preparing secure checkout…
           </>
         ) : (
-          `Send a Tee with Stripe`
+          `${submitLabel} with Stripe`
         )}
       </button>
       <p className="text-center text-xs text-ink/60">
@@ -344,5 +413,35 @@ export function GiftComposer({
         your card details.
       </p>
     </form>
+  );
+}
+
+function TargetOption({
+  label,
+  checked,
+  onSelect,
+}: {
+  label: string;
+  checked: boolean;
+  onSelect: () => void;
+}) {
+  return (
+    <button
+      type="button"
+      role="radio"
+      aria-checked={checked}
+      onClick={onSelect}
+      className={`flex w-full items-center gap-2 rounded-lg px-3 py-2 text-left text-sm transition-colors ${
+        checked ? "bg-forest/10 text-forest" : "text-ink/80 hover:bg-forest/5"
+      }`}
+    >
+      <span
+        aria-hidden="true"
+        className={`h-3.5 w-3.5 shrink-0 rounded-full border ${
+          checked ? "border-4 border-forest" : "border border-stone"
+        }`}
+      />
+      <span className="truncate">{label}</span>
+    </button>
   );
 }

@@ -34,6 +34,8 @@ type ReceivedGift = {
   status: GiftStatus;
   paid_at: string | null;
   created_at: string;
+  goal_id: string | null;
+  wishlist_item_id: string | null;
 };
 
 const statusLabels: Partial<Record<GiftStatus, string>> = {
@@ -62,7 +64,7 @@ export default async function PaymentsDashboardPage() {
   const { data } = await supabase
     .from("gifts")
     .select(
-      "id, sender_name, is_anonymous, message, currency, gift_amount, amount_refunded, status, paid_at, created_at",
+      "id, sender_name, is_anonymous, message, currency, gift_amount, amount_refunded, status, paid_at, created_at, goal_id, wishlist_item_id",
     )
     .eq("recipient_user_id", user.id)
     // Only money that arrived (or is arriving) — not abandoned checkouts.
@@ -70,6 +72,44 @@ export default async function PaymentsDashboardPage() {
     .order("created_at", { ascending: false })
     .limit(100);
   const gifts = (data ?? []) as ReceivedGift[];
+
+  // Resolve the goal / wish-list titles these Tees were put toward, so each
+  // row can show what it funded (the creator's own rows, user-scoped client).
+  const goalTitles = new Map<string, string>();
+  const itemTitles = new Map<string, string>();
+  if (gifts.some((gift) => gift.goal_id)) {
+    const { data: goalRows } = await supabase
+      .from("creator_goals")
+      .select("id, title")
+      .eq("creator_id", user.id);
+    for (const row of (goalRows ?? []) as { id: string; title: string }[]) {
+      goalTitles.set(row.id, row.title);
+    }
+  }
+  if (gifts.some((gift) => gift.wishlist_item_id)) {
+    const { data: itemRows } = await supabase
+      .from("wishlist_items")
+      .select("id, title")
+      .eq("creator_id", user.id);
+    for (const row of (itemRows ?? []) as { id: string; title: string }[]) {
+      itemTitles.set(row.id, row.title);
+    }
+  }
+
+  function giftTarget(
+    gift: ReceivedGift,
+  ): { label: string; toward: boolean } | null {
+    if (gift.goal_id) {
+      return { label: goalTitles.get(gift.goal_id) ?? "a goal", toward: true };
+    }
+    if (gift.wishlist_item_id) {
+      return {
+        label: itemTitles.get(gift.wishlist_item_id) ?? "an item",
+        toward: false,
+      };
+    }
+    return null;
+  }
 
   let account: ConnectedAccountRow | null = null;
   try {
@@ -90,6 +130,16 @@ export default async function PaymentsDashboardPage() {
       (grossByCurrency.get(gift.currency) ?? 0) + gift.gift_amount,
     );
   }
+
+  // How paid support splits across what it funded.
+  const towardGoals = paidGifts.filter((gift) => gift.goal_id).length;
+  const towardWishlist = paidGifts.filter((gift) => gift.wishlist_item_id).length;
+  const generalSupport = paidGifts.length - towardGoals - towardWishlist;
+  const attributionSummary = [
+    towardGoals > 0 ? `${towardGoals} toward goals` : null,
+    towardWishlist > 0 ? `${towardWishlist} toward wish list` : null,
+    generalSupport > 0 ? `${generalSupport} general` : null,
+  ].filter(Boolean);
 
   return (
     <main className="mx-auto w-full max-w-3xl px-4 py-16 sm:px-6 sm:py-24">
@@ -153,6 +203,11 @@ export default async function PaymentsDashboardPage() {
         <h2 className="font-serif text-xl font-semibold text-forest">
           Latest Tees
         </h2>
+        {attributionSummary.length > 0 ? (
+          <p className="mt-1 text-sm text-ink/60">
+            {attributionSummary.join(" · ")}
+          </p>
+        ) : null}
         {gifts.length === 0 ? (
           <p className="mt-3 rounded-2xl border border-stone bg-mist p-6 text-sm text-ink/70">
             No Tees yet. Share your page to let supporters join your journey.
@@ -179,6 +234,16 @@ export default async function PaymentsDashboardPage() {
                     )}
                   </p>
                 </div>
+                {(() => {
+                  const target = giftTarget(gift);
+                  return target ? (
+                    <p className="mt-2">
+                      <span className="inline-flex items-center rounded-full bg-forest/10 px-3 py-1 text-xs font-medium text-forest">
+                        {target.toward ? "Toward" : "Funded"} {target.label}
+                      </span>
+                    </p>
+                  ) : null;
+                })()}
                 {gift.message ? (
                   <blockquote className="mt-2 text-sm italic leading-relaxed text-ink/75">
                     “{gift.message}”

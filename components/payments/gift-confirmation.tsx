@@ -15,6 +15,8 @@ export interface GiftConfirmationStatus {
   message: string | null;
   senderName: string;
   isAnonymous: boolean;
+  /** What the Tee was put toward — null means general support. */
+  target: { kind: "goal" | "wishlist"; title: string } | null;
 }
 
 const POLL_INTERVAL_MS = 3_000;
@@ -105,7 +107,17 @@ export function GiftConfirmation({
         <p className="mx-auto mt-2 max-w-md text-sm leading-relaxed text-ink/70">
           {formatMinorAmount(status.giftAmount, status.currency)} from{" "}
           {status.isAnonymous ? "Anonymous" : status.senderName} was paid
-          successfully.
+          successfully
+          {status.target ? (
+            <>
+              {" "}
+              toward{" "}
+              <span className="font-medium text-forest">
+                {status.target.title}
+              </span>
+            </>
+          ) : null}
+          .
         </p>
         {status.message ? (
           <blockquote className="mx-auto mt-4 max-w-md rounded-2xl bg-white p-4 text-sm italic leading-relaxed text-ink/80">

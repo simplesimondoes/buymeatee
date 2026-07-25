@@ -25,12 +25,16 @@ export async function sendGiftReceipt(input: {
   amount: number;
   currency: SupportedCurrency;
   toEmail: string;
+  /** The goal / wish-list item this tee funded, so the receipt can name it. */
+  goalId?: string | null;
+  wishlistItemId?: string | null;
 }): Promise<EmailOutcome> {
   if (!isEmailConfigured()) {
     return "not-configured";
   }
 
   let creatorName = "a creator";
+  let targetTitle: string | null = null;
   try {
     const supabase = getSupabaseAdminClient();
     const { data } = await supabase
@@ -42,6 +46,21 @@ export async function sendGiftReceipt(input: {
       (data?.display_name as string) ||
       (data?.username as string) ||
       "a creator";
+    if (input.goalId) {
+      const { data: goal } = await supabase
+        .from("creator_goals")
+        .select("title")
+        .eq("id", input.goalId)
+        .maybeSingle();
+      targetTitle = (goal?.title as string) ?? null;
+    } else if (input.wishlistItemId) {
+      const { data: item } = await supabase
+        .from("wishlist_items")
+        .select("title")
+        .eq("id", input.wishlistItemId)
+        .maybeSingle();
+      targetTitle = (item?.title as string) ?? null;
+    }
   } catch (cause) {
     // Fall back to the generic name — a lookup failure must not block the receipt.
     logEmailEvent("warn", "notify.receipt_name_lookup_failed", {
@@ -53,6 +72,7 @@ export async function sendGiftReceipt(input: {
     creatorName,
     amount: input.amount,
     currency: input.currency,
+    targetTitle,
   });
   return sendEmail({
     to: input.toEmail,

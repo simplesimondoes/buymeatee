@@ -1,7 +1,10 @@
 import { fireEvent, render, screen } from "@testing-library/react";
 import { describe, expect, it } from "vitest";
 
-import { FundProvider, useFund } from "@/components/wishlist/fund-context";
+import {
+  SupportTargetProvider,
+  useSupportTarget,
+} from "@/components/payments/support-target-context";
 import { PublicWishlist } from "@/components/wishlist/public-wishlist";
 import type { WishlistItemRow } from "@/lib/wishlist/types";
 
@@ -78,16 +81,16 @@ describe("PublicWishlist", () => {
     expect(screen.queryByRole("button", { name: /fund this/i })).toBeNull();
   });
 
-  it("selects the item in the fund context when Fund is clicked", () => {
+  it("selects the item in the support-target context when Fund is clicked", () => {
     function Probe() {
-      const { selected } = useFund();
-      return <p>selected: {selected?.title ?? "none"}</p>;
+      const { target } = useSupportTarget();
+      return <p>selected: {target?.title ?? "none"}</p>;
     }
     render(
-      <FundProvider>
+      <SupportTargetProvider>
         <PublicWishlist available={[item()]} funded={[]} ready {...base} />
         <Probe />
-      </FundProvider>,
+      </SupportTargetProvider>,
     );
     expect(screen.getByText(/selected: none/)).toBeVisible();
     fireEvent.click(screen.getByRole("button", { name: /fund this/i }));

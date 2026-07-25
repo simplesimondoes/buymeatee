@@ -1,12 +1,13 @@
 import { CircleCheck } from "lucide-react";
 import Link from "next/link";
 
+import { GoalSupportButton } from "@/components/goals/goal-support-button";
 import { ProgressBar } from "@/components/progress-bar";
 import {
   goalProgressPercent,
   type CreatorGoalRow,
 } from "@/lib/goals/types";
-import { formatMinorAmount } from "@/lib/payments/currency";
+import { formatMinorAmount, type SupportedCurrency } from "@/lib/payments/currency";
 
 /**
  * A creator's goals as supporters see them. Server-rendered, honest by
@@ -18,9 +19,12 @@ import { formatMinorAmount } from "@/lib/payments/currency";
 function PublicGoalCard({
   goal,
   supporters,
+  fundable,
 }: {
   goal: CreatorGoalRow;
   supporters: number;
+  /** Creator can receive Tees AND the goal is in their payout currency. */
+  fundable: boolean;
 }) {
   const percent = goalProgressPercent(goal.raised_amount, goal.target_amount);
   const target = formatMinorAmount(goal.target_amount, goal.currency);
@@ -79,6 +83,16 @@ function PublicGoalCard({
             </p>
           ) : null}
         </div>
+        {fundable ? (
+          <div className="mt-5">
+            <GoalSupportButton
+              id={goal.id}
+              title={goal.title}
+              raised={goal.raised_amount}
+              target={goal.target_amount}
+            />
+          </div>
+        ) : null}
       </div>
     </article>
   );
@@ -89,12 +103,18 @@ export function PublicGoals({
   completed,
   creatorName,
   isOwner,
+  ready,
+  currency,
   supportersByGoal = {},
 }: {
   active: CreatorGoalRow[];
   completed: CreatorGoalRow[];
   creatorName: string;
   isOwner: boolean;
+  /** Creator can receive Tees — gates the per-goal "Support this goal" button. */
+  ready: boolean;
+  /** Creator's payout currency; a goal must match it to be fundable. */
+  currency: SupportedCurrency;
   supportersByGoal?: Record<string, number>;
 }) {
   if (active.length === 0 && completed.length === 0) {
@@ -129,6 +149,7 @@ export function PublicGoals({
               key={goal.id}
               goal={goal}
               supporters={supportersByGoal[goal.id] ?? 0}
+              fundable={ready && goal.currency === currency}
             />
           ))}
         </>

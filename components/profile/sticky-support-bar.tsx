@@ -2,14 +2,22 @@
 
 import { useEffect, useState } from "react";
 
+import { SupportCta, type HeroGoal } from "@/components/profile/support-cta";
+
 /**
  * A support call-to-action that docks to the bottom of the screen once the
- * in-header "Buy a Tee" button scrolls out of view — so donating is always one
- * tap away on phones. Rendered only for creators who can actually receive Tees.
- * Links to the goal/support section (#support); smooth scroll is handled
- * globally in globals.css.
+ * in-header button scrolls out of view — so supporting is always one tap away
+ * on phones. Rendered only for creators who can actually receive Tees. Mirrors
+ * the hero CTA: pre-selects the leading goal when there is one, otherwise
+ * general support, then scrolls to the composer.
  */
-export function StickySupportBar({ name }: { name: string }) {
+export function StickySupportBar({
+  name,
+  topGoal,
+}: {
+  name: string;
+  topGoal: HeroGoal | null;
+}) {
   const [visible, setVisible] = useState(false);
 
   useEffect(() => {
@@ -30,13 +38,12 @@ export function StickySupportBar({ name }: { name: string }) {
         visible ? "translate-y-0" : "pointer-events-none translate-y-full"
       }`}
     >
-      <a
-        href="#support"
+      <SupportCta
+        name={name}
+        topGoal={topGoal}
         className="flex min-h-12 w-full items-center justify-center rounded-full bg-forest px-6 text-base font-medium text-white transition-colors hover:bg-forest-dark"
         tabIndex={visible ? undefined : -1}
-      >
-        Buy {name} a Tee
-      </a>
+      />
     </div>
   );
 }

@@ -77,23 +77,34 @@ export function renderGiftReceiptEmail(input: {
   creatorName: string;
   amount: number;
   currency: SupportedCurrency;
+  /** The goal / wish-list item the tee went toward, if any. */
+  targetTitle?: string | null;
 }): RenderedEmail {
   const amount = formatMinorAmount(input.amount, input.currency);
   const creator = escapeHtml(input.creatorName || "a creator");
+  const target = input.targetTitle?.trim() ? input.targetTitle.trim() : null;
 
   const bodyHtml = [
     paragraph(`Thanks for buying <strong>${creator}</strong> a tee.`),
+    target
+      ? paragraph(`You put it toward <strong>${escapeHtml(target)}</strong>.`)
+      : "",
     paragraph(`Your support of <strong>${amount}</strong> is on its way to them — this email is your receipt.`),
     paragraph("You just helped keep a golf journey moving. That's the whole idea."),
   ].join("");
 
   const textLines = [
     `Thanks for buying ${input.creatorName || "a creator"} a tee.`,
+  ];
+  if (target) {
+    textLines.push("", `You put it toward ${target}.`);
+  }
+  textLines.push(
     "",
     `Your support of ${amount} is on its way to them — this email is your receipt.`,
     "",
     "You just helped keep a golf journey moving. That's the whole idea.",
-  ];
+  );
 
   const cta = { label: "Discover more creators", url: siteConfig.url };
   return {

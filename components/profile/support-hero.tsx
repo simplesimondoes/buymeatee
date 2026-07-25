@@ -1,6 +1,22 @@
 import { ProgressBar } from "@/components/progress-bar";
+import { SupportCta, type HeroGoal } from "@/components/profile/support-cta";
 import { goalProgressPercent, type CreatorGoalRow } from "@/lib/goals/types";
-import { formatMinorAmount } from "@/lib/payments/currency";
+import {
+  formatMinorAmount,
+  type SupportedCurrency,
+} from "@/lib/payments/currency";
+
+const heroButtonClasses =
+  "flex min-h-12 w-full items-center justify-center rounded-full bg-forest px-8 text-base font-medium text-white shadow-sm transition-colors hover:bg-forest-dark";
+
+function toHeroGoal(goal: CreatorGoalRow): HeroGoal {
+  return {
+    id: goal.id,
+    title: goal.title,
+    raised: goal.raised_amount,
+    target: goal.target_amount,
+  };
+}
 
 /**
  * The conversion centrepiece near the top of a profile: the creator's leading
@@ -15,17 +31,25 @@ export function SupportHero({
   name,
   goal,
   ready,
+  currency,
 }: {
   name: string;
   goal: CreatorGoalRow | null;
   ready: boolean;
+  /** Payout currency — a goal only becomes the CTA target if it matches. */
+  currency: SupportedCurrency;
 }) {
   if (!goal) {
     // Nothing to rally behind yet — still offer the primary action if possible.
     if (!ready) return null;
     return (
       <div className="mt-6">
-        <SupportButton name={name} />
+        <SupportCta
+          name={name}
+          topGoal={null}
+          id="support-cta-inline"
+          className={heroButtonClasses}
+        />
       </div>
     );
   }
@@ -60,21 +84,14 @@ export function SupportHero({
       </div>
       {ready ? (
         <div className="mt-5">
-          <SupportButton name={name} />
+          <SupportCta
+            name={name}
+            topGoal={goal.currency === currency ? toHeroGoal(goal) : null}
+            id="support-cta-inline"
+            className={heroButtonClasses}
+          />
         </div>
       ) : null}
     </div>
-  );
-}
-
-function SupportButton({ name }: { name: string }) {
-  return (
-    <a
-      id="support-cta-inline"
-      href="#support"
-      className="flex min-h-12 w-full items-center justify-center rounded-full bg-forest px-8 text-base font-medium text-white shadow-sm transition-colors hover:bg-forest-dark"
-    >
-      Buy {name} a Tee
-    </a>
   );
 }

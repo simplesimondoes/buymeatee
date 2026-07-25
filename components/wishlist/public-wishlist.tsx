@@ -4,7 +4,10 @@ import { CircleCheck } from "lucide-react";
 import Link from "next/link";
 
 import { formatMinorAmount, type SupportedCurrency } from "@/lib/payments/currency";
-import { useFund } from "@/components/wishlist/fund-context";
+import {
+  scrollToComposer,
+  useSupportTarget,
+} from "@/components/payments/support-target-context";
 import type { WishlistItemRow } from "@/lib/wishlist/types";
 
 /**
@@ -22,15 +25,18 @@ function AvailableItemCard({
   /** Ready to receive AND in the creator's payout currency, so it can be funded. */
   fundable: boolean;
 }) {
-  const { select } = useFund();
+  const { select } = useSupportTarget();
   const price = formatMinorAmount(item.price_amount, item.currency);
 
   function handleFund() {
-    select({ id: item.id, title: item.title, priceAmount: item.price_amount });
+    select({
+      kind: "wishlist",
+      id: item.id,
+      title: item.title,
+      priceAmount: item.price_amount,
+    });
     // Bring the composer into view so the supporter can complete the Tee.
-    document
-      .getElementById("support-composer")
-      ?.scrollIntoView({ behavior: "smooth", block: "start" });
+    scrollToComposer();
   }
 
   return (

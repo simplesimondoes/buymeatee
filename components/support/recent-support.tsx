@@ -43,6 +43,13 @@ export function RecentSupport({
               <span className="font-semibold">
                 {formatMinorAmount(item.amount, item.currency)}
               </span>
+              {item.target ? (
+                <span className="text-ink/60">
+                  {" "}
+                  · {item.target.kind === "wishlist" ? "funded" : "toward"}{" "}
+                  {item.target.title}
+                </span>
+              ) : null}
             </p>
             {item.message ? (
               <p className="mt-1.5 text-sm italic leading-relaxed text-ink/70">

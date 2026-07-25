@@ -6,7 +6,7 @@ import { Globe } from "lucide-react";
 
 import { GiftComposer } from "@/components/payments/gift-composer";
 import { PublicGoals } from "@/components/goals/public-goals";
-import { FundProvider } from "@/components/wishlist/fund-context";
+import { SupportTargetProvider } from "@/components/payments/support-target-context";
 import { PublicWishlist } from "@/components/wishlist/public-wishlist";
 import { Markdown } from "@/components/markdown";
 import { Avatar } from "@/components/profile/avatar";
@@ -370,6 +370,7 @@ export default async function RecipientProfilePage({
 
   return (
     <main className="mx-auto w-full max-w-2xl px-4 pb-16 sm:px-6 sm:pb-24">
+      <SupportTargetProvider>
       {/* Cover hero — a tall, full-bleed image on phones (where most
           supporters land) that the content card rises over; a wide banner on
           larger screens. */}
@@ -428,7 +429,12 @@ export default async function RecipientProfilePage({
           </p>
         ) : null}
         <SocialLinks profile={profile} />
-        <SupportHero name={name} goal={goals.active[0] ?? null} ready={ready} />
+        <SupportHero
+          name={name}
+          goal={goals.active[0] ?? null}
+          ready={ready}
+          currency={currency}
+        />
       </header>
 
       <div className="mt-5">
@@ -461,25 +467,24 @@ export default async function RecipientProfilePage({
           completed={goals.completed}
           creatorName={name}
           isOwner={isOwner}
+          ready={ready}
+          currency={currency}
           supportersByGoal={support.byGoal}
         />
       </div>
 
-      {/* Wish list + composer share a provider so "Fund this" on an item
-          drives the composer below (ADR-018). */}
-      <FundProvider>
-        <div className="mt-8">
-          <PublicWishlist
-            available={wishlist.available}
-            funded={wishlist.funded}
-            creatorName={name}
-            ready={ready}
-            currency={currency}
-            isOwner={isOwner}
-          />
-        </div>
+      <div className="mt-8">
+        <PublicWishlist
+          available={wishlist.available}
+          funded={wishlist.funded}
+          creatorName={name}
+          ready={ready}
+          currency={currency}
+          isOwner={isOwner}
+        />
+      </div>
 
-        <div id="support-composer" className="mt-8 scroll-mt-6">
+      <div id="support-composer" className="mt-8 scroll-mt-6">
           {ready ? (
             <div className="rounded-3xl border border-stone bg-white p-6 sm:p-8">
               <GiftComposer
@@ -490,7 +495,12 @@ export default async function RecipientProfilePage({
                 feeConfig={getFeeConfig()}
                 goals={goals.active
                   .filter((goal) => goal.currency === currency)
-                  .map((goal) => ({ id: goal.id, title: goal.title }))}
+                  .map((goal) => ({
+                    id: goal.id,
+                    title: goal.title,
+                    raised: goal.raised_amount,
+                    target: goal.target_amount,
+                  }))}
               />
             </div>
           ) : (
@@ -511,8 +521,7 @@ export default async function RecipientProfilePage({
               ) : null}
             </div>
           )}
-        </div>
-      </FundProvider>
+      </div>
 
       <div className="mt-10">
         <RecentSupport items={support.recent} />
@@ -526,7 +535,22 @@ export default async function RecipientProfilePage({
         />
       </div>
 
-      {ready ? <StickySupportBar name={name} /> : null}
+      {ready ? (
+        <StickySupportBar
+          name={name}
+          topGoal={
+            goals.active[0] && goals.active[0].currency === currency
+              ? {
+                  id: goals.active[0].id,
+                  title: goals.active[0].title,
+                  raised: goals.active[0].raised_amount,
+                  target: goals.active[0].target_amount,
+                }
+              : null
+          }
+        />
+      ) : null}
+      </SupportTargetProvider>
     </main>
   );
 }
