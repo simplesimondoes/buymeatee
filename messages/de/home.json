@@ -14,7 +14,7 @@
   },
   "audienceGrid": {
     "eyebrow": "Für wen es ist",
-    "heading": "Jeder Golfer hat ein Ziel.",
+    "heading": "Die Wege, hinter denen Unterstützer:innen stehen",
     "intro": "Creator, Turnierspieler, Trainer oder Elternteil — BuyMeATee ist der Ort, an dem sich die Menschen rund um dein Golf dahinterstellen.",
     "cardCta": "So geht's"
   },
@@ -66,11 +66,6 @@
         "body": "Die vollständige Aufschlüsselung wird angezeigt, bevor irgendjemand bestätigt — und Zahlungen laufen über den von Stripe gehosteten Checkout."
       }
     }
-  },
-  "exampleGoals": {
-    "eyebrow": "Beispiel-Ziele",
-    "heading": "Die Wege, hinter denen Unterstützer:innen stehen",
-    "intro": "Illustrationen der Art von Zielen, die Golfer teilen — jede Karte hier ist ein gekennzeichnetes Beispiel."
   },
   "pricing": {
     "eyebrow": "Preise",

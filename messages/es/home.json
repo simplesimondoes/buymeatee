@@ -14,7 +14,7 @@
   },
   "audienceGrid": {
     "eyebrow": "Para quién es",
-    "heading": "Todo golfista tiene un objetivo.",
+    "heading": "Los caminos que la gente respalda",
     "intro": "Creador, competidor, entrenador, padre o madre — BuyMeATee es donde las personas que rodean tu golf lo respaldan.",
     "cardCta": "Descubre cómo"
   },
@@ -66,11 +66,6 @@
         "body": "El desglose completo se muestra antes de confirmar, y los pagos se realizan a través de la página de pago alojada de Stripe."
       }
     }
-  },
-  "exampleGoals": {
-    "eyebrow": "Objetivos de ejemplo",
-    "heading": "Los caminos que la gente respalda",
-    "intro": "Ilustraciones del tipo de objetivos que comparten los golfistas — cada tarjeta es un ejemplo etiquetado."
   },
   "pricing": {
     "eyebrow": "Precios",

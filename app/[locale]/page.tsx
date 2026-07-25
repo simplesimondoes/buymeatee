@@ -3,7 +3,6 @@ import { setRequestLocale } from "next-intl/server";
 
 import { CallToAction } from "@/components/call-to-action";
 import { AudienceGrid } from "@/components/home/audience-grid";
-import { ExampleGoalsSection } from "@/components/home/example-goals-section";
 import { FaqPreviewSection } from "@/components/home/faq-preview-section";
 import { FeaturedGolfersSection } from "@/components/home/featured-golfers-section";
 import { Hero } from "@/components/home/hero";
@@ -26,10 +25,11 @@ export default async function HomePage({
     <>
       <Hero />
       <WhySupportersSection />
-      <ExampleGoalsSection />
+      {/* One image-led grid carries both the audience story and "the journeys
+          supporters get behind" — it absorbed the example-goals grid. */}
+      <AudienceGrid />
       <FeaturedGolfersSection />
       <PricingSection />
-      <AudienceGrid />
       <HowItWorksSection />
       <FaqPreviewSection />
       <CallToAction />

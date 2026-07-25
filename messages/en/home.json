@@ -14,7 +14,7 @@
   },
   "audienceGrid": {
     "eyebrow": "Who it's for",
-    "heading": "Every golfer has a goal.",
+    "heading": "The journeys supporters get behind",
     "intro": "Creator, competitor, coach or parent — BuyMeATee is where the people around your golf get behind it.",
     "cardCta": "See how"
   },
@@ -66,11 +66,6 @@
         "body": "The full breakdown is shown before anyone confirms, and payments run through Stripe's hosted checkout."
       }
     }
-  },
-  "exampleGoals": {
-    "eyebrow": "Example goals",
-    "heading": "The journeys supporters get behind",
-    "intro": "Illustrations of the kind of goals golfers share — every card here is a labelled example."
   },
   "pricing": {
     "eyebrow": "Pricing",

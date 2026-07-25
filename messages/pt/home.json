@@ -14,7 +14,7 @@
   },
   "audienceGrid": {
     "eyebrow": "Para quem é",
-    "heading": "Todos os golfistas têm um objetivo.",
+    "heading": "Os percursos que os apoiantes abraçam",
     "intro": "Sejas criador, competidor, treinador, pai ou mãe — o BuyMeATee é onde as pessoas à volta do teu golfe se juntam para o apoiar.",
     "cardCta": "Vê como"
   },
@@ -66,11 +66,6 @@
         "body": "A discriminação completa é apresentada antes de qualquer confirmação, e os pagamentos passam pelo checkout seguro da Stripe."
       }
     }
-  },
-  "exampleGoals": {
-    "eyebrow": "Objetivos de exemplo",
-    "heading": "Os percursos que os apoiantes abraçam",
-    "intro": "Ilustrações do tipo de objetivos que os golfistas partilham — cada cartão aqui é um exemplo identificado."
   },
   "pricing": {
     "eyebrow": "Preços",
