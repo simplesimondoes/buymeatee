@@ -4,7 +4,8 @@
     "payments": "Zahlungen",
     "users": "Nutzer:innen",
     "moderation": "Moderation",
-    "analytics": "Statistiken"
+    "analytics": "Statistiken",
+    "social": "Social Studio"
   },
   "meta": {
     "payments": {
@@ -21,6 +22,9 @@
     },
     "analytics": {
       "title": "Statistiken"
+    },
+    "social": {
+      "title": "Social Studio"
     }
   },
   "common": {
@@ -281,6 +285,73 @@
       "report": "{scanned} geprüft: {markedPaid} bezahlt, {markedExpired} abgelaufen, {markedFailed} fehlgeschlagen, {cancelledDrafts} Entwürfe storniert, {stillPending} ausstehend, markiert: {flagged}.",
       "flaggedNone": "keine",
       "failed": "Abgleich fehlgeschlagen."
+    }
+  },
+  "social": {
+    "page": {
+      "title": "Social Studio",
+      "intro": "Plane, verfeinere und veröffentliche BuyMeATees Social-Media-Inhalte von Hand. Entwürfe sind KI-Vorschläge, du gibst jedes Wort frei — nichts wird automatisch gepostet.",
+      "unavailable": "Das Studio ist nicht verfügbar — die social_drafts-Tabelle oder die Supabase-Konfiguration fehlt.",
+      "empty": "Noch keine Entwürfe im Kalender. Erzeuge die nächsten vier Wochen, um zu starten."
+    },
+    "seed": {
+      "button": "Nächste 4 Wochen erzeugen",
+      "progress": "Woche {week} von 4 wird erzeugt…",
+      "done": "{created} Entwürfe erstellt.",
+      "notConfigured": "Hinterlege OPENAI_API_KEY, um die Generierung zu aktivieren."
+    },
+    "filters": {
+      "status": "Status",
+      "pillar": "Säule",
+      "audience": "Zielgruppe",
+      "image": "Bild",
+      "all": "Alle"
+    },
+    "pillars": {
+      "golfGoals": "Golf-Ziele",
+      "audienceSpotlights": "Zielgruppen-Spotlight",
+      "golfJourney": "Golf-Weg",
+      "founderUpdates": "Gründer-Update",
+      "educational": "Wissen",
+      "brandMission": "Markenmission"
+    },
+    "status": {
+      "draft": "Entwurf",
+      "ai_generated": "KI-generiert",
+      "edited": "Bearbeitet",
+      "approved": "Freigegeben",
+      "published": "Veröffentlicht"
+    },
+    "image": {
+      "none": "Kein Bild",
+      "branded": "Marken-Grafik",
+      "lifestyle": "Lifestyle-Bild"
+    },
+    "slot": {
+      "morning": "Vormittag",
+      "afternoon": "Nachmittag"
+    },
+    "detail": {
+      "objective": "Ziel",
+      "cta": "Call-to-Action",
+      "xCopy": "X-Beitrag",
+      "blueskyCopy": "Bluesky-Beitrag",
+      "imagePrompt": "Bild-Prompt (für ein künftiges Bild-Tool — kopiere ihn in deinen Generator)",
+      "chars": "{count}/{max}",
+      "publishedAt": "Veröffentlicht am {date}"
+    },
+    "actions": {
+      "save": "Änderungen speichern",
+      "regenerateCopy": "Text neu generieren",
+      "regenerateImage": "Neue Bildidee",
+      "copy_x": "X-Text kopieren",
+      "copy_bluesky": "Bluesky-Text kopieren",
+      "copied": "Kopiert",
+      "approve": "Freigeben",
+      "publish": "Als veröffentlicht markieren",
+      "duplicate": "Duplizieren",
+      "post_x": "Auf X posten",
+      "post_bluesky": "Auf Bluesky posten"
     }
   }
 }

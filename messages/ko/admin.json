@@ -4,7 +4,8 @@
     "payments": "결제",
     "users": "사용자",
     "moderation": "운영 관리",
-    "analytics": "애널리틱스"
+    "analytics": "애널리틱스",
+    "social": "소셜 스튜디오"
   },
   "meta": {
     "payments": {
@@ -21,6 +22,9 @@
     },
     "analytics": {
       "title": "애널리틱스"
+    },
+    "social": {
+      "title": "소셜 스튜디오"
     }
   },
   "common": {
@@ -281,6 +285,73 @@
       "report": "{scanned}건 검사: 결제 완료 {markedPaid}, 만료 {markedExpired}, 실패 {markedFailed}, 임시 취소 {cancelledDrafts}, 대기 중 {stillPending}, 플래그: {flagged}.",
       "flaggedNone": "없음",
       "failed": "대사에 실패했어요."
+    }
+  },
+  "social": {
+    "page": {
+      "title": "소셜 스튜디오",
+      "intro": "BuyMeATee의 소셜 콘텐츠를 계획하고 다듬어 직접 게시하세요. 초안은 AI 제안이며 모든 문장을 직접 승인합니다 — 자동으로 게시되는 것은 없어요.",
+      "unavailable": "스튜디오를 사용할 수 없어요 — social_drafts 테이블이나 Supabase 설정이 없습니다.",
+      "empty": "캘린더에 초안이 없어요. 먼저 다음 4주 분량을 생성해 보세요."
+    },
+    "seed": {
+      "button": "다음 4주 생성",
+      "progress": "4주 중 {week}주차 생성 중…",
+      "done": "초안 {created}개를 만들었어요.",
+      "notConfigured": "생성을 사용하려면 OPENAI_API_KEY를 설정하세요."
+    },
+    "filters": {
+      "status": "상태",
+      "pillar": "주제",
+      "audience": "대상",
+      "image": "이미지",
+      "all": "전체"
+    },
+    "pillars": {
+      "golfGoals": "골프 목표",
+      "audienceSpotlights": "대상 스포트라이트",
+      "golfJourney": "골프 여정",
+      "founderUpdates": "창업자 소식",
+      "educational": "교육",
+      "brandMission": "브랜드 미션"
+    },
+    "status": {
+      "draft": "초안",
+      "ai_generated": "AI 생성",
+      "edited": "수정됨",
+      "approved": "승인됨",
+      "published": "게시됨"
+    },
+    "image": {
+      "none": "이미지 없음",
+      "branded": "브랜드 그래픽",
+      "lifestyle": "라이프스타일 이미지"
+    },
+    "slot": {
+      "morning": "오전",
+      "afternoon": "오후"
+    },
+    "detail": {
+      "objective": "목적",
+      "cta": "행동 유도",
+      "xCopy": "X 게시글",
+      "blueskyCopy": "Bluesky 게시글",
+      "imagePrompt": "이미지 프롬프트(향후 이미지 도구용 — 원하는 생성기에 붙여넣기)",
+      "chars": "{count}/{max}",
+      "publishedAt": "{date} 게시"
+    },
+    "actions": {
+      "save": "수정 저장",
+      "regenerateCopy": "텍스트 재생성",
+      "regenerateImage": "새 이미지 아이디어",
+      "copy_x": "X 텍스트 복사",
+      "copy_bluesky": "Bluesky 텍스트 복사",
+      "copied": "복사됨",
+      "approve": "승인",
+      "publish": "게시됨으로 표시",
+      "duplicate": "복제",
+      "post_x": "X에 게시",
+      "post_bluesky": "Bluesky에 게시"
     }
   }
 }

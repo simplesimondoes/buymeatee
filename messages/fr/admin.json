@@ -4,7 +4,8 @@
     "payments": "Paiements",
     "users": "Utilisateurs",
     "moderation": "Modération",
-    "analytics": "Statistiques"
+    "analytics": "Statistiques",
+    "social": "Studio social"
   },
   "meta": {
     "payments": {
@@ -21,6 +22,9 @@
     },
     "analytics": {
       "title": "Statistiques"
+    },
+    "social": {
+      "title": "Studio social"
     }
   },
   "common": {
@@ -281,6 +285,73 @@
       "report": "{scanned} analysés : {markedPaid} payés, {markedExpired} expirés, {markedFailed} échoués, {cancelledDrafts} brouillons annulés, {stillPending} en attente, signalés : {flagged}.",
       "flaggedNone": "aucun",
       "failed": "La réconciliation a échoué."
+    }
+  },
+  "social": {
+    "page": {
+      "title": "Studio social",
+      "intro": "Planifie, affine et publie à la main le contenu social de BuyMeATee. Les brouillons sont des suggestions IA, tu valides chaque mot — rien n'est publié automatiquement.",
+      "unavailable": "Le studio n'est pas disponible — la table social_drafts ou la configuration Supabase manque.",
+      "empty": "Aucun brouillon au calendrier. Génère les quatre prochaines semaines pour commencer."
+    },
+    "seed": {
+      "button": "Générer les 4 prochaines semaines",
+      "progress": "Génération de la semaine {week} sur 4…",
+      "done": "{created} brouillons créés.",
+      "notConfigured": "Ajoute OPENAI_API_KEY pour activer la génération."
+    },
+    "filters": {
+      "status": "Statut",
+      "pillar": "Pilier",
+      "audience": "Audience",
+      "image": "Image",
+      "all": "Tous"
+    },
+    "pillars": {
+      "golfGoals": "Objectifs golf",
+      "audienceSpotlights": "Focus audience",
+      "golfJourney": "Parcours de golf",
+      "founderUpdates": "Actualité du fondateur",
+      "educational": "Pédagogique",
+      "brandMission": "Mission de la marque"
+    },
+    "status": {
+      "draft": "Brouillon",
+      "ai_generated": "Généré par IA",
+      "edited": "Modifié",
+      "approved": "Approuvé",
+      "published": "Publié"
+    },
+    "image": {
+      "none": "Sans image",
+      "branded": "Visuel de marque",
+      "lifestyle": "Image lifestyle"
+    },
+    "slot": {
+      "morning": "Matin",
+      "afternoon": "Après-midi"
+    },
+    "detail": {
+      "objective": "Objectif",
+      "cta": "Appel à l'action",
+      "xCopy": "Post X",
+      "blueskyCopy": "Post Bluesky",
+      "imagePrompt": "Prompt d'image (pour un futur outil — copie-le dans ton générateur)",
+      "chars": "{count}/{max}",
+      "publishedAt": "Publié le {date}"
+    },
+    "actions": {
+      "save": "Enregistrer",
+      "regenerateCopy": "Régénérer le texte",
+      "regenerateImage": "Nouvelle idée d'image",
+      "copy_x": "Copier le texte X",
+      "copy_bluesky": "Copier le texte Bluesky",
+      "copied": "Copié",
+      "approve": "Approuver",
+      "publish": "Marquer comme publié",
+      "duplicate": "Dupliquer",
+      "post_x": "Publier sur X",
+      "post_bluesky": "Publier sur Bluesky"
     }
   }
 }

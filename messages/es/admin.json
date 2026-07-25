@@ -4,7 +4,8 @@
     "payments": "Pagos",
     "users": "Usuarios",
     "moderation": "Moderación",
-    "analytics": "Estadísticas"
+    "analytics": "Estadísticas",
+    "social": "Estudio social"
   },
   "meta": {
     "payments": {
@@ -21,6 +22,9 @@
     },
     "analytics": {
       "title": "Estadísticas"
+    },
+    "social": {
+      "title": "Estudio social"
     }
   },
   "common": {
@@ -281,6 +285,73 @@
       "report": "Analizados {scanned}: {markedPaid} pagados, {markedExpired} caducados, {markedFailed} fallidos, {cancelledDrafts} borradores cancelados, {stillPending} pendientes, marcados para revisión: {flagged}.",
       "flaggedNone": "ninguno",
       "failed": "La conciliación ha fallado."
+    }
+  },
+  "social": {
+    "page": {
+      "title": "Estudio social",
+      "intro": "Planifica, pule y publica a mano el contenido social de BuyMeATee. Los borradores son sugerencias de IA y tú apruebas cada palabra — nada se publica automáticamente.",
+      "unavailable": "El estudio no está disponible — falta la tabla social_drafts o la configuración de Supabase.",
+      "empty": "Aún no hay borradores en el calendario. Genera las próximas cuatro semanas para empezar."
+    },
+    "seed": {
+      "button": "Generar las próximas 4 semanas",
+      "progress": "Generando semana {week} de 4…",
+      "done": "{created} borradores creados.",
+      "notConfigured": "Añade OPENAI_API_KEY para activar la generación."
+    },
+    "filters": {
+      "status": "Estado",
+      "pillar": "Pilar",
+      "audience": "Audiencia",
+      "image": "Imagen",
+      "all": "Todos"
+    },
+    "pillars": {
+      "golfGoals": "Objetivos de golf",
+      "audienceSpotlights": "Foco de audiencia",
+      "golfJourney": "Camino en el golf",
+      "founderUpdates": "Novedad del fundador",
+      "educational": "Educativo",
+      "brandMission": "Misión de marca"
+    },
+    "status": {
+      "draft": "Borrador",
+      "ai_generated": "Generado por IA",
+      "edited": "Editado",
+      "approved": "Aprobado",
+      "published": "Publicado"
+    },
+    "image": {
+      "none": "Sin imagen",
+      "branded": "Gráfico de marca",
+      "lifestyle": "Imagen lifestyle"
+    },
+    "slot": {
+      "morning": "Mañana",
+      "afternoon": "Tarde"
+    },
+    "detail": {
+      "objective": "Objetivo",
+      "cta": "Llamada a la acción",
+      "xCopy": "Publicación en X",
+      "blueskyCopy": "Publicación en Bluesky",
+      "imagePrompt": "Prompt de imagen (para una futura herramienta — cópialo en tu generador)",
+      "chars": "{count}/{max}",
+      "publishedAt": "Publicado el {date}"
+    },
+    "actions": {
+      "save": "Guardar cambios",
+      "regenerateCopy": "Regenerar texto",
+      "regenerateImage": "Nueva idea de imagen",
+      "copy_x": "Copiar texto de X",
+      "copy_bluesky": "Copiar texto de Bluesky",
+      "copied": "Copiado",
+      "approve": "Aprobar",
+      "publish": "Marcar como publicado",
+      "duplicate": "Duplicar",
+      "post_x": "Publicar en X",
+      "post_bluesky": "Publicar en Bluesky"
     }
   }
 }

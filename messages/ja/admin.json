@@ -4,7 +4,8 @@
     "payments": "決済",
     "users": "ユーザー",
     "moderation": "モデレーション",
-    "analytics": "アナリティクス"
+    "analytics": "アナリティクス",
+    "social": "ソーシャルスタジオ"
   },
   "meta": {
     "payments": {
@@ -21,6 +22,9 @@
     },
     "analytics": {
       "title": "アナリティクス"
+    },
+    "social": {
+      "title": "ソーシャルスタジオ"
     }
   },
   "common": {
@@ -281,6 +285,73 @@
       "report": "{scanned}件をスキャン：支払い済み{markedPaid}件、期限切れ{markedExpired}件、失敗{markedFailed}件、下書きキャンセル{cancelledDrafts}件、保留{stillPending}件、要確認：{flagged}。",
       "flaggedNone": "なし",
       "failed": "照合に失敗しました。"
+    }
+  },
+  "social": {
+    "page": {
+      "title": "ソーシャルスタジオ",
+      "intro": "BuyMeATeeのソーシャル投稿を計画・推敲し、手動で公開します。下書きはAIの提案で、一語一句あなたが承認します — 自動投稿は一切ありません。",
+      "unavailable": "スタジオを利用できません — social_draftsテーブルまたはSupabaseの設定がありません。",
+      "empty": "カレンダーに下書きがありません。まず今後4週間分を生成しましょう。"
+    },
+    "seed": {
+      "button": "今後4週間分を生成",
+      "progress": "4週のうち第{week}週を生成中…",
+      "done": "{created}件の下書きを作成しました。",
+      "notConfigured": "生成を有効にするには OPENAI_API_KEY を設定してください。"
+    },
+    "filters": {
+      "status": "ステータス",
+      "pillar": "テーマ",
+      "audience": "オーディエンス",
+      "image": "画像",
+      "all": "すべて"
+    },
+    "pillars": {
+      "golfGoals": "ゴルフの目標",
+      "audienceSpotlights": "オーディエンス特集",
+      "golfJourney": "ゴルフのジャーニー",
+      "founderUpdates": "創業者アップデート",
+      "educational": "教育",
+      "brandMission": "ブランドミッション"
+    },
+    "status": {
+      "draft": "下書き",
+      "ai_generated": "AI生成",
+      "edited": "編集済み",
+      "approved": "承認済み",
+      "published": "公開済み"
+    },
+    "image": {
+      "none": "画像なし",
+      "branded": "ブランドグラフィック",
+      "lifestyle": "ライフスタイル画像"
+    },
+    "slot": {
+      "morning": "午前",
+      "afternoon": "午後"
+    },
+    "detail": {
+      "objective": "目的",
+      "cta": "CTA",
+      "xCopy": "X投稿",
+      "blueskyCopy": "Bluesky投稿",
+      "imagePrompt": "画像プロンプト（将来の画像ツール用 — お好みのジェネレーターへコピー）",
+      "chars": "{count}/{max}",
+      "publishedAt": "{date}に公開"
+    },
+    "actions": {
+      "save": "編集を保存",
+      "regenerateCopy": "テキストを再生成",
+      "regenerateImage": "新しい画像案",
+      "copy_x": "Xのテキストをコピー",
+      "copy_bluesky": "Blueskyのテキストをコピー",
+      "copied": "コピーしました",
+      "approve": "承認",
+      "publish": "公開済みにする",
+      "duplicate": "複製",
+      "post_x": "Xに投稿",
+      "post_bluesky": "Blueskyに投稿"
     }
   }
 }

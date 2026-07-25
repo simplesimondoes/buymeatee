@@ -4,7 +4,8 @@
     "payments": "Payments",
     "users": "Users",
     "moderation": "Moderation",
-    "analytics": "Analytics"
+    "analytics": "Analytics",
+    "social": "Social Studio"
   },
   "meta": {
     "payments": {
@@ -21,6 +22,9 @@
     },
     "analytics": {
       "title": "Analytics"
+    },
+    "social": {
+      "title": "Social Studio"
     }
   },
   "common": {
@@ -281,6 +285,73 @@
       "report": "Scanned {scanned}: {markedPaid} paid, {markedExpired} expired, {markedFailed} failed, {cancelledDrafts} drafts cancelled, {stillPending} pending, flagged: {flagged}.",
       "flaggedNone": "none",
       "failed": "Reconciliation failed."
+    }
+  },
+  "social": {
+    "page": {
+      "title": "Social Studio",
+      "intro": "Plan, refine and publish BuyMeATee's social content by hand. Drafts are AI-suggested, you approve every word — nothing posts automatically.",
+      "unavailable": "The studio isn't available — the social_drafts table or Supabase configuration is missing.",
+      "empty": "No drafts in the calendar yet. Generate the next four weeks to get started."
+    },
+    "seed": {
+      "button": "Generate the next 4 weeks",
+      "progress": "Generating week {week} of 4…",
+      "done": "{created} drafts created.",
+      "notConfigured": "Add OPENAI_API_KEY to enable generation."
+    },
+    "filters": {
+      "status": "Status",
+      "pillar": "Pillar",
+      "audience": "Audience",
+      "image": "Image",
+      "all": "All"
+    },
+    "pillars": {
+      "golfGoals": "Golf goals",
+      "audienceSpotlights": "Audience spotlight",
+      "golfJourney": "Golf journey",
+      "founderUpdates": "Founder update",
+      "educational": "Educational",
+      "brandMission": "Brand mission"
+    },
+    "status": {
+      "draft": "Draft",
+      "ai_generated": "AI generated",
+      "edited": "Edited",
+      "approved": "Approved",
+      "published": "Published"
+    },
+    "image": {
+      "none": "No image",
+      "branded": "Branded graphic",
+      "lifestyle": "Lifestyle image"
+    },
+    "slot": {
+      "morning": "Morning",
+      "afternoon": "Afternoon"
+    },
+    "detail": {
+      "objective": "Objective",
+      "cta": "Call to action",
+      "xCopy": "X post",
+      "blueskyCopy": "Bluesky post",
+      "imagePrompt": "Image prompt (for a future image tool — copy it into your generator of choice)",
+      "chars": "{count}/{max}",
+      "publishedAt": "Published {date}"
+    },
+    "actions": {
+      "save": "Save edits",
+      "regenerateCopy": "Regenerate copy",
+      "regenerateImage": "New image idea",
+      "copy_x": "Copy X text",
+      "copy_bluesky": "Copy Bluesky text",
+      "copied": "Copied",
+      "approve": "Approve",
+      "publish": "Mark published",
+      "duplicate": "Duplicate",
+      "post_x": "Post to X",
+      "post_bluesky": "Post on Bluesky"
     }
   }
 }
