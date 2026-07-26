@@ -75,13 +75,19 @@ export async function searchPrintfulProducts(
   return { ok: true, results: matches };
 }
 
+export interface MerchColourOption {
+  name: string;
+  /** Hex swatch, e.g. "#1a1a1a" — null when Printful doesn't supply one. */
+  hex: string | null;
+}
+
 export interface PrintfulProductOptions {
   printfulProductId: number;
   title: string;
   brand: string | null;
   /** The Printful catalogue currency (what Printful bills the platform in). */
   currency: string;
-  colours: string[];
+  colours: MerchColourOption[];
   sizes: string[];
   variantCount: number;
 }
@@ -96,9 +102,16 @@ export async function getPrintfulProductOptions(
   }
   try {
     const detail = await getCatalogProduct(client, printfulProductId);
-    const colours = Array.from(
-      new Set(detail.variants.map((v) => v.color).filter((c): c is string => Boolean(c))),
-    ).sort();
+    // De-dupe colours by name, keeping the first hex swatch seen for each.
+    const colourMap = new Map<string, string | null>();
+    for (const v of detail.variants) {
+      if (v.color && !colourMap.has(v.color)) {
+        colourMap.set(v.color, v.colorCode);
+      }
+    }
+    const colours: MerchColourOption[] = [...colourMap.entries()]
+      .map(([name, hex]) => ({ name, hex }))
+      .sort((a, b) => a.name.localeCompare(b.name));
     const sizes = Array.from(
       new Set(detail.variants.map((v) => v.size).filter((s): s is string => Boolean(s))),
     );

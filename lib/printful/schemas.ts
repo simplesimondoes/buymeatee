@@ -100,6 +100,7 @@ export function parseCatalogProductDetail(result: unknown): PrintfulProductDetai
         name: asString(variant.name, "variant.name"),
         size: optionalString(variant.size),
         color: optionalString(variant.color),
+        colorCode: optionalString(variant.color_code),
         priceMinor: parseMajorDecimalToMinor(variant.price, "variant.price"),
         currency: (optionalString(variant.currency) ?? productCurrency).toLowerCase(),
         inStock: asBoolean(variant.in_stock),

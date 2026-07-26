@@ -31,6 +31,8 @@ export interface PrintfulCatalogVariant {
   name: string;
   size: string | null;
   color: string | null;
+  /** Hex colour swatch (e.g. "#1a1a1a"), when Printful supplies it. */
+  colorCode: string | null;
   /** Wholesale price in MINOR units of `currency`, parsed from the API string. */
   priceMinor: number;
   currency: string;

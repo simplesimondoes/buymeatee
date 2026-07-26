@@ -20,7 +20,7 @@ interface LoadedOptions {
   printfulProductId: number;
   title: string;
   currency: string;
-  colours: string[];
+  colours: { name: string; hex: string | null }[];
   sizes: string[];
   variantCount: number;
 }
@@ -73,7 +73,7 @@ export function AdminCatalogueManager({
   const [colours, setColours] = useState<Set<string>>(new Set());
   const [sizes, setSizes] = useState<Set<string>>(new Set());
   const [placements, setPlacements] = useState("front");
-  const [minPrice, setMinPrice] = useState("2000");
+  const [minPrice, setMinPrice] = useState("20.00");
   const [enabled, setEnabled] = useState(false);
 
   function toggle(set: Set<string>, value: string): Set<string> {
@@ -139,7 +139,7 @@ export function AdminCatalogueManager({
           colours: [...colours],
           sizes: [...sizes],
           placements: placements.split(",").map((p) => p.trim()).filter(Boolean),
-          minimumRetailPriceMinor: Number.parseInt(minPrice, 10) || 0,
+          minimumRetailPriceMinor: Math.round((Number.parseFloat(minPrice) || 0) * 100),
           enabled,
         }),
       });
@@ -248,7 +248,7 @@ export function AdminCatalogueManager({
                 </label>
                 <label>
                   <span className="mb-1 block text-sm text-ink/70">{t("merchCatalogue.minPriceLabel")}</span>
-                  <input className={input} value={minPrice} inputMode="numeric" onChange={(e) => setMinPrice(e.target.value)} />
+                  <input className={input} value={minPrice} inputMode="decimal" placeholder="20.00" onChange={(e) => setMinPrice(e.target.value)} />
                 </label>
                 <label className="sm:col-span-2">
                   <span className="mb-1 block text-sm text-ink/70">{t("merchCatalogue.placementsLabel")}</span>
@@ -256,19 +256,30 @@ export function AdminCatalogueManager({
                 </label>
               </div>
 
+              <p className="text-sm text-ink/60">{t("merchCatalogue.selectHint")}</p>
+
               <fieldset>
                 <legend className="mb-2 text-sm text-ink/70">{t("merchCatalogue.coloursLabel")}</legend>
                 <div className="flex flex-wrap gap-2">
-                  {loaded.colours.map((c) => (
-                    <button
-                      type="button"
-                      key={c}
-                      onClick={() => setColours((s) => toggle(s, c))}
-                      className={`rounded-full border px-3 py-1 text-sm ${colours.has(c) ? "border-forest bg-forest/10 text-forest" : "border-stone text-ink/70"}`}
-                    >
-                      {c}
-                    </button>
-                  ))}
+                  {loaded.colours.map((c) => {
+                    const on = colours.has(c.name);
+                    return (
+                      <button
+                        type="button"
+                        key={c.name}
+                        aria-pressed={on}
+                        onClick={() => setColours((s) => toggle(s, c.name))}
+                        className={`inline-flex items-center gap-2 rounded-full border px-3 py-1 text-sm ${on ? "border-forest bg-forest/10 text-forest" : "border-stone text-ink/70"}`}
+                      >
+                        <span
+                          className="inline-block h-4 w-4 shrink-0 rounded-full border border-ink/20"
+                          style={{ backgroundColor: c.hex ?? "transparent" }}
+                        />
+                        {c.name}
+                        {on ? <span aria-hidden className="text-forest">✓</span> : null}
+                      </button>
+                    );
+                  })}
                 </div>
               </fieldset>
 
@@ -279,10 +290,12 @@ export function AdminCatalogueManager({
                     <button
                       type="button"
                       key={s}
+                      aria-pressed={sizes.has(s)}
                       onClick={() => setSizes((prev) => toggle(prev, s))}
-                      className={`rounded-full border px-3 py-1 text-sm ${sizes.has(s) ? "border-forest bg-forest/10 text-forest" : "border-stone text-ink/70"}`}
+                      className={`inline-flex items-center gap-1.5 rounded-full border px-3 py-1 text-sm ${sizes.has(s) ? "border-forest bg-forest/10 text-forest" : "border-stone text-ink/70"}`}
                     >
                       {s}
+                      {sizes.has(s) ? <span aria-hidden className="text-forest">✓</span> : null}
                     </button>
                   ))}
                 </div>

@@ -355,7 +355,7 @@
   },
   "merchCatalogue": {
     "title": "Merch catalogue",
-    "subtitle": "Curate the Printful products creators can choose from. Load a Printful product, pick the colours and sizes to expose, then add it to the catalogue.",
+    "subtitle": "Curate which Printful BASE products creators can use, and which colours/sizes to expose. Creators upload their own artwork and set prices later in the product builder — this screen has no design step.",
     "productIdLabel": "Printful product ID",
     "loadButton": "Load product",
     "loaded": "{title} — {count} variants available",
@@ -365,7 +365,7 @@
     "coloursLabel": "Colours to expose",
     "sizesLabel": "Sizes to expose",
     "placementsLabel": "Placements (comma-separated, e.g. front, back)",
-    "minPriceLabel": "Minimum retail price (minor units)",
+    "minPriceLabel": "Minimum retail price (e.g. 20.00)",
     "enabledLabel": "Enable immediately (visible to creators)",
     "saveButton": "Add to catalogue",
     "saved": "Curated with {count} variants.",
@@ -426,6 +426,7 @@
       "select": "Select",
       "variants": "variants",
       "searching": "Searching…"
-    }
+    },
+    "selectHint": "Click the colour and size chips below to choose what to expose, then Add to catalogue."
   }
 }
