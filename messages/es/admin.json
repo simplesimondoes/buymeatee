@@ -417,6 +417,15 @@
       "none": "No sales yet.",
       "reconcile": "Run reconciliation",
       "reconcileNote": "Re-drives paid orders not submitted to Printful and shipped orders awaiting a creator transfer."
+    },
+    "search": {
+      "searchLabel": "Search Printful products",
+      "searchPlaceholder": "e.g. hoodie, polo, t-shirt, mug",
+      "searchButton": "Search",
+      "noResults": "No products found. Try another term.",
+      "select": "Select",
+      "variants": "variants",
+      "searching": "Searching…"
     }
   }
 }

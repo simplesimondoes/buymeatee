@@ -5,8 +5,11 @@ import {
   upsertCuratedProduct,
 } from "@/lib/merch/catalogue";
 import { getSupabaseAdminClient } from "@/lib/supabase/admin";
-import { getCatalogProduct } from "@/lib/printful/catalogue";
+import { cache } from "react";
+
+import { getCatalogProduct, getCatalogProducts } from "@/lib/printful/catalogue";
 import { getPrintfulClientOrNull } from "@/lib/printful/client";
+import type { PrintfulCatalogListItem } from "@/lib/printful/types";
 import {
   isSupportedCurrency,
   type SupportedCurrency,
@@ -19,6 +22,58 @@ import {
  * colour×size combinations. Owner/admin-gated at the route. Never exposes the
  * full Printful catalogue to creators.
  */
+
+export interface PrintfulSearchResult {
+  id: number;
+  title: string;
+  typeName: string;
+  brand: string | null;
+  imageUrl: string | null;
+  variantCount: number;
+}
+
+// Cache the (large, ~500-item) catalogue list within a request so repeated
+// searches don't re-fetch it.
+const loadCatalogue = cache(async (): Promise<PrintfulCatalogListItem[]> => {
+  const client = getPrintfulClientOrNull();
+  if (!client) return [];
+  try {
+    return await getCatalogProducts(client);
+  } catch {
+    return [];
+  }
+});
+
+/**
+ * Search the Printful catalogue by name/type (e.g. "hoodie", "polo", "tee") so
+ * an admin never has to know a numeric product id. Returns the top matches.
+ */
+export async function searchPrintfulProducts(
+  query: string,
+): Promise<{ ok: true; results: PrintfulSearchResult[] } | { ok: false; error: string }> {
+  const client = getPrintfulClientOrNull();
+  if (!client) {
+    return { ok: false, error: "printful-not-configured" };
+  }
+  const all = await loadCatalogue();
+  const q = query.trim().toLowerCase();
+  const matches = (q
+    ? all.filter((p) =>
+        `${p.title} ${p.type} ${p.typeName} ${p.brand ?? ""}`.toLowerCase().includes(q),
+      )
+    : all
+  )
+    .slice(0, 40)
+    .map((p) => ({
+      id: p.id,
+      title: p.title,
+      typeName: p.typeName,
+      brand: p.brand,
+      imageUrl: p.imageUrl,
+      variantCount: p.variantCount,
+    }));
+  return { ok: true, results: matches };
+}
 
 export interface PrintfulProductOptions {
   printfulProductId: number;

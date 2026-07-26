@@ -42,6 +42,17 @@ export interface PrintfulProductDetail {
   variants: PrintfulCatalogVariant[];
 }
 
+/** A row from the catalogue product LIST (GET /products) — for admin search. */
+export interface PrintfulCatalogListItem {
+  id: number;
+  title: string;
+  type: string;
+  typeName: string;
+  brand: string | null;
+  imageUrl: string | null;
+  variantCount: number;
+}
+
 // --- Files -----------------------------------------------------------------
 
 export interface PrintfulFile {

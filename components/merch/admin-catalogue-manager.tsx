@@ -25,6 +25,15 @@ interface LoadedOptions {
   variantCount: number;
 }
 
+interface SearchResult {
+  id: number;
+  title: string;
+  typeName: string;
+  brand: string | null;
+  imageUrl: string | null;
+  variantCount: number;
+}
+
 const input = "min-h-11 w-full rounded-xl border border-stone bg-white px-3 text-ink focus:border-forest focus:ring-2 focus:ring-forest/20";
 
 export function AdminCatalogueManager({
@@ -52,7 +61,8 @@ export function AdminCatalogueManager({
     });
     if (res.ok) window.location.reload();
   }
-  const [productId, setProductId] = useState("");
+  const [query, setQuery] = useState("");
+  const [results, setResults] = useState<SearchResult[] | null>(null);
   const [loaded, setLoaded] = useState<LoadedOptions | null>(null);
   const [busy, setBusy] = useState(false);
   const [message, setMessage] = useState<string | null>(null);
@@ -73,11 +83,31 @@ export function AdminCatalogueManager({
     return next;
   }
 
-  async function load() {
+  async function search() {
+    setBusy(true);
+    setMessage(null);
+    setLoaded(null);
+    try {
+      const res = await fetch(`/api/admin/merch/catalogue?q=${encodeURIComponent(query)}`);
+      const json = await res.json();
+      if (!res.ok) {
+        setMessage(t("merchCatalogue.error"));
+        setResults(null);
+      } else {
+        setResults(json.results as SearchResult[]);
+      }
+    } catch {
+      setMessage(t("merchCatalogue.error"));
+    } finally {
+      setBusy(false);
+    }
+  }
+
+  async function load(productId: number) {
     setBusy(true);
     setMessage(null);
     try {
-      const res = await fetch(`/api/admin/merch/catalogue?productId=${encodeURIComponent(productId)}`);
+      const res = await fetch(`/api/admin/merch/catalogue?productId=${productId}`);
       const json = await res.json();
       if (!res.ok) {
         setMessage(t("merchCatalogue.error"));
@@ -138,25 +168,60 @@ export function AdminCatalogueManager({
         </div>
       ) : (
         <section className="mt-6 rounded-3xl border border-stone bg-white p-6">
-          <div className="flex flex-wrap items-end gap-3">
+          <form
+            onSubmit={(e) => { e.preventDefault(); void search(); }}
+            className="flex flex-wrap items-end gap-3"
+          >
             <label className="flex-1">
-              <span className="mb-1 block text-sm text-ink/70">{t("merchCatalogue.productIdLabel")}</span>
+              <span className="mb-1 block text-sm text-ink/70">{t("merchCatalogue.search.searchLabel")}</span>
               <input
                 className={input}
-                value={productId}
-                inputMode="numeric"
-                onChange={(e) => setProductId(e.target.value)}
+                value={query}
+                placeholder={t("merchCatalogue.search.searchPlaceholder")}
+                onChange={(e) => setQuery(e.target.value)}
               />
             </label>
             <button
-              type="button"
-              onClick={load}
-              disabled={busy || !productId}
+              type="submit"
+              disabled={busy}
               className="min-h-11 rounded-full bg-forest px-5 text-sm font-medium text-white disabled:opacity-50"
             >
-              {t("merchCatalogue.loadButton")}
+              {busy && !loaded ? t("merchCatalogue.search.searching") : t("merchCatalogue.search.searchButton")}
             </button>
-          </div>
+          </form>
+
+          {results && !loaded ? (
+            results.length === 0 ? (
+              <p className="mt-4 text-sm text-ink/60">{t("merchCatalogue.search.noResults")}</p>
+            ) : (
+              <ul className="mt-4 max-h-96 space-y-2 overflow-y-auto">
+                {results.map((rp) => (
+                  <li key={rp.id} className="flex items-center gap-3 rounded-2xl border border-stone p-2">
+                    <div className="flex h-12 w-12 shrink-0 items-center justify-center overflow-hidden rounded-lg bg-mist">
+                      {rp.imageUrl ? (
+                        // eslint-disable-next-line @next/next/no-img-element
+                        <img src={rp.imageUrl} alt="" className="h-full w-full object-cover" />
+                      ) : null}
+                    </div>
+                    <div className="min-w-0 flex-1">
+                      <p className="truncate text-sm font-medium text-ink">{rp.title}</p>
+                      <p className="truncate text-xs text-ink/50">
+                        {[rp.brand, rp.typeName].filter(Boolean).join(" · ")} · {rp.variantCount} {t("merchCatalogue.search.variants")}
+                      </p>
+                    </div>
+                    <button
+                      type="button"
+                      onClick={() => load(rp.id)}
+                      disabled={busy}
+                      className="min-h-9 shrink-0 rounded-full border border-forest px-4 text-xs font-medium text-forest disabled:opacity-50"
+                    >
+                      {t("merchCatalogue.search.select")}
+                    </button>
+                  </li>
+                ))}
+              </ul>
+            )
+          ) : null}
 
           {loaded ? (
             <div className="mt-6 space-y-4">

@@ -5,6 +5,7 @@ import { apiError } from "@/lib/api/errors";
 import {
   curateProductFromPrintful,
   getPrintfulProductOptions,
+  searchPrintfulProducts,
 } from "@/lib/merch/admin-catalogue";
 import { isSupportedCurrency } from "@/lib/payments/currency";
 import { clientKeyFromHeaders, isRateLimited } from "@/lib/rate-limit";
@@ -32,10 +33,19 @@ export async function GET(request: Request) {
   const gate = await requireOwner();
   if (gate.error) return gate.error;
 
-  const productId = Number.parseInt(
-    new URL(request.url).searchParams.get("productId") ?? "",
-    10,
-  );
+  const params = new URL(request.url).searchParams;
+
+  // Search mode: ?q=hoodie → list of matching products (no id needed).
+  if (params.has("q")) {
+    const result = await searchPrintfulProducts(params.get("q") ?? "");
+    if (!result.ok) {
+      return NextResponse.json({ error: { code: "api.unavailable" }, detail: result.error }, { status: 502 });
+    }
+    return NextResponse.json({ results: result.results });
+  }
+
+  // Options mode: ?productId=71 → the chosen product's colours/sizes.
+  const productId = Number.parseInt(params.get("productId") ?? "", 10);
   if (!Number.isSafeInteger(productId) || productId <= 0) {
     return apiError("api.invalidRequest", { status: 400 });
   }

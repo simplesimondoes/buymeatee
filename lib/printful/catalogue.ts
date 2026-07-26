@@ -1,8 +1,25 @@
 import "server-only";
 
 import type { PrintfulClient } from "@/lib/printful/client";
-import { parseCatalogProductDetail } from "@/lib/printful/schemas";
-import type { PrintfulProductDetail } from "@/lib/printful/types";
+import {
+  parseCatalogProductDetail,
+  parseCatalogProductList,
+} from "@/lib/printful/schemas";
+import type {
+  PrintfulCatalogListItem,
+  PrintfulProductDetail,
+} from "@/lib/printful/types";
+
+/** The full catalogue product list (GET /products) — used for admin search. */
+export function getCatalogProducts(
+  client: PrintfulClient,
+): Promise<PrintfulCatalogListItem[]> {
+  return client.request({
+    method: "GET",
+    path: "/products",
+    parse: parseCatalogProductList,
+  });
+}
 
 /**
  * Printful catalogue reads (ADR-024). Used by the ADMIN catalogue-curation

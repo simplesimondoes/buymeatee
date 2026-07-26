@@ -12,6 +12,7 @@
 
 import { PrintfulError } from "@/lib/printful/errors";
 import type {
+  PrintfulCatalogListItem,
   PrintfulCatalogVariant,
   PrintfulFile,
   PrintfulMockupResult,
@@ -116,6 +117,22 @@ export function parseCatalogProductDetail(result: unknown): PrintfulProductDetai
     },
     variants,
   };
+}
+
+/** Parse the catalogue product LIST (GET /products) for admin search. */
+export function parseCatalogProductList(result: unknown): PrintfulCatalogListItem[] {
+  return asArray(result, "product list").map((p): PrintfulCatalogListItem => {
+    const item = asRecord(p, "product");
+    return {
+      id: asNumber(item.id, "product.id"),
+      title: asString(item.title ?? "", "product.title"),
+      type: asString(item.type ?? "", "product.type"),
+      typeName: optionalString(item.type_name) ?? "",
+      brand: optionalString(item.brand),
+      imageUrl: optionalString(item.image),
+      variantCount: typeof item.variant_count === "number" ? item.variant_count : 0,
+    };
+  });
 }
 
 export function parseFile(result: unknown): PrintfulFile {
