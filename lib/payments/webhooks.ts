@@ -340,6 +340,35 @@ async function handleCheckoutSessionCompleted(
   event: Stripe.Event,
 ): Promise<ProcessOutcome> {
   const session = event.data.object as Stripe.Checkout.Session;
+
+  // Merchandise orders use a hosted Checkout Session too (separate charge).
+  if (session.metadata?.order_type === "merch") {
+    const merchPiId = extractId(
+      session.payment_intent as string | { id: string } | null,
+    );
+    if (session.payment_status !== "paid" || !merchPiId) {
+      return { status: "skipped", note: "merch session not paid" };
+    }
+    const full = await retrievePaymentIntentWithCharge(merchPiId);
+    const charge = full.latest_charge;
+    const chargeObject = charge && typeof charge !== "string" ? charge : null;
+    const outcome = await applyMerchPaymentSucceeded({
+      paymentIntentId: full.id,
+      metadataOrderId: session.metadata?.order_id ?? full.metadata?.order_id ?? null,
+      livemode: event.livemode,
+      amount: full.amount,
+      currency: full.currency,
+      chargeId: chargeObject?.id ?? null,
+      balanceTransactionId:
+        chargeObject && typeof chargeObject.balance_transaction === "string"
+          ? chargeObject.balance_transaction
+          : null,
+      transferGroup: full.transfer_group ?? null,
+      eventId: event.id,
+    });
+    return merchOutcomeToProcessOutcome(outcome);
+  }
+
   const gift = await giftFromSession(session);
   if (!gift) {
     logPaymentEvent("warn", "webhook.unknown_session", {

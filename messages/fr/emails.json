@@ -32,5 +32,33 @@
     "nextStep": "Rends-toi sur ton tableau de bord pour le marquer comme atteint et partager ce moment avec les supporters qui t'y ont amené.",
     "cta": "Voir ton objectif",
     "fallbackTitle": "ton objectif"
+  },
+  "merchOrderConfirmation": {
+    "subject": "Votre commande BuyMeATee {ref} est confirmée",
+    "preheader": "Commande {ref} confirmée",
+    "heading": "Commande confirmée",
+    "intro": "Merci pour votre commande ! Elle passe maintenant en production.",
+    "orderRefLabel": "Référence de commande",
+    "totalLabel": "Total",
+    "productionNotice": "Votre article est fabriqué spécialement pour vous et expédié via le réseau de production international de Printful.",
+    "deliveryNotice": "Les dates de livraison estimées sont fournies par notre partenaire de production et peuvent changer une fois la production lancée."
+  },
+  "merchOrderShipped": {
+    "subject": "Votre commande BuyMeATee {ref} a été expédiée",
+    "preheader": "La commande {ref} est en route",
+    "heading": "En route",
+    "intro": "Bonne nouvelle — votre commande {ref} a été expédiée.",
+    "carrierLabel": "Transporteur",
+    "trackingCta": "Suivre votre colis",
+    "deliveryNotice": "Les dates de livraison estimées sont fournies par notre partenaire et peuvent changer après l’expédition."
+  },
+  "merchSaleRecorded": {
+    "subject": "Vous avez vendu un produit sur BuyMeATee",
+    "preheader": "Un soutien a acheté {product}",
+    "heading": "Vous avez vendu un produit",
+    "body": "Un soutien vient d’acheter {product}. Votre bénéfice de {profit} sera transféré une fois la commande expédiée.",
+    "transferNote": "Vous gardez le bénéfice — production, expédition et frais sont gérés pour vous.",
+    "cta": "Voir votre boutique",
+    "fallbackProduct": "votre produit"
   }
 }

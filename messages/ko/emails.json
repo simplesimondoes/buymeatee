@@ -32,5 +32,33 @@
     "nextStep": "대시보드에서 달성 완료로 표시하고, 여기까지 함께해 준 서포터들과 이 순간을 나눠 보세요.",
     "cta": "목표 보기",
     "fallbackTitle": "내 목표"
+  },
+  "merchOrderConfirmation": {
+    "subject": "BuyMeATee 주문 {ref}이(가) 확정되었습니다",
+    "preheader": "주문 {ref} 확정",
+    "heading": "주문 확정",
+    "intro": "주문해 주셔서 감사합니다! 이제 제작에 들어갑니다.",
+    "orderRefLabel": "주문 번호",
+    "totalLabel": "합계",
+    "productionNotice": "상품은 당신을 위해 특별히 제작되어 Printful의 국제 생산 네트워크를 통해 배송됩니다.",
+    "deliveryNotice": "예상 배송일은 생산 파트너가 제공하며 생산이 시작된 후 변경될 수 있습니다."
+  },
+  "merchOrderShipped": {
+    "subject": "BuyMeATee 주문 {ref}이(가) 배송되었습니다",
+    "preheader": "주문 {ref} 배송 중",
+    "heading": "배송 중",
+    "intro": "좋은 소식입니다 — 주문 {ref}이(가) 배송되었습니다.",
+    "carrierLabel": "배송사",
+    "trackingCta": "배송 조회",
+    "deliveryNotice": "예상 배송일은 생산 파트너가 제공하며 배송 후 변경될 수 있습니다."
+  },
+  "merchSaleRecorded": {
+    "subject": "BuyMeATee에서 굿즈가 판매되었습니다",
+    "preheader": "서포터가 {product}을(를) 구매",
+    "heading": "굿즈가 판매되었습니다",
+    "body": "서포터가 방금 {product}을(를) 구매했습니다. 수익 {profit}은(는) 주문이 배송되면 송금됩니다.",
+    "transferNote": "수익은 당신의 것입니다 — 제작, 배송, 수수료는 저희가 처리합니다.",
+    "cta": "내 상점 보기",
+    "fallbackProduct": "당신의 굿즈"
   }
 }

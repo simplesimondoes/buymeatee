@@ -1,5 +1,6 @@
 import { getTranslations } from "next-intl/server";
 
+import { Link } from "@/i18n/navigation";
 import type { AppLocale } from "@/i18n/locales";
 import { formatMinorAmount } from "@/lib/i18n/format";
 import type { MerchProductRow } from "@/lib/merch/products";
@@ -14,9 +15,11 @@ import type { MerchProductRow } from "@/lib/merch/products";
 export async function PublicMerch({
   products,
   locale,
+  username,
 }: {
   products: MerchProductRow[];
   locale: AppLocale;
+  username: string;
 }) {
   if (products.length === 0) {
     return null;
@@ -35,18 +38,28 @@ export async function PublicMerch({
         {products.map((product) => (
           <li
             key={product.id}
-            className="overflow-hidden rounded-3xl border border-stone bg-white"
+            className="overflow-hidden rounded-3xl border border-stone bg-white transition-colors hover:border-forest"
           >
-            <div className="flex aspect-square items-center justify-center bg-mist text-ink/30">
-              {/* Mockup image slots in here once mockups are generated. */}
-              <span className="text-sm">{product.title}</span>
-            </div>
-            <div className="flex items-center justify-between gap-3 p-4">
-              <h3 className="text-sm font-medium text-ink">{product.title}</h3>
-              <span className="shrink-0 text-sm font-semibold text-forest">
-                {formatMinorAmount(product.retail_price_minor, product.currency, locale)}
-              </span>
-            </div>
+            <Link href={`/t/${username}/shop/${product.slug}`} className="block">
+              <div className="flex aspect-square items-center justify-center bg-mist text-ink/30">
+                {product.placement_configuration?.previewUrl ? (
+                  // eslint-disable-next-line @next/next/no-img-element
+                  <img
+                    src={product.placement_configuration.previewUrl}
+                    alt={product.title}
+                    className="h-full w-full object-contain"
+                  />
+                ) : (
+                  <span className="text-sm">{product.title}</span>
+                )}
+              </div>
+              <div className="flex items-center justify-between gap-3 p-4">
+                <h3 className="text-sm font-medium text-ink">{product.title}</h3>
+                <span className="shrink-0 text-sm font-semibold text-forest">
+                  {formatMinorAmount(product.retail_price_minor, product.currency, locale)}
+                </span>
+              </div>
+            </Link>
           </li>
         ))}
       </ul>

@@ -32,5 +32,33 @@
     "nextStep": "ダッシュボードで達成済みにして、ここまで支えてくれたサポーターとこの瞬間を共有しましょう。",
     "cta": "目標を見る",
     "fallbackTitle": "あなたの目標"
+  },
+  "merchOrderConfirmation": {
+    "subject": "BuyMeATee のご注文 {ref} が確定しました",
+    "preheader": "ご注文 {ref} が確定",
+    "heading": "ご注文確定",
+    "intro": "ご注文ありがとうございます。ただいま製作に入ります。",
+    "orderRefLabel": "注文番号",
+    "totalLabel": "合計",
+    "productionNotice": "商品はあなたのために特別に製作し、Printful の国際生産ネットワークを通じて発送します。",
+    "deliveryNotice": "お届け予定日は生産パートナーが提供するもので、生産開始後に変更される場合があります。"
+  },
+  "merchOrderShipped": {
+    "subject": "BuyMeATee のご注文 {ref} を発送しました",
+    "preheader": "ご注文 {ref} は配送中です",
+    "heading": "配送中",
+    "intro": "朗報です。ご注文 {ref} を発送しました。",
+    "carrierLabel": "配送業者",
+    "trackingCta": "荷物を追跡",
+    "deliveryNotice": "お届け予定日は生産パートナーが提供するもので、発送後に変更される場合があります。"
+  },
+  "merchSaleRecorded": {
+    "subject": "BuyMeATee でグッズが売れました",
+    "preheader": "サポーターが {product} を購入",
+    "heading": "グッズが売れました",
+    "body": "サポーターが {product} を購入しました。あなたの利益 {profit} は、注文が発送された時点で送金されます。",
+    "transferNote": "利益はあなたのもの。製作・配送・手数料は当社が対応します。",
+    "cta": "ショップを見る",
+    "fallbackProduct": "あなたのグッズ"
   }
 }

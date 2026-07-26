@@ -86,6 +86,10 @@ export function parseMajorDecimalToMinor(value: unknown, ctx: string): number {
 export function parseCatalogProductDetail(result: unknown): PrintfulProductDetail {
   const record = asRecord(result, "product detail");
   const product = asRecord(record.product, "product");
+  // Printful returns catalogue prices in the account/store currency at the
+  // PRODUCT level; individual variants carry no currency field. Use the
+  // product currency for every variant (validated against the live API).
+  const productCurrency = optionalString(product.currency) ?? "USD";
   const variants = asArray(record.variants, "variants").map(
     (v): PrintfulCatalogVariant => {
       const variant = asRecord(v, "variant");
@@ -96,7 +100,7 @@ export function parseCatalogProductDetail(result: unknown): PrintfulProductDetai
         size: optionalString(variant.size),
         color: optionalString(variant.color),
         priceMinor: parseMajorDecimalToMinor(variant.price, "variant.price"),
-        currency: asString(variant.currency ?? "USD", "variant.currency"),
+        currency: (optionalString(variant.currency) ?? productCurrency).toLowerCase(),
         inStock: asBoolean(variant.in_stock),
       };
     },

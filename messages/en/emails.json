@@ -32,5 +32,33 @@
     "nextStep": "Head to your dashboard to mark it complete and share the moment with the supporters who got you there.",
     "cta": "View your goal",
     "fallbackTitle": "your goal"
+  },
+  "merchOrderConfirmation": {
+    "subject": "Your BuyMeATee order {ref} is confirmed",
+    "preheader": "Order {ref} confirmed",
+    "heading": "Order confirmed",
+    "intro": "Thanks for your order! It is now going into production.",
+    "orderRefLabel": "Order reference",
+    "totalLabel": "Total",
+    "productionNotice": "Your item is made especially for you and fulfilled through Printful’s international production network.",
+    "deliveryNotice": "Estimated delivery dates are provided by our fulfilment partner and may change after production begins."
+  },
+  "merchOrderShipped": {
+    "subject": "Your BuyMeATee order {ref} has shipped",
+    "preheader": "Order {ref} is on its way",
+    "heading": "On its way",
+    "intro": "Good news — your order {ref} has shipped.",
+    "carrierLabel": "Carrier",
+    "trackingCta": "Track your parcel",
+    "deliveryNotice": "Estimated delivery dates are provided by our fulfilment partner and may change once shipped."
+  },
+  "merchSaleRecorded": {
+    "subject": "You made a merch sale on BuyMeATee",
+    "preheader": "A supporter bought {product}",
+    "heading": "You sold some merch",
+    "body": "A supporter just bought {product}. Your profit of {profit} will be transferred once the order ships.",
+    "transferNote": "You keep the profit — production, shipping and fees are handled for you.",
+    "cta": "View your shop",
+    "fallbackProduct": "your merch"
   }
 }

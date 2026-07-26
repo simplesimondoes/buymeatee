@@ -1,29 +1,21 @@
-import type { ProductConfigurationInput } from "@/lib/merch/product-validation";
+import type { CreateProductInput } from "@/lib/merch/products";
+import type { SupportedCurrency } from "@/lib/payments/currency";
 
 /**
  * Structural parsing of untrusted product input from the API (ADR-024).
  *
  * This only coerces + type-checks the JSON shape; the business rules (curated
  * allow-lists, margin, slug format) live in validateProductConfiguration and
- * run inside the service layer. Keeping the two separate means the route can
- * reject malformed requests early with a generic code, while the richer,
- * field-level validation errors come back as stable merch codes.
+ * run inside the service layer. The client sends the chosen colours + sizes;
+ * the real Printful variant ids are resolved server-side in createProduct.
  */
 
-export interface ParsedProductInput extends ProductConfigurationInput {
-  curatedProductId: string;
-}
-
 export type ProductInputParseResult =
-  | { ok: true; data: ParsedProductInput }
+  | { ok: true; data: CreateProductInput }
   | { ok: false };
 
 function isStringArray(value: unknown): value is string[] {
   return Array.isArray(value) && value.every((v) => typeof v === "string");
-}
-
-function isNumberArray(value: unknown): value is number[] {
-  return Array.isArray(value) && value.every((v) => typeof v === "number" && Number.isInteger(v));
 }
 
 export function parseProductInput(payload: unknown): ProductInputParseResult {
@@ -40,7 +32,6 @@ export function parseProductInput(payload: unknown): ProductInputParseResult {
     typeof p.retailPriceMinor !== "number" ||
     !Number.isInteger(p.retailPriceMinor) ||
     typeof p.placement !== "string" ||
-    !isNumberArray(p.selectedVariantIds) ||
     !isStringArray(p.selectedColours) ||
     !isStringArray(p.selectedSizes)
   ) {
@@ -57,12 +48,12 @@ export function parseProductInput(payload: unknown): ProductInputParseResult {
       title: p.title,
       slug: p.slug,
       description: (p.description as string | null | undefined) ?? null,
-      currency: p.currency as ParsedProductInput["currency"],
+      currency: p.currency as SupportedCurrency,
       retailPriceMinor: p.retailPriceMinor,
       placement: p.placement,
-      selectedVariantIds: p.selectedVariantIds,
       selectedColours: p.selectedColours,
       selectedSizes: p.selectedSizes,
+      artworkFileId: typeof p.artworkFileId === "string" ? p.artworkFileId : null,
     },
   };
 }

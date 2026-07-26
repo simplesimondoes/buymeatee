@@ -32,5 +32,33 @@
     "nextStep": "Geh in dein Dashboard, markiere es als abgeschlossen und teile den Moment mit den Unterstützer:innen, die dich dorthin gebracht haben.",
     "cta": "Ziel ansehen",
     "fallbackTitle": "dein Ziel"
+  },
+  "merchOrderConfirmation": {
+    "subject": "Deine BuyMeATee-Bestellung {ref} ist bestätigt",
+    "preheader": "Bestellung {ref} bestätigt",
+    "heading": "Bestellung bestätigt",
+    "intro": "Danke für deine Bestellung! Sie geht jetzt in Produktion.",
+    "orderRefLabel": "Bestellreferenz",
+    "totalLabel": "Gesamt",
+    "productionNotice": "Dein Artikel wird eigens für dich angefertigt und über Printfuls internationales Produktionsnetzwerk versandt.",
+    "deliveryNotice": "Die voraussichtlichen Liefertermine stammen von unserem Fulfilment-Partner und können sich nach Produktionsbeginn ändern."
+  },
+  "merchOrderShipped": {
+    "subject": "Deine BuyMeATee-Bestellung {ref} wurde versandt",
+    "preheader": "Bestellung {ref} ist unterwegs",
+    "heading": "Unterwegs",
+    "intro": "Gute Nachrichten — deine Bestellung {ref} wurde versandt.",
+    "carrierLabel": "Versanddienstleister",
+    "trackingCta": "Paket verfolgen",
+    "deliveryNotice": "Die voraussichtlichen Liefertermine stammen von unserem Fulfilment-Partner und können sich nach dem Versand ändern."
+  },
+  "merchSaleRecorded": {
+    "subject": "Du hast Merch auf BuyMeATee verkauft",
+    "preheader": "Ein Unterstützer hat {product} gekauft",
+    "heading": "Du hast Merch verkauft",
+    "body": "Ein Unterstützer hat gerade {product} gekauft. Dein Gewinn von {profit} wird überwiesen, sobald die Bestellung versandt ist.",
+    "transferNote": "Du behältst den Gewinn — Produktion, Versand und Gebühren übernehmen wir.",
+    "cta": "Deinen Shop ansehen",
+    "fallbackProduct": "deinem Merch"
   }
 }

@@ -1,7 +1,9 @@
 "use client";
 
+import { useState } from "react";
 import { useLocale, useTranslations } from "next-intl";
 
+import { Link } from "@/i18n/navigation";
 import type { MerchProductRow } from "@/lib/merch/products";
 import { formatMinorAmount } from "@/lib/i18n/format";
 import type { AppLocale } from "@/i18n/locales";
@@ -24,12 +26,58 @@ export function MerchManager({
 }) {
   const t = useTranslations("shop");
   const locale = useLocale() as AppLocale;
+  const [busy, setBusy] = useState<string | null>(null);
+
+  async function act(productId: string, url: string, body: object) {
+    setBusy(productId);
+    try {
+      const res = await fetch(url, {
+        method: "POST",
+        headers: { "content-type": "application/json" },
+        body: JSON.stringify(body),
+      });
+      if (res.ok) window.location.reload();
+    } finally {
+      setBusy(null);
+    }
+  }
+
+  function actionsFor(p: MerchProductRow) {
+    const base = `/api/merch/products/${p.id}`;
+    const btns: { label: string; run: () => void }[] = [];
+    if (p.status === "draft" && p.artwork_file_id && p.mockup_status !== "ready") {
+      btns.push({ label: t("dashboard.actions.generatePreview"), run: () => act(p.id, `${base}/lifecycle`, { action: "preview" }) });
+    }
+    if ((p.status === "draft" || p.status === "changes_requested") && p.mockup_status === "ready") {
+      btns.push({ label: t("dashboard.actions.submitReview"), run: () => act(p.id, `${base}/submit`, {}) });
+    }
+    if (p.status === "approved") {
+      btns.push({ label: t("dashboard.actions.publish"), run: () => act(p.id, `${base}/lifecycle`, { action: "publish" }) });
+    }
+    if (p.status === "published") {
+      btns.push({ label: t("dashboard.actions.pause"), run: () => act(p.id, `${base}/lifecycle`, { action: "pause" }) });
+    }
+    if (p.status === "paused") {
+      btns.push({ label: t("dashboard.actions.resume"), run: () => act(p.id, `${base}/lifecycle`, { action: "resume" }) });
+    }
+    return btns;
+  }
 
   return (
     <main className="mx-auto w-full max-w-4xl px-4 py-8 sm:px-6">
-      <header className="mb-6">
-        <h1 className="font-serif text-3xl text-ink">{t("dashboard.title")}</h1>
-        <p className="mt-2 max-w-2xl text-ink/70">{t("dashboard.subtitle")}</p>
+      <header className="mb-6 flex flex-wrap items-start justify-between gap-4">
+        <div>
+          <h1 className="font-serif text-3xl text-ink">{t("dashboard.title")}</h1>
+          <p className="mt-2 max-w-2xl text-ink/70">{t("dashboard.subtitle")}</p>
+        </div>
+        {merchEnabled && !unavailable ? (
+          <Link
+            href="/dashboard/merch/new"
+            className="min-h-11 shrink-0 rounded-full bg-forest px-5 text-sm font-medium text-white inline-flex items-center"
+          >
+            {t("wizard.createButton")}
+          </Link>
+        ) : null}
       </header>
 
       {!merchEnabled ? (
@@ -39,7 +87,6 @@ export function MerchManager({
       ) : products.length === 0 ? (
         <div className="rounded-3xl border border-stone bg-white p-8 text-center">
           <p className="text-ink/70">{t("dashboard.empty")}</p>
-          <p className="mt-3 text-sm text-ink/50">{t("dashboard.builderComingSoon")}</p>
         </div>
       ) : (
         <section aria-label={t("dashboard.productsHeading")}>
@@ -76,10 +123,24 @@ export function MerchManager({
                     </div>
                   )}
                 </dl>
+                {actionsFor(product).length > 0 && (
+                  <div className="mt-4 flex flex-wrap gap-2">
+                    {actionsFor(product).map((a) => (
+                      <button
+                        key={a.label}
+                        type="button"
+                        disabled={busy === product.id}
+                        onClick={a.run}
+                        className="min-h-9 rounded-full border border-forest px-4 text-xs font-medium text-forest disabled:opacity-50"
+                      >
+                        {a.label}
+                      </button>
+                    ))}
+                  </div>
+                )}
               </li>
             ))}
           </ul>
-          <p className="mt-6 text-sm text-ink/50">{t("dashboard.builderComingSoon")}</p>
         </section>
       )}
     </main>

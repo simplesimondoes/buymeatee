@@ -52,6 +52,33 @@ export type MerchTransferStatus =
   | "reversed"
   | "held";
 
+export type MerchPaymentStatus =
+  | "pending"
+  | "processing"
+  | "paid"
+  | "failed"
+  | "refunded"
+  | "partially_refunded"
+  | "disputed";
+
+export type MerchFulfilmentStatus =
+  | "not_submitted"
+  | "submitted"
+  | "confirmed"
+  | "in_production"
+  | "partially_shipped"
+  | "shipped"
+  | "delivered"
+  | "cancelled"
+  | "on_hold"
+  | "failed";
+
+export type MerchRefundStatus =
+  | "none"
+  | "refund_pending"
+  | "partially_refunded"
+  | "refunded";
+
 /** Moderation reason codes (spec §24). */
 export type MerchModerationReason =
   | "copyright_or_trademark"

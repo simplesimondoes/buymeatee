@@ -2,6 +2,9 @@ import "server-only";
 
 import { getMerchPricingConfig } from "@/lib/merch/config";
 import { getCuratedProductByIdInternal } from "@/lib/merch/catalogue";
+import { calculateMerchPricing } from "@/lib/merch/pricing";
+import { getCatalogProduct } from "@/lib/printful/catalogue";
+import { getPrintfulClientOrNull } from "@/lib/printful/client";
 import {
   validateProductConfiguration,
   type ProductConfigurationInput,
@@ -37,6 +40,7 @@ export interface MerchProductRow {
   status: MerchProductStatus;
   artwork_file_id: string | null;
   placement: string | null;
+  placement_configuration: { previewUrl?: string | null } | null;
   selected_variant_ids: number[] | null;
   selected_colours: string[] | null;
   selected_sizes: string[] | null;
@@ -55,7 +59,7 @@ export interface MerchProductRow {
 }
 
 const PRODUCT_COLUMNS =
-  "id, creator_id, curated_product_id, title, slug, description, status, artwork_file_id, placement, selected_variant_ids, selected_colours, selected_sizes, currency, retail_price_minor, estimated_printful_cost_minor, estimated_platform_fee_minor, estimated_creator_profit_minor, mockup_status, moderation_status, moderation_notes, version, published_at, created_at, updated_at";
+  "id, creator_id, curated_product_id, title, slug, description, status, artwork_file_id, placement, placement_configuration, selected_variant_ids, selected_colours, selected_sizes, currency, retail_price_minor, estimated_printful_cost_minor, estimated_platform_fee_minor, estimated_creator_profit_minor, mockup_status, moderation_status, moderation_notes, version, published_at, created_at, updated_at";
 
 export type ProductMutationResult =
   | { ok: true; product: MerchProductRow }
@@ -112,21 +116,120 @@ export async function getPublishedProductsForCreator(
   return (data as MerchProductRow[]) ?? [];
 }
 
+/** Input for creating a product — variant ids are resolved server-side. */
+export type CreateProductInput = Omit<ProductConfigurationInput, "selectedVariantIds"> & {
+  curatedProductId: string;
+  /** Optional uploaded artwork to attach (from /api/merch/artwork). */
+  artworkFileId?: string | null;
+};
+
+/**
+ * Resolve the real Printful variant ids (and the worst-case unit cost) for the
+ * chosen colour×size combinations, restricted to the curated allow-list. One
+ * Printful call. Returns empty ids when Printful is unavailable or nothing
+ * matches.
+ */
+async function resolveSelectedVariants(
+  printfulProductId: number,
+  allowedVariantIds: number[],
+  colours: string[],
+  sizes: string[],
+): Promise<{ variantIds: number[]; unitCostMinor: number | null }> {
+  const client = getPrintfulClientOrNull();
+  if (!client) {
+    return { variantIds: [], unitCostMinor: null };
+  }
+  try {
+    const detail = await getCatalogProduct(client, printfulProductId);
+    const allowed = new Set(allowedVariantIds);
+    const colourSet = new Set(colours);
+    const sizeSet = new Set(sizes);
+    const matched = detail.variants.filter(
+      (v) =>
+        allowed.has(v.id) &&
+        (v.color ? colourSet.has(v.color) : false) &&
+        (v.size ? sizeSet.has(v.size) : false),
+    );
+    const costs = matched.map((v) => v.priceMinor);
+    return {
+      variantIds: matched.map((v) => v.id),
+      unitCostMinor: costs.length > 0 ? Math.max(...costs) : null,
+    };
+  } catch {
+    return { variantIds: [], unitCostMinor: null };
+  }
+}
+
+/** A single published product for the public shop, by creator + slug. */
+export async function getPublishedProductBySlug(
+  creatorId: string,
+  slug: string,
+): Promise<MerchProductRow | null> {
+  const supabase = getSupabaseAnonClient();
+  const { data } = await supabase
+    .from("merch_products")
+    .select(PRODUCT_COLUMNS)
+    .eq("creator_id", creatorId)
+    .eq("slug", slug)
+    .eq("status", "published")
+    .maybeSingle();
+  return (data as MerchProductRow | null) ?? null;
+}
+
 /** Create a draft product against a curated product the admin has enabled. */
 export async function createProduct(
   userId: string,
-  input: ProductConfigurationInput & { curatedProductId: string },
+  input: CreateProductInput,
 ): Promise<ProductMutationResult> {
   try {
     const curated = await getCuratedProductByIdInternal(input.curatedProductId);
     if (!curated || !curated.enabled) {
       return { ok: false, reason: "curated_unavailable" };
     }
-    // Validate selections against the curated allow-lists. The margin check is
-    // skipped here (Printful cost not resolved yet); it runs at submit time.
-    const validation = validateProductConfiguration(input, curated, getMerchPricingConfig());
+
+    // Resolve the real Printful variant ids for the chosen colour×size, plus a
+    // worst-case unit cost for the margin check and stored estimates.
+    const { variantIds, unitCostMinor } = await resolveSelectedVariants(
+      curated.printfulCatalogProductId,
+      curated.allowedVariantIds,
+      input.selectedColours,
+      input.selectedSizes,
+    );
+    if (variantIds.length === 0) {
+      return { ok: false, reason: "invalid_configuration", errors: ["no-variants-selected"] };
+    }
+
+    const fullInput: ProductConfigurationInput = { ...input, selectedVariantIds: variantIds };
+    const printfulUnitCostMinor = unitCostMinor;
+    const validation = validateProductConfiguration(
+      fullInput,
+      curated,
+      getMerchPricingConfig(),
+      printfulUnitCostMinor ?? undefined,
+    );
     if (!validation.ok) {
       return { ok: false, reason: "invalid_configuration", errors: validation.errors };
+    }
+
+    // Compute the estimate to store (null cost → estimates stay null).
+    let estCost: number | null = null;
+    let estFee: number | null = null;
+    let estProfit: number | null = null;
+    if (printfulUnitCostMinor !== null) {
+      const pricing = calculateMerchPricing(
+        {
+          currency: input.currency,
+          retailUnitPriceMinor: input.retailPriceMinor,
+          quantity: 1,
+          printfulUnitCostMinor,
+        },
+        getMerchPricingConfig(),
+      );
+      if (pricing.ok) {
+        estCost = printfulUnitCostMinor;
+        estFee = pricing.breakdown.platformFeeMinor;
+        estProfit = pricing.breakdown.creatorProfitMinor;
+      }
     }
 
     const supabase = await getSupabaseServerClient();
@@ -139,8 +242,9 @@ export async function createProduct(
         slug: input.slug,
         description: input.description ?? null,
         status: "draft",
+        artwork_file_id: input.artworkFileId ?? null,
         placement: input.placement,
-        selected_variant_ids: input.selectedVariantIds,
+        selected_variant_ids: variantIds,
         selected_colours: input.selectedColours,
         selected_sizes: input.selectedSizes,
         currency: input.currency,
@@ -152,7 +256,30 @@ export async function createProduct(
       return { ok: false, reason: "unavailable" };
     }
     await markProfileAsCreator(userId);
-    return { ok: true, product: data as MerchProductRow };
+
+    // Estimates are service-role only (no client grant), so set them with the
+    // admin client after the draft is created. Best-effort — a failure here
+    // just leaves the estimates null (shown as "—" until recomputed).
+    let product = data as MerchProductRow;
+    if (estProfit !== null) {
+      try {
+        const admin = getSupabaseAdminClient();
+        const { data: updated } = await admin
+          .from("merch_products")
+          .update({
+            estimated_printful_cost_minor: estCost,
+            estimated_platform_fee_minor: estFee,
+            estimated_creator_profit_minor: estProfit,
+          })
+          .eq("id", product.id)
+          .select(PRODUCT_COLUMNS)
+          .maybeSingle();
+        if (updated) product = updated as MerchProductRow;
+      } catch {
+        // Keep the draft; estimates stay null.
+      }
+    }
+    return { ok: true, product };
   } catch {
     return { ok: false, reason: "unavailable" };
   }
@@ -244,6 +371,135 @@ export async function submitForReview(
       .eq("creator_id", userId)
       .eq("id", productId)
       .eq("status", existing.status)
+      .select(PRODUCT_COLUMNS)
+      .maybeSingle();
+    if (error || !data) {
+      return { ok: false, reason: "unavailable" };
+    }
+    return { ok: true, product: data as MerchProductRow };
+  } catch {
+    return { ok: false, reason: "unavailable" };
+  }
+}
+
+/** Public URL of a product's artwork (covers bucket), or null. */
+async function artworkPublicUrl(artworkFileId: string | null): Promise<string | null> {
+  if (!artworkFileId) return null;
+  const admin = getSupabaseAdminClient();
+  const { data } = await admin
+    .from("merch_artwork_files")
+    .select("storage_path")
+    .eq("id", artworkFileId)
+    .maybeSingle();
+  const path = (data as { storage_path: string } | null)?.storage_path;
+  if (!path) return null;
+  return admin.storage.from("covers").getPublicUrl(path).data.publicUrl;
+}
+
+/**
+ * Mark a product's preview ready (spec §9). MVP uses the uploaded artwork as
+ * the preview image (real async Printful mockups are a documented enhancement);
+ * this stores the preview URL and flips mockup_status → ready so the product can
+ * be submitted for review. Service-role (mockup_status has no client grant).
+ */
+export async function markPreviewReady(
+  userId: string,
+  productId: string,
+): Promise<ProductMutationResult> {
+  try {
+    const existing = await getOwnProduct(userId, productId);
+    if (!existing) {
+      return { ok: false, reason: "not_found" };
+    }
+    if (!existing.artwork_file_id) {
+      return { ok: false, reason: "invalid_state" };
+    }
+    const previewUrl = await artworkPublicUrl(existing.artwork_file_id);
+    const admin = getSupabaseAdminClient();
+    const { data, error } = await admin
+      .from("merch_products")
+      .update({
+        mockup_status: "ready",
+        placement_configuration: { placement: existing.placement, previewUrl },
+      })
+      .eq("creator_id", userId)
+      .eq("id", productId)
+      .select(PRODUCT_COLUMNS)
+      .maybeSingle();
+    if (error || !data) {
+      return { ok: false, reason: "unavailable" };
+    }
+    return { ok: true, product: data as MerchProductRow };
+  } catch {
+    return { ok: false, reason: "unavailable" };
+  }
+}
+
+/**
+ * Publish an approved product (spec §11). Requires moderation approval and a
+ * ready preview. Sets status=published + published_at via the admin client
+ * (published_at has no client grant), guarded by ownership + source state.
+ */
+export async function publishProduct(
+  userId: string,
+  productId: string,
+): Promise<ProductMutationResult> {
+  try {
+    const existing = await getOwnProduct(userId, productId);
+    if (!existing) {
+      return { ok: false, reason: "not_found" };
+    }
+    if (
+      existing.status !== "approved" ||
+      existing.moderation_status !== "approved" ||
+      existing.mockup_status !== "ready"
+    ) {
+      return { ok: false, reason: "invalid_state" };
+    }
+    const admin = getSupabaseAdminClient();
+    const { data, error } = await admin
+      .from("merch_products")
+      .update({
+        status: "published" satisfies MerchProductStatus,
+        published_at: new Date().toISOString(),
+      })
+      .eq("creator_id", userId)
+      .eq("id", productId)
+      .eq("status", "approved")
+      .select(PRODUCT_COLUMNS)
+      .maybeSingle();
+    if (error || !data) {
+      return { ok: false, reason: "unavailable" };
+    }
+    return { ok: true, product: data as MerchProductRow };
+  } catch {
+    return { ok: false, reason: "unavailable" };
+  }
+}
+
+/** Pause (unpublish) or resume a product. Status is client-writable via RLS. */
+export async function setProductPaused(
+  userId: string,
+  productId: string,
+  paused: boolean,
+): Promise<ProductMutationResult> {
+  try {
+    const existing = await getOwnProduct(userId, productId);
+    if (!existing) {
+      return { ok: false, reason: "not_found" };
+    }
+    const from: MerchProductStatus = paused ? "published" : "paused";
+    const to: MerchProductStatus = paused ? "paused" : "published";
+    if (existing.status !== from) {
+      return { ok: false, reason: "invalid_state" };
+    }
+    const supabase = await getSupabaseServerClient();
+    const { data, error } = await supabase
+      .from("merch_products")
+      .update({ status: to })
+      .eq("creator_id", userId)
+      .eq("id", productId)
+      .eq("status", from)
       .select(PRODUCT_COLUMNS)
       .maybeSingle();
     if (error || !data) {

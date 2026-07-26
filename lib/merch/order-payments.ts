@@ -1,7 +1,12 @@
 import "server-only";
 
+import {
+  sendMerchOrderConfirmation,
+  sendMerchSaleRecorded,
+} from "@/lib/email/merch-notify";
 import { assertOrderTransition, canTransitionOrder } from "@/lib/merch/order-state-machine";
 import type { MerchOrderStatus } from "@/lib/merch/types";
+import type { SupportedCurrency } from "@/lib/payments/currency";
 import { getSupabaseAdminClient } from "@/lib/supabase/admin";
 
 /**
@@ -161,11 +166,13 @@ export async function markMerchOrderPaidVerified(
 }
 
 const ORDER_PAYMENT_COLUMNS =
-  "id, creator_id, currency, customer_total_minor, platform_fee_minor, creator_profit_minor, printful_total_cost_minor, livemode, status, stripe_payment_intent_id";
+  "id, public_reference, creator_id, buyer_email, currency, customer_total_minor, platform_fee_minor, creator_profit_minor, printful_total_cost_minor, livemode, status, stripe_payment_intent_id";
 
 interface OrderPaymentRow {
   id: string;
+  public_reference: string;
   creator_id: string;
+  buyer_email: string | null;
   currency: string;
   customer_total_minor: number;
   platform_fee_minor: number;
@@ -196,7 +203,7 @@ export async function applyMerchPaymentSucceeded(input: {
   if (!order) {
     return { status: "skipped", note: "no matching merch order" };
   }
-  return markMerchOrderPaidVerified(
+  const outcome = await markMerchOrderPaidVerified(
     {
       id: order.id,
       currency: order.currency,
@@ -219,6 +226,33 @@ export async function applyMerchPaymentSucceeded(input: {
     },
     input.eventId,
   );
+  // Best-effort notifications (never fail the payment path).
+  if (outcome.status === "processed") {
+    await notifyOnPaid(order);
+  }
+  return outcome;
+}
+
+async function notifyOnPaid(order: OrderPaymentRow): Promise<void> {
+  try {
+    const currency = order.currency as SupportedCurrency;
+    await Promise.allSettled([
+      sendMerchOrderConfirmation({
+        toEmail: order.buyer_email,
+        publicReference: order.public_reference,
+        total: order.customer_total_minor,
+        currency,
+      }),
+      sendMerchSaleRecorded({
+        creatorUserId: order.creator_id,
+        productTitle: "",
+        profit: order.creator_profit_minor,
+        currency,
+      }),
+    ]);
+  } catch {
+    // Notifications are best-effort; drift is fine.
+  }
 }
 
 /** Webhook entry for a failed merch PaymentIntent. */

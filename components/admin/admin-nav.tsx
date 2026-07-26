@@ -24,6 +24,7 @@ export function AdminNav({
       ? [
           { href: "/admin/analytics", label: t("nav.analytics") },
           { href: "/admin/social", label: t("nav.social") },
+          { href: "/admin/merch", label: t("nav.merch") },
         ]
       : []),
   ];

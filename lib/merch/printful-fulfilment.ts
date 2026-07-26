@@ -1,5 +1,6 @@
 import "server-only";
 
+import { sendMerchOrderShipped } from "@/lib/email/merch-notify";
 import {
   assertOrderTransition,
   canTransitionOrder,
@@ -28,9 +29,11 @@ interface OrderRow {
   id: string;
   status: MerchOrderStatus;
   first_shipped_at: string | null;
+  public_reference: string;
+  buyer_email: string | null;
 }
 
-const ORDER_COLUMNS = "id, status, first_shipped_at";
+const ORDER_COLUMNS = "id, status, first_shipped_at, public_reference, buyer_email";
 
 export async function applyPrintfulWebhookEvent(
   event: PrintfulWebhookEvent,
@@ -51,6 +54,13 @@ export async function applyPrintfulWebhookEvent(
         ...(firstShipment ? { first_shipped_at: new Date().toISOString() } : {}),
       });
       await recordEvent(order.id, "package_shipped", event, target);
+      // Best-effort customer shipping notification (never fails processing).
+      await sendMerchOrderShipped({
+        toEmail: order.buyer_email,
+        publicReference: order.public_reference,
+        carrier: event.shipment?.carrier,
+        trackingUrl: event.shipment?.trackingUrl,
+      }).catch(() => {});
       // First shipment is the default creator-profit release milestone (§17).
       const transfer = await executeCreatorTransfer(order.id);
       return { status: "processed", note: `shipment; transfer=${transfer.status}` };

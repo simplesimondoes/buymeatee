@@ -16,16 +16,18 @@ import { calculateShippingRates } from "@/lib/printful/shipping";
 import type { PrintfulRecipient } from "@/lib/printful/types";
 import { getStripeClient, isLivemode } from "@/lib/stripe/server";
 import { getSupabaseAdminClient } from "@/lib/supabase/admin";
+import { isAppLocale } from "@/i18n/locales";
+import { siteConfig } from "@/lib/site";
 
 /**
  * Merchandise checkout (ADR-024, spec §16/§17).
  *
- * Creates an immutable quote + a pending order, then a Stripe PaymentIntent on
- * the PLATFORM account using the SEPARATE charges + transfers model — there is
- * no transfer_data, so the platform collects the full customer total and the
- * creator's profit is transferred later (lib/merch/transfers.ts) only when the
- * release milestone is reached. The order is never marked paid here; that only
- * happens via the verified webhook (lib/merch/order-payments.ts).
+ * Creates an immutable quote + a pending order, then a Stripe-hosted Checkout
+ * Session on the PLATFORM account using the SEPARATE charges + transfers model —
+ * there is no transfer_data, so the platform collects the full customer total
+ * and the creator's profit is transferred later (lib/merch/transfers.ts) only
+ * when the release milestone is reached. The order is never marked paid here;
+ * that only happens via the verified webhook (lib/merch/order-payments.ts).
  *
  * Fails safe: if checkout isn't live, Printful/Stripe/Connect aren't ready, or
  * the currency doesn't match the creator's payout currency, it returns a typed
@@ -41,12 +43,18 @@ import { getSupabaseAdminClient } from "@/lib/supabase/admin";
 export interface MerchCheckoutInput {
   creatorId: string;
   productId: string;
-  variantId: number;
+  /** The chosen colour + size — resolved to a Printful variant server-side. */
+  colour: string;
+  size: string;
   quantity: number;
   recipient: PrintfulRecipient;
   currency: string;
   buyerUserId?: string | null;
   buyerEmail?: string | null;
+  /** UI locale for the Stripe Checkout page + return URLs. */
+  locale?: string;
+  /** Same-origin path to return to on cancel (the product page). */
+  cancelPath?: string;
 }
 
 export type MerchCheckoutError =
@@ -65,7 +73,7 @@ export type MerchCheckoutResult =
       ok: true;
       orderId: string;
       publicReference: string;
-      clientSecret: string;
+      checkoutUrl: string;
       breakdown: MerchPricingBreakdown;
     }
   | { ok: false; error: MerchCheckoutError };
@@ -105,7 +113,11 @@ export async function createMerchCheckout(
     if (!product) {
       return { ok: false, error: "product-unavailable" };
     }
-    if (!(product.selected_variant_ids ?? []).includes(input.variantId)) {
+    // The customer's colour/size must be offered by this product.
+    if (
+      !(product.selected_colours ?? []).includes(input.colour) ||
+      !(product.selected_sizes ?? []).includes(input.size)
+    ) {
       return { ok: false, error: "variant-not-available" };
     }
     const curated = await getCuratedProductByIdInternal(product.curated_product_id);
@@ -128,11 +140,22 @@ export async function createMerchCheckout(
       return { ok: false, error: "fulfilment-unavailable" };
     }
 
-    // Printful wholesale cost for the chosen variant (order currency — MVP).
+    // Resolve the Printful variant from the chosen colour+size (restricted to
+    // this product's curated variant set), and read its wholesale cost.
     const detail = await getCatalogProduct(printful, curated.printfulCatalogProductId);
-    const variant = detail.variants.find((v) => v.id === input.variantId);
+    const allowed = new Set(product.selected_variant_ids ?? []);
+    const variant = detail.variants.find(
+      (v) => allowed.has(v.id) && v.color === input.colour && v.size === input.size,
+    );
     if (!variant) {
       return { ok: false, error: "variant-not-available" };
+    }
+    // Printful bills the platform in its catalogue currency. If that doesn't
+    // match the creator's sell currency, the margin would mix currencies — so
+    // refuse rather than compute a wrong split. The beta runs where the two
+    // match (the Printful store currency, e.g. EUR).
+    if (variant.currency.toLowerCase() !== input.currency) {
+      return { ok: false, error: "currency-mismatch" };
     }
     const printfulUnitCostMinor = variant.priceMinor;
 
@@ -145,7 +168,7 @@ export async function createMerchCheckout(
         city: input.recipient.city,
         address1: input.recipient.address1,
       },
-      items: [{ variantId: input.variantId, quantity: input.quantity }],
+      items: [{ variantId: variant.id, quantity: input.quantity }],
       currency: input.currency,
     });
     const cheapest = rates
@@ -183,7 +206,7 @@ export async function createMerchCheckout(
       .from("merch_checkout_quotes")
       .insert({
         creator_id: input.creatorId,
-        product_configuration_checksum: `${product.id}:${product.version}:${input.variantId}:${input.quantity}`,
+        product_configuration_checksum: `${product.id}:${product.version}:${variant.id}:${input.quantity}`,
         destination_country: input.recipient.countryCode,
         destination_postcode: input.recipient.zip,
         currency: input.currency,
@@ -249,52 +272,93 @@ export async function createMerchCheckout(
       description: product.description,
       quantity: input.quantity,
       unit_price_minor: product.retail_price_minor,
-      variant_id: input.variantId,
+      variant_id: variant.id,
       variant_name: variant.name,
       size: variant.size,
       colour: variant.color,
       printful_catalog_product_id: curated.printfulCatalogProductId,
-      printful_catalog_variant_id: input.variantId,
+      printful_catalog_variant_id: variant.id,
     });
 
-    // 3. Separate-charge PaymentIntent on the platform account.
+    // 3. Stripe-hosted Checkout Session on the PLATFORM account (separate
+    //    charges + transfers: NO transfer_data, so the platform collects the
+    //    full total; the creator's profit is a separate transfer later). The
+    //    order is only ever marked paid by the verified webhook.
     const stripe = getStripeClient();
-    const intent = await stripe.paymentIntents.create(
+    const origin = siteConfig.url.replace(/\/$/, "");
+    const locale = isAppLocale(input.locale) ? input.locale : "en";
+    const cancelUrl =
+      input.cancelPath && input.cancelPath.startsWith("/")
+        ? `${origin}${input.cancelPath}`
+        : `${origin}/${locale}`;
+
+    const lineItems: Array<{
+      quantity: number;
+      price_data: {
+        currency: string;
+        unit_amount: number;
+        product_data: { name: string };
+      };
+    }> = [
       {
-        amount: b.customerTotalMinor,
-        currency: input.currency,
+        quantity: input.quantity,
+        price_data: {
+          currency: input.currency,
+          unit_amount: product.retail_price_minor,
+          product_data: { name: product.title },
+        },
+      },
+    ];
+    if (b.shippingChargedMinor > 0) {
+      lineItems.push({
+        quantity: 1,
+        price_data: {
+          currency: input.currency,
+          unit_amount: b.shippingChargedMinor,
+          product_data: { name: "Shipping" },
+        },
+      });
+    }
+
+    const session = await stripe.checkout.sessions.create(
+      {
+        mode: "payment",
+        client_reference_id: publicReference,
         payment_method_types: ["card"],
-        transfer_group: publicReference,
-        // NO transfer_data: platform keeps the funds; creator profit is a
-        // separate transfer once fulfilment reaches the release milestone.
-        description: `BuyMeATee merch order ${publicReference}`,
+        line_items: lineItems,
+        payment_intent_data: {
+          // NO transfer_data / application_fee — platform keeps the funds.
+          description: `BuyMeATee merch order ${publicReference}`,
+          metadata: {
+            order_type: "merch",
+            order_id: orderId,
+            public_order_reference: publicReference,
+            creator_id: input.creatorId,
+            environment: isLivemode() ? "live" : "test",
+          },
+        },
         metadata: {
           order_type: "merch",
           order_id: orderId,
           public_order_reference: publicReference,
-          creator_id: input.creatorId,
-          pricing_version: b.pricingVersion,
-          environment: isLivemode() ? "live" : "test",
         },
-        receipt_email: input.buyerEmail ?? undefined,
+        customer_email: input.buyerEmail ?? undefined,
+        success_url: `${origin}/${locale}/merch/orders/${publicReference}/thanks`,
+        cancel_url: cancelUrl,
       },
-      { idempotencyKey: `bmat-merch-pi-${orderId}` },
+      { idempotencyKey: `bmat-merch-checkout-${orderId}` },
     );
 
-    await supabase
-      .from("merch_orders")
-      .update({ stripe_payment_intent_id: intent.id })
-      .eq("id", orderId)
-      .eq("status", "awaiting_payment");
-
-    if (!intent.client_secret) {
+    // The webhook matches the paid session to this order via metadata.order_id,
+    // so there's no session id to persist here.
+    if (!session.url) {
       return { ok: false, error: "unavailable" };
     }
     return {
       ok: true,
       orderId,
       publicReference,
-      clientSecret: intent.client_secret,
+      checkoutUrl: session.url,
       breakdown: b,
     };
   } catch {

@@ -590,7 +590,7 @@ export default async function RecipientProfilePage({
             />
           </section>
 
-          <PublicMerch products={merch} locale={locale as AppLocale} />
+          <PublicMerch products={merch} locale={locale as AppLocale} username={profile.username} />
         </div>
 
         {/* Support panel — aligned to the name on desktop (lg:mt-24 clears the

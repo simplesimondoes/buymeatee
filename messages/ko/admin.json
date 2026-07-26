@@ -5,7 +5,8 @@
     "users": "사용자",
     "moderation": "운영 관리",
     "analytics": "애널리틱스",
-    "social": "소셜 스튜디오"
+    "social": "소셜 스튜디오",
+    "merch": "굿즈"
   },
   "meta": {
     "payments": {
@@ -350,6 +351,72 @@
       "duplicate": "복제",
       "post_x": "X에 게시",
       "post_bluesky": "Bluesky에 게시"
+    }
+  },
+  "merchCatalogue": {
+    "title": "Merch catalogue",
+    "subtitle": "Curate the Printful products creators can choose from. Load a Printful product, pick the colours and sizes to expose, then add it to the catalogue.",
+    "productIdLabel": "Printful product ID",
+    "loadButton": "Load product",
+    "loaded": "{title} — {count} variants available",
+    "slugLabel": "Slug (lowercase, hyphenated)",
+    "displayNameLabel": "Display name (optional)",
+    "currencyLabel": "Sell currency",
+    "coloursLabel": "Colours to expose",
+    "sizesLabel": "Sizes to expose",
+    "placementsLabel": "Placements (comma-separated, e.g. front, back)",
+    "minPriceLabel": "Minimum retail price (minor units)",
+    "enabledLabel": "Enable immediately (visible to creators)",
+    "saveButton": "Add to catalogue",
+    "saved": "Curated with {count} variants.",
+    "curatedHeading": "Curated products",
+    "none": "No curated products yet.",
+    "notConfigured": "Printful is not configured — set PRINTFUL_API_TOKEN.",
+    "error": "Something went wrong. Check the product ID and try again.",
+    "moderation": {
+      "pendingHeading": "Awaiting review",
+      "noPending": "Nothing awaiting review.",
+      "approve": "Approve",
+      "reject": "Reject",
+      "requestChanges": "Request changes",
+      "profitLabel": "Est. creator profit",
+      "reasonPrompt": "Reason for rejection / changes:"
+    },
+    "orders": {
+      "heading": "Recent orders",
+      "none": "No orders yet.",
+      "reference": "Reference",
+      "status": "Status",
+      "total": "Total",
+      "view": "View",
+      "detailTitle": "Order",
+      "timeline": "Timeline",
+      "items": "Items",
+      "actions": "Actions",
+      "retryFulfilment": "Retry Printful submission",
+      "retryTransfer": "Retry creator transfer",
+      "refund": "Refund order",
+      "refundConfirm": "Refund this order in full? This cannot be undone.",
+      "back": "Back to orders",
+      "printfulOrder": "Printful order",
+      "creatorProfit": "Creator profit",
+      "shipments": "Shipments",
+      "tracking": "Tracking"
+    },
+    "analytics": {
+      "heading": "Sales analytics",
+      "totalOrders": "Total orders",
+      "livePaid": "Live paid orders",
+      "testMode": "Test-mode orders",
+      "currency": "Currency",
+      "gmv": "Gross merch value",
+      "printfulCost": "Printful cost",
+      "platformFee": "Platform fee",
+      "creatorEarnings": "Creator earnings",
+      "transferred": "Transferred",
+      "none": "No sales yet.",
+      "reconcile": "Run reconciliation",
+      "reconcileNote": "Re-drives paid orders not submitted to Printful and shipped orders awaiting a creator transfer."
     }
   }
 }
