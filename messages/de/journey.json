@@ -1,0 +1,25 @@
+{
+  "sectionLabel": "Weg",
+  "heading": "Der Weg von {name}",
+  "emptyOwnerHeading": "Starte deinen Weg",
+  "emptyOwnerBody": "Teile dein erstes Update — ein Foto, ein Ergebnis, ein Meilenstein. Unterstützer:innen folgen der Geschichte gern.",
+  "writeFirst": "Poste dein erstes Update",
+  "share": "Teilen",
+  "videoTitle": "Weg-Video",
+  "likeAria": "{count, plural, =0 {Noch keine Likes} one {# Like} other {# Likes}}",
+  "commentPlaceholder": "Kommentar hinzufügen…",
+  "commentSubmit": "Kommentieren",
+  "commentSignIn": "Melde dich an, um zu kommentieren",
+  "commentDelete": "Löschen",
+  "commentError": "Dein Kommentar konnte nicht gepostet werden. Bitte versuche es noch einmal.",
+  "commenterFallback": "Unterstützer:in",
+  "milestoneDraft": {
+    "title": "{percent} % geschafft!",
+    "body": "Riesigen Dank an alle, die meinen Weg unterstützen — wir haben {percent} % von \"{goalTitle}\" erreicht. Jede Unterstützung bringt mich weiter voran. 🙏",
+    "label": "Ziel zu {percent} % erreicht"
+  },
+  "goalCreatedDraft": {
+    "title": "Neues Ziel: {goalTitle}",
+    "body": "Ich habe mir ein neues Ziel gesetzt — \"{goalTitle}\". Begleite mich und hilf mir, es zu erreichen. Jedes Tee zählt. ⛳"
+  }
+}

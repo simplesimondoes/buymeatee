@@ -1,0 +1,34 @@
+{
+  "nav": {
+    "label": "Merch"
+  },
+  "shop": {
+    "heading": "Shop",
+    "fulfilmentNotice": "Eigens für dich angefertigt und über Printfuls internationales Produktionsnetzwerk versandt.",
+    "empty": "Dieser Creator hat noch keine Merch-Artikel hinzugefügt."
+  },
+  "delivery": {
+    "estimateNotice": "Die voraussichtlichen Liefertermine stammen von unserem Fulfilment-Partner und können sich nach Produktionsbeginn ändern."
+  },
+  "dashboard": {
+    "title": "Merch",
+    "subtitle": "Verkaufe gebrandete Merch-Artikel an deine Unterstützer. Du behältst den Gewinn — Produktion und Versand übernehmen wir über Printful.",
+    "notEnabled": "Merch ist für dein Konto noch nicht verfügbar.",
+    "beta": "Merch ist in der privaten Beta. Wir sagen dir Bescheid, wenn dein Shop live gehen kann.",
+    "empty": "Du hast noch keine Produkte erstellt.",
+    "productsHeading": "Deine Produkte",
+    "priceLabel": "Preis",
+    "profitLabel": "Dein geschätzter Gewinn",
+    "builderComingSoon": "Der Produkt-Builder kommt bald.",
+    "unavailable": "Deine Produkte konnten nicht geladen werden. Bitte versuche es erneut.",
+    "status": {
+      "draft": "Entwurf",
+      "awaiting_approval": "Wird geprüft",
+      "changes_requested": "Änderungen erforderlich",
+      "approved": "Genehmigt",
+      "published": "Veröffentlicht",
+      "paused": "Pausiert",
+      "archived": "Archiviert"
+    }
+  }
+}

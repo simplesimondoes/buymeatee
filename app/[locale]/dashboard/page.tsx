@@ -7,13 +7,16 @@ import { Link, redirect } from "@/i18n/navigation";
 
 import { Avatar } from "@/components/profile/avatar";
 import { CopyLinkButton } from "@/components/profile/copy-link-button";
+import { DashboardStats } from "@/components/dashboard/dashboard-stats";
 import { OnboardingChecklist } from "@/components/profile/onboarding-checklist";
 import { ShareControls } from "@/components/share-controls";
 import { pageShareText } from "@/lib/goals/share";
 import { siteConfig } from "@/lib/site";
 import { formatMinorAmount } from "@/lib/i18n/format";
+import { getOwnPosts } from "@/lib/journey/posts";
 import type { SupportedCurrency } from "@/lib/payments/currency";
 import { getCreatorSetupState } from "@/lib/profile/setup-state";
+import { getCreatorSupport } from "@/lib/support/public";
 import { getAuthenticatedUser } from "@/lib/supabase/server";
 
 export async function generateMetadata({
@@ -89,6 +92,14 @@ export default async function DashboardPage({
   const state = await getCreatorSetupState(user.id);
   const { profile, goals } = state;
 
+  // Verified stats for the at-a-glance row — never invented (CLAUDE.md).
+  const supporters = await getCreatorSupport(user.id)
+    .then((s) => s.totalCount)
+    .catch(() => 0);
+  const journeyPosts = await getOwnPosts(user.id)
+    .then((posts) => posts.filter((p) => p.status === "published").length)
+    .catch(() => 0);
+
   const activeGoals = goals.filter((goal) => goal.status === "active");
   const raisedByCurrency = new Map<SupportedCurrency, number>();
   for (const goal of goals) {
@@ -118,6 +129,21 @@ export default async function DashboardPage({
 
       <div className="mt-8 space-y-6">
         <OnboardingChecklist state={state} />
+
+        <DashboardStats
+          locale={locale as AppLocale}
+          supporters={supporters}
+          journeyPosts={journeyPosts}
+          topGoal={
+            activeGoals[0]
+              ? {
+                  title: activeGoals[0].title,
+                  raised: activeGoals[0].raised_amount,
+                  target: activeGoals[0].target_amount,
+                }
+              : null
+          }
+        />
 
         {profile?.username ? (
           <section
@@ -261,7 +287,7 @@ export default async function DashboardPage({
 
           <CardShell
             title={t("overview.updatesCard.title")}
-            href="/dashboard/updates"
+            href="/dashboard/journey"
             linkLabel={t("overview.updatesCard.link")}
           >
             <p>{t("overview.updatesCard.body")}</p>

@@ -28,7 +28,9 @@
     "wishlist": "Lista de deseos",
     "updates": "Novedades",
     "payments": "Pagos",
-    "profile": "Perfil"
+    "profile": "Perfil",
+    "journey": "Camino",
+    "merch": "Tienda"
   },
   "eyebrow": "Panel",
   "actions": {
@@ -88,9 +90,9 @@
       "notReady": "<strong>{state}</strong> — nadie podrá enviarte Tees hasta que esto esté completo."
     },
     "updatesCard": {
-      "title": "Novedades",
+      "title": "Camino",
       "link": "Publicar una novedad",
-      "body": "Comparte tu progreso con quienes te apoyan: funciones nuevas, hitos, rondas jugadas. Las novedades publicadas aparecen en tu página."
+      "body": "Comparte tu progreso con quienes te apoyan: fotos, resultados, hitos. Las novedades publicadas aparecen en tu camino."
     }
   },
   "goals": {
@@ -164,13 +166,19 @@
       "publish": "Publicar",
       "unpublish": "Retirar publicación",
       "shareUpdate": "Compartir esta novedad",
-      "shareTitle": "Novedad publicada — compártela con quienes te apoyan."
+      "shareTitle": "Novedad publicada — compártela con quienes te apoyan.",
+      "untitled": "Publicación sin título"
     },
     "form": {
       "titleLabel": "Título",
       "titlePlaceholder": "Novedades de julio — 1.200 campos nuevos",
       "bodyLabel": "Novedad",
-      "bodyPlaceholder": "¿Qué hay de nuevo? A quienes te apoyan les encanta ver el progreso.\n\nPuedes usar Markdown: **negrita**, - listas y [enlaces](https://…)."
+      "bodyPlaceholder": "¿Qué hay de nuevo? A quienes te apoyan les encanta ver el progreso.\n\nPuedes usar Markdown: **negrita**, - listas y [enlaces](https://…).",
+      "videoLabel": "Vídeo de YouTube (opcional)",
+      "videoPlaceholder": "https://youtube.com/watch?v=…",
+      "milestoneLabel": "Hito (opcional)",
+      "milestonePlaceholder": "p. ej. Clasificado, Torneo ganado, Mejor ronda",
+      "milestoneHelp": "Añade una etiqueta de hito para destacar esto en tu camino."
     }
   },
   "wishlist": {
@@ -259,5 +267,15 @@
       "checkout_created": "Esperando el pago",
       "cancelled": "Cancelado"
     }
+  },
+  "stats": {
+    "sectionLabel": "Tus estadísticas",
+    "supporters": "Apoyos",
+    "journeyPosts": "Publicaciones del camino",
+    "goalProgress": "Progreso del objetivo",
+    "goalProgressAria": "Progreso hacia {title}",
+    "noGoal": "Aún no hay objetivo activo",
+    "recurring": "Apoyo recurrente",
+    "comingSoon": "Próximamente"
   }
 }

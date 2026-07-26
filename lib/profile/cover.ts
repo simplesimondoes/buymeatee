@@ -69,6 +69,11 @@ export function updateImageObjectPath(userId: string, updateId: string): string 
   return `${userId}/update-${updateId}`;
 }
 
+/** Storage object path for one Journey media image, namespaced by owner. */
+export function journeyMediaObjectPath(userId: string, mediaId: string): string {
+  return `${userId}/journeymedia-${mediaId}`;
+}
+
 /** Storage object path for a single wish-list item's image (ADR-018). */
 export function wishlistItemImageObjectPath(
   userId: string,

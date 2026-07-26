@@ -1,0 +1,34 @@
+{
+  "nav": {
+    "label": "Shop"
+  },
+  "shop": {
+    "heading": "Shop",
+    "fulfilmentNotice": "Realizzato appositamente per te ed evaso tramite la rete di produzione internazionale di Printful.",
+    "empty": "Questo creator non ha ancora aggiunto prodotti."
+  },
+  "delivery": {
+    "estimateNotice": "Le date di consegna stimate sono fornite dal nostro partner di produzione e possono cambiare una volta avviata la produzione."
+  },
+  "dashboard": {
+    "title": "Shop",
+    "subtitle": "Vendi merch brandizzato ai tuoi sostenitori. Il profitto è tuo — produzione e spedizione le gestiamo noi con Printful.",
+    "notEnabled": "Lo shop non è ancora disponibile sul tuo account.",
+    "beta": "Lo shop è in beta privata. Ti avviseremo quando potrà andare online.",
+    "empty": "Non hai ancora creato alcun prodotto.",
+    "productsHeading": "I tuoi prodotti",
+    "priceLabel": "Prezzo",
+    "profitLabel": "Il tuo profitto stimato",
+    "builderComingSoon": "Il generatore di prodotti arriverà presto.",
+    "unavailable": "Impossibile caricare i tuoi prodotti. Riprova.",
+    "status": {
+      "draft": "Bozza",
+      "awaiting_approval": "In revisione",
+      "changes_requested": "Modifiche richieste",
+      "approved": "Approvato",
+      "published": "Pubblicato",
+      "paused": "In pausa",
+      "archived": "Archiviato"
+    }
+  }
+}

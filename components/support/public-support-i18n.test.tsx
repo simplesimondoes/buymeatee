@@ -6,7 +6,7 @@ import { CreatorStats } from "@/components/support/creator-stats";
 import { RecentSupport } from "@/components/support/recent-support";
 import { GiftConfirmation } from "@/components/payments/gift-confirmation";
 import { ShareControls } from "@/components/share-controls";
-import { PublicUpdates } from "@/components/updates/public-updates";
+import { PublicJourney } from "@/components/journey/public-journey";
 import { StickySupportBar } from "@/components/profile/sticky-support-bar";
 import { CopyLinkButton } from "@/components/profile/copy-link-button";
 
@@ -117,27 +117,41 @@ describe("smoke: i18n renders", () => {
     button.click();
   });
 
-  it("PublicUpdates renders localized dates and headings", () => {
+  it("PublicJourney renders localized dates and headings", () => {
     renderWithIntl(
-      <PublicUpdates
-        updates={[
+      <PublicJourney
+        posts={[
           {
-            id: "u1",
+            id: "11111111-1111-1111-1111-111111111111",
             creator_id: "c1",
             title: "First round",
             body: "Played well.",
             image_url: null,
+            kind: "update",
+            goal_id: null,
+            video_url: null,
+            milestone_label: null,
+            milestone_percent: null,
+            like_count: 0,
+            comment_count: 0,
             status: "published",
             published_at: "2026-07-12T00:00:00Z",
             created_at: "2026-07-12T00:00:00Z",
             updated_at: "2026-07-12T00:00:00Z",
+            media: [],
+            comments: [],
+            viewerHasLiked: false,
           },
         ]}
         creatorName="James"
         isOwner={false}
+        isSignedIn={false}
+        currentUserId={null}
+        signInHref="/en/sign-in"
+        pageUrl="https://buymeatee.com/t/james"
       />,
     );
-    expect(screen.getByText("James's updates")).toBeInTheDocument();
+    expect(screen.getByText("James's journey")).toBeInTheDocument();
     expect(screen.getByText("12 July 2026")).toBeInTheDocument();
   });
 

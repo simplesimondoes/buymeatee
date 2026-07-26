@@ -7,6 +7,7 @@ import {
   type CreatorGoalRow,
   type GoalStatus,
 } from "@/lib/goals/types";
+import { createGoalCreatedDraft } from "@/lib/journey/service";
 import { getConnectedAccountForUser } from "@/lib/payments/connect";
 import { markProfileAsCreator } from "@/lib/profile/role";
 import { getSupabaseServerClient } from "@/lib/supabase/server";
@@ -131,7 +132,11 @@ export async function createGoal(
       return { ok: false, reason: "unavailable" };
     }
     await markProfileAsCreator(userId);
-    return { ok: true, goal: data as CreatorGoalRow };
+    // Seed a draft "new goal" Journey post the creator can publish (spec #12).
+    // Best-effort — createGoalCreatedDraft never throws.
+    const created = data as CreatorGoalRow;
+    await createGoalCreatedDraft(userId, created.id, created.title);
+    return { ok: true, goal: created };
   } catch {
     return { ok: false, reason: "unavailable" };
   }

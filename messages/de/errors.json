@@ -110,6 +110,13 @@
       "bodyRequired": "Schreib etwas für deine Unterstützer:innen.",
       "bodyLength": "Halte das Update unter {max} Zeichen."
     },
+    "journey": {
+      "video": "Füge einen gültigen YouTube-Link ein (https://…).",
+      "milestoneLabel": "Halte das Meilenstein-Label unter {max} Zeichen."
+    },
+    "comment": {
+      "body": "Schreib einen Kommentar (bis zu {max} Zeichen)."
+    },
     "image": {
       "type": "Verwende ein Bild im Format JPEG, PNG oder WebP.",
       "size": "Halte das Bild unter {maxMb} MB.",

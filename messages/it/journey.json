@@ -1,0 +1,25 @@
+{
+  "sectionLabel": "Percorso",
+  "heading": "Il percorso di {name}",
+  "emptyOwnerHeading": "Inizia il tuo percorso",
+  "emptyOwnerBody": "Condividi il tuo primo aggiornamento — una foto, un risultato, un traguardo. I sostenitori adorano seguire la storia.",
+  "writeFirst": "Pubblica il tuo primo aggiornamento",
+  "share": "Condividi",
+  "videoTitle": "Video del percorso",
+  "likeAria": "{count, plural, =0 {Ancora nessun mi piace} one {# mi piace} other {# mi piace}}",
+  "commentPlaceholder": "Aggiungi un commento…",
+  "commentSubmit": "Commenta",
+  "commentSignIn": "Accedi per lasciare un commento",
+  "commentDelete": "Elimina",
+  "commentError": "Non è stato possibile pubblicare il tuo commento. Riprova.",
+  "commenterFallback": "Sostenitore",
+  "milestoneDraft": {
+    "title": "{percent}% del percorso!",
+    "body": "Un enorme grazie a tutti quelli che sostengono il mio percorso — abbiamo raggiunto il {percent}% di \"{goalTitle}\". Ogni sostegno mi fa andare avanti. 🙏",
+    "label": "Obiettivo raggiunto al {percent}%"
+  },
+  "goalCreatedDraft": {
+    "title": "Nuovo obiettivo: {goalTitle}",
+    "body": "Mi sono dato un nuovo obiettivo — \"{goalTitle}\". Seguimi e aiutami ad arrivarci. Ogni tee conta. ⛳"
+  }
+}

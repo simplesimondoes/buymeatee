@@ -1,0 +1,34 @@
+{
+  "nav": {
+    "label": "Boutique"
+  },
+  "shop": {
+    "heading": "Boutique",
+    "fulfilmentNotice": "Fabriqué spécialement pour vous et expédié via le réseau de production international de Printful.",
+    "empty": "Ce créateur n'a pas encore ajouté de produits."
+  },
+  "delivery": {
+    "estimateNotice": "Les dates de livraison estimées sont fournies par notre partenaire de production et peuvent changer une fois la production lancée."
+  },
+  "dashboard": {
+    "title": "Boutique",
+    "subtitle": "Vendez des produits à votre effigie à vos soutiens. Vous gardez le bénéfice — nous gérons la production et l'expédition via Printful.",
+    "notEnabled": "La boutique n'est pas encore disponible sur votre compte.",
+    "beta": "La boutique est en bêta privée. Nous vous préviendrons quand elle pourra être mise en ligne.",
+    "empty": "Vous n'avez pas encore créé de produits.",
+    "productsHeading": "Vos produits",
+    "priceLabel": "Prix",
+    "profitLabel": "Votre bénéfice estimé",
+    "builderComingSoon": "Le créateur de produits arrive bientôt.",
+    "unavailable": "Impossible de charger vos produits. Veuillez réessayer.",
+    "status": {
+      "draft": "Brouillon",
+      "awaiting_approval": "En attente de validation",
+      "changes_requested": "Modifications demandées",
+      "approved": "Approuvé",
+      "published": "Publié",
+      "paused": "En pause",
+      "archived": "Archivé"
+    }
+  }
+}

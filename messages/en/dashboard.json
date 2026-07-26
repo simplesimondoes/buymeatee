@@ -28,7 +28,9 @@
     "wishlist": "Wish list",
     "updates": "Updates",
     "payments": "Payments",
-    "profile": "Profile"
+    "profile": "Profile",
+    "journey": "Journey",
+    "merch": "Merch"
   },
   "eyebrow": "Dashboard",
   "actions": {
@@ -88,9 +90,9 @@
       "notReady": "<strong>{state}</strong> — supporters can't send Tees until this is done."
     },
     "updatesCard": {
-      "title": "Updates",
+      "title": "Journey",
       "link": "Post an update",
-      "body": "Share progress with your supporters — new features, milestones, rounds played. Published updates appear on your page."
+      "body": "Share progress with your supporters — photos, results, milestones. Published posts appear on your journey."
     }
   },
   "goals": {
@@ -164,13 +166,19 @@
       "publish": "Publish",
       "unpublish": "Unpublish",
       "shareUpdate": "Share this update",
-      "shareTitle": "Update published — share it with your supporters."
+      "shareTitle": "Update published — share it with your supporters.",
+      "untitled": "Untitled post"
     },
     "form": {
       "titleLabel": "Title",
       "titlePlaceholder": "July update — 1,200 new courses",
       "bodyLabel": "Update",
-      "bodyPlaceholder": "What's new? Supporters love seeing progress.\n\nMarkdown works: **bold**, - lists, and [links](https://…)."
+      "bodyPlaceholder": "What's new? Supporters love seeing progress.\n\nMarkdown works: **bold**, - lists, and [links](https://…).",
+      "videoLabel": "YouTube video (optional)",
+      "videoPlaceholder": "https://youtube.com/watch?v=…",
+      "milestoneLabel": "Milestone (optional)",
+      "milestonePlaceholder": "e.g. Qualified, Won Event, Lowest ever round",
+      "milestoneHelp": "Add a milestone label to mark this as a highlight on your journey."
     }
   },
   "wishlist": {
@@ -259,5 +267,15 @@
       "checkout_created": "Awaiting payment",
       "cancelled": "Cancelled"
     }
+  },
+  "stats": {
+    "sectionLabel": "Your stats",
+    "supporters": "Supporters",
+    "journeyPosts": "Journey posts",
+    "goalProgress": "Goal progress",
+    "goalProgressAria": "Progress towards {title}",
+    "noGoal": "No active goal yet",
+    "recurring": "Recurring support",
+    "comingSoon": "Coming soon"
   }
 }

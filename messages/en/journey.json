@@ -1,0 +1,25 @@
+{
+  "sectionLabel": "Journey",
+  "heading": "{name}'s journey",
+  "emptyOwnerHeading": "Start your journey",
+  "emptyOwnerBody": "Share your first update — a photo, a result, a milestone. Supporters love following the story.",
+  "writeFirst": "Post your first update",
+  "share": "Share",
+  "videoTitle": "Journey video",
+  "likeAria": "{count, plural, =0 {No likes yet} one {# like} other {# likes}}",
+  "commentPlaceholder": "Add a comment…",
+  "commentSubmit": "Comment",
+  "commentSignIn": "Sign in to leave a comment",
+  "commentDelete": "Delete",
+  "commentError": "Couldn't post your comment. Please try again.",
+  "commenterFallback": "Supporter",
+  "milestoneDraft": {
+    "title": "{percent}% of the way there!",
+    "body": "Huge thanks to everyone supporting my journey — we've reached {percent}% towards \"{goalTitle}\". Every bit of support keeps me moving forward. 🙏",
+    "label": "Goal reached {percent}%"
+  },
+  "goalCreatedDraft": {
+    "title": "New goal: {goalTitle}",
+    "body": "I've set myself a new goal — \"{goalTitle}\". Follow along and help me get there. Every tee counts. ⛳"
+  }
+}

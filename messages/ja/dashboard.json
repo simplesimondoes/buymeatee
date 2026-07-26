@@ -28,7 +28,9 @@
     "wishlist": "ウィッシュリスト",
     "updates": "近況",
     "payments": "決済",
-    "profile": "プロフィール"
+    "profile": "プロフィール",
+    "journey": "ジャーニー",
+    "merch": "グッズ"
   },
   "eyebrow": "ダッシュボード",
   "actions": {
@@ -88,9 +90,9 @@
       "notReady": "<strong>{state}</strong> — 完了するまで、サポーターはティーを送れません。"
     },
     "updatesCard": {
-      "title": "近況",
+      "title": "ジャーニー",
       "link": "近況を投稿",
-      "body": "サポーターに進捗を共有しましょう — 新機能、マイルストーン、プレーしたラウンドなど。公開した近況はページに表示されます。"
+      "body": "サポーターに進捗を共有しましょう — 写真、結果、マイルストーンなど。公開した投稿はあなたのジャーニーに表示されます。"
     }
   },
   "goals": {
@@ -164,13 +166,19 @@
       "publish": "公開する",
       "unpublish": "非公開にする",
       "shareUpdate": "この近況をシェア",
-      "shareTitle": "近況を公開しました — サポーターにシェアしましょう。"
+      "shareTitle": "近況を公開しました — サポーターにシェアしましょう。",
+      "untitled": "無題の投稿"
     },
     "form": {
       "titleLabel": "タイトル",
       "titlePlaceholder": "7月の近況 — 新規コース1,200件",
       "bodyLabel": "本文",
-      "bodyPlaceholder": "何が新しくなりましたか？サポーターは進捗を見るのが大好きです。\n\nMarkdownが使えます：**太字**、- リスト、[リンク](https://…)。"
+      "bodyPlaceholder": "何が新しくなりましたか？サポーターは進捗を見るのが大好きです。\n\nMarkdownが使えます：**太字**、- リスト、[リンク](https://…)。",
+      "videoLabel": "YouTube動画（任意）",
+      "videoPlaceholder": "https://youtube.com/watch?v=…",
+      "milestoneLabel": "マイルストーン（任意）",
+      "milestonePlaceholder": "例：予選通過、大会優勝、自己ベストのラウンド",
+      "milestoneHelp": "マイルストーンのラベルを付けて、これをジャーニーのハイライトとして目立たせましょう。"
     }
   },
   "wishlist": {
@@ -259,5 +267,15 @@
       "checkout_created": "支払い待ち",
       "cancelled": "キャンセル済み"
     }
+  },
+  "stats": {
+    "sectionLabel": "あなたの統計",
+    "supporters": "サポーター",
+    "journeyPosts": "ジャーニーの投稿",
+    "goalProgress": "目標の進捗",
+    "goalProgressAria": "{title}への進捗",
+    "noGoal": "まだ公開中の目標がありません",
+    "recurring": "継続的な応援",
+    "comingSoon": "近日公開"
   }
 }

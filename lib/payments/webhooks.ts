@@ -8,6 +8,12 @@ import {
   goalRefundDelta,
 } from "@/lib/goals/contribution-math";
 import { applyGoalContribution } from "@/lib/goals/contributions";
+import { createGoalMilestoneDrafts } from "@/lib/journey/service";
+import {
+  applyMerchPaymentFailed,
+  applyMerchPaymentSucceeded,
+  type MerchPaidOutcome,
+} from "@/lib/merch/order-payments";
 import { sendGiftReceipt } from "@/lib/email/notify";
 import {
   enqueueGiftReceivedNotification,
@@ -247,6 +253,20 @@ export async function markGiftPaidVerified(
       // and decoupled from delivery (drained by deliverPendingNotifications).
       if (credited) {
         await enqueueGoalReachedNotification(gift);
+        // Seed DRAFT Journey posts for any 25/50/75/100% milestone this gift
+        // crossed (Phase 2). Honest by construction — progress was just
+        // credited via the verified path — never auto-published, and idempotent
+        // on replay via the milestone unique index. Best-effort: a failure here
+        // must never fail the payment.
+        try {
+          await createGoalMilestoneDrafts(gift);
+        } catch (error) {
+          logPaymentEvent("error", "journey.milestone_drafts_failed", {
+            gift_id: gift.id,
+            goal_id: gift.goal_id,
+            reason: error instanceof Error ? error.message : "unknown",
+          });
+        }
       }
     }
     // A wish-list item is funded HERE and only here — behind the exactly-once
@@ -378,6 +398,28 @@ async function handlePaymentIntentSucceeded(
   event: Stripe.Event,
 ): Promise<ProcessOutcome> {
   const paymentIntent = event.data.object as Stripe.PaymentIntent;
+  // Merchandise orders are a separate domain (separate charges + transfers).
+  if (paymentIntent.metadata?.order_type === "merch") {
+    const full = await retrievePaymentIntentWithCharge(paymentIntent.id);
+    const charge = full.latest_charge;
+    const chargeObject =
+      charge && typeof charge !== "string" ? charge : null;
+    const outcome = await applyMerchPaymentSucceeded({
+      paymentIntentId: full.id,
+      metadataOrderId: full.metadata?.order_id ?? null,
+      livemode: event.livemode,
+      amount: full.amount,
+      currency: full.currency,
+      chargeId: chargeObject?.id ?? null,
+      balanceTransactionId:
+        chargeObject && typeof chargeObject.balance_transaction === "string"
+          ? chargeObject.balance_transaction
+          : null,
+      transferGroup: full.transfer_group ?? null,
+      eventId: event.id,
+    });
+    return merchOutcomeToProcessOutcome(outcome);
+  }
   const gift = await giftFromPaymentIntent(paymentIntent);
   if (!gift) {
     return { status: "skipped", note: "no matching gift" };
@@ -387,10 +429,29 @@ async function handlePaymentIntentSucceeded(
   return markGiftPaidVerified(gift, full, event.livemode, event.id);
 }
 
+/**
+ * Merch orders don't move on `processing` (they wait for succeeded/failed), and
+ * a reconciliation error is flagged in the DB, not a transient failure — so it
+ * maps to a 200 "skipped" rather than forcing Stripe to retry forever.
+ */
+function merchOutcomeToProcessOutcome(outcome: MerchPaidOutcome): ProcessOutcome {
+  if (outcome.status === "processed") {
+    return { status: "processed" };
+  }
+  if (outcome.status === "reconciliation_error") {
+    return { status: "skipped", note: `merch reconciliation error: ${outcome.mismatches.join(",")}` };
+  }
+  return { status: "skipped", note: outcome.note };
+}
+
 async function handlePaymentIntentProcessing(
   event: Stripe.Event,
 ): Promise<ProcessOutcome> {
   const paymentIntent = event.data.object as Stripe.PaymentIntent;
+  if (paymentIntent.metadata?.order_type === "merch") {
+    // Merch orders wait for a definitive succeeded/failed; nothing to do here.
+    return { status: "skipped", note: "merch processing" };
+  }
   const gift = await giftFromPaymentIntent(paymentIntent);
   if (!gift) {
     return { status: "skipped", note: "no matching gift" };
@@ -405,6 +466,15 @@ async function handlePaymentIntentFailed(
   event: Stripe.Event,
 ): Promise<ProcessOutcome> {
   const paymentIntent = event.data.object as Stripe.PaymentIntent;
+  if (paymentIntent.metadata?.order_type === "merch") {
+    return merchOutcomeToProcessOutcome(
+      await applyMerchPaymentFailed({
+        paymentIntentId: paymentIntent.id,
+        metadataOrderId: paymentIntent.metadata?.order_id ?? null,
+        eventId: event.id,
+      }),
+    );
+  }
   const gift = await giftFromPaymentIntent(paymentIntent);
   if (!gift) {
     return { status: "skipped", note: "no matching gift" };

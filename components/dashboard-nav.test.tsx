@@ -25,7 +25,7 @@ describe("DashboardNav", () => {
     for (const [label, href] of [
       ["Overview", "/en/dashboard"],
       ["Goals", "/en/dashboard/goals"],
-      ["Updates", "/en/dashboard/updates"],
+      ["Journey", "/en/dashboard/journey"],
       ["Payments", "/en/dashboard/payments"],
       ["Profile", "/en/settings/profile"],
     ] as const) {

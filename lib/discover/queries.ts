@@ -11,7 +11,7 @@ import { getSupabaseAnonClient } from "@/lib/supabase/anon";
  *    anon (admin-user-management policy), so an inner join to profiles also
  *    drops a deactivated creator's goals and updates automatically.
  *  - creator_goals: only 'active'/'completed' rows are selectable by anon.
- *  - creator_updates: only 'published' rows of an active creator.
+ *  - journey_posts: only 'published' rows of an active creator.
  */
 
 export type PublicCreatorRow = {
@@ -95,14 +95,14 @@ export async function listPublicGoals(): Promise<PublicGoalRow[]> {
 export type RecentUpdateRow = {
   creator_id: string;
   published_at: string | null;
-  title: string;
+  title: string | null;
 };
 
-/** Creators who most recently published a project update. */
+/** Creators who most recently published a Journey post. */
 export async function listRecentlyUpdated(): Promise<RecentUpdateRow[]> {
   const supabase = getSupabaseAnonClient();
   const { data, error } = await supabase
-    .from("creator_updates")
+    .from("journey_posts")
     .select("creator_id, published_at, title")
     .eq("status", "published")
     .order("published_at", { ascending: false })

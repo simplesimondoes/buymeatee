@@ -110,6 +110,13 @@
       "bodyRequired": "Escribe algo para quienes te apoyan.",
       "bodyLength": "La novedad no puede superar los {max} caracteres."
     },
+    "journey": {
+      "video": "Pega un enlace de YouTube válido (https://…).",
+      "milestoneLabel": "Mantén la etiqueta del hito por debajo de {max} caracteres."
+    },
+    "comment": {
+      "body": "Escribe un comentario (hasta {max} caracteres)."
+    },
     "image": {
       "type": "Usa una imagen JPEG, PNG o WebP.",
       "size": "La imagen no puede superar los {maxMb} MB.",

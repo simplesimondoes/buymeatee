@@ -19,11 +19,13 @@ import errors from "@/messages/en/errors.json";
 import faq from "@/messages/en/faq.json";
 import gifts from "@/messages/en/gifts.json";
 import home from "@/messages/en/home.json";
+import journey from "@/messages/en/journey.json";
 import legal from "@/messages/en/legal.json";
 import marketing from "@/messages/en/marketing.json";
 import meta from "@/messages/en/meta.json";
 import profilePage from "@/messages/en/profilePage.json";
 import settings from "@/messages/en/settings.json";
+import shop from "@/messages/en/shop.json";
 
 export const enMessages = {
   admin,
@@ -39,11 +41,13 @@ export const enMessages = {
   faq,
   gifts,
   home,
+  journey,
   legal,
   marketing,
   meta,
   profilePage,
   settings,
+  shop,
 };
 
 export type Messages = typeof enMessages;

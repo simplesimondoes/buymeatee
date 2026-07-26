@@ -110,6 +110,13 @@
       "bodyRequired": "Écris quelque chose pour tes supporters.",
       "bodyLength": "Garde l'actualité sous {max} caractères."
     },
+    "journey": {
+      "video": "Colle un lien YouTube valide (https://…).",
+      "milestoneLabel": "Garde le libellé du jalon sous {max} caractères."
+    },
+    "comment": {
+      "body": "Écris un commentaire (jusqu'à {max} caractères)."
+    },
     "image": {
       "type": "Utilise une image JPEG, PNG ou WebP.",
       "size": "Garde l'image sous {maxMb} Mo.",

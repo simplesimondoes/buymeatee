@@ -110,6 +110,13 @@
       "bodyRequired": "サポーターに向けて何か書いてください。",
       "bodyLength": "近況は{max}文字以内にしてください。"
     },
+    "journey": {
+      "video": "有効なYouTubeリンクを貼り付けてください（https://…）。",
+      "milestoneLabel": "マイルストーンのラベルは{max}文字以内にしてください。"
+    },
+    "comment": {
+      "body": "コメントを書いてください（{max}文字まで）。"
+    },
     "image": {
       "type": "JPEG、PNG、またはWebP画像を使用してください。",
       "size": "画像は{maxMb} MB以内にしてください。",

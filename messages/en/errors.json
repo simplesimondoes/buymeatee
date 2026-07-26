@@ -110,6 +110,13 @@
       "bodyRequired": "Write something for your supporters.",
       "bodyLength": "Keep the update under {max} characters."
     },
+    "journey": {
+      "video": "Paste a valid YouTube link (https://…).",
+      "milestoneLabel": "Keep the milestone label under {max} characters."
+    },
+    "comment": {
+      "body": "Write a comment (up to {max} characters)."
+    },
     "image": {
       "type": "Use a JPEG, PNG or WebP image.",
       "size": "Keep the image under {maxMb} MB.",

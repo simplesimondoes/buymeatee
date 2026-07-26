@@ -110,6 +110,13 @@
       "bodyRequired": "서포터를 위해 내용을 적어 주세요.",
       "bodyLength": "소식은 {max}자 이내로 해 주세요."
     },
+    "journey": {
+      "video": "올바른 YouTube 링크를 붙여넣어 주세요(https://…).",
+      "milestoneLabel": "이정표 라벨은 {max}자 이내로 해 주세요."
+    },
+    "comment": {
+      "body": "댓글을 작성해 주세요({max}자 이내)."
+    },
     "image": {
       "type": "JPEG, PNG 또는 WebP 이미지를 사용해 주세요.",
       "size": "이미지는 {maxMb} MB 이하로 해 주세요.",

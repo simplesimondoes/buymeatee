@@ -13,7 +13,15 @@
   "hero": {
     "kicker": "Soutiens le parcours",
     "handicap": "Index {handicap}",
-    "websiteLabel": "Site web"
+    "websiteLabel": "Site web",
+    "currentGoal": "Objectif en cours",
+    "goalProgressLabel": "Progression vers {title}"
+  },
+  "tabs": {
+    "about": "À propos",
+    "journey": "Parcours",
+    "goals": "Objectifs",
+    "support": "Soutenir"
   },
   "about": {
     "heading": "À propos",

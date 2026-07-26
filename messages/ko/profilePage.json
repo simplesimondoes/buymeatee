@@ -13,7 +13,15 @@
   "hero": {
     "kicker": "여정을 응원하세요",
     "handicap": "핸디캡 {handicap}",
-    "websiteLabel": "웹사이트"
+    "websiteLabel": "웹사이트",
+    "currentGoal": "현재 목표",
+    "goalProgressLabel": "{title} 진행 상황"
+  },
+  "tabs": {
+    "about": "소개",
+    "journey": "여정",
+    "goals": "목표",
+    "support": "응원"
   },
   "about": {
     "heading": "소개",

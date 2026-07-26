@@ -1,0 +1,25 @@
+{
+  "sectionLabel": "Camino",
+  "heading": "El camino de {name}",
+  "emptyOwnerHeading": "Empieza tu camino",
+  "emptyOwnerBody": "Comparte tu primera novedad — una foto, un resultado, un hito. A quienes te apoyan les encanta seguir la historia.",
+  "writeFirst": "Publica tu primera novedad",
+  "share": "Compartir",
+  "videoTitle": "Vídeo del camino",
+  "likeAria": "{count, plural, =0 {Aún no hay Me gusta} one {# Me gusta} other {# Me gusta}}",
+  "commentPlaceholder": "Añade un comentario…",
+  "commentSubmit": "Comentar",
+  "commentSignIn": "Inicia sesión para dejar un comentario",
+  "commentDelete": "Eliminar",
+  "commentError": "No se pudo publicar tu comentario. Vuelve a intentarlo.",
+  "commenterFallback": "Apoyo",
+  "milestoneDraft": {
+    "title": "¡{percent}% del camino recorrido!",
+    "body": "Mil gracias a todas las personas que apoyan mi camino — hemos alcanzado el {percent}% de \"{goalTitle}\". Cada muestra de apoyo me hace seguir adelante. 🙏",
+    "label": "Objetivo alcanzado al {percent}%"
+  },
+  "goalCreatedDraft": {
+    "title": "Nuevo objetivo: {goalTitle}",
+    "body": "Me he marcado un nuevo objetivo — \"{goalTitle}\". Acompáñame y ayúdame a lograrlo. Cada tee cuenta. ⛳"
+  }
+}

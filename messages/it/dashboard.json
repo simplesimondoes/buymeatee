@@ -28,7 +28,9 @@
     "wishlist": "Lista dei desideri",
     "updates": "Aggiornamenti",
     "payments": "Pagamenti",
-    "profile": "Profilo"
+    "profile": "Profilo",
+    "journey": "Percorso",
+    "merch": "Shop"
   },
   "eyebrow": "Dashboard",
   "actions": {
@@ -88,9 +90,9 @@
       "notReady": "<strong>{state}</strong> — i sostenitori non possono inviare Tee finché non è completato."
     },
     "updatesCard": {
-      "title": "Aggiornamenti",
+      "title": "Percorso",
       "link": "Pubblica un aggiornamento",
-      "body": "Condividi i progressi con i tuoi sostenitori — nuove funzionalità, traguardi, giri giocati. Gli aggiornamenti pubblicati compaiono sulla tua pagina."
+      "body": "Condividi i progressi con i tuoi sostenitori — foto, risultati, traguardi. I post pubblicati compaiono sul tuo percorso."
     }
   },
   "goals": {
@@ -164,13 +166,19 @@
       "publish": "Pubblica",
       "unpublish": "Ritira la pubblicazione",
       "shareUpdate": "Condividi questo aggiornamento",
-      "shareTitle": "Aggiornamento pubblicato — condividilo con i tuoi sostenitori."
+      "shareTitle": "Aggiornamento pubblicato — condividilo con i tuoi sostenitori.",
+      "untitled": "Post senza titolo"
     },
     "form": {
       "titleLabel": "Titolo",
       "titlePlaceholder": "Aggiornamento di luglio — 1.200 nuovi campi",
       "bodyLabel": "Aggiornamento",
-      "bodyPlaceholder": "Che c'è di nuovo? I sostenitori adorano vedere i progressi.\n\nIl Markdown funziona: **grassetto**, - elenchi e [link](https://…)."
+      "bodyPlaceholder": "Che c'è di nuovo? I sostenitori adorano vedere i progressi.\n\nIl Markdown funziona: **grassetto**, - elenchi e [link](https://…).",
+      "videoLabel": "Video YouTube (facoltativo)",
+      "videoPlaceholder": "https://youtube.com/watch?v=…",
+      "milestoneLabel": "Traguardo (facoltativo)",
+      "milestonePlaceholder": "es. Qualificato, Torneo vinto, Miglior giro di sempre",
+      "milestoneHelp": "Aggiungi un'etichetta di traguardo per segnalarlo come momento clou del tuo percorso."
     }
   },
   "wishlist": {
@@ -259,5 +267,15 @@
       "checkout_created": "In attesa di pagamento",
       "cancelled": "Annullato"
     }
+  },
+  "stats": {
+    "sectionLabel": "Le tue statistiche",
+    "supporters": "Sostenitori",
+    "journeyPosts": "Post del percorso",
+    "goalProgress": "Avanzamento obiettivo",
+    "goalProgressAria": "Avanzamento verso {title}",
+    "noGoal": "Ancora nessun obiettivo attivo",
+    "recurring": "Sostegno ricorrente",
+    "comingSoon": "In arrivo"
   }
 }

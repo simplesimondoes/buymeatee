@@ -1,0 +1,25 @@
+{
+  "sectionLabel": "여정",
+  "heading": "{name}님의 여정",
+  "emptyOwnerHeading": "여정을 시작하세요",
+  "emptyOwnerBody": "첫 소식을 공유해 보세요 — 사진, 결과, 이정표까지. 서포터들은 그 이야기를 따라가는 걸 좋아해요.",
+  "writeFirst": "첫 소식 올리기",
+  "share": "공유",
+  "videoTitle": "여정 영상",
+  "likeAria": "{count, plural, =0 {아직 좋아요가 없어요} other {좋아요 #개}}",
+  "commentPlaceholder": "댓글 추가…",
+  "commentSubmit": "댓글",
+  "commentSignIn": "댓글을 남기려면 로그인하세요",
+  "commentDelete": "삭제",
+  "commentError": "댓글을 올리지 못했어요. 다시 시도해 주세요.",
+  "commenterFallback": "서포터",
+  "milestoneDraft": {
+    "title": "목표까지 {percent}% 왔어요!",
+    "body": "제 여정을 응원해 주시는 모든 분께 정말 감사드려요 — “{goalTitle}” 목표를 향해 {percent}%까지 왔어요. 여러분의 응원 하나하나가 저를 앞으로 나아가게 해요. 🙏",
+    "label": "목표 {percent}% 달성"
+  },
+  "goalCreatedDraft": {
+    "title": "새 목표: {goalTitle}",
+    "body": "새로운 목표를 세웠어요 — “{goalTitle}”. 함께해 주시고, 이룰 수 있게 도와주세요. 티 하나하나가 힘이 돼요. ⛳"
+  }
+}

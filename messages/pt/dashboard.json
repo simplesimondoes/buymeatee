@@ -28,7 +28,9 @@
     "wishlist": "Lista de desejos",
     "updates": "Novidades",
     "payments": "Pagamentos",
-    "profile": "Perfil"
+    "profile": "Perfil",
+    "journey": "Percurso",
+    "merch": "Loja"
   },
   "eyebrow": "Painel",
   "actions": {
@@ -88,9 +90,9 @@
       "notReady": "<strong>{state}</strong> — os apoiantes não podem enviar Tees enquanto isto não estiver concluído."
     },
     "updatesCard": {
-      "title": "Novidades",
+      "title": "Percurso",
       "link": "Publicar uma novidade",
-      "body": "Partilha o progresso com os teus apoiantes — novas funcionalidades, marcos, voltas jogadas. As novidades publicadas aparecem na tua página."
+      "body": "Partilha o progresso com os teus apoiantes — fotografias, resultados, marcos. As novidades publicadas aparecem no teu percurso."
     }
   },
   "goals": {
@@ -164,13 +166,19 @@
       "publish": "Publicar",
       "unpublish": "Anular publicação",
       "shareUpdate": "Partilhar esta novidade",
-      "shareTitle": "Novidade publicada — partilha-a com os teus apoiantes."
+      "shareTitle": "Novidade publicada — partilha-a com os teus apoiantes.",
+      "untitled": "Publicação sem título"
     },
     "form": {
       "titleLabel": "Título",
       "titlePlaceholder": "Novidades de julho — 1 200 campos novos",
       "bodyLabel": "Novidade",
-      "bodyPlaceholder": "O que há de novo? Os apoiantes adoram ver progresso.\n\nMarkdown funciona: **negrito**, - listas e [ligações](https://…)."
+      "bodyPlaceholder": "O que há de novo? Os apoiantes adoram ver progresso.\n\nMarkdown funciona: **negrito**, - listas e [ligações](https://…).",
+      "videoLabel": "Vídeo do YouTube (opcional)",
+      "videoPlaceholder": "https://youtube.com/watch?v=…",
+      "milestoneLabel": "Marco (opcional)",
+      "milestonePlaceholder": "p. ex. Qualificado, Prova vencida, Melhor volta de sempre",
+      "milestoneHelp": "Adiciona uma etiqueta de marco para destacar isto no teu percurso."
     }
   },
   "wishlist": {
@@ -259,5 +267,15 @@
       "checkout_created": "A aguardar pagamento",
       "cancelled": "Cancelado"
     }
+  },
+  "stats": {
+    "sectionLabel": "As tuas estatísticas",
+    "supporters": "Apoiantes",
+    "journeyPosts": "Publicações do percurso",
+    "goalProgress": "Progresso do objetivo",
+    "goalProgressAria": "Progresso rumo a {title}",
+    "noGoal": "Ainda sem objetivo ativo",
+    "recurring": "Apoio recorrente",
+    "comingSoon": "Em breve"
   }
 }

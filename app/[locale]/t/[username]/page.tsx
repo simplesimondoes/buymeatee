@@ -15,15 +15,25 @@ import { PublicWishlist } from "@/components/wishlist/public-wishlist";
 import { Markdown } from "@/components/markdown";
 import { Avatar } from "@/components/profile/avatar";
 import { PinnedMedia } from "@/components/profile/pinned-media";
+import { ProfileTabs } from "@/components/profile/profile-tabs";
 import { StickySupportBar } from "@/components/profile/sticky-support-bar";
 import { SupportHero } from "@/components/profile/support-hero";
-import { PublicUpdates } from "@/components/updates/public-updates";
+import { PublicJourney } from "@/components/journey/public-journey";
+import { PublicMerch } from "@/components/merch/public-merch";
+import { getMerchFlags } from "@/lib/merch/config";
+import {
+  getPublishedProductsForCreator,
+  type MerchProductRow,
+} from "@/lib/merch/products";
+import { ProgressRing } from "@/components/ui/progress-ring";
+import { MilestoneBadge } from "@/components/ui/milestone-badge";
 import { CreatorStats } from "@/components/support/creator-stats";
 import { RecentSupport } from "@/components/support/recent-support";
 import { getPublicGoalsForCreator, type PublicGoals as PublicGoalsData } from "@/lib/goals/public";
 import { getPublicWishlistForCreator, type PublicWishlist as PublicWishlistData } from "@/lib/wishlist/public";
-import { getPublishedUpdatesForCreator } from "@/lib/updates/public";
-import type { CreatorUpdateRow } from "@/lib/updates/types";
+import { getPublishedJourneyForCreator } from "@/lib/journey/public";
+import type { JourneyFeedPost } from "@/lib/journey/types";
+import { goalProgressPercent } from "@/lib/goals/types";
 import { getCreatorSupport, type CreatorSupport } from "@/lib/support/public";
 import { formatDate } from "@/lib/i18n/format";
 import { canonicalUrl } from "@/lib/seo/metadata";
@@ -106,10 +116,28 @@ const loadPublicWishlist = cache(
   },
 );
 
-const loadPublicUpdates = cache(
-  async (creatorId: string): Promise<CreatorUpdateRow[]> => {
+const loadPublicJourney = cache(
+  async (
+    creatorId: string,
+    viewerId: string | null,
+  ): Promise<JourneyFeedPost[]> => {
     try {
-      return await getPublishedUpdatesForCreator(creatorId);
+      return await getPublishedJourneyForCreator(creatorId, viewerId);
+    } catch {
+      return [];
+    }
+  },
+);
+
+const loadPublishedMerch = cache(
+  async (creatorId: string): Promise<MerchProductRow[]> => {
+    // Only when the merch feature is on; fails safe to none (e.g. before the
+    // schema exists), so the Shop section simply doesn't appear.
+    if (!getMerchFlags().merchEnabled) {
+      return [];
+    }
+    try {
+      return await getPublishedProductsForCreator(creatorId);
     } catch {
       return [];
     }
@@ -376,8 +404,25 @@ export default async function RecipientProfilePage({
 
   const goals = await loadPublicGoals(profile.id);
   const wishlist = await loadPublicWishlist(profile.id);
-  const updates = await loadPublicUpdates(profile.id);
+  const journey = await loadPublicJourney(profile.id, viewer?.id ?? null);
   const support = await loadSupport(profile.id);
+  const merch = await loadPublishedMerch(profile.id);
+  // Shop tab/section only appear once the creator has published merch.
+  const tShop = await getTranslations({
+    locale: locale as AppLocale,
+    namespace: "shop",
+  });
+
+  // The current goal drives the header progress ring; the most recent published
+  // milestone post is the "latest milestone" chip. Both are derived from real
+  // verified data — never invented.
+  const topGoal = goals.active[0] ?? null;
+  const topGoalPercent = topGoal
+    ? goalProgressPercent(topGoal.raised_amount, topGoal.target_amount)
+    : 0;
+  const latestMilestone =
+    journey.find((post) => post.kind === "milestone" && post.milestone_label)
+      ?.milestone_label ?? null;
   const joined = profile.created_at
     ? formatDate(profile.created_at, locale as AppLocale, {
         month: "long",
@@ -395,7 +440,7 @@ export default async function RecipientProfilePage({
 
   return (
     <main className="mx-auto w-full max-w-6xl px-4 pb-16 sm:px-6 sm:pb-24">
-      <ClientMessages namespaces={["gifts", "profilePage", "dashboard", "errors"]}>
+      <ClientMessages namespaces={["gifts", "profilePage", "journey", "dashboard", "shop", "errors"]}>
       <SupportTargetProvider>
       {/* Cover hero — a tall, full-bleed image on phones (where most
           supporters land) that the content card rises over; a wide banner on
@@ -462,33 +507,90 @@ export default async function RecipientProfilePage({
               </p>
             ) : null}
             <SocialLinks profile={profile} websiteLabel={t("hero.websiteLabel")} />
+
+            {/* Current goal at a glance + the latest milestone — the header
+                snapshot that tells a visitor what this golfer is chasing and
+                how far along they are. Real verified progress only. */}
+            {topGoal || latestMilestone ? (
+              <div className="mt-5 flex flex-wrap items-center gap-4">
+                {topGoal ? (
+                  <div className="flex items-center gap-3">
+                    <ProgressRing
+                      value={topGoalPercent}
+                      label={t("hero.goalProgressLabel", { title: topGoal.title })}
+                      size={64}
+                      stroke={6}
+                    />
+                    <div className="min-w-0">
+                      <p className="text-xs font-medium uppercase tracking-wide text-gold-deep">
+                        {t("hero.currentGoal")}
+                      </p>
+                      <p className="truncate text-sm font-semibold text-forest">
+                        {topGoal.title}
+                      </p>
+                    </div>
+                  </div>
+                ) : null}
+                {latestMilestone ? (
+                  <MilestoneBadge label={latestMilestone} size="sm" />
+                ) : null}
+              </div>
+            ) : null}
           </header>
+
+          <ProfileTabs
+            tabs={[
+              { id: "about", label: t("tabs.about") },
+              { id: "journey", label: t("tabs.journey") },
+              { id: "goals", label: t("tabs.goals") },
+              ...(merch.length > 0
+                ? [{ id: "shop", label: tShop("shop.heading") }]
+                : []),
+              { id: "support-composer", label: t("tabs.support") },
+            ]}
+          />
 
           <CreatorStats
             supporters={support.totalCount}
             goalsReached={goals.completed.length}
-            updates={updates.length}
+            updates={journey.length}
             joined={joined}
           />
 
-          {profile.about ? (
-            <section aria-label={t("about.sectionLabel", { name })}>
-              <h2 className="font-serif text-xl font-semibold text-forest">
-                {t("about.heading")}
-              </h2>
-              <div className="mt-3">
-                <Markdown source={profile.about} />
+          <section id="about" className="scroll-mt-20">
+            {profile.about ? (
+              <div aria-label={t("about.sectionLabel", { name })}>
+                <h2 className="font-serif text-xl font-semibold text-forest">
+                  {t("about.heading")}
+                </h2>
+                <div className="mt-3">
+                  <Markdown source={profile.about} />
+                </div>
               </div>
-            </section>
-          ) : null}
+            ) : null}
 
-          {profile.pinned_media_url ? (
-            <PinnedMedia url={profile.pinned_media_url} />
-          ) : null}
+            {profile.pinned_media_url ? (
+              <div className="mt-8">
+                <PinnedMedia url={profile.pinned_media_url} />
+              </div>
+            ) : null}
+          </section>
 
           <RecentSupport items={support.recent} />
 
-          <PublicUpdates updates={updates} creatorName={name} isOwner={isOwner} />
+          <section id="journey" className="scroll-mt-20">
+            <PublicJourney
+              posts={journey}
+              creatorName={name}
+              isOwner={isOwner}
+              isSignedIn={Boolean(viewer)}
+              currentUserId={viewer?.id ?? null}
+              signInHref={`/${locale}/sign-in`}
+              pageUrl={`${siteConfig.url}/${locale}/t/${profile.username}`}
+            />
+          </section>
+
+          <PublicMerch products={merch} locale={locale as AppLocale} />
         </div>
 
         {/* Support panel — aligned to the name on desktop (lg:mt-24 clears the
@@ -501,7 +603,7 @@ export default async function RecipientProfilePage({
             currency={currency}
           />
 
-          <div id="support-composer" className="scroll-mt-6">
+          <div id="support-composer" className="scroll-mt-20">
             {ready ? (
               <div className="rounded-3xl border border-stone bg-white p-6 sm:p-8">
                 <GiftComposer
@@ -540,7 +642,7 @@ export default async function RecipientProfilePage({
             )}
           </div>
 
-          <div id="support" className="scroll-mt-6">
+          <div id="goals" className="scroll-mt-20">
             <PublicGoals
               active={goals.active}
               completed={goals.completed}

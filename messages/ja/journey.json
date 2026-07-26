@@ -1,0 +1,25 @@
+{
+  "sectionLabel": "ジャーニー",
+  "heading": "{name}さんのジャーニー",
+  "emptyOwnerHeading": "ジャーニーを始めましょう",
+  "emptyOwnerBody": "最初の近況を投稿しましょう — 写真、結果、マイルストーンなど。サポーターは、あなたの物語を追いかけるのが大好きです。",
+  "writeFirst": "最初の近況を投稿",
+  "share": "共有",
+  "videoTitle": "ジャーニー動画",
+  "likeAria": "{count, plural, =0 {まだいいねがありません} other {いいね#件}}",
+  "commentPlaceholder": "コメントを追加…",
+  "commentSubmit": "コメント",
+  "commentSignIn": "コメントするにはサインインしてください",
+  "commentDelete": "削除",
+  "commentError": "コメントを投稿できませんでした。もう一度お試しください。",
+  "commenterFallback": "サポーター",
+  "milestoneDraft": {
+    "title": "達成まで{percent}%まで来ました！",
+    "body": "私のジャーニーを応援してくれるみなさん、本当にありがとうございます — 「{goalTitle}」に向けて{percent}%まで来ました。ひとつひとつの応援が、私を前へ進めてくれます。🙏",
+    "label": "目標達成 {percent}%"
+  },
+  "goalCreatedDraft": {
+    "title": "新しい目標：{goalTitle}",
+    "body": "新しい目標を立てました — 「{goalTitle}」。ぜひ一緒に、達成まで見守ってください。ひとつのティーが力になります。⛳"
+  }
+}

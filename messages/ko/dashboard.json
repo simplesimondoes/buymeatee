@@ -28,7 +28,9 @@
     "wishlist": "위시리스트",
     "updates": "소식",
     "payments": "결제",
-    "profile": "프로필"
+    "profile": "프로필",
+    "journey": "여정",
+    "merch": "굿즈"
   },
   "eyebrow": "대시보드",
   "actions": {
@@ -88,9 +90,9 @@
       "notReady": "<strong>{state}</strong> — 이 설정이 끝나야 서포터가 티를 보낼 수 있어요."
     },
     "updatesCard": {
-      "title": "소식",
+      "title": "여정",
       "link": "소식 올리기",
-      "body": "서포터에게 진행 상황을 공유하세요 — 새로운 기능, 이정표, 플레이한 라운드까지. 게시한 소식은 내 페이지에 표시돼요."
+      "body": "서포터에게 진행 상황을 공유하세요 — 사진, 결과, 이정표까지. 게시한 글은 내 여정에 표시돼요."
     }
   },
   "goals": {
@@ -164,13 +166,19 @@
       "publish": "게시",
       "unpublish": "게시 취소",
       "shareUpdate": "이 소식 공유하기",
-      "shareTitle": "소식을 게시했어요 — 서포터들과 공유해 보세요."
+      "shareTitle": "소식을 게시했어요 — 서포터들과 공유해 보세요.",
+      "untitled": "제목 없는 글"
     },
     "form": {
       "titleLabel": "제목",
       "titlePlaceholder": "7월 소식 — 새 코스 1,200곳",
       "bodyLabel": "내용",
-      "bodyPlaceholder": "어떤 소식이 있나요? 서포터는 진행 상황을 보는 걸 좋아해요.\n\n마크다운을 쓸 수 있어요: **굵게**, - 목록, [링크](https://…)."
+      "bodyPlaceholder": "어떤 소식이 있나요? 서포터는 진행 상황을 보는 걸 좋아해요.\n\n마크다운을 쓸 수 있어요: **굵게**, - 목록, [링크](https://…).",
+      "videoLabel": "YouTube 동영상 (선택)",
+      "videoPlaceholder": "https://youtube.com/watch?v=…",
+      "milestoneLabel": "이정표 (선택)",
+      "milestonePlaceholder": "예: 예선 통과, 대회 우승, 최저타 라운드",
+      "milestoneHelp": "이정표 라벨을 붙여 이 소식을 여정의 하이라이트로 표시하세요."
     }
   },
   "wishlist": {
@@ -259,5 +267,15 @@
       "checkout_created": "결제 대기 중",
       "cancelled": "취소됨"
     }
+  },
+  "stats": {
+    "sectionLabel": "내 통계",
+    "supporters": "서포터",
+    "journeyPosts": "여정 게시물",
+    "goalProgress": "목표 진행률",
+    "goalProgressAria": "{title} 진행 상황",
+    "noGoal": "아직 진행 중인 목표가 없어요",
+    "recurring": "정기 응원",
+    "comingSoon": "곧 제공 예정"
   }
 }

@@ -28,7 +28,9 @@
     "wishlist": "Wunschliste",
     "updates": "Updates",
     "payments": "Zahlungen",
-    "profile": "Profil"
+    "profile": "Profil",
+    "journey": "Weg",
+    "merch": "Merch"
   },
   "eyebrow": "Dashboard",
   "actions": {
@@ -88,9 +90,9 @@
       "notReady": "<strong>{state}</strong> — Unterstützer:innen können erst Tees senden, wenn das erledigt ist."
     },
     "updatesCard": {
-      "title": "Updates",
+      "title": "Weg",
       "link": "Update posten",
-      "body": "Teile Fortschritte mit deinen Unterstützer:innen — neue Features, Meilensteine, gespielte Runden. Veröffentlichte Updates erscheinen auf deiner Seite."
+      "body": "Teile Fortschritte mit deinen Unterstützer:innen — Fotos, Ergebnisse, Meilensteine. Veröffentlichte Beiträge erscheinen auf deinem Weg."
     }
   },
   "goals": {
@@ -164,13 +166,19 @@
       "publish": "Veröffentlichen",
       "unpublish": "Veröffentlichung zurückziehen",
       "shareUpdate": "Dieses Update teilen",
-      "shareTitle": "Update veröffentlicht — teile es mit deinen Unterstützer:innen."
+      "shareTitle": "Update veröffentlicht — teile es mit deinen Unterstützer:innen.",
+      "untitled": "Beitrag ohne Titel"
     },
     "form": {
       "titleLabel": "Titel",
       "titlePlaceholder": "Juli-Update — 1.200 neue Plätze",
       "bodyLabel": "Update",
-      "bodyPlaceholder": "Was gibt's Neues? Unterstützer:innen sehen gern Fortschritt.\n\nMarkdown funktioniert: **fett**, - Listen und [Links](https://…)."
+      "bodyPlaceholder": "Was gibt's Neues? Unterstützer:innen sehen gern Fortschritt.\n\nMarkdown funktioniert: **fett**, - Listen und [Links](https://…).",
+      "videoLabel": "YouTube-Video (optional)",
+      "videoPlaceholder": "https://youtube.com/watch?v=…",
+      "milestoneLabel": "Meilenstein (optional)",
+      "milestonePlaceholder": "z. B. Qualifiziert, Turnier gewonnen, beste Runde aller Zeiten",
+      "milestoneHelp": "Füge ein Meilenstein-Label hinzu, um dies als Highlight auf deinem Weg zu markieren."
     }
   },
   "wishlist": {
@@ -259,5 +267,15 @@
       "checkout_created": "Zahlung ausstehend",
       "cancelled": "Storniert"
     }
+  },
+  "stats": {
+    "sectionLabel": "Deine Statistiken",
+    "supporters": "Unterstützer:innen",
+    "journeyPosts": "Weg-Beiträge",
+    "goalProgress": "Zielfortschritt",
+    "goalProgressAria": "Fortschritt bei {title}",
+    "noGoal": "Noch kein aktives Ziel",
+    "recurring": "Wiederkehrende Unterstützung",
+    "comingSoon": "Demnächst"
   }
 }

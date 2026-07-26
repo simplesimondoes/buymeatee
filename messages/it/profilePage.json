@@ -13,7 +13,15 @@
   "hero": {
     "kicker": "Sostieni il percorso",
     "handicap": "Handicap {handicap}",
-    "websiteLabel": "Sito web"
+    "websiteLabel": "Sito web",
+    "currentGoal": "Obiettivo attuale",
+    "goalProgressLabel": "Avanzamento verso {title}"
+  },
+  "tabs": {
+    "about": "Chi sono",
+    "journey": "Percorso",
+    "goals": "Obiettivi",
+    "support": "Sostieni"
   },
   "about": {
     "heading": "Chi sono",

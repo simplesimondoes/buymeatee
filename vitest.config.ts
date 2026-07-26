@@ -10,7 +10,9 @@ export default defineConfig({
     environment: "jsdom",
     setupFiles: ["./vitest.setup.ts"],
     include: ["**/*.test.{ts,tsx}"],
-    exclude: ["node_modules", ".next"],
+    // ".claude" holds transient Claude Code worktrees (isolated checkouts) whose
+    // duplicated test files must not run against this project.
+    exclude: ["node_modules", ".next", ".claude"],
     server: {
       deps: {
         // Process next-intl with Vite instead of Node's ESM resolver: its

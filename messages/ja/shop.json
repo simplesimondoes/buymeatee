@@ -1,0 +1,34 @@
+{
+  "nav": {
+    "label": "グッズ"
+  },
+  "shop": {
+    "heading": "ショップ",
+    "fulfilmentNotice": "あなたのために特別に制作し、Printful の国際生産ネットワークを通じて発送します。",
+    "empty": "このクリエイターはまだグッズを追加していません。"
+  },
+  "delivery": {
+    "estimateNotice": "お届け予定日は生産パートナーが提供するもので、生産開始後に変更される場合があります。"
+  },
+  "dashboard": {
+    "title": "グッズ",
+    "subtitle": "サポーターにブランドグッズを販売しましょう。利益はあなたのもの。制作と配送は Printful を通じて当社が対応します。",
+    "notEnabled": "お客様のアカウントではまだグッズをご利用いただけません。",
+    "beta": "グッズは非公開ベータ版です。公開できるようになりましたらお知らせします。",
+    "empty": "まだ商品を作成していません。",
+    "productsHeading": "あなたの商品",
+    "priceLabel": "価格",
+    "profitLabel": "推定利益",
+    "builderComingSoon": "商品ビルダーは近日公開予定です。",
+    "unavailable": "商品を読み込めませんでした。もう一度お試しください。",
+    "status": {
+      "draft": "下書き",
+      "awaiting_approval": "審査待ち",
+      "changes_requested": "修正依頼",
+      "approved": "承認済み",
+      "published": "公開中",
+      "paused": "一時停止",
+      "archived": "アーカイブ済み"
+    }
+  }
+}

@@ -110,6 +110,13 @@
       "bodyRequired": "Escreve algo para os teus apoiantes.",
       "bodyLength": "Mantém a novidade abaixo de {max} caracteres."
     },
+    "journey": {
+      "video": "Cola uma ligação do YouTube válida (https://…).",
+      "milestoneLabel": "Mantém a etiqueta do marco abaixo de {max} caracteres."
+    },
+    "comment": {
+      "body": "Escreve um comentário (até {max} caracteres)."
+    },
     "image": {
       "type": "Usa uma imagem JPEG, PNG ou WebP.",
       "size": "Mantém a imagem abaixo de {maxMb} MB.",

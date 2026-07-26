@@ -12,6 +12,9 @@ const eslintConfig = defineConfig([
     "out/**",
     "build/**",
     "next-env.d.ts",
+    // Transient Claude Code worktrees (isolated checkouts) are not part of this
+    // project's sources — never lint/typecheck their copies.
+    ".claude/**",
   ]),
 ]);
 

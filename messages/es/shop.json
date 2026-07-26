@@ -1,0 +1,34 @@
+{
+  "nav": {
+    "label": "Tienda"
+  },
+  "shop": {
+    "heading": "Tienda",
+    "fulfilmentNotice": "Hecho especialmente para ti y gestionado a través de la red de producción internacional de Printful.",
+    "empty": "Este creador aún no ha añadido productos."
+  },
+  "delivery": {
+    "estimateNotice": "Las fechas de entrega estimadas las proporciona nuestro socio de producción y pueden cambiar una vez iniciada la producción."
+  },
+  "dashboard": {
+    "title": "Tienda",
+    "subtitle": "Vende productos con tu marca a tus seguidores. Tú te quedas con el beneficio — nosotros gestionamos la producción y el envío con Printful.",
+    "notEnabled": "La tienda aún no está disponible en tu cuenta.",
+    "beta": "La tienda está en beta privada. Te avisaremos cuando pueda publicarse.",
+    "empty": "Todavía no has creado ningún producto.",
+    "productsHeading": "Tus productos",
+    "priceLabel": "Precio",
+    "profitLabel": "Tu beneficio estimado",
+    "builderComingSoon": "El creador de productos llegará pronto.",
+    "unavailable": "No pudimos cargar tus productos. Inténtalo de nuevo.",
+    "status": {
+      "draft": "Borrador",
+      "awaiting_approval": "En revisión",
+      "changes_requested": "Cambios solicitados",
+      "approved": "Aprobado",
+      "published": "Publicado",
+      "paused": "En pausa",
+      "archived": "Archivado"
+    }
+  }
+}

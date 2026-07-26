@@ -13,7 +13,15 @@
   "hero": {
     "kicker": "その歩みを、応援しよう",
     "handicap": "ハンディキャップ{handicap}",
-    "websiteLabel": "ウェブサイト"
+    "websiteLabel": "ウェブサイト",
+    "currentGoal": "現在の目標",
+    "goalProgressLabel": "{title}への進捗"
+  },
+  "tabs": {
+    "about": "自己紹介",
+    "journey": "ジャーニー",
+    "goals": "目標",
+    "support": "応援"
   },
   "about": {
     "heading": "自己紹介",

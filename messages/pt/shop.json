@@ -1,0 +1,34 @@
+{
+  "nav": {
+    "label": "Loja"
+  },
+  "shop": {
+    "heading": "Loja",
+    "fulfilmentNotice": "Feito especialmente para si e produzido através da rede de produção internacional da Printful.",
+    "empty": "Este criador ainda não adicionou produtos."
+  },
+  "delivery": {
+    "estimateNotice": "As datas de entrega estimadas são fornecidas pelo nosso parceiro de produção e podem mudar depois de a produção começar."
+  },
+  "dashboard": {
+    "title": "Loja",
+    "subtitle": "Venda produtos com a sua marca aos seus apoiantes. O lucro é seu — tratamos da produção e do envio através da Printful.",
+    "notEnabled": "A loja ainda não está disponível na sua conta.",
+    "beta": "A loja está em beta privada. Avisaremos quando puder ser publicada.",
+    "empty": "Ainda não criou nenhum produto.",
+    "productsHeading": "Os seus produtos",
+    "priceLabel": "Preço",
+    "profitLabel": "O seu lucro estimado",
+    "builderComingSoon": "O criador de produtos chega em breve.",
+    "unavailable": "Não foi possível carregar os seus produtos. Tente novamente.",
+    "status": {
+      "draft": "Rascunho",
+      "awaiting_approval": "Em análise",
+      "changes_requested": "Alterações solicitadas",
+      "approved": "Aprovado",
+      "published": "Publicado",
+      "paused": "Em pausa",
+      "archived": "Arquivado"
+    }
+  }
+}
