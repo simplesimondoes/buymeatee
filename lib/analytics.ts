@@ -10,8 +10,6 @@
 export type AnalyticsEvent =
   | "creator_cta_clicked"
   | "supporter_cta_clicked"
-  | "early_access_form_opened"
-  | "early_access_form_submitted"
   | "faq_opened"
   | "blog_article_viewed";
 

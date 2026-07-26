@@ -191,12 +191,6 @@ export default async function AdminAnalyticsPage({
           noPriorLabel={noPrior}
         />
         <StatTile
-          label={t("analytics.kpis.earlyAccess")}
-          value={count(snapshot.totals.earlyAccess)}
-          locale={appLocale}
-          noPriorLabel={noPrior}
-        />
-        <StatTile
           label={t("analytics.kpis.activeCreators")}
           value={count(snapshot.totals.activeCreators30d)}
           locale={appLocale}
@@ -322,32 +316,22 @@ export default async function AdminAnalyticsPage({
                     <th scope="col" className="py-2 pr-3 text-right">
                       {t("analytics.signups.table.supporters")}
                     </th>
-                    <th scope="col" className="py-2 pr-3 text-right">
-                      {t("analytics.signups.table.total")}
-                    </th>
                     <th scope="col" className="py-2 text-right">
-                      {t("analytics.signups.table.earlyAccess")}
+                      {t("analytics.signups.table.total")}
                     </th>
                   </tr>
                 </thead>
                 <tbody className="tabular-nums">
-                  {[...snapshot.signups.monthly].reverse().map((point, index) => {
-                    const earlyAccess =
-                      [...snapshot.signups.earlyAccessMonthly].reverse()[index];
-                    return (
-                      <tr key={point.key} className="border-b border-stone/60 last:border-0">
-                        <td className="py-2 pr-3 text-ink/75">{monthLabel(point.key)}</td>
-                        <td className="py-2 pr-3 text-right">{count(point.creators)}</td>
-                        <td className="py-2 pr-3 text-right">{count(point.supporters)}</td>
-                        <td className="py-2 pr-3 text-right font-medium">
-                          {count(point.creators + point.supporters)}
-                        </td>
-                        <td className="py-2 text-right">
-                          {count(earlyAccess?.count ?? 0)}
-                        </td>
-                      </tr>
-                    );
-                  })}
+                  {[...snapshot.signups.monthly].reverse().map((point) => (
+                    <tr key={point.key} className="border-b border-stone/60 last:border-0">
+                      <td className="py-2 pr-3 text-ink/75">{monthLabel(point.key)}</td>
+                      <td className="py-2 pr-3 text-right">{count(point.creators)}</td>
+                      <td className="py-2 pr-3 text-right">{count(point.supporters)}</td>
+                      <td className="py-2 text-right font-medium">
+                        {count(point.creators + point.supporters)}
+                      </td>
+                    </tr>
+                  ))}
                 </tbody>
               </table>
             </div>

@@ -47,7 +47,6 @@ export interface AnalyticsGiftRow {
 
 export interface AnalyticsSourceRows {
   profiles: AnalyticsProfileRow[];
-  earlyAccess: Array<{ created_at: string }>;
   accounts: AnalyticsAccountRow[];
   gifts: AnalyticsGiftRow[];
 }
@@ -103,7 +102,6 @@ export interface AnalyticsSnapshot {
   totals: {
     creators: number;
     supporters: number;
-    earlyAccess: number;
     paidGifts: number;
     testGifts: number;
     deactivated: number;
@@ -116,7 +114,6 @@ export interface AnalyticsSnapshot {
     daily: SignupPoint[];
     weekly: SignupPoint[];
     monthly: SignupPoint[];
-    earlyAccessMonthly: Array<{ key: string; count: number }>;
     growth: GrowthTriple;
   };
   funnel: {
@@ -208,7 +205,6 @@ function earliestEventTime(rows: AnalyticsSourceRows): number | null {
     }
   };
   for (const p of rows.profiles) consider(p.created_at);
-  for (const e of rows.earlyAccess) consider(e.created_at);
   for (const a of rows.accounts) consider(a.created_at);
   for (const g of rows.gifts) consider(g.created_at);
   return earliest;
@@ -264,7 +260,7 @@ export function buildAnalyticsSnapshot(
   rows: AnalyticsSourceRows,
   now: Date,
 ): AnalyticsSnapshot {
-  const { profiles, earlyAccess, accounts, gifts } = rows;
+  const { profiles, accounts, gifts } = rows;
 
   // --- Sign-ups -----------------------------------------------------------
   const launch = earliestEventTime(rows);
@@ -292,14 +288,6 @@ export function buildAnalyticsSnapshot(
 
   const toSignupPoints = (buckets: Map<string, { creators: number; supporters: number }>) =>
     [...buckets.entries()].map(([key, value]) => ({ key, ...value }));
-
-  const earlyAccessByMonth = new Map(monthKeys.map((key) => [key, 0]));
-  for (const signup of earlyAccess) {
-    const key = utcMonthKey(new Date(signup.created_at));
-    if (earlyAccessByMonth.has(key)) {
-      earlyAccessByMonth.set(key, (earlyAccessByMonth.get(key) ?? 0) + 1);
-    }
-  }
 
   const signupEvents = profiles.map((profile) => ({
     t: new Date(profile.created_at).getTime(),
@@ -439,7 +427,6 @@ export function buildAnalyticsSnapshot(
     totals: {
       creators: creatorsTotal,
       supporters: profiles.length - creatorsTotal,
-      earlyAccess: earlyAccess.length,
       paidGifts: paidLiveGifts.length,
       testGifts,
       deactivated,
@@ -454,9 +441,6 @@ export function buildAnalyticsSnapshot(
       daily: toSignupPoints(byDay),
       weekly: toSignupPoints(byWeek),
       monthly: toSignupPoints(byMonth),
-      earlyAccessMonthly: [...earlyAccessByMonth.entries()].map(
-        ([key, count]) => ({ key, count }),
-      ),
       growth: growthTriple(signupEvents, now),
     },
     funnel,
@@ -495,12 +479,11 @@ async function fetchAllRows<T>(table: string, columns: string): Promise<T[]> {
 export async function getAnalyticsSnapshot(
   now: Date = new Date(),
 ): Promise<AnalyticsSnapshot> {
-  const [profiles, earlyAccess, accounts, gifts] = await Promise.all([
+  const [profiles, accounts, gifts] = await Promise.all([
     fetchAllRows<AnalyticsProfileRow>(
       "profiles",
       "role, created_at, deactivated_at",
     ),
-    fetchAllRows<{ created_at: string }>("early_access_signups", "created_at"),
     fetchAllRows<AnalyticsAccountRow>(
       "stripe_connected_accounts",
       "details_submitted, charges_enabled, created_at",
@@ -510,5 +493,5 @@ export async function getAnalyticsSnapshot(
       "created_at, paid_at, status, currency, gift_amount, application_fee_amount, amount_refunded, sender_user_id, sender_email, recipient_user_id, livemode",
     ),
   ]);
-  return buildAnalyticsSnapshot({ profiles, earlyAccess, accounts, gifts }, now);
+  return buildAnalyticsSnapshot({ profiles, accounts, gifts }, now);
 }

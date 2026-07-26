@@ -192,7 +192,6 @@
       "paidTees7": "Bezahlte Tees, letzte 7 Tage",
       "creators": "Creator",
       "supporters": "Unterstützer:innen",
-      "earlyAccess": "Early-Access-Anmeldungen",
       "activeCreators": "Unterstützte Creator, letzte 30 Tage",
       "repeatRate": "Quote wiederkehrender Unterstützer:innen",
       "repeatRateHint": "Anteil der {total} identifizierten Unterstützer:innen, die mehr als einmal unterstützt haben",
@@ -212,8 +211,7 @@
         "period": "Zeitraum",
         "creators": "Creator",
         "supporters": "Unterstützer:innen",
-        "total": "Gesamt",
-        "earlyAccess": "Early Access"
+        "total": "Gesamt"
       }
     },
     "growth": {

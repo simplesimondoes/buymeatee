@@ -30,7 +30,7 @@ function gift(overrides: Partial<AnalyticsGiftRow>): AnalyticsGiftRow {
 }
 
 function emptyRows(): AnalyticsSourceRows {
-  return { profiles: [], earlyAccess: [], accounts: [], gifts: [] };
+  return { profiles: [], accounts: [], gifts: [] };
 }
 
 describe("time bucketing", () => {

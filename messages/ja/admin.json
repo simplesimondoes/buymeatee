@@ -192,7 +192,6 @@
       "paidTees7": "支払い済みティー（直近7日間）",
       "creators": "クリエイター",
       "supporters": "サポーター",
-      "earlyAccess": "先行アクセス登録",
       "activeCreators": "応援を受けたクリエイター（直近30日間）",
       "repeatRate": "リピートサポーター率",
       "repeatRateHint": "特定できたサポーター{total}人のうち、2回以上応援した人の割合",
@@ -212,8 +211,7 @@
         "period": "期間",
         "creators": "クリエイター",
         "supporters": "サポーター",
-        "total": "合計",
-        "earlyAccess": "先行アクセス"
+        "total": "合計"
       }
     },
     "growth": {

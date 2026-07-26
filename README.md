@@ -2,7 +2,7 @@
 
 **Support the journey.** BuyMeATee (`buymeatee.com`) is a golf-focused creator-support platform: golf fans help creators, aspiring professionals, amateur competitors, coaches and course reviewers chase meaningful goals.
 
-**Current status: pre-launch marketing website implemented.** The public marketing site (homepage, audience pages, blog, early-access form, legal drafts) lives in this repository and is ready for review. Payments, accounts and dashboards do **not** exist yet — see [.ai/context/current-phase.md](.ai/context/current-phase.md).
+**Current status: pre-launch marketing website implemented.** The public marketing site (homepage, audience pages, blog, legal drafts) lives in this repository and is ready for review. Payments, accounts and dashboards do **not** exist yet — see [.ai/context/current-phase.md](.ai/context/current-phase.md).
 
 ## Setup
 
@@ -27,7 +27,6 @@ Stack: Next.js (App Router, server components by default), TypeScript (strict), 
 | `lib/site.ts` | Brand config, navigation, footer links |
 | `lib/seo/` | Metadata + structured-data builders |
 | `lib/content/` | Typed content: images, goals, FAQs, support options, blog articles |
-| `lib/early-access/` | Form schema + isolated submission service |
 | `public/images/` | Imagery (currently low-res placeholders — see [.ai/context/image-requirements.md](.ai/context/image-requirements.md)) |
 
 ## Environment variables
@@ -35,7 +34,6 @@ Stack: Next.js (App Router, server components by default), TypeScript (strict), 
 Copy `.env.example` to `.env.local`:
 
 - `NEXT_PUBLIC_SITE_URL` — canonical origin (defaults to `https://buymeatee.com`).
-- `EARLY_ACCESS_API_URL` — server-side endpoint that receives early-access form submissions as a JSON POST. Leave empty and the form reports honestly that sign-up isn't connected (it never fakes success). To connect a provider (Formspree, Loops, ConvertKit, a Supabase function…), point this at its endpoint — the integration is isolated in `lib/early-access/service.ts`, so swapping providers touches one file. Never commit secrets.
 
 ## Testing
 
@@ -49,7 +47,7 @@ Visual work is additionally checked at 375 / 768 / 1024 / 1440 px (see [.ai/work
 
 ## Build & deployment
 
-`npm run build` produces a fully static site (only `/api/early-access` is server-rendered). Deployment target: Vercel with the GitHub integration, production domain `buymeatee.com`. Set the environment variables above in Vercel project settings.
+`npm run build` produces the production bundle (public marketing pages are statically generated; authenticated and API routes are server-rendered). Deployment target: Vercel with the GitHub integration, production domain `buymeatee.com`. Set the environment variables above in Vercel project settings.
 
 ## Content editing
 

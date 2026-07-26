@@ -192,7 +192,6 @@
       "paidTees7": "결제된 티, 최근 7일",
       "creators": "크리에이터",
       "supporters": "서포터",
-      "earlyAccess": "얼리 액세스 신청",
       "activeCreators": "응원받은 크리에이터, 최근 30일",
       "repeatRate": "재응원 서포터 비율",
       "repeatRateHint": "확인된 서포터 {total}명 중 두 번 이상 응원한 비율",
@@ -212,8 +211,7 @@
         "period": "기간",
         "creators": "크리에이터",
         "supporters": "서포터",
-        "total": "합계",
-        "earlyAccess": "얼리 액세스"
+        "total": "합계"
       }
     },
     "growth": {

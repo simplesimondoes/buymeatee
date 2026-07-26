@@ -192,7 +192,6 @@
       "paidTees7": "Tees pagados, últimos 7 días",
       "creators": "Creadores",
       "supporters": "Apoyos",
-      "earlyAccess": "Registros de acceso anticipado",
       "activeCreators": "Creadores apoyados, últimos 30 días",
       "repeatRate": "Tasa de apoyo recurrente",
       "repeatRateHint": "Proporción de los {total} apoyos identificados que apoyaron más de una vez",
@@ -212,8 +211,7 @@
         "period": "Periodo",
         "creators": "Creadores",
         "supporters": "Apoyos",
-        "total": "Total",
-        "earlyAccess": "Acceso anticipado"
+        "total": "Total"
       }
     },
     "growth": {

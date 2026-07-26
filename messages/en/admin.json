@@ -192,7 +192,6 @@
       "paidTees7": "Paid Tees, last 7 days",
       "creators": "Creators",
       "supporters": "Supporters",
-      "earlyAccess": "Early-access sign-ups",
       "activeCreators": "Creators supported, last 30 days",
       "repeatRate": "Repeat supporter rate",
       "repeatRateHint": "Share of {total} identified supporters who gave more than once",
@@ -212,8 +211,7 @@
         "period": "Period",
         "creators": "Creators",
         "supporters": "Supporters",
-        "total": "Total",
-        "earlyAccess": "Early access"
+        "total": "Total"
       }
     },
     "growth": {
