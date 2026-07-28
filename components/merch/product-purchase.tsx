@@ -122,24 +122,50 @@ export function ProductPurchase({
 
       <fieldset className="space-y-3 border-t border-stone pt-4">
         <legend className="text-sm font-medium text-ink">{t("product.shippingDetails")}</legend>
-        <input className={field} placeholder={t("product.fullName")} value={r.name} onChange={set("name")} />
-        <input className={field} placeholder={t("product.address1")} value={r.address1} onChange={set("address1")} />
-        <input className={field} placeholder={t("product.address2")} value={r.address2} onChange={set("address2")} />
+        {/*
+          Each field carries a visible <label> and an autocomplete token —
+          placeholders are not accessible names (WCAG 3.3.2 / 1.3.5). Required
+          fields are marked; address line 2 and state/province are optional.
+        */}
+        <label className="block">
+          <span className="mb-1 block text-sm text-ink/70">{t("product.fullName")}</span>
+          <input className={field} autoComplete="name" required value={r.name} onChange={set("name")} />
+        </label>
+        <label className="block">
+          <span className="mb-1 block text-sm text-ink/70">{t("product.address1")}</span>
+          <input className={field} autoComplete="address-line1" required value={r.address1} onChange={set("address1")} />
+        </label>
+        <label className="block">
+          <span className="mb-1 block text-sm text-ink/70">{t("product.address2")}</span>
+          <input className={field} autoComplete="address-line2" value={r.address2} onChange={set("address2")} />
+        </label>
         <div className="grid grid-cols-2 gap-3">
-          <input className={field} placeholder={t("product.city")} value={r.city} onChange={set("city")} />
-          <input className={field} placeholder={t("product.postcode")} value={r.zip} onChange={set("zip")} />
+          <label className="block">
+            <span className="mb-1 block text-sm text-ink/70">{t("product.city")}</span>
+            <input className={field} autoComplete="address-level2" required value={r.city} onChange={set("city")} />
+          </label>
+          <label className="block">
+            <span className="mb-1 block text-sm text-ink/70">{t("product.postcode")}</span>
+            <input className={field} autoComplete="postal-code" required value={r.zip} onChange={set("zip")} />
+          </label>
         </div>
-        <input className={field} placeholder={t("product.state")} value={r.stateCode} onChange={set("stateCode")} />
+        <label className="block">
+          <span className="mb-1 block text-sm text-ink/70">{t("product.state")}</span>
+          <input className={field} autoComplete="address-level1" value={r.stateCode} onChange={set("stateCode")} />
+        </label>
         <label className="block">
           <span className="mb-1 block text-sm text-ink/70">{t("product.country")}</span>
-          <select className={field} value={r.countryCode} onChange={set("countryCode")}>
+          <select className={field} autoComplete="country" value={r.countryCode} onChange={set("countryCode")}>
             {CONNECT_COUNTRIES.map((c) => (
               <option key={c.code} value={c.code}>{c.name}</option>
             ))}
           </select>
         </label>
-        <input className={field} type="email" placeholder={t("product.email")} value={r.email} onChange={set("email")} />
-        <p className="text-xs text-ink/50">{t("product.emailHint")}</p>
+        <label className="block">
+          <span className="mb-1 block text-sm text-ink/70">{t("product.email")}</span>
+          <input className={field} type="email" autoComplete="email" required value={r.email} onChange={set("email")} />
+        </label>
+        <p className="text-xs text-ink/70">{t("product.emailHint")}</p>
       </fieldset>
 
       {error ? <p className="text-sm text-red-700">{error}</p> : null}

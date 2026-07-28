@@ -46,7 +46,7 @@ export const privacyEn: LegalDocument = {
       blocks: [
         {
           kind: "paragraph",
-          text: "We use essential cookies to keep you signed in — these are always on because the site needs them to work. We also use Google Analytics (GA4) to understand, in aggregate, how the site is used, which sets analytics cookies. Analytics only loads if you accept it: on your first visit a banner asks for your choice, and nothing analytics-related runs until you opt in. You can change or withdraw your choice at any time via **Cookie settings** in the footer.",
+          text: "We use strictly-necessary cookies to keep you signed in, and a functional cookie (`NEXT_LOCALE`) to remember your language choice — these are always on because the site needs them to work and they are not used for tracking. We also use Google Analytics (GA4) to understand, in aggregate, how the site is used, which sets analytics cookies. Analytics only loads if you accept it: on your first visit a banner asks for your choice, and nothing analytics-related runs until you opt in. You can change or withdraw your choice at any time via **Cookie settings** in the footer.",
         },
       ],
     },
@@ -91,12 +91,14 @@ export const privacyEn: LegalDocument = {
             "**Stripe** — payments, payouts and identity verification.",
             "**Resend** — sending transactional email.",
             "**Vercel** — website hosting and standard server logs.",
-            "**Google Analytics** — aggregate usage analytics.",
+            "**Google Analytics** — aggregate usage analytics (only after you opt in).",
+            "**OpenAI** — optional AI drafting of suggested share and social-post copy; it processes only the content a creator chooses to have personalised (based in the United States).",
+            "**Printful** — print-on-demand production and shipping of merchandise orders, including the customer name and delivery address needed to fulfil and post an order (based in the United States).",
           ],
         },
         {
           kind: "paragraph",
-          text: "Some of these providers are based in, or process data in, the United States. Where personal data leaves the UK/EEA, it is protected by appropriate safeguards such as Standard Contractual Clauses. The full processor list and transfer mechanisms will be confirmed in the legal review.",
+          text: "Some of these providers (including Stripe, Vercel, Google Analytics, OpenAI and Printful) are based in, or process data in, the United States. Where personal data leaves the UK/EEA, it is protected by appropriate safeguards such as Standard Contractual Clauses. The full processor list and transfer mechanisms will be confirmed in the legal review.",
         },
       ],
     },
@@ -105,7 +107,7 @@ export const privacyEn: LegalDocument = {
       blocks: [
         {
           kind: "paragraph",
-          text: "We keep account, profile and payment records for as long as you have an account and as long as we must for legal, tax and accounting reasons after that. Public content you post remains visible until you remove it or close your account.",
+          text: "We keep your account and profile data for as long as you have an account, and delete it within about 30 days after you close your account — except where we are legally required to keep it longer. Payment, invoice and tax records are retained for the statutory period required of a German business (generally up to 10 years under the German Commercial Code (HGB) and Fiscal Code (AO)). Public content you post remains visible until you remove it or close your account.",
         },
       ],
     },
@@ -114,7 +116,7 @@ export const privacyEn: LegalDocument = {
       blocks: [
         {
           kind: "paragraph",
-          text: "Under UK and EU data-protection law you can ask to access, correct, delete or export your personal data, object to or restrict certain processing, and withdraw consent at any time. You can also complain to your data-protection regulator (in the UK, the ICO). Some payment and tax records must be retained even if you ask for deletion.",
+          text: "Under the EU GDPR (and equivalent UK law) you can ask to access, correct, delete or export your personal data, object to or restrict certain processing, and withdraw consent at any time. You can also complain to a data-protection supervisory authority: as the operator is established in Germany, the competent authority is the Saxon Data Protection and Transparency Officer (Sächsische Datenschutz- und Transparenzbeauftragte), and you may also contact the authority in your own country of residence. Some payment and tax records must be retained even if you ask for deletion.",
         },
       ],
     },

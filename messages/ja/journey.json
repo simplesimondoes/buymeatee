@@ -6,6 +6,8 @@
   "writeFirst": "最初の近況を投稿",
   "share": "共有",
   "videoTitle": "ジャーニー動画",
+  "imageAlt": "{name}さんの投稿の写真",
+  "imageAltNumbered": "{name}さんの投稿の写真{number}",
   "likeAria": "{count, plural, =0 {まだいいねがありません} other {いいね#件}}",
   "commentPlaceholder": "コメントを追加…",
   "commentSubmit": "コメント",

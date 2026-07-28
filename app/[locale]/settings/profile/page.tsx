@@ -73,7 +73,7 @@ export default async function ProfileSettingsPage({
           <span className="block text-sm font-medium text-ink/80">
             {t("profile.language.label")}
           </span>
-          <span className="block text-xs text-ink/60">
+          <span className="block text-xs text-ink/70">
             {t("profile.language.help")}
           </span>
         </div>

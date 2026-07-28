@@ -95,13 +95,13 @@ export default async function AdminUserDetailPage({
           </h2>
           <dl className="mt-3 space-y-1.5 text-sm text-ink/80">
             <div className="flex gap-2">
-              <dt className="w-28 shrink-0 font-medium text-ink/60">
+              <dt className="w-28 shrink-0 font-medium text-ink/70">
                 {t("userDetail.fields.userId")}
               </dt>
               <dd className="break-all">{profile.id}</dd>
             </div>
             <div className="flex gap-2">
-              <dt className="w-28 shrink-0 font-medium text-ink/60">
+              <dt className="w-28 shrink-0 font-medium text-ink/70">
                 {t("userDetail.fields.publicLink")}
               </dt>
               <dd>
@@ -118,25 +118,25 @@ export default async function AdminUserDetailPage({
               </dd>
             </div>
             <div className="flex gap-2">
-              <dt className="w-28 shrink-0 font-medium text-ink/60">
+              <dt className="w-28 shrink-0 font-medium text-ink/70">
                 {t("userDetail.fields.role")}
               </dt>
               <dd>{t(`statuses.role.${profile.role}`)}</dd>
             </div>
             <div className="flex gap-2">
-              <dt className="w-28 shrink-0 font-medium text-ink/60">
+              <dt className="w-28 shrink-0 font-medium text-ink/70">
                 {t("userDetail.fields.country")}
               </dt>
               <dd>{profile.country ?? "—"}</dd>
             </div>
             <div className="flex gap-2">
-              <dt className="w-28 shrink-0 font-medium text-ink/60">
+              <dt className="w-28 shrink-0 font-medium text-ink/70">
                 {t("userDetail.fields.bio")}
               </dt>
               <dd className="whitespace-pre-wrap">{profile.bio ?? "—"}</dd>
             </div>
             <div className="flex gap-2">
-              <dt className="w-28 shrink-0 font-medium text-ink/60">
+              <dt className="w-28 shrink-0 font-medium text-ink/70">
                 {t("userDetail.fields.joined")}
               </dt>
               <dd>{formatDateTime(profile.created_at, appLocale)}</dd>
@@ -153,7 +153,7 @@ export default async function AdminUserDetailPage({
           </h2>
           <dl className="mt-3 space-y-1.5 text-sm text-ink/80">
             <div className="flex gap-2">
-              <dt className="w-28 shrink-0 font-medium text-ink/60">
+              <dt className="w-28 shrink-0 font-medium text-ink/70">
                 {t("userDetail.stripeState")}
               </dt>
               <dd>
@@ -164,7 +164,7 @@ export default async function AdminUserDetailPage({
               </dd>
             </div>
             <div className="flex gap-2">
-              <dt className="w-28 shrink-0 font-medium text-ink/60">
+              <dt className="w-28 shrink-0 font-medium text-ink/70">
                 {t("userDetail.teesReceived")}
               </dt>
               <dd>
@@ -190,13 +190,13 @@ export default async function AdminUserDetailPage({
             {t("userDetail.goalsHeading", { count: goals.length })}
           </h3>
           {goals.length === 0 ? (
-            <p className="mt-2 text-sm text-ink/60">{t("userDetail.goalsEmpty")}</p>
+            <p className="mt-2 text-sm text-ink/70">{t("userDetail.goalsEmpty")}</p>
           ) : (
             <ul className="mt-2 space-y-1.5 text-sm text-ink/80">
               {goals.map((goal) => (
                 <li key={goal.id} className="flex flex-wrap items-baseline gap-x-2">
                   <span className="font-medium">{goal.title}</span>
-                  <span className="text-ink/60">
+                  <span className="text-ink/70">
                     {t(`statuses.goal.${goal.status}`)} ·{" "}
                     {t("userDetail.goalProgress", {
                       raised: formatMinorAmount(
@@ -249,7 +249,7 @@ export default async function AdminUserDetailPage({
                 <li key={action.id}>
                   <span className="font-medium">{action.action}</span>{" "}
                   — {action.reason}{" "}
-                  <span className="text-ink/50">
+                  <span className="text-ink/70">
                     ({formatDateTime(action.created_at, appLocale)})
                   </span>
                 </li>

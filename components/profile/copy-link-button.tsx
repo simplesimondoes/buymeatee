@@ -42,7 +42,7 @@ export function CopyLinkButton({ username }: { username: string }) {
         {copied ? t("copiedAnnouncement") : ""}
       </span>
       {failed ? (
-        <span className="text-xs text-ink/60">{t("copyYourLinkFailed")}</span>
+        <span className="text-xs text-ink/70">{t("copyYourLinkFailed")}</span>
       ) : null}
     </span>
   );

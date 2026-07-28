@@ -112,7 +112,7 @@ export function ModerationAction({
           setOpen(false);
           setError(null);
         }}
-        className="text-xs font-medium text-ink/60 hover:text-ink"
+        className="text-xs font-medium text-ink/70 hover:text-ink"
       >
         {t("action.cancel")}
       </button>

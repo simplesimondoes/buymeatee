@@ -190,7 +190,7 @@ export function SocialStudio({
             ["image", ["all", ...SOCIAL_IMAGE_TYPES], "social.image"],
           ] as const
         ).map(([key, options, labelNs]) => (
-          <label key={key} className="flex items-center gap-1.5 text-xs text-ink/60">
+          <label key={key} className="flex items-center gap-1.5 text-xs text-ink/70">
             {t(`social.filters.${key}`)}
             <select
               value={filters[key]}
@@ -216,7 +216,7 @@ export function SocialStudio({
         ))}
         <span className="ml-auto flex items-center gap-2">
           {!aiConfigured ? (
-            <span className="text-xs text-ink/60">
+            <span className="text-xs text-ink/70">
               {t("social.seed.notConfigured")}
             </span>
           ) : null}
@@ -326,14 +326,14 @@ function DraftCard({
         aria-expanded={open}
         className="flex w-full flex-wrap items-center gap-2 p-4 text-left"
       >
-        <span className="text-xs font-medium text-ink/60">
+        <span className="text-xs font-medium text-ink/70">
           {t(`social.slot.${draft.slot}`)}
         </span>
         <span className="font-medium text-forest">
           {t(`social.pillars.${draft.pillar}`)}
         </span>
         {draft.audience ? (
-          <span className="text-xs text-ink/60">
+          <span className="text-xs text-ink/70">
             {draft.audience.replace(/-/g, " ")}
           </span>
         ) : null}
@@ -353,13 +353,13 @@ function DraftCard({
         <div className="space-y-4 border-t border-stone p-4">
           <dl className="grid gap-2 text-sm sm:grid-cols-2">
             <div>
-              <dt className="text-xs font-medium uppercase tracking-wide text-ink/50">
+              <dt className="text-xs font-medium uppercase tracking-wide text-ink/70">
                 {t("social.detail.objective")}
               </dt>
               <dd className="mt-0.5 text-ink/80">{draft.objective || "—"}</dd>
             </div>
             <div>
-              <dt className="text-xs font-medium uppercase tracking-wide text-ink/50">
+              <dt className="text-xs font-medium uppercase tracking-wide text-ink/70">
                 {t("social.detail.cta")}
               </dt>
               <dd className="mt-0.5 text-ink/80">{draft.cta || "—"}</dd>
@@ -374,11 +374,11 @@ function DraftCard({
                 <div className="flex items-baseline justify-between">
                   <label
                     htmlFor={`${draft.id}-${network}`}
-                    className="text-xs font-medium uppercase tracking-wide text-ink/50"
+                    className="text-xs font-medium uppercase tracking-wide text-ink/70"
                   >
                     {t(`social.detail.${network}Copy`)}
                   </label>
-                  <span className="text-xs text-ink/50">
+                  <span className="text-xs text-ink/70">
                     {t("social.detail.chars", { count: value.length, max })}
                   </span>
                 </div>
@@ -400,7 +400,7 @@ function DraftCard({
 
           {draft.image_type === "lifestyle" && draft.image_prompt ? (
             <p className="rounded-2xl bg-mist p-3 text-sm text-ink/75">
-              <span className="block text-xs font-medium uppercase tracking-wide text-ink/50">
+              <span className="block text-xs font-medium uppercase tracking-wide text-ink/70">
                 {t("social.detail.imagePrompt")}
               </span>
               {draft.image_prompt}
@@ -412,7 +412,7 @@ function DraftCard({
             </p>
           ) : null}
           {draft.published_at ? (
-            <p className="text-xs text-ink/60">
+            <p className="text-xs text-ink/70">
               {t("social.detail.publishedAt", {
                 date: formatDate(draft.published_at, locale, {
                   year: "numeric",

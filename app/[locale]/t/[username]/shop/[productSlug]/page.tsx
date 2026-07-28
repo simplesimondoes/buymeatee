@@ -109,7 +109,7 @@ export default async function ProductPage({
             {product.description ? (
               <p className="mt-3 text-ink/70">{product.description}</p>
             ) : null}
-            <p className="mt-4 text-sm text-ink/60">{t("shop.fulfilmentNotice")}</p>
+            <p className="mt-4 text-sm text-ink/70">{t("shop.fulfilmentNotice")}</p>
             <ProductPurchase
               creatorId={creator.id}
               productId={product.id}
@@ -119,7 +119,7 @@ export default async function ProductPage({
               sizes={product.selected_sizes ?? []}
               cancelPath={`/${locale}/t/${creator.username}/shop/${product.slug}`}
             />
-            <p className="mt-6 text-xs text-ink/50">{t("delivery.estimateNotice")}</p>
+            <p className="mt-6 text-xs text-ink/70">{t("delivery.estimateNotice")}</p>
           </div>
         </div>
       </main>

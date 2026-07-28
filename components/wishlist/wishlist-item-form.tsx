@@ -162,7 +162,7 @@ export function WishlistItemForm({
             className="block text-sm font-medium text-ink/80"
           >
             {t("wishlist.form.descriptionLabel")}{" "}
-            <span className="font-normal text-ink/50">
+            <span className="font-normal text-ink/70">
               {t("wishlist.form.optional")}
             </span>
           </label>
@@ -170,7 +170,7 @@ export function WishlistItemForm({
             className={`text-xs tabular-nums ${
               description.length > WISHLIST_DESCRIPTION_MAX_LENGTH
                 ? "text-red-800"
-                : "text-ink/50"
+                : "text-ink/70"
             }`}
           >
             {description.length}/{WISHLIST_DESCRIPTION_MAX_LENGTH}
@@ -225,11 +225,11 @@ export function WishlistItemForm({
             message={fieldError("priceAmount")}
           />
           {priceLocked ? (
-            <p id={`${fieldId}-price-locked`} className="mt-1.5 text-xs text-ink/60">
+            <p id={`${fieldId}-price-locked`} className="mt-1.5 text-xs text-ink/70">
               {t("wishlist.form.priceLockedHelp")}
             </p>
           ) : (
-            <p className="mt-1.5 text-xs text-ink/60">
+            <p className="mt-1.5 text-xs text-ink/70">
               {t("wishlist.form.priceHelp")}
             </p>
           )}
@@ -260,11 +260,11 @@ export function WishlistItemForm({
             ))}
           </select>
           {priceLocked ? (
-            <p id={`${fieldId}-currency-locked`} className="mt-1.5 text-xs text-ink/60">
+            <p id={`${fieldId}-currency-locked`} className="mt-1.5 text-xs text-ink/70">
               {t("wishlist.form.currencyLockedHelp")}
             </p>
           ) : payoutCurrency ? (
-            <p id={`${fieldId}-currency-locked`} className="mt-1.5 text-xs text-ink/60">
+            <p id={`${fieldId}-currency-locked`} className="mt-1.5 text-xs text-ink/70">
               {t("wishlist.form.currencyPayoutHelp")}
             </p>
           ) : null}
@@ -285,7 +285,7 @@ export function WishlistItemForm({
         <button
           type="button"
           onClick={onCancel}
-          className="inline-flex min-h-11 items-center justify-center rounded-full px-4 text-sm font-medium text-ink/60 transition-colors hover:text-ink"
+          className="inline-flex min-h-11 items-center justify-center rounded-full px-4 text-sm font-medium text-ink/70 transition-colors hover:text-ink"
         >
           {t("actions.cancel")}
         </button>

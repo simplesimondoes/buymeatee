@@ -88,7 +88,7 @@ export function PublicJourney({
                     {/* eslint-disable-next-line @next/next/no-img-element */}
                     <img
                       src={images[0]}
-                      alt=""
+                      alt={post.title ?? t("imageAlt", { name: creatorName })}
                       className="h-full w-full object-cover"
                       loading="lazy"
                     />
@@ -103,7 +103,14 @@ export function PublicJourney({
                         {/* eslint-disable-next-line @next/next/no-img-element */}
                         <img
                           src={src}
-                          alt=""
+                          alt={
+                            post.title
+                              ? `${post.title} (${index + 1})`
+                              : t("imageAltNumbered", {
+                                  name: creatorName,
+                                  number: index + 1,
+                                })
+                          }
                           className="h-full w-full object-cover"
                           loading="lazy"
                         />

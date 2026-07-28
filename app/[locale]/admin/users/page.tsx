@@ -105,7 +105,7 @@ export default async function AdminUsersPage({
       ) : (
         <div className="mt-8 overflow-x-auto rounded-3xl border border-stone">
           <table className="w-full min-w-[640px] text-left text-sm">
-            <thead className="border-b border-stone bg-mist text-xs uppercase tracking-wide text-ink/60">
+            <thead className="border-b border-stone bg-mist text-xs uppercase tracking-wide text-ink/70">
               <tr>
                 <th scope="col" className="px-4 py-3">{t("users.table.profile")}</th>
                 <th scope="col" className="px-4 py-3">{t("users.table.publicLink")}</th>
@@ -142,7 +142,7 @@ export default async function AdminUsersPage({
                       </span>
                     )}
                   </td>
-                  <td className="px-4 py-3 text-ink/60">
+                  <td className="px-4 py-3 text-ink/70">
                     {formatDate(profile.created_at, appLocale)}
                   </td>
                 </tr>

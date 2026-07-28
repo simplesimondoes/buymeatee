@@ -19,14 +19,14 @@ export function DeltaBadge({
 }) {
   if (changePercent === null) {
     return (
-      <span className="text-xs text-ink/50" title={noPriorLabel}>
+      <span className="text-xs text-ink/70" title={noPriorLabel}>
         —
       </span>
     );
   }
   if (changePercent === 0) {
     return (
-      <span className="text-xs font-medium text-ink/60">
+      <span className="text-xs font-medium text-ink/70">
         {formatSignedPercent(0, locale)}
       </span>
     );

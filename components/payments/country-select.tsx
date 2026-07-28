@@ -157,7 +157,7 @@ export function CountrySelect({
         <span className="flex-1 text-left">{selected?.label}</span>
         <ChevronDown
           aria-hidden="true"
-          className={`h-4 w-4 shrink-0 text-ink/50 transition-transform ${
+          className={`h-4 w-4 shrink-0 text-ink/70 transition-transform ${
             open ? "rotate-180" : ""
           }`}
         />

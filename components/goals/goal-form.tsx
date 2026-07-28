@@ -162,7 +162,7 @@ export function GoalForm({
             className="block text-sm font-medium text-ink/80"
           >
             {t("goals.form.descriptionLabel")}{" "}
-            <span className="font-normal text-ink/50">
+            <span className="font-normal text-ink/70">
               {t("goals.form.optional")}
             </span>
           </label>
@@ -170,7 +170,7 @@ export function GoalForm({
             className={`text-xs tabular-nums ${
               description.length > GOAL_DESCRIPTION_MAX_LENGTH
                 ? "text-red-800"
-                : "text-ink/50"
+                : "text-ink/70"
             }`}
           >
             {description.length}/{GOAL_DESCRIPTION_MAX_LENGTH}
@@ -246,11 +246,11 @@ export function GoalForm({
             ))}
           </select>
           {currencyLocked ? (
-            <p id={`${fieldId}-currency-locked`} className="mt-1.5 text-xs text-ink/60">
+            <p id={`${fieldId}-currency-locked`} className="mt-1.5 text-xs text-ink/70">
               {t("goals.form.currencyLockedHelp")}
             </p>
           ) : payoutCurrency ? (
-            <p id={`${fieldId}-currency-locked`} className="mt-1.5 text-xs text-ink/60">
+            <p id={`${fieldId}-currency-locked`} className="mt-1.5 text-xs text-ink/70">
               {t("goals.form.currencyPayoutHelp")}
             </p>
           ) : null}
@@ -271,7 +271,7 @@ export function GoalForm({
         <button
           type="button"
           onClick={onCancel}
-          className="inline-flex min-h-11 items-center justify-center rounded-full px-4 text-sm font-medium text-ink/60 transition-colors hover:text-ink"
+          className="inline-flex min-h-11 items-center justify-center rounded-full px-4 text-sm font-medium text-ink/70 transition-colors hover:text-ink"
         >
           {t("actions.cancel")}
         </button>

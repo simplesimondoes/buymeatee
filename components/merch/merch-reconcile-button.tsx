@@ -33,7 +33,7 @@ export function MerchReconcileButton() {
       >
         {t("merchCatalogue.analytics.reconcile")}
       </button>
-      <p className="mt-1 text-xs text-ink/50">{t("merchCatalogue.analytics.reconcileNote")}</p>
+      <p className="mt-1 text-xs text-ink/70">{t("merchCatalogue.analytics.reconcileNote")}</p>
       {result ? <p className="mt-2 break-all rounded-xl bg-mist p-3 text-xs text-ink/70">{result}</p> : null}
     </div>
   );

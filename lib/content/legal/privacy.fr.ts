@@ -49,7 +49,7 @@ export const privacyFr: LegalDocument = {
       blocks: [
         {
           kind: "paragraph",
-          text: "Nous utilisons des cookies essentiels pour vous maintenir connecté — ils sont toujours actifs, car le site en a besoin pour fonctionner. Nous utilisons également Google Analytics (GA4) pour comprendre, de manière agrégée, comment le site est utilisé, ce qui dépose des cookies d'analyse. L'analyse d'audience ne se charge que si vous l'acceptez : lors de votre première visite, un bandeau vous demande votre choix, et rien de lié à l'analyse ne s'exécute tant que vous n'avez pas donné votre accord. Vous pouvez modifier ou retirer votre choix à tout moment via **Paramètres des cookies** dans le pied de page.",
+          text: "Nous utilisons des cookies strictement nécessaires pour vous maintenir connecté, ainsi qu'un cookie fonctionnel (`NEXT_LOCALE`) pour mémoriser votre choix de langue — ils sont toujours actifs, car le site en a besoin pour fonctionner et ne servent pas au suivi. Nous utilisons également Google Analytics (GA4) pour comprendre, de manière agrégée, comment le site est utilisé, ce qui dépose des cookies d'analyse. L'analyse d'audience ne se charge que si vous l'acceptez : lors de votre première visite, un bandeau vous demande votre choix, et rien de lié à l'analyse ne s'exécute tant que vous n'avez pas donné votre accord. Vous pouvez modifier ou retirer votre choix à tout moment via **Paramètres des cookies** dans le pied de page.",
         },
       ],
     },
@@ -94,12 +94,14 @@ export const privacyFr: LegalDocument = {
             "**Stripe** — paiements, versements et vérification d'identité.",
             "**Resend** — envoi des e-mails transactionnels.",
             "**Vercel** — hébergement du site web et journaux serveur standard.",
-            "**Google Analytics** — statistiques d'utilisation agrégées.",
+            "**Google Analytics** — statistiques d'utilisation agrégées, uniquement après votre acceptation.",
+            "**OpenAI** — rédaction facultative, assistée par IA, de suggestions de textes de partage et de publications sociales ; il ne traite que le contenu qu'un créateur choisit de faire personnaliser (établi aux États-Unis).",
+            "**Printful** — production à la demande et expédition des commandes de produits dérivés, y compris le nom du client et l'adresse de livraison nécessaires à l'exécution et à l'envoi d'une commande (établi aux États-Unis).",
           ],
         },
         {
           kind: "paragraph",
-          text: "Certains de ces prestataires sont établis aux États-Unis ou y traitent des données. Lorsque des données personnelles quittent le Royaume-Uni ou l'EEE, elles sont protégées par des garanties appropriées, telles que des clauses contractuelles types. La liste complète des sous-traitants et les mécanismes de transfert seront confirmés lors de l'examen juridique.",
+          text: "Certains de ces prestataires (notamment Stripe, Vercel, Google Analytics, OpenAI et Printful) sont établis aux États-Unis ou y traitent des données. Lorsque des données personnelles quittent le Royaume-Uni ou l'EEE, elles sont protégées par des garanties appropriées, telles que des clauses contractuelles types. La liste complète des sous-traitants et les mécanismes de transfert seront confirmés lors de l'examen juridique.",
         },
       ],
     },
@@ -108,7 +110,7 @@ export const privacyFr: LegalDocument = {
       blocks: [
         {
           kind: "paragraph",
-          text: "Nous conservons les données de compte, de profil et de paiement aussi longtemps que vous avez un compte, puis aussi longtemps que les obligations légales, fiscales et comptables l'exigent. Le contenu public que vous publiez reste visible jusqu'à ce que vous le supprimiez ou fermiez votre compte.",
+          text: "Nous conservons les données de votre compte et de votre profil aussi longtemps que vous avez un compte, et nous les supprimons dans un délai d'environ 30 jours après la fermeture de votre compte — sauf lorsque la loi nous impose de les conserver plus longtemps. Les enregistrements de paiement, les factures et les documents fiscaux sont conservés pendant la durée légale imposée à une entreprise allemande (généralement jusqu'à 10 ans en vertu du Code de commerce allemand (Handelsgesetzbuch, HGB) et du Code des impôts allemand (Abgabenordnung, AO)). Le contenu public que vous publiez reste visible jusqu'à ce que vous le supprimiez ou fermiez votre compte.",
         },
       ],
     },
@@ -117,7 +119,7 @@ export const privacyFr: LegalDocument = {
       blocks: [
         {
           kind: "paragraph",
-          text: "En vertu du droit de la protection des données du Royaume-Uni et de l'UE, vous pouvez demander l'accès à vos données personnelles, leur rectification, leur suppression ou leur portabilité, vous opposer à certains traitements ou en demander la limitation, et retirer votre consentement à tout moment. Vous pouvez également adresser une réclamation à votre autorité de protection des données (au Royaume-Uni, l'ICO). Certains enregistrements de paiement et documents fiscaux doivent être conservés même si vous demandez leur suppression.",
+          text: "En vertu du RGPD de l'UE (et du droit équivalent au Royaume-Uni), vous pouvez demander l'accès à vos données personnelles, leur rectification, leur suppression ou leur portabilité, vous opposer à certains traitements ou en demander la limitation, et retirer votre consentement à tout moment. Vous pouvez également adresser une réclamation à une autorité de contrôle de la protection des données : l'exploitant étant établi en Allemagne, l'autorité compétente est la Déléguée saxonne à la protection des données et à la transparence (Sächsische Datenschutz- und Transparenzbeauftragte), et vous pouvez aussi contacter l'autorité de votre propre pays de résidence. Certains enregistrements de paiement et documents fiscaux doivent être conservés même si vous demandez leur suppression.",
         },
       ],
     },

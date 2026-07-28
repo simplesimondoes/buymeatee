@@ -67,6 +67,8 @@ describe("sitemap", () => {
   it("includes no private or noindex surfaces", () => {
     for (const url of urls) {
       expect(url).not.toMatch(/\/(dashboard|settings|admin|sign-in|gifts|t)\//);
+      // Legal pages are noindex (operator name/address kept out of search).
+      expect(url).not.toMatch(/\/(privacy|terms|impressum|accessibility)$/);
     }
   });
 });

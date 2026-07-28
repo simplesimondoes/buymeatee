@@ -20,6 +20,7 @@ export async function generateMetadata({
     description: t("meta.privacy.description"),
     path: "/privacy",
     locale: locale as AppLocale,
+    noindex: true,
   });
 }
 

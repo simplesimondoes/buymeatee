@@ -192,7 +192,7 @@ export function AdminCatalogueManager({
 
           {results && !loaded ? (
             results.length === 0 ? (
-              <p className="mt-4 text-sm text-ink/60">{t("merchCatalogue.search.noResults")}</p>
+              <p className="mt-4 text-sm text-ink/70">{t("merchCatalogue.search.noResults")}</p>
             ) : (
               <ul className="mt-4 max-h-96 space-y-2 overflow-y-auto">
                 {results.map((rp) => (
@@ -205,7 +205,7 @@ export function AdminCatalogueManager({
                     </div>
                     <div className="min-w-0 flex-1">
                       <p className="truncate text-sm font-medium text-ink">{rp.title}</p>
-                      <p className="truncate text-xs text-ink/50">
+                      <p className="truncate text-xs text-ink/70">
                         {[rp.brand, rp.typeName].filter(Boolean).join(" · ")} · {rp.variantCount} {t("merchCatalogue.search.variants")}
                       </p>
                     </div>
@@ -256,7 +256,7 @@ export function AdminCatalogueManager({
                 </label>
               </div>
 
-              <p className="text-sm text-ink/60">{t("merchCatalogue.selectHint")}</p>
+              <p className="text-sm text-ink/70">{t("merchCatalogue.selectHint")}</p>
 
               <fieldset>
                 <legend className="mb-2 text-sm text-ink/70">{t("merchCatalogue.coloursLabel")}</legend>
@@ -322,11 +322,11 @@ export function AdminCatalogueManager({
       )}
 
       <section className="mt-8">
-        <h2 className="mb-3 text-sm font-semibold uppercase tracking-wide text-ink/50">
+        <h2 className="mb-3 text-sm font-semibold uppercase tracking-wide text-ink/70">
           {t("merchCatalogue.moderation.pendingHeading")}
         </h2>
         {pending.length === 0 ? (
-          <p className="text-ink/60">{t("merchCatalogue.moderation.noPending")}</p>
+          <p className="text-ink/70">{t("merchCatalogue.moderation.noPending")}</p>
         ) : (
           <ul className="space-y-3">
             {pending.map((p) => (
@@ -335,7 +335,7 @@ export function AdminCatalogueManager({
                   <div>
                     <span className="font-medium text-ink">{p.title}</span>
                     {p.estimatedCreatorProfitMinor !== null && (
-                      <span className="ml-3 text-sm text-ink/60">
+                      <span className="ml-3 text-sm text-ink/70">
                         {t("merchCatalogue.moderation.profitLabel")}:{" "}
                         {formatMinorAmount(p.estimatedCreatorProfitMinor, p.currency as SupportedCurrency, locale)}
                       </span>
@@ -360,17 +360,17 @@ export function AdminCatalogueManager({
       </section>
 
       <section className="mt-8">
-        <h2 className="mb-3 text-sm font-semibold uppercase tracking-wide text-ink/50">
+        <h2 className="mb-3 text-sm font-semibold uppercase tracking-wide text-ink/70">
           {t("merchCatalogue.curatedHeading")}
         </h2>
         {curated.length === 0 ? (
-          <p className="text-ink/60">{t("merchCatalogue.none")}</p>
+          <p className="text-ink/70">{t("merchCatalogue.none")}</p>
         ) : (
           <ul className="divide-y divide-stone rounded-3xl border border-stone bg-white">
             {curated.map((c) => (
               <li key={c.id} className="flex items-center justify-between gap-3 px-5 py-3 text-sm">
                 <span className="text-ink">{c.displayName} <span className="text-ink/40">/{c.slug}</span></span>
-                <span className="text-ink/60">
+                <span className="text-ink/70">
                   {c.currency.toUpperCase()} · {c.variantCount} variants · {c.enabled ? "enabled" : "disabled"}
                 </span>
               </li>

@@ -52,7 +52,7 @@ export function CreatorCardView({ creator }: { creator: DiscoverCreatorCard }) {
         <h3 className="mt-3 font-serif text-lg font-semibold text-forest">
           {creator.name}
         </h3>
-        <div className="mt-0.5 flex flex-wrap items-center gap-x-2 gap-y-1 text-sm text-ink/60">
+        <div className="mt-0.5 flex flex-wrap items-center gap-x-2 gap-y-1 text-sm text-ink/70">
           {place ? (
             <span className="inline-flex items-center gap-1">
               <MapPin aria-hidden="true" className="h-3.5 w-3.5" />

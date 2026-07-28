@@ -124,7 +124,7 @@ export async function FeaturedGolfersSection() {
           </div>
         </article>
         {featured.preview ? (
-          <p className="mt-6 text-center text-sm text-ink/60">
+          <p className="mt-6 text-center text-sm text-ink/70">
             {t("featuredGolfers.previewNote")}
           </p>
         ) : null}

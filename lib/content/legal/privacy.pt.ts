@@ -47,7 +47,7 @@ export const privacyPt: LegalDocument = {
       blocks: [
         {
           kind: "paragraph",
-          text: "Utilizamos cookies essenciais para o manter com sessão iniciada — estão sempre ativos, porque o site precisa deles para funcionar. Utilizamos também o Google Analytics (GA4) para perceber, de forma agregada, como o site é utilizado, o que instala cookies de analítica. A analítica só é carregada se a aceitar: na primeira visita, um aviso pede-lhe que faça a sua escolha, e nada relacionado com analítica é executado até dar o seu consentimento. Pode alterar ou retirar a sua escolha em qualquer momento através de **Definições de cookies**, no rodapé.",
+          text: "Utilizamos cookies estritamente necessários para o manter com sessão iniciada e um cookie funcional (`NEXT_LOCALE`) para memorizar a sua escolha de idioma — estão sempre ativos, porque o site precisa deles para funcionar e não são utilizados para rastreio. Utilizamos também o Google Analytics (GA4) para perceber, de forma agregada, como o site é utilizado, o que instala cookies de analítica. A analítica só é carregada se a aceitar: na primeira visita, um aviso pede-lhe que faça a sua escolha, e nada relacionado com analítica é executado até dar o seu consentimento. Pode alterar ou retirar a sua escolha em qualquer momento através de **Definições de cookies**, no rodapé.",
         },
       ],
     },
@@ -92,12 +92,14 @@ export const privacyPt: LegalDocument = {
             "**Stripe** — pagamentos, transferências e verificação de identidade.",
             "**Resend** — envio de email transacional.",
             "**Vercel** — alojamento do site e registos de servidor habituais.",
-            "**Google Analytics** — analítica de utilização agregada.",
+            "**Google Analytics** — analítica de utilização agregada (apenas depois de dar o seu consentimento).",
+            "**OpenAI** — elaboração opcional, por IA, de sugestões de texto para partilhas e publicações nas redes sociais; trata apenas o conteúdo que um criador escolhe personalizar (sediada nos Estados Unidos).",
+            "**Printful** — produção por impressão a pedido e envio de encomendas de merchandise, incluindo o nome do cliente e a morada de entrega necessários para satisfazer e expedir uma encomenda (sediada nos Estados Unidos).",
           ],
         },
         {
           kind: "paragraph",
-          text: "Alguns destes prestadores estão sediados nos Estados Unidos ou tratam dados nesse país. Sempre que dados pessoais saem do Reino Unido/EEE, são protegidos por garantias adequadas, como as Cláusulas Contratuais-Tipo. A lista completa de subcontratantes e os mecanismos de transferência serão confirmados na revisão jurídica.",
+          text: "Alguns destes prestadores (incluindo a Stripe, a Vercel, o Google Analytics, a OpenAI e a Printful) estão sediados nos Estados Unidos ou tratam dados nesse país. Sempre que dados pessoais saem do Reino Unido/EEE, são protegidos por garantias adequadas, como as Cláusulas Contratuais-Tipo. A lista completa de subcontratantes e os mecanismos de transferência serão confirmados na revisão jurídica.",
         },
       ],
     },
@@ -106,7 +108,7 @@ export const privacyPt: LegalDocument = {
       blocks: [
         {
           kind: "paragraph",
-          text: "Conservamos os registos de conta, de perfil e de pagamentos enquanto tiver uma conta e, depois disso, enquanto a tal formos obrigados por razões legais, fiscais e contabilísticas. O conteúdo público que publica permanece visível até que o remova ou encerre a sua conta.",
+          text: "Conservamos os dados da sua conta e do seu perfil enquanto tiver uma conta e apagamo-los no prazo de cerca de 30 dias após o encerramento da conta — exceto quando formos legalmente obrigados a conservá-los por mais tempo. Os registos de pagamentos, faturas e impostos são conservados durante o período legal exigido a uma empresa alemã (em geral até 10 anos, ao abrigo do Código Comercial alemão (HGB) e do Código Tributário (AO)). O conteúdo público que publica permanece visível até que o remova ou encerre a sua conta.",
         },
       ],
     },
@@ -115,7 +117,7 @@ export const privacyPt: LegalDocument = {
       blocks: [
         {
           kind: "paragraph",
-          text: "Ao abrigo do direito da proteção de dados do Reino Unido e da UE, pode pedir para aceder aos seus dados pessoais, corrigi-los, apagá-los ou exportá-los, opor-se a determinados tratamentos ou pedir a sua limitação, e retirar o consentimento em qualquer momento. Pode ainda apresentar reclamação junto da sua autoridade de proteção de dados (no Reino Unido, o ICO). Alguns registos de pagamento e fiscais têm de ser conservados mesmo que peça o apagamento.",
+          text: "Ao abrigo do RGPD da UE (e da legislação equivalente do Reino Unido), pode pedir para aceder aos seus dados pessoais, corrigi-los, apagá-los ou exportá-los, opor-se a determinados tratamentos ou pedir a sua limitação, e retirar o consentimento em qualquer momento. Pode ainda apresentar reclamação junto de uma autoridade de controlo da proteção de dados: uma vez que o operador está estabelecido na Alemanha, a autoridade competente é a Encarregada da Proteção de Dados e da Transparência da Saxónia (Sächsische Datenschutz- und Transparenzbeauftragte), podendo também contactar a autoridade do seu próprio país de residência. Alguns registos de pagamento e fiscais têm de ser conservados mesmo que peça o apagamento.",
         },
       ],
     },

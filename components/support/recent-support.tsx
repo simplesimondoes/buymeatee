@@ -49,7 +49,7 @@ export function RecentSupport({
                 sum: (chunks) => <span className="font-semibold">{chunks}</span>,
               })}
               {item.target ? (
-                <span className="text-ink/60">
+                <span className="text-ink/70">
                   {" "}
                   ·{" "}
                   {item.target.kind === "wishlist"

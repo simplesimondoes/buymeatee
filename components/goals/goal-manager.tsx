@@ -37,7 +37,7 @@ const statusChipClasses: Record<GoalStatus, string> = {
   draft: "bg-mist text-ink/70",
   active: "bg-forest/10 text-forest",
   completed: "bg-gold/20 text-gold-deep",
-  archived: "bg-stone/60 text-ink/60",
+  archived: "bg-stone/60 text-ink/70",
 };
 
 type Transition = {
@@ -331,7 +331,7 @@ export function GoalManager({
                           locale,
                         ),
                         muted: (chunks) => (
-                          <span className="font-normal text-ink/60">
+                          <span className="font-normal text-ink/70">
                             {chunks}
                           </span>
                         ),

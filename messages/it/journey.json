@@ -6,6 +6,8 @@
   "writeFirst": "Pubblica il tuo primo aggiornamento",
   "share": "Condividi",
   "videoTitle": "Video del percorso",
+  "imageAlt": "Foto dal post di {name}",
+  "imageAltNumbered": "Foto {number} dal post di {name}",
   "likeAria": "{count, plural, =0 {Ancora nessun mi piace} one {# mi piace} other {# mi piace}}",
   "commentPlaceholder": "Aggiungi un commento…",
   "commentSubmit": "Commenta",

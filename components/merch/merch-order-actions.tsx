@@ -33,7 +33,7 @@ export function MerchOrderActions({ orderId }: { orderId: string }) {
 
   return (
     <section className="mt-6">
-      <h2 className="mb-2 text-sm font-semibold uppercase tracking-wide text-ink/50">
+      <h2 className="mb-2 text-sm font-semibold uppercase tracking-wide text-ink/70">
         {t("merchCatalogue.orders.actions")}
       </h2>
       <div className="flex flex-wrap gap-2">

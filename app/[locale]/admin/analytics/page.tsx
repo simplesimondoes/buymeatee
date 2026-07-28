@@ -147,7 +147,7 @@ export default async function AdminAnalyticsPage({
       <p className="mt-2 max-w-3xl text-sm text-ink/70">
         {t("analytics.intro")}
       </p>
-      <p className="mt-1 text-xs text-ink/50">
+      <p className="mt-1 text-xs text-ink/70">
         {t("analytics.generatedAt", {
           date: formatDateTime(snapshot.generatedAt, appLocale),
         })}
@@ -267,7 +267,7 @@ export default async function AdminAnalyticsPage({
             </h3>
             <div className="mt-3 overflow-x-auto">
               <table className="w-full min-w-[20rem] text-left text-sm">
-                <thead className="border-b border-stone text-xs uppercase tracking-wide text-ink/60">
+                <thead className="border-b border-stone text-xs uppercase tracking-wide text-ink/70">
                   <tr>
                     <th scope="col" className="py-2 pr-3">
                       {t("analytics.signups.table.period")}
@@ -305,7 +305,7 @@ export default async function AdminAnalyticsPage({
             </h3>
             <div className="mt-3 overflow-x-auto">
               <table className="w-full min-w-[24rem] text-left text-sm">
-                <thead className="border-b border-stone text-xs uppercase tracking-wide text-ink/60">
+                <thead className="border-b border-stone text-xs uppercase tracking-wide text-ink/70">
                   <tr>
                     <th scope="col" className="py-2 pr-3">
                       {t("analytics.signups.table.period")}
@@ -352,7 +352,7 @@ export default async function AdminAnalyticsPage({
         </p>
         <div className="mt-4 overflow-x-auto rounded-3xl border border-stone bg-white">
           <table className="w-full min-w-[56rem] text-left text-sm">
-            <thead className="border-b border-stone bg-mist text-xs uppercase tracking-wide text-ink/60">
+            <thead className="border-b border-stone bg-mist text-xs uppercase tracking-wide text-ink/70">
               <tr>
                 <th scope="col" className="px-4 py-3">
                   {t("analytics.growth.metric")}
@@ -493,7 +493,7 @@ export default async function AdminAnalyticsPage({
                 </h3>
                 <dl className="mt-4 grid grid-cols-2 gap-4 lg:grid-cols-4">
                   <div>
-                    <dt className="text-sm text-ink/60">
+                    <dt className="text-sm text-ink/70">
                       {t("analytics.giving.grossGifts")}
                     </dt>
                     <dd className="mt-0.5 text-2xl font-semibold text-ink">
@@ -501,7 +501,7 @@ export default async function AdminAnalyticsPage({
                     </dd>
                   </div>
                   <div>
-                    <dt className="text-sm text-ink/60">
+                    <dt className="text-sm text-ink/70">
                       {t("analytics.giving.commission")}
                     </dt>
                     <dd className="mt-0.5 text-2xl font-semibold text-ink">
@@ -509,7 +509,7 @@ export default async function AdminAnalyticsPage({
                     </dd>
                   </div>
                   <div>
-                    <dt className="text-sm text-ink/60">
+                    <dt className="text-sm text-ink/70">
                       {t("analytics.giving.paidTees")}
                     </dt>
                     <dd className="mt-0.5 text-2xl font-semibold text-ink">
@@ -517,7 +517,7 @@ export default async function AdminAnalyticsPage({
                     </dd>
                   </div>
                   <div>
-                    <dt className="text-sm text-ink/60">
+                    <dt className="text-sm text-ink/70">
                       {t("analytics.giving.refunded")}
                     </dt>
                     <dd className="mt-0.5 text-2xl font-semibold text-ink">
@@ -526,7 +526,7 @@ export default async function AdminAnalyticsPage({
                   </div>
                 </dl>
 
-                <div className="mt-4 flex flex-wrap gap-x-6 gap-y-2 text-xs text-ink/60">
+                <div className="mt-4 flex flex-wrap gap-x-6 gap-y-2 text-xs text-ink/70">
                   <span className="inline-flex flex-wrap items-center gap-x-2 gap-y-1">
                     {t("analytics.giving.volumeGrowthLabel")}:
                     <DeltaBadge
@@ -618,7 +618,7 @@ export default async function AdminAnalyticsPage({
         </p>
         <div className="mt-4 overflow-x-auto rounded-3xl border border-stone bg-white">
           <table className="w-full min-w-[28rem] text-left text-sm">
-            <thead className="border-b border-stone bg-mist text-xs uppercase tracking-wide text-ink/60">
+            <thead className="border-b border-stone bg-mist text-xs uppercase tracking-wide text-ink/70">
               <tr>
                 <th scope="col" className="px-4 py-3">
                   {t("analytics.churn.table.month")}
@@ -685,7 +685,7 @@ function FragmentCells({
   return (
     <>
       <td className="px-4 py-3 text-right font-medium">{current}</td>
-      <td className="px-4 py-3 text-right text-ink/60">{previous}</td>
+      <td className="px-4 py-3 text-right text-ink/70">{previous}</td>
       <td className="px-4 py-3 text-right">
         <DeltaBadge
           changePercent={changePercent}

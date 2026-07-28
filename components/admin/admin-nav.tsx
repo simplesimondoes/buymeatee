@@ -42,7 +42,7 @@ export function AdminNav({
                 className={`inline-flex min-h-11 shrink-0 items-center whitespace-nowrap border-b-2 px-3 text-sm font-medium transition-colors ${
                   active
                     ? "border-forest text-forest"
-                    : "border-transparent text-ink/60 hover:text-ink"
+                    : "border-transparent text-ink/70 hover:text-ink"
                 }`}
               >
                 {link.label}

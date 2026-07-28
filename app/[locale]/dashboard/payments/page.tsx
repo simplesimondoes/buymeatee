@@ -229,7 +229,7 @@ export default async function PaymentsDashboardPage({
           <dl className="mt-5 flex flex-wrap gap-x-10 gap-y-2 border-t border-stone pt-5">
             {[...grossByCurrency.entries()].map(([currency, total]) => (
               <div key={currency}>
-                <dt className="text-xs uppercase tracking-wide text-ink/60">
+                <dt className="text-xs uppercase tracking-wide text-ink/70">
                   {t("payments.grossLabel", {
                     currency: currency.toUpperCase(),
                   })}
@@ -241,7 +241,7 @@ export default async function PaymentsDashboardPage({
             ))}
           </dl>
         ) : null}
-        <p className="mt-4 text-xs leading-relaxed text-ink/60">
+        <p className="mt-4 text-xs leading-relaxed text-ink/70">
           {t("payments.payoutNote")}
         </p>
       </section>
@@ -251,7 +251,7 @@ export default async function PaymentsDashboardPage({
           {t("payments.latestTees")}
         </h2>
         {attributionSummary.length > 0 ? (
-          <p className="mt-1 text-sm text-ink/60">
+          <p className="mt-1 text-sm text-ink/70">
             {attributionSummary.join(" · ")}
           </p>
         ) : null}
@@ -275,7 +275,7 @@ export default async function PaymentsDashboardPage({
                       {formatMinorAmount(gift.gift_amount, gift.currency, appLocale)}
                     </span>
                   </p>
-                  <p className="text-xs text-ink/60">
+                  <p className="text-xs text-ink/70">
                     {giftStatusLabel(gift.status)} ·{" "}
                     {formatDate(gift.paid_at ?? gift.created_at, appLocale, {
                       day: "numeric",

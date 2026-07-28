@@ -90,7 +90,7 @@ export function MerchManager({
         </div>
       ) : (
         <section aria-label={t("dashboard.productsHeading")}>
-          <h2 className="mb-3 text-sm font-semibold uppercase tracking-wide text-ink/50">
+          <h2 className="mb-3 text-sm font-semibold uppercase tracking-wide text-ink/70">
             {t("dashboard.productsHeading")}
           </h2>
           <ul className="grid gap-4 sm:grid-cols-2">
@@ -105,14 +105,14 @@ export function MerchManager({
                 </div>
                 <dl className="mt-4 space-y-1 text-sm">
                   <div className="flex justify-between">
-                    <dt className="text-ink/50">{t("dashboard.priceLabel")}</dt>
+                    <dt className="text-ink/70">{t("dashboard.priceLabel")}</dt>
                     <dd className="text-ink">
                       {formatMinorAmount(product.retail_price_minor, product.currency, locale)}
                     </dd>
                   </div>
                   {product.estimated_creator_profit_minor !== null && (
                     <div className="flex justify-between">
-                      <dt className="text-ink/50">{t("dashboard.profitLabel")}</dt>
+                      <dt className="text-ink/70">{t("dashboard.profitLabel")}</dt>
                       <dd className="text-forest">
                         {formatMinorAmount(
                           product.estimated_creator_profit_minor,
@@ -162,7 +162,7 @@ function StatusBadge({ status, label }: { status: string; label: string }) {
     ? "bg-forest/10 text-forest"
     : status === "changes_requested" || status === "paused"
       ? "bg-gold/15 text-gold-deep"
-      : "bg-stone/40 text-ink/60";
+      : "bg-stone/40 text-ink/70";
   return (
     <span className={`shrink-0 rounded-full px-2.5 py-0.5 text-xs font-medium ${tone}`}>
       {label}

@@ -26,7 +26,7 @@ export function ActivityFeed() {
             intro={t("sections.activity.intro")}
             align="left"
           />
-          <p className="mt-3 flex items-center gap-2 text-sm text-ink/60">
+          <p className="mt-3 flex items-center gap-2 text-sm text-ink/70">
             <ExampleBadge label="Concept" />
             {t("sections.activity.conceptNote")}
           </p>

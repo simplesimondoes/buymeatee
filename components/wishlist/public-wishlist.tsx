@@ -162,7 +162,7 @@ export function PublicWishlist({
                 />
                 <span>
                   {item.title}
-                  <span className="text-ink/60">
+                  <span className="text-ink/70">
                     {" "}
                     — {formatMinorAmount(item.price_amount, item.currency, locale)}
                   </span>

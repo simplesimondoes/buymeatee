@@ -109,7 +109,7 @@ export function ShareMoment({
             type="button"
             onClick={onDismiss}
             aria-label={t("dismiss")}
-            className="rounded-full p-1 text-ink/50 transition-colors hover:bg-gold/20 hover:text-ink/80"
+            className="rounded-full p-1 text-ink/70 transition-colors hover:bg-gold/20 hover:text-ink/80"
           >
             <X aria-hidden="true" className="h-4 w-4" />
           </button>
@@ -120,7 +120,7 @@ export function ShareMoment({
       ) : null}
 
       <label className="mt-3 block">
-        <span className="text-xs font-medium text-ink/60">
+        <span className="text-xs font-medium text-ink/70">
           {t("suggestedLabel")}
         </span>
         <textarea
@@ -161,13 +161,13 @@ export function ShareMoment({
       </div>
 
       {copyFailed ? (
-        <p className="mt-2 text-xs text-ink/60">{t("copyCaptionFailed")}</p>
+        <p className="mt-2 text-xs text-ink/70">{t("copyCaptionFailed")}</p>
       ) : null}
       {aiState === "failed" ? (
-        <p className="mt-2 text-xs text-ink/60">{t("personaliseFailed")}</p>
+        <p className="mt-2 text-xs text-ink/70">{t("personaliseFailed")}</p>
       ) : null}
       {aiState === "unavailable" ? (
-        <p className="mt-2 text-xs text-ink/60">{t("personaliseUnavailable")}</p>
+        <p className="mt-2 text-xs text-ink/70">{t("personaliseUnavailable")}</p>
       ) : null}
       <span aria-live="polite" className="sr-only">
         {copied ? t("captionCopiedAnnouncement") : ""}

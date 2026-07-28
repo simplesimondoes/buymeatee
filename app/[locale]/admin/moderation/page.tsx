@@ -91,7 +91,7 @@ export default async function AdminModerationPage({
               {t("moderation.goalsHeading", { count: content.goals.length })}
             </h2>
             {content.goals.length === 0 ? (
-              <p className="mt-2 text-sm text-ink/60">
+              <p className="mt-2 text-sm text-ink/70">
                 {t("moderation.goalsEmpty")}
               </p>
             ) : (
@@ -110,7 +110,7 @@ export default async function AdminModerationPage({
                               {t("moderation.takenDownBadge")}
                             </span>
                           ) : (
-                            <span className="ml-1 rounded-full bg-mist px-2 py-0.5 text-xs text-ink/60">
+                            <span className="ml-1 rounded-full bg-mist px-2 py-0.5 text-xs text-ink/70">
                               {t(`statuses.goal.${goal.status}`)}
                             </span>
                           )}
@@ -138,7 +138,7 @@ export default async function AdminModerationPage({
                           })}
                         </p>
                         {goal.description ? (
-                          <p className="mt-1 line-clamp-2 text-sm text-ink/60">
+                          <p className="mt-1 line-clamp-2 text-sm text-ink/70">
                             {goal.description}
                           </p>
                         ) : null}
@@ -170,7 +170,7 @@ export default async function AdminModerationPage({
               })}
             </h2>
             {content.profiles.length === 0 ? (
-              <p className="mt-2 text-sm text-ink/60">
+              <p className="mt-2 text-sm text-ink/70">
                 {t("moderation.profilesEmpty")}
               </p>
             ) : (
@@ -190,13 +190,13 @@ export default async function AdminModerationPage({
                             {profile.display_name || t("common.noName")}
                           </Link>
                           {profile.username ? (
-                            <span className="ml-2 text-sm font-normal text-ink/60">
+                            <span className="ml-2 text-sm font-normal text-ink/70">
                               /t/{profile.username}
                             </span>
                           ) : null}
                         </p>
                         {profile.bio ? (
-                          <p className="mt-1 line-clamp-2 text-sm text-ink/60">
+                          <p className="mt-1 line-clamp-2 text-sm text-ink/70">
                             {profile.bio}
                           </p>
                         ) : null}

@@ -117,7 +117,7 @@ export function JourneyForm({
           </label>
           <span
             className={`text-xs tabular-nums ${
-              body.length > POST_BODY_MAX_LENGTH ? "text-red-800" : "text-ink/50"
+              body.length > POST_BODY_MAX_LENGTH ? "text-red-800" : "text-ink/70"
             }`}
           >
             {body.length}/{POST_BODY_MAX_LENGTH}
@@ -171,7 +171,7 @@ export function JourneyForm({
           aria-invalid={errors.milestoneLabel ? true : undefined}
           aria-describedby={`${fieldId}-milestone-help`}
         />
-        <p id={`${fieldId}-milestone-help`} className="mt-1.5 text-xs text-ink/60">
+        <p id={`${fieldId}-milestone-help`} className="mt-1.5 text-xs text-ink/70">
           {t("updates.form.milestoneHelp")}
         </p>
         <FieldError id={`${fieldId}-milestone-error`} message={fieldError("milestoneLabel")} />
@@ -191,7 +191,7 @@ export function JourneyForm({
         <button
           type="button"
           onClick={onCancel}
-          className="inline-flex min-h-11 items-center justify-center rounded-full px-4 text-sm font-medium text-ink/60 transition-colors hover:text-ink"
+          className="inline-flex min-h-11 items-center justify-center rounded-full px-4 text-sm font-medium text-ink/70 transition-colors hover:text-ink"
         >
           {t("actions.cancel")}
         </button>

@@ -48,7 +48,7 @@ export const privacyIt: LegalDocument = {
       blocks: [
         {
           kind: "paragraph",
-          text: "Utilizziamo cookie essenziali per mantenere attivo il Suo accesso — sono sempre attivi perché il sito ne ha bisogno per funzionare. Utilizziamo inoltre Google Analytics (GA4) per capire, in forma aggregata, come viene usato il sito, il che imposta cookie di analytics. Gli analytics si caricano solo se li accetta: alla prima visita un banner Le chiede di scegliere, e nulla di relativo agli analytics viene eseguito finché non presta il consenso. Può modificare o revocare la Sua scelta in qualsiasi momento tramite **Impostazioni cookie** nel piè di pagina.",
+          text: "Utilizziamo cookie strettamente necessari per mantenere attivo il Suo accesso e un cookie funzionale (`NEXT_LOCALE`) per ricordare la lingua che ha scelto — sono sempre attivi perché il sito ne ha bisogno per funzionare e non sono utilizzati per finalità di tracciamento. Utilizziamo inoltre Google Analytics (GA4) per capire, in forma aggregata, come viene usato il sito, il che imposta cookie di analytics. Gli analytics si caricano solo se li accetta: alla prima visita un banner Le chiede di scegliere, e nulla di relativo agli analytics viene eseguito finché non presta il consenso. Può modificare o revocare la Sua scelta in qualsiasi momento tramite **Impostazioni cookie** nel piè di pagina.",
         },
       ],
     },
@@ -93,12 +93,14 @@ export const privacyIt: LegalDocument = {
             "**Stripe** — pagamenti, accrediti e verifica dell'identità.",
             "**Resend** — invio di e-mail transazionali.",
             "**Vercel** — hosting del sito web e log standard del server.",
-            "**Google Analytics** — statistiche di utilizzo in forma aggregata.",
+            "**Google Analytics** — statistiche di utilizzo in forma aggregata, attivate soltanto dopo che ha prestato il consenso.",
+            "**OpenAI** — redazione facoltativa, con l'ausilio dell'IA, di testi suggeriti per la condivisione e per i post sui social; tratta soltanto i contenuti che un creator sceglie di far personalizzare (con sede negli Stati Uniti).",
+            "**Printful** — produzione su richiesta (print-on-demand) e spedizione degli ordini di merchandising, compresi il nome del cliente e l'indirizzo di consegna necessari per evadere e spedire un ordine (con sede negli Stati Uniti).",
           ],
         },
         {
           kind: "paragraph",
-          text: "Alcuni di questi fornitori hanno sede negli Stati Uniti o vi trattano dati. Laddove i dati personali lasciano il Regno Unito/SEE, sono protetti da garanzie adeguate quali le Clausole Contrattuali Standard. L'elenco completo dei responsabili del trattamento e i meccanismi di trasferimento saranno confermati in sede di revisione legale.",
+          text: "Alcuni di questi fornitori (tra cui Stripe, Vercel, Google Analytics, OpenAI e Printful) hanno sede negli Stati Uniti o vi trattano dati. Laddove i dati personali lasciano il Regno Unito/SEE, sono protetti da garanzie adeguate quali le Clausole Contrattuali Standard. L'elenco completo dei responsabili del trattamento e i meccanismi di trasferimento saranno confermati in sede di revisione legale.",
         },
       ],
     },
@@ -107,7 +109,7 @@ export const privacyIt: LegalDocument = {
       blocks: [
         {
           kind: "paragraph",
-          text: "Conserviamo i dati relativi ad account, profili e pagamenti per tutta la durata del Suo account e, successivamente, per il tempo richiesto da obblighi legali, fiscali e contabili. I contenuti pubblici che pubblica restano visibili finché non li rimuove o non chiude il Suo account.",
+          text: "Conserviamo i dati relativi al Suo account e al Suo profilo per tutta la durata del Suo account e li cancelliamo entro circa 30 giorni dalla chiusura dell'account — salvo nei casi in cui siamo legalmente tenuti a conservarli più a lungo. Le registrazioni relative a pagamenti, fatture e imposte sono conservate per il periodo previsto dalla legge per un'impresa tedesca (in generale fino a 10 anni ai sensi del Codice di commercio tedesco (Handelsgesetzbuch, HGB) e del Codice tributario tedesco (Abgabenordnung, AO)). I contenuti pubblici che pubblica restano visibili finché non li rimuove o non chiude il Suo account.",
         },
       ],
     },
@@ -116,7 +118,7 @@ export const privacyIt: LegalDocument = {
       blocks: [
         {
           kind: "paragraph",
-          text: "Ai sensi della normativa sulla protezione dei dati del Regno Unito e dell'UE, può chiedere di accedere ai Suoi dati personali, rettificarli, cancellarli o esportarli, opporsi a determinati trattamenti o limitarli, e revocare il consenso in qualsiasi momento. Può inoltre presentare reclamo alla Sua autorità di controllo per la protezione dei dati (nel Regno Unito, l'ICO). Alcune registrazioni relative a pagamenti e imposte devono essere conservate anche se ne chiede la cancellazione.",
+          text: "Ai sensi del RGPD dell'UE (e della normativa equivalente del Regno Unito) può chiedere di accedere ai Suoi dati personali, rettificarli, cancellarli o esportarli, opporsi a determinati trattamenti o limitarli, e revocare il consenso in qualsiasi momento. Può inoltre presentare reclamo a un'autorità di controllo per la protezione dei dati: poiché il gestore è stabilito in Germania, l'autorità competente è la Garante sassone per la protezione dei dati e la trasparenza (Sächsische Datenschutz- und Transparenzbeauftragte), e può anche rivolgersi all'autorità del Suo Paese di residenza. Alcune registrazioni relative a pagamenti e imposte devono essere conservate anche se ne chiede la cancellazione.",
         },
       ],
     },

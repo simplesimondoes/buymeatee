@@ -81,7 +81,7 @@ export default async function AdminMerchPage({
         printfulConfigured={isPrintfulConfigured()}
       />
       <section className="mx-auto w-full max-w-5xl px-4 pb-8 sm:px-6">
-        <h2 className="mb-3 text-sm font-semibold uppercase tracking-wide text-ink/50">
+        <h2 className="mb-3 text-sm font-semibold uppercase tracking-wide text-ink/70">
           {t("merchCatalogue.analytics.heading")}
         </h2>
         <div className="grid grid-cols-3 gap-3">
@@ -92,7 +92,7 @@ export default async function AdminMerchPage({
         {analytics && analytics.perCurrency.length > 0 ? (
           <div className="mt-4 overflow-x-auto rounded-3xl border border-stone bg-white">
             <table className="w-full text-sm">
-              <thead className="border-b border-stone text-left text-ink/50">
+              <thead className="border-b border-stone text-left text-ink/70">
                 <tr>
                   <th className="p-3 font-medium">{t("merchCatalogue.analytics.currency")}</th>
                   <th className="p-3 font-medium">{t("merchCatalogue.analytics.gmv")}</th>
@@ -117,21 +117,21 @@ export default async function AdminMerchPage({
             </table>
           </div>
         ) : (
-          <p className="mt-2 text-ink/60">{t("merchCatalogue.analytics.none")}</p>
+          <p className="mt-2 text-ink/70">{t("merchCatalogue.analytics.none")}</p>
         )}
         <MerchReconcileButton />
       </section>
 
       <section className="mx-auto w-full max-w-5xl px-4 pb-12 sm:px-6">
-        <h2 className="mb-3 text-sm font-semibold uppercase tracking-wide text-ink/50">
+        <h2 className="mb-3 text-sm font-semibold uppercase tracking-wide text-ink/70">
           {t("merchCatalogue.orders.heading")}
         </h2>
         {orders.length === 0 ? (
-          <p className="text-ink/60">{t("merchCatalogue.orders.none")}</p>
+          <p className="text-ink/70">{t("merchCatalogue.orders.none")}</p>
         ) : (
           <div className="overflow-x-auto rounded-3xl border border-stone bg-white">
             <table className="w-full text-sm">
-              <thead className="border-b border-stone text-left text-ink/50">
+              <thead className="border-b border-stone text-left text-ink/70">
                 <tr>
                   <th className="p-3 font-medium">{t("merchCatalogue.orders.reference")}</th>
                   <th className="p-3 font-medium">{t("merchCatalogue.orders.status")}</th>
@@ -164,7 +164,7 @@ export default async function AdminMerchPage({
 function Tile({ label, value }: { label: string; value: string }) {
   return (
     <div className="rounded-2xl border border-stone bg-white p-4">
-      <p className="text-xs text-ink/50">{label}</p>
+      <p className="text-xs text-ink/70">{label}</p>
       <p className="mt-1 text-2xl font-semibold text-ink">{value}</p>
     </div>
   );

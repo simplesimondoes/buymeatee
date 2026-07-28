@@ -193,7 +193,7 @@ export default async function AdminPaymentsPage({
             </h2>
             <table className="mt-4 w-full min-w-[56rem] text-left text-sm">
               <thead>
-                <tr className="border-b border-stone text-xs uppercase tracking-wide text-ink/60">
+                <tr className="border-b border-stone text-xs uppercase tracking-wide text-ink/70">
                   <th className="py-2 pr-4">{t("payments.table.created")}</th>
                   <th className="py-2 pr-4">{t("payments.table.publicId")}</th>
                   <th className="py-2 pr-4">{t("payments.table.recipient")}</th>
@@ -270,7 +270,7 @@ export default async function AdminPaymentsPage({
                 })}
                 {gifts.length === 0 ? (
                   <tr>
-                    <td colSpan={10} className="py-6 text-center text-ink/60">
+                    <td colSpan={10} className="py-6 text-center text-ink/70">
                       {t("payments.empty")}
                     </td>
                   </tr>

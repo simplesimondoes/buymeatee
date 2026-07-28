@@ -1,15 +1,25 @@
 import { Fraunces, Inter } from "next/font/google";
+import localFont from "next/font/local";
 
 import type { AppLocale } from "@/i18n/locales";
 
 /**
- * Latin fonts are self-hosted via next/font. Japanese and Korean use the
- * Google Fonts stylesheet instead (see CjkFontLinks in the locale layout):
- * Noto Sans JP/KR ship as hundreds of unicode-range slices which next/font
- * would download and bundle at build time — the stylesheet approach lets
- * browsers fetch only the slices a page actually renders, and only on
- * ja/ko pages. This is a deliberate, documented exception to self-hosting
- * (ADR-019).
+ * All fonts are self-hosted (ADR-019): no request ever reaches Google at
+ * runtime, so no visitor IP is disclosed to Google Fonts. This is a GDPR
+ * requirement — the German "Google Fonts" case law: a runtime
+ * fonts.googleapis.com / fonts.gstatic.com fetch would leak the visitor's IP
+ * to a US third party without consent.
+ *
+ * Latin faces (Inter body, Fraunces headings) use next/font/google, which
+ * downloads the files at build time and serves them from our own origin — the
+ * browser never contacts Google. Japanese/Korean use next/font/local against
+ * woff2 files committed under app/fonts/ (full japanese/korean subsets from
+ * Fontsource): local files mean the build has no dependency on Google either,
+ * which keeps builds deterministic and avoids fetching the hundreds of
+ * unicode-range slices next/font/google would pull for a CJK family. They are
+ * `preload: false` — the @font-face rules are registered but the browser only
+ * downloads the files when a CSS rule uses them, which globals.css scopes to
+ * `html:lang(ja)` / `html:lang(ko)`. Latin-only pages never fetch them.
  */
 export const inter = Inter({
   variable: "--font-inter",
@@ -22,17 +32,36 @@ export const fraunces = Fraunces({
   axes: ["opsz", "SOFT", "WONK"],
 });
 
+export const notoSansJp = localFont({
+  variable: "--font-noto-jp",
+  display: "swap",
+  preload: false,
+  fallback: ["sans-serif"],
+  src: [
+    { path: "../app/fonts/noto-sans-jp-japanese-400.woff2", weight: "400", style: "normal" },
+    { path: "../app/fonts/noto-sans-jp-japanese-700.woff2", weight: "700", style: "normal" },
+  ],
+});
+
+export const notoSansKr = localFont({
+  variable: "--font-noto-kr",
+  display: "swap",
+  preload: false,
+  fallback: ["sans-serif"],
+  src: [
+    { path: "../app/fonts/noto-sans-kr-korean-400.woff2", weight: "400", style: "normal" },
+    { path: "../app/fonts/noto-sans-kr-korean-700.woff2", weight: "700", style: "normal" },
+  ],
+});
+
 /**
- * The locale parameter is currently unused (CJK loads via stylesheet, see
- * above) but kept so per-locale font classes can return without touching
- * call sites.
+ * Font CSS-variable classes for the <html> element. Latin faces load on every
+ * locale; the CJK variable is added only for ja/ko so its @font-face family is
+ * addressable there (globals.css reads `var(--font-noto-jp|kr)`).
  */
 export function fontClasses(locale: AppLocale): string {
-  void locale;
-  return `${inter.variable} ${fraunces.variable}`;
+  const latin = `${inter.variable} ${fraunces.variable}`;
+  if (locale === "ja") return `${latin} ${notoSansJp.variable}`;
+  if (locale === "ko") return `${latin} ${notoSansKr.variable}`;
+  return latin;
 }
-
-export const CJK_FONT_STYLESHEETS: Partial<Record<AppLocale, string>> = {
-  ja: "https://fonts.googleapis.com/css2?family=Noto+Sans+JP:wght@400;500;600;700&display=swap",
-  ko: "https://fonts.googleapis.com/css2?family=Noto+Sans+KR:wght@400;500;600;700&display=swap",
-};

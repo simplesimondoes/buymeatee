@@ -47,7 +47,7 @@ export default async function AdminOrderDetailPage({
       </Link>
       <h1 className="mt-3 font-serif text-2xl text-ink">
         {t("merchCatalogue.orders.detailTitle")}{" "}
-        <span className="font-mono text-lg text-ink/60">{detail.summary.publicReference}</span>
+        <span className="font-mono text-lg text-ink/70">{detail.summary.publicReference}</span>
       </h1>
 
       <dl className="mt-5 grid grid-cols-2 gap-3 rounded-3xl border border-stone bg-white p-5 text-sm">
@@ -64,7 +64,7 @@ export default async function AdminOrderDetailPage({
       ) : null}
 
       <section className="mt-6">
-        <h2 className="mb-2 text-sm font-semibold uppercase tracking-wide text-ink/50">{t("merchCatalogue.orders.items")}</h2>
+        <h2 className="mb-2 text-sm font-semibold uppercase tracking-wide text-ink/70">{t("merchCatalogue.orders.items")}</h2>
         <ul className="rounded-2xl border border-stone bg-white p-4 text-sm">
           {detail.items.map((i, idx) => (
             <li key={idx} className="flex justify-between py-1">
@@ -77,7 +77,7 @@ export default async function AdminOrderDetailPage({
 
       {detail.shipments.length > 0 ? (
         <section className="mt-6">
-          <h2 className="mb-2 text-sm font-semibold uppercase tracking-wide text-ink/50">{t("merchCatalogue.orders.shipments")}</h2>
+          <h2 className="mb-2 text-sm font-semibold uppercase tracking-wide text-ink/70">{t("merchCatalogue.orders.shipments")}</h2>
           <ul className="rounded-2xl border border-stone bg-white p-4 text-sm">
             {detail.shipments.map((sh, idx) => (
               <li key={idx} className="py-1 text-ink/70">
@@ -90,10 +90,10 @@ export default async function AdminOrderDetailPage({
       ) : null}
 
       <section className="mt-6">
-        <h2 className="mb-2 text-sm font-semibold uppercase tracking-wide text-ink/50">{t("merchCatalogue.orders.timeline")}</h2>
+        <h2 className="mb-2 text-sm font-semibold uppercase tracking-wide text-ink/70">{t("merchCatalogue.orders.timeline")}</h2>
         <ol className="space-y-1 rounded-2xl border border-stone bg-white p-4 text-sm">
           {detail.events.length === 0 ? (
-            <li className="text-ink/50">—</li>
+            <li className="text-ink/70">—</li>
           ) : (
             detail.events.map((e, idx) => (
               <li key={idx} className="flex gap-3">
@@ -113,7 +113,7 @@ export default async function AdminOrderDetailPage({
 function Row({ label, value }: { label: string; value: string }) {
   return (
     <div>
-      <dt className="text-ink/50">{label}</dt>
+      <dt className="text-ink/70">{label}</dt>
       <dd className="text-ink">{value}</dd>
     </div>
   );

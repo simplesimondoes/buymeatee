@@ -10,7 +10,7 @@ import { StructuredData } from "@/components/structured-data";
 import { routing } from "@/i18n/routing";
 import { htmlLang, locales, type AppLocale } from "@/i18n/locales";
 import { loadMessages } from "@/i18n/load-messages";
-import { CJK_FONT_STYLESHEETS, fontClasses } from "@/lib/fonts";
+import { fontClasses } from "@/lib/fonts";
 import { rootMetadata } from "@/lib/seo/metadata";
 import { organizationJsonLd, webSiteJsonLd } from "@/lib/seo/structured-data";
 
@@ -58,24 +58,11 @@ export default async function LocaleLayout({ children, params }: LayoutProps) {
   );
   const t = await getTranslations({ locale: locale as AppLocale, namespace: "common" });
 
-  const cjkStylesheet = CJK_FONT_STYLESHEETS[locale as AppLocale];
-
   return (
     <html
       lang={htmlLang[locale as AppLocale]}
       className={fontClasses(locale as AppLocale)}
     >
-      {cjkStylesheet ? (
-        <head>
-          <link rel="preconnect" href="https://fonts.googleapis.com" />
-          <link
-            rel="preconnect"
-            href="https://fonts.gstatic.com"
-            crossOrigin="anonymous"
-          />
-          <link rel="stylesheet" href={cjkStylesheet} />
-        </head>
-      ) : null}
       <body className="flex min-h-screen flex-col">
         <NextIntlClientProvider locale={locale} messages={clientMessages}>
           <a

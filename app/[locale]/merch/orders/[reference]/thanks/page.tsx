@@ -37,12 +37,12 @@ export default async function MerchThanksPage({
     <main className="mx-auto w-full max-w-xl px-4 py-16 text-center sm:px-6">
       <h1 className="font-serif text-3xl text-ink">{t("thanks.title")}</h1>
       <p className="mt-4 text-ink/70">{t("thanks.body")}</p>
-      <p className="mt-6 text-sm text-ink/50">
+      <p className="mt-6 text-sm text-ink/70">
         {t("thanks.referenceLabel")}:{" "}
         <span className="font-mono text-ink">{reference}</span>
       </p>
       {order ? (
-        <div className="mt-4 text-sm text-ink/60">
+        <div className="mt-4 text-sm text-ink/70">
           <p>
             {t("thanks.statusLabel")}: <span className="text-ink">{order.status}</span>
           </p>

@@ -20,6 +20,7 @@ export async function generateMetadata({
     description: t("meta.terms.description"),
     path: "/terms",
     locale: locale as AppLocale,
+    noindex: true,
   });
 }
 

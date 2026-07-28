@@ -6,6 +6,8 @@
   "writeFirst": "첫 소식 올리기",
   "share": "공유",
   "videoTitle": "여정 영상",
+  "imageAlt": "{name}님의 게시물 사진",
+  "imageAltNumbered": "{name}님의 게시물 사진 {number}",
   "likeAria": "{count, plural, =0 {아직 좋아요가 없어요} other {좋아요 #개}}",
   "commentPlaceholder": "댓글 추가…",
   "commentSubmit": "댓글",

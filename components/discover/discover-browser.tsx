@@ -161,7 +161,7 @@ export function DiscoverBrowser({ goals }: { goals: DiscoverGoalCard[] }) {
           </div>
 
           <div className="mt-3 flex flex-wrap items-center gap-3">
-            <span className="inline-flex items-center gap-1.5 text-xs font-semibold uppercase tracking-[0.12em] text-ink/50">
+            <span className="inline-flex items-center gap-1.5 text-xs font-semibold uppercase tracking-[0.12em] text-ink/70">
               <SlidersHorizontal aria-hidden="true" className="h-4 w-4" />
               {t("browse.filter")}
             </span>
@@ -209,7 +209,7 @@ export function DiscoverBrowser({ goals }: { goals: DiscoverGoalCard[] }) {
           </div>
         </div>
 
-        <p className="mt-6 text-sm text-ink/60" aria-live="polite">
+        <p className="mt-6 text-sm text-ink/70" aria-live="polite">
           {t("browse.resultCount", { count: results.length })}
         </p>
 

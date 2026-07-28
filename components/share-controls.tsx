@@ -255,7 +255,7 @@ export function ShareControls({
             </button>
           ) : null}
           {copyFailed ? (
-            <p className="px-3 py-1 text-xs text-ink/60">{t("copyFailed")}</p>
+            <p className="px-3 py-1 text-xs text-ink/70">{t("copyFailed")}</p>
           ) : null}
         </div>
       ) : null}

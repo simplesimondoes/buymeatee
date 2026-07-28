@@ -82,9 +82,9 @@ function PublicGoalCard({
             className="mt-2"
           />
           {!started ? (
-            <p className="mt-2 text-xs text-ink/60">{t("justStarted")}</p>
+            <p className="mt-2 text-xs text-ink/70">{t("justStarted")}</p>
           ) : supporters > 0 ? (
-            <p className="mt-2 text-xs text-ink/60">
+            <p className="mt-2 text-xs text-ink/70">
               {t("supportedBy", { count: supporters })}
             </p>
           ) : null}
@@ -177,7 +177,7 @@ export function PublicGoals({
                 <CircleCheck aria-hidden="true" className="h-4 w-4 shrink-0 text-forest" />
                 <span>
                   {goal.title}
-                  <span className="text-ink/60">
+                  <span className="text-ink/70">
                     {" "}
                     {t("completedRaised", {
                       amount: formatMinorAmount(
@@ -195,7 +195,7 @@ export function PublicGoals({
       ) : null}
 
       {isOwner && active.length === 0 ? (
-        <p className="text-sm text-ink/60">
+        <p className="text-sm text-ink/70">
           {t.rich("noActiveOwner", {
             link: (chunks) => (
               <Link

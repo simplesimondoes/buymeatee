@@ -112,13 +112,13 @@ export function AvatarUploader({
                 type="button"
                 disabled={busy}
                 onClick={handleRemove}
-                className="inline-flex min-h-11 items-center justify-center rounded-full px-4 text-sm font-medium text-ink/60 transition-colors hover:text-ink disabled:opacity-70"
+                className="inline-flex min-h-11 items-center justify-center rounded-full px-4 text-sm font-medium text-ink/70 transition-colors hover:text-ink disabled:opacity-70"
               >
                 {t("profile.photo.remove")}
               </button>
             ) : null}
           </div>
-          <p className="text-xs leading-relaxed text-ink/60">
+          <p className="text-xs leading-relaxed text-ink/70">
             {t("profile.photo.help")}
           </p>
         </div>

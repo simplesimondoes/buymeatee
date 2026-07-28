@@ -215,7 +215,7 @@ export function ProfileForm({
           {t("profile.form.usernameLabel")}
         </label>
         <div className="mt-1.5 flex items-center rounded-xl border border-stone bg-white focus-within:border-forest focus-within:ring-2 focus-within:ring-forest/20">
-          <span className="pl-4 text-sm text-ink/50" aria-hidden="true">
+          <span className="pl-4 text-sm text-ink/70" aria-hidden="true">
             buymeatee.com/t/
           </span>
           <input
@@ -244,7 +244,7 @@ export function ProfileForm({
             })}
           </p>
         ) : (
-          <p className="mt-1.5 text-sm text-ink/60">
+          <p className="mt-1.5 text-sm text-ink/70">
             {t("profile.form.usernameHelp")}
           </p>
         )}
@@ -274,13 +274,13 @@ export function ProfileForm({
         <div className="flex items-baseline justify-between">
           <label htmlFor={`${fieldId}-bio`} className={labelClasses}>
             {t("profile.form.bioLabel")}{" "}
-            <span className="font-normal text-ink/50">
+            <span className="font-normal text-ink/70">
               {t("profile.form.optional")}
             </span>
           </label>
           <span
             className={`text-xs tabular-nums ${
-              bio.length > BIO_MAX_LENGTH ? "text-red-800" : "text-ink/50"
+              bio.length > BIO_MAX_LENGTH ? "text-red-800" : "text-ink/70"
             }`}
             aria-live="polite"
           >
@@ -307,13 +307,13 @@ export function ProfileForm({
         <div className="flex items-baseline justify-between">
           <label htmlFor={`${fieldId}-about`} className={labelClasses}>
             {t("profile.form.aboutLabel")}{" "}
-            <span className="font-normal text-ink/50">
+            <span className="font-normal text-ink/70">
               {t("profile.form.optional")}
             </span>
           </label>
           <span
             className={`text-xs tabular-nums ${
-              about.length > ABOUT_MAX_LENGTH ? "text-red-800" : "text-ink/50"
+              about.length > ABOUT_MAX_LENGTH ? "text-red-800" : "text-ink/70"
             }`}
             aria-live="polite"
           >
@@ -334,7 +334,7 @@ export function ProfileForm({
           {...errorProps("about")}
         />
         <FieldError id={`${fieldId}-about-error`} message={fieldErrorText("about")} />
-        <p className="mt-1.5 text-sm text-ink/60">
+        <p className="mt-1.5 text-sm text-ink/70">
           {t.rich("profile.form.aboutHelp", {
             strong: (chunks) => <strong>{chunks}</strong>,
           })}
@@ -344,7 +344,7 @@ export function ProfileForm({
       <div>
         <label htmlFor={`${fieldId}-country`} className={labelClasses}>
           {t("profile.form.countryLabel")}{" "}
-          <span className="font-normal text-ink/50">
+          <span className="font-normal text-ink/70">
             {t("profile.form.optional")}
           </span>
         </label>
@@ -367,7 +367,7 @@ export function ProfileForm({
       <fieldset className="space-y-5 border-t border-stone pt-6">
         <legend className="text-sm font-medium text-forest">
           {t("profile.form.golfLegend")}{" "}
-          <span className="font-normal text-ink/50">
+          <span className="font-normal text-ink/70">
             {t("profile.form.optional")}
           </span>
         </legend>
@@ -453,7 +453,7 @@ export function ProfileForm({
       <fieldset className="space-y-5 border-t border-stone pt-6">
         <legend className="text-sm font-medium text-forest">
           {t("profile.form.linksLegend")}{" "}
-          <span className="font-normal text-ink/50">
+          <span className="font-normal text-ink/70">
             {t("profile.form.optional")}
           </span>
         </legend>
@@ -518,7 +518,7 @@ export function ProfileForm({
             id={`${fieldId}-pinnedMediaUrl-error`}
             message={fieldErrorText("pinnedMediaUrl")}
           />
-          <p className="mt-1.5 text-sm text-ink/60">
+          <p className="mt-1.5 text-sm text-ink/70">
             {t("profile.form.pinnedHelp")}
           </p>
         </div>
@@ -576,7 +576,7 @@ export function ProfileForm({
                 buttonLabel={t("profile.form.shareYourPage")}
               />
             </div>
-            <p className="mt-2 text-xs text-ink/60">
+            <p className="mt-2 text-xs text-ink/70">
               {t("profile.form.liveShareNote")}
             </p>
           </div>

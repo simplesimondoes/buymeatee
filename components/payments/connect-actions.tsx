@@ -90,7 +90,7 @@ export function ConnectActions({
             onChange={setCountry}
             options={countryOptions!}
           />
-          <p className="mt-1.5 text-xs text-ink/60">
+          <p className="mt-1.5 text-xs text-ink/70">
             {t("payments.connect.countryHelp")}
           </p>
         </div>

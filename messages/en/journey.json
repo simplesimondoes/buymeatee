@@ -6,6 +6,8 @@
   "writeFirst": "Post your first update",
   "share": "Share",
   "videoTitle": "Journey video",
+  "imageAlt": "Photo from {name}'s update",
+  "imageAltNumbered": "Photo {number} from {name}'s update",
   "likeAria": "{count, plural, =0 {No likes yet} one {# like} other {# likes}}",
   "commentPlaceholder": "Add a comment…",
   "commentSubmit": "Comment",

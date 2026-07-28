@@ -6,6 +6,8 @@
   "writeFirst": "Publica a tua primeira novidade",
   "share": "Partilhar",
   "videoTitle": "Vídeo do percurso",
+  "imageAlt": "Foto da publicação de {name}",
+  "imageAltNumbered": "Foto {number} da publicação de {name}",
   "likeAria": "{count, plural, =0 {Ainda sem gostos} one {# gosto} other {# gostos}}",
   "commentPlaceholder": "Adiciona um comentário…",
   "commentSubmit": "Comentar",

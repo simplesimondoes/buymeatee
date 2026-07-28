@@ -20,6 +20,7 @@ export async function generateMetadata({
     description: t("meta.impressum.description"),
     path: "/impressum",
     locale: locale as AppLocale,
+    noindex: true,
   });
 }
 

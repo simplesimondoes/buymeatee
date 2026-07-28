@@ -107,7 +107,7 @@ export function CommentSection({
                     </span>
                     <time
                       dateTime={comment.created_at}
-                      className="text-xs text-ink/50"
+                      className="text-xs text-ink/70"
                     >
                       {formatDate(comment.created_at, locale)}
                     </time>
@@ -119,7 +119,7 @@ export function CommentSection({
                     <button
                       type="button"
                       onClick={() => handleDelete(comment.id)}
-                      className="mt-1 text-xs font-medium text-ink/50 transition-colors hover:text-red-800"
+                      className="mt-1 text-xs font-medium text-ink/70 transition-colors hover:text-red-800"
                     >
                       {t("commentDelete")}
                     </button>
@@ -160,7 +160,7 @@ export function CommentSection({
           </div>
         </form>
       ) : (
-        <p className="mt-4 text-sm text-ink/60">
+        <p className="mt-4 text-sm text-ink/70">
           <Link
             href={signInHref}
             className="font-medium text-gold-deep hover:text-forest"

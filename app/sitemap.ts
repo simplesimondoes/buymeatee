@@ -8,7 +8,10 @@ import { canonicalUrl, hreflangAlternates } from "@/lib/seo/metadata";
 /**
  * Indexable public routes only (locale-free paths). Dashboards, settings,
  * admin, sign-in, gift confirmations and creator pages (noindex, ADR-016)
- * are deliberately absent.
+ * are deliberately absent. The legal pages (privacy, terms, Impressum,
+ * accessibility) are also absent: they are noindex so the operator's name and
+ * address stay out of search results, so advertising them here would be
+ * contradictory.
  */
 export const staticRoutes = [
   "/",
@@ -19,10 +22,6 @@ export const staticRoutes = [
   "/about",
   "/faq",
   "/blog",
-  "/privacy",
-  "/terms",
-  "/impressum",
-  "/accessibility",
 ] as const;
 
 /**

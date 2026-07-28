@@ -20,6 +20,7 @@ export async function generateMetadata({
     description: t("meta.accessibility.description"),
     path: "/accessibility",
     locale: locale as AppLocale,
+    noindex: true,
   });
 }
 

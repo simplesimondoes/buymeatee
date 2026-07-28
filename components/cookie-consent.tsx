@@ -127,10 +127,17 @@ export function CookieConsent() {
               })}
             </p>
             <div className="flex shrink-0 gap-3">
+              {/*
+                Accept and Decline are equal-weight by design: same size and
+                the same solid-button emphasis tier. A low-emphasis "ghost"
+                Decline against a filled Accept is a nudging dark pattern that
+                can invalidate consent (EDPB Guidelines 03/2022; GDPR Art.
+                4(11)/7 "freely given").
+              */}
               <button
                 type="button"
                 onClick={() => choose("denied")}
-                className="inline-flex min-h-11 flex-1 items-center justify-center rounded-full border border-stone px-5 text-sm font-medium text-forest transition-colors hover:bg-mist lg:flex-none"
+                className="inline-flex min-h-11 flex-1 items-center justify-center rounded-full bg-stone px-5 text-sm font-medium text-forest transition-colors hover:bg-stone/70 lg:flex-none"
               >
                 {t("cookies.decline")}
               </button>

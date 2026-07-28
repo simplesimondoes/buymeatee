@@ -31,7 +31,7 @@ export async function PublicMerch({
       <h2 className="font-serif text-xl font-semibold text-forest">
         {t("shop.heading")}
       </h2>
-      <p className="mt-2 text-sm leading-relaxed text-ink/60">
+      <p className="mt-2 text-sm leading-relaxed text-ink/70">
         {t("shop.fulfilmentNotice")}
       </p>
       <ul className="mt-5 grid gap-4 sm:grid-cols-2">
@@ -63,7 +63,7 @@ export async function PublicMerch({
           </li>
         ))}
       </ul>
-      <p className="mt-4 text-xs leading-relaxed text-ink/50">
+      <p className="mt-4 text-xs leading-relaxed text-ink/70">
         {t("delivery.estimateNotice")}
       </p>
     </section>

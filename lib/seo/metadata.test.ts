@@ -123,6 +123,26 @@ describe("pageMetadata", () => {
     ).toBeUndefined();
   });
 
+  it("marks noindex pages robots:noindex and drops hreflang", () => {
+    const legal = pageMetadata({
+      title: "Privacy",
+      description: "D",
+      path: "/privacy",
+      locale: "en",
+      noindex: true,
+    });
+    expect(legal.robots).toMatchObject({ index: false, follow: false });
+    expect(legal.alternates?.canonical).toBe("https://buymeatee.com/en/privacy");
+    expect(legal.alternates?.languages).toBeUndefined();
+    expect(
+      (legal.openGraph as { alternateLocale?: string[] }).alternateLocale,
+    ).toBeUndefined();
+  });
+
+  it("leaves robots unset for indexable pages", () => {
+    expect(metadata.robots).toBeUndefined();
+  });
+
   it("mirrors values into Open Graph and Twitter cards", () => {
     expect(metadata.openGraph).toMatchObject({
       title: "For Golf Creators",

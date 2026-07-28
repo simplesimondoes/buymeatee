@@ -72,7 +72,7 @@ export function OnboardingChecklist({ state }: { state: CreatorSetupState }) {
         <h2 className="font-serif text-xl font-semibold text-forest">
           {t("checklist.title")}
         </h2>
-        <p className="text-sm text-ink/60">
+        <p className="text-sm text-ink/70">
           {t("checklist.progress", { done: doneCount, total: items.length })}
         </p>
       </div>
@@ -96,7 +96,7 @@ export function OnboardingChecklist({ state }: { state: CreatorSetupState }) {
             <div className="flex-1">
               <p
                 className={`text-sm font-medium ${
-                  item.done ? "text-ink/50 line-through" : "text-ink"
+                  item.done ? "text-ink/70 line-through" : "text-ink"
                 }`}
               >
                 {item.title}

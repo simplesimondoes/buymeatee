@@ -33,7 +33,7 @@ const statusChipClasses: Record<WishlistItemStatus, string> = {
   draft: "bg-mist text-ink/70",
   active: "bg-forest/10 text-forest",
   funded: "bg-gold/20 text-gold-deep",
-  archived: "bg-stone/60 text-ink/60",
+  archived: "bg-stone/60 text-ink/70",
 };
 
 type Transition = {

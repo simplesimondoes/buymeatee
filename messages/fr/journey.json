@@ -6,6 +6,8 @@
   "writeFirst": "Publie ta première actualité",
   "share": "Partager",
   "videoTitle": "Vidéo du parcours",
+  "imageAlt": "Photo de la publication de {name}",
+  "imageAltNumbered": "Photo {number} de la publication de {name}",
   "likeAria": "{count, plural, =0 {Aucun j'aime pour l'instant} one {# j'aime} other {# j'aime}}",
   "commentPlaceholder": "Ajoute un commentaire…",
   "commentSubmit": "Commenter",

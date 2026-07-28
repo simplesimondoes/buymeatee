@@ -471,7 +471,7 @@ export function GiftComposer({
           submitLabel
         )}
       </button>
-      <p className="text-center text-xs text-ink/60">{t("stripeNotice")}</p>
+      <p className="text-center text-xs text-ink/70">{t("stripeNotice")}</p>
     </form>
   );
 }

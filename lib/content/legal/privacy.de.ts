@@ -48,7 +48,7 @@ export const privacyDe: LegalDocument = {
       blocks: [
         {
           kind: "paragraph",
-          text: "Wir verwenden essenzielle Cookies, um Sie angemeldet zu halten — diese sind immer aktiv, weil die Website sie zum Funktionieren braucht. Außerdem verwenden wir Google Analytics (GA4), um aggregiert zu verstehen, wie die Website genutzt wird; dabei werden Analytics-Cookies gesetzt. Analytics lädt nur, wenn Sie es akzeptieren: Bei Ihrem ersten Besuch fragt ein Banner nach Ihrer Entscheidung, und nichts, was mit Analytics zu tun hat, läuft, bevor Sie einwilligen. Sie können Ihre Entscheidung jederzeit über die **Cookie-Einstellungen** im Footer ändern oder widerrufen.",
+          text: "Wir verwenden unbedingt erforderliche Cookies, um Sie angemeldet zu halten, sowie ein funktionales Cookie (`NEXT_LOCALE`), um uns Ihre Sprachwahl zu merken — diese sind immer aktiv, weil die Website sie zum Funktionieren braucht, und sie werden nicht zum Tracking verwendet. Außerdem verwenden wir Google Analytics (GA4), um aggregiert zu verstehen, wie die Website genutzt wird; dabei werden Analytics-Cookies gesetzt. Analytics lädt nur, wenn Sie es akzeptieren: Bei Ihrem ersten Besuch fragt ein Banner nach Ihrer Entscheidung, und nichts, was mit Analytics zu tun hat, läuft, bevor Sie einwilligen. Sie können Ihre Entscheidung jederzeit über die **Cookie-Einstellungen** im Footer ändern oder widerrufen.",
         },
       ],
     },
@@ -93,12 +93,14 @@ export const privacyDe: LegalDocument = {
             "**Stripe** — Zahlungen, Auszahlungen und Identitätsprüfung.",
             "**Resend** — Versand von Transaktions-E-Mails.",
             "**Vercel** — Website-Hosting und übliche Server-Logs.",
-            "**Google Analytics** — aggregierte Nutzungsanalysen.",
+            "**Google Analytics** — aggregierte Nutzungsanalysen (nur nach Ihrer Einwilligung).",
+            "**OpenAI** — optionale KI-gestützte Erstellung vorgeschlagener Text-Entwürfe zum Teilen und für Social-Media-Posts; verarbeitet werden nur die Inhalte, die eine Creatorin oder ein Creator personalisieren lässt (mit Sitz in den USA).",
+            "**Printful** — Print-on-Demand-Produktion und Versand von Merchandise-Bestellungen, einschließlich des Kundennamens und der Lieferadresse, die zur Ausführung und zum Versand einer Bestellung erforderlich sind (mit Sitz in den USA).",
           ],
         },
         {
           kind: "paragraph",
-          text: "Einige dieser Anbieter haben ihren Sitz in den USA oder verarbeiten Daten dort. Wo personenbezogene Daten das Vereinigte Königreich bzw. den EWR verlassen, werden sie durch geeignete Garantien wie Standardvertragsklauseln geschützt. Die vollständige Liste der Auftragsverarbeiter und die Übermittlungsmechanismen werden in der rechtlichen Prüfung bestätigt.",
+          text: "Einige dieser Anbieter (darunter Stripe, Vercel, Google Analytics, OpenAI und Printful) haben ihren Sitz in den USA oder verarbeiten Daten dort. Wo personenbezogene Daten das Vereinigte Königreich bzw. den EWR verlassen, werden sie durch geeignete Garantien wie Standardvertragsklauseln geschützt. Die vollständige Liste der Auftragsverarbeiter und die Übermittlungsmechanismen werden in der rechtlichen Prüfung bestätigt.",
         },
       ],
     },
@@ -107,7 +109,7 @@ export const privacyDe: LegalDocument = {
       blocks: [
         {
           kind: "paragraph",
-          text: "Wir bewahren Konto-, Profil- und Zahlungsdaten auf, solange Sie ein Konto haben, und danach so lange, wie wir es aus rechtlichen, steuerlichen und buchhalterischen Gründen müssen. Öffentliche Inhalte, die Sie veröffentlichen, bleiben sichtbar, bis Sie sie entfernen oder Ihr Konto schließen.",
+          text: "Wir bewahren Ihre Konto- und Profildaten auf, solange Sie ein Konto haben, und löschen sie innerhalb von etwa 30 Tagen nach Schließung Ihres Kontos — es sei denn, wir sind gesetzlich verpflichtet, sie länger aufzubewahren. Zahlungs-, Rechnungs- und Steuerunterlagen werden für den gesetzlich vorgeschriebenen Zeitraum aufbewahrt, der für ein deutsches Unternehmen gilt (in der Regel bis zu 10 Jahre nach dem Handelsgesetzbuch (HGB) und der Abgabenordnung (AO)). Öffentliche Inhalte, die Sie veröffentlichen, bleiben sichtbar, bis Sie sie entfernen oder Ihr Konto schließen.",
         },
       ],
     },
@@ -116,7 +118,7 @@ export const privacyDe: LegalDocument = {
       blocks: [
         {
           kind: "paragraph",
-          text: "Nach britischem und EU-Datenschutzrecht können Sie Auskunft über Ihre personenbezogenen Daten sowie deren Berichtigung, Löschung oder Übertragung verlangen, bestimmten Verarbeitungen widersprechen oder deren Einschränkung verlangen und eine Einwilligung jederzeit widerrufen. Sie können sich außerdem bei Ihrer Datenschutzaufsichtsbehörde beschweren (im Vereinigten Königreich beim ICO). Bestimmte Zahlungs- und Steuerunterlagen müssen auch dann aufbewahrt werden, wenn Sie die Löschung verlangen.",
+          text: "Nach der EU-DSGVO (und dem entsprechenden britischen Recht) können Sie Auskunft über Ihre personenbezogenen Daten sowie deren Berichtigung, Löschung oder Übertragung verlangen, bestimmten Verarbeitungen widersprechen oder deren Einschränkung verlangen und eine Einwilligung jederzeit widerrufen. Sie können sich außerdem bei einer Datenschutzaufsichtsbehörde beschweren: Da der Betreiber in Deutschland niedergelassen ist, ist die zuständige Behörde die Sächsische Datenschutz- und Transparenzbeauftragte; Sie können sich auch an die Behörde in Ihrem eigenen Wohnsitzland wenden. Bestimmte Zahlungs- und Steuerunterlagen müssen auch dann aufbewahrt werden, wenn Sie die Löschung verlangen.",
         },
       ],
     },

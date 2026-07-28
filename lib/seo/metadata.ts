@@ -20,6 +20,13 @@ type PageMetadataInput = {
    * confirmations) where alternate-language hints are pointless.
    */
   noHreflang?: boolean;
+  /**
+   * Keep the page out of search engines (`robots: noindex, nofollow`). Used
+   * for the legal pages (privacy, terms, Impressum, accessibility) so the
+   * operator's name and address don't surface in search results. Implies
+   * `noHreflang` — a noindex page shouldn't advertise language alternates.
+   */
+  noindex?: boolean;
 };
 
 /** "/de" + path, with the bare root collapsing to "/de". */
@@ -70,14 +77,18 @@ export function pageMetadata({
   locale,
   ogType = "website",
   noHreflang = false,
+  noindex = false,
 }: PageMetadataInput): Metadata {
   const url = canonicalUrl(path, locale);
+  // A noindex page must not advertise language alternates either.
+  const skipHreflang = noHreflang || noindex;
   return {
     title,
     description,
+    ...(noindex ? { robots: { index: false, follow: false } } : {}),
     alternates: {
       canonical: url,
-      ...(noHreflang ? {} : { languages: hreflangAlternates(path) }),
+      ...(skipHreflang ? {} : { languages: hreflangAlternates(path) }),
     },
     openGraph: {
       title,
@@ -85,7 +96,7 @@ export function pageMetadata({
       url,
       siteName: siteConfig.name,
       locale: ogLocale[locale],
-      alternateLocale: noHreflang
+      alternateLocale: skipHreflang
         ? undefined
         : locales.filter((l) => l !== locale).map((l) => ogLocale[l]),
       type: ogType,

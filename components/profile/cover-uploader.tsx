@@ -135,13 +135,13 @@ export function CoverUploader({
             type="button"
             disabled={busy}
             onClick={handleRemove}
-            className="inline-flex min-h-11 items-center justify-center rounded-full px-4 text-sm font-medium text-ink/60 transition-colors hover:text-ink disabled:opacity-70"
+            className="inline-flex min-h-11 items-center justify-center rounded-full px-4 text-sm font-medium text-ink/70 transition-colors hover:text-ink disabled:opacity-70"
           >
             {resolvedRemoveLabel}
           </button>
         ) : null}
       </div>
-      <p className="mt-2 text-xs leading-relaxed text-ink/60">{helpText}</p>
+      <p className="mt-2 text-xs leading-relaxed text-ink/70">{helpText}</p>
       <input
         ref={inputRef}
         type="file"

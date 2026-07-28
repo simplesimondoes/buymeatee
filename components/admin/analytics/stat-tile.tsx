@@ -20,7 +20,7 @@ export function StatTile({
 }) {
   return (
     <div className="rounded-3xl border border-stone bg-white p-5">
-      <p className="text-sm text-ink/60">{label}</p>
+      <p className="text-sm text-ink/70">{label}</p>
       <p className="mt-1 text-3xl font-semibold text-ink">{value}</p>
       {delta ? (
         <p className="mt-1 flex flex-wrap items-center gap-x-1.5 gap-y-0.5">
@@ -29,10 +29,10 @@ export function StatTile({
             locale={locale}
             noPriorLabel={noPriorLabel}
           />
-          <span className="text-xs text-ink/50">{delta.periodLabel}</span>
+          <span className="text-xs text-ink/70">{delta.periodLabel}</span>
         </p>
       ) : null}
-      {hint ? <p className="mt-1 text-xs text-ink/50">{hint}</p> : null}
+      {hint ? <p className="mt-1 text-xs text-ink/70">{hint}</p> : null}
     </div>
   );
 }

@@ -50,7 +50,7 @@ export default async function GiftCancelledPage({
   return (
     <main className="mx-auto w-full max-w-2xl px-4 py-16 sm:px-6 sm:py-24">
       <div className="rounded-3xl border border-stone bg-white p-8 text-center">
-        <CircleAlert aria-hidden="true" className="mx-auto h-10 w-10 text-ink/50" />
+        <CircleAlert aria-hidden="true" className="mx-auto h-10 w-10 text-ink/70" />
         <h1 className="mt-4 font-serif text-2xl font-semibold text-forest">
           {t("confirmation.cancelledHeading")}
         </h1>

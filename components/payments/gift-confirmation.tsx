@@ -84,7 +84,7 @@ export function GiftConfirmation({
           </>
         ) : (
           <>
-            <Clock aria-hidden="true" className="mx-auto h-10 w-10 text-ink/60" />
+            <Clock aria-hidden="true" className="mx-auto h-10 w-10 text-ink/70" />
             <h1 className="mt-4 font-serif text-2xl font-semibold text-forest">
               {t("stillConfirmingHeading")}
             </h1>
@@ -158,7 +158,7 @@ export function GiftConfirmation({
   if (status.phase === "pending") {
     return (
       <div role="status" className="rounded-3xl border border-stone bg-mist p-8 text-center">
-        <Clock aria-hidden="true" className="mx-auto h-10 w-10 text-ink/60" />
+        <Clock aria-hidden="true" className="mx-auto h-10 w-10 text-ink/70" />
         <h1 className="mt-4 font-serif text-2xl font-semibold text-forest">
           {t("pendingHeading")}
         </h1>

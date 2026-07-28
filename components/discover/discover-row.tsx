@@ -50,7 +50,7 @@ export function DiscoverRow({
               align="left"
             />
             {preview ? (
-              <p className="mt-3 flex items-center gap-2 text-sm text-ink/60">
+              <p className="mt-3 flex items-center gap-2 text-sm text-ink/70">
                 <ExampleBadge label="Preview" />
                 {note}
               </p>

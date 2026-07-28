@@ -122,7 +122,7 @@ export function AccountMenu({
           aria-label={t("account.menuLabel")}
           className="absolute right-0 z-50 mt-2 w-52 rounded-2xl border border-stone bg-white p-1.5 shadow-lg"
         >
-          <p className="px-3 py-2 text-xs text-ink/50">
+          <p className="px-3 py-2 text-xs text-ink/70">
             {t.rich("account.signedInAs", {
               displayName: name,
               name: (chunks) => (

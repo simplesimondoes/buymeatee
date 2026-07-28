@@ -65,7 +65,7 @@ function StateIcon({ tone }: { tone: StateCopy["tone"] }) {
     case "attention":
       return <CircleAlert aria-hidden="true" className={`${classes} text-amber-700`} />;
     case "pending":
-      return <Clock aria-hidden="true" className={`${classes} text-ink/60`} />;
+      return <Clock aria-hidden="true" className={`${classes} text-ink/70`} />;
     default:
       return <Landmark aria-hidden="true" className={`${classes} text-forest`} />;
   }
@@ -261,7 +261,7 @@ export default async function PaymentSettingsPage({
         </section>
       )}
 
-      <p className="mt-6 text-xs leading-relaxed text-ink/60">
+      <p className="mt-6 text-xs leading-relaxed text-ink/70">
         {t("payments.footnote")}
       </p>
     </main>

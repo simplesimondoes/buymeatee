@@ -28,7 +28,7 @@ export function FunnelBars({ stages }: { stages: FunnelStage[] }) {
               <span className="text-sm font-medium text-ink">
                 {stage.formattedCount}
                 {stage.percentLabel ? (
-                  <span className="ml-1.5 font-normal text-ink/50">
+                  <span className="ml-1.5 font-normal text-ink/70">
                     ({stage.percentLabel})
                   </span>
                 ) : null}

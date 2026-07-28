@@ -34,10 +34,10 @@ function StatTile({
 function SoonTile({ label, note }: { label: string; note: string }) {
   return (
     <div className="flex flex-col justify-between rounded-3xl border border-dashed border-stone bg-mist p-5">
-      <p className="text-xs font-medium uppercase tracking-wide text-ink/50">
+      <p className="text-xs font-medium uppercase tracking-wide text-ink/70">
         {label}
       </p>
-      <p className="mt-3 text-sm font-medium text-ink/60">{note}</p>
+      <p className="mt-3 text-sm font-medium text-ink/70">{note}</p>
     </div>
   );
 }
@@ -89,7 +89,7 @@ export async function DashboardStats({
             </p>
           </div>
         ) : (
-          <p className="text-sm text-ink/60">{t("stats.noGoal")}</p>
+          <p className="text-sm text-ink/70">{t("stats.noGoal")}</p>
         )}
       </StatTile>
 

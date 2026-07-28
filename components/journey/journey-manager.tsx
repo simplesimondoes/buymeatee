@@ -237,7 +237,7 @@ export function JourneyManager({
                       <h3 className="font-serif text-lg font-semibold text-forest">
                         {post.title ?? post.milestone_label ?? t("updates.manager.untitled")}
                       </h3>
-                      <p className="mt-0.5 text-xs text-ink/60">
+                      <p className="mt-0.5 text-xs text-ink/70">
                         {published && post.published_at
                           ? t("updates.manager.publishedOn", {
                               date: formatDate(post.published_at, locale, {

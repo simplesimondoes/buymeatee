@@ -184,7 +184,7 @@ export function ProductWizard({
       {step === 1 && (
         <section className="mt-6">
           <h2 className="text-lg font-medium text-ink">{t("wizard.chooseTitle")}</h2>
-          <p className="mt-1 text-sm text-ink/60">{t("wizard.chooseHint")}</p>
+          <p className="mt-1 text-sm text-ink/70">{t("wizard.chooseHint")}</p>
           {products.length === 0 ? (
             <p className="mt-6 rounded-3xl border border-stone bg-mist p-6 text-ink/70">
               {t("wizard.noProducts")}
@@ -200,7 +200,7 @@ export function ProductWizard({
                   >
                     <span className="block font-medium text-ink">{p.displayName}</span>
                     {p.printfulUnitCostMinor !== null && (
-                      <span className="mt-1 block text-xs text-ink/50">
+                      <span className="mt-1 block text-xs text-ink/70">
                         {t("wizard.prodCost")}: {formatMinorAmount(p.printfulUnitCostMinor, p.currency as SupportedCurrency, locale)}
                       </span>
                     )}
@@ -242,7 +242,7 @@ export function ProductWizard({
 
           <fieldset className="rounded-2xl border border-stone p-4">
             <legend className="px-1 text-sm text-ink/70">{t("wizard.artworkLabel")}</legend>
-            <p className="text-xs text-ink/50">{t("wizard.artworkHint")}</p>
+            <p className="text-xs text-ink/70">{t("wizard.artworkHint")}</p>
             <label className="mt-3 flex items-start gap-2 text-xs text-ink/70">
               <input type="checkbox" checked={rights} onChange={(e) => setRights(e.target.checked)} className="mt-0.5" />
               <span>{t("wizard.rightsConfirm")}</span>
@@ -264,7 +264,7 @@ export function ProductWizard({
             <span className="mb-1 block text-sm text-ink/70">{t("wizard.priceLabel")}</span>
             <input className={inputCls} inputMode="decimal" value={price} onChange={(e) => setPrice(e.target.value)} placeholder="20.00" />
             {selected.minimumRetailPriceMinor > 0 && (
-              <span className="mt-1 block text-xs text-ink/50">
+              <span className="mt-1 block text-xs text-ink/70">
                 {t("wizard.priceHint", { min: formatMinorAmount(selected.minimumRetailPriceMinor, currency, locale) })}
               </span>
             )}
@@ -277,7 +277,7 @@ export function ProductWizard({
               <Row label={t("wizard.profit")} value={formatMinorAmount(breakdown.creatorProfitMinor, currency, locale)} strong />
             </dl>
           ) : selected.printfulUnitCostMinor === null ? (
-            <p className="text-xs text-ink/50">{t("wizard.profitUnknown")}</p>
+            <p className="text-xs text-ink/70">{t("wizard.profitUnknown")}</p>
           ) : null}
 
           {error && <p className="text-sm text-red-700">{error}</p>}
@@ -362,7 +362,7 @@ function Chips({
 function Row({ label, value, strong }: { label: string; value: string; strong?: boolean }) {
   return (
     <div className="flex justify-between gap-3 py-1">
-      <dt className="text-ink/50">{label}</dt>
+      <dt className="text-ink/70">{label}</dt>
       <dd className={strong ? "font-semibold text-forest" : "text-ink"}>{value}</dd>
     </div>
   );
